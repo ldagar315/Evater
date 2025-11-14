@@ -19,7 +19,7 @@ supabase: Client = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_
 ################################################################################################
 # Defining LM for Dspy #
 dspy.configure(
-lm = dspy.LM('openai/llama-3.3-70b', api_key=os.getenv("CEREBRAS_API_KEY"), api_base='https://api.cerebras.ai/v1')
+lm = dspy.LM('openai/gpt-oss-120b', api_key=os.getenv("CEREBRAS_API_KEY"), api_base='https://api.cerebras.ai/v1')
 )
 
 ################################################################################################
