@@ -1,6 +1,7 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 import logging
 import asyncio
+import json
 from ..models import Iterator, EvaluationOutput
 from ..services import (
     get_chapter_structured_summary, transcribe_audio, viva_router as get_next_step
@@ -28,10 +29,14 @@ async def websocket_audio_endpoint(websocket: WebSocket):
             chapter_information = await websocket.receive_json()
             logger.info(f"Received chapter information: {chapter_information}")
             
-            chapter_summary_structured = get_chapter_structured_summary(
-                chapter_name = chapter_information["chapter"],
-                grade = chapter_information["grade"],
-                subject = chapter_information["subject"]
+            loop = asyncio.get_event_loop()
+            chapter_summary_structured = await loop.run_in_executor(
+                None,
+                lambda: get_chapter_structured_summary(
+                    chapter_name=chapter_information["chapter"],
+                    grade=chapter_information["grade"],
+                    subject=chapter_information["subject"]
+                )
             )
             
             if not chapter_summary_structured:
@@ -64,16 +69,34 @@ async def websocket_audio_endpoint(websocket: WebSocket):
                 
             for concept in iterator_list:
                 while concept.next_step != "Move On":
-                    question = generate_viva_question(
-                        concept=concept.concept,
-                        state_till_now= concept.memory,
-                        special_instructions= concept.next_step
+                    question = await loop.run_in_executor(
+                        None,
+                        lambda: generate_viva_question(
+                            concept=concept.concept,
+                            state_till_now=concept.memory,
+                            special_instructions=concept.next_step
+                        )
                     )
                     await websocket.send_json({"question": question.question})
                     logger.info("-" * 50)
                     logger.info(question.question)
                     
-                    audio_webm_bytes = await websocket.receive_bytes()
+                    # Loop to handle ping messages or audio bytes
+                    while True:
+                        message = await websocket.receive()
+                        if "text" in message:
+                            try:
+                                data = json.loads(message["text"])
+                                if data.get("type") == "ping":
+                                    logger.info("Received ping")
+                                    continue
+                            except Exception:
+                                pass
+                        
+                        if "bytes" in message:
+                            audio_webm_bytes = message["bytes"]
+                            break
+                    
                     audio_file_tuple = ("audio.webm", audio_webm_bytes)
                     
                     # Run transcription in executor to avoid blocking
@@ -84,7 +107,13 @@ async def websocket_audio_endpoint(websocket: WebSocket):
                         break
                     logger.info(f"Your Answer was: {answer}")
                     
-                    evaluation = evaluate_viva_answer(question=question.question, answer = answer)
+                    evaluation = await loop.run_in_executor(
+                        None,
+                        lambda: evaluate_viva_answer(
+                            question=question.question,
+                            answer=answer
+                        )
+                    )
                     
                     logger.info(f"Scores received: Correctness: {evaluation.score.correctness}, Clarity: {evaluation.score.clarity}, Depth: {evaluation.score.depth}")
                     
@@ -133,7 +162,10 @@ async def websocket_audio_endpoint(websocket: WebSocket):
             for i in iterator_list:
                 scores_dict[i.concept.concept_name] = i.score.model_dump()
                 
-            viva_feedback_list = viva_feedback(viva_history=temp_memory)
+            viva_feedback_list = await loop.run_in_executor(
+                None,
+                lambda: viva_feedback(viva_history=temp_memory)
+            )
             viva_feedback_text = viva_feedback_list.feedback
             
             final_feedback = {"scores": scores_dict, "feedback": viva_feedback_text}
