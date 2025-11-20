@@ -17,14 +17,14 @@ def generate_questions(InputDataQuestion: InputDataQuestion):
     
     # Pydantic handles validation of required fields automatically via InputDataQuestion model
     
-    if "only mcq" in InputDataQuestion.special_instructions:
+    if InputDataQuestion.test_type == "objective":
         result = result_distribution_mcq(
             difficulty_level= InputDataQuestion.difficulty_level,
             subject = InputDataQuestion.subject,
             length = InputDataQuestion.length, 
             special_instructions = InputDataQuestion.special_instructions
         )
-    elif "only subjective" in InputDataQuestion.special_instructions:
+    elif InputDataQuestion.test_type == "subjective":
         result = result_distribution_subjective(
             difficulty_level= InputDataQuestion.difficulty_level,
             subject = InputDataQuestion.subject,

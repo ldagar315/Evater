@@ -83,8 +83,19 @@ class InputDataQuestion(BaseModel):
     topic: str
     difficulty_level: str
     length: str
+    test_type: Literal["objective", "subjective", "mixed"]
     special_instructions: List[str]
 
 class InputDataAnswer(BaseModel):
-    image_url: List[str]
+    image_url: Optional[List[str]] = []
     questions: Dict[str, Any]
+    text_answers: Optional[Dict[int, str]] = None
+
+class AnswerInput(BaseModel):
+    question_number: int
+    answer_text: Optional[str] = None
+    image_url: Optional[str] = None
+
+class DirectFeedbackRequest(BaseModel):
+    questions: List[Question]
+    answers: List[AnswerInput]

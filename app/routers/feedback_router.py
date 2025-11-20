@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from typing import Dict, Any
-from ..models import InputDataAnswer, ErrorResponse, Question
-from ..dspy_modules import answer_seperation, feedback_generation
-from ..services import answer_ocr_extraction, merge_qaf
+from ..models import InputDataAnswer, ErrorResponse, Question, DirectFeedbackRequest, Answer
+from ..dspy_modules import answer_seperation, feedback_generation, ocr_text
+from ..services import answer_ocr_extraction, merge_qaf, ocr_text_single_image
 
 router = APIRouter()
 
@@ -41,3 +41,48 @@ def generate_feedback(InputDataAnswer: InputDataAnswer):
         feedback_list_new = feedback_list_new
     )
     return {"merged" : merged }
+
+@router.post("/gen_feedback_direct", response_model=Dict[str, Any], responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+def generate_feedback_direct(request: DirectFeedbackRequest):
+    """
+    Directly generate feedback for questions and answers (text or image).
+    Bypasses the answer separation logic used for bulk uploads.
+    """
+    feedback_list = []
+    
+    # Create a map of questions for easy lookup
+    question_map = {q.question_number: q for q in request.questions}
+    
+    for ans_input in request.answers:
+        question = question_map.get(ans_input.question_number)
+        if not question:
+            continue
+            
+        final_answer_text = ""
+        
+        # If text answer is provided, use it
+        if ans_input.answer_text:
+            final_answer_text = ans_input.answer_text
+            
+        # If image is provided, run OCR and append/replace
+        if ans_input.image_url:
+            ocr_result = ocr_text_single_image(ans_input.image_url)
+            if final_answer_text:
+                final_answer_text += f"\n\n[Image Content]: {ocr_result}"
+            else:
+                final_answer_text = ocr_result
+        
+        if not final_answer_text:
+            final_answer_text = "No answer provided."
+
+        # Create Answer object
+        answer_obj = Answer(
+            question_number=ans_input.question_number,
+            answer=final_answer_text
+        )
+        
+        # Generate Feedback
+        feedback = feedback_generation(question=question, answer=answer_obj.answer)
+        feedback_list.append(feedback.feedback.model_dump())
+
+    return {"feedback": feedback_list}

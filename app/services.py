@@ -23,6 +23,17 @@ def answer_ocr_extraction(image__url_list: List[str]):
         ocr_text_answer = ocr_text(answer_sheet_images = new_image_url_list)
     return ocr_text_answer.answer_sheet_text
 
+def ocr_text_single_image(image_url: str) -> str:
+    """
+    Perform OCR on a single image URL.
+    """
+    dspy_image = dspy.Image.from_url(image_url)
+    # Using a specific LM for OCR as per original code
+    with dspy.context(lm = dspy.LM('gemini/gemini-2.5-flash', api_key=os.getenv("GEMINI_API_KEY"))):
+        # Reuse the existing signature but pass a single-item list
+        ocr_text_answer = ocr_text(answer_sheet_images = [dspy_image])
+    return ocr_text_answer.answer_sheet_text
+
 def merge_qaf(
     questions_list: List[Dict[str, Any]],
     answer_list: List[Dict[str, Any]],
