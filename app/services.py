@@ -81,24 +81,57 @@ def maximum_marks(question_type: str) -> int:
     return marks_map.get(question_type, 0)
 
 def viva_router(error: str, correctness: int, depth: int, clarity: int, turn_count: int):
-    if error == "no error" and correctness > 8 and depth > 8 and clarity > 8 and turn_count >= 2:
+    
+    if turn_count > 2:
         return "Move On"
+    
+    elif error == "no error" and correctness > 8 and depth > 8 and clarity > 8:
+        if turn_count >= 2:
+            return "Move On"
+        else:
+            return "Ask one slightly deeper or application-oriented question on this concept."
+    
     elif error == "factual" and correctness < 6:
-        return "Ask another question focused on the same factual point, but phrase it differently."
+        if turn_count == 1:
+            return "Ask another question focused on the same factual point, but phrase it differently."
+        else:
+            return "Move On"
     elif error == "procedural" and correctness < 6:
-        return "Generate a question that tests the same procedure in a slightly different way"
+        if turn_count == 1:
+            return "Generate a question that tests the same procedure in a slightly different, more step-by-step way."
+        else:
+            return "Move On"
     elif error == "application" and depth < 6:
-        return "Provide a simple real-world example that demonstrates the application of this concept. Then ask a follow-up question about it."
+        if turn_count == 1:
+            return "Provide a simple real-world example that demonstrates the application of this concept, then ask a follow-up question about it."
+        else:
+            return "Move On"        
     elif error == "reasoning":
-        return "Ask a 'why' or 'how' question about the reasoning behind the previous answer."
+        if turn_count == 1:
+            return "Ask a 'why' or 'how' question about the reasoning behind the previous answer."
+        else:
+            return "Move On"
     elif error == "conceptual" and depth < 6:
-        return "Ask a foundational question that breaks the concept into simpler parts. Include analogies if useful."
+        if turn_count == 1:
+            return "Ask a foundational question that breaks the concept into simpler parts. Include analogies if useful."
+        else:
+            return "Move On"
     elif error == "communication/articulation" and clarity < 6:
-        return "Ask the student to explain the same answer again in clearer or simpler terms."
+        if turn_count == 1:
+            return "Ask the student to explain the same answer again in clearer or simpler terms."
+        else:
+            return "Move On"
+
     elif error == "metacognitive":
-        return "Ask the student how they arrived at the answer or what strategy they used."
+        if turn_count == 1:
+            return "Ask the student how they arrived at the answer or what strategy they used."
+        else:
+            return "Move On"
     else:
-        return "Test this concept using a different question/approach"
+        if turn_count == 1:
+            return "Test this concept using a different question/approach."
+        else:
+            return "Move On"
 
 def transcribe_audio(audio_file_tuple):
     # Use the global client
