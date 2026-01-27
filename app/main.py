@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from .routers import test_router, feedback_router, viva_router
+from .routers import auth_router, test_router, feedback_router, viva_router
 
 load_dotenv()
 
@@ -29,6 +29,7 @@ def root():
 # Include Routers
 app.include_router(test_router.router, prefix="/api", tags=["Test Generation"])
 app.include_router(feedback_router.router, prefix="/api", tags=["Feedback Generation"])
+app.include_router(auth_router.router, prefix="/api", tags=["Auth"])
 app.include_router(viva_router.router, tags=["Viva WebSocket"])
 
 if __name__ == "__main__":

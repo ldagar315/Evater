@@ -3,9 +3,11 @@ import logging
 import asyncio
 import json
 from ..models import Iterator, EvaluationOutput
+from ..auth import AuthContext, require_user_websocket
 from ..services import (
     get_chapter_structured_summary, transcribe_audio, viva_router as get_next_step
 )
+from ..supabase_client import create_supabase_client
 from ..dspy_modules import (
     generate_viva_question, evaluate_viva_answer, viva_feedback
 )
@@ -18,9 +20,12 @@ async def websocket_audio_endpoint(websocket: WebSocket):
     """
     WebSocket endpoint to receive audio from a client and send back dummy data.
     """
-    await websocket.accept()
-    logger.info("WebSocket connection accepted.")
     try:
+        auth: AuthContext = await require_user_websocket(websocket)
+        supabase_client = create_supabase_client(auth.jwt)
+
+        await websocket.accept()
+        logger.info("WebSocket connection accepted.")
         # Send some dummy data upon connection
         await websocket.send_json({"status": "connected", "message": "Ready to receive audio."})
 
@@ -35,7 +40,8 @@ async def websocket_audio_endpoint(websocket: WebSocket):
                 lambda: get_chapter_structured_summary(
                     chapter_name=chapter_information["chapter"],
                     grade=chapter_information["grade"],
-                    subject=chapter_information["subject"]
+                    subject=chapter_information["subject"],
+                    supabase_client=supabase_client,
                 )
             )
             

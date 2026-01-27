@@ -1,8 +1,8 @@
 import os
 import logging
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from dotenv import load_dotenv
-from supabase import create_client, Client
+from supabase import Client
 from groq import Groq
 import dspy
 from .dspy_modules import ocr_text
@@ -10,11 +10,21 @@ from .dspy_modules import ocr_text
 load_dotenv()
 logger = logging.getLogger(__name__)
 
-# Initialize Supabase
-supabase: Client = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_API_KEY"))
+_groq_client: Optional[Groq] = None
 
-# Initialize Groq Client (Global to avoid re-init)
-groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+def _get_groq_client() -> Groq:
+    global _groq_client
+
+    if _groq_client is not None:
+        return _groq_client
+
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise RuntimeError("Missing GROQ_API_KEY")
+
+    _groq_client = Groq(api_key=api_key)
+    return _groq_client
 
 def answer_ocr_extraction(image__url_list: List[str]):
     new_image_url_list = [dspy.Image.from_url(url) for url in image__url_list]
@@ -55,27 +65,27 @@ def merge_qaf(
 
     return merged
 
-def get_chapter_summary(chapter_name: str, grade:int, subject: str):
+def get_chapter_summary(chapter_name: str, grade: int, subject: str, supabase_client: Client):
     response = (
-    supabase.table("Chapter_contents")
-    .select("summary")
-    .eq("grade", grade)
-    .eq("subject", subject)
-    .eq("chapter", chapter_name)
-    .execute()
+        supabase_client.table("Chapter_contents")
+        .select("summary")
+        .eq("grade", grade)
+        .eq("subject", subject)
+        .eq("chapter", chapter_name)
+        .execute()
     )
     if response.data:
         return response.data[0]["summary"]
     return ""
 
-def get_chapter_structured_summary(chapter_name: str, grade:int, subject: str):
+def get_chapter_structured_summary(chapter_name: str, grade: int, subject: str, supabase_client: Client):
     response = (
-    supabase.table("Chapter_contents")
-    .select("structured_summary")
-    .eq("grade", grade)
-    .eq("subject", subject)
-    .eq("chapter", chapter_name)
-    .execute()
+        supabase_client.table("Chapter_contents")
+        .select("structured_summary")
+        .eq("grade", grade)
+        .eq("subject", subject)
+        .eq("chapter", chapter_name)
+        .execute()
     )
     if response.data:
         return response.data[0]["structured_summary"]
@@ -145,7 +155,7 @@ def viva_router(error: str, correctness: int, depth: int, clarity: int, turn_cou
             return "Move On"
 
 def transcribe_audio(audio_file_tuple):
-    # Use the global client
+    groq_client = _get_groq_client()
     transcription = groq_client.audio.transcriptions.create(
                     file=audio_file_tuple,
                     model="whisper-large-v3",
