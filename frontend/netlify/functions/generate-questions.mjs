@@ -1,12 +1,19 @@
 export default async (request, context) => {
+  const { corsDecision } = await import('./_shared/cors.mjs')
+  const { origin, allowed, headers: cors } = corsDecision(request)
+  if (origin && !allowed) {
+    return new Response(JSON.stringify({ error: 'CORS origin not allowed' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
+
   // Handle CORS preflight requests
   if (request.method === 'OPTIONS') {
     return new Response(null, {
       status: 200,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
+        ...cors,
       },
     })
   }
@@ -16,7 +23,7 @@ export default async (request, context) => {
       status: 405,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...cors,
       },
     })
   }
@@ -25,12 +32,15 @@ export default async (request, context) => {
     const body = await request.json()
     
     console.log('Netlify function received:', body)
+
+    const authHeader = request.headers.get('authorization') || undefined
     
     // Forward the request to the external API
     const response = await fetch('https://ldagar315--evater-v1-wrapper.modal.run/api/gen_question', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...(authHeader ? { Authorization: authHeader } : {}),
       },
       body: JSON.stringify(body)
     })
@@ -45,7 +55,7 @@ export default async (request, context) => {
         status: response.status,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          ...cors,
         },
       })
     }
@@ -54,7 +64,7 @@ export default async (request, context) => {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...cors,
       },
     })
   } catch (error) {
@@ -66,7 +76,7 @@ export default async (request, context) => {
       status: 500,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...cors,
       },
     })
   }

@@ -23,11 +23,20 @@ interface FeedbackResponse {
 }
 
 Deno.serve(async (req: Request) => {
+  const headers = corsHeaders(req)
+  const origin = req.headers.get('origin')
+  if (origin && Object.keys(headers).length === 0) {
+    return new Response(JSON.stringify({ error: 'CORS origin not allowed' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
+
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 200,
-      headers: corsHeaders,
+      headers,
     })
   }
 
@@ -40,7 +49,7 @@ Deno.serve(async (req: Request) => {
         JSON.stringify({ error: 'Missing required fields' }),
         {
           status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          headers: { ...headers, 'Content-Type': 'application/json' },
         }
       )
     }
@@ -71,7 +80,7 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({ merged }),
       {
         status: 200,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...headers, 'Content-Type': 'application/json' },
       }
     )
   } catch (error) {
@@ -79,7 +88,7 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({ error: 'Internal server error' }),
       {
         status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...headers, 'Content-Type': 'application/json' },
       }
     )
   }

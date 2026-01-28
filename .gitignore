@@ -1,7 +1,8 @@
 __pycache__/
 *.pyc
 .pytest_cache/
-.python-version
 .env
+.env.*
+.python-version
 venv/
 .venv/
