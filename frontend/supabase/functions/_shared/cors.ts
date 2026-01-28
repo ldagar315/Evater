@@ -8,7 +8,8 @@ function splitOrigins(value?: string | null): string[] {
 
 function isProduction(): boolean {
   const env = (Deno.env.get('ENV') || Deno.env.get('APP_ENV') || Deno.env.get('NODE_ENV') || '').toLowerCase()
-  return env === 'production' || env === 'prod'
+  // Default to production-safe behavior if unset/unknown.
+  return env !== 'development' && env !== 'dev' && env !== 'local' && env !== 'test'
 }
 
 function isLocalhostOrigin(origin: string): boolean {
@@ -20,7 +21,7 @@ export function corsHeaders(req: Request): Record<string, string> {
   if (!origin) return {}
 
   const allowed = splitOrigins(Deno.env.get('APP_ORIGINS'))
-  const allowLocalhost = !isProduction()
+  const allowLocalhost = !isProduction() && (Deno.env.get('ENV') || Deno.env.get('APP_ENV') || Deno.env.get('NODE_ENV'))
 
   const isAllowed = allowed.includes(origin) || (allowLocalhost && isLocalhostOrigin(origin))
   if (!isAllowed) return {}

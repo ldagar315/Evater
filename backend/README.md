@@ -209,3 +209,5 @@ ENV=production
 ```
 
 In non-production environments, `http://localhost:<port>` is allowed by default for local development.
+
+Note: If no environment is set, the backend defaults to production-safe behavior (localhost is NOT automatically allowed). Set `ENV=development` (or `ENV=dev`) explicitly for local dev.

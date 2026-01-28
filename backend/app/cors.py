@@ -14,7 +14,8 @@ def _split_origins(value: Optional[str]) -> List[str]:
 def is_production_env() -> bool:
     # Common environment markers across platforms
     env = (os.getenv("ENV") or os.getenv("APP_ENV") or os.getenv("NODE_ENV") or "").lower()
-    return env in {"prod", "production"}
+    # Default to production-safe behavior if unset/unknown to avoid accidentally allowing localhost in prod.
+    return env not in {"dev", "development", "local", "test"}
 
 
 def allowed_origins() -> List[str]:
@@ -37,5 +38,6 @@ def add_cors_middleware(app: FastAPI) -> None:
         allow_origin_regex=allowed_origin_regex(),
         allow_credentials=True,
         allow_methods=["GET", "POST", "OPTIONS"],
-        allow_headers=["Authorization", "Content-Type"],
+        # Include common headers used by Supabase clients as well.
+        allow_headers=["Authorization", "Content-Type", "apikey", "x-client-info"],
     )

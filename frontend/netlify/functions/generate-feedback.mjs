@@ -1,6 +1,12 @@
 export default async (request, context) => {
-  const { corsHeadersFor } = await import('./_shared/cors.mjs')
-  const cors = corsHeadersFor(request)
+  const { corsDecision } = await import('./_shared/cors.mjs')
+  const { origin, allowed, headers: cors } = corsDecision(request)
+  if (origin && !allowed) {
+    return new Response(JSON.stringify({ error: 'CORS origin not allowed' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
 
   // Handle CORS preflight requests
   if (request.method === 'OPTIONS') {

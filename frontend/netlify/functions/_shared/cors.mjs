@@ -12,31 +12,43 @@ function splitOrigins(value) {
     .filter(Boolean)
 }
 
+function isExplicitNonProd() {
+  const env = (getEnv('ENV') || getEnv('APP_ENV') || getEnv('NODE_ENV') || '').toLowerCase()
+  return env === 'development' || env === 'dev' || env === 'local' || env === 'test'
+}
+
 function isProduction() {
-  const env = (getEnv('ENV') || getEnv('APP_ENV') || getEnv('NODE_ENV') || getEnv('CONTEXT') || '').toLowerCase()
-  return env === 'production' || env === 'prod'
+  // Default to production-safe behavior if unset/unknown.
+  return !isExplicitNonProd()
 }
 
 function isLocalhostOrigin(origin) {
   return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
 }
 
-export function corsHeadersFor(request, { allowMethods = 'POST, GET, OPTIONS' } = {}) {
+export function corsDecision(request, { allowMethods = 'POST, GET, OPTIONS' } = {}) {
   const origin = request.headers.get('origin')?.replace(/\/$/, '')
 
-  if (!origin) return {}
+  if (!origin) return { origin: null, allowed: true, headers: {} }
 
   const allowed = splitOrigins(getEnv('APP_ORIGINS'))
-  const allowLocalhost = !isProduction()
+  const allowLocalhost = isExplicitNonProd()
 
   const isAllowed = allowed.includes(origin) || (allowLocalhost && isLocalhostOrigin(origin))
-  if (!isAllowed) return {}
+  if (!isAllowed) return { origin, allowed: false, headers: {} }
 
   return {
-    'Access-Control-Allow-Origin': origin,
-    'Access-Control-Allow-Methods': allowMethods,
-    'Access-Control-Allow-Headers': 'authorization, content-type',
-    Vary: 'Origin',
+    origin,
+    allowed: true,
+    headers: {
+      'Access-Control-Allow-Origin': origin,
+      'Access-Control-Allow-Methods': allowMethods,
+      'Access-Control-Allow-Headers': 'authorization, content-type',
+      Vary: 'Origin',
+    },
   }
 }
 
+export function corsHeadersFor(request, opts) {
+  return corsDecision(request, opts).headers
+}

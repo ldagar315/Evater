@@ -68,3 +68,25 @@ def test_no_wildcard_origin_in_production(monkeypatch):
     )
 
     assert resp.headers.get("access-control-allow-origin") != "*"
+
+
+def test_localhost_not_allowed_when_env_unset(monkeypatch):
+    monkeypatch.delenv("ENV", raising=False)
+    monkeypatch.delenv("APP_ENV", raising=False)
+    monkeypatch.delenv("NODE_ENV", raising=False)
+    monkeypatch.delenv("APP_ORIGINS", raising=False)
+
+    app = FastAPI()
+    add_cors_middleware(app)
+    app.add_api_route("/api/gen_question", lambda: {"ok": True}, methods=["POST"])
+    client = TestClient(app)
+
+    resp = client.options(
+        "/api/gen_question",
+        headers={
+            "Origin": "http://localhost:5173",
+            "Access-Control-Request-Method": "POST",
+        },
+    )
+
+    assert resp.headers.get("access-control-allow-origin") is None

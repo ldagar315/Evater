@@ -24,6 +24,13 @@ interface FeedbackResponse {
 
 Deno.serve(async (req: Request) => {
   const headers = corsHeaders(req)
+  const origin = req.headers.get('origin')
+  if (origin && Object.keys(headers).length === 0) {
+    return new Response(JSON.stringify({ error: 'CORS origin not allowed' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
 
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
