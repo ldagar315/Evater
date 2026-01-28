@@ -259,7 +259,6 @@ def answer_seperation(**kwargs):
 
 
 def ocr_text(**kwargs):
-    ensure_dspy_configured()
     return _ocr_text(**kwargs)
 
 

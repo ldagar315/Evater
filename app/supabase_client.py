@@ -13,8 +13,7 @@ def create_supabase_client(jwt: Optional[str] = None) -> Client:
         raise RuntimeError("Missing SUPABASE_URL or SUPABASE_API_KEY")
 
     if jwt:
-        options = SyncClientOptions(headers={"Authorization": f"Bearer {jwt}"})
+        options = SyncClientOptions(headers={"Authorization": f"Bearer {jwt}", "apikey": supabase_key})
         return create_client(supabase_url, supabase_key, options=options)
 
     return create_client(supabase_url, supabase_key)
-

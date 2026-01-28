@@ -19,4 +19,4 @@ def test_create_supabase_client_attaches_authorization(monkeypatch):
     assert seen["key"] == "anon"
     assert seen["options"] is not None
     assert seen["options"].headers["Authorization"] == "Bearer jwt_123"
-
+    assert seen["options"].headers["apikey"] == "anon"
