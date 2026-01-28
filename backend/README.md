@@ -199,3 +199,13 @@ Evater backend is serverless-ready via **Modal**.
 To deploy:
 Follow Modal’s deployment documentation and run relevant deployment commands.
 
+## CORS Configuration
+
+Set `APP_ORIGINS` (comma-separated) to explicitly allow browser origins in production. Example:
+
+```env
+APP_ORIGINS="https://evater.example,https://staging.evater.example"
+ENV=production
+```
+
+In non-production environments, `http://localhost:<port>` is allowed by default for local development.

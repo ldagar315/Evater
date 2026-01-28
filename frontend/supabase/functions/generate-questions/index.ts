@@ -20,11 +20,13 @@ interface Question {
 }
 
 Deno.serve(async (req: Request) => {
+  const headers = corsHeaders(req)
+
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 200,
-      headers: corsHeaders,
+      headers,
     })
   }
 
@@ -37,7 +39,7 @@ Deno.serve(async (req: Request) => {
         JSON.stringify({ error: 'Missing required fields' }),
         {
           status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          headers: { ...headers, 'Content-Type': 'application/json' },
         }
       )
     }
@@ -78,7 +80,7 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({ questions }),
       {
         status: 200,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...headers, 'Content-Type': 'application/json' },
       }
     )
   } catch (error) {
@@ -86,7 +88,7 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({ error: 'Internal server error' }),
       {
         status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...headers, 'Content-Type': 'application/json' },
       }
     )
   }
