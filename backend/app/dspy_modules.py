@@ -9,10 +9,28 @@ from .models import (
 
 load_dotenv()
 
-# Configure DSPy
-dspy.configure(
-    lm = dspy.LM('openai/gpt-oss-120b', api_key=os.getenv("CEREBRAS_API_KEY"), api_base='https://api.cerebras.ai/v1', cache=False)
-)
+_DSPY_CONFIGURED = False
+
+
+def ensure_dspy_configured() -> None:
+    global _DSPY_CONFIGURED
+
+    if _DSPY_CONFIGURED:
+        return
+
+    api_key = os.getenv("CEREBRAS_API_KEY")
+    if not api_key:
+        raise RuntimeError("Missing CEREBRAS_API_KEY")
+
+    dspy.configure(
+        lm=dspy.LM(
+            "openai/gpt-oss-120b",
+            api_key=api_key,
+            api_base="https://api.cerebras.ai/v1",
+            cache=False,
+        )
+    )
+    _DSPY_CONFIGURED = True
 
 # Signatures
 class AnswerSheet(dspy.Signature):
@@ -198,13 +216,62 @@ class VivaFeedback(dspy.Signature):
     feedback: str = dspy.OutputField(desc = "Structured written feedback with strengths, key gaps, patterns in errors, and an action plan.")
 
 # Modules
-result_distribution = dspy.ChainOfThought(GenerateQuestionDistribution)
-result_distribution_mcq = dspy.ChainOfThought(GenerateQuestionDistributionMCQ)
-result_distribution_subjective = dspy.ChainOfThought(GenerateQuestionDistributionSubjective)
-test_generation = dspy.ChainOfThought(GenerateTest)
-feedback_generation = dspy.ChainOfThought(Generate_Feedback)
-answer_seperation = dspy.ChainOfThought(AnswerSheet)
-ocr_text = dspy.ChainOfThought(AnswerSheetToMarkdown)
-generate_viva_question = dspy.ChainOfThought(GenerateVivaQuestion)
-evaluate_viva_answer = dspy.ChainOfThought(EvaluateVivaAnswer)
-viva_feedback = dspy.ChainOfThought(VivaFeedback)
+_result_distribution = dspy.ChainOfThought(GenerateQuestionDistribution)
+_result_distribution_mcq = dspy.ChainOfThought(GenerateQuestionDistributionMCQ)
+_result_distribution_subjective = dspy.ChainOfThought(GenerateQuestionDistributionSubjective)
+_test_generation = dspy.ChainOfThought(GenerateTest)
+_feedback_generation = dspy.ChainOfThought(Generate_Feedback)
+_answer_seperation = dspy.ChainOfThought(AnswerSheet)
+_ocr_text = dspy.ChainOfThought(AnswerSheetToMarkdown)
+_generate_viva_question = dspy.ChainOfThought(GenerateVivaQuestion)
+_evaluate_viva_answer = dspy.ChainOfThought(EvaluateVivaAnswer)
+_viva_feedback = dspy.ChainOfThought(VivaFeedback)
+
+
+def result_distribution(**kwargs):
+    ensure_dspy_configured()
+    return _result_distribution(**kwargs)
+
+
+def result_distribution_mcq(**kwargs):
+    ensure_dspy_configured()
+    return _result_distribution_mcq(**kwargs)
+
+
+def result_distribution_subjective(**kwargs):
+    ensure_dspy_configured()
+    return _result_distribution_subjective(**kwargs)
+
+
+def test_generation(**kwargs):
+    ensure_dspy_configured()
+    return _test_generation(**kwargs)
+
+
+def feedback_generation(**kwargs):
+    ensure_dspy_configured()
+    return _feedback_generation(**kwargs)
+
+
+def answer_seperation(**kwargs):
+    ensure_dspy_configured()
+    return _answer_seperation(**kwargs)
+
+
+def ocr_text(**kwargs):
+    return _ocr_text(**kwargs)
+
+
+def generate_viva_question(**kwargs):
+    ensure_dspy_configured()
+    return _generate_viva_question(**kwargs)
+
+
+def evaluate_viva_answer(**kwargs):
+    ensure_dspy_configured()
+    return _evaluate_viva_answer(**kwargs)
+
+
+def viva_feedback(**kwargs):
+    ensure_dspy_configured()
+    return _viva_feedback(**kwargs)
