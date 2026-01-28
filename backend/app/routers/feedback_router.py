@@ -1,10 +1,11 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from typing import Dict, Any
 from ..models import InputDataAnswer, ErrorResponse, Question, DirectFeedbackRequest, Answer
+from ..auth import require_user
 from ..dspy_modules import answer_seperation, feedback_generation, ocr_text
 from ..services import answer_ocr_extraction, merge_qaf, ocr_text_single_image
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_user)])
 
 @router.post("/gen_answer", response_model=Dict[str, Any], responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
 def generate_feedback(InputDataAnswer: InputDataAnswer):

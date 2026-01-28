@@ -90,6 +90,16 @@ It's built to be scalable and leverages modern AI models for its core functional
 
 ## API Endpoints
 
+## Authentication
+
+All `/api/*` REST endpoints require a Supabase access token:
+
+- `Authorization: Bearer <access_token>`
+
+The viva WebSocket requires a token via query param:
+
+- `ws://<host>/ws/viva?access_token=<access_token>`
+
 ### `/` (GET)
 - **Description**: Root endpoint to check API status.
 - **Response**:  
@@ -198,4 +208,3 @@ Evater backend is serverless-ready via **Modal**.
 
 To deploy:
 Follow Modal’s deployment documentation and run relevant deployment commands.
-
