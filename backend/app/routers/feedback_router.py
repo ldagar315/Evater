@@ -4,6 +4,7 @@ from ..models import InputDataAnswer, ErrorResponse, Question, DirectFeedbackReq
 from ..auth import require_user
 from ..dspy_modules import answer_seperation, feedback_generation, ocr_text
 from ..services import answer_ocr_extraction, merge_qaf, ocr_text_single_image
+from ..remote_image import RemoteImageError
 
 router = APIRouter(dependencies=[Depends(require_user)])
 
@@ -14,7 +15,10 @@ def generate_feedback(InputDataAnswer: InputDataAnswer):
     image_url = InputDataAnswer.image_url
     questions = InputDataAnswer.questions
 
-    text = answer_ocr_extraction(image_url)
+    try:
+        text = answer_ocr_extraction(image_url)
+    except RemoteImageError as e:
+        raise HTTPException(status_code=e.status_code, detail=e.detail)
 
     seperated_answers = answer_seperation(
         answer_sheet_text = text
@@ -67,7 +71,10 @@ def generate_feedback_direct(request: DirectFeedbackRequest):
             
         # If image is provided, run OCR and append/replace
         if ans_input.image_url:
-            ocr_result = ocr_text_single_image(ans_input.image_url)
+            try:
+                ocr_result = ocr_text_single_image(ans_input.image_url)
+            except RemoteImageError as e:
+                raise HTTPException(status_code=e.status_code, detail=e.detail)
             if final_answer_text:
                 final_answer_text += f"\n\n[Image Content]: {ocr_result}"
             else:

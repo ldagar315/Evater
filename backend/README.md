@@ -141,6 +141,12 @@ The viva WebSocket requires a token via query param:
     "questions": { "question_id": { ... } }
   }
   ```
+
+  Notes on `image_url`:
+  - Only `https://` URLs are accepted.
+  - The image host must be allowlisted to prevent SSRF. By default, only the hostname from
+    `SUPABASE_URL` is allowed (so images should come from your Supabase Storage public URLs).
+  - You can extend the allowlist with `OCR_ALLOWED_IMAGE_HOSTS` (comma-separated hostnames).
 * **Response**:
 
   ```json
