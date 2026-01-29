@@ -14,6 +14,7 @@ from __future__ import annotations
 import ipaddress
 import os
 import socket
+import base64
 from functools import lru_cache
 from typing import Iterable, Optional, Set
 from urllib.parse import urljoin, urlsplit
@@ -144,7 +145,7 @@ def validate_remote_image_url(url: str, *, allowed_hosts: Optional[Iterable[str]
     return url
 
 
-def fetch_image_bytes(
+def _fetch_image(
     url: str,
     *,
     allowed_hosts: Optional[Iterable[str]] = None,
@@ -152,13 +153,7 @@ def fetch_image_bytes(
     max_redirects: int = 3,
     timeout: Optional[httpx.Timeout] = None,
     client: Optional[httpx.Client] = None,
-) -> bytes:
-    """
-    Fetch a remote image (bytes) with SSRF protections.
-
-    This function only fetches from allowlisted hosts (see validate_remote_image_url),
-    enforces timeouts, enforces a max download size, and validates Content-Type.
-    """
+) -> tuple[bytes, str]:
     allowed = set(allowed_hosts or get_allowed_image_hosts())
     current_url = validate_remote_image_url(url, allowed_hosts=allowed)
 
@@ -202,7 +197,6 @@ def fetch_image_bytes(
                         if int(content_length) > max_bytes:
                             raise RemoteImageError(status_code=413, detail="Image is too large.")
                     except ValueError:
-                        # Ignore invalid Content-Length.
                         pass
 
                 chunks = []
@@ -212,7 +206,60 @@ def fetch_image_bytes(
                     if total > max_bytes:
                         raise RemoteImageError(status_code=413, detail="Image is too large.")
                     chunks.append(chunk)
-                return b"".join(chunks)
+                return b"".join(chunks), content_type
     finally:
         if owned_client:
             client.close()
+
+
+def fetch_image_bytes(
+    url: str,
+    *,
+    allowed_hosts: Optional[Iterable[str]] = None,
+    max_bytes: int = 10 * 1024 * 1024,
+    max_redirects: int = 3,
+    timeout: Optional[httpx.Timeout] = None,
+    client: Optional[httpx.Client] = None,
+) -> bytes:
+    """
+    Fetch a remote image (bytes) with SSRF protections.
+
+    This function only fetches from allowlisted hosts (see validate_remote_image_url),
+    enforces timeouts, enforces a max download size, and validates Content-Type.
+    """
+    raw, _content_type = _fetch_image(
+        url,
+        allowed_hosts=allowed_hosts,
+        max_bytes=max_bytes,
+        max_redirects=max_redirects,
+        timeout=timeout,
+        client=client,
+    )
+    return raw
+
+
+def fetch_image_data_uri(
+    url: str,
+    *,
+    allowed_hosts: Optional[Iterable[str]] = None,
+    max_bytes: int = 10 * 1024 * 1024,
+    max_redirects: int = 3,
+    timeout: Optional[httpx.Timeout] = None,
+    client: Optional[httpx.Client] = None,
+) -> str:
+    """
+    Fetch a remote image and return it as a `data:` URI.
+
+    This avoids requiring Pillow in environments where only `backend/requirements.txt`
+    is installed (DSPy only needs Pillow when *it* has to decode raw bytes).
+    """
+    raw, content_type = _fetch_image(
+        url,
+        allowed_hosts=allowed_hosts,
+        max_bytes=max_bytes,
+        max_redirects=max_redirects,
+        timeout=timeout,
+        client=client,
+    )
+    b64 = base64.b64encode(raw).decode("ascii")
+    return f"data:{content_type};base64,{b64}"
