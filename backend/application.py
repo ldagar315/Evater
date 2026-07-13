@@ -20,6 +20,7 @@ app = App("Evater_v1", image=image)
 @app.function(
     secrets=[
         Secret.from_name("groq-secret"),
+        Secret.from_name("evater-supabase-config"),
     ],
     min_containers=1
 )

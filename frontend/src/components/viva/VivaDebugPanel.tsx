@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Bug, ChevronDown, Wifi, Mic, Clock, Activity } from "lucide-react";
 import { Button } from "../ui/Button";
+import { MODAL_WS_URL } from "../../lib/api";
 
 interface VivaDebugPanelProps {
   wsRef: React.RefObject<WebSocket | null>;
@@ -265,9 +266,9 @@ export function VivaDebugPanel({
                   <span className="text-gray-400">URL:</span>
                   <span
                     className="text-gray-300 truncate max-w-[200px]"
-                    title="wss://ldagar315--evater-v1-wrapper.modal.run/ws/viva"
+                    title={MODAL_WS_URL}
                   >
-                    wss://...modal.run/ws/viva
+                    {MODAL_WS_URL}
                   </span>
                 </div>
                 <div className="flex justify-between">

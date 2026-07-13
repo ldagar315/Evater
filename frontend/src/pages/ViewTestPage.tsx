@@ -15,6 +15,7 @@ import { Header } from "../components/layout/Header";
 import { useAuthContext } from "../contexts/AuthContext";
 import { useAppState } from "../contexts/AppStateContext";
 import { supabase } from "../lib/supabase";
+import { apiFetch } from "../lib/api";
 import { QuestionsCreated, FeedbackResponse } from "../types";
 import { QuestionCard } from "../components/test/QuestionCard";
 
@@ -124,13 +125,13 @@ export function ViewTestPage() {
             q.question_number
           }_${Date.now()}.jpg`;
           const { error: uploadError } = await supabase.storage
-            .from("answer-sheets")
+            .from("answer-sheet-test")
             .upload(fileName, ans.image.blob);
 
           if (uploadError) throw uploadError;
 
           const { data: urlData } = supabase.storage
-            .from("answer-sheets")
+            .from("answer-sheet-test")
             .getPublicUrl(fileName);
 
           uploadedImages[q.question_number] = urlData.publicUrl;
@@ -160,11 +161,11 @@ export function ViewTestPage() {
 
       // 3. Call direct feedback API
       const apiUrl =
-        process.env.NODE_ENV === "production"
+        import.meta.env.PROD
           ? "/.netlify/functions/generate-feedback-direct"
           : "/api/external/api/gen_feedback_direct";
 
-      const response = await fetch(apiUrl, {
+      const response = await apiFetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(feedbackPayload),
@@ -179,14 +180,9 @@ export function ViewTestPage() {
         .from("FeedbackTest")
         .insert([
           {
-            created_by: user!.id,
-            test_id: parseInt(testId!),
-            feedback_json: data.feedback,
-            total_marks: questions.reduce(
-              (acc: number, q: any) => acc + q.maximum_marks,
-              0
-            ),
-            marks_obtained: 0, // Placeholder, ideally backend should return this
+            given_by: user!.id,
+            for_test: parseInt(testId!),
+            feedback: data.feedback,
           },
         ])
         .select()
@@ -222,7 +218,7 @@ export function ViewTestPage() {
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const fileName = `${folderName}/${Date.now()}_${i}_${file.name}`;
+        const fileName = `${user!.id}/${folderName}/${Date.now()}_${i}_${file.name}`;
 
         const { error } = await supabase.storage
           .from(bucketName)
@@ -249,7 +245,7 @@ export function ViewTestPage() {
     if (!test) return;
     setEvaluatingUpload(true);
     try {
-      // If we have bucket URLs, use them. Else upload to 'answer-sheets' bucket (per original logic)
+      // If we have bucket URLs, use them. Else upload to the answer-sheet-test bucket.
       let finalUrls = [...uploadedFileUrls];
 
       if (finalUrls.length === 0 && files.length > 0) {
@@ -258,11 +254,11 @@ export function ViewTestPage() {
             test.id
           }/sheet_${index}_${Date.now()}.${file.name.split(".").pop()}`;
           const { error } = await supabase.storage
-            .from("answer-sheets")
+            .from("answer-sheet-test")
             .upload(fileName, file);
           if (error) throw error;
           const { data } = supabase.storage
-            .from("answer-sheets")
+            .from("answer-sheet-test")
             .getPublicUrl(fileName);
           return data.publicUrl;
         });
@@ -313,11 +309,11 @@ export function ViewTestPage() {
     };
 
     const apiUrl =
-      process.env.NODE_ENV === "production"
+      import.meta.env.PROD
         ? "/.netlify/functions/generate-feedback"
         : "/api/external/api/gen_answer";
 
-    const response = await fetch(apiUrl, {
+    const response = await apiFetch(apiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
