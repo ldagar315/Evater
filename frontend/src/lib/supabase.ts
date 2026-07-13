@@ -1,93 +1,75 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Debug environment variables
-console.log('Environment check:', {
-  NODE_ENV: import.meta.env.MODE,
-  SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL ? 'Set' : 'Missing',
-  SUPABASE_ANON_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY ? 'Set' : 'Missing'
-})
-
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 let supabase: any
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Missing Supabase environment variables - using fallback mode')
-  
-  // Create a more robust fallback client
-  const createFallbackClient = () => {
-    return {
-      auth: {
-        getSession: async () => {
-          console.warn('Supabase not configured - returning null session')
-          return { data: { session: null }, error: null }
-        },
-        onAuthStateChange: (callback: any) => {
-          console.warn('Supabase not configured - auth state change listener disabled')
-          // Call callback immediately with null session
-          setTimeout(() => callback('SIGNED_OUT', null), 0)
-          return { 
-            data: { 
-              subscription: { 
-                unsubscribe: () => console.log('Fallback auth listener unsubscribed') 
-              } 
-            } 
-          }
-        },
-        signUp: async () => {
-          return { data: null, error: { message: 'Supabase not configured' } }
-        },
-        signInWithPassword: async () => {
-          return { data: null, error: { message: 'Supabase not configured' } }
-        },
-        signInWithOAuth: async () => {
-          return { data: null, error: { message: 'Supabase not configured' } }
-        },
-        signOut: async () => {
-          return { error: null }
-        }
-      },
-      from: () => ({
-        select: () => ({
-          eq: () => ({
-            single: async () => ({ data: null, error: { message: 'Supabase not configured' } })
-          }),
-          order: () => ({
-            limit: () => ({
-              single: async () => ({ data: null, error: { message: 'Supabase not configured' } })
-            })
-          })
-        }),
-        insert: () => ({
-          select: () => ({
-            single: async () => ({ data: null, error: { message: 'Supabase not configured' } })
-          })
-        }),
-        update: () => ({
-          eq: () => ({
-            select: () => ({
-              single: async () => ({ data: null, error: { message: 'Supabase not configured' } })
-            })
-          })
-        })
-      }),
-      storage: {
-        from: () => ({
-          upload: async () => ({ data: null, error: { message: 'Supabase not configured' } }),
-          getPublicUrl: () => ({ data: { publicUrl: '' } })
-        })
-      }
-    }
+const notConfiguredError = () => ({ message: 'Supabase not configured' })
+
+const createFallbackQuery = () => {
+  const result = Promise.resolve({ data: null, error: notConfiguredError() })
+  const chain: any = {
+    select: () => chain,
+    insert: () => chain,
+    update: () => chain,
+    delete: () => chain,
+    eq: () => chain,
+    neq: () => chain,
+    order: () => chain,
+    limit: () => chain,
+    single: () => result,
+    maybeSingle: () => result,
+    then: (onFulfilled: any, onRejected: any) => result.then(onFulfilled, onRejected),
+    catch: (onRejected: any) => result.catch(onRejected),
   }
-  
+  return chain
+}
+
+const createFallbackClient = () => ({
+  auth: {
+    getSession: async () => ({
+      data: { session: null },
+      error: notConfiguredError(),
+    }),
+    onAuthStateChange: (callback: any) => {
+      if (import.meta.env.DEV) {
+        setTimeout(() => callback('SIGNED_OUT', null), 0)
+      }
+      return {
+        data: {
+          subscription: {
+            unsubscribe: () => undefined,
+          },
+        },
+      }
+    },
+    signUp: async () => ({ data: null, error: notConfiguredError() }),
+    signInWithPassword: async () => ({ data: null, error: notConfiguredError() }),
+    signInWithOAuth: async () => ({ data: null, error: notConfiguredError() }),
+    signOut: async () => ({ error: null }),
+  },
+  from: () => createFallbackQuery(),
+  storage: {
+    from: () => ({
+      upload: async () => ({ data: null, error: notConfiguredError() }),
+      getPublicUrl: () => ({ data: { publicUrl: '' }, error: notConfiguredError() }),
+    }),
+  },
+})
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  if (import.meta.env.DEV) {
+    console.warn('Missing Supabase environment variables - using fallback mode')
+  }
   supabase = createFallbackClient()
 } else {
   try {
     supabase = createClient(supabaseUrl, supabaseAnonKey)
-    console.log('Supabase client created successfully')
   } catch (error) {
-    console.error('Failed to create Supabase client:', error)
+    if (import.meta.env.DEV) {
+      console.error('Failed to create Supabase client:', error)
+    }
     supabase = createFallbackClient()
   }
 }

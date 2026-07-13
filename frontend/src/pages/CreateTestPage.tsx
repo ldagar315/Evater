@@ -7,6 +7,7 @@ import { Header } from "../components/layout/Header";
 import { useAuthContext } from "../contexts/AuthContext";
 import { useAppState } from "../contexts/AppStateContext";
 import { supabase } from "../lib/supabase";
+import { apiFetch } from "../lib/api";
 import { TestGenerationParams, Question, ChapterContent } from "../types";
 import {
   BookOpen,
@@ -164,11 +165,11 @@ export function CreateTestPage() {
     special_instructions: string[];
   }): Promise<ApiQuestion[]> => {
     const apiUrl =
-      process.env.NODE_ENV === "production"
+      import.meta.env.PROD
         ? "/.netlify/functions/generate-questions"
         : "/api/external/api/gen_question";
 
-    const response = await fetch(apiUrl, {
+    const response = await apiFetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

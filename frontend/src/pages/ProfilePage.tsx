@@ -185,7 +185,7 @@ export function ProfilePage() {
         </Card>
 
         {/* Debug info in development */}
-        {process.env.NODE_ENV === 'development' && (
+        {import.meta.env.DEV && (
           <Card className="mt-6">
             <CardContent className="p-4">
               <h3 className="text-sm font-medium text-neutral-700 mb-2">Debug Info</h3>

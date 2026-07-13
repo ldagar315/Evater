@@ -16,6 +16,7 @@ import { Header } from "../components/layout/Header";
 import { VivaDebugPanel } from "../components/viva/VivaDebugPanel";
 import { useAuthContext } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
+import { MODAL_WS_URL } from "../lib/api";
 import { ChapterContent } from "../types";
 
 interface VivaQuestion {
@@ -159,11 +160,21 @@ export function VivaPage() {
     ]);
   };
 
-  const initializeWebSocket = () => {
-    // Always use the external WebSocket endpoint
-    const wsUrl = "wss://ldagar315--evater-v1-wrapper.modal.run/ws/viva";
+  const initializeWebSocket = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
-    const ws = new WebSocket(wsUrl);
+    if (!session?.access_token) {
+      setError("Please sign in again before starting a Viva session");
+      addMessage("error", "Authentication session unavailable");
+      return;
+    }
+
+    const wsUrl = new URL(MODAL_WS_URL);
+    wsUrl.searchParams.set("access_token", session.access_token);
+
+    const ws = new WebSocket(wsUrl.toString());
     wsRef.current = ws;
 
     ws.onopen = () => {
@@ -266,7 +277,7 @@ export function VivaPage() {
       setAnswerCount(0);
       setCurrentFeedback(null);
       setShowHistory(false);
-      initializeWebSocket();
+      await initializeWebSocket();
     } catch (err) {
       console.error("Error accessing microphone:", err);
       setError("Microphone access is required for the viva session");

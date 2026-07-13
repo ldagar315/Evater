@@ -7,6 +7,7 @@ import { Header } from '../components/layout/Header'
 import { useAuthContext } from '../contexts/AuthContext'
 import { useAppState } from '../contexts/AppStateContext'
 import { supabase } from '../lib/supabase'
+import { apiFetch } from '../lib/api'
 import { QuestionsCreated, FeedbackResponse } from '../types'
 
 interface ApiFeedbackResponse {
@@ -88,11 +89,15 @@ export function SubmitFeedbackPage() {
       const folderName = 'question-test-v1'
       const uploadedUrls: string[] = []
 
+      if (!user) {
+        throw new Error('You must be signed in to upload files')
+      }
+
       // Upload each file to the specified bucket and folder
       for (let i = 0; i < files.length; i++) {
         const file = files[i]
         const timestamp = Date.now()
-        const fileName = `${folderName}/${timestamp}_${i + 1}_${file.name}`
+        const fileName = `${user.id}/${folderName}/${timestamp}_${i + 1}_${file.name}`
 
         const { data, error } = await supabase.storage
           .from(bucketName)
@@ -152,11 +157,11 @@ export function SubmitFeedbackPage() {
     console.log('API Payload:', JSON.stringify(payload, null, 2))
 
     // Use Netlify function in production, proxy in development
-    const apiUrl = process.env.NODE_ENV === 'production' 
+    const apiUrl = import.meta.env.PROD
       ? '/.netlify/functions/generate-feedback'
       : '/api/external/api/gen_answer'
 
-    const response = await fetch(apiUrl, {
+    const response = await apiFetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -202,19 +207,19 @@ export function SubmitFeedbackPage() {
       if (uploadedFileUrls.length > 0) {
         imageUrls = uploadedFileUrls
       } else {
-        // Upload files to answer-sheets bucket and get URLs
+        // Upload files to answer-sheet-test bucket and get URLs
         const uploadPromises = files.map(async (file, index) => {
           const fileName = `${user!.id}/${test.id}/answer_sheet_${index + 1}_${Date.now()}.${file.name.split('.').pop()}`
           
           const { data, error } = await supabase.storage
-            .from('answer-sheets')
+            .from('answer-sheet-test')
             .upload(fileName, file)
 
           if (error) throw error
 
           // Get public URL
           const { data: urlData } = supabase.storage
-            .from('answer-sheets')
+            .from('answer-sheet-test')
             .getPublicUrl(fileName)
 
           return urlData.publicUrl

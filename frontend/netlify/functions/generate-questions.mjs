@@ -1,5 +1,6 @@
 export default async (request, context) => {
   const { corsDecision } = await import('./_shared/cors.mjs')
+  const { modalApiUrl } = await import('./_shared/modal.mjs')
   const { origin, allowed, headers: cors } = corsDecision(request)
   if (origin && !allowed) {
     return new Response(JSON.stringify({ error: 'CORS origin not allowed' }), {
@@ -36,7 +37,7 @@ export default async (request, context) => {
     const authHeader = request.headers.get('authorization') || undefined
     
     // Forward the request to the external API
-    const response = await fetch('https://ldagar315--evater-v1-wrapper.modal.run/api/gen_question', {
+    const response = await fetch(`${modalApiUrl}/api/gen_question`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
