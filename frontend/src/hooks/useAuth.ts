@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
+import { supabaseConfigured } from '../lib/supabaseConfig'
 import { BYPASS_AUTH, DEV_USER, logAuthBypassWarning } from '../lib/auth/devBypass'
 
 export function useAuth() {
@@ -24,10 +25,7 @@ export function useAuth() {
     const initializeAuth = async () => {
       try {
         // Check if Supabase is properly configured
-        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-        const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-
-        if (!supabaseUrl || !supabaseAnonKey) {
+        if (!supabaseConfigured) {
           console.warn('Supabase environment variables not configured')
           if (mounted) {
             setError('Authentication service not configured. Please check environment variables.')
