@@ -3,6 +3,7 @@ import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { Card, CardContent, CardHeader } from '../ui/Card'
 import { useAuthContext } from '../../contexts/AuthContext'
+import { supabaseConfigured } from '../../lib/supabaseConfig'
 import { Sparkles, AlertCircle } from 'lucide-react'
 
 interface AuthFormProps {
@@ -19,9 +20,6 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
   const [error, setError] = useState('')
 
   const { signIn, signUp, signInWithGoogle, error: authError } = useAuthContext()
-
-  // Check if Supabase is configured
-  const supabaseConfigured = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
