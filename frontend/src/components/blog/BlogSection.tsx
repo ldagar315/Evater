@@ -84,8 +84,8 @@ export function BlogSection({ showInDashboard = false }: BlogSectionProps) {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {recentPosts.map((post) => (
-            <BlogCard key={post.id} post={post} featured />
+          {recentPosts.map((post, index) => (
+            <BlogCard key={post.id} post={post} featured={index === 0} />
           ))}
         </div>
         

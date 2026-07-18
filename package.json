@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "stage": "node scripts/stage.mjs",
+    "stage:account": "node scripts/stage-account.mjs",
+    "stage:reset": "node scripts/stage.mjs --reset",
+    "stage:seed": "node scripts/stage-seed.mjs",
+    "stage:seed:science": "node scripts/stage-seed-science.mjs",
+    "stage:status": "node scripts/supabase-cli.mjs status -o pretty",
+    "stage:stop": "node scripts/supabase-cli.mjs stop"
+  },
+  "devDependencies": {
+    "supabase": "^2.109.1"
+  }
+}

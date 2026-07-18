@@ -41,13 +41,10 @@ def _extract_bearer_token(authorization: Optional[str]) -> str:
 
 def _tenant_id_from_user(user: User) -> Optional[str]:
     app_md = user.app_metadata or {}
-    user_md = user.user_metadata or {}
 
     return (
         app_md.get("tenant_id")
-        or user_md.get("tenant_id")
         or app_md.get("org_id")
-        or user_md.get("org_id")
     )
 
 

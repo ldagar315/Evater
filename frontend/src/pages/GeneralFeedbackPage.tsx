@@ -61,7 +61,7 @@ export function GeneralFeedbackPage() {
       <div className="min-h-screen bg-cream">
         <Header />
         
-        <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <Card>
             <CardContent className="p-8 text-center">
               <div className="flex justify-center mb-4">
@@ -89,7 +89,7 @@ export function GeneralFeedbackPage() {
     <div className="min-h-screen bg-cream">
       <Header />
       
-      <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mb-6 flex items-center justify-between">
           <Button
             variant="ghost"
@@ -146,18 +146,18 @@ export function GeneralFeedbackPage() {
                 </div>
               )}
               
-              <div className="flex space-x-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => navigate('/home')}
-                  className="flex-1"
+                  className="w-full flex-1 sm:w-auto"
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 flex items-center justify-center"
+                  className="w-full flex-1 sm:w-auto"
                   loading={submitting}
                   disabled={!name.trim() || !feedback.trim()}
                 >

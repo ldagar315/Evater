@@ -89,7 +89,7 @@ export function BlogPostPage() {
             <p className="text-neutral-600">Loading article...</p>
           </div>
         </div>
-        <Footer />
+        {!user && <Footer />}
       </div>
     );
   }
@@ -112,7 +112,7 @@ export function BlogPostPage() {
             </CardContent>
           </Card>
         </div>
-        <Footer />
+        {!user && <Footer />}
       </div>
     );
   }
@@ -127,7 +127,7 @@ export function BlogPostPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center text-sm text-neutral-500">
               <Home
-                className="h-4 w-4 mr-2 cursor-pointer hover:text-primary-600"
+                className="-m-2 mr-0 h-10 w-10 cursor-pointer p-3 hover:text-primary-600"
                 onClick={() => navigate("/")}
               />
               <ChevronRight className="h-4 w-4 mx-2" />
@@ -204,7 +204,7 @@ export function BlogPostPage() {
         <section className="relative -mt-10 pb-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-2xl shadow-xl border border-neutral-100 overflow-hidden">
-              <div className="p-8 lg:p-12">
+              <div className="p-6 sm:p-8 lg:p-12">
                 <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-dark prose-p:text-neutral-600 prose-p:leading-relaxed prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-strong:text-dark prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:not-italic prose-li:text-neutral-600">
                   <Markdown>{post.content}</Markdown>
                 </article>
@@ -328,7 +328,7 @@ export function BlogPostPage() {
         </section>
       </div>
 
-      <Footer />
+      {!user && <Footer />}
     </div>
   );
 }

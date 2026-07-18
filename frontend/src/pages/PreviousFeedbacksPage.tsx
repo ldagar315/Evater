@@ -188,7 +188,7 @@ export function PreviousFeedbacksPage() {
     return (
       <div className="min-h-screen bg-cream">
         <Header />
-        <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <div className="flex items-center justify-center py-12">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
@@ -204,7 +204,7 @@ export function PreviousFeedbacksPage() {
     <div className="min-h-screen bg-cream">
       <Header />
 
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mb-6">
           <div className="flex items-center mb-2">
             <h1 className="text-2xl font-bold text-dark">Previous Feedbacks</h1>
@@ -341,7 +341,7 @@ export function PreviousFeedbacksPage() {
                 Filter Feedbacks
               </h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-neutral-400" />
                 <Input
@@ -389,7 +389,7 @@ export function PreviousFeedbacksPage() {
         </Card>
 
         {/* Results Summary */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-neutral-600">
             Showing {filteredFeedbacks.length} of {feedbacks.length} evaluations
           </p>
@@ -415,7 +415,7 @@ export function PreviousFeedbacksPage() {
                     ? "You haven't submitted any answer sheets for evaluation yet. Create a test and submit your answers to get started!"
                     : "No evaluations match your current filters. Try adjusting your search criteria."}
                 </p>
-                <div className="flex space-x-4 justify-center">
+                <div className="flex flex-col justify-center gap-4 sm:flex-row">
                   <Button
                     onClick={() => navigate("/create-test")}
                     className="flex items-center bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg px-4 py-2 transition duration-150"
@@ -442,7 +442,7 @@ export function PreviousFeedbacksPage() {
                 {/* ---------------------------------------------------- */}
                 {/* 1. MOBILE/TABLET VIEW (Cards) - Visible on screens < lg */}
                 {/* ---------------------------------------------------- */}
-                <div className="lg:hidden p-4 space-y-4">
+                <div className="space-y-4 p-4 xl:hidden">
                   {filteredFeedbacks.map((feedback) => {
                     const [datePart, timePart] = formatDate(
                       feedback.created_at
@@ -500,7 +500,7 @@ export function PreviousFeedbacksPage() {
                           <div className="flex items-center text-sm text-neutral-700">
                             <BookOpen className="h-4 w-4 flex-shrink-0 mr-2 text-teal-600" />
                             <span className="font-semibold">Subject:</span>
-                            <span className="ml-2 truncate">
+                              <span className="ml-2 min-w-0 break-words">
                               {feedback.test_details?.subject || "N/A"}
                             </span>
                           </div>
@@ -523,7 +523,7 @@ export function PreviousFeedbacksPage() {
                             </svg>
                             <span className="font-semibold">Chapter:</span>
                             <span
-                              className="ml-2 truncate"
+                              className="ml-2 min-w-0 break-words"
                               title={feedback.test_details?.chapter || ""}
                             >
                               {feedback.test_details?.chapter || "N/A"}
@@ -552,7 +552,7 @@ export function PreviousFeedbacksPage() {
                 {/* ---------------------------------------------------- */}
                 {/* 2. DESKTOP VIEW (Table) - Hidden on screens < lg */}
                 {/* ---------------------------------------------------- */}
-                <div className="overflow-x-auto hidden lg:block">
+                <div className="hidden overflow-x-auto xl:block">
                   <table className="min-w-full">
                     <thead className="bg-neutral-50 border-b border-neutral-200">
                       <tr>
@@ -636,7 +636,7 @@ export function PreviousFeedbacksPage() {
                           </td>
                           <td className="px-6 py-4">
                             <div
-                              className="text-sm text-dark max-w-xs truncate"
+                              className="max-w-xs break-words text-sm text-dark"
                               title={feedback.test_details?.chapter || ""}
                             >
                               {feedback.test_details?.chapter || "N/A"}

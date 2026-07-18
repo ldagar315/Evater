@@ -286,7 +286,7 @@ export function CreateTestPage() {
               <GraduationCap className="w-5 h-5 mr-2 text-primary-600" />
               Select Grade
             </h2>
-            <div className="grid grid-cols-6 md:grid-cols-12 gap-3">
+            <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-12">
               {gradeOptions.map((grade) => (
                 <button
                   key={grade}
@@ -499,11 +499,11 @@ export function CreateTestPage() {
             </div>
           )}
 
-          <div className="flex items-center justify-end pt-6 border-t border-neutral-200">
+          <div className="flex flex-col-reverse items-stretch justify-end gap-4 border-t border-neutral-200 pt-6 sm:flex-row sm:items-center">
             <Button
               variant="outline"
               onClick={() => navigate("/home")}
-              className="mr-4 border-neutral-300 text-neutral-600 hover:bg-neutral-50"
+              className="w-full border-neutral-300 text-neutral-600 hover:bg-neutral-50 sm:mr-0 sm:w-auto"
             >
               Cancel
             </Button>
@@ -511,7 +511,7 @@ export function CreateTestPage() {
               onClick={handleSubmit}
               loading={loading}
               disabled={!selectedGrade || !subject || !chapter}
-              className="px-8 py-6 text-lg rounded-xl shadow-lg shadow-primary-200 hover:shadow-xl hover:-translate-y-0.5 transition-all"
+              className="w-full rounded-xl px-8 py-6 text-lg shadow-lg shadow-primary-200 transition-all hover:-translate-y-0.5 hover:shadow-xl sm:w-auto"
             >
               {loading ? "Generating Test..." : "Generate Test"}
               {!loading && <ChevronRight className="ml-2 w-5 h-5" />}

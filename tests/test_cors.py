@@ -90,3 +90,25 @@ def test_localhost_not_allowed_when_env_unset(monkeypatch):
     )
 
     assert resp.headers.get("access-control-allow-origin") is None
+
+
+def test_evater_production_origin_is_allowed_by_default(monkeypatch):
+    monkeypatch.delenv("APP_ORIGINS", raising=False)
+    monkeypatch.setenv("ENV", "production")
+
+    app = FastAPI()
+    add_cors_middleware(app)
+    app.add_api_route("/api/gen_question", lambda: {"ok": True}, methods=["POST"])
+    client = TestClient(app)
+
+    resp = client.options(
+        "/api/gen_question",
+        headers={
+            "Origin": "https://evater.xyz",
+            "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "authorization,content-type",
+        },
+    )
+
+    assert resp.status_code in (200, 204)
+    assert resp.headers.get("access-control-allow-origin") == "https://evater.xyz"

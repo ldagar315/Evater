@@ -59,7 +59,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/80 backdrop-blur-md transition-all duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex min-h-16 items-center justify-between py-2 sm:min-h-[4.5rem]">
           {/* Logo Section */}
           <div className="flex items-center">
             <div
@@ -181,13 +181,13 @@ export function Header() {
 
                       <button
                         onClick={() => navigate("/profile")}
-                        className="w-full flex items-center px-3 py-2 text-sm text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-lg transition-colors"
+                        className="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-sm text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
                       >
                         Edit Profile
                       </button>
                       <button
                         onClick={handleSignOut}
-                        className="w-full flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
                       >
                         <LogOut className="w-4 h-4 mr-2" />
                         Sign Out
@@ -220,7 +220,7 @@ export function Header() {
           <div className="flex md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 transition-colors"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 text-neutral-600 hover:bg-neutral-100 transition-colors"
             >
               {mobileMenuOpen ? (
                 <X className="h-6 w-6" />

@@ -90,7 +90,7 @@ export function ViewFeedbackPage() {
     return (
       <div className="min-h-screen bg-gray-50">
         <Header />
-        <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <Card>
             <CardContent className="p-6 text-center">
               <p className="text-gray-600 mb-4">{error || 'Evaluation not found'}</p>
@@ -113,7 +113,7 @@ export function ViewFeedbackPage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mb-6 flex items-center justify-between">
           <Button
             variant="ghost"
@@ -194,7 +194,7 @@ export function ViewFeedbackPage() {
                     <p className="text-gray-600">{item.question_text || 'No question text available'}</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                     <div>
                       <h4 className="font-medium text-gray-700 mb-1">Your Answer:</h4>
                       <div className="bg-gray-50 p-3 rounded-lg">

@@ -2,7 +2,7 @@ import os
 import logging
 from fastapi import FastAPI
 from dotenv import load_dotenv
-from .routers import auth_router, test_router, feedback_router, viva_router
+from .routers import auth_router, test_router, feedback_router, viva_router, question_bank_router, leaderboard_router
 from .cors import add_cors_middleware
 
 load_dotenv()
@@ -23,6 +23,8 @@ def create_app() -> FastAPI:
     app.include_router(test_router.router, prefix="/api", tags=["Test Generation"])
     app.include_router(feedback_router.router, prefix="/api", tags=["Feedback Generation"])
     app.include_router(auth_router.router, prefix="/api", tags=["Auth"])
+    app.include_router(question_bank_router.router, prefix="/api/v1", tags=["Question Bank"])
+    app.include_router(leaderboard_router.router, prefix="/api/v1", tags=["Leaderboard"])
     app.include_router(viva_router.router, tags=["Viva WebSocket"])
     return app
 

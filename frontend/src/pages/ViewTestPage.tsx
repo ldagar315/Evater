@@ -355,7 +355,7 @@ export function ViewTestPage() {
   return (
     <div className="min-h-screen bg-cream">
       <Header />
-      <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         {/* Header Section */}
         <div className="mb-8">
           <Button
@@ -365,12 +365,12 @@ export function ViewTestPage() {
           >
             <ArrowLeft className="h-4 w-4 mr-2" /> Back
           </Button>
-          <div className="flex justify-between items-end">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h1 className="text-3xl font-bold text-dark mb-2">
                 {test.chapter}
               </h1>
-              <div className="flex gap-3 text-sm text-neutral-600">
+              <div className="flex flex-wrap gap-3 text-sm text-neutral-600">
                 <span className="bg-white px-2 py-1 rounded border">
                   {test.subject}
                 </span>
@@ -438,7 +438,7 @@ export function ViewTestPage() {
 
         {/* Mode Selection */}
         {!mode && (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div
               onClick={() => setMode("interactive")}
               className="bg-white p-8 rounded-xl shadow-sm border-2 border-transparent hover:border-primary-500 cursor-pointer transition-all hover:shadow-md group text-center"
@@ -475,7 +475,7 @@ export function ViewTestPage() {
         {/* Interactive Mode UI */}
         {mode === "interactive" && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="flex justify-between items-center mb-6">
+            <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-xl font-bold">Interactive Test</h2>
               <Button variant="ghost" size="sm" onClick={() => setMode(null)}>
                 Change Mode
@@ -511,7 +511,7 @@ export function ViewTestPage() {
         {/* Upload Mode UI */}
         {mode === "upload" && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="flex justify-between items-center mb-6">
+            <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-xl font-bold">Upload Answer Sheets</h2>
               <Button variant="ghost" size="sm" onClick={() => setMode(null)}>
                 Change Mode
