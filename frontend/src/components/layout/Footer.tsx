@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Twitter, Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Twitter, Github, Linkedin, Heart } from "lucide-react";
 
 const footerLinks = {
   product: [
     { label: "Home", to: "/home" },
-    { label: "Create Test", to: "/create-test" },
-    { label: "Previous Tests", to: "/previous-tests" },
-    { label: "Previous Feedbacks", to: "/previous-feedbacks" },
+    { label: "Practice", to: "/practice" },
+    { label: "Leaderboard", to: "/leaderboard" },
+    { label: "Profile", to: "/profile" },
   ],
   resources: [
     { label: "Blog", to: "/blog" },
@@ -40,8 +40,8 @@ export function Footer() {
               <span className="text-xl font-bold text-neutral-900">Evater</span>
             </div>
             <p className="text-neutral-600 text-sm leading-relaxed">
-              Empowering educators and students with AI-driven assessments.
-              Create, share, and analyze tests with ease.
+              A focused practice space for building confidence, understanding
+              mistakes, and learning with your peers.
             </p>
             <div className="flex space-x-4 pt-2">
               <a

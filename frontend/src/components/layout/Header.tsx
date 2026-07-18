@@ -1,327 +1,279 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react'
 import {
-  LogOut,
-  User,
   ChevronDown,
   Coins,
   GraduationCap,
-  School,
+  LogOut,
   Menu,
+  School,
+  User,
   X,
-} from "lucide-react";
-import { Button } from "../ui/Button";
-import { useAuthContext } from "../../contexts/AuthContext";
-import { useProfile } from "../../hooks/useProfile";
+} from 'lucide-react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Button } from '../ui/Button'
+import { useAuthContext } from '../../contexts/AuthContext'
+import { useProfile } from '../../hooks/useProfile'
+
+const memberLinks = [
+  { label: 'Practice', to: '/practice' },
+  { label: 'Leaderboard', to: '/leaderboard' },
+  { label: 'Profile', to: '/profile' },
+]
+
+function isActivePath(pathname: string, path: string) {
+  return pathname === path || pathname.startsWith(`${path}/`)
+}
 
 export function Header() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { user, signOut } = useAuthContext();
-  const { profile } = useProfile(user?.id);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { user, signOut } = useAuthContext()
+  const { profile } = useProfile(user?.id)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const isBlogPage = location.pathname.startsWith('/blog')
+  const displayName = profile?.name || profile?.user_name || 'User'
+  const initials = displayName.trim().charAt(0).toUpperCase() || 'U'
 
-  const handleSignOut = async () => {
-    await signOut();
-    navigate("/auth");
-    setMobileMenuOpen(false);
-  };
-
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setDropdownOpen(false);
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false)
       }
-      // Optional: Close mobile menu if clicking outside (though usually full width)
-    };
+    }
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
-  // Close mobile menu on route change
   useEffect(() => {
-    setMobileMenuOpen(false);
-    setDropdownOpen(false);
-  }, [location.pathname]);
+    setMobileMenuOpen(false)
+    setDropdownOpen(false)
+  }, [location.pathname])
 
-  const isBlogPage = location.pathname.startsWith("/blog");
+  const handleSignOut = async () => {
+    await signOut()
+    navigate('/auth')
+  }
+
+  const goTo = (path: string) => {
+    navigate(path)
+    setMobileMenuOpen(false)
+    setDropdownOpen(false)
+  }
+
+  const renderMemberLinks = (mobile = false) => (
+    <nav aria-label="Learning navigation" className={mobile ? 'space-y-1' : 'flex items-center gap-1'}>
+      {memberLinks.map((link) => {
+        const active = isActivePath(location.pathname, link.to)
+        return (
+          <button
+            key={link.to}
+            type="button"
+            onClick={() => goTo(link.to)}
+            className={mobile
+              ? `flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold transition-colors ${active ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-white hover:text-dark'}`
+              : `min-h-10 rounded-xl px-3 text-sm font-bold transition-colors ${active ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-neutral-50 hover:text-dark'}`}
+          >
+            {link.label}
+          </button>
+        )
+      })}
+    </nav>
+  )
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/80 backdrop-blur-md transition-all duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex min-h-16 items-center justify-between py-2 sm:min-h-[4.5rem]">
-          {/* Logo Section */}
-          <div className="flex items-center">
-            <div
-              className="flex items-center space-y-1 cursor-pointer group"
-              onClick={() => navigate(user ? "/home" : "/")}
-            >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-transform group-hover:scale-105">
-                <img
-                  src="/Evater_logo_2.png"
-                  alt="Evater Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="ml-2 hidden sm:block">
-                <p className="text-lg text-neutral-900 font-bold tracking-tight">
-                  Evater
-                </p>
-                <p className="text-xs text-neutral-500 font-medium -mt-1">
-                  Next Gen Learning
-                </p>
-              </div>
-            </div>
-          </div>
+    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-cream/95 backdrop-blur-sm">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex min-h-16 items-center justify-between gap-4 sm:min-h-[4.5rem]">
+          <button
+            type="button"
+            onClick={() => goTo(user ? '/home' : '/')}
+            className="group flex shrink-0 items-center rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+            aria-label={user ? 'Go to home' : 'Go to landing page'}
+          >
+            <img
+              src="/Evater_logo_2.png"
+              alt="Evater"
+              className="h-10 w-auto max-w-[9.5rem] object-contain transition-transform group-hover:scale-[1.02] sm:h-12 sm:max-w-[11rem]"
+            />
+          </button>
 
-          {/* Desktop Navigation & Actions */}
-          <div className="hidden md:flex items-center space-x-4">
-            {(!user || !isBlogPage) && (
-              <Button
-                onClick={() => navigate("/blog")}
-                variant="ghost"
-                size="sm"
-                className="text-neutral-600 hover:text-primary-600 hover:bg-primary-50"
-              >
-                Blog
-              </Button>
-            )}
-            <Button
-              onClick={() => navigate("/about")}
-              variant="ghost"
-              size="sm"
-              className="text-neutral-600 hover:text-primary-600 hover:bg-primary-50"
-            >
-              About
-            </Button>
-
-            {user ? (
-              <div className="relative" ref={dropdownRef}>
+          <div className="hidden items-center gap-5 xl:flex">
+            {user && renderMemberLinks()}
+            <div className="h-6 w-px bg-neutral-200" aria-hidden="true" />
+            <nav aria-label="Information navigation" className="flex items-center gap-1">
+              {(!user || !isBlogPage) && (
                 <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-full border transition-all duration-200 ${
-                    dropdownOpen
-                      ? "border-primary-200 bg-primary-50 ring-2 ring-primary-100"
-                      : "border-neutral-200 hover:border-primary-200 hover:bg-neutral-50"
-                  }`}
+                  type="button"
+                  onClick={() => goTo('/blog')}
+                  className="min-h-10 rounded-xl px-3 text-sm font-semibold text-neutral-500 transition-colors hover:bg-neutral-50 hover:text-dark"
                 >
-                  <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-primary-700">
-                    <User className="h-4 w-4" />
-                  </div>
-                  <span className="text-sm font-medium text-neutral-700 max-w-[100px] truncate">
-                    {profile?.name || profile?.user_name || "User"}
-                  </span>
-                  <ChevronDown
-                    className={`h-4 w-4 text-neutral-400 transition-transform duration-200 ${
-                      dropdownOpen ? "rotate-180" : ""
-                    }`}
-                  />
+                  Blog
                 </button>
-
-                {/* Desktop Dropdown */}
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-neutral-100 ring-1 ring-black/5 overflow-hidden animate-in fade-in zoom-in-95 duration-100 origin-top-right">
-                    <div className="p-4 border-b border-neutral-100 bg-neutral-50/50">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600">
-                          <User className="h-5 w-5" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-neutral-900 truncate">
-                            {profile?.name || profile?.user_name || "User"}
-                          </p>
-                          <p className="text-xs text-neutral-500 truncate">
-                            {user.email}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-2 space-y-1">
-                      {/* Stats */}
-                      <div className="px-3 py-2">
-                        <div className="flex items-center justify-between text-sm mb-2">
-                          <span className="text-neutral-500 flex items-center">
-                            <GraduationCap className="w-3.5 h-3.5 mr-1.5" />{" "}
-                            Grade
-                          </span>
-                          <span className="font-medium text-neutral-900">
-                            {profile?.grade || "-"}
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between text-sm mb-2">
-                          <span className="text-neutral-500 flex items-center">
-                            <School className="w-3.5 h-3.5 mr-1.5" /> School
-                          </span>
-                          <span className="font-medium text-neutral-900 truncate max-w-[120px]">
-                            {profile?.school || "-"}
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between p-2 bg-amber-50 rounded-lg border border-amber-100">
-                          <span className="text-amber-700 text-sm flex items-center font-medium">
-                            <Coins className="w-3.5 h-3.5 mr-1.5" /> Credits
-                          </span>
-                          <span className="font-bold text-amber-700">
-                            {profile?.credits ?? "-"}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="h-px bg-neutral-100 my-1" />
-
-                      <button
-                        onClick={() => navigate("/profile")}
-                        className="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-sm text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
-                      >
-                        Edit Profile
-                      </button>
-                      <button
-                        onClick={handleSignOut}
-                        className="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
-                      >
-                        <LogOut className="w-4 h-4 mr-2" />
-                        Sign Out
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <Button
-                  onClick={() => navigate("/auth")}
-                  variant="ghost"
-                  className="text-neutral-600 hover:text-neutral-900"
-                >
-                  Log in
-                </Button>
-                <Button
-                  onClick={() => navigate("/auth")}
-                  variant="primary"
-                  className="shadow-md shadow-primary-500/20"
-                >
-                  Sign up
-                </Button>
-              </div>
-            )}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 text-neutral-600 hover:bg-neutral-100 transition-colors"
-            >
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
               )}
-            </button>
+              <button
+                type="button"
+                onClick={() => goTo('/about')}
+                className="min-h-10 rounded-xl px-3 text-sm font-semibold text-neutral-500 transition-colors hover:bg-neutral-50 hover:text-dark"
+              >
+                About
+              </button>
+            </nav>
           </div>
-        </div>
-      </div>
 
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-neutral-200 bg-white shadow-lg animate-in slide-in-from-top-5 duration-200">
-          <div className="px-4 py-6 space-y-4">
+          <div className="hidden items-center gap-3 xl:flex">
             {user ? (
               <>
-                <div className="flex items-center p-4 bg-neutral-50 rounded-xl border border-neutral-100">
-                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4">
-                    <User className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-neutral-900">
-                      {profile?.name || "User"}
-                    </p>
-                    <p className="text-sm text-neutral-500">{user.email}</p>
-                  </div>
+                <div className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-secondary-200 bg-secondary-50 px-3 text-sm font-bold text-secondary-800">
+                  <Coins className="h-4 w-4" aria-hidden="true" />
+                  <span>{profile?.credits ?? '—'}</span>
+                  <span className="hidden text-xs font-semibold text-secondary-700 xl:inline">credits</span>
                 </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 bg-neutral-50 rounded-lg border border-neutral-100">
-                    <p className="text-xs text-neutral-500 mb-1">Grade</p>
-                    <p className="font-medium text-neutral-900">
-                      {profile?.grade || "-"}
-                    </p>
-                  </div>
-                  <div className="p-3 bg-amber-50 rounded-lg border border-amber-100">
-                    <p className="text-xs text-amber-600 mb-1">Credits</p>
-                    <p className="font-bold text-amber-700">
-                      {profile?.credits ?? "-"}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Button
-                    onClick={() => navigate("/profile")}
-                    variant="outline"
-                    className="w-full justify-start"
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    type="button"
+                    onClick={() => setDropdownOpen((open) => !open)}
+                    aria-expanded={dropdownOpen}
+                    aria-haspopup="menu"
+                    className={`flex min-h-11 items-center gap-2 rounded-xl border px-2.5 pr-3 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${dropdownOpen ? 'border-primary-200 bg-primary-50' : 'border-neutral-200 bg-white hover:border-primary-200 hover:bg-primary-50/50'}`}
                   >
-                    Edit Profile
-                  </Button>
-                  <Button
-                    onClick={handleSignOut}
-                    variant="ghost"
-                    className="w-full justify-start text-red-600 hover:bg-red-50 hover:text-red-700"
-                  >
-                    <LogOut className="w-4 h-4 mr-2" />
-                    Sign Out
-                  </Button>
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-100 text-sm font-bold text-primary-700">
+                      {initials}
+                    </span>
+                    <span className="max-w-28 truncate text-sm font-bold text-dark">{displayName}</span>
+                    <ChevronDown className={`h-4 w-4 text-neutral-400 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                  </button>
+
+                  {dropdownOpen && (
+                    <div className="absolute right-0 mt-3 w-80 overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl shadow-dark/10" role="menu">
+                      <div className="border-b border-neutral-100 bg-neutral-50/70 p-4">
+                        <div className="flex items-center gap-3">
+                          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-100 text-base font-bold text-primary-700">{initials}</span>
+                          <div className="min-w-0">
+                            <p className="truncate text-sm font-bold text-dark">{displayName}</p>
+                            <p className="truncate text-xs text-neutral-500">{user.email}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="space-y-1 p-3">
+                        <div className="grid grid-cols-2 gap-2 px-1 pb-2">
+                          <div className="rounded-xl border border-neutral-100 bg-neutral-50 p-3">
+                            <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-neutral-500">
+                              <GraduationCap className="h-3.5 w-3.5" aria-hidden="true" /> Grade
+                            </p>
+                            <p className="mt-1 text-sm font-bold text-dark">{profile?.grade ? `Class ${profile.grade}` : 'Not set'}</p>
+                          </div>
+                          <div className="rounded-xl border border-neutral-100 bg-neutral-50 p-3">
+                            <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-neutral-500">
+                              <School className="h-3.5 w-3.5" aria-hidden="true" /> School
+                            </p>
+                            <p className="mt-1 truncate text-sm font-bold text-dark">{profile?.school || 'Not set'}</p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => goTo('/profile')}
+                          className="flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-dark"
+                          role="menuitem"
+                        >
+                          <User className="mr-2 h-4 w-4" aria-hidden="true" /> Edit profile
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleSignOut}
+                          className="flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
+                          role="menuitem"
+                        >
+                          <LogOut className="mr-2 h-4 w-4" aria-hidden="true" /> Sign out
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </>
             ) : (
-              <div className="space-y-3">
-                <Button
-                  onClick={() => navigate("/auth")}
-                  variant="outline"
-                  className="w-full justify-center"
-                >
+              <div className="flex items-center gap-2">
+                <Button onClick={() => goTo('/auth')} variant="ghost" size="sm" className="text-neutral-600 hover:text-dark">
                   Log in
                 </Button>
-                <Button
-                  onClick={() => navigate("/auth")}
-                  variant="primary"
-                  className="w-full justify-center"
-                >
+                <Button onClick={() => goTo('/auth')} variant="primary" size="sm">
                   Sign up
                 </Button>
               </div>
             )}
-            <div className="pt-4 border-t border-neutral-100 space-y-2">
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-600 transition-colors hover:border-primary-200 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+          </button>
+        </div>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="absolute right-4 top-full z-50 max-h-[calc(100vh-5rem)] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl border border-neutral-200 bg-cream shadow-xl shadow-dark/10">
+          <div className="space-y-5 p-5">
+            {user && (
+              <div className="flex items-center justify-between rounded-2xl border border-neutral-200 bg-white p-4">
+                <div className="flex min-w-0 items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-sm font-bold text-primary-700">{initials}</span>
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-bold text-dark">{displayName}</p>
+                    <p className="truncate text-xs text-neutral-500">{profile?.school || 'Evater learner'}</p>
+                  </div>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-lg bg-secondary-50 px-2.5 py-2 text-sm font-bold text-secondary-800">
+                  <Coins className="h-4 w-4" aria-hidden="true" /> {profile?.credits ?? '—'}
+                </div>
+              </div>
+            )}
+
+            {user && renderMemberLinks(true)}
+
+            <nav aria-label="Information navigation" className="space-y-1 border-t border-neutral-200 pt-4">
               {(!user || !isBlogPage) && (
-                <Button
-                  onClick={() => navigate("/blog")}
-                  variant="ghost"
-                  className="w-full justify-start"
+                <button
+                  type="button"
+                  onClick={() => goTo('/blog')}
+                  className="flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-neutral-600 transition-colors hover:bg-white hover:text-dark"
                 >
                   Blog
-                </Button>
+                </button>
               )}
-              <Button
-                onClick={() => navigate("/about")}
-                variant="ghost"
-                className="w-full justify-start"
+              <button
+                type="button"
+                onClick={() => goTo('/about')}
+                className="flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-neutral-600 transition-colors hover:bg-white hover:text-dark"
               >
                 About
-              </Button>
-            </div>
+              </button>
+            </nav>
+
+            {user ? (
+              <div className="grid grid-cols-2 gap-2 border-t border-neutral-200 pt-4">
+                <Button onClick={() => goTo('/profile')} variant="outline" className="w-full">
+                  Edit profile
+                </Button>
+                <Button onClick={handleSignOut} variant="ghost" className="w-full text-red-600 hover:bg-red-50 hover:text-red-700">
+                  <LogOut className="mr-2 h-4 w-4" aria-hidden="true" /> Sign out
+                </Button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-2 border-t border-neutral-200 pt-4">
+                <Button onClick={() => goTo('/auth')} variant="outline" className="w-full">Log in</Button>
+                <Button onClick={() => goTo('/auth')} variant="primary" className="w-full">Sign up</Button>
+              </div>
+            )}
           </div>
         </div>
       )}
     </header>
-  );
+  )
 }
