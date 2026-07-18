@@ -96,7 +96,7 @@ export function ProfilePage() {
     <div className="min-h-screen bg-cream">
       <Header />
       
-      <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <Card>
           <CardHeader>
             <h2 className="text-2xl font-bold text-dark">
@@ -157,20 +157,20 @@ export function ProfilePage() {
                 </div>
               )}
               
-              <div className="flex space-x-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 {profile && (
                   <Button
                     type="button"
                     variant="outline"
                     onClick={() => navigate('/home')}
-                    className="flex-1"
+                    className="w-full flex-1 sm:w-auto"
                   >
                     Cancel
                   </Button>
                 )}
                 <Button
                   type="submit"
-                  className={profile ? "flex-1" : "w-full"}
+                  className={profile ? "w-full flex-1 sm:w-auto" : "w-full"}
                   loading={submitting}
                   disabled={!name.trim() || !selectedGrade || !school.trim()}
                 >

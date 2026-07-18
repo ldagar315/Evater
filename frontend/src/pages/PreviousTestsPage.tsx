@@ -107,7 +107,7 @@ export function PreviousTestsPage() {
     return (
       <div className="min-h-screen bg-cream">
         <Header />
-        <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <div className="flex items-center justify-center py-12">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
@@ -123,7 +123,7 @@ export function PreviousTestsPage() {
     <div className="min-h-screen bg-cream">
       <Header />
 
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             <div className = "mb-6">
             <div className="flex items-center mb-2">
 
@@ -177,7 +177,7 @@ export function PreviousTestsPage() {
               <Filter className="h-5 w-5 text-neutral-600 mr-2" />
               <h3 className="text-lg font-semibold text-dark">Filter Tests</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-neutral-400" />
                 <Input
@@ -225,7 +225,7 @@ export function PreviousTestsPage() {
         </Card>
 
         {/* Results Summary */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-neutral-600">
             Showing {filteredTests.length} of {tests.length} tests
           </p>
@@ -267,7 +267,7 @@ export function PreviousTestsPage() {
                 {/* 1. TABLE LAYOUT (For Large Screens/Laptops) */}
                 {/* Hidden by default, shown from 'lg' breakpoint up */}
                 {/* ============================================== */}
-                <div className="hidden lg:block">
+                <div className="hidden xl:block">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead className="bg-neutral-50 border-b border-neutral-200">
@@ -324,7 +324,7 @@ export function PreviousTestsPage() {
                             </td>
                             <td className="px-2 py-2 lg:px-6 lg:py-4">
                               <div
-                                className="text-sm text-dark max-w-xs truncate"
+                                className="max-w-xs break-words text-sm text-dark"
                                 title={test.chapter || ""}
                               >
                                 {test.chapter || "N/A"}
@@ -372,7 +372,7 @@ export function PreviousTestsPage() {
                 {/* 2. CARD LAYOUT (For Mobile/Small Screens) */}
                 {/* Shown by default, hidden from 'lg' breakpoint up */}
                 {/* ============================================== */}
-                <div className="lg:hidden p-1 space-y-4">
+                <div className="space-y-4 p-1 xl:hidden">
                   {filteredTests.map((test) => (
                     <div
                       key={test.id}
@@ -385,7 +385,7 @@ export function PreviousTestsPage() {
                             {test.subject || ""}
                           </p>
                           <div
-                            className="text-xs font-semibold text-dark truncate"
+                            className="break-words text-xs font-semibold text-dark"
                           >
                             {test.chapter || "N/A"}
                           </div>

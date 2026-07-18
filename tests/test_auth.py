@@ -44,6 +44,23 @@ def test_api_me_happy_path():
         app.dependency_overrides.clear()
 
 
+def test_tenant_id_ignores_user_editable_metadata():
+    from app.auth import _tenant_id_from_user
+    from supabase_auth.types import User
+    from datetime import datetime, timezone
+
+    user = User(
+        id="user_123",
+        app_metadata={},
+        user_metadata={"tenant_id": "attacker-controlled"},
+        aud="authenticated",
+        email="user@example.com",
+        created_at=datetime.now(timezone.utc),
+    )
+
+    assert _tenant_id_from_user(user) is None
+
+
 def test_ws_rejects_missing_auth():
     client = TestClient(app)
     with pytest.raises(WebSocketDisconnect):

@@ -243,7 +243,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
               <button
                 type="button"
                 onClick={() => setIsSignUp(!isSignUp)}
-                className="text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
+                className="inline-flex min-h-11 items-center text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
                 disabled={loading || googleLoading || !supabaseConfigured}
               >
                 {isSignUp 

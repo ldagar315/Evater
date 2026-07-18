@@ -26,9 +26,9 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-neutral-50 border-t border-neutral-200 pt-16 pb-8 mt-auto">
+    <footer className="mt-auto border-t border-neutral-200 bg-neutral-50 pb-8 pt-12 sm:pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="mb-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:mb-12 lg:grid-cols-4 lg:gap-12">
           {/* Brand Column */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -46,19 +46,19 @@ export function Footer() {
             <div className="flex space-x-4 pt-2">
               <a
                 href="#"
-                className="text-neutral-400 hover:text-primary-600 transition-colors"
+                className="flex min-h-11 min-w-11 items-center justify-center text-neutral-400 hover:text-primary-600 transition-colors"
               >
                 <Twitter className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="text-neutral-400 hover:text-primary-600 transition-colors"
+                className="flex min-h-11 min-w-11 items-center justify-center text-neutral-400 hover:text-primary-600 transition-colors"
               >
                 <Github className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="text-neutral-400 hover:text-primary-600 transition-colors"
+                className="flex min-h-11 min-w-11 items-center justify-center text-neutral-400 hover:text-primary-600 transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
@@ -73,7 +73,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-sm text-neutral-600 hover:text-primary-600 transition-colors"
+                    className="inline-flex min-h-11 items-center text-sm text-neutral-600 hover:text-primary-600 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -90,7 +90,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-sm text-neutral-600 hover:text-primary-600 transition-colors"
+                    className="inline-flex min-h-11 items-center text-sm text-neutral-600 hover:text-primary-600 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -107,7 +107,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-sm text-neutral-600 hover:text-primary-600 transition-colors"
+                    className="inline-flex min-h-11 items-center text-sm text-neutral-600 hover:text-primary-600 transition-colors"
                   >
                     {link.label}
                   </Link>

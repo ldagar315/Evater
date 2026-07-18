@@ -2,8 +2,12 @@ fastapi
 uvicorn
 groq
 dspy-ai
+openai-agents>=0.18.2,<0.19
 python-dotenv
 pydantic
 supabase
 google-genai
 httpx
+httpx-aiohttp>=0.1.5,<0.2
+beautifulsoup4>=4.12,<5
+pypdf>=5,<7

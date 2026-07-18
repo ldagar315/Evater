@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Evater Class 8 Science MVP plan and annotation workspace">
+  <title>Evater / Class 8 Science MVP Plan</title>
+  <style>
+    :root {
+      --ink: #1b2421;
+      --muted: #6d7771;
+      --paper: #f5f1e8;
+      --paper-2: #fbf9f4;
+      --line: #d8d8ca;
+      --moss: #2f5b4c;
+      --moss-dark: #193b32;
+      --citrus: #e6a33a;
+      --coral: #c65c4a;
+      --sky: #c7d9d1;
+      --display: Georgia, "Times New Roman", serif;
+      --body: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --shadow: 0 18px 45px rgba(37, 57, 49, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(199,217,209,.52), transparent 30rem),
+        radial-gradient(circle at 96% 12%, rgba(230,163,58,.17), transparent 25rem),
+        var(--paper);
+      font-family: var(--body);
+      line-height: 1.55;
+    }
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .19;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+      z-index: 5;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: var(--moss); text-underline-offset: 3px; }
+    .shell { min-height: 100vh; display: grid; grid-template-columns: minmax(0,1fr) 360px; }
+    main { min-width: 0; padding: 28px clamp(20px,5vw,82px) 90px; }
+    .topline { display: flex; justify-content: space-between; gap: 18px; align-items: center; color: var(--muted); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+    .wordmark { color: var(--moss-dark); font-weight: 800; letter-spacing: .18em; }
+    .top-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .quiet-button, .solid-button {
+      border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px;
+      background: rgba(251,249,244,.66); color: var(--ink); font-size: 12px; font-weight: 700;
+    }
+    .quiet-button:hover { border-color: var(--moss); color: var(--moss); }
+    .solid-button { border-color: var(--moss); background: var(--moss); color: #fff; }
+    .solid-button:hover { background: var(--moss-dark); }
+    .hero { padding: clamp(70px,10vw,145px) 0 60px; max-width: 1020px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--coral); font-weight: 800; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow:before { content: ""; width: 35px; height: 2px; background: var(--coral); }
+    h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 500; letter-spacing: -.035em; }
+    h1 { max-width: 920px; margin-top: 18px; font-size: clamp(52px,8vw,104px); line-height: .93; color: var(--moss-dark); }
+    h1 em { color: var(--coral); font-style: normal; }
+    .hero-copy { max-width: 680px; margin: 26px 0 0; color: #4e5c55; font-size: 18px; }
+    .status-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 27px; }
+    .chip { display: inline-flex; align-items: center; gap: 7px; padding: 7px 11px; border-radius: 999px; background: rgba(199,217,209,.6); color: var(--moss-dark); font-size: 12px; font-weight: 800; }
+    .chip:before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--moss); }
+    .chip.gold { background: rgba(230,163,58,.18); color: #8a5a10; }
+    .chip.gold:before { background: var(--citrus); }
+    .chip.coral { background: rgba(198,92,74,.12); color: #994436; }
+    .chip.coral:before { background: var(--coral); }
+    .section-nav { position: sticky; top: 20px; z-index: 3; display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 38px; padding: 12px; border: 1px solid rgba(216,216,202,.86); border-radius: 16px; background: rgba(251,249,244,.75); backdrop-filter: blur(12px); box-shadow: 0 8px 22px rgba(37,57,49,.05); }
+    .section-nav a { padding: 7px 10px; border-radius: 9px; color: var(--muted); font-size: 12px; font-weight: 800; text-decoration: none; }
+    .section-nav a:hover { color: var(--moss-dark); background: var(--sky); }
+    .plan-section { position: relative; margin-bottom: 36px; padding: 28px; border: 1px solid rgba(216,216,202,.9); border-radius: 22px; background: rgba(251,249,244,.76); box-shadow: var(--shadow); scroll-margin-top: 90px; animation: rise .7s both; }
+    .plan-section:nth-of-type(2) { animation-delay: .06s; }
+    .plan-section:nth-of-type(3) { animation-delay: .12s; }
+    .plan-section:nth-of-type(4) { animation-delay: .18s; }
+    .section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+    .section-number { color: var(--coral); font-size: 12px; font-weight: 900; letter-spacing: .16em; }
+    h2 { margin-top: 5px; font-size: clamp(30px,4vw,48px); line-height: 1; color: var(--moss-dark); }
+    h3 { margin-top: 25px; font-size: 24px; color: var(--moss-dark); }
+    p { margin: 10px 0; }
+    .lede { max-width: 760px; color: #56645d; font-size: 16px; }
+    .annotate-button { white-space: nowrap; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--moss); padding: 8px 11px; font-size: 12px; font-weight: 800; }
+    .annotate-button:hover { border-color: var(--coral); color: var(--coral); background: rgba(198,92,74,.07); }
+    .grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; margin-top: 18px; }
+    .card { padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: rgba(245,241,232,.64); }
+    .card strong { display: block; color: var(--moss-dark); }
+    .card small { display: block; margin-top: 5px; color: var(--muted); }
+    .callout { margin: 19px 0; padding: 16px 18px; border-left: 4px solid var(--citrus); border-radius: 0 12px 12px 0; background: rgba(230,163,58,.11); }
+    .callout strong { color: #7d5412; }
+    .table-wrap { overflow-x: auto; margin-top: 17px; border: 1px solid var(--line); border-radius: 14px; }
+    table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--moss-dark); background: rgba(199,217,209,.42); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    code { padding: 2px 5px; border-radius: 5px; background: #e8e8dc; color: #39473f; font-family: "SFMono-Regular", Consolas, monospace; font-size: .9em; }
+    pre { overflow-x: auto; margin: 16px 0; padding: 18px; border-radius: 14px; background: #1d302a; color: #e9efe8; font: 12px/1.65 "SFMono-Regular", Consolas, monospace; }
+    ul, ol { padding-left: 21px; }
+    li { margin: 7px 0; }
+    .annotation-inline { display: none; margin-top: 20px; }
+    .annotation-inline.has-notes { display: block; }
+    .annotation-note { margin-top: 9px; padding: 12px 14px; border: 1px solid rgba(198,92,74,.28); border-radius: 12px; background: rgba(198,92,74,.06); }
+    .annotation-note header { display: flex; justify-content: space-between; gap: 8px; color: var(--coral); font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .annotation-note p { margin-bottom: 0; white-space: pre-wrap; }
+    .review-rail { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 28px 23px; border-left: 1px solid rgba(216,216,202,.95); background: rgba(232,237,228,.77); backdrop-filter: blur(16px); z-index: 4; }
+    .rail-kicker { color: var(--coral); font-size: 11px; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; }
+    .review-rail h2 { margin-top: 10px; font-size: 34px; }
+    .rail-copy { color: var(--muted); font-size: 13px; }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin: 21px 0; }
+    .stat { padding: 11px 9px; border-radius: 12px; background: rgba(251,249,244,.72); text-align: center; }
+    .stat strong { display: block; color: var(--moss-dark); font-family: var(--display); font-size: 23px; font-weight: 500; }
+    .stat span { color: var(--muted); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+    .composer { margin-top: 22px; padding: 15px; border: 1px solid var(--line); border-radius: 16px; background: rgba(251,249,244,.86); }
+    .composer label { display: block; margin-bottom: 6px; color: var(--moss-dark); font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    select, textarea, input[type="search"] { width: 100%; border: 1px solid var(--line); border-radius: 9px; background: var(--paper-2); color: var(--ink); }
+    select, input[type="search"] { min-height: 38px; padding: 8px 10px; }
+    textarea { min-height: 112px; resize: vertical; padding: 10px; }
+    .field { margin-bottom: 13px; }
+    .composer-actions { display: flex; gap: 7px; justify-content: flex-end; }
+    .annotation-list { margin-top: 22px; }
+    .annotation-list h3 { margin: 0 0 10px; font: 800 11px var(--body); letter-spacing: .13em; text-transform: uppercase; color: var(--muted); }
+    .note-row { margin: 9px 0; padding: 13px; border: 1px solid var(--line); border-radius: 12px; background: rgba(251,249,244,.75); }
+    .note-row.resolved { opacity: .66; }
+    .note-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--coral); font-size: 10px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    .priority { color: #8a5a10; }
+    .note-row p { margin: 7px 0; font-size: 13px; white-space: pre-wrap; }
+    .note-actions { display: flex; flex-wrap: wrap; gap: 9px; }
+    .text-button { border: 0; padding: 0; background: none; color: var(--moss); font-size: 11px; font-weight: 800; }
+    .text-button:hover { color: var(--coral); text-decoration: underline; }
+    .empty { padding: 18px 0; color: var(--muted); font-size: 13px; }
+    .footer-note { padding: 20px 0; color: var(--muted); font-size: 12px; text-align: center; }
+    .hidden { display: none !important; }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    @media (max-width: 1050px) {
+      .shell { grid-template-columns: 1fr; }
+      .review-rail { position: fixed; right: 0; top: 0; width: min(390px,92vw); transform: translateX(100%); transition: transform .25s ease; box-shadow: -18px 0 40px rgba(37,57,49,.18); }
+      .review-rail.open { transform: translateX(0); }
+      .mobile-review { display: inline-flex !important; }
+    }
+    @media (min-width: 1051px) { .mobile-review { display: none !important; } }
+    @media (max-width: 680px) {
+      main { padding: 18px 15px 60px; }
+      .topline { align-items: flex-start; flex-direction: column; }
+      .top-actions { justify-content: flex-start; }
+      .hero { padding: 70px 0 42px; }
+      h1 { font-size: 58px; }
+      .plan-section { padding: 20px; border-radius: 17px; }
+      .section-heading { flex-direction: column; gap: 14px; }
+      .grid { grid-template-columns: 1fr; }
+      .section-nav { top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <main>
+      <div class="topline">
+        <div class="wordmark">EVATER / REVIEW ARTIFACT</div>
+        <div class="top-actions">
+          <button class="quiet-button mobile-review" id="openRail">Open annotations</button>
+          <button class="quiet-button" id="copyNotes">Copy review notes</button>
+          <button class="quiet-button" id="exportNotes">Export JSON</button>
+          <button class="quiet-button" id="importNotes">Import JSON</button>
+          <input id="importInput" type="file" accept="application/json" class="hidden">
+        </div>
+      </div>
+
+      <header class="hero">
+        <div class="eyebrow">MVP plan / working draft</div>
+        <h1>One class.<br>One subject.<br><em>One sharp loop.</em></h1>
+        <p class="hero-copy">A fast, versioned Class 8 Science question bank with 100 reviewed MCQs per chapter, deterministic adaptive routing, and a clean boundary between free practice and paid AI evaluation.</p>
+        <div class="status-row">
+          <span class="chip">Class 8</span>
+          <span class="chip">Science</span>
+          <span class="chip gold">NCERT / CBSE assumption</span>
+          <span class="chip coral">Review before build</span>
+        </div>
+      </header>
+
+      <nav class="section-nav" aria-label="Plan sections">
+        <a href="#decision">Decision</a><a href="#bank">Question bank</a><a href="#database">Database</a><a href="#apis">APIs</a><a href="#routing">Routing</a><a href="#etl">ETL</a><a href="#changes">Code changes</a><a href="#mvp">MVP path</a>
+      </nav>
+
+      <article class="plan-section" id="decision" data-section-id="decision" data-section-label="Decision and scope">
+        <div class="section-heading"><div><div class="section-number">01 / DECISION</div><h2>Choose Science first.</h2></div><button class="annotate-button" data-annotate="decision">+ Annotate</button></div>
+        <p class="lede">Science is the better first subject for a fast, deterministic MVP. Concepts, experiments, classifications, cause-and-effect relationships, and data interpretation map naturally to reviewable MCQs.</p>
+        <div class="callout"><strong>Working assumption:</strong> NCERT/CBSE, Class 8, English, current Science curriculum version. The new “Curiosity” material means we must version the curriculum and avoid mixing old and new content. <a href="https://www.ncert.nic.in/pdf/Bridge_Programme/Grade8/Bridge_Programme-Science-Grade_8.pdf" target="_blank" rel="noreferrer">Official bridge programme ↗</a></div>
+        <div class="grid"><div class="card"><strong>Free lane</strong><small>Published MCQs, deterministic scoring, explanations, mastery, and recommendations.</small></div><div class="card"><strong>Paid lane</strong><small>Novel tests, handwritten OCR, subjective evaluation, personalized feedback, and viva.</small></div><div class="card"><strong>Pilot size</strong><small>One chapter first. Publish 100 approved questions before scaling to the subject.</small></div><div class="card"><strong>Question type</strong><small>Single-answer, four-option MCQs only for the MVP. Add other types later.</small></div></div>
+        <div class="annotation-inline" data-notes-for="decision"></div>
+      </article>
+
+      <article class="plan-section" id="bank" data-section-id="bank" data-section-label="Question bank design">
+        <div class="section-heading"><div><div class="section-number">02 / CONTENT</div><h2>Build a bank that can route.</h2></div><button class="annotate-button" data-annotate="bank">+ Annotate</button></div>
+        <p class="lede">The target is 100 published questions per chapter, with enough structured metadata to move a student toward foundation, practice, review, or challenge questions.</p>
+        <div class="table-wrap"><table><thead><tr><th>Metadata</th><th>Target distribution / rule</th><th>Why it matters</th></tr></thead><tbody>
+          <tr><td>Difficulty</td><td>40 easy / 40 medium / 20 hard</td><td>Controls progression and challenge.</td></tr>
+          <tr><td>Cognitive level</td><td>30 recall / 35 understand / 25 apply / 10 analyze</td><td>Prevents a bank made only of memorization.</td></tr>
+          <tr><td>Concept coverage</td><td>Every major concept represented; no concept owns more than 20% of the bank.</td><td>Supports concept-level mastery.</td></tr>
+          <tr><td>Question style</td><td>Mostly text, with scenario, experiment, table, data, and diagram variants.</td><td>Creates meaningful practice variety.</td></tr>
+          <tr><td>Quality gate</td><td>Exactly one correct answer, four unique options, explanation, source reference, reviewer approval.</td><td>Prevents ambiguous or unsafe publishing.</td></tr>
+        </tbody></table></div>
+        <h3>Recommended tags</h3>
+        <div class="grid"><div class="card"><strong>Learning tags</strong><small><code>concept_id</code>, <code>learning_outcome</code>, <code>cognitive_level</code>, <code>skill_tags</code></small></div><div class="card"><strong>Routing tags</strong><small><code>difficulty</code>, <code>estimated_time</code>, <code>prerequisite_concepts</code>, <code>question_style</code></small></div><div class="card"><strong>Misconception tags</strong><small>Examples: <code>confuses_heat_temperature</code>, <code>reverses_cause_effect</code>.</small></div><div class="card"><strong>Governance tags</strong><small><code>source_id</code>, <code>license</code>, <code>content_hash</code>, <code>review_status</code>, <code>quality_score</code></small></div></div>
+        <pre>{
+  "difficulty": "medium",
+  "cognitive_level": "apply",
+  "skill_tags": ["cause_effect", "scientific_reasoning"],
+  "misconception_tags": ["confuses_heat_temperature"],
+  "question_style": "scenario",
+  "estimated_time_seconds": 60
+}</pre>
+        <p><strong>Content workflow:</strong> create 125–140 candidates, validate them automatically, review them, then publish the best 100. The database keeps rejected and draft questions for auditability.</p>
+        <div class="annotation-inline" data-notes-for="bank"></div>
+      </article>
+
+      <article class="plan-section" id="database" data-section-id="database" data-section-label="Supabase database">
+        <div class="section-heading"><div><div class="section-number">03 / DATA</div><h2>Version the learning world.</h2></div><button class="annotate-button" data-annotate="database">+ Annotate</button></div>
+        <p class="lede">The existing <code>Chapter_contents</code> and <code>Questions_Created</code> tables remain compatibility paths. The question-bank MVP gets its own normalized tables.</p>
+        <div class="table-wrap"><table><thead><tr><th>Table</th><th>Core fields</th><th>Purpose</th></tr></thead><tbody>
+          <tr><td><code>curriculum_versions</code></td><td>board, grade, subject, language, academic_year, source, license</td><td>Prevents mixing editions and syllabi.</td></tr>
+          <tr><td><code>chapters</code></td><td>curriculum_version_id, sequence, title, slug</td><td>Stable chapter identity.</td></tr>
+          <tr><td><code>concepts</code></td><td>chapter_id, parent, learning_outcome, prerequisites</td><td>Routing and mastery unit.</td></tr>
+          <tr><td><code>content_sources</code></td><td>url, source_type, license, hash, fetched_at</td><td>Provenance and refresh tracking.</td></tr>
+          <tr><td><code>question_bank</code></td><td>stem, options, answer, explanation, tags, status, source</td><td>Draft-to-published question lifecycle.</td></tr>
+          <tr><td><code>test_attempts</code></td><td>user, chapter, mode, seed, score, routing profile</td><td>Assessment session state.</td></tr>
+          <tr><td><code>question_attempts</code></td><td>test, question, selected answer, correctness, timing</td><td>Deterministic scoring and analytics.</td></tr>
+          <tr><td><code>concept_mastery</code></td><td>user, concept, mastery, attempts, review date</td><td>Lightweight personalization state.</td></tr>
+          <tr><td><code>ingestion_jobs</code></td><td>job type, status, source, errors, counts</td><td>ETL operations and observability.</td></tr>
+        </tbody></table></div>
+        <div class="callout"><strong>Security rule:</strong> the client receives only published questions. The correct answer remains server-side until submission. Students can read only their own attempts and mastery; ETL writes use a protected service credential.</div>
+        <div class="annotation-inline" data-notes-for="database"></div>
+      </article>
+
+      <article class="plan-section" id="apis" data-section-id="apis" data-section-label="API surface">
+        <div class="section-heading"><div><div class="section-number">04 / CONTRACTS</div><h2>Small APIs, clear boundaries.</h2></div><button class="annotate-button" data-annotate="apis">+ Annotate</button></div>
+        <p class="lede">The free bank path is versioned and does not call an LLM. Existing AI endpoints stay available behind paid entitlement checks while the frontend migrates.</p>
+        <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead><tbody>
+          <tr><td>GET</td><td><code>/api/v1/curriculum</code></td><td>List the active Class 8 Science curriculum.</td></tr>
+          <tr><td>GET</td><td><code>/api/v1/chapters</code></td><td>List published chapters.</td></tr>
+          <tr><td>POST</td><td><code>/api/v1/tests</code></td><td>Create an assessment and return the first question block.</td></tr>
+          <tr><td>POST</td><td><code>/api/v1/tests/{id}/blocks/{n}/submit</code></td><td>Score a block and return the routed next block.</td></tr>
+          <tr><td>GET</td><td><code>/api/v1/tests/{id}</code></td><td>Read the final test result.</td></tr>
+          <tr><td>GET</td><td><code>/api/v1/mastery</code></td><td>Read concept-level student mastery.</td></tr>
+          <tr><td>GET</td><td><code>/api/v1/recommendations</code></td><td>Return the next practice recommendation.</td></tr>
+        </tbody></table></div>
+        <h3>Example create-test request</h3>
+        <pre>POST /api/v1/tests
+
+{
+  "chapter_id": "uuid",
+  "mode": "practice",
+  "question_count": 10
+}</pre>
+        <p>The response returns five questions first. The next five are selected after the first block, making mid-test routing possible without sending the entire bank to the client.</p>
+        <div class="annotation-inline" data-notes-for="apis"></div>
+      </article>
+
+      <article class="plan-section" id="routing" data-section-id="routing" data-section-label="Adaptive routing">
+        <div class="section-heading"><div><div class="section-number">05 / PERSONALIZATION</div><h2>Adaptive, but explainable.</h2></div><button class="annotate-button" data-annotate="routing">+ Annotate</button></div>
+        <p class="lede">The MVP should use deterministic heuristics rather than a complicated recommendation model. That keeps the behavior testable and easy to tune.</p>
+        <div class="grid"><div class="card"><strong>Below 40%</strong><small>Route to easy questions, weak concepts, and prerequisite concepts.</small></div><div class="card"><strong>40–75%</strong><small>Use a mixed block at the current difficulty band.</small></div><div class="card"><strong>Above 75%</strong><small>Promote toward application and harder questions.</small></div><div class="card"><strong>Repeat control</strong><small>Exclude the last 20 chapter questions and apply spaced review later.</small></div></div>
+        <h3>Mastery update</h3>
+        <pre>new_mastery = 0.70 * previous_mastery
+            + 0.30 * current_block_accuracy</pre>
+        <p>Difficulty bands are easy below 45 mastery, medium from 45–74, and hard from 75 onward. Question priority is approximately 55% weak concepts, 20% review-due concepts, 15% unseen questions, and 10% challenge/exploration.</p>
+        <div class="callout"><strong>Product language:</strong> show “needs review”, “on track”, or “challenge next”. Do not claim that the MVP has measured a student’s exact ability.</div>
+        <div class="annotation-inline" data-notes-for="routing"></div>
+      </article>
+
+      <article class="plan-section" id="etl" data-section-id="etl" data-section-label="ETL pipeline">
+        <div class="section-heading"><div><div class="section-number">06 / PIPELINE</div><h2>Curated ingestion first.</h2></div><button class="annotate-button" data-annotate="etl">+ Annotate</button></div>
+        <p class="lede">For speed and safety, start with a curated source registry and adapters. Do not build a general internet crawler.</p>
+        <ol><li><strong>Register source</strong> — URL, publisher, license, curriculum version, and attribution.</li><li><strong>Fetch source</strong> — rate limits, content hash, retry policy, and source status.</li><li><strong>Extract text</strong> — HTML/PDF parser; scanned material requires OCR and review.</li><li><strong>Normalize</strong> — chapters, concepts, learning outcomes, and source locators.</li><li><strong>Generate candidates</strong> — manual or permitted offline batch generation.</li><li><strong>Validate</strong> — schema, exactly-one-answer, duplicate, length, and scope checks.</li><li><strong>Review</strong> — approve, reject, or request edits.</li><li><strong>Publish</strong> — only approved questions enter the student-facing bank.</li><li><strong>Refresh</strong> — detect source changes and create a new content version.</li></ol>
+        <div class="callout"><strong>Rights boundary:</strong> use official metadata, openly licensed content, and original questions. Do not republish NCERT textbook passages, images, or copied solution-site material without the required permission. <a href="https://www.ncert.nic.in/pdf/announcement/notices/Press_Release_Copyright_Infringement-NCERT.pdf" target="_blank" rel="noreferrer">NCERT copyright notice ↗</a></div>
+        <div class="annotation-inline" data-notes-for="etl"></div>
+      </article>
+
+      <article class="plan-section" id="changes" data-section-id="changes" data-section-label="Repository changes">
+        <div class="section-heading"><div><div class="section-number">07 / IMPLEMENTATION</div><h2>What changes in the repo?</h2></div><button class="annotate-button" data-annotate="changes">+ Annotate</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Area</th><th>Change</th></tr></thead><tbody>
+          <tr><td>Supabase</td><td>Add migrations for curriculum, question bank, attempts, mastery, ETL jobs, and RLS.</td></tr>
+          <tr><td>Backend</td><td>Add question-bank router, deterministic scoring service, routing service, Pydantic models, and contract tests.</td></tr>
+          <tr><td>ETL</td><td>Add a separate package for source adapters, extraction, validation, publishing, and job reporting.</td></tr>
+          <tr><td>Frontend</td><td>Use the new free test APIs in chapter selection, test taking, result, and mastery screens.</td></tr>
+          <tr><td>Existing AI</td><td>Keep <code>/api/gen_question</code>, <code>/api/gen_answer</code>, and <code>/ws/viva</code> as paid routes with server-side entitlement checks.</td></tr>
+          <tr><td>Legacy paths</td><td>Stop using the mock/template Supabase Edge Functions for production question or feedback results.</td></tr>
+          <tr><td>Modal</td><td>Run ETL workers and scheduled refresh jobs with Supabase credentials stored as Modal secrets.</td></tr>
+        </tbody></table></div>
+        <div class="annotation-inline" data-notes-for="changes"></div>
+      </article>
+
+      <article class="plan-section" id="mvp" data-section-id="mvp" data-section-label="MVP delivery path">
+        <div class="section-heading"><div><div class="section-number">08 / DELIVERY</div><h2>Fast path to a real MVP.</h2></div><button class="annotate-button" data-annotate="mvp">+ Annotate</button></div>
+        <ol><li><strong>Freeze scope:</strong> Class 8, Science, English, one current curriculum version, one chapter.</li><li><strong>Build schema:</strong> migrations, RLS, question validation model, and seed curriculum rows.</li><li><strong>Build content loader:</strong> curated source adapter plus JSON/CSV import for fast review.</li><li><strong>Publish the bank:</strong> 100 approved, tagged questions with explanations.</li><li><strong>Build free APIs:</strong> test creation, five-question blocks, deterministic scoring, and results.</li><li><strong>Add routing:</strong> mastery updates, weak-concept targeting, difficulty promotion, and repeat avoidance.</li><li><strong>Wire the frontend:</strong> chapter → test → block → result → recommendation.</li><li><strong>Protect paid AI:</strong> entitlement checks around existing generation, answer evaluation, and viva flows.</li></ol>
+        <h3>Definition of done</h3>
+        <div class="grid"><div class="card"><strong>Content</strong><small>100 published questions; coverage and difficulty quotas pass.</small></div><div class="card"><strong>Correctness</strong><small>Every question has exactly one answer and scoring is reproducible.</small></div><div class="card"><strong>Personalization</strong><small>Different results produce different next blocks.</small></div><div class="card"><strong>Cost boundary</strong><small>The free path makes zero LLM calls.</small></div></div>
+        <div class="callout"><strong>Review this artifact:</strong> add notes in the annotation panel. Use “Copy review notes” and paste the result into the next Codex message; I can update the plan or turn approved sections into implementation tasks.</div>
+        <div class="annotation-inline" data-notes-for="mvp"></div>
+      </article>
+
+      <div class="footer-note">Evater planning artifact · annotations stay in this browser until exported · press <code>N</code> to focus the composer</div>
+    </main>
+
+    <aside class="review-rail" id="reviewRail" aria-label="Plan annotations">
+      <div class="rail-kicker">Review layer</div>
+      <h2>Leave a mark.</h2>
+      <p class="rail-copy">Attach a comment to any section. Notes are saved locally in this browser and can be exported for the next iteration.</p>
+      <div class="stats"><div class="stat"><strong id="noteCount">0</strong><span>notes</span></div><div class="stat"><strong id="openCount">0</strong><span>open</span></div><div class="stat"><strong id="sectionCount">0</strong><span>sections</span></div></div>
+      <div class="composer">
+        <div class="field"><label for="sectionSelect">Section</label><select id="sectionSelect"></select></div>
+        <div class="field"><label for="prioritySelect">Priority</label><select id="prioritySelect"><option value="thought">Thought</option><option value="important">Important</option><option value="blocker">Blocker</option></select></div>
+        <div class="field"><label for="noteText">Your annotation</label><textarea id="noteText" placeholder="What should change, be clarified, or be built differently?"></textarea></div>
+        <div class="composer-actions"><button class="quiet-button hidden" id="cancelEdit">Cancel</button><button class="solid-button" id="saveNote">Add annotation</button></div>
+      </div>
+      <div class="annotation-list"><h3>Saved annotations</h3><input id="noteSearch" type="search" placeholder="Filter notes…" aria-label="Filter notes"><div id="notesList"></div><button class="text-button hidden" id="clearNotes">Clear all annotations</button></div>
+    </aside>
+  </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = "evater-class8-science-mvp-plan-annotations-v1";
+      var sections = Array.prototype.slice.call(document.querySelectorAll("[data-section-id]")).map(function (element) {
+        return { id: element.dataset.sectionId, label: element.dataset.sectionLabel, element: element };
+      });
+      var sectionById = {};
+      sections.forEach(function (section) { sectionById[section.id] = section; });
+      var annotations = loadAnnotations();
+      var editingId = null;
+      var sectionSelect = document.getElementById("sectionSelect");
+      var prioritySelect = document.getElementById("prioritySelect");
+      var noteText = document.getElementById("noteText");
+      var saveNote = document.getElementById("saveNote");
+      var cancelEdit = document.getElementById("cancelEdit");
+      var notesList = document.getElementById("notesList");
+      var noteSearch = document.getElementById("noteSearch");
+
+      sections.forEach(function (section) {
+        var option = document.createElement("option");
+        option.value = section.id;
+        option.textContent = section.label;
+        sectionSelect.appendChild(option);
+      });
+
+      function loadAnnotations() {
+        try {
+          var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+          return Array.isArray(saved) ? saved : [];
+        } catch (error) { return []; }
+      }
+      function persist() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(annotations));
+        render();
+      }
+      function esc(value) {
+        return String(value).replace(/[&<>'"]/g, function (character) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#039;", '"': "&quot;" }[character];
+        });
+      }
+      function dateLabel(value) {
+        return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+      }
+      function render() {
+        var query = noteSearch.value.trim().toLowerCase();
+        var visible = annotations.filter(function (note) {
+          return [note.text, note.sectionLabel, note.priority, note.status].join(" ").toLowerCase().indexOf(query) !== -1;
+        });
+        document.getElementById("noteCount").textContent = annotations.length;
+        document.getElementById("openCount").textContent = annotations.filter(function (note) { return note.status !== "resolved"; }).length;
+        document.getElementById("sectionCount").textContent = new Set(annotations.map(function (note) { return note.sectionId; })).size;
+        document.getElementById("clearNotes").classList.toggle("hidden", annotations.length === 0);
+        if (!visible.length) {
+          notesList.innerHTML = '<div class="empty">No annotations yet. Add the first one from a section or this panel.</div>';
+        } else {
+          notesList.innerHTML = visible.map(function (note) {
+            return '<div class="note-row ' + (note.status === "resolved" ? "resolved" : "") + '">' +
+              '<div class="note-meta"><span>' + esc(note.sectionLabel) + '</span><span class="priority">' + esc(note.priority) + '</span></div>' +
+              '<p>' + esc(note.text) + '</p>' +
+              '<div class="note-meta"><span>' + dateLabel(note.updatedAt || note.createdAt) + '</span><span>' + esc(note.status) + '</span></div>' +
+              '<div class="note-actions">' +
+              '<button class="text-button" data-action="jump" data-id="' + note.id + '">Jump to section</button>' +
+              '<button class="text-button" data-action="edit" data-id="' + note.id + '">Edit</button>' +
+              '<button class="text-button" data-action="toggle" data-id="' + note.id + '">' + (note.status === "resolved" ? "Reopen" : "Resolve") + '</button>' +
+              '<button class="text-button" data-action="delete" data-id="' + note.id + '">Delete</button>' +
+              '</div></div>';
+          }).join("");
+        }
+        sections.forEach(function (section) {
+          var target = section.element.querySelector('[data-notes-for="' + section.id + '"]');
+          var notes = annotations.filter(function (note) { return note.sectionId === section.id; });
+          if (!target) return;
+          target.classList.toggle("has-notes", notes.length > 0);
+          target.innerHTML = notes.map(function (note) {
+            return '<div class="annotation-note"><header><span>' + esc(note.priority) + ' annotation</span><span>' + esc(note.status) + '</span></header><p>' + esc(note.text) + '</p></div>';
+          }).join("");
+        });
+      }
+      function focusComposer(sectionId) {
+        if (sectionId) sectionSelect.value = sectionId;
+        document.getElementById("reviewRail").classList.add("open");
+        noteText.focus();
+      }
+      function resetComposer() {
+        editingId = null;
+        noteText.value = "";
+        prioritySelect.value = "thought";
+        saveNote.textContent = "Add annotation";
+        cancelEdit.classList.add("hidden");
+      }
+      document.querySelectorAll("[data-annotate]").forEach(function (button) {
+        button.addEventListener("click", function () { focusComposer(button.dataset.annotate); });
+      });
+      saveNote.addEventListener("click", function () {
+        var text = noteText.value.trim();
+        if (!text) { noteText.focus(); return; }
+        var section = sectionById[sectionSelect.value];
+        var now = new Date().toISOString();
+        if (editingId) {
+          var note = annotations.find(function (item) { return item.id === editingId; });
+          if (note) {
+            note.text = text;
+            note.priority = prioritySelect.value;
+            note.sectionId = section.id;
+            note.sectionLabel = section.label;
+            note.updatedAt = now;
+          }
+        } else {
+          annotations.unshift({
+            id: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + "-" + Math.random(),
+            sectionId: section.id, sectionLabel: section.label, priority: prioritySelect.value,
+            text: text, status: "open", createdAt: now, updatedAt: now
+          });
+        }
+        persist();
+        resetComposer();
+      });
+      cancelEdit.addEventListener("click", resetComposer);
+      noteSearch.addEventListener("input", render);
+      notesList.addEventListener("click", function (event) {
+        var button = event.target.closest("button[data-action]");
+        if (!button) return;
+        var note = annotations.find(function (item) { return item.id === button.dataset.id; });
+        if (!note) return;
+        if (button.dataset.action === "jump") {
+          sectionById[note.sectionId].element.scrollIntoView({ behavior: "smooth", block: "start" });
+          document.getElementById("reviewRail").classList.remove("open");
+        } else if (button.dataset.action === "delete") {
+          annotations = annotations.filter(function (item) { return item.id !== note.id; });
+          persist();
+        } else if (button.dataset.action === "toggle") {
+          note.status = note.status === "resolved" ? "open" : "resolved";
+          note.updatedAt = new Date().toISOString();
+          persist();
+        } else if (button.dataset.action === "edit") {
+          editingId = note.id;
+          sectionSelect.value = note.sectionId;
+          prioritySelect.value = note.priority;
+          noteText.value = note.text;
+          saveNote.textContent = "Save changes";
+          cancelEdit.classList.remove("hidden");
+          focusComposer(note.sectionId);
+        }
+      });
+      document.getElementById("clearNotes").addEventListener("click", function () {
+        if (confirm("Delete all annotations from this browser?")) { annotations = []; persist(); }
+      });
+      document.getElementById("copyNotes").addEventListener("click", async function () {
+        var text = annotations.length ? annotations.map(function (note) {
+          return "- [" + note.priority + "] " + note.sectionLabel + ": " + note.text + " (" + note.status + ")";
+        }).join("\n") : "No annotations yet.";
+        await navigator.clipboard.writeText(text);
+        alert("Review notes copied. Paste them into the next Codex message.");
+      });
+      document.getElementById("exportNotes").addEventListener("click", function () {
+        var blob = new Blob([JSON.stringify({ artifact: "class8-science-mvp-plan", exportedAt: new Date().toISOString(), annotations: annotations }, null, 2)], { type: "application/json" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url; link.download = "evater-class8-science-mvp-plan-annotations.json"; link.click();
+        URL.revokeObjectURL(url);
+      });
+      document.getElementById("importNotes").addEventListener("click", function () { document.getElementById("importInput").click(); });
+      document.getElementById("importInput").addEventListener("change", async function (event) {
+        var file = event.target.files[0];
+        if (!file) return;
+        try {
+          var parsed = JSON.parse(await file.text());
+          var incoming = Array.isArray(parsed) ? parsed : parsed.annotations;
+          if (!Array.isArray(incoming)) throw new Error("Invalid annotation file");
+          annotations = incoming.concat(annotations).filter(function (note, index, all) {
+            return all.findIndex(function (item) { return item.id === note.id; }) === index;
+          });
+          persist();
+          alert(incoming.length + " annotation(s) imported.");
+        } catch (error) { alert("Could not import that annotation file."); }
+        event.target.value = "";
+      });
+      document.getElementById("openRail").addEventListener("click", function () { document.getElementById("reviewRail").classList.toggle("open"); });
+      document.addEventListener("keydown", function (event) {
+        var active = document.activeElement;
+        if (event.key.toLowerCase() === "n" && active && ["INPUT", "TEXTAREA", "SELECT"].indexOf(active.tagName) === -1) {
+          event.preventDefault(); focusComposer();
+        }
+      });
+      window.EvaterPlan = {
+        getAnnotations: function () { return JSON.parse(JSON.stringify(annotations)); },
+        exportAnnotations: function () { return JSON.stringify(annotations, null, 2); }
+      };
+      render();
+    }());
+  </script>
+</body>
+</html>

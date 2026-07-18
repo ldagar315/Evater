@@ -128,7 +128,7 @@ export function BlogPage() {
                     </p>
                     <button
                       onClick={() => setSearchQuery("")}
-                      className="text-primary-600 font-semibold hover:text-primary-700"
+                      className="inline-flex min-h-11 items-center px-3 text-primary-600 font-semibold hover:text-primary-700"
                     >
                       Clear Search
                     </button>
@@ -154,7 +154,7 @@ export function BlogPage() {
                     setCurrentPage((prev) => Math.max(prev - 1, 1))
                   }
                   disabled={currentPage === 1}
-                  className="px-4 py-2 text-sm font-medium text-neutral-700 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="min-h-11 px-4 py-2 text-sm font-medium text-neutral-700 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   Previous
                 </button>
@@ -164,7 +164,7 @@ export function BlogPage() {
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
-                      className={`w-10 h-10 flex items-center justify-center text-sm font-bold rounded-lg transition-all ${
+                      className={`min-h-11 min-w-11 flex items-center justify-center text-sm font-bold rounded-lg transition-all ${
                         currentPage === page
                           ? "bg-primary-500 text-white shadow-md transform scale-105"
                           : "text-neutral-600 bg-white border border-neutral-200 hover:bg-neutral-50 hover:border-neutral-300"
@@ -180,7 +180,7 @@ export function BlogPage() {
                     setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                   }
                   disabled={currentPage === totalPages}
-                  className="px-4 py-2 text-sm font-medium text-neutral-700 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="min-h-11 px-4 py-2 text-sm font-medium text-neutral-700 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   Next
                 </button>
@@ -189,7 +189,7 @@ export function BlogPage() {
           </div>
         </section>
       </div>
-      <Footer />
+      {!user && <Footer />}
     </div>
   );
 }

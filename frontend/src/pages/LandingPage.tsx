@@ -160,11 +160,11 @@ export function LandingPage() {
         <section className="py-16 bg-white border-y border-neutral-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-2xl shadow-sm border border-neutral-100 p-8 lg:p-12">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
+              <div className="grid grid-cols-1 gap-8 divide-y divide-neutral-100 sm:grid-cols-2 md:divide-y-0 md:divide-x lg:grid-cols-4">
                 {stats.map((stat, index) => {
                   const Icon = stat.icon;
                   return (
-                    <div key={index} className="text-center pt-8 md:pt-0 px-4">
+                    <div key={index} className="px-4 pt-8 text-center first:pt-0 sm:pt-0">
                       <div className="flex justify-center mb-4">
                         <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center transform transition-transform hover:scale-110 duration-300">
                           <Icon className="h-7 w-7 text-primary-600" />

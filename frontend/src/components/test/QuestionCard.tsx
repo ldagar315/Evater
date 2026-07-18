@@ -77,14 +77,14 @@ export function QuestionCard({
   return (
     <Card className="mb-6 overflow-visible">
       <CardContent className="p-6">
-        <div className="flex justify-between items-start mb-4">
+        <div className="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-start sm:justify-between">
           <h3 className="font-semibold text-dark flex items-center text-lg">
             Q{question.question_number}
             {question.contains_math_expression && (
               <Calculator className="h-4 w-4 ml-2 text-blue-600" />
             )}
           </h3>
-          <div className="flex items-center space-x-2 text-sm">
+          <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="text-secondary-800 bg-secondary-50 px-2 py-1 rounded font-medium">
               {question.question_type.replace("_", " ").toUpperCase()}
             </span>
@@ -192,7 +192,7 @@ export function QuestionCard({
                   />
                   <button
                     onClick={handleRemoveImage}
-                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 shadow-sm"
+                    className="absolute -top-2 -right-2 flex h-11 w-11 items-center justify-center rounded-full bg-red-500 p-1 text-white shadow-sm hover:bg-red-600"
                   >
                     <X className="h-3 w-3" />
                   </button>

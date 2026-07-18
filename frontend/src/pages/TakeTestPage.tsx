@@ -321,7 +321,7 @@ export function TakeTestPage() {
     return (
       <div className="min-h-screen bg-cream">
         <Header />
-        <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <div className="flex items-center justify-center py-12">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
@@ -337,7 +337,7 @@ export function TakeTestPage() {
     return (
       <div className="min-h-screen bg-cream">
         <Header />
-        <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <div className="mb-6">
             <Button
               variant="ghost"
@@ -370,7 +370,7 @@ export function TakeTestPage() {
     return (
       <div className="min-h-screen bg-cream">
         <Header />
-        <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <Card className="text-center">
             <CardContent className="p-12">
               <div className="w-20 h-20 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -398,7 +398,7 @@ export function TakeTestPage() {
                 </div>
               </div>
 
-              <div className="flex space-x-4 justify-center">
+              <div className="flex flex-col justify-center gap-4 sm:flex-row">
                 <Button onClick={() => navigate('/previous-tests')} variant="outline">
                   Back to Tests
                 </Button>
@@ -420,7 +420,7 @@ export function TakeTestPage() {
     <div className="min-h-screen bg-cream">
       <Header />
 
-      <div className="max-w-4xl mx-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
         {/* Header with progress and stats */}
         <div className="mb-6 sm:mb-8 flex items-center justify-between">
           <Button
@@ -458,7 +458,7 @@ export function TakeTestPage() {
         <Card className="mb-8 shadow-lg border-neutral-200">
           <CardContent className="p-4 sm:p-8">
           {/* Question type and marks - larger and more prominent */}
-              <div className="flex justify-end space-x-6 mb-4 sm:mb-8">
+              <div className="mb-4 flex flex-wrap justify-end gap-3 sm:mb-8">
                 <span className="bg-secondary-50 text-secondary-700 px-2 py-1 rounded-lg text-sm font-normal sm:text-base">
                   {currentQuestion.isMultipleCorrect
                     ? "Multiple Correct"
@@ -497,7 +497,7 @@ export function TakeTestPage() {
                   key={option.id}
                   onClick={() => handleOptionSelect(option.id)}
                   disabled={showAnswer}
-                  className={`w-full p-2 sm:p-4 rounded-xl border-2 transition-all duration-200 flex items-center justify-between ${getOptionStyle(
+                  className={`min-h-11 w-full rounded-xl border-2 p-3 transition-all duration-200 flex items-center justify-between sm:p-4 ${getOptionStyle(
                     option
                   )} ${
                     showAnswer

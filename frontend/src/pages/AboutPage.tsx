@@ -40,7 +40,7 @@ export function AboutPage() {
   return (
     <div className="min-h-screen bg-cream font-sans">
       <Header />
-      <main className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <section className="text-center mb-16 animate-fade-in">
           <span className="inline-flex items-center px-4 py-1 rounded-full bg-primary-50 text-primary-600 text-sm font-semibold tracking-wide uppercase mb-6">
             About Evater

@@ -22,6 +22,9 @@ import { BlogPage } from './pages/BlogPage'
 import { BlogPostPage } from './pages/BlogPostPage'
 import { VivaPage } from './pages/VivaPage'
 import { AboutPage } from './pages/AboutPage'
+import { QuestionBankPracticePage } from './pages/QuestionBankPracticePage'
+import { LeaderboardPage } from './pages/LeaderboardPage'
+import { QuestionTypePreviewPage } from './pages/QuestionTypePreviewPage'
 import { BYPASS_AUTH } from './lib/auth/devBypass'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -45,7 +48,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
           <p className="text-neutral-600 mb-4">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors"
+            className="min-h-11 rounded-lg bg-primary-500 px-4 py-2 text-white transition-colors hover:bg-primary-600"
           >
             Retry
           </button>
@@ -80,7 +83,7 @@ function AppRoutes() {
           <p className="text-neutral-600 mb-4">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors"
+            className="min-h-11 rounded-lg bg-primary-500 px-4 py-2 text-white transition-colors hover:bg-primary-600"
           >
             Retry
           </button>
@@ -115,6 +118,21 @@ function AppRoutes() {
               <Route path="/create-test" element={
                 <ProtectedRoute>
                   <CreateTestPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/practice" element={
+                <ProtectedRoute>
+                  <QuestionBankPracticePage />
+                </ProtectedRoute>
+              } />
+              <Route path="/question-preview" element={
+                <ProtectedRoute>
+                  <QuestionTypePreviewPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/leaderboard" element={
+                <ProtectedRoute>
+                  <LeaderboardPage />
                 </ProtectedRoute>
               } />
               <Route path="/previous-tests" element={

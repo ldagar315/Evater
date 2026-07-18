@@ -375,7 +375,7 @@ export function VivaPage() {
       <div className="min-h-screen bg-cream">
         <Header />
 
-        <div className="max-w-2xl mx-auto py-4 sm:py-8 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <div className="mb-4 sm:mb-6">
             <Button
               variant="ghost"
@@ -488,10 +488,10 @@ export function VivaPage() {
   }
 
   return (
-    <div className="fixed inset-0 bg-cream flex flex-col z-50 overflow-hidden font-sans">
+    <div className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-cream font-sans">
       {/* Immersive Session Header */}
       <div className="flex-none bg-white/80 backdrop-blur-md border-b border-neutral-100 px-4 py-3 flex items-center justify-between z-20">
-        <div className="flex items-center space-x-3">
+        <div className="flex min-w-0 flex-1 items-center space-x-3">
           <div
             className={`flex items-center px-2 py-1 rounded-full text-xs font-medium ${
               wsConnected
@@ -507,7 +507,7 @@ export function VivaPage() {
             {wsConnected ? "Live" : "Offline"}
           </div>
           <div className="h-4 w-px bg-neutral-200" />
-          <div className="flex flex-col">
+          <div className="min-w-0 flex flex-col">
             <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">
               {subject}
             </span>
@@ -516,7 +516,7 @@ export function VivaPage() {
             </span>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex shrink-0 items-center space-x-2">
           <Button
             variant="ghost"
             size="sm"
@@ -538,8 +538,9 @@ export function VivaPage() {
         </div>
       </div>
 
-      {/* Main Content Area - Scrollable */}
-      <div className="flex-1 overflow-y-auto p-4 pb-32 sm:pb-4 scroll-smooth">
+      <div className="relative flex min-h-0 flex-1 flex-col sm:flex-row">
+        {/* Main Content Area - Scrollable */}
+        <div className="min-h-0 flex-1 overflow-y-auto scroll-smooth p-4 pb-32 sm:p-6 sm:pb-32">
         <div className="max-w-3xl mx-auto w-full space-y-6 pt-4 sm:pt-10">
           {/* Question Card */}
           {currentQuestion && (
@@ -612,11 +613,11 @@ export function VivaPage() {
             </div>
           )}
         </div>
-      </div>
+        </div>
 
       {/* History Drawer (Mobile) / Panel (Desktop) */}
       {showHistory && (
-        <div className="absolute inset-0 z-30 bg-cream/95 backdrop-blur-sm sm:static sm:bg-transparent sm:backdrop-blur-none sm:border-l sm:border-neutral-100 sm:w-80 sm:flex-none transition-all duration-300">
+        <div className="absolute inset-0 z-30 bg-cream/95 backdrop-blur-sm transition-all duration-300 sm:static sm:w-80 sm:flex-none sm:border-l sm:border-neutral-100 sm:bg-transparent sm:backdrop-blur-none">
           <div className="h-full flex flex-col p-4 sm:p-0">
             <div className="flex items-center justify-between mb-4 sm:hidden">
               <h3 className="text-lg font-bold text-dark">Session History</h3>
@@ -663,6 +664,8 @@ export function VivaPage() {
           </div>
         </div>
       )}
+
+      </div>
 
       {/* Bottom Action Bar (FAB) */}
       <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-cream via-cream to-transparent z-40 pointer-events-none flex justify-center">

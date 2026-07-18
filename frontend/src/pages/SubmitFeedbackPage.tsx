@@ -294,7 +294,7 @@ export function SubmitFeedbackPage() {
     return (
       <div className="min-h-screen bg-cream">
         <Header />
-        <div className="flex items-center justify-center py-12">
+        <div className="flex min-h-[calc(100vh-4.5rem)] items-center justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
         </div>
       </div>
@@ -305,7 +305,7 @@ export function SubmitFeedbackPage() {
     <div className="min-h-screen bg-cream">
       <Header />
       
-      <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mb-6 flex items-center justify-between">
           <Button
             variant="ghost"
@@ -351,7 +351,7 @@ export function SubmitFeedbackPage() {
                   />
                   <label
                     htmlFor="file-upload"
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-primary-600 hover:bg-primary-700 cursor-pointer"
+                    className="inline-flex min-h-11 items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-primary-600 hover:bg-primary-700 cursor-pointer"
                   >
                     Choose Files
                   </label>
@@ -395,7 +395,7 @@ export function SubmitFeedbackPage() {
                     return (
                       <div key={index} className="flex items-center p-3 bg-neutral-50 rounded-lg">
                         <FileText className="h-5 w-5 text-neutral-400 mr-3" />
-                        <div className="flex-1">
+                        <div className="min-w-0 flex-1">
                           <p className="text-sm font-medium text-dark">{fileName}</p>
                           <p className="text-xs text-neutral-500 truncate">{url}</p>
                         </div>
@@ -415,7 +415,7 @@ export function SubmitFeedbackPage() {
                   {files.map((file, index) => (
                     <div key={index} className="flex items-center p-3 bg-neutral-50 rounded-lg">
                       <FileText className="h-5 w-5 text-neutral-400 mr-3" />
-                      <div className="flex-1">
+                      <div className="min-w-0 flex-1">
                         <p className="text-sm font-medium text-dark">{file.name}</p>
                         <p className="text-sm text-neutral-500">
                           {(file.size / 1024 / 1024).toFixed(2)} MB

@@ -155,6 +155,31 @@ The viva WebSocket requires a token via query param:
   }
   ```
 
+### /api/v1/tests (POST)
+
+Creates a test from the published deterministic question bank. The endpoint
+returns the first question block and does not call an LLM.
+
+Request body:
+
+    {
+      "chapter_id": "uuid",
+      "mode": "practice",
+      "question_count": 10,
+      "block_size": 5
+    }
+
+### /api/v1/tests/{test_id}/blocks/{block_number}/submit (POST)
+
+Scores one block, updates concept mastery, and returns the routed next block.
+The answer key is read only by the trusted backend service client.
+
+### /api/v1/mastery (GET)
+
+Returns the authenticated student's chapter-level concept mastery:
+
+    /api/v1/mastery?chapter_id=<chapter_id>
+
 ### Error Responses
 
 * `400 Bad Request`: Missing input fields
@@ -185,7 +210,7 @@ source venv/bin/activate  # Windows: .\venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 # Or install manually:
-# pip install fastapi uvicorn groq dspy python-dotenv pydantic fastapi-cors supabase google-genai
+# pip install fastapi uvicorn groq dspy python-dotenv pydantic fastapi-cors supabase google-genai httpx-aiohttp
 ```
 
 ### Create `.env` file:
@@ -195,9 +220,14 @@ Add your keys:
 ```env
 SUPABASE_URL="your_supabase_url"
 SUPABASE_API_KEY="your_supabase_anon_key"
+SUPABASE_SERVICE_ROLE_KEY="your_server_only_service_role_key"
 CEREBRAS_API_KEY="your_cerebras_api_key"
 GEMINI_API_KEY="your_google_gemini_api_key"
 ```
+
+SUPABASE_SERVICE_ROLE_KEY is required for deterministic answer scoring. It must
+be configured only in the backend/Modal secret and must never be exposed to the
+frontend.
 
 Ensure access to:
 
@@ -217,7 +247,7 @@ Follow Modal’s deployment documentation and run relevant deployment commands.
 
 ## CORS Configuration
 
-Set `APP_ORIGINS` (comma-separated) to explicitly allow browser origins in production. Example:
+Set `APP_ORIGINS` (comma-separated) to explicitly allow browser origins in production. If it is omitted, the deployed Evater defaults to `https://evater.xyz` and `https://www.evater.xyz`. Example:
 
 ```env
 APP_ORIGINS="https://evater.example,https://staging.evater.example"
@@ -227,3 +257,19 @@ ENV=production
 In non-production environments, `http://localhost:<port>` is allowed by default for local development.
 
 Note: If no environment is set, the backend defaults to production-safe behavior (localhost is NOT automatically allowed). Set `ENV=development` (or `ENV=dev`) explicitly for local dev.
+
+## Local Agents SDK prototype
+
+The first migration step adds a small Agents SDK runtime without changing the existing API routes. It defaults to an offline deterministic model so it can be exercised without OpenAI credits:
+
+```bash
+python3 backend/run_local_agent.py --provider mock
+```
+
+The prototype uses a real `Agent`, `Runner`, and SQLite-backed `SQLiteSession`. To try an OpenAI-compatible provider locally, select it explicitly and provide its key through the environment; the key is never stored in source code:
+
+```bash
+CEREBRAS_API_KEY="..." python3 backend/run_local_agent.py --provider cerebras
+```
+
+The current HTTP and WebSocket response contracts are intentionally unchanged. The next migration step will route one existing capability through this provider boundary and run contract tests against the old and new response shapes before switching the deployment.
