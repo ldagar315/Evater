@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { Header } from '../components/layout/Header'
+import { useAppState } from '../contexts/AppStateContext'
 import {
   CLASS8_SCIENCE_CHAPTER1_ID,
   createQuestionBankTest,
@@ -204,6 +205,7 @@ function getReviewSummary(
 
 export function QuestionBankPracticePage() {
   const navigate = useNavigate()
+  const { setLatestPracticeResult } = useAppState()
   const [test, setTest] = useState<QuestionBankTest | null>(null)
   const [answers, setAnswers] = useState<Record<string, unknown>>({})
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -293,6 +295,18 @@ export function QuestionBankPracticePage() {
           answer: answers[question.id] ?? null,
         })),
       )
+      if (result.completed) {
+        setLatestPracticeResult({
+          test_id: result.test_id,
+          chapter_id: selectedChapterId,
+          chapter_title: selectedChapter?.title || 'Practice chapter',
+          subject: selectedSubject.label,
+          block_score: result.block_score,
+          block_total: result.block_total,
+          percentage: result.percentage,
+          completed_at: new Date().toISOString(),
+        })
+      }
       setLastResult(result)
       setReviewQuestions(test.questions)
       setSubmittedByTimeout(wasTimedOut)
@@ -306,7 +320,7 @@ export function QuestionBankPracticePage() {
     } finally {
       setLoading(false)
     }
-  }, [answers, loading, test])
+  }, [answers, loading, selectedChapter?.title, selectedChapterId, selectedSubject.label, setLatestPracticeResult, test])
 
   useEffect(() => {
     if (!test || loading || timeRemaining <= 0) return

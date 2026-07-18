@@ -1,15 +1,28 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { QuestionsCreated, FeedbackTest } from '../types'
 
+export interface LatestPracticeResult {
+  test_id: string
+  chapter_id: string
+  chapter_title: string
+  subject: string
+  block_score: number
+  block_total: number
+  percentage: number
+  completed_at: string
+}
+
 interface AppState {
   last_generated_test: QuestionsCreated | null
   last_generated_feedback: FeedbackTest | null
+  latest_practice_result: LatestPracticeResult | null
 }
 
 interface AppStateContextType {
   appState: AppState
   setLastGeneratedTest: (test: QuestionsCreated) => void
   setLastGeneratedFeedback: (feedback: FeedbackTest) => void
+  setLatestPracticeResult: (result: LatestPracticeResult) => void
   clearAppState: () => void
 }
 
@@ -17,7 +30,8 @@ const AppStateContext = createContext<AppStateContextType | undefined>(undefined
 
 const initialState: AppState = {
   last_generated_test: null,
-  last_generated_feedback: null
+  last_generated_feedback: null,
+  latest_practice_result: null,
 }
 
 export function AppStateProvider({ children }: { children: ReactNode }) {
@@ -25,44 +39,49 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     // Try to load from localStorage on initialization
     try {
       const saved = localStorage.getItem('evater_app_state')
-      return saved ? JSON.parse(saved) : initialState
+      return saved ? { ...initialState, ...JSON.parse(saved) } : initialState
     } catch {
       return initialState
     }
   })
 
-  const updateState = (newState: AppState) => {
-    setAppState(newState)
-    // Persist to localStorage
-    try {
-      localStorage.setItem('evater_app_state', JSON.stringify(newState))
-    } catch (error) {
-      console.warn('Failed to save app state to localStorage:', error)
-    }
+  const updateState = (changes: Partial<AppState>) => {
+    setAppState((currentState) => {
+      const newState = { ...currentState, ...changes }
+      try {
+        localStorage.setItem('evater_app_state', JSON.stringify(newState))
+      } catch (error) {
+        console.warn('Failed to save app state to localStorage:', error)
+      }
+      return newState
+    })
   }
 
   const setLastGeneratedTest = (test: QuestionsCreated) => {
-    const newState = { ...appState, last_generated_test: test }
-    updateState(newState)
+    updateState({ last_generated_test: test })
   }
 
   const setLastGeneratedFeedback = (feedback: FeedbackTest) => {
-    const newState = { ...appState, last_generated_feedback: feedback }
-    updateState(newState)
+    updateState({ last_generated_feedback: feedback })
+  }
+
+  const setLatestPracticeResult = (result: LatestPracticeResult) => {
+    updateState({ latest_practice_result: result })
   }
 
   const clearAppState = () => {
-    updateState(initialState)
+    setAppState(initialState)
     localStorage.removeItem('evater_app_state')
   }
 
   return (
     <AppStateContext.Provider value={{
-      appState,
-      setLastGeneratedTest,
-      setLastGeneratedFeedback,
-      clearAppState
-    }}>
+    appState,
+    setLastGeneratedTest,
+    setLastGeneratedFeedback,
+    setLatestPracticeResult,
+    clearAppState
+  }}>
       {children}
     </AppStateContext.Provider>
   )
