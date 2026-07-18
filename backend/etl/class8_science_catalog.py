@@ -13,6 +13,7 @@ TEXTBOOK_NAME = "Curiosity — Textbook of Science for Grade 8"
 SOURCE_ROOT = "https://ncert.nic.in/textbook/pdf/hecu1"
 CHAPTER_ID_NAMESPACE = UUID("22222222-2222-4222-8222-222222222222")
 CHAPTER_ONE_ID = CHAPTER_ID_NAMESPACE
+GENERATED_PACK_DIR = Path(__file__).resolve().parents[2] / "tmp" / "class8-science-generated-packs"
 
 
 @dataclass(frozen=True)
@@ -29,7 +30,7 @@ class ChapterSpec:
 
     @property
     def pack_path(self) -> Path:
-        return Path(__file__).parent / "data" / f"class8_science_chapter_{self.sequence_number:02d}.json"
+        return GENERATED_PACK_DIR / f"class8_science_chapter_{self.sequence_number:02d}.json"
 
 
 def chapter_id(sequence_number: int) -> UUID:

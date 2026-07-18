@@ -57,6 +57,10 @@ This is destructive to the local database only. To publish the deterministic Cla
 npm run stage:seed
 ```
 
+Generated seed inputs are created under the ignored `tmp/` directory when this
+command runs; they are not committed application data. The published questions
+are written to the local Supabase `question_bank` table.
+
 To download, extract, validate, and publish the current Grade 8 *Curiosity*
 Science source candidates across all 13 chapters:
 

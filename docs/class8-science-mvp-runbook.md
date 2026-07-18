@@ -35,6 +35,9 @@ The generator creates deterministic, inspectable packs for Chapters 2–13:
 PYTHONPATH=backend python3 -m etl.generate_class8_science_packs
 ```
 
+The generated packs are temporary ETL inputs under `tmp/` and are not the
+runtime question store. Publishing writes the validated rows into Supabase.
+
 Validate all 13 packs without writing to a database:
 
 ```bash

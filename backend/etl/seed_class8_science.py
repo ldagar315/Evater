@@ -16,12 +16,15 @@ from dotenv import load_dotenv
 
 from .class8_science_catalog import CHAPTERS, CURRICULUM_VERSION_ID, ChapterSpec
 from .generate_class8_science_packs import TOPICS, generate
+from .generate_first_chapter_pack import (
+    DEFAULT_PACK_PATH as FIRST_GENERATED_PACK_PATH,
+    write_pack as write_first_chapter_pack,
+)
 from .models import QuestionCandidate, QuestionItemCandidate
 from .publish import publish_candidates
 from .seed_first_chapter import (
     CONCEPT_ROWS as FIRST_CONCEPT_ROWS,
     INGESTION_JOB_ID as FIRST_INGESTION_JOB_ID,
-    PACK_PATH as FIRST_PACK_PATH,
     SOURCE_ID as FIRST_SOURCE_ID,
 )
 from .validate import (
@@ -260,7 +263,23 @@ def _parse_chapters(value: str) -> tuple[ChapterSpec, ...]:
 
 
 def _pack_path(spec: ChapterSpec) -> Path:
-    return FIRST_PACK_PATH if spec.sequence_number == 1 else spec.pack_path
+    return FIRST_GENERATED_PACK_PATH if spec.sequence_number == 1 else spec.pack_path
+
+
+def prepare_generated_packs(specs: tuple[ChapterSpec, ...], *, force: bool = False) -> None:
+    """Create ignored local generator inputs only when a generated seed is requested."""
+    first_chapter = next((spec for spec in specs if spec.sequence_number == 1), None)
+    if first_chapter and (force or not FIRST_GENERATED_PACK_PATH.exists()):
+        write_first_chapter_pack(FIRST_GENERATED_PACK_PATH)
+
+    chapters_after_first = tuple(spec for spec in specs if spec.sequence_number > 1)
+    chapters_to_generate = (
+        chapters_after_first
+        if force
+        else tuple(spec for spec in chapters_after_first if not spec.pack_path.exists())
+    )
+    if chapters_to_generate:
+        generate(chapters_to_generate)
 
 
 def load_and_validate(spec: ChapterSpec, source_packs_dir: Optional[Path] = None) -> list[QuestionCandidate]:
@@ -315,8 +334,8 @@ def main() -> int:
         if args.generate and args.source_packs_dir:
             raise QuestionPackError("--generate cannot be combined with --source-packs-dir.")
         source_mode = "scraped" if args.source_packs_dir else "generated"
-        if args.generate:
-            generate(spec for spec in specs if spec.sequence_number > 1)
+        if source_mode == "generated":
+            prepare_generated_packs(specs, force=args.generate)
         packs = [(spec, load_and_validate(spec, args.source_packs_dir)) for spec in specs]
         archive_items_by_chapter = {
             spec.sequence_number: load_archive_items(spec, candidates, args.source_packs_dir)

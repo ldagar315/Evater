@@ -21,13 +21,15 @@ from .generate_first_chapter_pack import (
     CHAPTER_ID,
     CONCEPTS,
     CURRICULUM_VERSION_ID,
+    DEFAULT_PACK_PATH,
     SOURCE_URL,
+    write_pack as write_first_chapter_pack,
 )
 from .models import QuestionCandidate
 from .publish import publish_candidates
 from .validate import QuestionPackError, load_candidates, validate_publishable_pack
 
-PACK_PATH = Path(__file__).parent / "data" / "class8_science_chapter1.json"
+PACK_PATH = DEFAULT_PACK_PATH
 SOURCE_ID = "44444444-4444-4444-8444-444444444444"
 INGESTION_JOB_ID = "55555555-5555-4555-8555-555555555555"
 
@@ -193,6 +195,9 @@ def main() -> int:
     load_dotenv()
 
     try:
+        pack_path = Path(args.pack)
+        if args.pack == str(PACK_PATH) and not pack_path.exists():
+            write_first_chapter_pack(pack_path)
         candidates = load_candidates(args.pack)
         report = validate_publishable_pack(candidates)
         print(json.dumps({"validation": report}, indent=2))

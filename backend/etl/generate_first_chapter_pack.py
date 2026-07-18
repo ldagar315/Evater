@@ -18,6 +18,7 @@ from .models import CandidateOption, QuestionCandidate
 CURRICULUM_VERSION_ID = UUID("11111111-1111-4111-8111-111111111111")
 CHAPTER_ID = UUID("22222222-2222-4222-8222-222222222222")
 SOURCE_URL = "https://ncert.nic.in/textbook/pdf/hecu101.pdf"
+DEFAULT_PACK_PATH = Path(__file__).resolve().parents[2] / "tmp" / "class8-science-generated-packs" / "class8_science_chapter1.json"
 
 CONCEPTS = {
     "questions": UUID("33333333-3333-4333-8333-333333333301"),
@@ -277,4 +278,4 @@ def write_pack(path: Path) -> None:
 
 
 if __name__ == "__main__":
-    write_pack(Path("backend/etl/data/class8_science_chapter1.json"))
+    write_pack(DEFAULT_PACK_PATH)

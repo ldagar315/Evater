@@ -3,8 +3,13 @@ from uuid import uuid4
 
 from etl.class8_science_catalog import CHAPTERS, chapters_after
 from etl.adapt_class8_science import build_adapted_candidates
-from etl.generate_class8_science_packs import build_pack
-from etl.generate_first_chapter_pack import CHAPTER_ID, CURRICULUM_VERSION_ID
+from etl.generate_class8_science_packs import build_pack, write_pack
+from etl.generate_first_chapter_pack import (
+    CHAPTER_ID,
+    CURRICULUM_VERSION_ID,
+    DEFAULT_PACK_PATH,
+    write_pack as write_first_chapter_pack,
+)
 from etl.models import QuestionItemCandidate
 from etl.scrape_class8_science import _deduplicate_items, _inline_options, _parse_pdf_questions, parse_tiwari_html
 from etl.seed_class8_science import build_seed_rows as build_catalog_seed_rows, source_id_for
@@ -12,11 +17,17 @@ from etl.seed_first_chapter import build_seed_rows as build_first_seed_rows
 from etl.validate import load_candidates, validate_publishable_pack, validate_question_items
 
 
-PACK = Path(__file__).parents[1] / "backend" / "etl" / "data" / "class8_science_chapter1.json"
+PACK = DEFAULT_PACK_PATH
+
+
+def ensure_first_chapter_pack() -> Path:
+    if not PACK.exists():
+        write_first_chapter_pack(PACK)
+    return PACK
 
 
 def test_first_chapter_pack_passes_the_publish_gate():
-    candidates = load_candidates(PACK)
+    candidates = load_candidates(ensure_first_chapter_pack())
     report = validate_publishable_pack(candidates)
 
     assert report["publishable"] is True
@@ -31,7 +42,7 @@ def test_first_chapter_pack_passes_the_publish_gate():
 
 
 def test_seed_rows_are_idempotent_and_linked_to_the_pack():
-    candidates = load_candidates(PACK)
+    candidates = load_candidates(ensure_first_chapter_pack())
     rows = build_first_seed_rows(candidates)
 
     assert rows["curriculum_version"]["id"] == str(CURRICULUM_VERSION_ID)
@@ -51,6 +62,8 @@ def test_current_curiosity_catalog_has_thirteen_chapters():
 
 def test_remaining_chapter_packs_pass_the_same_publish_gate():
     for chapter in chapters_after():
+        if not chapter.pack_path.exists():
+            write_pack(chapter, build_pack(chapter))
         candidates = load_candidates(chapter.pack_path)
         report = validate_publishable_pack(candidates)
 
