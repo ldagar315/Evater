@@ -12,7 +12,6 @@ image = Image.debian_slim(python_version="3.12").pip_install(
     "pydantic", 
     "supabase", 
     "google-genai",
-    "openai-agents>=0.18.2,<0.19",
     "httpx-aiohttp>=0.1.5,<0.2",
 ).add_local_python_source("app")
 

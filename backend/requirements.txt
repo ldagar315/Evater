@@ -2,7 +2,6 @@ fastapi
 uvicorn
 groq
 dspy-ai
-openai-agents>=0.18.2,<0.19
 python-dotenv
 pydantic
 supabase

@@ -257,19 +257,3 @@ ENV=production
 In non-production environments, `http://localhost:<port>` is allowed by default for local development.
 
 Note: If no environment is set, the backend defaults to production-safe behavior (localhost is NOT automatically allowed). Set `ENV=development` (or `ENV=dev`) explicitly for local dev.
-
-## Local Agents SDK prototype
-
-The first migration step adds a small Agents SDK runtime without changing the existing API routes. It defaults to an offline deterministic model so it can be exercised without OpenAI credits:
-
-```bash
-python3 backend/run_local_agent.py --provider mock
-```
-
-The prototype uses a real `Agent`, `Runner`, and SQLite-backed `SQLiteSession`. To try an OpenAI-compatible provider locally, select it explicitly and provide its key through the environment; the key is never stored in source code:
-
-```bash
-CEREBRAS_API_KEY="..." python3 backend/run_local_agent.py --provider cerebras
-```
-
-The current HTTP and WebSocket response contracts are intentionally unchanged. The next migration step will route one existing capability through this provider boundary and run contract tests against the old and new response shapes before switching the deployment.
