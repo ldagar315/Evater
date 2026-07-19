@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Twitter, Github, Linkedin, Heart } from "lucide-react";
+import { Heart, Mail } from "lucide-react";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const footerLinks = {
   product: [
@@ -11,19 +12,24 @@ const footerLinks = {
   ],
   resources: [
     { label: "Blog", to: "/blog" },
-    { label: "Help Center", to: "#" },
-    { label: "Guides", to: "#" },
-    { label: "API Status", to: "#" },
+    { label: "Study guides", to: "/blog?category=study-skills" },
+    { label: "About Evater", to: "/about" },
+    { label: "Contact support", to: "mailto:hello@evater.com" },
   ],
   legal: [
-    { label: "Privacy Policy", to: "#" },
-    { label: "Terms of Service", to: "#" },
-    { label: "Cookie Policy", to: "#" },
+    { label: "Privacy overview", to: "/about#privacy" },
+    { label: "Terms overview", to: "/about#terms" },
+    { label: "Cookie overview", to: "/about#cookies" },
   ],
 };
 
 export function Footer() {
+  const { user } = useAuthContext();
   const currentYear = new Date().getFullYear();
+  const productLinks = footerLinks.product.map((link) => ({
+    ...link,
+    to: user ? link.to : link.label === "Home" ? "/" : "/auth",
+  }));
 
   return (
     <footer className="mt-auto border-t border-neutral-200 bg-neutral-50 pb-8 pt-12 sm:pt-16">
@@ -43,24 +49,14 @@ export function Footer() {
               A focused practice space for building confidence, understanding
               mistakes, and learning with your peers.
             </p>
-            <div className="flex space-x-4 pt-2">
+            <div className="flex items-center gap-3 pt-2">
               <a
-                href="#"
-                className="flex min-h-11 min-w-11 items-center justify-center text-neutral-400 hover:text-primary-600 transition-colors"
+                href="mailto:hello@evater.com"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-neutral-200 bg-white px-3 text-sm font-bold text-neutral-600 transition-colors hover:border-primary-200 hover:text-primary-700"
+                aria-label="Email Evater support"
               >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="flex min-h-11 min-w-11 items-center justify-center text-neutral-400 hover:text-primary-600 transition-colors"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="flex min-h-11 min-w-11 items-center justify-center text-neutral-400 hover:text-primary-600 transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                Email Evater
               </a>
             </div>
           </div>
@@ -69,7 +65,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-neutral-900 mb-4">Product</h3>
             <ul className="space-y-3">
-              {footerLinks.product.map((link) => (
+              {productLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.to}
@@ -88,12 +84,15 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    className="inline-flex min-h-11 items-center text-sm text-neutral-600 hover:text-primary-600 transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.to.startsWith("mailto:") ? (
+                    <a href={link.to} className="inline-flex min-h-11 items-center text-sm text-neutral-600 transition-colors hover:text-primary-600">
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link to={link.to} className="inline-flex min-h-11 items-center text-sm text-neutral-600 transition-colors hover:text-primary-600">
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

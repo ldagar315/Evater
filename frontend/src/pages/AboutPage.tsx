@@ -2,7 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Target, MessageSquare, Sparkles } from "lucide-react";
 import { Header } from "../components/layout/Header";
+import { Footer } from "../components/layout/Footer";
 import { Button } from "../components/ui/Button";
+import { useAuthContext } from "../contexts/AuthContext";
 
 const missionHighlights = [
   {
@@ -36,6 +38,7 @@ const founderStats = [
 
 export function AboutPage() {
   const navigate = useNavigate();
+  const { user } = useAuthContext();
 
   return (
     <div className="min-h-screen bg-cream font-sans">
@@ -144,7 +147,23 @@ export function AboutPage() {
             </div>
           </div>
         </section>
+
+        <section className="mt-16 grid grid-cols-1 gap-6 border-t border-neutral-200 pt-12 md:grid-cols-3" aria-label="Trust and contact information">
+          <div id="privacy" className="scroll-mt-24 rounded-2xl border border-neutral-200 bg-white p-6">
+            <h2 className="text-lg font-extrabold text-dark">Privacy overview</h2>
+            <p className="mt-2 text-sm leading-7 text-neutral-600">Evater uses account and practice information to provide the learning experience, save progress, and improve feedback. Contact us if you have a question about your data.</p>
+          </div>
+          <div id="terms" className="scroll-mt-24 rounded-2xl border border-neutral-200 bg-white p-6">
+            <h2 className="text-lg font-extrabold text-dark">Terms overview</h2>
+            <p className="mt-2 text-sm leading-7 text-neutral-600">Use Evater for personal learning, keep your account secure, and treat generated feedback as a study aid rather than a substitute for teacher guidance.</p>
+          </div>
+          <div id="cookies" className="scroll-mt-24 rounded-2xl border border-neutral-200 bg-white p-6">
+            <h2 className="text-lg font-extrabold text-dark">Cookie overview</h2>
+            <p className="mt-2 text-sm leading-7 text-neutral-600">The app may use essential browser storage to keep sessions and preferences working. For questions, email <a className="font-bold text-primary-700 hover:underline" href="mailto:hello@evater.com">hello@evater.com</a>.</p>
+          </div>
+        </section>
       </main>
+      {!user && <Footer />}
     </div>
   );
 }

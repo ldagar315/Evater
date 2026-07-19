@@ -28,7 +28,10 @@ export function useAuth() {
         if (!supabaseConfigured) {
           console.warn('Supabase environment variables not configured')
           if (mounted) {
-            setError('Authentication service not configured. Please check environment variables.')
+            // Public routes such as the blog should still render when local auth
+            // is not configured. Protected routes will redirect to /auth and the
+            // auth form will surface the underlying sign-in error when submitted.
+            setError(null)
             setLoading(false)
           }
           return
@@ -82,7 +85,7 @@ export function useAuth() {
     if (BYPASS_AUTH) {
       logAuthBypassWarning('signUp noop')
       setUser(DEV_USER)
-      return { data: { user: DEV_USER } as any, error: null }
+      return { data: { user: DEV_USER }, error: null }
     }
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -100,7 +103,7 @@ export function useAuth() {
     if (BYPASS_AUTH) {
       logAuthBypassWarning('signIn noop')
       setUser(DEV_USER)
-      return { data: { user: DEV_USER } as any, error: null }
+      return { data: { user: DEV_USER }, error: null }
     }
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -118,7 +121,7 @@ export function useAuth() {
     if (BYPASS_AUTH) {
       logAuthBypassWarning('signInWithGoogle noop')
       setUser(DEV_USER)
-      return { data: { user: DEV_USER } as any, error: null }
+      return { data: { user: DEV_USER }, error: null }
     }
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({

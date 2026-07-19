@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { LoadingFallback } from './components/LoadingFallback'
 import { Footer } from './components/layout/Footer'
@@ -70,12 +70,16 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 function AppRoutes() {
   const { user, loading, error } = useAuthContext()
+  const location = useLocation()
+  const isPublicRoute = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/auth' || location.pathname.startsWith('/blog')
 
-  if (loading) {
+  // Public pages should remain useful when auth is slow or unavailable. This is
+  // especially important for the blog, which must be crawlable without a session.
+  if (loading && !isPublicRoute) {
     return <LoadingFallback />
   }
 
-  if (error) {
+  if (error && !isPublicRoute) {
     return (
       <div className="min-h-screen bg-cream flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">

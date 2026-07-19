@@ -13,13 +13,21 @@ export interface BlogPost {
   category: string
   tags: string[]
   published_date: string
+  updated_date?: string
   read_time: number
   is_featured: boolean
   status: 'draft' | 'published' | 'archived'
   seo: {
     meta_title?: string
     meta_description?: string
+    keywords?: string[]
   }
+  faqs?: BlogFaq[]
+}
+
+export interface BlogFaq {
+  question: string
+  answer: string
 }
 
 export interface BlogCategory {
