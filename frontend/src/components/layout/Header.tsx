@@ -100,10 +100,10 @@ export function Header() {
             />
           </button>
 
-          <div className="hidden items-center gap-5 xl:flex">
+          <div className="hidden items-center gap-5 md:flex">
             {user && renderMemberLinks()}
-            <div className="h-6 w-px bg-neutral-200" aria-hidden="true" />
-            <nav aria-label="Information navigation" className="flex items-center gap-1">
+            <div className="hidden h-6 w-px bg-neutral-200 lg:block" aria-hidden="true" />
+            <nav aria-label="Information navigation" className="hidden items-center gap-1 lg:flex">
               {(!user || !isBlogPage) && (
                 <button
                   type="button"
@@ -123,13 +123,13 @@ export function Header() {
             </nav>
           </div>
 
-          <div className="hidden items-center gap-3 xl:flex">
+          <div className="hidden items-center gap-3 md:flex">
             {user ? (
               <>
-                <div className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-secondary-200 bg-secondary-50 px-3 text-sm font-bold text-secondary-800">
+                <div className="hidden min-h-10 items-center gap-2 rounded-xl border border-secondary-200 bg-secondary-50 px-3 text-sm font-bold text-secondary-800 lg:inline-flex">
                   <Coins className="h-4 w-4" aria-hidden="true" />
                   <span>{profile?.credits ?? '—'}</span>
-                  <span className="hidden text-xs font-semibold text-secondary-700 xl:inline">credits</span>
+                  <span className="hidden text-xs font-semibold text-secondary-700 lg:inline">credits</span>
                 </div>
                 <div className="relative" ref={dropdownRef}>
                   <button
@@ -142,7 +142,7 @@ export function Header() {
                     <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-100 text-sm font-bold text-primary-700">
                       {initials}
                     </span>
-                    <span className="max-w-28 truncate text-sm font-bold text-dark">{displayName}</span>
+                    <span className="hidden max-w-28 truncate text-sm font-bold text-dark lg:inline">{displayName}</span>
                     <ChevronDown className={`h-4 w-4 text-neutral-400 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
                   </button>
 
@@ -208,7 +208,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen((open) => !open)}
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-600 transition-colors hover:border-primary-200 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-600 transition-colors hover:border-primary-200 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 md:hidden"
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
@@ -218,7 +218,7 @@ export function Header() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="absolute right-4 top-full z-50 max-h-[calc(100vh-5rem)] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl border border-neutral-200 bg-cream shadow-xl shadow-dark/10">
+        <div className="absolute right-4 top-full z-50 max-h-[calc(100vh-5rem)] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl border border-neutral-200 bg-cream shadow-xl shadow-dark/10 md:hidden">
           <div className="space-y-5 p-5">
             {user && (
               <div className="flex items-center justify-between rounded-2xl border border-neutral-200 bg-white p-4">
