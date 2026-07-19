@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Heart, Mail } from "lucide-react";
+import { Heart, MessageSquare } from "lucide-react";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 const footerLinks = {
@@ -14,7 +14,7 @@ const footerLinks = {
     { label: "Blog", to: "/blog" },
     { label: "Study guides", to: "/blog?category=study-skills" },
     { label: "About Evater", to: "/about" },
-    { label: "Contact support", to: "mailto:hello@evater.com" },
+    { label: "Share feedback", to: "/general-feedback" },
   ],
   legal: [
     { label: "Privacy overview", to: "/about#privacy" },
@@ -29,6 +29,10 @@ export function Footer() {
   const productLinks = footerLinks.product.map((link) => ({
     ...link,
     to: user ? link.to : link.label === "Home" ? "/" : "/auth",
+  }));
+  const resourceLinks = footerLinks.resources.map((link) => ({
+    ...link,
+    to: link.label === "Share feedback" && !user ? "/auth" : link.to,
   }));
 
   return (
@@ -50,14 +54,13 @@ export function Footer() {
               mistakes, and learning with your peers.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <a
-                href="mailto:hello@evater.com"
+              <Link
+                to={user ? "/general-feedback" : "/auth"}
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-neutral-200 bg-white px-3 text-sm font-bold text-neutral-600 transition-colors hover:border-primary-200 hover:text-primary-700"
-                aria-label="Email Evater support"
               >
-                <Mail className="h-4 w-4" aria-hidden="true" />
-                Email Evater
-              </a>
+                <MessageSquare className="h-4 w-4" aria-hidden="true" />
+                Share feedback
+              </Link>
             </div>
           </div>
 
@@ -82,17 +85,11 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-neutral-900 mb-4">Resources</h3>
             <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
+              {resourceLinks.map((link) => (
                 <li key={link.label}>
-                  {link.to.startsWith("mailto:") ? (
-                    <a href={link.to} className="inline-flex min-h-11 items-center text-sm text-neutral-600 transition-colors hover:text-primary-600">
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link to={link.to} className="inline-flex min-h-11 items-center text-sm text-neutral-600 transition-colors hover:text-primary-600">
-                      {link.label}
-                    </Link>
-                  )}
+                  <Link to={link.to} className="inline-flex min-h-11 items-center text-sm text-neutral-600 transition-colors hover:text-primary-600">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

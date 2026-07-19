@@ -105,6 +105,11 @@ function AppRoutes() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/general-feedback" element={
+            <ProtectedRoute>
+              <GeneralFeedbackPage />
+            </ProtectedRoute>
+          } />
           
           {!user ? (
             <>
@@ -167,11 +172,6 @@ function AppRoutes() {
               <Route path="/view-feedback/:evaluationId?" element={
                 <ProtectedRoute>
                   <ViewFeedbackPage />
-                </ProtectedRoute>
-              } />
-              <Route path="/general-feedback" element={
-                <ProtectedRoute>
-                  <GeneralFeedbackPage />
                 </ProtectedRoute>
               } />
               <Route path="/viva" element={
