@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BookOpen, ArrowRight } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Card, CardContent } from '../ui/Card'
@@ -90,14 +90,13 @@ export function BlogSection({ showInDashboard = false }: BlogSectionProps) {
         </div>
         
         <div className="text-center">
-          <Button
-            onClick={() => navigate('/blog')}
-            size="lg"
-            className="px-8 py-3 text-lg font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+          <Link
+            to="/blog"
+            className="inline-flex min-h-12 items-center justify-center rounded-lg bg-primary-500 px-8 py-3 text-lg font-medium text-white shadow-lg transition-all duration-200 hover:bg-primary-600 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           >
             View All Posts
             <ArrowRight className="h-5 w-5 ml-2" />
-          </Button>
+          </Link>
         </div>
       </div>
     </section>

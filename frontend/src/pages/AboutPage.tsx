@@ -1,14 +1,9 @@
 import React from 'react'
 import {
   ArrowRight,
-  BookOpen,
   Brain,
-  CheckCircle2,
-  ClipboardCheck,
-  Mail,
   MessageSquare,
   Sparkles,
-  Target,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Header } from '../components/layout/Header'
@@ -16,48 +11,6 @@ import { Footer } from '../components/layout/Footer'
 import { Seo } from '../components/seo/Seo'
 import { SITE_URL } from '../components/seo/seoConfig'
 import { useAuthContext } from '../contexts/AuthContext'
-
-const learningPillars = [
-  {
-    title: 'Practice with purpose',
-    description: 'Create focused tests and question sets around the chapter or skill you are actually trying to improve.',
-    icon: ClipboardCheck,
-    accent: 'bg-primary-50 text-primary-600',
-  },
-  {
-    title: 'Understand the attempt',
-    description: 'Use feedback to see what went wrong, what was missing, and which concept deserves another look.',
-    icon: MessageSquare,
-    accent: 'bg-secondary-50 text-secondary-700',
-  },
-  {
-    title: 'Build the next step',
-    description: 'Turn mistakes into a practical next action instead of letting a score be the end of the session.',
-    icon: Target,
-    accent: 'bg-purple-50 text-purple-600',
-  },
-]
-
-const workflowSteps = [
-  {
-    number: '01',
-    title: 'Choose what to practise',
-    description: 'Start with a subject, chapter, difficulty, or question type that matches your current goal.',
-    icon: BookOpen,
-  },
-  {
-    number: '02',
-    title: 'Make an honest attempt',
-    description: 'Work through a test, upload an answer sheet, or practise a viva without hiding the difficult parts.',
-    icon: Brain,
-  },
-  {
-    number: '03',
-    title: 'Use feedback to improve',
-    description: 'Review the reasoning, fix the weak concept, and return to practice with a clearer next step.',
-    icon: CheckCircle2,
-  },
-]
 
 const faqs = [
   {
@@ -97,7 +50,6 @@ export function AboutPage() {
         name: 'Evater',
         url: SITE_URL,
         logo: `${SITE_URL}/Evater_logo_2.png`,
-        email: 'hello@evater.com',
         employee: {
           '@type': 'Person',
           name: 'Lakshay Dagar',
@@ -186,50 +138,31 @@ export function AboutPage() {
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-20">
             <div>
               <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Why Evater exists</p>
-              <h2 id="mission-heading" className="text-3xl font-extrabold leading-tight tracking-tight text-dark sm:text-4xl">A score tells you where you are. Feedback tells you how to move.</h2>
+              <h2 id="mission-heading" className="text-3xl font-extrabold leading-tight tracking-tight text-dark sm:text-4xl">I wanted to make testing feel useful — and fun.</h2>
             </div>
             <div className="space-y-5 text-lg leading-8 text-neutral-600">
-              <p>Students have no shortage of lessons, notes, and questions. The harder part is knowing what an attempt means once it is over.</p>
-              <p>Evater is built around that missing moment: turning an answer, test, or viva into useful guidance that makes the next practice session more focused.</p>
-              <p className="font-bold text-dark">Better feedback is not the finish line. It is the bridge between practice and mastery.</p>
+              <p>Last year, while searching for good practice resources for my younger siblings, I could not find what I was looking for. I wanted something that was fun to use, helped them test what they knew, and gave them useful feedback afterwards.</p>
+              <p>I also noticed that children often enjoyed watching lessons more than taking tests. Tests felt scary, so I wanted to reverse that feeling and make testing a natural, encouraging part of learning.</p>
+              <p>There is plenty of content to teach, but not enough opportunity to test, reflect, and get meaningful feedback. I am building Evater slowly and steadily to help close that gap. With AI, we can give students an almost endless supply of unique, personalised practice.</p>
+              <p className="font-bold text-dark">Evater is my attempt to build the full learning loop: try, understand, improve, and come back stronger.</p>
             </div>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
-            {learningPillars.map((pillar) => (
-              <article key={pillar.title} className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm transition-transform duration-200 hover:-translate-y-1 sm:p-7">
-                <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-2xl ${pillar.accent}`}>
-                  <pillar.icon className="h-6 w-6" aria-hidden="true" />
-                </div>
-                <h3 className="text-xl font-extrabold tracking-tight text-dark">{pillar.title}</h3>
-                <p className="mt-3 leading-7 text-neutral-600">{pillar.description}</p>
-              </article>
-            ))}
-          </div>
         </section>
 
-        <section aria-labelledby="workflow-heading" className="border-y border-neutral-200 bg-white">
+        <section aria-labelledby="mission-vision-heading" className="border-y border-neutral-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-            <div className="max-w-2xl">
-              <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">How it works</p>
-              <h2 id="workflow-heading" className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">A simple loop for better learning.</h2>
-              <p className="mt-4 text-lg leading-8 text-neutral-600">The product is designed to make the next useful action obvious after every attempt.</p>
-            </div>
-            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
-              {workflowSteps.map((step) => (
-                <article key={step.number} className="relative rounded-3xl border border-neutral-200 bg-cream p-6 sm:p-7">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="text-sm font-extrabold tracking-[0.16em] text-primary-700">{step.number}</span>
-                    <step.icon className="h-6 w-6 text-primary-600" aria-hidden="true" />
-                  </div>
-                  <h3 className="mt-10 text-xl font-extrabold tracking-tight text-dark">{step.title}</h3>
-                  <p className="mt-3 leading-7 text-neutral-600">{step.description}</p>
-                </article>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to={primaryPath} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-primary-600 px-5 text-sm font-extrabold text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">{primaryLabel} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Link>
-              <Link to="/blog" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 text-sm font-extrabold text-dark transition-colors hover:border-primary-300 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500">Explore study guides</Link>
+            <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-20">
+              <div>
+                <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Our mission</p>
+                <h2 id="mission-vision-heading" className="text-3xl font-extrabold leading-tight tracking-tight text-dark sm:text-4xl">Knowledge is free. Testing should be too.</h2>
+              </div>
+              <div className="space-y-5 text-lg leading-8 text-neutral-600">
+                <p><span className="font-extrabold text-dark">Reading is not the same as understanding.</span> Students should discover that early, in a way that feels safe, accessible, and worth returning to.</p>
+                <p>Testing should not be something to fear or something reserved for the few. It should be a free, everyday part of learning: a chance to try, fail, learn, and try again.</p>
+                <p>We are building Evater to make meaningful practice and feedback accessible to every student, so testing becomes a tool for confidence rather than a barrier to it.</p>
+                <p className="font-bold text-dark">Practice makes progress. Let us make the practice accessible.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -265,7 +198,7 @@ export function AboutPage() {
                 <h2 id="builder-heading" className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">A small team, focused on the feedback gap.</h2>
                 <p className="mt-5 text-lg leading-8 text-neutral-600">I&apos;m Lakshay Dagar. I&apos;m building Evater because the difference between “I studied this” and “I know what to improve” is where a lot of learning gets lost.</p>
                 <p className="mt-4 leading-7 text-neutral-600">The product is being built steadily, with a simple belief: every learner should leave practice with a clearer next step.</p>
-                <a href="mailto:hello@evater.com" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl px-2 text-sm font-extrabold text-primary-700 hover:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500"><Mail className="h-4 w-4" aria-hidden="true" /> Say hello to Evater</a>
+                <Link to={user ? '/general-feedback' : '/auth'} className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl px-2 text-sm font-extrabold text-primary-700 hover:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500"><MessageSquare className="h-4 w-4" aria-hidden="true" /> Share feedback with Evater</Link>
               </div>
             </div>
           </div>
@@ -304,7 +237,7 @@ export function AboutPage() {
             </div>
             <div id="cookies" className="scroll-mt-24 rounded-2xl border border-neutral-200 bg-white p-6">
               <h3 className="text-lg font-extrabold text-dark">Cookie overview</h3>
-              <p className="mt-2 text-sm leading-7 text-neutral-600">The app may use essential browser storage to keep sessions and preferences working. For questions, email <a className="font-bold text-primary-700 hover:underline" href="mailto:hello@evater.com">hello@evater.com</a>.</p>
+              <p className="mt-2 text-sm leading-7 text-neutral-600">The app may use essential browser storage to keep sessions and preferences working. If you have a question, share it through the <Link className="font-bold text-primary-700 hover:underline" to={user ? '/general-feedback' : '/auth'}>feedback form</Link>.</p>
             </div>
           </div>
         </section>
