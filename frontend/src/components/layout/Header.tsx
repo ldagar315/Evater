@@ -33,6 +33,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const isBlogPage = location.pathname.startsWith('/blog')
+  const isAboutPage = location.pathname === '/about'
   const displayName = profile?.name || profile?.user_name || 'User'
   const initials = displayName.trim().charAt(0).toUpperCase() || 'U'
 
@@ -119,7 +120,8 @@ export function Header() {
               <Link
                 to="/about"
                 onClick={closeMenus}
-                className="min-h-10 rounded-xl px-3 text-sm font-semibold text-neutral-500 transition-colors hover:bg-neutral-50 hover:text-dark"
+                aria-current={isAboutPage ? 'page' : undefined}
+                className={`min-h-10 rounded-xl px-3 text-sm font-semibold transition-colors ${isAboutPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-500 hover:bg-neutral-50 hover:text-dark'}`}
               >
                 About
               </Link>
@@ -251,7 +253,8 @@ export function Header() {
               <Link
                 to="/about"
                 onClick={closeMenus}
-                className="flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-neutral-600 transition-colors hover:bg-white hover:text-dark"
+                aria-current={isAboutPage ? 'page' : undefined}
+                className={`flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold transition-colors ${isAboutPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-white hover:text-dark'}`}
               >
                 About
               </Link>
