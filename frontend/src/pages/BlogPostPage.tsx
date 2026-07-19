@@ -1,334 +1,302 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import {
-  ArrowLeft,
-  Calendar,
-  Clock,
-  Share2,
-  Tag,
-  ChevronRight,
-  Home,
-} from "lucide-react";
-import Markdown from "react-markdown";
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
-import { BlogCard } from "../components/blog/BlogCard";
-import { Button } from "../components/ui/Button";
-import { Card, CardContent } from "../components/ui/Card";
-import { useAuthContext } from "../contexts/AuthContext";
-import { getPostBySlug, getRelatedPosts } from "../data/blogPosts";
-import { BlogPost } from "../types/blog";
+import React, { useEffect, useMemo, useState } from 'react'
+import { ArrowLeft, ArrowRight, Calendar, Check, ChevronRight, Clock, Home, Share2, Tag } from 'lucide-react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import Markdown from 'react-markdown'
+import { Header } from '../components/layout/Header'
+import { Footer } from '../components/layout/Footer'
+import { BlogCard } from '../components/blog/BlogCard'
+import { Seo } from '../components/seo/Seo'
+import { SITE_URL } from '../components/seo/seoConfig'
+import { Button } from '../components/ui/Button'
+import { Card, CardContent } from '../components/ui/Card'
+import { useAuthContext } from '../contexts/AuthContext'
+import { getPostBySlug, getRelatedPosts } from '../data/blogPosts'
+import { BlogPost } from '../types/blog'
+
+const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+
+const stripLeadingMarkdownTitle = (content: string) => content.replace(/^#\s+.+(?:\r?\n){1,2}/, '')
+
+const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+
+const getTextContent = (children: React.ReactNode): string => React.Children.toArray(children).map((child) => {
+  if (typeof child === 'string' || typeof child === 'number') return String(child)
+  if (React.isValidElement(child)) return getTextContent(child.props.children)
+  return ''
+}).join('')
+
+const getHeadings = (content: string) => Array.from(content.matchAll(/^##\s+(.+)$/gm)).map((match, index) => ({
+  title: match[1].trim(),
+  id: `${slugify(match[1])}-${index}`,
+}))
 
 export function BlogPostPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
-  const { user } = useAuthContext();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { slug } = useParams<{ slug: string }>()
+  const navigate = useNavigate()
+  const { user } = useAuthContext()
+  const [post, setPost] = useState<BlogPost | null>(null)
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([])
+  const [loading, setLoading] = useState(true)
+  const [shareStatus, setShareStatus] = useState<'idle' | 'copied' | 'error'>('idle')
 
   useEffect(() => {
-    if (slug) {
-      const foundPost = getPostBySlug(slug);
+    const foundPost = slug ? getPostBySlug(slug) : undefined
+    setPost(foundPost || null)
+    setRelatedPosts(foundPost ? getRelatedPosts(foundPost) : [])
+    setLoading(false)
+  }, [slug])
 
-      if (foundPost) {
-        setPost(foundPost);
-        setRelatedPosts(getRelatedPosts(foundPost));
-
-        // Update page title and meta description
-        document.title =
-          foundPost.seo?.meta_title || `${foundPost.title} - Evater Blog`;
-
-        const metaDescription = document.querySelector(
-          'meta[name="description"]'
-        );
-        if (metaDescription) {
-          metaDescription.setAttribute(
-            "content",
-            foundPost.seo?.meta_description || foundPost.excerpt
-          );
-        }
-      }
-      setLoading(false);
-    } else {
-      setLoading(false);
-    }
-  }, [slug]);
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+  const articleContent = useMemo(() => post ? stripLeadingMarkdownTitle(post.content) : '', [post])
+  const headings = useMemo(() => getHeadings(articleContent), [articleContent])
 
   const handleShare = async () => {
-    if (navigator.share && post) {
+    if (!post) return
+
+    if (navigator.share) {
       try {
-        await navigator.share({
-          title: post.title,
-          text: post.excerpt,
-          url: window.location.href,
-        });
-      } catch (err) {
-        navigator.clipboard.writeText(window.location.href);
+        await navigator.share({ title: post.title, text: post.excerpt, url: window.location.href })
+        setShareStatus('copied')
+        window.setTimeout(() => setShareStatus('idle'), 2500)
+        return
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return
       }
-    } else {
-      navigator.clipboard.writeText(window.location.href);
     }
-  };
+
+    try {
+      await navigator.clipboard?.writeText(window.location.href)
+      setShareStatus('copied')
+    } catch {
+      setShareStatus('error')
+    }
+    window.setTimeout(() => setShareStatus('idle'), 2500)
+  }
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-cream">
+      <div className="min-h-screen bg-cream">
         <Header />
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-            <p className="text-neutral-600">Loading article...</p>
+        <main className="mx-auto flex min-h-[50vh] max-w-3xl items-center justify-center px-4 py-16 text-center">
+          <div>
+            <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-primary-100 border-t-primary-600" />
+            <p className="font-semibold text-neutral-600">Loading article…</p>
           </div>
-        </div>
+        </main>
         {!user && <Footer />}
       </div>
-    );
+    )
   }
 
   if (!post) {
     return (
-      <div className="min-h-screen flex flex-col bg-cream">
+      <div className="min-h-screen bg-cream">
         <Header />
-        <div className="flex-1 flex items-center justify-center">
-          <Card className="max-w-md w-full mx-4">
-            <CardContent className="p-8 text-center">
-              <h2 className="text-xl font-bold text-dark mb-2">
-                Article Not Found
-              </h2>
-              <p className="text-neutral-600 mb-6">
-                The article you're looking for doesn't exist or has been
-                removed.
-              </p>
-              <Button onClick={() => navigate("/blog")}>Back to Blog</Button>
+        <main className="mx-auto flex min-h-[60vh] max-w-2xl items-center justify-center px-4 py-16">
+          <Card className="w-full text-center">
+            <CardContent className="p-10 sm:p-14">
+              <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">404 article</p>
+              <h1 className="text-3xl font-extrabold text-dark">This guide has moved</h1>
+              <p className="mx-auto mt-3 max-w-md leading-7 text-neutral-500">The article may have been unpublished, or the URL may be incomplete.</p>
+              <Button onClick={() => navigate('/blog')} className="mt-7">Back to the blog</Button>
             </CardContent>
           </Card>
-        </div>
+        </main>
         {!user && <Footer />}
       </div>
-    );
+    )
+  }
+
+  const path = `/blog/${post.slug}`
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        headline: post.title,
+        description: post.seo?.meta_description || post.excerpt,
+        image: [post.featured_image],
+        datePublished: post.published_date,
+        dateModified: post.updated_date || post.published_date,
+        author: { '@type': 'Person', name: post.author.name },
+        publisher: { '@type': 'Organization', name: 'Evater', url: SITE_URL },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${path}` },
+        articleSection: post.category,
+        keywords: post.seo?.keywords?.join(', '),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+          { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE_URL}${path}` },
+        ],
+      },
+      ...(post.faqs?.length ? [{
+        '@type': 'FAQPage',
+        mainEntity: post.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      }] : []),
+    ],
+  }
+
+  const markdownComponents = {
+    h2: ({ children }: { children?: React.ReactNode }) => {
+      const title = getTextContent(children)
+      const heading = headings.find((item) => item.title === title)
+      return <h2 id={heading?.id || slugify(title)}>{children}</h2>
+    },
+    h3: ({ children }: { children?: React.ReactNode }) => <h3>{children}</h3>,
+    a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
+      if (href?.startsWith('/')) return <Link to={href}>{children}</Link>
+      return <a href={href} target="_blank" rel="noreferrer">{children}</a>
+    },
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-cream font-sans">
+    <div className="min-h-screen bg-cream font-sans">
+      <Seo
+        title={post.seo?.meta_title || `${post.title} | Evater Blog`}
+        description={post.seo?.meta_description || post.excerpt}
+        path={path}
+        image={post.featured_image}
+        type="article"
+        publishedTime={post.published_date}
+        modifiedTime={post.updated_date || post.published_date}
+        author={post.author.name}
+        keywords={post.seo?.keywords}
+        jsonLd={articleSchema}
+      />
       <Header />
 
-      <div className="flex-1">
-        {/* Breadcrumb */}
-        <div className="bg-white border-b border-neutral-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex items-center text-sm text-neutral-500">
-              <Home
-                className="-m-2 mr-0 h-10 w-10 cursor-pointer p-3 hover:text-primary-600"
-                onClick={() => navigate("/")}
-              />
-              <ChevronRight className="h-4 w-4 mx-2" />
-              <span
-                className="cursor-pointer hover:text-primary-600"
-                onClick={() => navigate("/blog")}
-              >
-                Blog
-              </span>
-              <ChevronRight className="h-4 w-4 mx-2" />
-              <span className="text-neutral-800 font-medium truncate max-w-[200px] sm:max-w-md">
-                {post.title}
-              </span>
+      <main>
+        <nav aria-label="Breadcrumb" className="border-b border-neutral-200 bg-white">
+          <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-4 text-sm text-neutral-500 sm:px-6 lg:px-8">
+            <Link to="/" className="inline-flex min-h-10 items-center gap-2 rounded-lg px-2 hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500">
+              <Home className="h-4 w-4" aria-hidden="true" /> <span className="sr-only sm:not-sr-only">Home</span>
+            </Link>
+            <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            <Link to="/blog" className="rounded-lg px-2 py-2 hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500">Blog</Link>
+            <ChevronRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+            <span className="truncate rounded-lg px-2 py-2 font-semibold text-dark" aria-current="page">{post.title}</span>
+          </div>
+        </nav>
+
+        <header className="relative isolate overflow-hidden bg-[#173b38] text-white">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-900/60 via-[#173b38]/90 to-dark/95" />
+          <img src={post.featured_image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-screen" width={1400} height={900} />
+          <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+            <Link to={`/blog?category=${encodeURIComponent(post.category.toLowerCase().replace(/[^a-z0-9]+/g, '-'))}`} className="inline-flex min-h-10 items-center rounded-full border border-secondary-300/40 bg-secondary-300/15 px-4 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-100 hover:bg-secondary-300/25 focus:outline-none focus:ring-2 focus:ring-secondary-300">
+              {post.category}
+            </Link>
+            <h1 className="mt-7 max-w-4xl text-4xl font-extrabold leading-[1.08] tracking-[-0.04em] sm:text-5xl lg:text-6xl">{post.title}</h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-primary-50/75">{post.excerpt}</p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 text-sm font-semibold text-white/70">
+              <span className="flex items-center gap-2"><Calendar className="h-4 w-4 text-secondary-200" aria-hidden="true" /><time dateTime={post.published_date}>{formatDate(post.published_date)}</time></span>
+              <span className="flex items-center gap-2"><Clock className="h-4 w-4 text-secondary-200" aria-hidden="true" />{post.read_time} min read</span>
+              <span>By {post.author.name}</span>
             </div>
           </div>
-        </div>
+        </header>
 
-        {/* Hero Section */}
-        <section className="relative py-20 lg:py-32 bg-dark overflow-hidden">
-          <div className="absolute inset-0">
-            <img
-              src={post.featured_image}
-              alt={post.title}
-              className="w-full h-full object-cover opacity-20 blur-sm scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-dark/40"></div>
-          </div>
-
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="mb-8">
-              <span className="bg-primary-500 text-white px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase shadow-lg shadow-primary-500/20">
-                {post.category}
-              </span>
-            </div>
-
-            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight tracking-tight">
-              {post.title}
-            </h1>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 text-neutral-300 mb-8">
-              <div className="flex items-center">
-                <img
-                  src={
-                    post.author.avatar ||
-                    "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&dpr=1"
-                  }
-                  alt={post.author.name}
-                  className="w-10 h-10 rounded-full mr-3 border-2 border-white/10"
-                />
-                <div className="text-left">
-                  <div className="font-bold text-white text-sm">
-                    {post.author.name}
-                  </div>
-                  <div className="text-xs text-primary-400">Author</div>
-                </div>
-              </div>
-
-              <div className="w-px h-8 bg-white/10 hidden sm:block"></div>
-
-              <div className="flex items-center text-sm font-medium">
-                <Calendar className="h-4 w-4 mr-2 text-primary-400" />
-                {formatDate(post.published_date)}
-              </div>
-
-              <div className="flex items-center text-sm font-medium">
-                <Clock className="h-4 w-4 mr-2 text-primary-400" />
-                {post.read_time} min read
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Article Content */}
-        <section className="relative -mt-10 pb-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-2xl shadow-xl border border-neutral-100 overflow-hidden">
-              <div className="p-6 sm:p-8 lg:p-12">
-                <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-dark prose-p:text-neutral-600 prose-p:leading-relaxed prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-strong:text-dark prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:not-italic prose-li:text-neutral-600">
-                  <Markdown>{post.content}</Markdown>
-                </article>
-
-                {/* Tags */}
-                {post.tags.length > 0 && (
-                  <div className="mt-12 pt-8 border-t border-neutral-100">
-                    <div className="flex items-center flex-wrap gap-2">
-                      <Tag className="h-4 w-4 text-neutral-400 mr-2" />
-                      {post.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="bg-neutral-50 text-neutral-600 border border-neutral-200 px-3 py-1 rounded-full text-sm font-medium hover:bg-primary-50 hover:text-primary-700 hover:border-primary-200 transition-all duration-200 cursor-pointer"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Share & Author */}
-                <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-neutral-100">
-                  <div className="flex items-center space-x-4">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleShare}
-                      className="text-neutral-600 hover:text-primary-600 hover:border-primary-200"
-                    >
-                      <Share2 className="h-4 w-4 mr-2" />
-                      Share Article
-                    </Button>
-                  </div>
-
-                  <div className="flex items-center">
-                    <span className="text-neutral-500 text-sm mr-4">
-                      Written by
-                    </span>
-                    <div className="flex items-center">
-                      <img
-                        src={
-                          post.author.avatar ||
-                          "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&dpr=1"
-                        }
-                        alt={post.author.name}
-                        className="w-10 h-10 rounded-full mr-3"
-                      />
-                      <div>
-                        <div className="font-bold text-dark text-sm">
-                          {post.author.name}
-                        </div>
-                        <div className="text-xs text-neutral-500">
-                          {post.author.bio}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Related Posts */}
-        {relatedPosts.length > 0 && (
-          <section className="py-16 bg-neutral-50 border-t border-neutral-200">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex items-center justify-between mb-10">
-                <h2 className="text-2xl font-bold text-dark">
-                  Related Articles
-                </h2>
-                <Button
-                  variant="ghost"
-                  onClick={() => navigate("/blog")}
-                  className="text-primary-600 hover:text-primary-700 hover:bg-primary-50"
-                >
-                  View All <ArrowLeft className="h-4 w-4 ml-2 rotate-180" />
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedPosts.map((relatedPost) => (
-                  <BlogCard key={relatedPost.id} post={relatedPost} />
+        <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[15rem_minmax(0,1fr)] lg:px-8 lg:py-20">
+          {headings.length > 0 && (
+            <aside className="h-fit rounded-2xl border border-neutral-200 bg-white p-5 lg:sticky lg:top-24">
+              <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">In this guide</p>
+              <ol className="space-y-2">
+                {headings.map((heading, index) => (
+                  <li key={heading.id}>
+                    <a href={`#${heading.id}`} className="flex gap-2 rounded-lg px-2 py-2 text-sm font-semibold leading-5 text-neutral-600 hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                      <span className="text-primary-600">{String(index + 1).padStart(2, '0')}</span>{heading.title}
+                    </a>
+                  </li>
                 ))}
+              </ol>
+            </aside>
+          )}
+
+          <article className="min-w-0 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-10 lg:p-14">
+            <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-dark prose-h2:scroll-mt-28 prose-p:leading-8 prose-p:text-neutral-600 prose-a:font-bold prose-a:text-primary-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-dark prose-li:text-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:text-neutral-700 prose-img:rounded-2xl">
+              <Markdown components={markdownComponents}>{articleContent}</Markdown>
+            </div>
+
+            {post.faqs && post.faqs.length > 0 && (
+              <section aria-labelledby="faq-heading" className="mt-12 border-t border-neutral-200 pt-10">
+                <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Quick answers</p>
+                <h2 id="faq-heading" className="text-2xl font-extrabold tracking-tight text-dark">Frequently asked questions</h2>
+                <div className="mt-6 space-y-5">
+                  {post.faqs.map((faq) => (
+                    <details key={faq.question} className="group rounded-2xl border border-neutral-200 bg-cream/60 p-5">
+                      <summary className="cursor-pointer list-none pr-6 font-extrabold text-dark marker:hidden group-open:text-primary-700">{faq.question}</summary>
+                      <p className="mt-3 leading-7 text-neutral-600">{faq.answer}</p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {post.tags.length > 0 && (
+              <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-neutral-200 pt-8">
+                <Tag className="mr-1 h-4 w-4 text-neutral-400" aria-hidden="true" />
+                {post.tags.map((tag) => <span key={tag} className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-sm font-semibold text-neutral-600">#{tag}</span>)}
+              </div>
+            )}
+
+            <div className="mt-10 flex flex-col gap-6 border-t border-neutral-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold text-neutral-500">Written by</p>
+                <p className="mt-1 font-extrabold text-dark">{post.author.name}</p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <Button variant="outline" size="sm" onClick={handleShare} aria-label="Share this article">
+                  {shareStatus === 'copied' ? <Check className="mr-2 h-4 w-4" aria-hidden="true" /> : <Share2 className="mr-2 h-4 w-4" aria-hidden="true" />}
+                  {shareStatus === 'copied' ? 'Link copied' : shareStatus === 'error' ? 'Copy unavailable' : 'Share article'}
+                </Button>
+                <span className="sr-only" aria-live="polite">{shareStatus === 'copied' ? 'Article link copied.' : ''}</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        {relatedPosts.length > 0 && (
+          <section aria-labelledby="related-heading" className="border-t border-neutral-200 bg-white py-16 sm:py-20">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="mb-8 flex items-end justify-between gap-4">
+                <div>
+                  <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Keep learning</p>
+                  <h2 id="related-heading" className="text-3xl font-extrabold tracking-tight text-dark">More like this</h2>
+                </div>
+                <Link to="/blog" className="hidden min-h-11 items-center gap-1 rounded-xl px-2 text-sm font-extrabold text-primary-700 hover:bg-primary-50 sm:inline-flex">All articles <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              </div>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {relatedPosts.map((relatedPost) => <BlogCard key={relatedPost.id} post={relatedPost} />)}
               </div>
             </div>
           </section>
         )}
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-primary-600 to-secondary-600 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Ready to Transform Your Learning?
-            </h2>
-            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-              Join thousands of teachers and students using Evater to create
-              better assessments and improve learning outcomes.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                variant="secondary"
-                size="lg"
-                onClick={() => navigate(user ? "/home" : "/auth")}
-                className="text-dark font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all"
-              >
-                {user ? "Go to Dashboard" : "Get Started Free"}
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => navigate("/blog")}
-                className="text-white border-white hover:bg-white hover:text-primary-600"
-              >
-                Read More Articles
-              </Button>
+        <section className="bg-[#173b38] py-16 text-white sm:py-20">
+          <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+            <div>
+              <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-200">Turn reading into progress</p>
+              <h2 className="max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">Try a practice set, then learn from the mistakes.</h2>
+              <p className="mt-3 max-w-2xl leading-7 text-primary-50/70">Evater helps you move from “I read it” to “I can use it.”</p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-3">
+              <Link to={user ? '/home' : '/auth'} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{user ? 'Go to dashboard' : 'Get started free'}</Link>
+              <Link to="/blog" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">Read more articles <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" /></Link>
             </div>
           </div>
         </section>
-      </div>
+      </main>
 
       {!user && <Footer />}
     </div>
-  );
+  )
 }

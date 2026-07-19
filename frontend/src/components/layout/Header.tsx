@@ -9,7 +9,7 @@ import {
   User,
   X,
 } from 'lucide-react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '../ui/Button'
 import { useAuthContext } from '../../contexts/AuthContext'
 import { useProfile } from '../../hooks/useProfile'
@@ -63,21 +63,26 @@ export function Header() {
     setDropdownOpen(false)
   }
 
+  const closeMenus = () => {
+    setMobileMenuOpen(false)
+    setDropdownOpen(false)
+  }
+
   const renderMemberLinks = (mobile = false) => (
     <nav aria-label="Learning navigation" className={mobile ? 'space-y-1' : 'flex items-center gap-1'}>
       {memberLinks.map((link) => {
         const active = isActivePath(location.pathname, link.to)
         return (
-          <button
+          <Link
             key={link.to}
-            type="button"
-            onClick={() => goTo(link.to)}
+            to={link.to}
+            onClick={closeMenus}
             className={mobile
               ? `flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold transition-colors ${active ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-white hover:text-dark'}`
               : `min-h-10 rounded-xl px-3 text-sm font-bold transition-colors ${active ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-neutral-50 hover:text-dark'}`}
           >
             {link.label}
-          </button>
+          </Link>
         )
       })}
     </nav>
@@ -87,9 +92,9 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-cream/95 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-16 items-center justify-between gap-4 sm:min-h-[4.5rem]">
-          <button
-            type="button"
-            onClick={() => goTo(user ? '/home' : '/')}
+          <Link
+            to={user ? '/home' : '/'}
+            onClick={closeMenus}
             className="group flex shrink-0 items-center rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             aria-label={user ? 'Go to home' : 'Go to landing page'}
           >
@@ -98,28 +103,26 @@ export function Header() {
               alt="Evater"
               className="h-10 w-auto max-w-[9.5rem] object-contain transition-transform group-hover:scale-[1.02] sm:h-12 sm:max-w-[11rem]"
             />
-          </button>
+          </Link>
 
           <div className="hidden items-center gap-5 md:flex">
             {user && renderMemberLinks()}
             <div className="hidden h-6 w-px bg-neutral-200 lg:block" aria-hidden="true" />
             <nav aria-label="Information navigation" className="hidden items-center gap-1 lg:flex">
-              {(!user || !isBlogPage) && (
-                <button
-                  type="button"
-                  onClick={() => goTo('/blog')}
-                  className="min-h-10 rounded-xl px-3 text-sm font-semibold text-neutral-500 transition-colors hover:bg-neutral-50 hover:text-dark"
-                >
-                  Blog
-                </button>
-              )}
-              <button
-                type="button"
-                onClick={() => goTo('/about')}
+              <Link
+                to="/blog"
+                onClick={closeMenus}
+                className={`min-h-10 rounded-xl px-3 text-sm font-semibold transition-colors ${isBlogPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-500 hover:bg-neutral-50 hover:text-dark'}`}
+              >
+                Blog
+              </Link>
+              <Link
+                to="/about"
+                onClick={closeMenus}
                 className="min-h-10 rounded-xl px-3 text-sm font-semibold text-neutral-500 transition-colors hover:bg-neutral-50 hover:text-dark"
               >
                 About
-              </button>
+              </Link>
             </nav>
           </div>
 
@@ -238,22 +241,20 @@ export function Header() {
             {user && renderMemberLinks(true)}
 
             <nav aria-label="Information navigation" className="space-y-1 border-t border-neutral-200 pt-4">
-              {(!user || !isBlogPage) && (
-                <button
-                  type="button"
-                  onClick={() => goTo('/blog')}
-                  className="flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-neutral-600 transition-colors hover:bg-white hover:text-dark"
-                >
-                  Blog
-                </button>
-              )}
-              <button
-                type="button"
-                onClick={() => goTo('/about')}
+              <Link
+                to="/blog"
+                onClick={closeMenus}
+                className={`flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold transition-colors ${isBlogPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-white hover:text-dark'}`}
+              >
+                Blog
+              </Link>
+              <Link
+                to="/about"
+                onClick={closeMenus}
                 className="flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-neutral-600 transition-colors hover:bg-white hover:text-dark"
               >
                 About
-              </button>
+              </Link>
             </nav>
 
             {user ? (

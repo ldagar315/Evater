@@ -1,123 +1,78 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
-import { Card, CardContent } from "../ui/Card";
-import { BlogPost } from "../../types/blog";
+import React, { useState } from 'react'
+import { ArrowUpRight, Clock } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { BlogPost } from '../../types/blog'
 
 interface BlogCardProps {
-  post: BlogPost;
-  featured?: boolean;
+  post: BlogPost
+  featured?: boolean
 }
 
+const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+})
+
 export function BlogCard({ post, featured = false }: BlogCardProps) {
-  const navigate = useNavigate();
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    navigate(`/blog/${post.slug}`);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  };
+  const [imageSource, setImageSource] = useState(post.featured_image)
 
   return (
-    <Card
-      className={`group cursor-pointer overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-neutral-100 hover:border-primary-200 h-full flex flex-col ${
-        featured ? "md:col-span-2 lg:col-span-3 md:flex-row md:h-auto" : ""
-      }`}
-      onClick={handleClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          handleClick(e as any);
-        }
-      }}
-    >
-      <div
-        className={`relative overflow-hidden ${
-          featured ? "md:w-1/2 h-64 md:h-auto" : "h-56 w-full"
-        }`}
+    <article className={`group overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-xl hover:shadow-primary-900/5 ${featured ? 'lg:grid lg:grid-cols-[1.08fr_0.92fr]' : 'flex h-full flex-col'}`}>
+      <Link
+        to={`/blog/${post.slug}`}
+        className={`relative block overflow-hidden bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 ${featured ? 'min-h-[18rem] lg:min-h-[27rem]' : 'aspect-[16/10]'}`}
+        aria-label={`Read ${post.title}`}
       >
         <img
-          src={post.featured_image}
-          alt={post.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          onError={(e) => {
-            e.currentTarget.src =
-              "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-          }}
+          src={imageSource}
+          alt=""
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          loading={featured ? 'eager' : 'lazy'}
+          decoding="async"
+          width={1400}
+          height={900}
+          onError={() => setImageSource('/Evater_logo_2.png')}
         />
-        <div className="absolute top-4 left-4">
-          <span className="bg-white/90 backdrop-blur-sm text-primary-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
-            {post.category}
+        <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent opacity-70" />
+        {featured && (
+          <span className="absolute left-5 top-5 rounded-full bg-secondary-400 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-dark shadow-lg">
+            Editor's pick
           </span>
-        </div>
-      </div>
+        )}
+      </Link>
 
-      <CardContent
-        className={`flex flex-col flex-1 p-6 ${
-          featured ? "md:w-1/2 justify-center p-8 lg:p-12" : ""
-        }`}
-      >
-        <div className="flex items-center text-xs text-neutral-500 mb-3 space-x-3">
-          <div className="flex items-center">
-            <Calendar className="h-3 w-3 mr-1" />
-            {formatDate(post.published_date)}
-          </div>
-          <div className="w-1 h-1 rounded-full bg-neutral-300"></div>
-          <div className="flex items-center">
-            <Clock className="h-3 w-3 mr-1" />
-            {post.read_time} min read
-          </div>
+      <div className={`flex flex-1 flex-col ${featured ? 'justify-center p-6 sm:p-8 lg:p-10' : 'p-6'}`}>
+        <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-bold uppercase tracking-[0.12em] text-primary-700">
+          <span>{post.category}</span>
+          <span className="h-1 w-1 rounded-full bg-neutral-300" aria-hidden="true" />
+          <time dateTime={post.published_date}>{formatDate(post.published_date)}</time>
         </div>
 
-        <h3
-          className={`font-bold text-dark mb-3 group-hover:text-primary-600 transition-colors duration-200 leading-tight ${
-            featured ? "text-2xl md:text-3xl" : "text-xl"
-          }`}
-        >
-          {post.title}
+        <h3 className={`${featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl'} font-extrabold leading-tight tracking-tight text-dark`}>
+          <Link to={`/blog/${post.slug}`} className="rounded-md outline-none transition-colors hover:text-primary-700 focus:ring-2 focus:ring-primary-500">
+            {post.title}
+          </Link>
         </h3>
 
-        <p
-          className={`text-neutral-600 mb-6 line-clamp-3 leading-relaxed ${
-            featured ? "text-lg" : "text-sm"
-          }`}
-        >
+        <p className={`${featured ? 'mt-5 text-base sm:text-lg' : 'mt-3 text-sm'} line-clamp-3 leading-relaxed text-neutral-600`}>
           {post.excerpt}
         </p>
 
-        <div className="mt-auto flex items-center justify-between">
-          <div className="flex items-center">
-            <img
-              src={
-                post.author.avatar ||
-                "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&dpr=1"
-              }
-              alt={post.author.name}
-              className="w-8 h-8 rounded-full mr-3 border border-neutral-200"
-              onError={(e) => {
-                e.currentTarget.src =
-                  "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&dpr=1";
-              }}
-            />
-            <span className="text-sm font-medium text-dark">
-              {post.author.name}
-            </span>
+        <div className="mt-auto flex items-center justify-between gap-4 pt-6">
+          <div className="flex items-center gap-2 text-sm text-neutral-500">
+            <Clock className="h-4 w-4 text-primary-600" aria-hidden="true" />
+            <span>{post.read_time} min read</span>
           </div>
-
-          <div className="flex items-center text-primary-600 group-hover:text-primary-700 font-bold text-sm">
-            <span className="mr-1">Read Article</span>
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-          </div>
+          <Link
+            to={`/blog/${post.slug}`}
+            className="inline-flex min-h-11 items-center gap-1 rounded-xl px-2 text-sm font-extrabold text-dark transition-colors hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          >
+            Read article
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+          </Link>
         </div>
-      </CardContent>
-    </Card>
-  );
+      </div>
+    </article>
+  )
 }
