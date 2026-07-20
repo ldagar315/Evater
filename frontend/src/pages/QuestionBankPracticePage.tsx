@@ -556,6 +556,11 @@ export function QuestionBankPracticePage() {
                 <div className="rounded-2xl bg-primary-50 px-5 py-4 text-left sm:min-w-36 sm:text-center">
                   <p className="text-3xl font-bold text-primary-700">{lastResult.percentage}%</p>
                   <p className="mt-1 text-sm font-semibold text-primary-700">{lastResult.block_score}/{lastResult.block_total} correct</p>
+                  {lastResult.leaderboard_points_awarded !== null && lastResult.leaderboard_points_awarded !== undefined && (
+                    <p className="mt-2 border-t border-primary-200 pt-2 text-xs font-bold uppercase tracking-[0.08em] text-primary-700">
+                      +{lastResult.leaderboard_points_awarded} league points
+                    </p>
+                  )}
                 </div>
               </div>
 

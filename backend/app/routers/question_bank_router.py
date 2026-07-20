@@ -25,7 +25,8 @@ from ..question_bank import (
     to_public_question,
     update_mastery,
 )
-from ..supabase_client import create_supabase_client, create_supabase_service_client
+from .leaderboard_router import award_completed_practice
+from ..supabase_client import create_supabase_service_client
 
 logger = logging.getLogger(__name__)
 router = APIRouter(dependencies=[Depends(require_user)])
@@ -105,7 +106,9 @@ def list_question_bank_chapters(
     auth: AuthContext = Depends(require_user),
 ) -> Dict[str, Any]:
     """Return the published Grade 8 Science chapters available for practice."""
-    client = create_supabase_client(auth.jwt)
+    # Authentication is enforced by require_user; the catalogue itself is
+    # public question-bank data and is read with the server-only client.
+    client = create_supabase_service_client()
     curriculum_response = (
         client.table("curriculum_versions")
         .select("id,grade,subject,version_label")
@@ -135,7 +138,7 @@ def flag_question_bank_question(
     auth: AuthContext = Depends(require_user),
 ) -> QuestionFlagResponse:
     """Record a student's review flag without asking them to classify the issue."""
-    client = create_supabase_client(auth.jwt)
+    client = create_supabase_service_client()
     question_response = (
         client.table("question_bank")
         .select("id")
@@ -229,7 +232,8 @@ def create_question_bank_test(
 ) -> QuestionBankTestResponse:
     """Create a deterministic/adaptive test from the published question bank."""
     user_id = _user_id(auth)
-    client = create_supabase_client(auth.jwt)
+    # Every student-owned query below is still scoped with user_id.
+    client = create_supabase_service_client()
 
     try:
         chapter_response = (
@@ -344,8 +348,12 @@ def submit_question_bank_block(
 ) -> QuestionBankBlockResponse:
     """Score one block, update mastery, and route the next block."""
     user_id = _user_id(auth)
-    client = create_supabase_client(auth.jwt)
+    # Authentication is complete before this handler runs. Use the trusted
+    # backend client for the transaction while retaining explicit user_id
+    # predicates on student-owned rows.
+    client = create_supabase_service_client()
     test_id_text = str(test_id)
+    leaderboard_award: Dict[str, int] | None = None
 
     try:
         test_response = (
@@ -385,7 +393,7 @@ def submit_question_bank_block(
         if existing_attempts:
             raise HTTPException(status_code=409, detail="This test block was already submitted.")
 
-        service_client = create_supabase_service_client()
+        service_client = client
         answer_rows = (
             service_client.table("question_bank")
             .select(
@@ -556,6 +564,19 @@ def submit_question_bank_block(
                 }
             ).eq("id", test_id_text).eq("user_id", user_id).execute()
 
+            if test.get("mode") == "practice":
+                try:
+                    leaderboard_award = award_completed_practice(
+                        service_client,
+                        test_id=test_id_text,
+                        user_id=user_id,
+                        completed_at=datetime.now(timezone.utc),
+                    )
+                except Exception:
+                    # Practice completion and mastery remain available even if
+                    # the optional league write needs to be retried later.
+                    logger.exception("Failed to award seasonal leaderboard points")
+
         return QuestionBankBlockResponse(
             test_id=test_id,
             block_number=block_number,
@@ -581,6 +602,8 @@ def submit_question_bank_block(
             mastery_updates=mastery_updates,
             next_block=next_block,
             completed=next_block is None,
+            leaderboard_points_awarded=(leaderboard_award or {}).get("points_awarded"),
+            leaderboard_raw_score=(leaderboard_award or {}).get("raw_score"),
         )
     except HTTPException:
         raise
@@ -602,6 +625,6 @@ def get_question_bank_mastery(
     chapter_id: UUID,
     auth: AuthContext = Depends(require_user),
 ) -> Dict[str, Any]:
-    client = create_supabase_client(auth.jwt)
+    client = create_supabase_service_client()
     rows = _load_mastery(client, _user_id(auth), str(chapter_id))
     return {"chapter_id": chapter_id, "concepts": rows}
