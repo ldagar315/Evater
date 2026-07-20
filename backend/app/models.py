@@ -202,6 +202,8 @@ class QuestionBankBlockResponse(BaseModel):
     mastery_updates: List[Dict[str, Any]] = Field(default_factory=list)
     next_block: Optional[QuestionBankTestResponse] = None
     completed: bool = False
+    leaderboard_points_awarded: Optional[int] = None
+    leaderboard_raw_score: Optional[int] = None
 
 
 class LeaderboardEntry(BaseModel):
@@ -210,15 +212,27 @@ class LeaderboardEntry(BaseModel):
     score: int
     correct_answers: int
     completed_tests: int
+    league_tier: str = "bronze_3"
+    league_label: str = "Bronze III"
+    league_rank: int = 1
     is_current_user: bool = False
 
 
 class LeaderboardResponse(BaseModel):
-    scope: Literal["classroom", "school"]
+    scope: Literal["global"]
     scope_label: str
-    period: Literal["weekly", "all_time"]
+    period: Literal["season"]
     period_label: str
     scope_available: bool
     membership_message: Optional[str] = None
     entries: List[LeaderboardEntry] = Field(default_factory=list)
     current_user_rank: Optional[int] = None
+    current_user_league: Optional[str] = None
+    current_user_league_label: Optional[str] = None
+    current_user_league_rank: Optional[int] = None
+    promotion_threshold: Optional[int] = None
+    promotion_points_remaining: Optional[int] = None
+    season_number: Optional[int] = None
+    season_starts_at: Optional[str] = None
+    season_ends_at: Optional[str] = None
+    topper_name: Optional[str] = None

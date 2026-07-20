@@ -24,6 +24,7 @@ import { VivaPage } from './pages/VivaPage'
 import { AboutPage } from './pages/AboutPage'
 import { QuestionBankPracticePage } from './pages/QuestionBankPracticePage'
 import { LeaderboardPage } from './pages/LeaderboardPage'
+import { LeagueInfoPage } from './pages/LeagueInfoPage'
 import { QuestionTypePreviewPage } from './pages/QuestionTypePreviewPage'
 import { BYPASS_AUTH } from './lib/auth/devBypass'
 
@@ -142,6 +143,11 @@ function AppRoutes() {
               <Route path="/leaderboard" element={
                 <ProtectedRoute>
                   <LeaderboardPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/leagues" element={
+                <ProtectedRoute>
+                  <LeagueInfoPage />
                 </ProtectedRoute>
               } />
               <Route path="/previous-tests" element={

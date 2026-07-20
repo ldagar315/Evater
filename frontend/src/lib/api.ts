@@ -131,6 +131,8 @@ export type QuestionBankBlockSubmissionResult = {
   mastery_updates: Array<Record<string, unknown>>
   next_block?: QuestionBankTest | null
   completed: boolean
+  leaderboard_points_awarded?: number | null
+  leaderboard_raw_score?: number | null
 }
 
 async function parseApiResponse<T>(response: Response): Promise<T> {
@@ -193,8 +195,8 @@ export async function flagQuestionBankQuestion(
   return parseApiResponse<{ question_id: string; flagged: boolean }>(response)
 }
 
-export type LeaderboardScope = 'classroom' | 'school'
-export type LeaderboardPeriod = 'weekly' | 'all_time'
+export type LeaderboardScope = 'global'
+export type LeaderboardPeriod = 'season'
 
 export type LeaderboardEntry = {
   rank: number
@@ -202,6 +204,9 @@ export type LeaderboardEntry = {
   score: number
   correct_answers: number
   completed_tests: number
+  league_tier: string
+  league_label: string
+  league_rank: number
   is_current_user: boolean
 }
 
@@ -214,11 +219,20 @@ export type LeaderboardResponse = {
   membership_message?: string | null
   entries: LeaderboardEntry[]
   current_user_rank?: number | null
+  current_user_league?: string | null
+  current_user_league_label?: string | null
+  current_user_league_rank?: number | null
+  promotion_threshold?: number | null
+  promotion_points_remaining?: number | null
+  season_number?: number | null
+  season_starts_at?: string | null
+  season_ends_at?: string | null
+  topper_name?: string | null
 }
 
 export async function getLeaderboard(
-  scope: LeaderboardScope = 'classroom',
-  period: LeaderboardPeriod = 'weekly',
+  scope: LeaderboardScope = 'global',
+  period: LeaderboardPeriod = 'season',
 ): Promise<LeaderboardResponse> {
   const params = new URLSearchParams({ scope, period })
   const response = await apiFetch(`${MODAL_API_URL}/api/v1/leaderboard?${params.toString()}`)

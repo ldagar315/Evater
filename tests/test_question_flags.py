@@ -59,7 +59,7 @@ def test_question_flag_endpoint_is_idempotent(monkeypatch):
             tenant_id=None,
         )
 
-    monkeypatch.setattr(question_bank_router, "create_supabase_client", lambda _jwt: Client())
+    monkeypatch.setattr(question_bank_router, "create_supabase_service_client", lambda: Client())
     app.dependency_overrides[require_user] = authenticated_user
     try:
         response = TestClient(app).post(f"/api/v1/questions/{QUESTION_ID}/flag")

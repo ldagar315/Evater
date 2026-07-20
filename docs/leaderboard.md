@@ -1,23 +1,59 @@
-# Student leaderboard MVP
+# Global seasonal student league
 
-The first leaderboard release is intentionally limited to authenticated learners who have an explicit row in `public.student_enrollments`.
+The leaderboard is a simple global league for verified students. A verified
+student is currently represented by a `student_enrollments` row with
+`role = 'student'`. The backend owns all league writes; the browser only reads
+the API response.
 
-## Scope
+## Season
 
-- `classroom`: learners with the same `classroom_id`.
-- `school`: learners with the same `school_id`.
+- Seasons last 14 days and use stable UTC boundaries.
+- Trophy points carry forward when a season ends; the student's league tier carries forward too.
+- Promotion and demotion are resolved only at the season boundary.
+- One eligible student is promoted from each league.
+- The bottom student is demoted only when the league has at least three students.
+- Bronze III cannot demote and Diamond I cannot promote.
 
-The API resolves the caller's membership on the server. Free-form `Users.school` and `Users.grade` values are not used to authorize or filter a leaderboard.
+## Practice scoring
 
-## Score
+Only completed normal practice sessions score league points. Question values
+are integer-scaled so penalties never produce decimals:
 
-The first release uses a simple, explainable practice score:
+| Difficulty | Correct | Wrong | Unanswered |
+| --- | ---: | ---: | ---: |
+| Easy | +4 | -1 | -2 |
+| Medium | +8 | -2 | -4 |
+| Hard | +12 | -3 | -6 |
 
-- 25 points for each completed practice test.
-- 10 points for each correct answer in a completed practice test.
+The raw practice score has a floor of zero. A question can contribute league
+points only once per student per season; reattempts still support mastery but
+do not allow leaderboard farming.
 
-Rank ties are broken by correct answers, completed tests, privacy-safe display name, and finally the user ID for deterministic ordering. The default period is the last seven days; all-time scores are also available.
+Higher leagues apply a multiplier to the raw practice score. The result is
+floored and any positive practice retains a minimum award of one point:
 
-## Local stage
+- Bronze: 100%
+- Silver: 90%
+- Gold: 80%
+- Platinum: 70%
+- Diamond: 60%
 
-The leaderboard migration seeds two schools and four classrooms. Assign a local auth user to `student_enrollments` before testing the ranking. The API returns a clear membership state when an account has not been assigned to a classroom.
+## League ladder
+
+The ladder runs from Bronze III through Bronze I, then Silver, Gold, Platinum,
+and Diamond. `III` is the lowest tier and `I` is the highest within each metal.
+Promotion requires the league's configured season threshold and first place in
+that league. Tie-breakers are total league points, correct answers, completed
+practices, then a stable user identifier.
+
+Configured promotion thresholds live in `backend/app/leaderboard.py` so they
+can be tuned after real traffic without changing the scoring math.
+
+## Inactivity
+
+The first full season without a completed practice is protected: the student
+cannot be penalized or demoted. Starting with the next consecutive inactive
+season, the carried trophy balance loses 10% once per season. This reduction is
+capped at 50% of the trophy balance held when the inactive streak began; once
+that floor is reached, both the reduction and demotion stop. Completing a
+practice resets the inactive-season streak.
