@@ -41,7 +41,7 @@ export function ProfilePage() {
   const [saved, setSaved] = useState(false)
 
   const gradeOptions = useMemo(
-    () => Array.from({ length: 12 }, (_, index) => ({ value: index + 1, label: `Class ${index + 1}` })),
+    () => Array.from({ length: 5 }, (_, index) => ({ value: index + 6, label: `Class ${index + 6}` })),
     [],
   )
   const displayName = getDisplayName(profile?.name || profile?.user_name || name, user?.email)
@@ -275,3 +275,4 @@ export function ProfilePage() {
     </div>
   )
 }
+
