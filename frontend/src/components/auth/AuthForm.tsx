@@ -226,6 +226,9 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-sm text-red-700 font-medium">{error}</p>
+                  {!isSignUp && /invalid login credentials/i.test(error) && (
+                    <p className="mt-1 text-sm text-red-700">Check your email and password. New here? Use "Don't have an account? Sign up" below.</p>
+                  )}
                 </div>
               )}
               
@@ -242,7 +245,10 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
             <div className="mt-6 text-center">
               <button
                 type="button"
-                onClick={() => setIsSignUp(!isSignUp)}
+                onClick={() => {
+                  setIsSignUp(!isSignUp)
+                  setError('')
+                }}
                 className="inline-flex min-h-11 items-center text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
                 disabled={loading || googleLoading || !supabaseConfigured}
               >
@@ -258,10 +264,13 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
         {/* Footer */}
         <div className="mt-8 text-center">
           <p className="text-xs text-neutral-500">
-            By continuing, you agree to our Terms of Service and Privacy Policy
+            By continuing, you agree to our{' '}
+            <a href="/about#terms" className="underline hover:text-neutral-700">Terms of Service</a> and{' '}
+            <a href="/about#privacy" className="underline hover:text-neutral-700">Privacy Policy</a>
           </p>
         </div>
       </div>
     </div>
   )
 }
+
