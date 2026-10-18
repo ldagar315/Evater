@@ -107,6 +107,9 @@ function AppRoutes() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/privacy" element={<Navigate to="/about#privacy" replace />} />
+          <Route path="/terms" element={<Navigate to="/about#terms" replace />} />
+          <Route path="/contact" element={<Navigate to="/about" replace />} />
           <Route path="/general-feedback" element={
             <ProtectedRoute>
               <GeneralFeedbackPage />
@@ -214,4 +217,5 @@ function App() {
 }
 
 export default App
+
 
