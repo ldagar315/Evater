@@ -177,7 +177,7 @@ function getReviewSummary(
   const resultByQuestionId = new Map(result.results.map((item) => [item.question_id, item]))
   const missedQuestions = questions.filter((question) => !resultByQuestionId.get(question.id)?.is_correct)
   const focusAreas = [...new Set(
-    missedQuestions.flatMap((question) => question.skill_tags.map((tag) => SKILL_LABELS[tag] || tag.replaceAll('_', ' '))),
+    missedQuestions.flatMap((question) => question.skill_tags.map((tag) => SKILL_LABELS[tag]).filter((label): label is string => Boolean(label))),
   )].slice(0, 2)
 
   if (missedQuestions.length === 0) {
@@ -339,9 +339,21 @@ export function QuestionBankPracticePage() {
     void submit(true)
   }, [loading, submit, test, timeRemaining, timedOut])
 
+  // Start each question (and the review) at the top of the page instead of keeping the old scroll position.
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [currentQuestionIndex, test?.test_id, test?.block_number, lastResult])
+
   const goToNextQuestion = () => {
     if (!test) return
     if (isLastQuestion) {
+      const unanswered = test.questions.filter((question) => {
+        const answer = answers[question.id]
+        return answer === undefined || answer === null || answer === '' || (Array.isArray(answer) && answer.length === 0)
+      }).length
+      if (unanswered > 0 && !window.confirm(`You have ${unanswered} unanswered ${unanswered === 1 ? 'question' : 'questions'}. Finish anyway? Unanswered questions count as wrong.`)) {
+        return
+      }
       void submit()
       return
     }
@@ -543,6 +555,11 @@ export function QuestionBankPracticePage() {
                 {!loading && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
               </button>
             </div>
+            {loading && (
+              <p role="status" className="text-center text-sm text-neutral-600">
+                Scoring your answers. This can take up to 30 seconds, please keep this page open.
+              </p>
+            )}
           </div>
         ) : lastResult && reviewSummary ? (
           <div className="space-y-6">
@@ -774,3 +791,4 @@ export function QuestionBankPracticePage() {
     </div>
   )
 }
+
