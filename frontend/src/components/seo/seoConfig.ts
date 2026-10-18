@@ -1,1 +1,1 @@
-export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://evater.com').replace(/\/$/, '')
+export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://evater.xyz').replace(/\/$/, '')
