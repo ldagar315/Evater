@@ -20,7 +20,7 @@ def is_production_env() -> bool:
 
 def allowed_origins() -> List[str]:
     # Comma-separated list of allowed origins, e.g.:
-    # APP_ORIGINS="https://evater.com,https://www.evater.com,https://staging.evater.com"
+    # APP_ORIGINS="https://evater.xyz,https://www.evater.xyz,https://staging.evater.xyz"
     configured = _split_origins(os.getenv("APP_ORIGINS"))
     if configured:
         return configured
