@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { LoadingFallback } from './components/LoadingFallback'
@@ -6,27 +6,28 @@ import { Footer } from './components/layout/Footer'
 import { AuthProvider, useAuthContext } from './contexts/AuthContext'
 import { AppStateProvider } from './contexts/AppStateContext'
 import { useProfile } from './hooks/useProfile'
-import { LandingPage } from './pages/LandingPage'
-import { AuthPage } from './pages/AuthPage'
-import { ProfilePage } from './pages/ProfilePage'
-import { HomePage } from './pages/HomePage'
-import { CreateTestPage } from './pages/CreateTestPage'
-import { ViewTestPage } from './pages/ViewTestPage'
-import { TakeTestPage } from './pages/TakeTestPage'
-import { SubmitFeedbackPage } from './pages/SubmitFeedbackPage'
-import { ViewFeedbackPage } from './pages/ViewFeedbackPage'
-import { GeneralFeedbackPage } from './pages/GeneralFeedbackPage'
-import { PreviousTestsPage } from './pages/PreviousTestsPage'
-import { PreviousFeedbacksPage } from './pages/PreviousFeedbacksPage'
-import { BlogPage } from './pages/BlogPage'
-import { BlogPostPage } from './pages/BlogPostPage'
-import { VivaPage } from './pages/VivaPage'
-import { AboutPage } from './pages/AboutPage'
-import { QuestionBankPracticePage } from './pages/QuestionBankPracticePage'
-import { LeaderboardPage } from './pages/LeaderboardPage'
-import { LeagueInfoPage } from './pages/LeagueInfoPage'
-import { QuestionTypePreviewPage } from './pages/QuestionTypePreviewPage'
 import { BYPASS_AUTH } from './lib/auth/devBypass'
+
+const LandingPage = lazy(() => import('./pages/LandingPage').then((m) => ({ default: m.LandingPage })))
+const AuthPage = lazy(() => import('./pages/AuthPage').then((m) => ({ default: m.AuthPage })))
+const ProfilePage = lazy(() => import('./pages/ProfilePage').then((m) => ({ default: m.ProfilePage })))
+const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m.HomePage })))
+const CreateTestPage = lazy(() => import('./pages/CreateTestPage').then((m) => ({ default: m.CreateTestPage })))
+const ViewTestPage = lazy(() => import('./pages/ViewTestPage').then((m) => ({ default: m.ViewTestPage })))
+const TakeTestPage = lazy(() => import('./pages/TakeTestPage').then((m) => ({ default: m.TakeTestPage })))
+const SubmitFeedbackPage = lazy(() => import('./pages/SubmitFeedbackPage').then((m) => ({ default: m.SubmitFeedbackPage })))
+const ViewFeedbackPage = lazy(() => import('./pages/ViewFeedbackPage').then((m) => ({ default: m.ViewFeedbackPage })))
+const GeneralFeedbackPage = lazy(() => import('./pages/GeneralFeedbackPage').then((m) => ({ default: m.GeneralFeedbackPage })))
+const PreviousTestsPage = lazy(() => import('./pages/PreviousTestsPage').then((m) => ({ default: m.PreviousTestsPage })))
+const PreviousFeedbacksPage = lazy(() => import('./pages/PreviousFeedbacksPage').then((m) => ({ default: m.PreviousFeedbacksPage })))
+const BlogPage = lazy(() => import('./pages/BlogPage').then((m) => ({ default: m.BlogPage })))
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then((m) => ({ default: m.BlogPostPage })))
+const VivaPage = lazy(() => import('./pages/VivaPage').then((m) => ({ default: m.VivaPage })))
+const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })))
+const QuestionBankPracticePage = lazy(() => import('./pages/QuestionBankPracticePage').then((m) => ({ default: m.QuestionBankPracticePage })))
+const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then((m) => ({ default: m.LeaderboardPage })))
+const LeagueInfoPage = lazy(() => import('./pages/LeagueInfoPage').then((m) => ({ default: m.LeagueInfoPage })))
+const QuestionTypePreviewPage = lazy(() => import('./pages/QuestionTypePreviewPage').then((m) => ({ default: m.QuestionTypePreviewPage })))
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading, error } = useAuthContext()
@@ -213,3 +214,4 @@ function App() {
 }
 
 export default App
+
