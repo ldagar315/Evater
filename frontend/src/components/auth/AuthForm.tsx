@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { Card, CardContent, CardHeader } from '../ui/Card'
@@ -11,7 +12,8 @@ interface AuthFormProps {
 }
 
 export function AuthForm({ onSuccess }: AuthFormProps) {
-  const [isSignUp, setIsSignUp] = useState(false)
+  const [searchParams] = useSearchParams()
+  const [isSignUp, setIsSignUp] = useState(searchParams.get('mode') === 'signup')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -137,7 +139,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
               </h2>
               <p className="mt-2 text-sm text-neutral-600">
                 {isSignUp 
-                  ? 'Join thousands of learners on Evater' 
+                  ? 'Free to try. Create your account to start practising' 
                   : 'Sign in to continue your learning journey'
                 }
               </p>
