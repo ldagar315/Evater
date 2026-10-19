@@ -94,7 +94,7 @@ const testimonials = [
     grade: 'Class 10th',
     school: 'Euro International Sector-45',
     quote: 'The AI checking feature is amazing! I can upload my handwritten answers and get detailed feedback instantly. It is like having a personal tutor available 24/7.',
-    image: '/IMG_20241028_145336.jpg',
+    image: '/2-landing-photo.jpg',
     objectPosition: '68% 38%',
   },
 ]
@@ -508,3 +508,4 @@ export function LandingPage() {
     </div>
   )
 }
+
