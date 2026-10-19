@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, MessageSquare, Send } from 'lucide-react'
 import { Button } from '../components/ui/Button'
@@ -7,16 +7,23 @@ import { Card, CardContent, CardHeader } from '../components/ui/Card'
 import { Header } from '../components/layout/Header'
 import { useAuthContext } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
+import { useProfile } from '../hooks/useProfile'
 
 export function GeneralFeedbackPage() {
   const navigate = useNavigate()
   const { user } = useAuthContext()
+  const { profile } = useProfile(user?.id)
   
   const [name, setName] = useState('')
   const [feedback, setFeedback] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
+
+  useEffect(() => {
+    const known = profile?.name || profile?.user_name
+    if (known) setName((current) => current || known)
+  }, [profile])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -41,13 +48,12 @@ export function GeneralFeedbackPage() {
       if (error) throw error
 
       setSuccess(true)
-      setName('')
       setFeedback('')
       
       // Show success message for 2 seconds then navigate back
       setTimeout(() => {
         navigate('/home')
-      }, 2000)
+      }, 4000)
     } catch (err) {
       console.error('Error submitting feedback:', err)
       setError(err instanceof Error ? err.message : 'Failed to submit feedback. Please try again.')
@@ -76,7 +82,7 @@ export function GeneralFeedbackPage() {
                 Your feedback has been submitted successfully. We appreciate your input and will use it to improve Evater.
               </p>
               <p className="text-sm text-neutral-500">
-                Redirecting you back to home...
+                Taking you back to home in a few seconds...
               </p>
             </CardContent>
           </Card>
@@ -205,3 +211,4 @@ export function GeneralFeedbackPage() {
     </div>
   )
 }
+
