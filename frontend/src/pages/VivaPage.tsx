@@ -79,9 +79,9 @@ export function VivaPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const pingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const gradeOptions = Array.from({ length: 12 }, (_, i) => ({
-    value: (i + 1).toString(),
-    label: `Grade ${i + 1}`,
+  const gradeOptions = Array.from({ length: 5 }, (_, i) => ({
+    value: (i + 6).toString(),
+    label: `Grade ${i + 6}`,
   }));
 
   useEffect(() => {
@@ -716,3 +716,4 @@ export function VivaPage() {
     </div>
   );
 }
+

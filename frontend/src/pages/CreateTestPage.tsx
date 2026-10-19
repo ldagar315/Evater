@@ -71,7 +71,7 @@ export function CreateTestPage() {
   const [availableSubjects, setAvailableSubjects] = useState<string[]>([]);
   const [availableChapters, setAvailableChapters] = useState<string[]>([]);
 
-  const gradeOptions = Array.from({ length: 12 }, (_, i) => (i + 1).toString());
+  const gradeOptions = Array.from({ length: 5 }, (_, i) => (i + 6).toString());
 
   const testTypeOptions = [
     {
@@ -286,7 +286,7 @@ export function CreateTestPage() {
               <GraduationCap className="w-5 h-5 mr-2 text-primary-600" />
               Select Grade
             </h2>
-            <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-12">
+            <div className="grid grid-cols-5 gap-3 sm:max-w-md">
               {gradeOptions.map((grade) => (
                 <button
                   key={grade}
@@ -358,7 +358,9 @@ export function CreateTestPage() {
             ) : (
               <div className="bg-white rounded-xl p-8 text-center border border-dashed border-neutral-300">
                 <p className="text-neutral-400">
-                  Select a grade to view subjects
+                  {selectedGrade
+                    ? "Coming soon. We are still adding content for this class."
+                    : "Select a grade to view subjects"}
                 </p>
               </div>
             )}
@@ -522,3 +524,4 @@ export function CreateTestPage() {
     </div>
   );
 }
+
