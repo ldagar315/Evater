@@ -101,7 +101,7 @@ const testimonials = [
 
 export function LandingPage() {
   const { user } = useAuthContext()
-  const ctaPath = user ? '/practice' : '/auth'
+  const ctaPath = user ? '/practice' : '/auth?mode=signup'
   const ctaLabel = user ? 'Continue practising' : 'Try your first test'
 
   return (
@@ -508,3 +508,4 @@ export function LandingPage() {
     </div>
   )
 }
+

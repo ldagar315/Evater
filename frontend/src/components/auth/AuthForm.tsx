@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { Card, CardContent, CardHeader } from '../ui/Card'
@@ -11,7 +12,8 @@ interface AuthFormProps {
 }
 
 export function AuthForm({ onSuccess }: AuthFormProps) {
-  const [isSignUp, setIsSignUp] = useState(false)
+  const [searchParams] = useSearchParams()
+  const [isSignUp, setIsSignUp] = useState(searchParams.get('mode') === 'signup')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -137,7 +139,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
               </h2>
               <p className="mt-2 text-sm text-neutral-600">
                 {isSignUp 
-                  ? 'Join thousands of learners on Evater' 
+                  ? 'Free to try. Create your account to start practising' 
                   : 'Sign in to continue your learning journey'
                 }
               </p>
@@ -226,6 +228,9 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-sm text-red-700 font-medium">{error}</p>
+                  {!isSignUp && /invalid login credentials/i.test(error) && (
+                    <p className="mt-1 text-sm text-red-700">Check your email and password. New here? Use "Don't have an account? Sign up" below.</p>
+                  )}
                 </div>
               )}
               
@@ -242,7 +247,10 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
             <div className="mt-6 text-center">
               <button
                 type="button"
-                onClick={() => setIsSignUp(!isSignUp)}
+                onClick={() => {
+                  setIsSignUp(!isSignUp)
+                  setError('')
+                }}
                 className="inline-flex min-h-11 items-center text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
                 disabled={loading || googleLoading || !supabaseConfigured}
               >
@@ -258,10 +266,13 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
         {/* Footer */}
         <div className="mt-8 text-center">
           <p className="text-xs text-neutral-500">
-            By continuing, you agree to our Terms of Service and Privacy Policy
+            By continuing, you agree to our{' '}
+            <a href="/about#terms" className="underline hover:text-neutral-700">Terms of Service</a> and{' '}
+            <a href="/about#privacy" className="underline hover:text-neutral-700">Privacy Policy</a>
           </p>
         </div>
       </div>
     </div>
   )
 }
+
