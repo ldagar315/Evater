@@ -26,7 +26,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
       >
         <img
           src={imageSource}
-          alt=""
+          alt={`Cover image for ${post.title}`}
           className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
           loading={featured ? 'eager' : 'lazy'}
           decoding="async"
