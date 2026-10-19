@@ -248,7 +248,13 @@ def _ensure_players(client: Any, season_id: str, user_ids: Sequence[str], now: d
             "last_decay_at": None,
             "updated_at": _iso(now),
         })
-    client.table("leaderboard_players").insert(rows).execute()
+    # Upsert so two concurrent requests (for example the leaderboard page opening
+    # while a practice is being scored) cannot collide on (season_id, user_id).
+    client.table("leaderboard_players").upsert(
+        rows,
+        on_conflict="season_id,user_id",
+        ignore_duplicates=True,
+    ).execute()
 
 
 def _is_empty_answer(value: Any) -> bool:

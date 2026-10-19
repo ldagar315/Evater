@@ -451,22 +451,28 @@ def submit_question_bank_block(
 
         mastery_rows = _load_mastery(client, user_id, str(test["chapter_id"]))
         mastery_updates = update_mastery(results, _mastery_map(mastery_rows))
+        existing_mastery = _mastery_map(mastery_rows)
+        mastery_now = datetime.now(timezone.utc).isoformat()
+        mastery_rows_to_write = []
         for mastery_update in mastery_updates:
-            existing = _mastery_map(mastery_rows).get(str(mastery_update["concept_id"]), {})
+            existing = existing_mastery.get(str(mastery_update["concept_id"]), {})
+            mastery_rows_to_write.append({
+                "user_id": user_id,
+                "chapter_id": test["chapter_id"],
+                "concept_id": mastery_update["concept_id"],
+                "mastery_score": mastery_update["mastery_score"],
+                "attempt_count": mastery_update["attempt_count"],
+                "correct_count": mastery_update["correct_count"],
+                "last_difficulty": mastery_update["last_difficulty"],
+                "misconception_signals": existing.get("misconception_signals") or {},
+                "last_attempted_at": mastery_now,
+                "next_review_at": _next_review_at(mastery_update["status"]),
+                "updated_at": mastery_now,
+            })
+        if mastery_rows_to_write:
+            # One round trip instead of one per concept.
             client.table("concept_mastery").upsert(
-                {
-                    "user_id": user_id,
-                    "chapter_id": test["chapter_id"],
-                    "concept_id": mastery_update["concept_id"],
-                    "mastery_score": mastery_update["mastery_score"],
-                    "attempt_count": mastery_update["attempt_count"],
-                    "correct_count": mastery_update["correct_count"],
-                    "last_difficulty": mastery_update["last_difficulty"],
-                    "misconception_signals": existing.get("misconception_signals") or {},
-                    "last_attempted_at": datetime.now(timezone.utc).isoformat(),
-                    "next_review_at": _next_review_at(mastery_update["status"]),
-                    "updated_at": datetime.now(timezone.utc).isoformat(),
-                },
+                mastery_rows_to_write,
                 on_conflict="user_id,chapter_id,concept_id",
             ).execute()
 
