@@ -201,7 +201,7 @@ Review your one-page summary and mistake list. Revisit the definitions and diagr
 
 If you can answer “yes” to most of these, your revision is doing the right job: showing you what to improve before the chapter test, not merely making your notebook look complete.
 `,
-    featured_image: 'https://images.unsplash.com/photo-1532619187608-e5375cab36a5?auto=format&fit=crop&w=1400&q=80',
+    featured_image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1400&q=80',
     author: teamAuthor,
     category: 'Class 8 Science',
     tags: ['Class 8 Science', 'NCERT', 'Chapter Tests', 'CBSE'],
@@ -440,3 +440,4 @@ export const searchPosts = (query: string): BlogPost[] => {
     ...post.tags,
   ].some((value) => value.toLowerCase().includes(lowercaseQuery)))
 }
+
