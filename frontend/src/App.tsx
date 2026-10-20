@@ -28,6 +28,7 @@ const QuestionBankPracticePage = lazy(() => import('./pages/QuestionBankPractice
 const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then((m) => ({ default: m.LeaderboardPage })))
 const LeagueInfoPage = lazy(() => import('./pages/LeagueInfoPage').then((m) => ({ default: m.LeagueInfoPage })))
 const QuestionTypePreviewPage = lazy(() => import('./pages/QuestionTypePreviewPage').then((m) => ({ default: m.QuestionTypePreviewPage })))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })))
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading, error } = useAuthContext()
@@ -119,7 +120,7 @@ function AppRoutes() {
           {!user ? (
             <>
               <Route path="/auth" element={<AuthPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<NotFoundPage />} />
             </>
           ) : (
             <>
@@ -189,7 +190,7 @@ function AppRoutes() {
                   <VivaPage />
                 </ProtectedRoute>
               } />
-              <Route path="*" element={<Navigate to="/home" replace />} />
+              <Route path="*" element={<NotFoundPage />} />
             </>
           )}
         </Routes>
@@ -217,5 +218,4 @@ function App() {
 }
 
 export default App
-
 

@@ -7,6 +7,7 @@ interface SeoProps {
   path: string
   image?: string
   type?: 'website' | 'article'
+  robots?: string
   publishedTime?: string
   modifiedTime?: string
   author?: string
@@ -50,6 +51,7 @@ export function Seo({
   path,
   image = `${SITE_URL}/Evater_logo_2.png`,
   type = 'website',
+  robots = 'index, follow, max-image-preview:large',
   publishedTime,
   modifiedTime,
   author,
@@ -62,7 +64,7 @@ export function Seo({
     document.title = title
 
     upsertMeta('name', 'description', description)
-    upsertMeta('name', 'robots', 'index, follow, max-image-preview:large')
+    upsertMeta('name', 'robots', robots)
     upsertMeta('property', 'og:title', title)
     upsertMeta('property', 'og:description', description)
     upsertMeta('property', 'og:type', type)
@@ -103,7 +105,7 @@ export function Seo({
       document.title = previousTitle
       document.head.querySelector('script[data-seo-jsonld]')?.remove()
     }
-  }, [author, description, image, jsonLd, keywords, modifiedTime, path, publishedTime, title, type])
+  }, [author, description, image, jsonLd, keywords, modifiedTime, path, publishedTime, robots, title, type])
 
   return null
 }
