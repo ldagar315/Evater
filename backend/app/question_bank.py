@@ -115,6 +115,7 @@ def to_public_question(row: Mapping[str, Any]) -> Dict[str, Any]:
         "question_style": question.get("question_style") or "direct",
         "estimated_time_seconds": question.get("estimated_time_seconds") or 60,
         "maximum_marks": question.get("marks") or 1,
+        "source_attribution": question.get("source_attribution_display"),
     }
 
 

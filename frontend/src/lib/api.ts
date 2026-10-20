@@ -88,6 +88,8 @@ export type QuestionBankQuestion = {
   question_style: 'direct' | 'scenario' | 'experiment' | 'data' | 'diagram'
   estimated_time_seconds: number
   maximum_marks: number
+  // Display attribution for close-to-source items (e.g. NCERT), null/absent otherwise
+  source_attribution?: string | null
 }
 
 export type QuestionBankRouting = {

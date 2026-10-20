@@ -34,7 +34,7 @@ router = APIRouter(dependencies=[Depends(require_user)])
 PUBLIC_QUESTION_COLUMNS = (
     "id,chapter_id,concept_id,question_type,question_text,options_json,explanation,hint,"
     "difficulty,cognitive_level,skill_tags,misconception_tags,question_style,"
-    "estimated_time_seconds,marks,media_json,option_media_json,render_config"
+    "estimated_time_seconds,marks,media_json,option_media_json,render_config,source_attribution_display"
 )
 
 

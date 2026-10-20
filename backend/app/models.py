@@ -156,6 +156,9 @@ class PublicBankQuestion(BaseModel):
     question_style: Literal["direct", "scenario", "experiment", "data", "diagram"]
     estimated_time_seconds: int
     maximum_marks: int
+    # Display attribution for close-to-source items (e.g. NCERT). None for
+    # Evater-original items; private provenance never leaves the server.
+    source_attribution: Optional[str] = None
 
 
 class RoutingDecision(BaseModel):

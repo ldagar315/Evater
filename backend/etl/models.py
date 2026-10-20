@@ -287,6 +287,8 @@ class QuestionItemCandidate(BaseModel):
             "source_url": self.source_url,
             "source_question_id": self.source_question_id,
             "source_locator": self.source_locator,
+            "source_tier": self.source_tier,
+            "source_attribution_display": self.source_attribution,
             "content_hash": self.content_hash,
             "license_status": self.license_status,
             "review_status": self.review_status,

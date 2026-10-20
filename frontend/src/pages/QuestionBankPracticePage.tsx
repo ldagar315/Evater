@@ -430,6 +430,11 @@ export function QuestionBankPracticePage() {
                 <p className="text-sm font-semibold text-neutral-500">Question {currentQuestionIndex + 1}</p>
                 <span className="rounded-full bg-neutral-100 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-neutral-600">{QUESTION_TYPE_LABELS[currentQuestion.question_type]}</span>
               </div>
+              {currentQuestion.source_attribution && (
+                <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800 border border-amber-200" title={currentQuestion.source_attribution}>
+                  Source: {currentQuestion.source_attribution}
+                </p>
+              )}
               <h2 className="mt-4 text-xl font-bold leading-8 text-dark sm:text-2xl">{currentQuestion.question_text}</h2>
               <MediaGallery media={currentQuestion.media} />
               {currentQuestion.question_type === 'diagram_based' && <DeterministicDiagram config={currentRenderConfig} />}
@@ -791,4 +796,3 @@ export function QuestionBankPracticePage() {
     </div>
   )
 }
-
