@@ -107,6 +107,14 @@ export function ViewTestPage() {
     }));
   };
 
+
+// Signed URL (1h) - works for public and private buckets; sent to the backend
+// for OCR, which fetches it within the expiry window.
+const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
+  const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, 3600);
+  if (error || !data?.signedUrl) throw error || new Error("Failed to create signed URL");
+  return data.signedUrl;
+};
   const submitInteractiveTest = async () => {
     if (!test) return;
     setSubmittingInteractive(true);
@@ -130,11 +138,7 @@ export function ViewTestPage() {
 
           if (uploadError) throw uploadError;
 
-          const { data: urlData } = supabase.storage
-            .from("answer-sheet-test")
-            .getPublicUrl(fileName);
-
-          uploadedImages[q.question_number] = urlData.publicUrl;
+          uploadedImages[q.question_number] = await getSignedUrl("answer-sheet-test", fileName);
         }
       }
 
@@ -226,11 +230,7 @@ export function ViewTestPage() {
 
         if (error) throw error;
 
-        const { data } = supabase.storage
-          .from(bucketName)
-          .getPublicUrl(fileName);
-
-        if (data) urls.push(data.publicUrl);
+        urls.push(await getSignedUrl(bucketName, fileName));
       }
       setUploadedFileUrls(urls);
     } catch (err) {
@@ -257,10 +257,7 @@ export function ViewTestPage() {
             .from("answer-sheet-test")
             .upload(fileName, file);
           if (error) throw error;
-          const { data } = supabase.storage
-            .from("answer-sheet-test")
-            .getPublicUrl(fileName);
-          return data.publicUrl;
+          return getSignedUrl("answer-sheet-test", fileName);
         });
         finalUrls = await Promise.all(uploadPromises);
       }
