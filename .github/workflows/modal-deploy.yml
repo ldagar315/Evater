@@ -1,0 +1,34 @@
+name: Deploy Modal backend
+
+# Deploys the FastAPI backend to Modal whenever backend code lands on main.
+# Requires two repo secrets (Settings -> Secrets and variables -> Actions):
+#   MODAL_TOKEN_ID and MODAL_TOKEN_SECRET
+# Create them once in the Modal dashboard (Settings -> API Tokens) or with
+# `modal token new` locally.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - ".github/workflows/modal-deploy.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Modal
+        run: pip install modal
+
+      - name: Deploy to Modal
+        working-directory: backend
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+        run: modal deploy application.py
