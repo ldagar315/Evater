@@ -1,3 +1,24 @@
-# Netlify redirects file as backup
+# Netlify redirects file as backup (keep in sync with netlify.toml)
 /api/* /.netlify/functions/:splat 200
-/* /index.html 200
+/auth /index.html 200
+/profile /index.html 200
+/home /index.html 200
+/create-test /index.html 200
+/practice /index.html 200
+/question-preview /index.html 200
+/leaderboard /index.html 200
+/leagues /index.html 200
+/previous-tests /index.html 200
+/previous-feedbacks /index.html 200
+/viva /index.html 200
+/general-feedback /index.html 200
+/view-test/* /index.html 200
+/take-test/* /index.html 200
+/submit-feedback/* /index.html 200
+/view-feedback/* /index.html 200
+/blog/* /index.html 200
+/about /index.html 200
+/privacy /index.html 200
+/terms /index.html 200
+/contact /index.html 200
+/* /404.html 404
