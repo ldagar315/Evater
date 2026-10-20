@@ -38,6 +38,21 @@ from .models import CandidateOption, QuestionCandidate, QuestionItemCandidate, Q
 TIWARI_URL_ROOT = "https://www.tiwariacademy.in/ncert-solutions-class-8-science-curiosity-chapter"
 PAPER_URL_ROOT = "https://kumarsir34.wordpress.com/wp-content/uploads"
 
+# License + tier policy (owner decisions, 2026-10-20):
+# - NCERT items ship close to source with a visible attribution badge.
+# - Third-party aggregators (Tiwari Academy, kumarsir papers, and similar sites
+#   such as Byju's) are inspiration-only: their items must pass the rework + QC
+#   pipeline before review and are never staged or published verbatim. Their
+#   provenance (source_url, locator, question id) is kept privately for audit.
+NCERT_LICENSE = (
+    "Copyright NCERT; close-to-source use with attribution (owner-approved; "
+    "NCERT policy requires written permission - tracked in the license review)"
+)
+THIRD_PARTY_LICENSE = (
+    "All rights reserved by the publisher; inspiration-only source. "
+    "Items must be fully reworked (new values, contexts, wording) and QC-checked; never published verbatim."
+)
+
 
 @dataclass(frozen=True)
 class PaperSource:
@@ -211,6 +226,10 @@ def _make_candidate(
     source_question_id: str,
     source_kind: str,
     answer_source_url: str | None = None,
+    source_tier: str | None = None,
+    rework_status: str = "not_required",
+    source_license: str | None = None,
+    source_attribution: str | None = None,
 ) -> QuestionCandidate:
     option_values = [text for _, text in options]
     concept_id, concept_slug = _concept_id_for(spec, question_text, option_values)
@@ -235,6 +254,10 @@ def _make_candidate(
         source_url=source_url,
         source_locator=source_locator,
         source_question_id=source_question_id,
+        source_tier=source_tier,  # type: ignore[arg-type]
+        rework_status=rework_status,  # type: ignore[arg-type]
+        source_license=source_license,
+        source_attribution=source_attribution,
         question_family_key=f"curiosity:{spec.sequence_number:02d}:{concept_slug}:{hashlib.sha1(_normalize(question_text).encode()).hexdigest()[:12]}",
         variant_key=source_kind,
         answer_spec={
@@ -349,6 +372,10 @@ def _make_item(
     explanation: str | None = None,
     marks: int = 1,
     media: list[dict[str, Any]] | None = None,
+    source_tier: str | None = None,
+    rework_status: str = "not_required",
+    source_license: str | None = None,
+    source_attribution: str | None = None,
 ) -> QuestionItemCandidate:
     option_values = [str(option.get("text", "")) for option in (options or [])]
     concept_id, concept_slug = _concept_id_for(spec, question_text, option_values)
@@ -369,6 +396,10 @@ def _make_item(
         source_url=source_url,
         source_locator=source_locator,
         source_question_id=source_question_id,
+        source_tier=source_tier,  # type: ignore[arg-type]
+        rework_status=rework_status,  # type: ignore[arg-type]
+        source_license=source_license,
+        source_attribution=source_attribution,
         media=media or [],
         answer_spec={
             **(answer_spec or {}),
@@ -423,6 +454,9 @@ def parse_tiwari_html(html: str, spec: ChapterSpec, source_url: str) -> list[Que
                     source_locator=f"HTML MCQ block, Question {question_number}",
                     source_question_id=source_question_id,
                     source_kind="tiwari_academy_html",
+                    source_tier="inspiration_only",
+                    rework_status="required",
+                    source_license=THIRD_PARTY_LICENSE,
                 )
             )
         except ValueError:
@@ -593,6 +627,9 @@ def parse_paper_items(
                         source_locator=locator,
                         source_question_id=f"kumar-swamy:class8-science:ch{spec.sequence_number:02d}:paper{paper_number:02d}:q{question_number:02d}",
                         source_kind="kv_practice_paper_pdf",
+                        source_tier="inspiration_only",
+                        rework_status="required",
+                        source_license=THIRD_PARTY_LICENSE,
                         media=_media_reference(question_url, locator, _page_number_for(question_pages, question_number)) if _has_diagram_reference(stem) else [],
                     )
                 )
@@ -622,6 +659,9 @@ def parse_paper_items(
                     source_locator=locator,
                     source_question_id=f"kumar-swamy:class8-science:ch{spec.sequence_number:02d}:paper{paper_number:02d}:q{question_number:02d}",
                     source_kind="kv_practice_paper_pdf",
+                    source_tier="inspiration_only",
+                    rework_status="required",
+                    source_license=THIRD_PARTY_LICENSE,
                     marks=2 if section == "B" else 3 if section == "C" else 4 if section == "E" else 5,
                     media=_media_reference(question_url, locator, page_number) if _has_diagram_reference(prompt) else [],
                 )
@@ -672,6 +712,13 @@ def parse_official_chapter_items(content: bytes, spec: ChapterSpec) -> list[Ques
                     source_locator=locator,
                     source_question_id=f"ncert:class8-science:ch{spec.sequence_number:02d}:{source_id_prefix}:q{question_number:02d}",
                     source_kind="official_ncert_pdf",
+                    source_tier="ncert_attributed",
+                    rework_status="not_required",
+                    source_license=NCERT_LICENSE,
+                    source_attribution=(
+                        f"NCERT, Curiosity - Textbook of Science for Grade 8, "
+                        f"Chapter {spec.sequence_number}: {spec.title} (ncert.nic.in)"
+                    ),
                     answer_spec={"has_answer_key": False},
                 )
             )
@@ -697,6 +744,13 @@ def parse_official_chapter_items(content: bytes, spec: ChapterSpec) -> list[Ques
                 source_locator=locator,
                 source_question_id=f"ncert:class8-science:ch{spec.sequence_number:02d}:{source_id_prefix}:q{question_number:02d}",
                 source_kind="official_ncert_pdf",
+                source_tier="ncert_attributed",
+                rework_status="not_required",
+                source_license=NCERT_LICENSE,
+                source_attribution=(
+                    f"NCERT, Curiosity - Textbook of Science for Grade 8, "
+                    f"Chapter {spec.sequence_number}: {spec.title} (ncert.nic.in)"
+                ),
                 answer_spec={
                     "has_answer_key": False,
                     "option_answer_status": "not_provided" if options else None,
@@ -742,6 +796,9 @@ def parse_paper_pair(
                 source_locator=f"PDF page {page_number}, Section A, Question {question_number}",
                 source_question_id=f"kumar-swamy:class8-science:ch{spec.sequence_number:02d}:paper{paper_number:02d}:q{question_number:02d}",
                 source_kind="kv_practice_paper_pdf",
+                source_tier="inspiration_only",
+                rework_status="required",
+                source_license=THIRD_PARTY_LICENSE,
                 answer_source_url=answer_url,
             )
         )
@@ -832,7 +889,7 @@ def scrape(
                     content_type=content_type,
                     target=official_path,
                     publisher="National Council of Educational Research and Training",
-                    license_status="copyright_review_required",
+                    license_status="copyright_ncert_attribution_owner_approved",
                     metadata={
                         "chapter_number": spec.sequence_number,
                         "page_count": len(reader.pages),
@@ -865,7 +922,7 @@ def scrape(
                     content_type=content_type,
                     target=target,
                     publisher="Tiwari Academy",
-                    license_status="copyright_review_required",
+                    license_status="all_rights_reserved_inspiration_only",
                     metadata={
                         "chapter_number": spec.sequence_number,
                         "question_count": len(html_candidates),
@@ -909,7 +966,7 @@ def scrape(
                     content_type=qp_type,
                     target=qp_path,
                     publisher="Kendriya Vidyalaya Embassy of India, Kathmandu (M. S. KumarSwamy)",
-                    license_status="copyright_review_required",
+                    license_status="all_rights_reserved_inspiration_only",
                     metadata={
                         "chapter_number": paper.chapter_number,
                         "paper_number": paper.paper_number,
@@ -924,7 +981,7 @@ def scrape(
                     content_type=answer_type,
                     target=answer_path,
                     publisher="Kendriya Vidyalaya Embassy of India, Kathmandu (M. S. KumarSwamy)",
-                    license_status="copyright_review_required",
+                    license_status="all_rights_reserved_inspiration_only",
                     metadata={
                         "chapter_number": paper.chapter_number,
                         "paper_number": paper.paper_number,
@@ -988,6 +1045,13 @@ def scrape(
             seen.add(candidate.content_hash or "")
             unique_candidates.append(candidate)
         unique_items = _deduplicate_items(items_by_chapter[spec.sequence_number])
+        # Tier split: inspiration-only items (third-party aggregators) are staged
+        # separately and feed only the rework + QC pipeline; they never land in
+        # the reviewable verbatim pack.
+        reviewable_candidates = [c for c in unique_candidates if c.source_tier != "inspiration_only"]
+        inspiration_candidates = [c for c in unique_candidates if c.source_tier == "inspiration_only"]
+        reviewable_items = [item for item in unique_items if item.source_tier != "inspiration_only"]
+        inspiration_items = [item for item in unique_items if item.source_tier == "inspiration_only"]
         pack_path, _ = _chapter_paths(output_path, spec)
         payload = {
             "curriculum_version_id": str(CURRICULUM_VERSION_ID),
@@ -995,24 +1059,45 @@ def scrape(
             "chapter_title": spec.title,
             "source_mode": "scraped_candidate_pack",
             "review_status": "review_required",
-            "source_urls": sorted({candidate.source_url for candidate in unique_candidates}),
-            "questions": [candidate.model_dump(mode="json") for candidate in unique_candidates],
-            "items": [item.model_dump(mode="json") for item in unique_items],
+            "tiering": "questions/items hold reviewable tiers only (ncert_attributed, manual); inspiration_only items are staged in the inspiration pack",
+            "source_urls": sorted({candidate.source_url for candidate in reviewable_candidates}),
+            "questions": [candidate.model_dump(mode="json") for candidate in reviewable_candidates],
+            "items": [item.model_dump(mode="json") for item in reviewable_items],
         }
         pack_path.parent.mkdir(parents=True, exist_ok=True)
         pack_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        inspiration_pack = None
+        if inspiration_candidates or inspiration_items:
+            inspiration_payload = {
+                "curriculum_version_id": str(CURRICULUM_VERSION_ID),
+                "chapter_id": str(spec.id),
+                "chapter_title": spec.title,
+                "source_mode": "inspiration_only_staging",
+                "review_status": "rework_required",
+                "tiering": "inspiration_only: feed the rework + QC pipeline; never publish verbatim",
+                "source_urls": sorted({candidate.source_url for candidate in inspiration_candidates}),
+                "questions": [candidate.model_dump(mode="json") for candidate in inspiration_candidates],
+                "items": [item.model_dump(mode="json") for item in inspiration_items],
+            }
+            inspiration_path = output_path / "inspiration" / f"class8_science_inspiration_chapter_{spec.sequence_number:02d}.json"
+            inspiration_path.parent.mkdir(parents=True, exist_ok=True)
+            inspiration_path.write_text(json.dumps(inspiration_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            inspiration_pack = str(inspiration_path)
         reports.append(
             {
                 "chapter": spec.sequence_number,
                 "title": spec.title,
-                "candidate_count": len(unique_candidates),
-                "item_count": len(unique_items),
+                "candidate_count": len(reviewable_candidates),
+                "item_count": len(reviewable_items),
+                "inspiration_candidate_count": len(inspiration_candidates),
+                "inspiration_item_count": len(inspiration_items),
+                "inspiration_pack": inspiration_pack,
                 "adapted_candidate_count": sum(
                     1
                     for candidate in unique_candidates
                     if candidate.generation_spec.get("adaptation_mode") == "structure_and_assessment_shape_only"
                 ),
-                "question_types": dict(Counter(item.question_type for item in unique_items)),
+                "question_types": dict(Counter(item.question_type for item in reviewable_items)),
                 "sources": len(payload["source_urls"]),
                 "pack": str(pack_path),
             }
@@ -1023,7 +1108,12 @@ def scrape(
         "run_type": "class8_science_source_scrape",
         "started_or_finished_at": _now(),
         "curriculum_version": "curiosity-2026-27",
-        "rights_policy": "All downloaded material is candidate-only until permission/license and subject review are complete.",
+        "rights_policy": (
+            "NCERT items are staged close to source with attribution (owner-approved stance). "
+            "Third-party aggregator items are inspiration-only: they are staged separately, must pass "
+            "the rework + QC pipeline before review, and are never published verbatim. "
+            "Provenance (source_url, locator, question id) is kept privately for audit."
+        ),
         "sources": manifest,
         "errors": errors,
         "adaptation_policy": {
