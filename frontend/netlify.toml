@@ -11,8 +11,116 @@ from = "/api/*"
 to = "/.netlify/functions/:splat"
 status = 200
 
-# SPA fallback - this is crucial for React Router
+# App routes served by React Router (keep in sync with src/App.tsx).
+# Anything not listed here or in public/ falls through to 404.html
+# with a real 404 status instead of a soft-404.
 [[redirects]]
-from = "/*"
+from = "/auth"
 to = "/index.html"
 status = 200
+
+[[redirects]]
+from = "/profile"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/home"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/create-test"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/practice"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/question-preview"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/leaderboard"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/leagues"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/previous-tests"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/previous-feedbacks"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/viva"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/general-feedback"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/view-test/*"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/take-test/*"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/submit-feedback/*"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/view-feedback/*"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/blog/*"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/about"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/privacy"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/terms"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/contact"
+to = "/index.html"
+status = 200
+
+# Real 404 for unknown URLs. Netlify serves public/404.html with a 404 status.
+[[redirects]]
+from = "/*"
+to = "/404.html"
+status = 404
