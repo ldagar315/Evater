@@ -1,7 +1,13 @@
 [build]
 functions = "netlify/functions"
 publish = "dist"
-command = "npx vite build"
+# Install the Chrome build that matches the pinned puppeteer before building;
+# Netlify's build image does not ship one and its node_modules cache skips
+# puppeteer's postinstall download. The cache directory persists across builds.
+command = "npx puppeteer browsers install chrome && npx vite build"
+
+[build.environment]
+PUPPETEER_CACHE_DIRECTORY = "/opt/build/cache/puppeteer"
 
 [functions]
 node_bundler = "esbuild"
