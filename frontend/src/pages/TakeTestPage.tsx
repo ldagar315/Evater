@@ -7,6 +7,7 @@ import { Header } from '../components/layout/Header'
 import { MathText } from '../components/ui/MathRenderer'
 import { useAuthContext } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
+import { apiFetch } from '../lib/api'
 import { QuestionsCreated, Question } from '../types'
 
 interface MCQOption {
@@ -43,6 +44,9 @@ export function TakeTestPage() {
   const [testCompleted, setTestCompleted] = useState(false)
   const [score, setScore] = useState(0)
   const [timeElapsed, setTimeElapsed] = useState(0)
+  const [feedbackId, setFeedbackId] = useState<number | null>(null)
+  const [savingResults, setSavingResults] = useState(false)
+  const [saveFailed, setSaveFailed] = useState(false)
 
   useEffect(() => {
     if (testId && user) {
@@ -273,6 +277,72 @@ export function TakeTestPage() {
     const finalScore = Math.round((correctAnswers / questions.length) * 100)
     setScore(finalScore)
     setTestCompleted(true) // This will stop the timer via useEffect dependency
+    saveResults()
+  }
+
+  const capitalizeDifficulty = (d: string) => {
+    const map: Record<string, string> = { easy: 'Easy', medium: 'Medium', hard: 'Hard' }
+    return map[(d || '').toLowerCase()] || d
+  }
+
+  // Persist the completed MCQ test: generate feedback via the same API the
+  // interactive flow uses, then store a FeedbackTest row so the attempt shows
+  // up under Previous feedback. Saving never blocks the completion screen.
+  const saveResults = async () => {
+    if (!test || !user) return
+    setSavingResults(true)
+    setSaveFailed(false)
+    try {
+      const payload = {
+        questions: questions.map((q) => ({
+          question_text: q.question_text,
+          question_type: q.question_type,
+          question_number: q.question_number,
+          maximum_marks: q.maximum_marks,
+          difficulty: capitalizeDifficulty(q.difficulty),
+          contains_math_expression: q.contains_math_expression,
+          options: q.options || null,
+        })),
+        answers: questions.map((q) => {
+          const ans = userAnswers.find((a) => a.questionId === q.question_number)
+          const selectedText = (ans?.selectedOptions || [])
+            .map((id) => q.mcq_options.find((o) => o.id === id)?.text || id)
+            .join(', ')
+          return {
+            question_number: q.question_number,
+            answer_text: selectedText,
+            image_url: null,
+          }
+        }),
+      }
+
+      const apiUrl = import.meta.env.PROD
+        ? '/.netlify/functions/generate-feedback-direct'
+        : '/api/external/api/gen_feedback_direct'
+
+      const response = await apiFetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!response.ok) throw new Error('Failed to generate feedback')
+
+      const data = await response.json()
+
+      const { data: feedbackData, error: feedbackError } = await supabase
+        .from('FeedbackTest')
+        .insert([{ given_by: user.id, for_test: parseInt(testId!), feedback: data.feedback }])
+        .select()
+        .single()
+
+      if (feedbackError) throw feedbackError
+      setFeedbackId(feedbackData.id)
+    } catch (err) {
+      console.error('Failed to save MCQ test results:', err)
+      setSaveFailed(true)
+    } finally {
+      setSavingResults(false)
+    }
   }
 
   const formatTime = (seconds: number) => {
@@ -398,11 +468,24 @@ export function TakeTestPage() {
                 </div>
               </div>
 
+              {savingResults && (
+                <p className="text-sm text-neutral-500 mb-4">Saving your results...</p>
+              )}
+              {saveFailed && (
+                <p className="text-sm text-red-500 mb-4">
+                  Your results could not be saved. Your score is shown above.
+                </p>
+              )}
               <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                {feedbackId && (
+                  <Button onClick={() => navigate(`/view-feedback/${feedbackId}`)}>
+                    View Feedback
+                  </Button>
+                )}
                 <Button onClick={() => navigate('/previous-tests')} variant="outline">
                   Back to Tests
                 </Button>
-                <Button onClick={() => navigate('/create-test')}>
+                <Button onClick={() => navigate('/create-test')} variant={feedbackId ? 'outline' : 'primary'}>
                   Create New Test
                 </Button>
               </div>
