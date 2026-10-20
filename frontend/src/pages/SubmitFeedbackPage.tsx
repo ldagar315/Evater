@@ -26,6 +26,7 @@ export function SubmitFeedbackPage() {
   const [evaluating, setEvaluating] = useState(false)
   const [error, setError] = useState('')
   const [uploadedFileUrls, setUploadedFileUrls] = useState<string[]>([])
+  const [uploadedFilePaths, setUploadedFilePaths] = useState<string[]>([])
   const [uploadCompleted, setUploadCompleted] = useState(false)
   const [uploadingToBucket, setUploadingToBucket] = useState(false)
 
@@ -75,6 +76,14 @@ export function SubmitFeedbackPage() {
     setFiles(selectedFiles)
   }
 
+
+// Signed URL (1h) - works for public and private buckets; sent to the backend
+// for OCR, which fetches it within the expiry window.
+const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
+  const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, 3600)
+  if (error || !data?.signedUrl) throw error || new Error('Failed to create signed URL')
+  return data.signedUrl
+}
   const uploadToBucket = async () => {
     if (files.length === 0) {
       setError('Please select files first')
@@ -88,6 +97,7 @@ export function SubmitFeedbackPage() {
       const bucketName = 'question-papers-test'
       const folderName = 'question-test-v1'
       const uploadedUrls: string[] = []
+      const uploadedPaths: string[] = []
 
       if (!user) {
         throw new Error('You must be signed in to upload files')
@@ -108,17 +118,12 @@ export function SubmitFeedbackPage() {
 
         if (error) throw error
 
-        // Get the public URL for the uploaded file
-        const { data: urlData } = supabase.storage
-          .from(bucketName)
-          .getPublicUrl(fileName)
-
-        if (urlData?.publicUrl) {
-          uploadedUrls.push(urlData.publicUrl)
-        }
+        uploadedUrls.push(await getSignedUrl(bucketName, fileName))
+        uploadedPaths.push(fileName)
       }
 
       setUploadedFileUrls(uploadedUrls)
+      setUploadedFilePaths(uploadedPaths)
       setUploadCompleted(true)
       
     } catch (err) {
@@ -202,6 +207,7 @@ export function SubmitFeedbackPage() {
 
     try {
       let imageUrls: string[] = []
+      const uploadedSheetPaths: string[] = []
 
       // If files were uploaded to bucket, use those URLs
       if (uploadedFileUrls.length > 0) {
@@ -217,12 +223,8 @@ export function SubmitFeedbackPage() {
 
           if (error) throw error
 
-          // Get public URL
-          const { data: urlData } = supabase.storage
-            .from('answer-sheet-test')
-            .getPublicUrl(fileName)
-
-          return urlData.publicUrl
+          uploadedSheetPaths.push(fileName)
+          return getSignedUrl('answer-sheet-test', fileName)
         })
 
         imageUrls = await Promise.all(uploadPromises)
@@ -258,7 +260,8 @@ export function SubmitFeedbackPage() {
         .insert([{
           uploaded_by: user!.id,
           for_test: test.id,
-          image_url: imageUrls
+          // Store object paths (signed URLs expire); legacy rows hold public URLs.
+          image_url: uploadedSheetPaths.length > 0 ? uploadedSheetPaths : uploadedFilePaths
         }])
         .select()
         .single()
