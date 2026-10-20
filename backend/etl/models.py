@@ -31,6 +31,15 @@ class QuestionCandidate(BaseModel):
     source_url: str
     source_locator: Optional[str] = None
     source_question_id: Optional[str] = None
+    # Provenance for staging/review: license and display attribution travel with the item
+    # and are registered on content_sources when published (private audit fields).
+    source_license: Optional[str] = None
+    source_attribution: Optional[str] = None
+    # Source tiering: ncert_attributed items ship close to source with the attribution badge;
+    # inspiration_only items (third-party aggregators) must pass the rework + QC pipeline
+    # before they can be staged for review and are never published verbatim.
+    source_tier: Optional[Literal["ncert_attributed", "inspiration_only", "open_license", "manual"]] = None
+    rework_status: Literal["not_required", "required", "done", "qc_passed"] = "not_required"
     question_family_key: Optional[str] = None
     variant_key: Optional[str] = None
     media: List[Dict[str, Any]] = Field(default_factory=list)
@@ -152,6 +161,15 @@ class QuestionItemCandidate(BaseModel):
     source_url: str
     source_locator: Optional[str] = None
     source_question_id: Optional[str] = None
+    # Provenance for staging/review: license and display attribution travel with the item
+    # and are registered on content_sources when published (private audit fields).
+    source_license: Optional[str] = None
+    source_attribution: Optional[str] = None
+    # Source tiering: ncert_attributed items ship close to source with the attribution badge;
+    # inspiration_only items (third-party aggregators) must pass the rework + QC pipeline
+    # before they can be staged for review and are never published verbatim.
+    source_tier: Optional[Literal["ncert_attributed", "inspiration_only", "open_license", "manual"]] = None
+    rework_status: Literal["not_required", "required", "done", "qc_passed"] = "not_required"
     media: List[Dict[str, Any]] = Field(default_factory=list)
     option_media: Dict[str, List[Dict[str, Any]]] = Field(default_factory=dict)
     render_config: Dict[str, Any] = Field(default_factory=dict)
@@ -225,6 +243,10 @@ class QuestionItemCandidate(BaseModel):
             source_url=candidate.source_url,
             source_locator=candidate.source_locator,
             source_question_id=candidate.source_question_id,
+            source_license=candidate.source_license,
+            source_attribution=candidate.source_attribution,
+            source_tier=candidate.source_tier,
+            rework_status=candidate.rework_status,
             media=candidate.media,
             option_media=candidate.option_media,
             render_config=candidate.render_config,
@@ -265,8 +287,10 @@ class QuestionItemCandidate(BaseModel):
             "source_url": self.source_url,
             "source_question_id": self.source_question_id,
             "source_locator": self.source_locator,
+            "source_tier": self.source_tier,
+            "source_attribution_display": self.source_attribution,
             "content_hash": self.content_hash,
             "license_status": self.license_status,
             "review_status": self.review_status,
             "status": status_override or ("published" if self.review_status == "approved" else "review"),
-        }
+    }
