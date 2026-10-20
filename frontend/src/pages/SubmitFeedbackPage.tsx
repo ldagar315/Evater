@@ -449,14 +449,28 @@ export function SubmitFeedbackPage() {
             </p>
             <Button
               onClick={handleEvaluate}
-              disabled={files.length === 0 && uploadedFileUrls.length === 0}
-              loading={evaluating}
+              disabled={evaluating || (files.length === 0 && uploadedFileUrls.length === 0)}
               size="lg"
             >
-              {evaluating ? 'Evaluating Answer Sheets...' : 'Evaluate Answer Sheets'}
+              Evaluate Answer Sheets
             </Button>
           </CardContent>
         </Card>
+
+        {/* Full-screen loading overlay while evaluation runs. Blocks all
+            pointer interaction (incl. double-clicks) until feedback is ready. */}
+        {evaluating && (
+          <div
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/60"
+            role="alert"
+            aria-busy="true"
+            aria-live="assertive"
+          >
+            <div className="h-14 w-14 animate-spin rounded-full border-4 border-white/30 border-t-white" />
+            <p className="mt-6 text-lg font-semibold text-white">Evaluating answer sheets...</p>
+            <p className="mt-2 text-sm text-white/80">This can take a minute. Please don't close this page.</p>
+          </div>
+        )}
       </div>
     </div>
   )
