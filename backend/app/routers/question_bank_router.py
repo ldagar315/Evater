@@ -25,7 +25,7 @@ from ..question_bank import (
     to_public_question,
     update_mastery,
 )
-from .leaderboard_router import award_completed_practice
+from .leaderboard_router import _parallel, award_completed_practice
 from ..supabase_client import create_supabase_service_client
 
 logger = logging.getLogger(__name__)
@@ -384,26 +384,33 @@ def submit_question_bank_block(
         if len(submitted_by_id) != len(request.answers) or set(submitted_by_id) != set(expected_question_ids):
             raise HTTPException(status_code=400, detail="Submit exactly one answer for each question in this block.")
 
-        existing_attempts = (
-            client.table("question_attempts")
-            .select("test_question_id")
-            .in_("test_question_id", [str(row["id"]) for row in test_questions])
-            .execute()
-        ).data or []
-        if existing_attempts:
-            raise HTTPException(status_code=409, detail="This test block was already submitted.")
-
         service_client = client
-        answer_rows = (
-            service_client.table("question_bank")
-            .select(
-                "id,concept_id,question_text,options_json,correct_option_id,explanation,"
-                "question_type,difficulty,cognitive_level,skill_tags,misconception_tags,question_style,"
-                "estimated_time_seconds,marks,media_json,option_media_json,render_config,answer_spec"
-            )
-            .in_("id", expected_question_ids)
-            .execute()
-        ).data or []
+        # Independent reads run concurrently: each Supabase call is a separate
+        # HTTPS round trip from the Modal container to the database region, so
+        # parallelising them takes real time off the student's wait.
+        prefetch = _parallel(
+            existing_attempts=lambda: (
+                client.table("question_attempts")
+                .select("test_question_id")
+                .in_("test_question_id", [str(row["id"]) for row in test_questions])
+                .execute()
+            ).data
+            or [],
+            answer_rows=lambda: (
+                service_client.table("question_bank")
+                .select(
+                    "id,concept_id,question_text,options_json,correct_option_id,explanation,"
+                    "question_type,difficulty,cognitive_level,skill_tags,misconception_tags,question_style,"
+                    "estimated_time_seconds,marks,media_json,option_media_json,render_config,answer_spec"
+                )
+                .in_("id", expected_question_ids)
+                .execute()
+            ).data
+            or [],
+        )
+        if prefetch["existing_attempts"]:
+            raise HTTPException(status_code=409, detail="This test block was already submitted.")
+        answer_rows = prefetch["answer_rows"]
         answer_rows_by_id = {str(row["id"]): row for row in answer_rows}
         if set(answer_rows_by_id) != set(expected_question_ids):
             raise HTTPException(status_code=409, detail="One or more published questions are no longer available.")
@@ -436,20 +443,77 @@ def submit_question_bank_block(
             ]
         ).execute()
 
-        try:
-            _update_question_performance(
-                client=client,
-                user_id=user_id,
-                test=test,
-                submitted_by_id=submitted_by_id,
-                results=results,
-            )
-        except Exception:
-            # Raw question_attempts is authoritative; a cache failure should
-            # never make a completed student's score disappear.
-            logger.exception("Failed to update student question performance cache")
+        # Independent follow-up work runs concurrently: the performance cache,
+        # the mastery read, the completion totals, and the leaderboard award
+        # do not depend on each other, so they share one parallel batch
+        # instead of each waiting its own round trip.
+        current_block = int(test["current_block"])
+        answered_count = current_block * int(test["block_size"])
+        remaining = max(int(test["question_count"]) - answered_count, 0)
 
-        mastery_rows = _load_mastery(client, user_id, str(test["chapter_id"]))
+        def _performance_update() -> None:
+            try:
+                _update_question_performance(
+                    client=client,
+                    user_id=user_id,
+                    test=test,
+                    submitted_by_id=submitted_by_id,
+                    results=results,
+                )
+            except Exception:
+                # Raw question_attempts is authoritative; a cache failure
+                # should never make a completed student's score disappear.
+                logger.exception("Failed to update student question performance cache")
+
+        side_tasks = {
+            "performance": _performance_update,
+            "mastery_rows": lambda: _load_mastery(client, user_id, str(test["chapter_id"])),
+        }
+        if remaining:
+            side_tasks["all_selected"] = lambda: (
+                client.table("test_questions")
+                .select("question_id")
+                .eq("test_attempt_id", test_id_text)
+                .execute()
+            ).data or []
+            side_tasks["published_questions"] = lambda: _load_published_questions(
+                client, str(test["chapter_id"])
+            )
+        else:
+            side_tasks["all_attempts"] = lambda: (
+                client.table("question_attempts")
+                .select("marks_awarded")
+                .eq("test_attempt_id", test_id_text)
+                .execute()
+            ).data or []
+            side_tasks["all_test_questions"] = lambda: (
+                client.table("test_questions")
+                .select("question_id")
+                .eq("test_attempt_id", test_id_text)
+                .execute()
+            ).data or []
+            if test.get("mode") == "practice":
+                # Overlapped with the completion writes below so the league
+                # calls do not add their own serial wait. Runs in the request
+                # lifecycle, so the "+N league points" line keeps working.
+                def _leaderboard_award() -> Dict[str, int] | None:
+                    try:
+                        return award_completed_practice(
+                            service_client,
+                            test_id=test_id_text,
+                            user_id=user_id,
+                            completed_at=datetime.now(timezone.utc),
+                        )
+                    except Exception:
+                        # Practice completion and mastery remain available even
+                        # if the optional league write needs a retry later.
+                        logger.exception("Failed to award seasonal leaderboard points")
+                        return None
+
+                side_tasks["leaderboard"] = _leaderboard_award
+
+        side_results = _parallel(**side_tasks)
+        mastery_rows = side_results["mastery_rows"]
         mastery_updates = update_mastery(results, _mastery_map(mastery_rows))
         existing_mastery = _mastery_map(mastery_rows)
         mastery_now = datetime.now(timezone.utc).isoformat()
@@ -484,20 +548,12 @@ def submit_question_bank_block(
         block_score = sum(int(result["marks_awarded"]) for result in results)
         block_total = sum(int(result["maximum_marks"]) for result in results)
         block_percentage = round((block_score / block_total) * 100, 2) if block_total else 0
-        current_block = int(test["current_block"])
-        answered_count = current_block * int(test["block_size"])
-        remaining = max(int(test["question_count"]) - answered_count, 0)
 
         next_block = None
         if remaining:
-            all_selected = (
-                client.table("test_questions")
-                .select("question_id")
-                .eq("test_attempt_id", test_id_text)
-                .execute()
-            ).data or []
+            all_selected = side_results["all_selected"]
             selected_ids = [str(row["question_id"]) for row in all_selected]
-            questions = _load_published_questions(client, str(test["chapter_id"]))
+            questions = side_results["published_questions"]
             updated_mastery = _mastery_map(mastery_rows)
             updated_mastery.update({str(update["concept_id"]): update for update in mastery_updates})
             next_selection = select_question_block(
@@ -539,18 +595,8 @@ def submit_question_bank_block(
                 routing=routing,
             )
         else:
-            all_attempts = (
-                client.table("question_attempts")
-                .select("marks_awarded")
-                .eq("test_attempt_id", test_id_text)
-                .execute()
-            ).data or []
-            all_test_questions = (
-                client.table("test_questions")
-                .select("question_id")
-                .eq("test_attempt_id", test_id_text)
-                .execute()
-            ).data or []
+            all_attempts = side_results["all_attempts"]
+            all_test_questions = side_results["all_test_questions"]
             all_question_ids = [str(row["question_id"]) for row in all_test_questions]
             all_question_rows = (
                 service_client.table("question_bank")
@@ -570,18 +616,7 @@ def submit_question_bank_block(
                 }
             ).eq("id", test_id_text).eq("user_id", user_id).execute()
 
-            if test.get("mode") == "practice":
-                try:
-                    leaderboard_award = award_completed_practice(
-                        service_client,
-                        test_id=test_id_text,
-                        user_id=user_id,
-                        completed_at=datetime.now(timezone.utc),
-                    )
-                except Exception:
-                    # Practice completion and mastery remain available even if
-                    # the optional league write needs to be retried later.
-                    logger.exception("Failed to award seasonal leaderboard points")
+            leaderboard_award = side_results.get("leaderboard")
 
         return QuestionBankBlockResponse(
             test_id=test_id,

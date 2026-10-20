@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from math import floor
 from typing import Any, Dict, Iterable, List, Literal, Mapping, Sequence
@@ -38,6 +39,19 @@ def _one(rows: Any) -> Dict[str, Any] | None:
     if isinstance(rows, list):
         return rows[0] if rows else None
     return rows if isinstance(rows, dict) else None
+
+
+def _parallel(**tasks: Any) -> Dict[str, Any]:
+    """Run independent Supabase calls concurrently and return named results.
+
+    Each Supabase call is a separate HTTPS round trip from the Modal container
+    to the database region; independent calls made in parallel remove that
+    latency from the student's wait. The first task exception propagates,
+    matching sequential behaviour.
+    """
+    with ThreadPoolExecutor(max_workers=len(tasks)) as pool:
+        futures = {name: pool.submit(fn) for name, fn in tasks.items()}
+        return {name: future.result() for name, future in futures.items()}
 
 
 def _iso(value: datetime) -> str:
@@ -280,26 +294,37 @@ def award_completed_practice(
     completed_at: datetime,
 ) -> Dict[str, int] | None:
     """Award one completed practice exactly once for the current season."""
-    enrollment = _one(
-        client.table("student_enrollments")
-        .select("user_id")
-        .eq("user_id", user_id)
-        .eq("role", "student")
-        .limit(1)
+    # These three reads are independent, so run them concurrently.
+    preflight = _parallel(
+        enrollment=lambda: _one(
+            client.table("student_enrollments")
+            .select("user_id")
+            .eq("user_id", user_id)
+            .eq("role", "student")
+            .limit(1)
+            .execute()
+            .data
+        ),
+        existing_practice=lambda: _one(
+            client.table("leaderboard_practice_scores")
+            .select("points_awarded,raw_score")
+            .eq("test_attempt_id", test_id)
+            .limit(1)
+            .execute()
+            .data
+        ),
+        attempts=lambda: client.table("question_attempts")
+        .select("question_id,is_correct,selected_option_id,answer_json")
+        .eq("test_attempt_id", test_id)
         .execute()
         .data
+        or [],
     )
+    enrollment = preflight["enrollment"]
     if not enrollment:
         return None
 
-    existing_practice = _one(
-        client.table("leaderboard_practice_scores")
-        .select("points_awarded,raw_score")
-        .eq("test_attempt_id", test_id)
-        .limit(1)
-        .execute()
-        .data
-    )
+    existing_practice = preflight["existing_practice"]
     if existing_practice:
         return {
             "raw_score": int(existing_practice.get("raw_score") or 0),
@@ -322,36 +347,37 @@ def award_completed_practice(
     if not player:
         raise RuntimeError("Supabase did not return the leaderboard player.")
 
-    attempts = (
-        client.table("question_attempts")
-        .select("question_id,is_correct,selected_option_id,answer_json")
-        .eq("test_attempt_id", test_id)
-        .execute()
-        .data
-        or []
-    )
+    attempts = preflight["attempts"]
     question_ids = [str(attempt["question_id"]) for attempt in attempts]
-    question_rows = (
-        client.table("question_bank")
-        .select("id,difficulty")
-        .in_("id", question_ids)
-        .execute()
-        .data
-        or []
-    ) if question_ids else []
+    # Both detail reads only need the attempt question ids, so run them
+    # concurrently.
+    detail = _parallel(
+        question_rows=lambda: (
+            client.table("question_bank")
+            .select("id,difficulty")
+            .in_("id", question_ids)
+            .execute()
+            .data
+            or []
+        )
+        if question_ids
+        else [],
+        already_scored=lambda: (
+            client.table("leaderboard_question_scores")
+            .select("question_id")
+            .eq("season_id", season_id)
+            .eq("user_id", user_id)
+            .in_("question_id", question_ids)
+            .execute()
+            .data
+            or []
+        )
+        if question_ids
+        else [],
+    )
+    question_rows = detail["question_rows"]
     difficulty_by_id = {str(row["id"]): row.get("difficulty") or "easy" for row in question_rows}
-
-    already_scored = (
-        client.table("leaderboard_question_scores")
-        .select("question_id")
-        .eq("season_id", season_id)
-        .eq("user_id", user_id)
-        .in_("question_id", question_ids)
-        .execute()
-        .data
-        or []
-    ) if question_ids else []
-    already_scored_ids = {str(row["question_id"]) for row in already_scored}
+    already_scored_ids = {str(row["question_id"]) for row in detail["already_scored"]}
 
     score_inputs = []
     question_score_rows = []
@@ -385,11 +411,12 @@ def award_completed_practice(
             ),
         })
 
-    if question_score_rows:
-        client.table("leaderboard_question_scores").insert(question_score_rows).execute()
-
     updated_points = int(player.get("points") or 0) + points_awarded
-    client.table("leaderboard_practice_scores").insert({
+    _parallel(
+        question_scores=lambda: client.table("leaderboard_question_scores").insert(question_score_rows).execute()
+        if question_score_rows
+        else None,
+        practice_scores=lambda: client.table("leaderboard_practice_scores").insert({
         "test_attempt_id": test_id,
         "season_id": season_id,
         "user_id": user_id,
@@ -398,7 +425,8 @@ def award_completed_practice(
         "scored_question_count": len(score_inputs),
         "correct_answers": int(practice_score["correct_answers"]),
         "completed_at": _iso(now),
-    }).execute()
+        }).execute(),
+    )
     client.table("leaderboard_players").update({
         "points": updated_points,
         "completed_practices": int(player.get("completed_practices") or 0) + 1,
