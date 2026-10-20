@@ -293,4 +293,4 @@ class QuestionItemCandidate(BaseModel):
             "license_status": self.license_status,
             "review_status": self.review_status,
             "status": status_override or ("published" if self.review_status == "approved" else "review"),
-    }
+        }
