@@ -100,6 +100,10 @@ def build_adapted_candidates(
                     "review_state": "pending_subject_and_license_review",
                 },
                 "license_status": "adapted_review_required",
+                "source_tier": "manual",
+                "rework_status": "done",
+                "source_license": None,
+                "source_attribution": None,
                 "review_status": "review",
             }
         )
