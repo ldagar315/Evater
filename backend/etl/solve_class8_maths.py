@@ -141,6 +141,11 @@ def solve_pack(pack: dict[str, Any]) -> dict[str, Any]:
         if (item.get("explanation") or "").strip():
             continue
         stem = " ".join((item.get("question_text") or "").split())
+        # Multi-part stems need every part solved; v1 solvers answer single
+        # values, so skip stems with several part markers entirely.
+        if len(re.findall(r"\((?:i{1,3}|iv|vi?)\)", stem)) >= 2:
+            attempted += 1
+            continue
         for name, solver in SOLVERS:
             result = solver(stem)
             if result is None:
