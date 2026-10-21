@@ -22,7 +22,11 @@ app = App("Evater_v1", image=image)
         Secret.from_name("groq-secret"),
         Secret.from_name("evater-supabase-config"),
     ],
-    min_containers=1
+    # Cost rule (Oct 21): no always-on containers on the $30/month Modal plan.
+    # Sleep after 10 min idle; first request after that takes a cold start,
+    # which is acceptable while the app has no traffic.
+    min_containers=0,
+    scaledown_window=600,
 )
 @asgi_app()
 def wrapper():
