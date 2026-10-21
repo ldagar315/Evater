@@ -184,7 +184,7 @@ def seed_remote(
         ]
         if archive_rows:
             client.table("question_bank_items").upsert(
-                archive_rows,
+                _strip_pending_migration_columns(archive_rows),
                 on_conflict="chapter_id,content_hash",
             ).execute()
         published = publish_candidates(
@@ -206,6 +206,20 @@ def seed_remote(
             }
         )
     return reports
+
+
+# Prod tables do not yet carry the source_tier / source_attribution_display
+# columns (migration 20261020143000 is not applied). Strip them from upsert
+# payloads until the migration lands; provenance still flows via source_url,
+# source_question_id, source_locator, and content_sources.
+_PENDING_MIGRATION_COLUMNS = ("source_tier", "source_attribution_display")
+
+
+def _strip_pending_migration_columns(rows):
+    return [
+        {key: value for key, value in row.items() if key not in _PENDING_MIGRATION_COLUMNS}
+        for row in rows
+    ]
 
 
 def _parse_chapters(value: str) -> tuple[ChapterSpec, ...]:
