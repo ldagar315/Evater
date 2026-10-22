@@ -121,6 +121,8 @@ class QuestionCandidate(BaseModel):
             "generation_spec": self.generation_spec,
             "source_question_id": self.source_question_id,
             "source_locator": self.source_locator,
+            "source_tier": self.source_tier,
+            "source_attribution_display": self.source_attribution,
             "content_hash": self.content_hash,
             "quality_score": 1.0 if self.review_status == "approved" else None,
             "status": status_override or ("published" if self.review_status == "approved" else "review"),
