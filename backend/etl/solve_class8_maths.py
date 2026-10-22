@@ -19,7 +19,7 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Callable, Optional
 
-_NUM = r"(\d+(?:\.\d+)?)"
+_NUM = r"(?<!\d)(\d+(?:\.\d+)?)"
 
 Solved = tuple[str, str]  # (answer text, verification note)
 
@@ -128,10 +128,267 @@ def solve_unitary(stem: str) -> Optional[Solved]:
     return None
 
 
+
+
+def solve_inverse_proportion(stem: str) -> Optional[Solved]:
+    """Work/rate inverse proportions: more workers -> fewer days, etc."""
+
+    s = " ".join(stem.split())
+    m = re.search(
+        rf"enough water to supply {_NUM} families.*for {_NUM} days.*{_NUM} more families",
+        s, re.IGNORECASE,
+    )
+    if m:
+        f1, d1, extra = _num(m.group(1)), _num(m.group(2)), _num(m.group(3))
+        days = f1 * d1 / (f1 + extra)
+        if days * (f1 + extra) == f1 * d1:
+            return (f"{_fmt(days)} days", f"verified: {_fmt(days)} x {_fmt(f1+extra)} = {_fmt(f1*d1)} = {_fmt(f1)} x {_fmt(d1)}")
+    m = re.search(
+        rf"{_NUM} workers can paint .* in {_NUM} days.*one more worker",
+        s, re.IGNORECASE,
+    )
+    if m:
+        w, d = _num(m.group(1)), _num(m.group(2))
+        days = w * d / (w + 1)
+        if days * (w + 1) == w * d:
+            return (f"{_fmt(days)} days", f"verified: {_fmt(days)} x {_fmt(w+1)} = {_fmt(w*d)} worker-days")
+    m = re.search(
+        rf"[Ii]t takes {_NUM} hours to fill {_NUM} tanks.*[Hh]ow long will it take to fill {_NUM}",
+        s,
+    )
+    if m:
+        h, t1, t2 = _num(m.group(1)), _num(m.group(2)), _num(m.group(3))
+        rate = h / t1
+        total = rate * t2
+        if total / t2 == h / t1:
+            return (f"{_fmt(total)} hours", f"verified: {_fmt(total)}/{_fmt(t2)} = {_fmt(h)}/{_fmt(t1)}")
+    m = re.search(
+        rf"requires {_NUM} machines to produce .* in {_NUM} days.*[Hh]ow many machines .* in {_NUM} days",
+        s,
+    )
+    if m:
+        m1, d1, d2 = _num(m.group(1)), _num(m.group(2)), _num(m.group(3))
+        machines = m1 * d1 / d2
+        if machines * d2 == m1 * d1:
+            return (f"{_fmt(machines)} machines", f"verified: {_fmt(machines)} x {_fmt(d2)} = {_fmt(m1*d1)} machine-days")
+    m = re.search(
+        rf"takes {_NUM} hours to reach.*speed of {_NUM} km/h.*speed of {_NUM} km/h",
+        s, re.IGNORECASE,
+    )
+    if m:
+        t1, v1, v2 = _num(m.group(1)), _num(m.group(2)), _num(m.group(3))
+        t2 = v1 * t1 / v2
+        if t2 * v2 == v1 * t1:
+            return (f"{_fmt(t2)} hours", f"verified: {_fmt(t2)} x {_fmt(v2)} = {_fmt(v1*t1)} km")
+    m = re.search(
+        rf"arranged in {_NUM} rows, with {_NUM} chairs in each row.*?rearranged with {_NUM} chairs in each row, how many rows",
+        s, re.IGNORECASE,
+    )
+    if m:
+        r1, c1, c2 = _num(m.group(1)), _num(m.group(2)), _num(m.group(3))
+        rows = r1 * c1 / c2
+        if rows * c2 == r1 * c1:
+            return (f"{_fmt(rows)} rows", f"verified: {_fmt(rows)} x {_fmt(c2)} = {_fmt(r1*c1)} chairs")
+    m = re.search(
+        rf"{_NUM} periods a day, each of {_NUM} minutes.*{_NUM} periods a day",
+        s, re.IGNORECASE,
+    )
+    if m:
+        p1, mins, p2 = _num(m.group(1)), _num(m.group(2)), _num(m.group(3))
+        each = p1 * mins / p2
+        if each * p2 == p1 * mins:
+            return (f"{_fmt(each)} minutes", f"verified: {_fmt(each)} x {_fmt(p2)} = {_fmt(p1*mins)} minutes")
+    m = re.search(
+        rf"small pump can fill a tank in {_NUM} hours.*large pump can fill the same tank in {_NUM} hours.*together",
+        s, re.IGNORECASE,
+    )
+    if m:
+        a, b = _num(m.group(1)), _num(m.group(2))
+        rate = Fraction(1, 1) / a + Fraction(1, 1) / b
+        t = 1 / rate
+        if (1 / a + 1 / b) * t == 1:
+            return (f"{_fmt(t)} hours", f"verified: (1/{_fmt(a)} + 1/{_fmt(b)}) x {_fmt(t)} = 1 tank")
+    m = re.search(
+        rf"Workers .* take {_NUM} days to pick .* in {_NUM}% of the plantation.*[Hh]ow many days .* complete",
+        s, re.IGNORECASE,
+    )
+    if m:
+        d, p = _num(m.group(1)), _num(m.group(2))
+        total = d * 100 / p
+        if total * p / 100 == d:
+            return (f"{_fmt(total)} days", f"verified: {_fmt(p)}% of {_fmt(total)} = {_fmt(d)}")
+    return None
+
+
+def solve_percentage_change(stem: str) -> Optional[Solved]:
+    """Percentage increase/decrease, reverse-percent, successive change."""
+
+    s = " ".join(stem.split())
+    m = re.search(
+        rf"[Aa] number increased by {_NUM}% becomes {_NUM}\. What is the number",
+        s,
+    )
+    if m:
+        p, final = _num(m.group(1)), _num(m.group(2))
+        x = final * 100 / (100 + p)
+        if x * (100 + p) / 100 == final:
+            return (f"{_fmt(x)}", f"verified: {_fmt(x)} increased by {_fmt(p)}% = {_fmt(final)}")
+    m = re.search(
+        rf"petrol price .* was (?:₹|Rs\.?\s*)?{_NUM} .* and (?:₹|Rs\.?\s*)?{_NUM} .* [Ww]hat is the percentage increase",
+        s, re.IGNORECASE,
+    )
+    if m:
+        old, new = _num(m.group(1)), _num(m.group(2))
+        pct = (new - old) / old * 100
+        if old * (100 + pct) / 100 == new:
+            return (f"{_fmt(pct)}%", f"verified: {_fmt(old)} + {_fmt(pct)}% = {_fmt(new)}")
+    m = re.search(
+        rf"{_NUM}% discount on .* original price .* is (?:₹|Rs\.?\s*)?{_NUM}.*[Hh]ow much .* pay",
+        s, re.IGNORECASE,
+    )
+    if m:
+        d, price = _num(m.group(1)), _num(m.group(2))
+        pay = price * (100 - d) / 100
+        if pay == price - price * d / 100:
+            return (f"₹{_fmt(pay)}", f"verified: {_fmt(price)} - {_fmt(d)}% = {_fmt(pay)}")
+    m = re.search(
+        rf"increased by {_NUM}% last year and by {_NUM}% this year.*overall percentage",
+        s, re.IGNORECASE,
+    )
+    if m:
+        a, b = _num(m.group(1)), _num(m.group(2))
+        factor = (100 + a) * (100 + b) / 10000
+        overall = (factor - 1) * 100
+        if (100 + overall) / 100 == factor:
+            return (f"{_fmt(overall)}%", f"verified: {_fmt((100+a)/100)} x {_fmt((100+b)/100)} = {_fmt(factor)}")
+    m = re.search(
+        rf"about {_NUM}% of its population in {_NUM}.*population in {_NUM} was {_NUM} lakhs",
+        s, re.IGNORECASE,
+    )
+    if m:
+        p = _num(m.group(1))
+        year_pct, year_base, x = m.group(2), m.group(3), _num(m.group(4))
+        if year_pct == year_base:
+            val = x * p / 100
+            if val * 100 / p == x:
+                return (f"{_fmt(val)} lakhs", f"verified: {_fmt(p)}% of {_fmt(x)} = {_fmt(val)}")
+    m = re.search(
+        rf"In a room of {_NUM} people, {_NUM}% are left-handed.*[Hh]ow many left-handed people have to leave .* down to {_NUM}%",
+        s,
+    )
+    if m:
+        n, p1, p2 = _num(m.group(1)), _num(m.group(2)), _num(m.group(3))
+        left = n * p1 / 100
+        # left - x = p2% of (n - x)  ->  x = (left*100 - p2*n) / (100 - p2)
+        x = (left * 100 - p2 * n) / (100 - p2)
+        if x.denominator == 1 and (left - x) * 100 == p2 * (n - x):
+            return (f"{_fmt(x)} people", f"verified: {_fmt(left-x)}/{_fmt(n-x)} = {_fmt(p2)}%")
+    return None
+
+
+def solve_mean_median(stem: str) -> Optional[Solved]:
+    """Mean with unknown, median of a list, sum from mean."""
+
+    s = " ".join(stem.split())
+    m = re.search(
+        rf"[Tt]he mean of the numbers ((?:\d+(?:\.\d+)?,\s*)+\d+(?:\.\d+)?,\s*(\w),.*) is ({_NUM})\. Find the value of \2",
+        s,
+    )
+    if m:
+        nums = [Fraction(x) for x in re.findall(r"\d+(?:\.\d+)?", m.group(1).split(", y")[0] if ", y" in m.group(1) else m.group(1))]
+        var = m.group(2)
+        target = _num(m.group(3))
+        series = m.group(1)
+        known = [Fraction(x) for x in re.findall(r"^\d+(?:\.\d+)?$", "")]  # placeholder
+        parts = [p.strip() for p in series.split(",")]
+        values = [Fraction(p) for p in parts if re.fullmatch(r"\d+(?:\.\d+)?", p)]
+        if len(values) == len(parts) - 1:
+            total = target * (len(values) + 1)
+            y = total - sum(values)
+            if (sum(values) + y) / (len(values) + 1) == target:
+                return (f"{var} = {_fmt(y)}", f"verified: (sum {_fmt(sum(values))} + {_fmt(y)})/{len(values)+1} = {_fmt(target)}")
+    m = re.search(
+        r"[Ff]ind the median of ((?:\d+(?:\.\d+)?[,\s]+)+\d+(?:\.\d+)?)",
+        s,
+    )
+    if m:
+        values = sorted(Fraction(x) for x in re.findall(r"\d+(?:\.\d+)?", m.group(1)))
+        if len(values) >= 3:
+            n = len(values)
+            if n % 2 == 1:
+                med = values[n // 2]
+            else:
+                med = (values[n // 2 - 1] + values[n // 2]) / 2
+            return (f"{_fmt(med)}", f"verified: middle of {n} sorted values (positions {n//2} and {n//2+1})" if n % 2 == 0 else f"verified: middle of {n} sorted values")
+    m = re.search(
+        rf"[Tt]he mean of a set of data with {_NUM} values is {_NUM}\. Find the sum",
+        s,
+    )
+    if m:
+        n, mean = _num(m.group(1)), _num(m.group(2))
+        total = n * mean
+        if total / n == mean:
+            return (f"{_fmt(total)}", f"verified: {_fmt(total)}/{_fmt(n)} = {_fmt(mean)}")
+    return None
+
+
+def solve_area(stem: str) -> Optional[Solved]:
+    """Rhombus from diagonals; quadrilateral from diagonal + offsets."""
+
+    s = " ".join(stem.split())
+    m = re.search(
+        rf"[Aa]rea of a rhombus whose diagonals are {_NUM} cm and {_NUM} cm",
+        s,
+    )
+    if m:
+        d1, d2 = _num(m.group(1)), _num(m.group(2))
+        area = d1 * d2 / 2
+        if area * 2 == d1 * d2:
+            return (f"{_fmt(area)} cm^2", f"verified: (1/2) x {_fmt(d1)} x {_fmt(d2)} = {_fmt(area)}")
+    m = re.search(
+        rf"quadrilateral ABCD given that AC = {_NUM} cm, BM = {_NUM} cm, DN = {_NUM} cm",
+        s,
+    )
+    if m:
+        ac, bm, dn = _num(m.group(1)), _num(m.group(2)), _num(m.group(3))
+        area = ac * (bm + dn) / 2
+        if area == ac * bm / 2 + ac * dn / 2:
+            return (f"{_fmt(area)} cm^2", f"verified: (1/2) x {_fmt(ac)} x ({_fmt(bm)} + {_fmt(dn)}) = {_fmt(area)}")
+    return None
+
+
+def solve_coins_ratio(stem: str) -> Optional[Solved]:
+    """Coin counts in ratio with denominations -> total money."""
+
+    s = " ".join(stem.split())
+    m = re.search(
+        rf"{_NUM} coins in the ratio.*₹10 coins : no. of ₹5 coins : no. of ₹2 coins : no. of ₹1 coins :: ({_NUM}) : ({_NUM}) : ({_NUM}) : ({_NUM}).*[Hh]ow much money",
+        s,
+    )
+    if m:
+        total = _num(m.group(1))
+        parts = [_num(m.group(i)) for i in range(2, 6)]
+        share = total / sum(parts)
+        if share * sum(parts) == total:
+            counts = [share * p for p in parts]
+            money = counts[0] * 10 + counts[1] * 5 + counts[2] * 2 + counts[3]
+            if all(c.denominator == 1 for c in counts) and sum(counts) == total:
+                return (
+                    f"₹{_fmt(money)}",
+                    f"verified: counts {[str(int(c)) for c in counts]} sum to {_fmt(total)}; value {_fmt(money)}",
+                )
+    return None
+
+
 SOLVERS: list[tuple[str, Callable[[str], Optional[Solved]]]] = [
     ("pythagoras", solve_pythagoras),
     ("percent_of", solve_percent_of),
     ("unitary_cost", solve_unitary),
+    ("inverse_proportion", solve_inverse_proportion),
+    ("percentage_change", solve_percentage_change),
+    ("mean_median", solve_mean_median),
+    ("area", solve_area),
+    ("coins_ratio", solve_coins_ratio),
 ]
 
 
@@ -147,7 +404,10 @@ def solve_pack(pack: dict[str, Any]) -> dict[str, Any]:
             attempted += 1
             continue
         for name, solver in SOLVERS:
-            result = solver(stem)
+            try:
+                result = solver(stem)
+            except (ArithmeticError, ValueError, AttributeError):
+                result = None
             if result is None:
                 continue
             answer, note = result
