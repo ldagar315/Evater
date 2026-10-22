@@ -269,7 +269,9 @@ def main() -> int:
             items = load_question_items(path)
             if any(item.chapter_id != spec.id for item in items):
                 raise QuestionPackError(f"Item pack for Chapter {spec.sequence_number} contains a mismatched chapter_id.")
-            validate_question_items(items)
+            # Evater-authored packs (manual tier) carry no review-archive items;
+            # scraped NCERT packs must have at least one.
+            validate_question_items(items, minimum_count=0 if any(c.source_tier == "manual" for c in candidates) else 1)
             packs.append((spec, candidates))
             archive_items_by_chapter[spec.sequence_number] = items
             validation.append(
