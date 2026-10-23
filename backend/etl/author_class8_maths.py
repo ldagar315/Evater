@@ -44,6 +44,7 @@ class AuthoredItem:
     difficulty: str
     skill_tags: list[str]
     params: dict = field(default_factory=dict)
+    qtype: str = "mcq_single"  # mcq_single | true_false | numerical
 
 
 # ---------------------------------------------------------------------------
@@ -481,14 +482,50 @@ VERIFIERS = {
 
 def build_candidate(item: AuthoredItem, spec, rng: random.Random) -> dict:
     concept_id = uuid5(spec.id, f"concept:{item.topic_slug}")
-    order = [item.key] + item.distractors
-    rng.shuffle(order)
-    letters = ["A", "B", "C", "D"]
-    options = [{"id": letters[i], "text": order[i]} for i in range(4)]
-    correct = letters[order.index(item.key)]
+    if item.qtype == "true_false":
+        options = [{"id": "A", "text": "True"}, {"id": "B", "text": "False"}]
+        correct = "A" if item.key == "True" else "B"
+        answer_spec = {
+            "type": "true_false",
+            "correct_option_id": correct,
+            "source_answer": item.key,
+            "verification": f"code_verified:{item.family}",
+            "answer_provenance": "evater_original",
+        }
+        render_config: dict = {}
+    elif item.qtype == "numerical":
+        options = []
+        correct = None
+        value = float(item.key)
+        expected_value: float | int = int(value) if value.is_integer() else value
+        unit = item.params.get("unit", "")
+        answer_spec = {
+            "type": "numerical",
+            "expected_value": expected_value,
+            "tolerance": item.params.get("tolerance", 0),
+            "unit": unit,
+            "source_answer": item.key,
+            "verification": f"code_verified:{item.family}",
+            "answer_provenance": "evater_original",
+        }
+        render_config = {"unit": unit} if unit else {}
+    else:
+        order = [item.key] + item.distractors
+        rng.shuffle(order)
+        letters = ["A", "B", "C", "D"]
+        options = [{"id": letters[i], "text": order[i]} for i in range(4)]
+        correct = letters[order.index(item.key)]
+        answer_spec = {
+            "type": "mcq_single",
+            "source_answer": item.key,
+            "verification": f"code_verified:{item.family}",
+            "answer_provenance": "evater_original",
+        }
+        render_config = {}
     return {
         "chapter_id": str(spec.id),
         "concept_id": str(concept_id),
+        "question_type": item.qtype,
         "question_text": item.question_text,
         "options": options,
         "correct_option_id": correct,
@@ -508,17 +545,12 @@ def build_candidate(item: AuthoredItem, spec, rng: random.Random) -> dict:
         "source_attribution": ATTRIBUTION,
         "source_tier": "manual",
         "rework_status": "not_required",
-        "question_family_key": f"evater-mcq:{spec.id}:{item.family}",
+        "question_family_key": f"evater-{'mcq' if item.qtype == 'mcq_single' else item.qtype}:{spec.id}:{item.family}",
         "variant_key": "evater_authored",
         "media": [],
         "option_media": {},
-        "render_config": {},
-        "answer_spec": {
-            "type": "mcq_single",
-            "source_answer": item.key,
-            "verification": f"code_verified:{item.family}",
-            "answer_provenance": "evater_original",
-        },
+        "render_config": render_config,
+        "answer_spec": answer_spec,
         "generation_spec": {
             "ingestion_method": "evater_authored_generator",
             "generator_family": item.family,
@@ -543,6 +575,7 @@ SLUG_REMAP = {
     (9, "congruence"): "converse",
     (9, "exponents"): "pythagoras-statement",
     (12, "patterns-generalisation"): "data-stories",
+    (13, "identities"): "expressions",
 }
 
 
@@ -2560,7 +2593,7 @@ def gen_unitary(rng, chapter):
             break
     key = f"Rs {m2 * u}"
     return AuthoredItem(
-        family="unitary", chapter=chapter, topic_slug="rates",
+        family="unitary_cost", chapter=chapter, topic_slug="rates",
         question_text=f"{n} notebooks cost Rs {c}. What is the cost of {m2} notebooks at the same rate?",
         key=key,
         distractors=_unique_distractors(key, [f"Rs {m2 * u + u}", f"Rs {m2 * u - u}", f"Rs {c}", f"Rs {(m2 + 1) * u if (m2 + 1) * u != m2 * u + u else m2 * u + 2 * u}", f"Rs {m2 * c // n + 10}", f"Rs {m2 * u * 2}", f"Rs {u}"]),
@@ -2684,7 +2717,7 @@ VERIFIERS.update({
     "speed_time": v_speed_time,
     "time_for_distance": v_time_for_distance,
     "work_time": v_work_time,
-    "unitary": v_unitary,
+    "unitary_cost": v_unitary,
     "speed_convert": v_speed_convert,
     "percent_in_prop": v_percent_in_prop,
     "fuel_rate": v_fuel_rate,
@@ -2716,6 +2749,371 @@ GENERATORS.update({
         (gen_prop_classify, None, 5),
     ],
 })
+
+
+# ---------------------------------------------------------------------------
+# True/false and numerical families (Oct 21 user approval: type mix for maths).
+# Every key is re-derived from the rendered text by an independent verifier.
+# ---------------------------------------------------------------------------
+
+def _tf(item_family, chapter, topic_slug, text, truth, explanation, difficulty, tags, params):
+    return AuthoredItem(
+        family=item_family, chapter=chapter, topic_slug=topic_slug,
+        question_text=text,
+        key="True" if truth else "False",
+        distractors=[],
+        explanation=explanation,
+        difficulty=difficulty, skill_tags=tags, params=params, qtype="true_false",
+    )
+
+
+def v_tf_perfect_square(text):
+    m = re.search(r"(\d+) is a perfect square", text)
+    n = int(m.group(1))
+    r = _math.isqrt(n)
+    return "True" if r * r == n else "False"
+
+
+def gen_tf_perfect_square(rng, chapter):
+    if rng.random() < 0.5:
+        r = rng.randint(4, 30)
+        n = r * r
+    else:
+        while True:
+            n = rng.randint(10, 900)
+            r = _math.isqrt(n)
+            if r * r != n:
+                break
+    truth = _math.isqrt(n) ** 2 == n
+    return _tf("tf_perfect_square", chapter, "perfect-squares",
+               f"State whether the following statement is true or false: {n} is a perfect square.",
+               truth,
+               f"{_math.isqrt(n)}^2 = {_math.isqrt(n) ** 2}, so {n} {'is' if truth else 'is not'} a perfect square.",
+               "easy", ["squares", "true-false"], {"n": n})
+
+
+def v_num_square_root(text):
+    m = re.search(r"square plot is (\d+) m\^?2", text)
+    area = int(m.group(1))
+    r = _math.isqrt(area)
+    assert r * r == area
+    return str(r)
+
+
+def gen_num_square_root(rng, chapter):
+    r = rng.randint(6, 40)
+    area = r * r
+    return AuthoredItem(
+        family="num_square_root", chapter=chapter, topic_slug="square-roots",
+        question_text=f"The area of a square plot is {area} m^2. What is the length of one side, in metres?",
+        key=str(r), distractors=[],
+        explanation=f"Side = square root of {area} = {r} m, because {r}^2 = {area}.",
+        difficulty="easy", skill_tags=["square-roots", "numerical"], params={"area": area, "unit": "m"},
+        qtype="numerical",
+    )
+
+
+def v_tf_exponent_eq(text):
+    m = re.search(r"(\d+)\^(\d+) x \1\^(\d+) = (\d+)\^(\d+)", text)
+    a, m1, m2, b, n = (int(g) for g in m.groups())
+    return "True" if (a ** m1) * (a ** m2) == b ** n else "False"
+
+
+def gen_tf_exponent_eq(rng, chapter):
+    a = rng.choice([2, 3, 5])
+    m1, m2 = rng.randint(2, 4), rng.randint(2, 4)
+    if rng.random() < 0.5:
+        b, n = a, m1 + m2
+    else:
+        b, n = rng.choice([a * 2, a, a]), rng.choice([m1 + m2, m1 * m2, m1 + m2 + 1])
+        if b == a and n == m1 + m2:
+            n += 1
+    truth = (a ** m1) * (a ** m2) == b ** n
+    return _tf("tf_exponent_eq", chapter, "laws-of-exponents",
+               f"True or false: {a}^{m1} x {a}^{m2} = {b}^{n}.",
+               truth,
+               f"{a}^{m1} x {a}^{m2} = {a ** m1 * a ** m2}, and {b}^{n} = {b ** n}. These are {'equal' if truth else 'not equal'}.",
+               "medium", ["exponents", "true-false"], {"a": a, "m1": m1, "m2": m2, "b": b, "n": n})
+
+
+def v_num_exponent(text):
+    m = re.search(r"value of (\d+)\^(\d+)\?", text)
+    return str(int(m.group(1)) ** int(m.group(2)))
+
+
+def gen_num_exponent(rng, chapter):
+    a = rng.choice([2, 3, 4, 5])
+    n = rng.randint(3, 6 if a == 2 else 4)
+    return AuthoredItem(
+        family="num_exponent", chapter=chapter, topic_slug="exponents",
+        question_text=f"What is the value of {a}^{n}?",
+        key=str(a ** n), distractors=[],
+        explanation=f"{a}^{n} = {a} multiplied by itself {n} times = {a ** n}.",
+        difficulty="easy", skill_tags=["exponents", "numerical"], params={"a": a, "n": n},
+        qtype="numerical",
+    )
+
+
+def v_tf_ratio(text):
+    m = re.search(r"ratio (\d+):(\d+) is (?:the same as|equivalent to) (\d+):(\d+)", text)
+    a, b, c, d = (int(g) for g in m.groups())
+    return "True" if a * d == b * c else "False"
+
+
+def gen_tf_ratio(rng, chapter):
+    a = rng.randint(2, 9)
+    b = rng.randint(2, 9)
+    g = _math.gcd(a, b)
+    sa, sb = a // g, b // g
+    if rng.random() < 0.5:
+        k = rng.choice([2, 3, 4, 5])
+        c, d = sa * k, sb * k
+    else:
+        c, d = sa + rng.randint(1, 3), sb * rng.choice([2, 3])
+        if c * sb == d * sa:
+            c += 1
+    truth = a * d == b * c
+    return _tf("tf_ratio", chapter, "ratio",
+               f"True or false: the ratio {a}:{b} is equivalent to {c}:{d}.",
+               truth,
+               f"{a}:{b} simplifies to {sa}:{sb}. {c}:{d} {'also gives' if truth else 'does not give'} {sa}:{sb}.",
+               "medium", ["ratios", "true-false"], {"a": a, "b": b, "c": c, "d": d})
+
+
+def v_num_unitary(text):
+    m = re.search(r"(\d+) kg of rice costs Rs (\d+)\.*.*cost of (\d+) kg", text)
+    n, c, m2 = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert c % n == 0
+    return str(c // n * m2)
+
+
+def gen_num_unitary(rng, chapter):
+    n = rng.choice([2, 4, 5, 8, 10])
+    u = rng.choice([12, 15, 20, 25, 30, 40, 45, 60])
+    c = n * u
+    while True:
+        m2 = rng.randint(2, 12)
+        if m2 != n:
+            break
+    return AuthoredItem(
+        family="num_unitary", chapter=chapter, topic_slug="unitary-method",
+        question_text=f"{n} kg of rice costs Rs {c}. What is the cost of {m2} kg of rice at the same rate, in rupees?",
+        key=str(m2 * u), distractors=[],
+        explanation=f"1 kg costs {c}/{n} = Rs {u}. {m2} kg costs {m2} x {u} = Rs {m2 * u}.",
+        difficulty="easy", skill_tags=["unitary", "numerical"], params={"n": n, "u": u, "m": m2, "unit": "Rs"},
+        qtype="numerical",
+    )
+
+
+def v_tf_pyth_triple(text):
+    m = re.search(r"sides (\d+) cm, (\d+) cm, and (\d+) cm is right-angled", text)
+    a, b, c = (int(g) for g in m.groups())
+    x, y, z = sorted([a, b, c])
+    return "True" if x * x + y * y == z * z else "False"
+
+
+def gen_tf_pyth_triple(rng, chapter):
+    if rng.random() < 0.5:
+        a, b, c = rng.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (9, 12, 15), (8, 15, 17), (7, 24, 25), (12, 16, 20)])
+    else:
+        while True:
+            a, b, c = sorted(rng.randint(3, 26) for _ in range(3))
+            if a * a + b * b != c * c:
+                break
+    truth = a * a + b * b == c * c
+    return _tf("tf_pyth_triple", chapter, "converse",
+               f"True or false: a triangle with sides {a} cm, {b} cm, and {c} cm is right-angled.",
+               truth,
+               f"{a}^2 + {b}^2 = {a * a + b * b} and {c}^2 = {c * c}. They are {'equal' if truth else 'not equal'}, so the triangle {'is' if truth else 'is not'} right-angled.",
+               "medium", ["pythagoras", "true-false"], {"a": a, "b": b, "c": c})
+
+
+def v_num_pyth_hyp(text):
+    m = re.search(r"triangle are (\d+) cm and (\d+) cm", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    h = _math.isqrt(a * a + b * b)
+    assert h * h == a * a + b * b
+    return str(h)
+
+
+def gen_num_pyth_hyp(rng, chapter):
+    a, b, c = rng.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (9, 12, 15), (8, 15, 17), (7, 24, 25), (12, 16, 20), (10, 24, 26), (20, 21, 29)])
+    return AuthoredItem(
+        family="num_pyth_hyp", chapter=chapter, topic_slug="finding-sides",
+        question_text=f"The two legs of a right-angled triangle are {a} cm and {b} cm. What is the length of the hypotenuse, in cm?",
+        key=str(c), distractors=[],
+        explanation=f"Hypotenuse^2 = {a}^2 + {b}^2 = {a * a + b * b} = {c}^2, so the hypotenuse is {c} cm.",
+        difficulty="medium", skill_tags=["pythagoras", "numerical"], params={"a": a, "b": b, "unit": "cm"},
+        qtype="numerical",
+    )
+
+
+def v_tf_identity(text):
+    m = re.search(r"\(a \+ b\)\^2 = a\^2 \+ b\^2 for all", text)
+    if m:
+        return "False"  # missing the 2ab term
+    m = re.search(r"\(a \+ b\)\^2 = a\^2 \+ 2ab \+ b\^2 for all", text)
+    if m:
+        return "True"
+    m = re.search(r"\(a - b\)\^2 = a\^2 - 2ab \+ b\^2 for all", text)
+    if m:
+        return "True"
+    m = re.search(r"\(a - b\)\^2 = a\^2 - b\^2 for all", text)
+    if m:
+        return "False"
+    m = re.search(r"\(a \+ b\)\(a - b\) = a\^2 - b\^2 for all", text)
+    if m:
+        return "True"
+    m = re.search(r"\(a \+ b\)\(a - b\) = a\^2 \+ b\^2 for all", text)
+    if m:
+        return "False"
+    raise ValueError("unknown identity statement")
+
+
+_IDENTITY_STATEMENTS = [
+    ("(a + b)^2 = a^2 + 2ab + b^2 for all numbers a and b.", True, "The expansion of (a + b)^2 includes the middle term 2ab."),
+    ("(a + b)^2 = a^2 + b^2 for all numbers a and b.", False, "The middle term 2ab is missing; for example a = 1, b = 1 gives 4 on the left but 2 on the right."),
+    ("(a - b)^2 = a^2 - 2ab + b^2 for all numbers a and b.", True, "This is the standard expansion of (a - b)^2."),
+    ("(a - b)^2 = a^2 - b^2 for all numbers a and b.", False, "The middle term -2ab is missing; for example a = 2, b = 1 gives 1 on the left but 3 on the right."),
+    ("(a + b)(a - b) = a^2 - b^2 for all numbers a and b.", True, "This is the difference-of-squares identity."),
+    ("(a + b)(a - b) = a^2 + b^2 for all numbers a and b.", False, "The cross terms cancel, leaving a^2 - b^2, not a^2 + b^2."),
+]
+
+
+def gen_tf_identity(rng, chapter):
+    stmt, truth, why = rng.choice(_IDENTITY_STATEMENTS)
+    return _tf("tf_identity", chapter, "identities",
+               f"True or false: {stmt}",
+               truth, why, "medium", ["identities", "true-false"], {"stmt": stmt})
+
+
+def v_num_algebra_eval(text):
+    m = re.search(r"If x = (-?\d+), what is the value of (\d+)x\^2 \+ (\d+)\?", text)
+    if m:
+        x, a, b = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        return str(a * x * x + b)
+    m = re.search(r"If x = (-?\d+), what is the value of (\d+)x \+ (\d+)\?", text)
+    x, a, b = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return str(a * x + b)
+
+
+def gen_num_algebra_eval(rng, chapter):
+    x = rng.randint(2, 9)
+    if rng.random() < 0.5:
+        a = rng.randint(2, 5)
+        b = rng.randint(1, 20)
+        return AuthoredItem(
+            family="num_algebra_eval", chapter=chapter, topic_slug="expressions",
+            question_text=f"If x = {x}, what is the value of {a}x^2 + {b}?",
+            key=str(a * x * x + b), distractors=[],
+            explanation=f"{a} x {x}^2 + {b} = {a} x {x * x} + {b} = {a * x * x} + {b} = {a * x * x + b}.",
+            difficulty="medium", skill_tags=["algebra", "numerical"], params={"x": x, "a": a, "b": b},
+            qtype="numerical",
+        )
+    a = rng.randint(2, 12)
+    b = rng.randint(1, 30)
+    return AuthoredItem(
+        family="num_algebra_eval", chapter=chapter, topic_slug="expressions",
+        question_text=f"If x = {x}, what is the value of {a}x + {b}?",
+        key=str(a * x + b), distractors=[],
+        explanation=f"{a} x {x} + {b} = {a * x} + {b} = {a * x + b}.",
+        difficulty="easy", skill_tags=["algebra", "numerical"], params={"x": x, "a": a, "b": b},
+        qtype="numerical",
+    )
+
+
+def v_tf_area(text):
+    m = re.search(r"base (\d+) cm and height (\d+) cm has an area of (\d+) cm\^?2", text)
+    b, h, claimed = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    if "triangle" in text:
+        actual = b * h // 2 if (b * h) % 2 == 0 else -1
+    else:
+        actual = b * h
+    return "True" if actual == claimed else "False"
+
+
+def gen_tf_area(rng, chapter):
+    b = rng.choice([4, 6, 8, 10, 12])
+    h = rng.choice([3, 4, 5, 6, 7, 8])
+    shape = rng.choice(["parallelogram", "triangle"])
+    if (b * h) % 2 and shape == "triangle":
+        h += 1
+    actual = b * h // 2 if shape == "triangle" else b * h
+    if rng.random() < 0.5:
+        claimed = actual
+    else:
+        claimed = rng.choice([actual + b, actual - b if actual > b else actual + 2, b * h, actual * 2])
+        if claimed == actual:
+            claimed += 2
+    truth = claimed == actual
+    return _tf("tf_area", chapter, "area-parallelogram" if shape == "parallelogram" else "area-triangle",
+               f"True or false: a {shape} with base {b} cm and height {h} cm has an area of {claimed} cm^2.",
+               truth,
+               f"Area of the {shape} = {'(1/2) x ' if shape == 'triangle' else ''}{b} x {h} = {actual} cm^2, so the claim is {'correct' if truth else 'wrong'}.",
+               "medium", ["area", "true-false"], {"b": b, "h": h, "claimed": claimed})
+
+
+def v_num_area_triangle(text):
+    m = re.search(r"base (\d+) cm and height (\d+) cm", text)
+    b, h = int(m.group(1)), int(m.group(2))
+    assert (b * h) % 2 == 0
+    return str(b * h // 2)
+
+
+def gen_num_area_triangle(rng, chapter):
+    b = rng.choice([4, 6, 8, 10, 12, 14])
+    h = rng.choice([3, 5, 6, 7, 8, 9])
+    if (b * h) % 2:
+        b += 2
+    return AuthoredItem(
+        family="num_area_triangle", chapter=chapter, topic_slug="area-triangle",
+        question_text=f"What is the area of a triangle with base {b} cm and height {h} cm, in cm^2?",
+        key=str(b * h // 2), distractors=[],
+        explanation=f"Area = (1/2) x base x height = (1/2) x {b} x {h} = {b * h // 2} cm^2.",
+        difficulty="easy", skill_tags=["area", "numerical"], params={"b": b, "h": h, "unit": "cm^2"},
+        qtype="numerical",
+    )
+
+
+VERIFIERS.update({
+    "tf_perfect_square": v_tf_perfect_square,
+    "num_square_root": v_num_square_root,
+    "tf_exponent_eq": v_tf_exponent_eq,
+    "num_exponent": v_num_exponent,
+    "tf_ratio": v_tf_ratio,
+    "num_unitary": v_num_unitary,
+    "tf_pyth_triple": v_tf_pyth_triple,
+    "num_pyth_hyp": v_num_pyth_hyp,
+    "tf_identity": v_tf_identity,
+    "num_algebra_eval": v_num_algebra_eval,
+    "tf_area": v_tf_area,
+    "num_area_triangle": v_num_area_triangle,
+})
+
+GENERATORS[1].extend([
+    (gen_tf_perfect_square, v_tf_perfect_square, 5),
+    (gen_num_square_root, v_num_square_root, 4),
+])
+GENERATORS[2].extend([
+    (gen_tf_exponent_eq, v_tf_exponent_eq, 5),
+    (gen_num_exponent, v_num_exponent, 4),
+])
+GENERATORS[7].extend([
+    (gen_tf_ratio, v_tf_ratio, 5),
+    (gen_num_unitary, v_num_unitary, 4),
+])
+GENERATORS[9].extend([
+    (gen_tf_pyth_triple, v_tf_pyth_triple, 5),
+    (gen_num_pyth_hyp, v_num_pyth_hyp, 4),
+])
+GENERATORS[13].extend([
+    (gen_tf_identity, v_tf_identity, 5),
+    (gen_num_algebra_eval, v_num_algebra_eval, 4),
+])
+GENERATORS[14].extend([
+    (gen_tf_area, v_tf_area, 5),
+    (gen_num_area_triangle, v_num_area_triangle, 4),
+])
 
 
 if __name__ == "__main__":
