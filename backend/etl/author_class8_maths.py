@@ -2239,5 +2239,484 @@ def _verify_converse_check(item):
 SET_VERIFIERS["converse_check"] = _verify_converse_check
 
 
+# ---------------- Chapter 8: Fractions in Disguise ----------------
+
+def v_percent_of(text):
+    m = re.search(r"What is (\d+)% of (\d+)\?", text)
+    p, n = int(m.group(1)), int(m.group(2))
+    assert (p * n) % 100 == 0
+    return str(p * n // 100)
+
+
+def gen_percent_of(rng, chapter):
+    while True:
+        p = rng.choice([5, 10, 12, 15, 20, 25, 30, 35, 40, 50, 60, 75, 80])
+        n = rng.choice([40, 60, 80, 120, 150, 200, 240, 250, 300, 400, 500, 600, 800])
+        if (p * n) % 100 == 0:
+            break
+    key = str(p * n // 100)
+    return AuthoredItem(
+        family="percent_of", chapter=chapter, topic_slug="percent-of",
+        question_text=f"What is {p}% of {n}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(p * n // 100 + p), str(p * n // 100 - p), str(p * n // 10), str(p * n // 100 * 2), str(p * n // 100 + 10), str(p * n // 100 // 2 if p * n // 200 > 0 else p * n // 100 + 5), str(p * n // 100 + n // 10)]),
+        explanation=f"{p}% of {n} = ({p}/100) x {n} = {key}.",
+        difficulty="easy", skill_tags=["percentage"], params={"p": p, "n": n},
+    )
+
+
+def v_frac_to_percent(text):
+    m = re.search(r"Write (\d+)/(\d+) as a percentage", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    assert (a * 100) % b == 0
+    return f"{a * 100 // b}%"
+
+
+def gen_frac_to_percent(rng, chapter):
+    while True:
+        b = rng.choice([2, 4, 5, 8, 10, 20, 25, 50])
+        a = rng.randint(1, b - 1)
+        if (a * 100) % b == 0:
+            break
+    key = f"{a * 100 // b}%"
+    return AuthoredItem(
+        family="frac_to_percent", chapter=chapter, topic_slug="percent-conversion",
+        question_text=f"Write {a}/{b} as a percentage.",
+        key=key,
+        distractors=_unique_distractors(key, [f"{a * 100 // b + 5}%", f"{a * 100 // b - 5}%", f"{a * 100 // b * 2}%", f"{(b - a) * 100 // b}%", f"{a * 10}%", f"{a * 100 // b + 10}%", f"{a * 100 // b // 2 if a * 100 // b > 20 else a * 100 // b + 25}%"]),
+        explanation=f"{a}/{b} = ({a} x 100)/{b} % = {key}.",
+        difficulty="easy", skill_tags=["percentage", "fractions"], params={"a": a, "b": b},
+    )
+
+
+_DEC_FRAC = [("0.5", "1/2"), ("0.25", "1/4"), ("0.75", "3/4"), ("0.2", "1/5"), ("0.4", "2/5"), ("0.6", "3/5"), ("0.8", "4/5"), ("0.125", "1/8"), ("0.375", "3/8"), ("0.05", "1/20"), ("0.35", "7/20"), ("0.45", "9/20"), ("0.15", "3/20"), ("0.625", "5/8"), ("0.875", "7/8"), ("0.1", "1/10"), ("0.3", "3/10"), ("0.7", "7/10"), ("0.9", "9/10")]
+
+
+def gen_decimal_to_fraction(rng, chapter):
+    dec, frac = rng.choice(_DEC_FRAC)
+    num, den = frac.split("/")
+    return AuthoredItem(
+        family="decimal_to_fraction", chapter=chapter, topic_slug="fraction-decimal",
+        question_text=f"Write {dec} as a fraction in its simplest form.",
+        key=frac,
+        distractors=_unique_distractors(frac, [f"{num}/{int(den) + 1}", f"{int(num) + 1}/{den}", f"{den}/{num}", f"{int(num) * 2}/{den}", f"{num}/{int(den) * 2}", f"{int(num) + 2}/{int(den) + 4}", f"1/{int(den) // 2 if int(den) % 2 == 0 else int(den) + 1}"]),
+        explanation=f"{dec} = {num}/{den} after dividing numerator and denominator by their common factor.",
+        difficulty="easy", skill_tags=["decimals", "fractions"], params={"dec": dec},
+    )
+
+
+def v_decimal_to_fraction(text):
+    m = re.search(r"Write (0\.\d+) as a fraction", text)
+    dec = m.group(1)
+    return dict(_DEC_FRAC)[dec]
+
+
+def _pct_change(rng, direction):
+    while True:
+        n = rng.choice([200, 240, 250, 300, 400, 500, 600, 800, 1000, 1200, 1500])
+        p = rng.choice([5, 10, 12, 15, 20, 25, 30, 40, 50])
+        if (n * p) % 100 == 0:
+            break
+    delta = n * p // 100
+    return n, p, n + delta if direction == "increases" else n - delta, delta
+
+
+def v_percent_change(text):
+    m = re.search(r"Rs (\d+).*?(increases|decreases) by (\d+)%", text)
+    n, direction, p = int(m.group(1)), m.group(2), int(m.group(3))
+    delta = n * p // 100
+    return f"Rs {n + delta}" if direction == "increases" else f"Rs {n - delta}"
+
+
+def gen_percent_increase(rng, chapter):
+    n, p, new, delta = _pct_change(rng, "increases")
+    key = f"Rs {new}"
+    return AuthoredItem(
+        family="percent_increase", chapter=chapter, topic_slug="increase-decrease",
+        question_text=f"The price of a bag is Rs {n}. It increases by {p}%. What is the new price?",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs {n - delta}", f"Rs {n + p}", f"Rs {new + delta}", f"Rs {n + 2 * delta}", f"Rs {new - p}", f"Rs {n + delta // 2 if delta > 1 else new + 5}", f"Rs {delta}"]),
+        explanation=f"Increase = {p}% of {n} = {delta}. New price = {n} + {delta} = Rs {new}.",
+        difficulty="medium", skill_tags=["percentage", "increase"], params={"n": n, "p": p},
+    )
+
+
+def gen_percent_decrease(rng, chapter):
+    n, p, new, delta = _pct_change(rng, "decreases")
+    key = f"Rs {new}"
+    return AuthoredItem(
+        family="percent_decrease", chapter=chapter, topic_slug="increase-decrease",
+        question_text=f"A jacket costs Rs {n}. Its price decreases by {p}% in a sale. What is the sale price?",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs {n + delta}", f"Rs {n - p}", f"Rs {new - delta}", f"Rs {n - 2 * delta}", f"Rs {new + p}", f"Rs {delta}", f"Rs {n - delta // 2 if delta > 1 else new - 5}"]),
+        explanation=f"Discount = {p}% of {n} = {delta}. Sale price = {n} - {delta} = Rs {new}.",
+        difficulty="medium", skill_tags=["percentage", "decrease"], params={"n": n, "p": p},
+    )
+
+
+def _profit_pick(rng, want_profit):
+    while True:
+        c = rng.choice([100, 200, 250, 400, 500, 800, 1000, 160, 320, 640])
+        pct = rng.choice([5, 10, 20, 25, 50])
+        if (c * pct) % 100 == 0:
+            break
+    s = c + c * pct // 100 if want_profit else c - c * pct // 100
+    return c, s, pct
+
+
+def v_profit_percent(text):
+    m = re.search(r"Rs (\d+) and sells it for Rs (\d+)", text)
+    c, s = int(m.group(1)), int(m.group(2))
+    if "profit" in text:
+        assert s > c and (s - c) * 100 % c == 0
+        return f"{(s - c) * 100 // c}%"
+    assert c > s and (c - s) * 100 % c == 0
+    return f"{(c - s) * 100 // c}%"
+
+
+def gen_profit_percent(rng, chapter):
+    c, s, pct = _profit_pick(rng, True)
+    key = f"{pct}%"
+    return AuthoredItem(
+        family="profit_percent", chapter=chapter, topic_slug="profit-loss",
+        question_text=f"A shopkeeper buys a toy for Rs {c} and sells it for Rs {s}. What is the profit percentage?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{pct + 5}%", f"{pct - 5 if pct > 5 else pct + 10}%", f"{pct * 2}%", f"{(s - c) * 100 // s}%", f"{pct + 10}%", f"Rs {s - c}", f"{pct // 2 if pct % 2 == 0 and pct > 2 else pct + 15}%"]),
+        explanation=f"Profit = {s} - {c} = {s - c}. Profit% = ({s - c}/{c}) x 100 = {key}.",
+        difficulty="medium", skill_tags=["profit-loss"], params={"c": c, "s": s},
+    )
+
+
+def gen_loss_percent(rng, chapter):
+    c, s, pct = _profit_pick(rng, False)
+    key = f"{pct}%"
+    return AuthoredItem(
+        family="loss_percent", chapter=chapter, topic_slug="profit-loss",
+        question_text=f"A trader buys a chair for Rs {c} and sells it for Rs {s}. What is the loss percentage?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{pct + 5}%", f"{pct - 5 if pct > 5 else pct + 10}%", f"{pct * 2}%", f"{(c - s) * 100 // c + 5}%", f"{pct + 10}%", f"Rs {c - s}", f"{pct // 2 if pct % 2 == 0 and pct > 2 else pct + 15}%"]),
+        explanation=f"Loss = {c} - {s} = {c - s}. Loss% = ({c - s}/{c}) x 100 = {key}.",
+        difficulty="medium", skill_tags=["profit-loss"], params={"c": c, "s": s},
+    )
+
+
+def v_simple_interest(text):
+    m = re.search(r"Rs (\d+) at (\d+)% per year for (\d+) year", text)
+    p, r, t = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert (p * r * t) % 100 == 0
+    return f"Rs {p * r * t // 100}"
+
+
+def gen_simple_interest(rng, chapter):
+    while True:
+        p = rng.choice([1000, 2000, 2500, 4000, 5000, 8000, 10000, 1200])
+        r = rng.choice([3, 4, 5, 6, 8, 10, 12])
+        t = rng.choice([1, 2, 3, 4, 5])
+        if (p * r * t) % 100 == 0:
+            break
+    si = p * r * t // 100
+    key = f"Rs {si}"
+    return AuthoredItem(
+        family="simple_interest", chapter=chapter, topic_slug="interest",
+        question_text=f"Find the simple interest on Rs {p} at {r}% per year for {t} years.",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs {si + 100}", f"Rs {si - 100 if si > 100 else si + 50}", f"Rs {si * 2}", f"Rs {p * r // 100}", f"Rs {si // 2 if si % 2 == 0 else si + 25}", f"Rs {si + p // 10}", f"Rs {si + 50}"]),
+        explanation=f"SI = (P x R x T)/100 = ({p} x {r} x {t})/100 = Rs {si}.",
+        difficulty="medium", skill_tags=["interest"], params={"p": p, "r": r, "t": t},
+    )
+
+
+def v_gst_price(text):
+    m = re.search(r"Rs (\d+) plus (\d+)% GST", text)
+    n, g = int(m.group(1)), int(m.group(2))
+    assert (n * g) % 100 == 0
+    return f"Rs {n + n * g // 100}"
+
+
+def gen_gst_price(rng, chapter):
+    while True:
+        n = rng.choice([200, 400, 500, 1000, 1500, 2000, 2500, 800])
+        g = rng.choice([5, 12, 18, 28])
+        if (n * g) % 100 == 0:
+            break
+    total = n + n * g // 100
+    key = f"Rs {total}"
+    return AuthoredItem(
+        family="gst_price", chapter=chapter, topic_slug="tax",
+        question_text=f"A phone case is priced at Rs {n} plus {g}% GST. What is the final price a customer pays?",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs {n}", f"Rs {n + g}", f"Rs {total + n // 10}", f"Rs {total - n * g // 200 if n * g // 200 > 0 else total + 5}", f"Rs {n + 2 * n * g // 100}", f"Rs {n * g // 100}", f"Rs {total + g}"]),
+        explanation=f"GST = {g}% of {n} = {n * g // 100}. Final price = {n} + {n * g // 100} = Rs {total}.",
+        difficulty="medium", skill_tags=["tax", "gst"], params={"n": n, "g": g},
+    )
+
+
+# ---------------- Chapter 10: Proportional Reasoning-2 ----------------
+
+def v_inverse_prop(text):
+    m = re.search(r"(\d+) workers can finish a job in (\d+) days\D*(\d+) workers", text)
+    x, d, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert (x * d) % y == 0
+    return f"{x * d // y} days"
+
+
+def gen_inverse_prop(rng, chapter):
+    while True:
+        x = rng.choice([4, 6, 8, 10, 12, 15])
+        d = rng.choice([6, 8, 9, 10, 12, 15, 18, 20])
+        y = rng.choice([2, 3, 4, 5, 6, 8, 9, 24, 30])
+        if y != x and (x * d) % y == 0:
+            break
+    key = f"{x * d // y} days"
+    return AuthoredItem(
+        family="inverse_prop", chapter=chapter, topic_slug="inverse-proportion",
+        question_text=f"{x} workers can finish a job in {d} days. Working at the same rate, how many days will {y} workers take?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{x * d // y + 2} days", f"{x * d // y - 2 if x * d // y > 2 else x * d // y + 4} days", f"{d} days", f"{x * d // y * 2} days", f"{y * d // x if (y * d) % x == 0 and y * d // x != x * d // y else x * d // y + 1} days", f"{x * d // y + 1} days", f"{x * d // y + 3} days"]),
+        explanation=f"Total work = {x} x {d} = {x * d} worker-days. For {y} workers: {x * d}/{y} = {key}.",
+        difficulty="medium", skill_tags=["inverse-proportion"], params={"x": x, "d": d, "y": y},
+    )
+
+
+def v_speed_time(text):
+    m = re.search(r"(\d+) km/h for (\d+) hours", text)
+    return f"{int(m.group(1)) * int(m.group(2))} km"
+
+
+def gen_speed_time(rng, chapter):
+    s = rng.choice([40, 45, 50, 60, 65, 70, 80, 90])
+    t = rng.choice([2, 3, 4, 5, 6])
+    key = f"{s * t} km"
+    return AuthoredItem(
+        family="speed_time", chapter=chapter, topic_slug="speed-distance",
+        question_text=f"A bus travels at {s} km/h for {t} hours. How far does it go?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{s * t + s} km", f"{s * t - s} km", f"{s + t} km", f"{s * t * 2} km", f"{s * (t + 1)} km" if s * (t + 1) != s * t + s else f"{s * t + 2 * s} km", f"{s * t + 10} km", f"{s * t // 2} km"]),
+        explanation=f"Distance = speed x time = {s} x {t} = {key}.",
+        difficulty="easy", skill_tags=["speed", "distance"], params={"s": s, "t": t},
+    )
+
+
+def v_time_for_distance(text):
+    m = re.search(r"cover (\d+) km at a speed of (\d+) km/h", text)
+    d, s = int(m.group(1)), int(m.group(2))
+    assert d % s == 0
+    return f"{d // s} hours"
+
+
+def gen_time_for_distance(rng, chapter):
+    s = rng.choice([40, 50, 60, 70, 80])
+    t = rng.choice([2, 3, 4, 5, 6])
+    d = s * t
+    key = f"{t} hours"
+    return AuthoredItem(
+        family="time_for_distance", chapter=chapter, topic_slug="speed-distance",
+        question_text=f"A train must cover {d} km at a speed of {s} km/h. How long will the journey take?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{t + 1} hours", f"{t - 1 if t > 1 else t + 2} hours", f"{t * 2} hours", f"{d // (s + 10) if d % (s + 10) == 0 and d // (s + 10) != t else t + 2} hours", f"{t + 3} hours", f"{s // 10} hours", f"{d} hours"]),
+        explanation=f"Time = distance / speed = {d}/{s} = {key}.",
+        difficulty="easy", skill_tags=["speed", "time"], params={"d": d, "s": s},
+    )
+
+
+_WORK_PAIRS = [(4, 4), (6, 3), (10, 15), (12, 6), (8, 8), (5, 20), (10, 10), (3, 6), (12, 4), (20, 5), (6, 12), (15, 10), (9, 18), (18, 9), (14, 14), (16, 16)]
+
+
+def v_work_time(text):
+    m = re.search(r"in (\d+) days.*same job in (\d+) days", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    assert (a * b) % (a + b) == 0
+    return f"{a * b // (a + b)} days"
+
+
+def gen_work_time(rng, chapter):
+    a, b = rng.choice(_WORK_PAIRS)
+    t = a * b // (a + b)
+    key = f"{t} days"
+    return AuthoredItem(
+        family="work_time", chapter=chapter, topic_slug="work-time",
+        question_text=f"Asha can do a job in {a} days. Bina can do the same job in {b} days. Working together, how many days will they take?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{t + 1} days", f"{t - 1 if t > 1 else t + 2} days", f"{(a + b) // 2} days", f"{t * 2} days", f"{min(a, b)} days", f"{t + 2} days", f"{a + b} days"]),
+        explanation=f"Together they do 1/{a} + 1/{b} = {a + b}/{a * b} of the job per day, so they need {a * b}/{a + b} = {key}.",
+        difficulty="hard", skill_tags=["work-time"], params={"a": a, "b": b},
+    )
+
+
+def v_unitary(text):
+    m = re.search(r"(\d+) notebooks cost Rs (\d+)\.*.*cost of (\d+) notebooks", text)
+    n, c, m2 = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert c % n == 0
+    return f"Rs {c // n * m2}"
+
+
+def gen_unitary(rng, chapter):
+    n = rng.choice([4, 5, 6, 8, 10, 12])
+    u = rng.choice([5, 8, 10, 12, 15, 20, 25, 30])
+    c = n * u
+    while True:
+        m2 = rng.randint(2, 15)
+        if m2 != n:
+            break
+    key = f"Rs {m2 * u}"
+    return AuthoredItem(
+        family="unitary", chapter=chapter, topic_slug="rates",
+        question_text=f"{n} notebooks cost Rs {c}. What is the cost of {m2} notebooks at the same rate?",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs {m2 * u + u}", f"Rs {m2 * u - u}", f"Rs {c}", f"Rs {(m2 + 1) * u if (m2 + 1) * u != m2 * u + u else m2 * u + 2 * u}", f"Rs {m2 * c // n + 10}", f"Rs {m2 * u * 2}", f"Rs {u}"]),
+        explanation=f"One notebook costs {c}/{n} = Rs {u}. So {m2} notebooks cost {m2} x {u} = {key}.",
+        difficulty="easy", skill_tags=["unitary", "rates"], params={"n": n, "u": u, "m": m2},
+    )
+
+
+def v_speed_convert(text):
+    m = re.search(r"Convert (\d+) km/h to m/s", text)
+    k = int(m.group(1))
+    assert (k * 5) % 18 == 0
+    return f"{k * 5 // 18} m/s"
+
+
+def gen_speed_convert(rng, chapter):
+    k = rng.choice([18, 36, 54, 72, 90, 108, 126, 144, 198, 216])
+    key = f"{k * 5 // 18} m/s"
+    return AuthoredItem(
+        family="speed_convert", chapter=chapter, topic_slug="speed-distance",
+        question_text=f"Convert {k} km/h to m/s.",
+        key=key,
+        distractors=_unique_distractors(key, [f"{k * 5 // 18 + 5} m/s", f"{k * 5 // 18 - 5 if k * 5 // 18 > 5 else k * 5 // 18 + 10} m/s", f"{k // 10} m/s", f"{k * 2 // 9} m/s", f"{k * 5 // 18 * 2} m/s", f"{k * 18 // 5} m/s", f"{k * 5 // 18 + 1} m/s"]),
+        explanation=f"km/h to m/s: multiply by 5/18. {k} x 5/18 = {key}.",
+        difficulty="medium", skill_tags=["speed", "conversion"], params={"k": k},
+    )
+
+
+def v_percent_in_prop(text):
+    m = re.search(r"group of (\d+) students, (\d+)%", text)
+    t, p = int(m.group(1)), int(m.group(2))
+    assert (t * p) % 100 == 0
+    return str(t * p // 100)
+
+
+def gen_percent_in_prop(rng, chapter):
+    while True:
+        t = rng.choice([20, 25, 40, 50, 60, 80, 120, 200, 240])
+        p = rng.choice([10, 20, 25, 30, 40, 50, 60, 75, 80])
+        if (t * p) % 100 == 0:
+            break
+    key = str(t * p // 100)
+    return AuthoredItem(
+        family="percent_in_prop", chapter=chapter, topic_slug="percent-in-proportion",
+        question_text=f"In a group of {t} students, {p}% walk to school. How many students walk to school?",
+        key=key,
+        distractors=_unique_distractors(key, [str(t * p // 100 + 2), str(t * p // 100 - 2 if t * p // 100 > 2 else t * p // 100 + 4), str(t - t * p // 100), str(t * p // 100 * 2), str(p), str(t * p // 100 + 5), str(t * p // 100 // 2 if t * p // 100 > 10 else t * p // 100 + 1)]),
+        explanation=f"{p}% of {t} = ({p}/100) x {t} = {key}.",
+        difficulty="easy", skill_tags=["percentage", "proportion"], params={"t": t, "p": p},
+    )
+
+
+def v_fuel_rate(text):
+    m = re.search(r"(\d+) litres of petrol per 100 km.*for a (\d+) km trip", text)
+    r, d = int(m.group(1)), int(m.group(2))
+    assert (r * d) % 100 == 0
+    return f"{r * d // 100} litres"
+
+
+def gen_fuel_rate(rng, chapter):
+    while True:
+        r = rng.choice([4, 5, 6, 8, 10, 12])
+        d = rng.choice([150, 200, 250, 300, 350, 400, 450, 500, 750])
+        if (r * d) % 100 == 0:
+            break
+    key = f"{r * d // 100} litres"
+    return AuthoredItem(
+        family="fuel_rate", chapter=chapter, topic_slug="compound-problems",
+        question_text=f"A car uses {r} litres of petrol per 100 km. How much petrol does it need for a {d} km trip?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{r * d // 100 + 2} litres", f"{r * d // 100 - 2 if r * d // 100 > 2 else r * d // 100 + 4} litres", f"{r * d // 100 * 2} litres", f"{r} litres", f"{r * d // 100 + 5} litres", f"{d // 100} litres", f"{r * d // 100 + 1} litres"]),
+        explanation=f"Petrol needed = ({r}/100) x {d} = {key}.",
+        difficulty="medium", skill_tags=["rates", "multi-step"], params={"r": r, "d": d},
+    )
+
+
+_PROP_SCENARIOS = [
+    ("More workers are hired to build a wall, and the wall gets finished sooner.", "Inverse proportion"),
+    ("A car drives faster, and the journey takes less time.", "Inverse proportion"),
+    ("You buy more notebooks, and the total cost goes up.", "Direct proportion"),
+    ("More taps are opened to fill a tank, and it fills faster.", "Inverse proportion"),
+    ("You use more flour, and you can bake more loaves of bread.", "Direct proportion"),
+    ("A scooter uses more petrol, and it travels more kilometres.", "Direct proportion"),
+    ("Fewer people share a pizza, and each person gets a bigger slice.", "Inverse proportion"),
+    ("A printer prints more pages, and it uses more ink.", "Direct proportion"),
+    ("You walk faster, and you reach school in less time.", "Inverse proportion"),
+    ("More hours of work bring in more wages at a fixed hourly rate.", "Direct proportion"),
+]
+
+
+def gen_prop_classify(rng, chapter):
+    scenario, kind = rng.choice(_PROP_SCENARIOS)
+    other = "Direct proportion" if kind == "Inverse proportion" else "Inverse proportion"
+    return AuthoredItem(
+        family="prop_classify", chapter=chapter, topic_slug="direct-inverse-mix",
+        question_text=f"{scenario} What kind of proportion is this?",
+        key=kind,
+        distractors=[other, "Both direct and inverse", "No proportion at all"],
+        explanation=f"As one quantity increases, the other {'decreases' if kind == 'Inverse proportion' else 'increases'} - that is {kind.lower()}.",
+        difficulty="easy", skill_tags=["direct-inverse"], params={"kind": kind},
+    )
+
+
+def _verify_prop_classify(item):
+    expected = dict((s, k) for s, k in _PROP_SCENARIOS)
+    scen = item.question_text.split(" What kind of proportion")[0]
+    return expected.get(scen) == item.key and item.key not in item.distractors
+
+
+VERIFIERS.update({
+    "percent_of": v_percent_of,
+    "frac_to_percent": v_frac_to_percent,
+    "decimal_to_fraction": v_decimal_to_fraction,
+    "percent_increase": v_percent_change,
+    "percent_decrease": v_percent_change,
+    "profit_percent": v_profit_percent,
+    "loss_percent": v_profit_percent,
+    "simple_interest": v_simple_interest,
+    "gst_price": v_gst_price,
+    "inverse_prop": v_inverse_prop,
+    "speed_time": v_speed_time,
+    "time_for_distance": v_time_for_distance,
+    "work_time": v_work_time,
+    "unitary": v_unitary,
+    "speed_convert": v_speed_convert,
+    "percent_in_prop": v_percent_in_prop,
+    "fuel_rate": v_fuel_rate,
+})
+
+SET_VERIFIERS["prop_classify"] = _verify_prop_classify
+
+GENERATORS.update({
+    8: [
+        (gen_percent_of, v_percent_of, 6),
+        (gen_frac_to_percent, v_frac_to_percent, 5),
+        (gen_decimal_to_fraction, v_decimal_to_fraction, 5),
+        (gen_percent_increase, v_percent_change, 5),
+        (gen_percent_decrease, v_percent_change, 4),
+        (gen_profit_percent, v_profit_percent, 5),
+        (gen_loss_percent, v_profit_percent, 4),
+        (gen_simple_interest, v_simple_interest, 4),
+        (gen_gst_price, v_gst_price, 4),
+    ],
+    10: [
+        (gen_inverse_prop, v_inverse_prop, 6),
+        (gen_speed_time, v_speed_time, 5),
+        (gen_time_for_distance, v_time_for_distance, 5),
+        (gen_work_time, v_work_time, 5),
+        (gen_unitary, v_unitary, 5),
+        (gen_speed_convert, v_speed_convert, 4),
+        (gen_percent_in_prop, v_percent_in_prop, 5),
+        (gen_fuel_rate, v_fuel_rate, 5),
+        (gen_prop_classify, None, 5),
+    ],
+})
+
+
 if __name__ == "__main__":
     raise SystemExit(main())
