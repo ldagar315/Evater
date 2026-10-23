@@ -541,15 +541,18 @@ def author_chapter(chapter: int, seed: int) -> tuple[list[dict], list[str]]:
         attempts = 0
         while produced < count and attempts < count * 10:
             attempts += 1
-            item = gen(rng, chapter)
+            try:
+                item = gen(rng, chapter)
+            except Exception as exc:
+                report.append(f"GEN-ERROR: {exc}")
+                continue
             dedupe_key = item.question_text + "|" + item.key
             if dedupe_key in seen_texts:
                 continue
             # independent verification: re-parse the rendered text
             try:
-                if item.family == "right_set":
-                    ok = _verify_right_set(item)
-                    assert ok
+                if item.family in SET_VERIFIERS:
+                    assert SET_VERIFIERS[item.family](item)
                 else:
                     rederived = VERIFIERS[item.family](item.question_text)
                     assert rederived == item.key, f"{rederived} != {item.key}"
@@ -587,6 +590,703 @@ def main() -> int:
         for line in report:
             print("  ", line)
     return 0
+
+
+# ---------------------------------------------------------------------------
+# Chapter 2 (Power Play), 3 (A Story of Numbers), 7 (Proportional Reasoning-1)
+# ---------------------------------------------------------------------------
+
+def v_power(text: str) -> str:
+    m = re.search(r"What is (\d+)\^(\d+)\?", text)
+    return str(int(m.group(1)) ** int(m.group(2)))
+
+
+def gen_power(rng, chapter):
+    a = rng.choice([2, 3, 4, 5, 6, 7, 10])
+    n = rng.randint(2, 8 if a <= 3 else 4)
+    key = str(a ** n)
+    return AuthoredItem(
+        family="power", chapter=chapter, topic_slug="exponents",
+        question_text=f"What is {a}^{n}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(a * n), str(a ** (n + 1)), str(a ** n + a), str(a ** (n - 1)), str(n ** a if n ** a != a ** n else a ** n + 1), str(a ** n - a)]),
+        explanation=f"{a}^{n} means {a} multiplied by itself {n} times = {key}.",
+        difficulty="easy", skill_tags=["exponents"], params={"a": a, "n": n},
+    )
+
+
+def v_power_product(text: str) -> str:
+    m = re.search(r"Simplify: (\d+)\^(\d+) x \1\^\??(\d+)", text.replace(f"^?", "^"))
+    m = re.search(r"Simplify: (\d+)\^(\d+) x (\d+)\^(\d+)\.", text)
+    a1, m1, a2, m2 = int(m.group(1)), int(m.group(2)), int(m.group(3)), int(m.group(4))
+    assert a1 == a2
+    return f"{a1}^{m1 + m2}"
+
+
+def gen_power_product(rng, chapter):
+    a = rng.choice([2, 3, 5, 7])
+    m1 = rng.randint(2, 6)
+    m2 = rng.randint(2, 6)
+    key = f"{a}^{m1 + m2}"
+    return AuthoredItem(
+        family="power_product", chapter=chapter, topic_slug="laws-of-exponents",
+        question_text=f"Simplify: {a}^{m1} x {a}^{m2}. Write the answer as a single power.",
+        key=key,
+        distractors=_unique_distractors(key, [f"{a}^{m1 * m2}", f"{a}^{abs(m1 - m2)}", f"{a * 2}^{m1 + m2}", f"{a}^{m1 + m2 + 1}", f"{a}^{m1 + m2 - 1}"]),
+        explanation=f"Product law: {a}^{m1} x {a}^{m2} = {a}^({m1}+{m2}) = {key}.",
+        difficulty="medium", skill_tags=["exponents", "laws"], params={"a": a, "m": m1, "n": m2},
+    )
+
+
+def v_power_quotient(text: str) -> str:
+    m = re.search(r"Simplify: (\d+)\^(\d+) / (\d+)\^(\d+)\.", text)
+    a1, m1, a2, m2 = int(m.group(1)), int(m.group(2)), int(m.group(3)), int(m.group(4))
+    assert a1 == a2 and m1 > m2
+    return f"{a1}^{m1 - m2}"
+
+
+def gen_power_quotient(rng, chapter):
+    a = rng.choice([2, 3, 5, 7])
+    m2 = rng.randint(1, 4)
+    m1 = m2 + rng.randint(1, 5)
+    key = f"{a}^{m1 - m2}"
+    return AuthoredItem(
+        family="power_quotient", chapter=chapter, topic_slug="laws-of-exponents",
+        question_text=f"Simplify: {a}^{m1} / {a}^{m2}. Write the answer as a single power.",
+        key=key,
+        distractors=_unique_distractors(key, [f"{a}^{m1 + m2}", f"{a}^{m1 * m2}", f"{a}^1", f"{a}^{m1 - m2 + 1}", f"1"]),
+        explanation=f"Quotient law: {a}^{m1} / {a}^{m2} = {a}^({m1}-{m2}) = {key}.",
+        difficulty="medium", skill_tags=["exponents", "laws"], params={"a": a, "m": m1, "n": m2},
+    )
+
+
+def v_power_of_power(text: str) -> str:
+    m = re.search(r"Simplify: \((\d+)\^(\d+)\)\^(\d+)\.", text)
+    a, m1, n = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return f"{a}^{m1 * n}"
+
+
+def gen_power_of_power(rng, chapter):
+    a = rng.choice([2, 3, 5, 7])
+    m1 = rng.randint(2, 5)
+    n = rng.randint(2, 4)
+    key = f"{a}^{m1 * n}"
+    return AuthoredItem(
+        family="power_of_power", chapter=chapter, topic_slug="laws-of-exponents",
+        question_text=f"Simplify: ({a}^{m1})^{n}. Write the answer as a single power.",
+        key=key,
+        distractors=_unique_distractors(key, [f"{a}^{m1 + n}", f"{a}^{m1 ** n}", f"{a}^{abs(m1 - n)}", f"{a}^{m1 * n + 1}", f"{a}^{n}"]),
+        explanation=f"Power law: ({a}^{m1})^{n} = {a}^({m1} x {n}) = {key}.",
+        difficulty="medium", skill_tags=["exponents", "laws"], params={"a": a, "m": m1, "n": n},
+    )
+
+
+def v_zero_exponent(text: str) -> str:
+    m = re.search(r"What is (\d+)\^0\?", text)
+    assert int(m.group(1)) > 0
+    return "1"
+
+
+def gen_zero_exponent(rng, chapter):
+    a = rng.randint(2, 99)
+    return AuthoredItem(
+        family="zero_exponent", chapter=chapter, topic_slug="zero-negative-exponents",
+        question_text=f"What is {a}^0?",
+        key="1",
+        distractors=["0", str(a), f"1/{a}", f"{a}^1"],
+        explanation=f"Any non-zero number raised to the power 0 is 1, so {a}^0 = 1.",
+        difficulty="easy", skill_tags=["exponents"], params={"a": a},
+    )
+
+
+def v_negative_exponent(text: str) -> str:
+    m = re.search(r"What is (\d+)\^\(-(\d+)\)\?", text)
+    a, n = int(m.group(1)), int(m.group(2))
+    return f"1/{a ** n}"
+
+
+def gen_negative_exponent(rng, chapter):
+    a = rng.choice([2, 3, 4, 5, 10])
+    n = rng.randint(1, 4 if a <= 4 else 3)
+    key = f"1/{a ** n}"
+    return AuthoredItem(
+        family="negative_exponent", chapter=chapter, topic_slug="zero-negative-exponents",
+        question_text=f"What is {a}^(-{n})? Write the answer as a fraction.",
+        key=key,
+        distractors=_unique_distractors(key, [str(a ** n), f"1/{a * n}", f"-1/{a ** n}", f"1/{a ** (n + 1)}", str(a ** n - 1)]),
+        explanation=f"{a}^(-{n}) = 1/{a}^{n} = 1/{a ** n}.",
+        difficulty="medium", skill_tags=["exponents", "negative"], params={"a": a, "n": n},
+    )
+
+
+def v_sci(text: str) -> str:
+    m = re.search(r"Write (\d+) in scientific notation", text)
+    N = int(m.group(1))
+    k = len(str(N)) - 1
+    c = N / (10 ** k)
+    cstr = f"{c:.1f}".rstrip("0").rstrip(".") if "." in f"{c:.2f}" else str(int(c))
+    c = round(c, 9)
+    cstr = str(int(c)) if c == int(c) else str(c)
+    return f"{cstr} x 10^{k}"
+
+
+def gen_sci(rng, chapter):
+    c = rng.choice([round(x * 0.1, 1) for x in range(11, 100)])
+    k = rng.randint(3, 7)
+    N = int(round(c * (10 ** k)))
+    cstr = str(int(c)) if c == int(c) else str(c)
+    key = f"{cstr} x 10^{k}"
+    c_up = round(c + 0.1, 1)
+    c_dn = round(c - 0.1, 1)
+    return AuthoredItem(
+        family="sci", chapter=chapter, topic_slug="scientific-notation",
+        question_text=f"Write {N} in scientific notation (standard form).",
+        key=key,
+        distractors=_unique_distractors(key, [f"{cstr} x 10^{k + 1}", f"{cstr} x 10^{k - 1}", f"{c_up} x 10^{k}", f"{c_dn} x 10^{k}", f"{cstr} x 10^{k + 2}"]),
+        explanation=f"{N} = {cstr} x 10^{k} (move the decimal point {k} places).",
+        difficulty="medium", skill_tags=["exponents", "scientific-notation"], params={"N": N},
+    )
+
+
+def v_last_digit(text: str) -> str:
+    m = re.search(r"units digit of (\d+)\^(\d+)", text)
+    a, n = int(m.group(1)), int(m.group(2))
+    return str((a ** n) % 10)
+
+
+def gen_last_digit(rng, chapter):
+    a = rng.choice([2, 3, 7, 8, 9, 13, 17])
+    n = rng.randint(11, 60)
+    key = str((a ** n) % 10)
+    pool = [str(d) for d in range(10)]
+    rng.shuffle(pool)
+    return AuthoredItem(
+        family="last_digit", chapter=chapter, topic_slug="power-patterns",
+        question_text=f"What is the units digit of {a}^{n}?",
+        key=key,
+        distractors=_unique_distractors(key, [d for d in pool if d != key]),
+        explanation=f"The units digits of powers of {a} repeat in a cycle; {a}^{n} falls on the digit {key}.",
+        difficulty="hard", skill_tags=["exponents", "patterns"], params={"a": a, "n": n},
+    )
+
+
+def gen_greatest_power(rng, chapter):
+    # options verified as a set: exactly one maximum
+    seen: set[int] = set()
+    opts: list[str] = []
+    while len(opts) < 4:
+        a = rng.choice([2, 3, 4, 5, 6, 7, 9, 10])
+        n = rng.randint(2, 7)
+        v = a ** n
+        if v not in seen and v < 100000:
+            seen.add(v)
+            opts.append(f"{a}^{n}")
+    vals = {o: int(o.split("^")[0]) ** int(o.split("^")[1]) for o in opts}
+    key = max(vals, key=vals.get)
+    return AuthoredItem(
+        family="greatest_power", chapter=chapter, topic_slug="comparing-powers",
+        question_text="Which of these numbers is the greatest?",
+        key=key, distractors=[o for o in opts if o != key],
+        explanation=f"Evaluating each: " + ", ".join(f"{o} = {vals[o]}" for o in opts) + f". The greatest is {key}.",
+        difficulty="medium", skill_tags=["exponents", "compare"], params={"options": opts},
+    )
+
+
+def _verify_greatest_power(item: AuthoredItem) -> bool:
+    vals = {o: int(o.split("^")[0]) ** int(o.split("^")[1]) for o in [item.key] + item.distractors}
+    if len(set(vals.values())) != 4:
+        return False
+    return max(vals, key=vals.get) == item.key
+
+
+def v_expanded(text: str) -> str:
+    m = re.search(r"expanded form of (\d+) using powers of 10", text)
+    N = m.group(1)
+    parts = []
+    for i, d in enumerate(N):
+        p = len(N) - 1 - i
+        parts.append(f"{d} x 10^{p}")
+    return " + ".join(parts)
+
+
+def gen_expanded(rng, chapter):
+    digits = rng.sample(range(1, 10), 4)
+    N = int("".join(map(str, digits)))
+    parts = [f"{d} x 10^{3 - i}" for i, d in enumerate(digits)]
+    key = " + ".join(parts)
+    wrongs = []
+    for _ in range(6):
+        perm = digits[:]
+        rng.shuffle(perm)
+        w = " + ".join(f"{d} x 10^{3 - i}" for i, d in enumerate(perm))
+        if w != key and w not in wrongs:
+            wrongs.append(w)
+    return AuthoredItem(
+        family="expanded", chapter=chapter, topic_slug="expanded-form",
+        question_text=f"What is the expanded form of {N} using powers of 10?",
+        key=key, distractors=wrongs[:3],
+        explanation=f"{N} = " + key + ".",
+        difficulty="medium", skill_tags=["place-value", "exponents"], params={"N": N},
+    )
+
+
+def v_place_value(text: str) -> str:
+    m = re.search(r"In the number (\d+), what is the place value of the digit (\d+)\?", text)
+    N, d = m.group(1), m.group(2)
+    assert N.count(d) == 1
+    pos = len(N) - 1 - N.index(d)
+    return str(int(d) * (10 ** pos))
+
+
+def gen_place_value(rng, chapter):
+    digits = rng.sample(range(1, 10), rng.choice([4, 5]))
+    N = "".join(map(str, digits))
+    d = rng.choice(digits)
+    pos = len(N) - 1 - N.index(str(d))
+    key = str(d * (10 ** pos))
+    return AuthoredItem(
+        family="place_value", chapter=chapter, topic_slug="place-value",
+        question_text=f"In the number {N}, what is the place value of the digit {d}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(d), str(d * (10 ** (pos + 1))), str(d * (10 ** max(pos - 1, 0))), str(d * 10), str(int(N) - d * (10 ** pos)), str(d * (10 ** pos) + d), str(d * (10 ** pos) - d if d * (10 ** pos) > d else d * (10 ** (pos + 2)))]),
+        explanation=f"The digit {d} is in the 10^{pos} place, so its place value is {d} x 10^{pos} = {key}.",
+        difficulty="easy", skill_tags=["place-value"], params={"N": N, "d": d},
+    )
+
+
+def v_base_to_10(text: str) -> str:
+    m = re.search(r"number (\d+) \(base (\d+)\) is equal to which base-10 number", text)
+    digits, b = m.group(1), int(m.group(2))
+    return str(int(digits, b))
+
+
+def gen_base_to_10(rng, chapter):
+    b = rng.choice([2, 3, 4, 5, 8])
+    length = rng.randint(3, 4)
+    digits = "".join(rng.choice("01234"[:b] if b < 5 else "01234567"[:b]) for _ in range(length)).lstrip("0")
+    if len(digits) < 2:
+        digits = "1" + digits
+    key = str(int(digits, b))
+    return AuthoredItem(
+        family="base_to_10", chapter=chapter, topic_slug="base-systems",
+        question_text=f"The number {digits} (base {b}) is equal to which base-10 number?",
+        key=key,
+        distractors=_unique_distractors(key, [str(int(digits)), str(int(key) + b), str(int(key) - b if int(key) > b else int(key) + 1), str(int(key) + 1), str(int(digits, b + 1) if max(int(x) for x in digits) < b + 1 else int(key) + 2)]),
+        explanation=f"Multiply each digit by its place power of {b} and add: {digits} (base {b}) = {key}.",
+        difficulty="hard", skill_tags=["base-systems"], params={"digits": digits, "b": b},
+    )
+
+
+_ROMAN_TABLE = [(1000, "M"), (900, "CM"), (500, "D"), (400, "CD"), (100, "C"), (90, "XC"), (50, "L"), (40, "XL"), (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")]
+
+
+def _to_roman(n: int) -> str:
+    out = ""
+    for v, s in _ROMAN_TABLE:
+        while n >= v:
+            out += s
+            n -= v
+    return out
+
+
+def _from_roman(s: str) -> int:
+    total = 0
+    i = 0
+    vals = {"M": 1000, "D": 500, "C": 100, "L": 50, "X": 10, "V": 5, "I": 1}
+    while i < len(s):
+        if i + 1 < len(s) and vals[s[i]] < vals[s[i + 1]]:
+            total -= vals[s[i]]
+        else:
+            total += vals[s[i]]
+        i += 1
+    return total
+
+
+def v_roman(text: str) -> str:
+    m = re.search(r"What is ([IVXLCDM]+) in Hindu-Arabic numerals\?", text)
+    return str(_from_roman(m.group(1)))
+
+
+def gen_roman(rng, chapter):
+    n = rng.randint(4, 89)
+    roman = _to_roman(n)
+    key = str(n)
+    return AuthoredItem(
+        family="roman", chapter=chapter, topic_slug="numeral-conversion",
+        question_text=f"What is {roman} in Hindu-Arabic numerals?",
+        key=key,
+        distractors=_unique_distractors(key, [str(n + 1), str(n - 1), str(n + 10), str(n - 10 if n > 10 else n + 5), str(_from_roman(roman.replace("I", "V", 1)) if "I" in roman else n + 2)]),
+        explanation=f"{roman} = {key}.",
+        difficulty="medium", skill_tags=["roman", "numerals"], params={"n": n},
+    )
+
+
+def v_count_range(text: str) -> str:
+    m = re.search(r"from (\d+) to (\d+) \(both included\)", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    return str(b - a + 1)
+
+
+def gen_count_range(rng, chapter):
+    a = rng.randint(11, 99)
+    b = a + rng.randint(9, 99)
+    key = str(b - a + 1)
+    return AuthoredItem(
+        family="count_range", chapter=chapter, topic_slug="counting",
+        question_text=f"How many whole numbers are there from {a} to {b} (both included)?",
+        key=key,
+        distractors=_unique_distractors(key, [str(b - a), str(b - a + 2), str(b - a - 1), str(b - a + 10), str(b)]),
+        explanation=f"Count = last - first + 1 = {b} - {a} + 1 = {key}.",
+        difficulty="easy", skill_tags=["counting"], params={"a": a, "b": b},
+    )
+
+
+def v_dec_to_binary(text: str) -> str:
+    m = re.search(r"What is (\d+) written in base 2\?", text)
+    return bin(int(m.group(1)))[2:]
+
+
+def gen_dec_to_binary(rng, chapter):
+    n = rng.randint(5, 40)
+    key = bin(n)[2:]
+    return AuthoredItem(
+        family="dec_to_binary", chapter=chapter, topic_slug="base-systems",
+        question_text=f"What is {n} written in base 2?",
+        key=key,
+        distractors=_unique_distractors(key, [bin(n + 1)[2:], bin(n - 1)[2:], key[::-1], bin(n + 2)[2:], key + "0"]),
+        explanation=f"Divide repeatedly by 2 and read the remainders upward: {n} = {key} (base 2).",
+        difficulty="hard", skill_tags=["base-systems", "binary"], params={"n": n},
+    )
+
+
+_HISTORY_FACTS = {
+    "Which ancient civilization used a base-60 (sexagesimal) number system?": "Babylonians",
+    "How many distinct symbols (digits) does the Hindu-Arabic numeral system use?": "10",
+    "Which digit's invention in India was crucial to the place-value system?": "0 (zero)",
+    "In the Roman numeral system, which symbol represents 100?": "C",
+    "In the Roman numeral system, what value does the symbol L represent?": "50",
+    "Which ancient civilization used a base-20 (vigesimal) number system?": "Mayans",
+}
+
+_FACT_DISTRACTORS = {
+    "Babylonians": ["Egyptians", "Romans", "Greeks"],
+    "10": ["8", "12", "16"],
+    "0 (zero)": ["1 (one)", "9 (nine)", "10 (ten)"],
+    "C": ["L", "D", "M"],
+    "50": ["500", "5", "100"],
+    "Mayans": ["Babylonians", "Egyptians", "Chinese"],
+}
+
+
+def gen_history(rng, chapter):
+    q = rng.choice(list(_HISTORY_FACTS))
+    key = _HISTORY_FACTS[q]
+    return AuthoredItem(
+        family="history", chapter=chapter, topic_slug="number-systems-history",
+        question_text=q, key=key, distractors=_FACT_DISTRACTORS[key][:3],
+        explanation=f"Fact: {q[:-1]} - {key}.",
+        difficulty="easy", skill_tags=["history", "number-systems"], params={"fact": q},
+    )
+
+
+def _verify_history(item: AuthoredItem) -> bool:
+    return _HISTORY_FACTS.get(item.question_text) == item.key and item.key not in item.distractors
+
+
+def v_simplify_ratio(text: str) -> str:
+    m = re.search(r"ratio (\d+):(\d+) in its simplest form", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    import math
+    g = math.gcd(a, b)
+    assert g > 1
+    return f"{a // g}:{b // g}"
+
+
+def gen_simplify_ratio(rng, chapter):
+    import math
+    p = rng.randint(1, 9)
+    q = rng.randint(1, 9)
+    while math.gcd(p, q) != 1 or p == q:
+        p, q = rng.randint(1, 9), rng.randint(1, 9)
+    k = rng.randint(2, 12)
+    a, b = p * k, q * k
+    key = f"{p}:{q}"
+    return AuthoredItem(
+        family="simplify_ratio", chapter=chapter, topic_slug="ratio",
+        question_text=f"Express the ratio {a}:{b} in its simplest form.",
+        key=key,
+        distractors=_unique_distractors(key, [f"{a}:{b}", f"{q}:{p}", f"{p + 1}:{q + 1}", f"{p}:{q + 1}", f"{p * 2}:{q * 3}"]),
+        explanation=f"Divide both terms by their HCF {k}: {a}:{b} = {key}.",
+        difficulty="easy", skill_tags=["ratio"], params={"a": a, "b": b},
+    )
+
+
+def v_unitary(text: str) -> str:
+    m = re.search(r"If (\d+) notebooks cost Rs(\d+), what is the cost of one notebook\?", text)
+    n, c = int(m.group(1)), int(m.group(2))
+    assert c % n == 0
+    return f"Rs{c // n}"
+
+
+def gen_unitary(rng, chapter):
+    n = rng.randint(2, 12)
+    price = rng.randint(3, 45)
+    c = n * price
+    key = f"Rs{price}"
+    return AuthoredItem(
+        family="unitary", chapter=chapter, topic_slug="unitary-method",
+        question_text=f"If {n} notebooks cost Rs{c}, what is the cost of one notebook?",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs{price + 1}", f"Rs{price - 1}", f"Rs{c - n}", f"Rs{price * 2}", f"Rs{price + 2}"]),
+        explanation=f"Cost of one = {c} / {n} = Rs{price}.",
+        difficulty="easy", skill_tags=["unitary"], params={"n": n, "c": c},
+    )
+
+
+def v_unitary_extended(text: str) -> str:
+    m = re.search(r"If (\d+) pencils cost Rs(\d+), how much will (\d+) pencils cost\?", text)
+    n, c, k = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert c % n == 0 and (c // n) * k == c * k // n
+    return f"Rs{(c // n) * k}"
+
+
+def gen_unitary_extended(rng, chapter):
+    n = rng.randint(2, 10)
+    price = rng.randint(2, 25)
+    c = n * price
+    k = rng.randint(2, 15)
+    key = f"Rs{price * k}"
+    return AuthoredItem(
+        family="unitary_extended", chapter=chapter, topic_slug="unitary-method",
+        question_text=f"If {n} pencils cost Rs{c}, how much will {k} pencils cost?",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs{price * k + price}", f"Rs{price * (k + 1)}", f"Rs{c + k}", f"Rs{price * k - price}", f"Rs{c * k}"]),
+        explanation=f"One pencil costs {c}/{n} = Rs{price}, so {k} pencils cost {price} x {k} = Rs{price * k}.",
+        difficulty="easy", skill_tags=["unitary"], params={"n": n, "c": c, "k": k},
+    )
+
+
+def v_direct_distance(text: str) -> str:
+    m = re.search(r"covers (\d+) km in (\d+) hours.*in (\d+) hours\?", text)
+    d, h, k = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert d % h == 0
+    return f"{(d // h) * k} km"
+
+
+def gen_direct_distance(rng, chapter):
+    h = rng.randint(2, 6)
+    v = rng.randint(15, 70)
+    d = h * v
+    k = rng.randint(2, 9)
+    key = f"{v * k} km"
+    return AuthoredItem(
+        family="direct_distance", chapter=chapter, topic_slug="direct-proportion",
+        question_text=f"A bus covers {d} km in {h} hours at a constant speed. How far will it go in {k} hours?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{v * (k + 1)} km", f"{d + k} km", f"{v * k - v} km", f"{v * h * k} km", f"{v * k + 5} km"]),
+        explanation=f"Speed = {d}/{h} = {v} km per hour. In {k} hours: {v} x {k} = {v * k} km.",
+        difficulty="medium", skill_tags=["proportion"], params={"d": d, "h": h, "k": k},
+    )
+
+
+def v_ratio_division(text: str) -> str:
+    m = re.search(r"Rs(\d+) is shared between Asha and Bala in the ratio (\d+):(\d+)\. How much does Asha get\?", text)
+    t, p, q = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert t % (p + q) == 0
+    return f"Rs{t * p // (p + q)}"
+
+
+def gen_ratio_division(rng, chapter):
+    p = rng.randint(1, 9)
+    q = rng.randint(1, 9)
+    while p == q:
+        q = rng.randint(1, 9)
+    s = rng.randint(10, 60)
+    t = (p + q) * s
+    key = f"Rs{p * s}"
+    return AuthoredItem(
+        family="ratio_division", chapter=chapter, topic_slug="ratio-division",
+        question_text=f"Rs{t} is shared between Asha and Bala in the ratio {p}:{q}. How much does Asha get?",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs{q * s}", f"Rs{t // 2}", f"Rs{p * s + s}", f"Rs{p * s - s if p > 1 else p * s + 2 * s}", f"Rs{t - p * s + s}"]),
+        explanation=f"Total parts = {p}+{q} = {p + q}. Each part = {t}/{p + q} = Rs{s}. Asha gets {p} parts = Rs{p * s}.",
+        difficulty="medium", skill_tags=["ratio"], params={"t": t, "p": p, "q": q},
+    )
+
+
+def v_scale_map(text: str) -> str:
+    m = re.search(r"1 cm represents (\d+) km\. Two cities are (\d+) cm apart", text)
+    s, d = int(m.group(1)), int(m.group(2))
+    return f"{s * d} km"
+
+
+def gen_scale_map(rng, chapter):
+    s = rng.choice([2, 5, 10, 15, 20, 25, 50, 100])
+    d = rng.randint(2, 15)
+    key = f"{s * d} km"
+    return AuthoredItem(
+        family="scale_map", chapter=chapter, topic_slug="scale-maps",
+        question_text=f"On a map, 1 cm represents {s} km. Two cities are {d} cm apart on the map. What is the actual distance between them?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{s * d + s} km", f"{s * d - s} km", f"{s + d} km", f"{s * d * 10} km", f"{s * (d + 1)} km"]),
+        explanation=f"Actual distance = {d} x {s} = {s * d} km.",
+        difficulty="easy", skill_tags=["scale"], params={"s": s, "d": d},
+    )
+
+
+def v_recipe(text: str) -> str:
+    m = re.search(r"recipe for (\d+) people uses (\d+) g of rice\. How much rice is needed for (\d+) people\?", text)
+    n, g, m2 = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert g % n == 0
+    return f"{(g // n) * m2} g"
+
+
+def gen_recipe(rng, chapter):
+    n = rng.randint(2, 6)
+    u = rng.choice([25, 50, 75, 100, 125, 150])
+    g = n * u
+    m2 = rng.randint(2, 12)
+    while m2 == n:
+        m2 = rng.randint(2, 12)
+    key = f"{u * m2} g"
+    return AuthoredItem(
+        family="recipe", chapter=chapter, topic_slug="recipes-mixtures",
+        question_text=f"A recipe for {n} people uses {g} g of rice. How much rice is needed for {m2} people?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{u * m2 + u} g", f"{u * (m2 - 1)} g", f"{g + m2} g", f"{g * m2} g", f"{u * m2 - u} g"]),
+        explanation=f"Per person = {g}/{n} = {u} g. For {m2} people: {u} x {m2} = {u * m2} g.",
+        difficulty="easy", skill_tags=["proportion", "recipe"], params={"n": n, "g": g, "m": m2},
+    )
+
+
+def gen_equivalent_ratio(rng, chapter):
+    import math
+    p = rng.randint(1, 8)
+    q = rng.randint(1, 8)
+    while math.gcd(p, q) != 1 or p == q:
+        p, q = rng.randint(1, 8), rng.randint(1, 8)
+    k = rng.randint(2, 6)
+    key = f"{p * k}:{q * k}"
+    wrongs = []
+    for kp, kq in [(p + 1, q + 1), (p * k + 1, q * k), (p * k, q * k + 1), (p + k, q + k), (p * 2, q * 3), (p * k, q * (k + 1))]:
+        w = f"{kp}:{kq}"
+        if kp * q != kq * p and w != key and w not in wrongs:
+            wrongs.append(w)
+        if len(wrongs) == 3:
+            break
+    return AuthoredItem(
+        family="equivalent_ratio", chapter=chapter, topic_slug="ratio",
+        question_text=f"Which ratio is equivalent to {p}:{q}?",
+        key=key, distractors=wrongs,
+        explanation=f"Multiply both terms by {k}: {p}:{q} = {key}.",
+        difficulty="medium", skill_tags=["ratio"], params={"p": p, "q": q, "k": k},
+    )
+
+
+def _verify_equivalent_ratio(item: AuthoredItem) -> bool:
+    m = re.search(r"equivalent to (\d+):(\d+)\?", item.question_text)
+    p, q = int(m.group(1)), int(m.group(2))
+    def parses(r):
+        a, b = r.split(":")
+        return int(a), int(b)
+    kp, kq = parses(item.key)
+    if kp * q != kq * p:
+        return False
+    return all((lambda ab: ab[0] * q != ab[1] * p)(parses(w)) for w in item.distractors)
+
+
+def v_better_deal(text: str) -> str:
+    m = re.search(r"Shop A sells (\d+) oranges for Rs(\d+) and Shop B sells (\d+) oranges for Rs(\d+)", text)
+    n1, c1, n2, c2 = map(int, m.groups())
+    if c1 * n2 == c2 * n1:
+        return "Both cost the same per orange"
+    return "Shop A" if c1 * n2 < c2 * n1 else "Shop B"
+
+
+def gen_better_deal(rng, chapter):
+    while True:
+        n1 = rng.randint(2, 12)
+        n2 = rng.randint(2, 12)
+        c1 = rng.randint(10, 120)
+        c2 = rng.randint(10, 120)
+        if c1 * n2 != c2 * n1 and n1 != n2:
+            break
+    key = "Shop A" if c1 * n2 < c2 * n1 else "Shop B"
+    return AuthoredItem(
+        family="better_deal", chapter=chapter, topic_slug="comparing-ratios",
+        question_text=f"Shop A sells {n1} oranges for Rs{c1} and Shop B sells {n2} oranges for Rs{c2}. Which shop offers the lower price per orange?",
+        key=key,
+        distractors=["Shop B" if key == "Shop A" else "Shop A", "Both cost the same per orange", "Cannot be decided"],
+        explanation=f"Per orange: A = {c1}/{n1} = Rs{c1 / n1:.2f}, B = {c2}/{n2} = Rs{c2 / n2:.2f}. Lower is {key}.",
+        difficulty="medium", skill_tags=["ratio", "compare"], params={"n1": n1, "c1": c1, "n2": n2, "c2": c2},
+    )
+
+
+VERIFIERS.update({
+    "power": v_power,
+    "power_product": v_power_product,
+    "power_quotient": v_power_quotient,
+    "power_of_power": v_power_of_power,
+    "zero_exponent": v_zero_exponent,
+    "negative_exponent": v_negative_exponent,
+    "sci": v_sci,
+    "last_digit": v_last_digit,
+    "expanded": v_expanded,
+    "place_value": v_place_value,
+    "base_to_10": v_base_to_10,
+    "roman": v_roman,
+    "count_range": v_count_range,
+    "dec_to_binary": v_dec_to_binary,
+    "simplify_ratio": v_simplify_ratio,
+    "unitary": v_unitary,
+    "unitary_extended": v_unitary_extended,
+    "direct_distance": v_direct_distance,
+    "ratio_division": v_ratio_division,
+    "scale_map": v_scale_map,
+    "recipe": v_recipe,
+    "better_deal": v_better_deal,
+})
+
+SET_VERIFIERS = {
+    "right_set": _verify_right_set,
+    "greatest_power": _verify_greatest_power,
+    "equivalent_ratio": _verify_equivalent_ratio,
+    "history": _verify_history,
+}
+
+GENERATORS.update({
+    2: [
+        (gen_power, v_power, 6),
+        (gen_power_product, v_power_product, 6),
+        (gen_power_quotient, v_power_quotient, 6),
+        (gen_power_of_power, v_power_of_power, 6),
+        (gen_zero_exponent, v_zero_exponent, 4),
+        (gen_negative_exponent, v_negative_exponent, 6),
+        (gen_sci, v_sci, 6),
+        (gen_last_digit, v_last_digit, 5),
+        (gen_greatest_power, None, 5),
+    ],
+    3: [
+        (gen_expanded, v_expanded, 6),
+        (gen_place_value, v_place_value, 6),
+        (gen_base_to_10, v_base_to_10, 6),
+        (gen_roman, v_roman, 6),
+        (gen_count_range, v_count_range, 5),
+        (gen_dec_to_binary, v_dec_to_binary, 6),
+        (gen_history, None, 6),
+    ],
+    7: [
+        (gen_simplify_ratio, v_simplify_ratio, 6),
+        (gen_unitary, v_unitary, 6),
+        (gen_unitary_extended, v_unitary_extended, 6),
+        (gen_direct_distance, v_direct_distance, 6),
+        (gen_ratio_division, v_ratio_division, 6),
+        (gen_scale_map, v_scale_map, 6),
+        (gen_recipe, v_recipe, 5),
+        (gen_equivalent_ratio, None, 5),
+        (gen_better_deal, v_better_deal, 6),
+    ],
+})
 
 
 if __name__ == "__main__":
