@@ -44,6 +44,11 @@ const SUBJECTS = [
   { id: 'social-science', label: 'Social Science', meta: 'Coming soon', available: false, icon: Globe2 },
 ] as const
 
+const SUBJECT_NAME_BY_ID: Record<string, string> = {
+  science: 'Science',
+  mathematics: 'Mathematics',
+}
+
 const TEST_MODES: Array<{
   id: QuestionBankMode
   label: string
@@ -87,12 +92,7 @@ const SKILL_LABELS: Record<string, string> = {
   repeatability: 'checking results with repeated trials',
 }
 
-function MediaGallery({ media, compact = false }: { media?: QuestionBankMedia[];
-
-const SUBJECT_NAME_BY_ID: Record<string, string> = {
-  science: 'Science',
-  mathematics: 'Mathematics',
-} compact?: boolean }) {
+function MediaGallery({ media, compact = false }: { media?: QuestionBankMedia[]; compact?: boolean }) {
   const images = (media || []).filter((asset) => (asset.type || 'image') === 'image' && (asset.url || asset.src))
   if (images.length === 0) return null
 
@@ -801,4 +801,4 @@ export function QuestionBankPracticePage() {
       </main>
     </div>
   )
-}
+                                                                                             }
