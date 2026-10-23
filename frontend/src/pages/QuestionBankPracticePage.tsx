@@ -408,7 +408,7 @@ export function QuestionBankPracticePage() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-600">Practice session</p>
-                <h1 className="mt-2 text-2xl font-bold text-dark sm:text-3xl">Class 8 Science</h1>
+                <h1 className="mt-2 text-2xl font-bold text-dark sm:text-3xl">Class 8 {selectedSubject.label}</h1>
                 <p className="mt-1 text-sm text-neutral-500">{selectedChapter?.title || 'Practice chapter'}</p>
               </div>
               <div
@@ -801,4 +801,4 @@ export function QuestionBankPracticePage() {
       </main>
     </div>
   )
-                                                                                             }
+}
