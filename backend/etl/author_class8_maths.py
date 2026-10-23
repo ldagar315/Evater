@@ -530,6 +530,22 @@ def build_candidate(item: AuthoredItem, spec, rng: random.Random) -> dict:
     }
 
 
+
+# Topic-slug remap: some generators are shared across chapters, but each chapter's
+# concepts table only contains its own slugs. Map to a valid concept per chapter.
+SLUG_REMAP = {
+    (4, "spatial-reasoning"): "angle-sum",
+    (4, "symmetry"): "quadrilateral-properties",
+    (5, "power-patterns"): "digits-puzzles",
+    (5, "exponents"): "number-patterns",
+    (6, "expressions"): "expansion",
+    (6, "like-terms"): "simplification",
+    (9, "congruence"): "converse",
+    (9, "exponents"): "pythagoras-statement",
+    (12, "patterns-generalisation"): "data-stories",
+}
+
+
 def author_chapter(chapter: int, seed: int) -> tuple[list[dict], list[str]]:
     spec = next(c for c in CHAPTERS if c.sequence_number == chapter)
     rng = random.Random(seed)
@@ -543,6 +559,7 @@ def author_chapter(chapter: int, seed: int) -> tuple[list[dict], list[str]]:
             attempts += 1
             try:
                 item = gen(rng, chapter)
+                item.topic_slug = SLUG_REMAP.get((chapter, item.topic_slug), item.topic_slug)
             except Exception as exc:
                 report.append(f"GEN-ERROR: {exc}")
                 continue
@@ -1287,6 +1304,939 @@ GENERATORS.update({
         (gen_better_deal, v_better_deal, 6),
     ],
 })
+
+
+# ---------------------------------------------------------------------------
+# Chapter 1 (Squares/Cubes), 4 (Quadrilaterals), 5 (Number Play) families
+# ---------------------------------------------------------------------------
+
+import math as _math
+
+
+def v_square_eval(text):
+    m = re.search(r"What is (\d+)\^2\?", text)
+    return str(int(m.group(1)) ** 2)
+
+
+def gen_square_eval(rng, chapter):
+    n = rng.randint(11, 35)
+    key = str(n * n)
+    return AuthoredItem(
+        family="square_eval", chapter=chapter, topic_slug="perfect-squares",
+        question_text=f"What is {n}^2?",
+        key=key,
+        distractors=_unique_distractors(key, [str(n * 2), str((n + 1) ** 2), str((n - 1) ** 2), str(n * n + n), str(n * n - n), str(n * 10)]),
+        explanation=f"{n}^2 = {n} x {n} = {key}.",
+        difficulty="easy", skill_tags=["squares"], params={"n": n},
+    )
+
+
+def v_sqrt_perfect(text):
+    m = re.search(r"square root of (\d+)\?", text)
+    N = int(m.group(1))
+    r = _math.isqrt(N)
+    assert r * r == N
+    return str(r)
+
+
+def gen_sqrt_perfect(rng, chapter):
+    n = rng.randint(11, 40)
+    key = str(n)
+    return AuthoredItem(
+        family="sqrt_perfect", chapter=chapter, topic_slug="square-roots",
+        question_text=f"What is the square root of {n * n}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(n + 1), str(n - 1), str(n * 2), str(n + 2), str(n * n // 2)]),
+        explanation=f"{n} x {n} = {n * n}, so the square root is {n}.",
+        difficulty="easy", skill_tags=["square-roots"], params={"n": n},
+    )
+
+
+def v_cube_eval(text):
+    m = re.search(r"What is (\d+)\^3\?", text)
+    return str(int(m.group(1)) ** 3)
+
+
+def gen_cube_eval(rng, chapter):
+    n = rng.randint(3, 12)
+    key = str(n ** 3)
+    return AuthoredItem(
+        family="cube_eval", chapter=chapter, topic_slug="perfect-cubes",
+        question_text=f"What is {n}^3?",
+        key=key,
+        distractors=_unique_distractors(key, [str(n * 3), str(n ** 2), str((n + 1) ** 3), str(n ** 3 + n), str(n ** 3 - n)]),
+        explanation=f"{n}^3 = {n} x {n} x {n} = {key}.",
+        difficulty="easy", skill_tags=["cubes"], params={"n": n},
+    )
+
+
+def v_cuberoot_perfect(text):
+    m = re.search(r"cube root of (\d+)\?", text)
+    N = int(m.group(1))
+    r = round(N ** (1 / 3))
+    assert r ** 3 == N
+    return str(r)
+
+
+def gen_cuberoot_perfect(rng, chapter):
+    n = rng.randint(3, 15)
+    key = str(n)
+    return AuthoredItem(
+        family="cuberoot_perfect", chapter=chapter, topic_slug="cube-roots",
+        question_text=f"What is the cube root of {n ** 3}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(n + 1), str(n - 1), str(n * 3), str(n + 2), str(n ** 2)]),
+        explanation=f"{n} x {n} x {n} = {n ** 3}, so the cube root is {n}.",
+        difficulty="easy", skill_tags=["cube-roots"], params={"n": n},
+    )
+
+
+def v_odd_sum(text):
+    m = re.search(r"sum of the first (\d+) odd numbers", text)
+    k = int(m.group(1))
+    return str(k * k)
+
+
+def gen_odd_sum(rng, chapter):
+    k = rng.randint(4, 20)
+    key = str(k * k)
+    return AuthoredItem(
+        family="odd_sum", chapter=chapter, topic_slug="square-patterns",
+        question_text=f"What is the sum of the first {k} odd numbers (1 + 3 + 5 + ...)?",
+        key=key,
+        distractors=_unique_distractors(key, [str(k * k + k), str(k * k - k), str((k + 1) ** 2), str(2 * k), str(k * (k + 1))]),
+        explanation=f"The first {k} odd numbers sum to {k}^2 = {key}.",
+        difficulty="medium", skill_tags=["squares", "patterns"], params={"k": k},
+    )
+
+
+def v_square_area(text):
+    m = re.search(r"square plot is (\d+) square metres", text)
+    N = int(m.group(1))
+    r = _math.isqrt(N)
+    assert r * r == N
+    return f"{r} m"
+
+
+def gen_square_area(rng, chapter):
+    n = rng.randint(5, 30)
+    key = f"{n} m"
+    return AuthoredItem(
+        family="square_area", chapter=chapter, topic_slug="area-side",
+        question_text=f"The area of a square plot is {n * n} square metres. What is the length of one side?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{n + 1} m", f"{n - 1} m", f"{n * 4} m", f"{n * n // 4} m", f"{n + 2} m"]),
+        explanation=f"Side = square root of area = square root of {n * n} = {n} m.",
+        difficulty="easy", skill_tags=["squares", "area"], params={"n": n},
+    )
+
+
+def v_consec_squares(text):
+    m = re.search(r"difference between (\d+)\^2 and (\d+)\^2", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    return str(a * a - b * b)
+
+
+def gen_consec_squares(rng, chapter):
+    b = rng.randint(10, 30)
+    a = b + 1
+    key = str(a * a - b * b)
+    return AuthoredItem(
+        family="consec_squares", chapter=chapter, topic_slug="square-patterns",
+        question_text=f"What is the difference between {a}^2 and {b}^2?",
+        key=key,
+        distractors=_unique_distractors(key, ["1", str(a + b + 2), str(a * b), str(2 * a), str(a + b - 2)]),
+        explanation=f"{a}^2 - {b}^2 = ({a}+{b})({a}-{b}) = {a + b} x 1 = {key}.",
+        difficulty="medium", skill_tags=["squares", "patterns"], params={"a": a, "b": b},
+    )
+
+
+def v_pgram_opp(text):
+    m = re.search(r"parallelogram, one angle is (\d+)", text)
+    a = int(m.group(1))
+    return f"{180 - a}°"
+
+
+def gen_pgram_opp(rng, chapter):
+    a = rng.randint(30, 150)
+    key = f"{180 - a}°"
+    return AuthoredItem(
+        family="pgram_opp", chapter=chapter, topic_slug="parallelogram",
+        question_text=f"In a parallelogram, one angle is {a}°. What is the angle adjacent to it (on the same side)?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{a}°", f"{90 - a // 2}°", f"{360 - a}°", f"{180 - a + 10}°", f"{180 - a - 10}°"]),
+        explanation=f"Adjacent angles of a parallelogram add to 180°: 180 - {a} = {180 - a}°.",
+        difficulty="medium", skill_tags=["quadrilaterals"], params={"a": a},
+    )
+
+
+def v_rect_diag(text):
+    m = re.search(r"rectangle has length (\d+) cm and width (\d+) cm.*diagonal", text)
+    l, w = int(m.group(1)), int(m.group(2))
+    d2 = l * l + w * w
+    d = _math.isqrt(d2)
+    assert d * d == d2
+    return f"{d} cm"
+
+
+def gen_rect_diag(rng, chapter):
+    l, w, d = rng.choice([(6, 8, 10), (9, 12, 15), (5, 12, 13), (8, 15, 17), (12, 16, 20), (7, 24, 25), (3, 4, 5), (10, 24, 26)])
+    key = f"{d} cm"
+    return AuthoredItem(
+        family="rect_diag", chapter=chapter, topic_slug="rectangle-square",
+        question_text=f"A rectangle has length {l} cm and width {w} cm. What is the length of its diagonal?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{d + 1} cm", f"{d - 1} cm", f"{l + w} cm", f"{abs(l - w)} cm", f"{d + 2} cm"]),
+        explanation=f"Diagonal = square root of ({l}^2 + {w}^2) = square root of {l * l + w * w} = {d} cm.",
+        difficulty="medium", skill_tags=["rectangles", "pythagoras"], params={"l": l, "w": w},
+    )
+
+
+def v_rhombus_perimeter(text):
+    m = re.search(r"side (\d+) cm.*perimeter", text)
+    s = int(m.group(1))
+    return f"{4 * s} cm"
+
+
+def gen_rhombus_perimeter(rng, chapter):
+    s = rng.randint(3, 25)
+    key = f"{4 * s} cm"
+    return AuthoredItem(
+        family="rhombus_perimeter", chapter=chapter, topic_slug="rhombus",
+        question_text=f"A rhombus has side {s} cm. What is its perimeter?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{2 * s} cm", f"{s * s} cm", f"{4 * s + 4} cm", f"{3 * s} cm", f"{4 * s - 4} cm"]),
+        explanation=f"All 4 sides of a rhombus are equal: perimeter = 4 x {s} = {4 * s} cm.",
+        difficulty="easy", skill_tags=["rhombus", "perimeter"], params={"s": s},
+    )
+
+
+def gen_quad_facts(rng, chapter):
+    facts = [
+        ("How many diagonals does a quadrilateral have?", "2", ["1", "4", "3"],
+         "A quadrilateral has 2 diagonals, each joining opposite vertices."),
+        ("In a parallelogram, what can you say about the opposite sides?", "They are equal and parallel",
+         ["They are perpendicular", "They bisect the angles", "They are always unequal"],
+         "Opposite sides of a parallelogram are equal in length and parallel."),
+        ("What is the sum of the angles of any quadrilateral?", "360°", ["180°", "270°", "540°"],
+         "Every quadrilateral's four angles add to 360°."),
+        ("A quadrilateral with all sides equal and all angles 90° is called a?", "Square",
+         ["Rectangle", "Rhombus", "Parallelogram"],
+         "All sides equal plus all angles 90° makes it a square."),
+        ("Which quadrilateral has exactly one pair of parallel sides?", "Trapezium",
+         ["Parallelogram", "Rhombus", "Rectangle"],
+         "A trapezium has exactly one pair of parallel sides."),
+        ("In a rhombus, the diagonals always?", "Bisect each other at right angles",
+         ["Are equal in length", "Are parallel to each other", "Bisect the angles into 45° each"],
+         "The diagonals of a rhombus bisect each other at 90°."),
+        ("How many sides does a kite have equal in pairs?", "2 pairs of adjacent equal sides",
+         ["All 4 sides equal", "Only opposite sides equal", "No equal sides"],
+         "A kite has two pairs of adjacent equal sides."),
+    ]
+    q, key, distractors, expl = rng.choice(facts)
+    return AuthoredItem(
+        family="quad_facts", chapter=chapter, topic_slug="quadrilateral-properties",
+        question_text=q, key=key, distractors=distractors,
+        explanation=expl, difficulty="easy", skill_tags=["quadrilaterals"], params={"fact": q},
+    )
+
+
+_QUAD_FACT_ANSWERS = {
+    "How many diagonals does a quadrilateral have?": "2",
+    "In a parallelogram, what can you say about the opposite sides?": "They are equal and parallel",
+    "What is the sum of the angles of any quadrilateral?": "360°",
+    "A quadrilateral with all sides equal and all angles 90° is called a?": "Square",
+    "Which quadrilateral has exactly one pair of parallel sides?": "Trapezium",
+    "In a rhombus, the diagonals always?": "Bisect each other at right angles",
+    "How many sides does a kite have equal in pairs?": "2 pairs of adjacent equal sides",
+}
+
+
+def _verify_quad_facts(item):
+    return _QUAD_FACT_ANSWERS.get(item.question_text) == item.key and item.key not in item.distractors
+
+
+def v_hcf(text):
+    m = re.search(r"HCF of (\d+) and (\d+)", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    return str(_math.gcd(a, b))
+
+
+def gen_hcf(rng, chapter):
+    g = rng.randint(3, 15)
+    a = g * rng.randint(2, 9)
+    b = g * rng.randint(2, 9)
+    while a == b or _math.gcd(a, b) != g:
+        a = g * rng.randint(2, 9)
+        b = g * rng.randint(2, 9)
+    key = str(g)
+    return AuthoredItem(
+        family="hcf", chapter=chapter, topic_slug="hcf-lcm",
+        question_text=f"What is the HCF of {a} and {b}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(a * b // g), str(g * 2), str(g + 1), str(g - 1 if g > 1 else g + 3), str(a)]),
+        explanation=f"{a} = {g} x {a // g} and {b} = {g} x {b // g}; no larger common factor, so HCF = {g}.",
+        difficulty="medium", skill_tags=["hcf"], params={"a": a, "b": b},
+    )
+
+
+def v_lcm(text):
+    m = re.search(r"LCM of (\d+) and (\d+)", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    return str(a * b // _math.gcd(a, b))
+
+
+def gen_lcm(rng, chapter):
+    a = rng.randint(2, 15)
+    b = rng.randint(2, 15)
+    while a == b:
+        b = rng.randint(2, 15)
+    key = str(a * b // _math.gcd(a, b))
+    return AuthoredItem(
+        family="lcm", chapter=chapter, topic_slug="hcf-lcm",
+        question_text=f"What is the LCM of {a} and {b}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(a * b), str(_math.gcd(a, b)), str(a + b), str(int(key) + a), str(int(key) - a if int(key) > a else int(key) + 2 * a)]),
+        explanation=f"LCM x HCF = {a} x {b} = {a * b}; HCF is {_math.gcd(a, b)}, so LCM = {key}.",
+        difficulty="medium", skill_tags=["lcm"], params={"a": a, "b": b},
+    )
+
+
+def v_divisibility(text):
+    nums = _nums(text)
+    units, d = int(nums[1]), int(nums[-1])
+    for x in range(10):
+        if (400 + 10 * x + units) % d == 0:
+            return str(x)
+    raise AssertionError("none")
+
+
+def gen_divisibility(rng, chapter):
+    d = rng.choice([3, 9, 3, 9])
+    units = rng.randint(0, 9)
+    target_total = 4 + units
+    add = (d - target_total % d) % d
+    x = add
+    key = str(x)
+    return AuthoredItem(
+        family="divisibility", chapter=chapter, topic_slug="divisibility",
+        question_text=f"What is the smallest digit that can fill the blank in 4_{units} so that the 3-digit number 4_{units} is divisible by {d}? (The blank is the tens digit.)",
+        key=key,
+        distractors=_unique_distractors(key, [str((x + 1) % 10), str((x + 2) % 10), str((x + 3) % 10), str((x + d) % 10), str((x + 5) % 10)]),
+        explanation=f"Divisible by {d}: digit sum 4 + x + {units} must be a multiple of {d}. Smallest x = {key}.",
+        difficulty="hard", skill_tags=["divisibility"], params={"units": units, "d": d},
+    )
+
+
+def v_prime_check(text):
+    m = re.search(r"smallest prime number greater than (\d+)", text)
+    n = int(m.group(1))
+    def is_prime(k):
+        return k > 1 and all(k % i for i in range(2, int(k ** 0.5) + 1))
+    k = n + 1
+    while not is_prime(k):
+        k += 1
+    return str(k)
+
+
+def gen_prime_check(rng, chapter):
+    n = rng.randint(10, 60)
+    def is_prime(k):
+        return k > 1 and all(k % i for i in range(2, int(k ** 0.5) + 1))
+    k = n + 1
+    while not is_prime(k):
+        k += 1
+    key = str(k)
+    return AuthoredItem(
+        family="prime_check", chapter=chapter, topic_slug="primes",
+        question_text=f"What is the smallest prime number greater than {n}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(k + 1), str(k + 2), str(n + 2), str(n + 1), str(k - 2)]),
+        explanation=f"Test each number after {n} for factors; the first prime is {key}.",
+        difficulty="medium", skill_tags=["primes"], params={"n": n},
+    )
+
+
+def v_remainder(text):
+    m = re.search(r"remainder when (\d+) is divided by (\d+)", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    return str(a % b)
+
+
+def gen_remainder(rng, chapter):
+    b = rng.randint(3, 12)
+    a = rng.randint(b * 3, b * 30)
+    r = a % b
+    if r == 0:
+        a += 1
+        r = 1
+    key = str(r)
+    return AuthoredItem(
+        family="remainder", chapter=chapter, topic_slug="remainders",
+        question_text=f"What is the remainder when {a} is divided by {b}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(r + 1), str(b - r), str(a // b), str(r - 1 if r > 0 else r + 2), str(r + 2)]),
+        explanation=f"{a} = {b} x {a // b} + {r}, so the remainder is {r}.",
+        difficulty="easy", skill_tags=["remainders"], params={"a": a, "b": b},
+    )
+
+
+def v_distributive(text):
+    m = re.search(r"(\d+) x (\d+) \+ (\d+) x (\d+)\?", text) or re.search(r"(\d+) x (\d+) - (\d+) x (\d+)\?", text)
+    a, b, c, d = int(m.group(1)), int(m.group(2)), int(m.group(3)), int(m.group(4))
+    return str(a * (b + d)) if "+" in text.split("What is")[1] else str(a * (b - d))
+
+
+def gen_distributive(rng, chapter):
+    a = rng.randint(3, 12)
+    d = rng.randint(2, 9)
+    b = rng.randint(2, 9)
+    while b == d:
+        b = rng.randint(2, 9)
+    key = str(a * (b + d))
+    return AuthoredItem(
+        family="distributive", chapter=chapter, topic_slug="distributive-property",
+        question_text=f"What is {a} x {b} + {a} x {d}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(a * b + d), str(a * (b - d) if b > d else a * (d - b)), str(a * b * d), str(a * (b + d) + a), str(a * (b + d) - a)]),
+        explanation=f"{a} x {b} + {a} x {d} = {a} x ({b}+{d}) = {a} x {b + d} = {key}.",
+        difficulty="medium", skill_tags=["distributive"], params={"a": a, "b": b, "d": d},
+    )
+
+
+def v_mental_98(text):
+    m = re.search(r"what is (\d+) x (\d+)\?", text, re.IGNORECASE)
+    a, b = int(m.group(1)), int(m.group(2))
+    return str(a * b)
+
+
+def gen_mental_98(rng, chapter):
+    base = rng.choice([98, 99, 101, 102, 97, 103])
+    n = rng.randint(3, 12)
+    key = str(base * n)
+    return AuthoredItem(
+        family="mental_98", chapter=chapter, topic_slug="mental-math",
+        question_text=f"Use the distributive property to compute quickly: what is {base} x {n}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(base * n + n), str(base * n - n), str(base * n + 10), str((base + 1) * n), str((base - 1) * n), str(base * n + base), str(base * n - base), str(base * (n + 1)), str(base * (n - 1)), str(base * n + 2 * n)]),
+        explanation=f"{base} x {n} = (100 {'-' if base < 100 else '+'} {abs(base - 100)}) x {n} = {100 * n} {'-' if base < 100 else '+'} {abs(base - 100) * n} = {key}.",
+        difficulty="medium", skill_tags=["distributive", "mental-math"], params={"base": base, "n": n},
+    )
+
+
+def v_factorise(text):
+    m = re.search(r"common factor from (\d+)x \+ (\d+)", text)
+    a, b = int(m.group(1)), int(m.group(2))
+    g = _math.gcd(a, b)
+    assert g > 1
+    return f"{g}(x + {b // g})" if a // g == 1 else f"{g}({a // g}x + {b // g})"
+
+
+def gen_factorise(rng, chapter):
+    g = rng.randint(2, 9)
+    p = rng.choice([1, 2, 3, 4])
+    q = rng.randint(2, 9)
+    while _math.gcd(p, q) != 1:
+        q = rng.randint(2, 9)
+    a, b = g * p, g * q
+    key = f"{g}(x + {q})" if p == 1 else f"{g}({p}x + {q})"
+    return AuthoredItem(
+        family="factorise", chapter=chapter, topic_slug="factorisation",
+        question_text=f"Factorise by taking out the common factor from {a}x + {b}.",
+        key=key,
+        distractors=_unique_distractors(key, [f"{a}(x + {b})", f"{g}({p}x + {q + 1})" if p > 1 else f"{g}(x + {q + 1})", f"{g + 1}({p}x + {q})" if p > 1 else f"{g + 1}(x + {q})", f"{b}({a}x + 1)"]),
+        explanation=f"HCF of {a} and {b} is {g}: {a}x + {b} = {key}.",
+        difficulty="medium", skill_tags=["factorisation"], params={"a": a, "b": b},
+    )
+
+
+def v_identity_eval(text):
+    m = re.search(r"\((\d+) \+ (\d+)\)\^2 - \((\d+) - (\d+)\)\^2", text)
+    a, b, c, d = map(int, m.groups())
+    return str((a + b) ** 2 - (c - d) ** 2)
+
+
+def gen_identity_eval(rng, chapter):
+    a = rng.randint(3, 15)
+    b = rng.randint(2, 12)
+    c = rng.randint(5, 15)
+    d = rng.randint(1, c - 1)
+    v1, v2 = (a + b) ** 2, (c - d) ** 2
+    while v1 <= v2:
+        a += 3
+        v1 = (a + b) ** 2
+    key = str(v1 - v2)
+    return AuthoredItem(
+        family="identity_eval", chapter=chapter, topic_slug="identities",
+        question_text=f"Using identities, what is ({a} + {b})^2 - ({c} - {d})^2?",
+        key=key,
+        distractors=_unique_distractors(key, [str(v1 + v2), str(v1 - v2 + 1), str(v1 - v2 - 1), str(v1), str(v2)]),
+        explanation=f"({a}+{b})^2 = {v1} and ({c}-{d})^2 = {v2}; difference = {key}.",
+        difficulty="hard", skill_tags=["identities"], params={"a": a, "b": b, "c": c, "d": d},
+    )
+
+
+def v_pyth_leg(text):
+    m = re.search(r"hypotenuse (\d+) cm and one side (\d+) cm", text)
+    c, a = int(m.group(1)), int(m.group(2))
+    b2 = c * c - a * a
+    b = _math.isqrt(b2)
+    assert b * b == b2
+    return f"{b} cm"
+
+
+def gen_pyth_leg(rng, chapter):
+    a, b, c = rng.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (9, 12, 15), (8, 15, 17), (12, 16, 20), (7, 24, 25), (20, 21, 29)])
+    key = f"{b} cm"
+    return AuthoredItem(
+        family="pyth_leg", chapter=chapter, topic_slug="finding-sides",
+        question_text=f"A right-angled triangle has hypotenuse {c} cm and one side {a} cm. What is the other side?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{b + 1} cm", f"{b - 1} cm", f"{c - a} cm", f"{c + a} cm", f"{b + 2} cm"]),
+        explanation=f"Other side = square root of ({c}^2 - {a}^2) = square root of {c * c - a * a} = {b} cm.",
+        difficulty="medium", skill_tags=["pythagoras"], params={"a": a, "b": b, "c": c},
+    )
+
+
+def v_pyth_ladder(text):
+    m = re.search(r"ladder (\d+) m long leans.*base is (\d+) m", text)
+    c, a = int(m.group(1)), int(m.group(2))
+    b2 = c * c - a * a
+    b = _math.isqrt(b2)
+    assert b * b == b2
+    return f"{b} m"
+
+
+def gen_pyth_ladder(rng, chapter):
+    a, b, c = rng.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (9, 12, 15), (12, 16, 20)])
+    key = f"{b} m"
+    return AuthoredItem(
+        family="pyth_ladder", chapter=chapter, topic_slug="applications",
+        question_text=f"A ladder {c} m long leans against a wall. Its base is {a} m from the wall. How high up the wall does it reach?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{b + 1} m", f"{b - 1} m", f"{c - a} m", f"{c} m", f"{b + 2} m"]),
+        explanation=f"Height = square root of ({c}^2 - {a}^2) = square root of {c * c - a * a} = {b} m.",
+        difficulty="medium", skill_tags=["pythagoras", "applications"], params={"a": a, "b": b, "c": c},
+    )
+
+
+def v_triple_scale(text):
+    m = re.search(r"3, 4, 5 are multiplied by (\d+)", text)
+    k = int(m.group(1))
+    return f"{3 * k}, {4 * k}, {5 * k}"
+
+
+def gen_triple_scale(rng, chapter):
+    k = rng.randint(2, 9)
+    key = f"{3 * k}, {4 * k}, {5 * k}"
+    return AuthoredItem(
+        family="triple_scale", chapter=chapter, topic_slug="pythagorean-triples",
+        question_text=f"The numbers 3, 4, 5 are multiplied by {k}. The resulting triple is?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{3 * k}, {4 * k}, {5 * k + k}", f"{3 + k}, {4 + k}, {5 + k}", f"{3 * k}, {4 * k}, {5 * k - k}", f"{3 * k + 1}, {4 * k + 1}, {5 * k + 1}", f"{4 * k}, {3 * k}, {5 * k}"]),
+        explanation=f"Multiply each by {k}: {3 * k}, {4 * k}, {5 * k} - and (3k)^2 + (4k)^2 = (5k)^2 still holds.",
+        difficulty="easy", skill_tags=["triples"], params={"k": k},
+    )
+
+
+def gen_converse_check(rng, chapter):
+    a, b, c = rng.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (9, 12, 15)])
+    while True:
+        x, y, z = sorted(rng.randint(2, 26) for _ in range(3))
+        if x * x + y * y != z * z:
+            break
+    right = rng.random() < 0.5
+    if right:
+        sides = (a, b, c)
+        key = "Yes, it is right-angled"
+    else:
+        sides = (x, y, z)
+        key = "No, it is not right-angled"
+    p, q, r = sides
+    return AuthoredItem(
+        family="converse_check", chapter=chapter, topic_slug="converse",
+        question_text=f"A triangle has sides {p} cm, {q} cm, {r} cm. Is it right-angled?",
+        key=key,
+        distractors=["No, it is not right-angled" if right else "Yes, it is right-angled", "Only if the largest side is the base", "Cannot be decided from the sides"],
+        explanation=f"{p}^2 + {q}^2 = {p * p + q * q} and {r}^2 = {r * r}. {'Equal' if p * p + q * q == r * r else 'Not equal'}, so {'it is' if p * p + q * q == r * r else 'it is not'} right-angled.",
+        difficulty="medium", skill_tags=["converse", "pythagoras"], params={"sides": sides},
+    )
+
+
+def v_coord_x(text):
+    m = re.search(r"point \((-?\d+), (-?\d+)\)", text)
+    return m.group(1)
+
+
+def gen_coord_x(rng, chapter):
+    x = rng.randint(-9, 9)
+    y = rng.randint(-9, 9)
+    while x == 0 or y == 0:
+        x = rng.randint(-9, 9)
+        y = rng.randint(-9, 9)
+    key = str(x)
+    return AuthoredItem(
+        family="coord_x", chapter=chapter, topic_slug="coordinates",
+        question_text=f"What is the x-coordinate of the point ({x}, {y})?",
+        key=key,
+        distractors=_unique_distractors(key, [str(y), str(-x), str(x + 1), str(abs(x)), str(x - 1)]),
+        explanation=f"In (x, y) the first number is the x-coordinate: {x}.",
+        difficulty="easy", skill_tags=["coordinates"], params={"x": x, "y": y},
+    )
+
+
+def v_coord_quadrant(text):
+    m = re.search(r"quadrant does the point \((-?\d+), (-?\d+)\)", text)
+    x, y = int(m.group(1)), int(m.group(2))
+    if x > 0 and y > 0:
+        return "First"
+    if x < 0 and y > 0:
+        return "Second"
+    if x < 0 and y < 0:
+        return "Third"
+    return "Fourth"
+
+
+def gen_coord_quadrant(rng, chapter):
+    x = rng.choice([i for i in range(-9, 10) if i != 0])
+    y = rng.choice([i for i in range(-9, 10) if i != 0])
+    key = v_coord_quadrant(f"quadrant does the point ({x}, {y})")
+    return AuthoredItem(
+        family="coord_quadrant", chapter=chapter, topic_slug="plotting-points",
+        question_text=f"In which quadrant does the point ({x}, {y}) lie?",
+        key=key,
+        distractors=[q for q in ["First", "Second", "Third", "Fourth"] if q != key],
+        explanation=f"x = {x} ({'positive' if x > 0 else 'negative'}), y = {y} ({'positive' if y > 0 else 'negative'}): {key} quadrant.",
+        difficulty="medium", skill_tags=["coordinates", "quadrants"], params={"x": x, "y": y},
+    )
+
+
+def v_axis_distance(text):
+    m = re.search(r"points \((-?\d+), (\d+)\) and \((-?\d+), \2\)", text)
+    x1, y, x2 = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return f"{abs(x2 - x1)} units"
+
+
+def gen_axis_distance(rng, chapter):
+    y = rng.randint(1, 9)
+    x1 = rng.randint(-8, 4)
+    x2 = x1 + rng.randint(2, 10)
+    key = f"{x2 - x1} units"
+    return AuthoredItem(
+        family="axis_distance", chapter=chapter, topic_slug="coordinates",
+        question_text=f"What is the distance between the points ({x1}, {y}) and ({x2}, {y})?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{x2 - x1 + 1} units", f"{x2 - x1 - 1} units", f"{x2 + x1} units", f"{2 * (x2 - x1)} units", f"{y} units"]),
+        explanation=f"Same y-coordinate, so distance = |{x2} - {x1}| = {x2 - x1} units.",
+        difficulty="medium", skill_tags=["coordinates", "distance"], params={"x1": x1, "x2": x2, "y": y},
+    )
+
+
+def v_graph_read(text):
+    m = re.search(r"t = (\d+), its value is (\d+)\. What is its value at t = (\d+)\?", text)
+    t1, v1, t2 = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return str(v1 + (t2 - t1))
+
+
+def gen_graph_read(rng, chapter):
+    t1 = rng.randint(1, 4)
+    t2 = t1 + rng.randint(1, 5)
+    v1 = rng.randint(2, 10)
+    v2 = v1 + (t2 - t1)
+    key = str(v2)
+    return AuthoredItem(
+        family="graph_read", chapter=chapter, topic_slug="line-graphs",
+        question_text=f"A line graph rises by 1 unit for every 1 unit of time. At t = {t1}, its value is {v1}. What is its value at t = {t2}?",
+        key=key,
+        distractors=_unique_distractors(key, [str(v2 + 1), str(v2 - 1), str(v1), str(v1 + t2), str(v2 + 2)]),
+        explanation=f"From t = {t1} to t = {t2} is {t2 - t1} steps: {v1} + {t2 - t1} = {v2}.",
+        difficulty="easy", skill_tags=["graphs"], params={"t1": t1, "v1": v1, "t2": t2},
+    )
+
+
+def v_area_rect(text):
+    m = re.search(r"rectangle (?:is|with length) ?(\d+)? ?c?m? ?(?:by|and width) (\d+)?", text)
+    nums = _nums(text)
+    l, w = int(nums[0]), int(nums[1])
+    return f"{l * w} cm^2"
+
+
+def gen_area_rect(rng, chapter):
+    l = rng.randint(3, 20)
+    w = rng.randint(2, 15)
+    key = f"{l * w} cm^2"
+    return AuthoredItem(
+        family="area_rect", chapter=chapter, topic_slug="area-rectangle",
+        question_text=f"A rectangle is {l} cm long and {w} cm wide. What is its area?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{2 * (l + w)} cm^2", f"{l * w + l} cm^2", f"{l * w - w} cm^2", f"{l + w} cm^2", f"{(l + 1) * w} cm^2"]),
+        explanation=f"Area = length x width = {l} x {w} = {l * w} cm^2.",
+        difficulty="easy", skill_tags=["area"], params={"l": l, "w": w},
+    )
+
+
+def v_area_triangle(text):
+    m = re.search(r"base (\d+) cm and height (\d+) cm", text)
+    b, h = int(m.group(1)), int(m.group(2))
+    assert (b * h) % 2 == 0
+    return f"{b * h // 2} cm^2"
+
+
+def gen_area_triangle(rng, chapter):
+    b = rng.randint(4, 24)
+    h = rng.randint(2, 16)
+    if (b * h) % 2:
+        h += 1
+    key = f"{b * h // 2} cm^2"
+    return AuthoredItem(
+        family="area_triangle", chapter=chapter, topic_slug="area-triangle",
+        question_text=f"A triangle has base {b} cm and height {h} cm. What is its area?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{b * h} cm^2", f"{b + h} cm^2", f"{b * h // 2 + b} cm^2", f"{b * h // 4 if (b * h) % 4 == 0 else b * h // 2 + 2} cm^2", f"{b * h // 2 - 2} cm^2"]),
+        explanation=f"Area = (1/2) x base x height = (1/2) x {b} x {h} = {b * h // 2} cm^2.",
+        difficulty="easy", skill_tags=["area", "triangles"], params={"b": b, "h": h},
+    )
+
+
+def v_area_pgram(text):
+    m = re.search(r"parallelogram has base (\d+) cm and (?:vertical )?height (\d+) cm", text)
+    b, h = int(m.group(1)), int(m.group(2))
+    return f"{b * h} cm^2"
+
+
+def gen_area_pgram(rng, chapter):
+    b = rng.randint(4, 20)
+    h = rng.randint(3, 15)
+    key = f"{b * h} cm^2"
+    return AuthoredItem(
+        family="area_pgram", chapter=chapter, topic_slug="area-parallelogram",
+        question_text=f"A parallelogram has base {b} cm and vertical height {h} cm. What is its area?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{b * h // 2} cm^2", f"{2 * (b + h)} cm^2", f"{b * h + b} cm^2", f"{b + h} cm^2", f"{b * h - h} cm^2"]),
+        explanation=f"Area of a parallelogram = base x height = {b} x {h} = {b * h} cm^2.",
+        difficulty="easy", skill_tags=["area", "parallelogram"], params={"b": b, "h": h},
+    )
+
+
+def v_area_trapezium(text):
+    m = re.search(r"parallel sides (\d+) cm and (\d+) cm,.*(\d+) cm apart", text)
+    a, b, h = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    assert ((a + b) * h) % 2 == 0
+    return f"{(a + b) * h // 2} cm^2"
+
+
+def gen_area_trapezium(rng, chapter):
+    a = rng.randint(3, 15)
+    b = rng.randint(3, 15)
+    while a == b or (a + b) % 2:
+        b = rng.randint(3, 15)
+    h = rng.choice([2, 4, 6, 8, 10, 3, 5])
+    key = f"{(a + b) * h // 2} cm^2"
+    return AuthoredItem(
+        family="area_trapezium", chapter=chapter, topic_slug="area-trapezium",
+        question_text=f"A trapezium has parallel sides {a} cm and {b} cm, and they are {h} cm apart. What is its area?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{(a + b) * h} cm^2", f"{a * b} cm^2", f"{(a + b + h)} cm^2", f"{(a + b) * h // 2 + a} cm^2", f"{(a + b) * h // 4} cm^2"]),
+        explanation=f"Area = (1/2) x (sum of parallel sides) x height = (1/2) x ({a}+{b}) x {h} = {(a + b) * h // 2} cm^2.",
+        difficulty="medium", skill_tags=["area", "trapezium"], params={"a": a, "b": b, "h": h},
+    )
+
+
+def v_area_composite(text):
+    nums = _nums(text)
+    s, w = int(nums[0]), int(nums[2])
+    return f"{s * s + (s * w) // 2} cm^2"
+
+
+def gen_area_composite(rng, chapter):
+    s = rng.choice([4, 6, 8, 10, 12])
+    w = rng.choice([2, 4, 6, 8])
+    key = f"{s * s + (s * w) // 2} cm^2"
+    return AuthoredItem(
+        family="area_composite", chapter=chapter, topic_slug="composite-shapes",
+        question_text=f"A shape is made of a square of side {s} cm with a triangle on top. The triangle has base {s} cm (the top of the square) and height {w} cm. What is the total area?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{s * s + s * w} cm^2", f"{s * s} cm^2", f"{(s * w) // 2} cm^2", f"{s * s + w} cm^2", f"{(s + w) ** 2} cm^2"]),
+        explanation=f"Square = {s}^2 = {s * s}; triangle = (1/2) x {s} x {w} = {(s * w) // 2}. Total = {s * s + (s * w) // 2} cm^2.",
+        difficulty="medium", skill_tags=["area", "composite"], params={"s": s, "w": w},
+    )
+
+
+def v_perim_rect(text):
+    nums = _nums(text)
+    l, w = int(nums[0]), int(nums[1])
+    return f"{2 * (l + w)} cm"
+
+
+def gen_perim_rect(rng, chapter):
+    l = rng.randint(5, 25)
+    w = rng.randint(3, 18)
+    key = f"{2 * (l + w)} cm"
+    return AuthoredItem(
+        family="perim_rect", chapter=chapter, topic_slug="perimeter-area",
+        question_text=f"A rectangle has length {l} cm and width {w} cm. What is its perimeter?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{l * w} cm", f"{l + w} cm", f"{2 * (l + w) + 2} cm", f"{2 * (l + w) - 2} cm", f"{4 * l} cm"]),
+        explanation=f"Perimeter = 2 x (length + width) = 2 x ({l}+{w}) = {2 * (l + w)} cm.",
+        difficulty="easy", skill_tags=["perimeter"], params={"l": l, "w": w},
+    )
+
+
+def v_area_convert(text):
+    m = re.search(r"(\d+) m\^2 in square centimetres", text)
+    n = int(m.group(1))
+    return f"{n * 10000} cm^2"
+
+
+def gen_area_convert(rng, chapter):
+    n = rng.randint(2, 15)
+    key = f"{n * 10000} cm^2"
+    return AuthoredItem(
+        family="area_convert", chapter=chapter, topic_slug="units-conversion",
+        question_text=f"What is {n} m^2 in square centimetres?",
+        key=key,
+        distractors=_unique_distractors(key, [f"{n * 100} cm^2", f"{n * 1000} cm^2", f"{n * 100000} cm^2", f"{n * 10000 + 1000} cm^2", f"{n * 10} cm^2"]),
+        explanation=f"1 m^2 = 100 cm x 100 cm = 10000 cm^2, so {n} m^2 = {n * 10000} cm^2.",
+        difficulty="medium", skill_tags=["units", "area"], params={"n": n},
+    )
+
+
+def v_area_context(text):
+    nums = _nums(text)
+    l, w, c = int(nums[0]), int(nums[1]), int(nums[2])
+    return f"Rs{l * w * c}"
+
+
+def gen_area_context(rng, chapter):
+    l = rng.randint(3, 12)
+    w = rng.randint(3, 10)
+    c = rng.choice([50, 100, 150, 200, 250])
+    key = f"Rs{l * w * c}"
+    return AuthoredItem(
+        family="area_context", chapter=chapter, topic_slug="area-in-context",
+        question_text=f"A floor {l} m long and {w} m wide is to be tiled. Tiles cost Rs{c} per square metre. What is the total cost of the tiles?",
+        key=key,
+        distractors=_unique_distractors(key, [f"Rs{l * w * c + c}", f"Rs{(l + w) * c}", f"Rs{2 * (l + w) * c}", f"Rs{l * w * c - c}", f"Rs{l * w * c * 2}"]),
+        explanation=f"Area = {l} x {w} = {l * w} m^2. Cost = {l * w} x Rs{c} = Rs{l * w * c}.",
+        difficulty="medium", skill_tags=["area", "context"], params={"l": l, "w": w, "c": c},
+    )
+
+
+VERIFIERS.update({
+    "square_eval": v_square_eval,
+    "sqrt_perfect": v_sqrt_perfect,
+    "cube_eval": v_cube_eval,
+    "cuberoot_perfect": v_cuberoot_perfect,
+    "odd_sum": v_odd_sum,
+    "square_area": v_square_area,
+    "consec_squares": v_consec_squares,
+    "pgram_opp": v_pgram_opp,
+    "rect_diag": v_rect_diag,
+    "rhombus_perimeter": v_rhombus_perimeter,
+    "hcf": v_hcf,
+    "lcm": v_lcm,
+    "divisibility": v_divisibility,
+    "prime_check": v_prime_check,
+    "remainder": v_remainder,
+    "distributive": v_distributive,
+    "mental_98": v_mental_98,
+    "factorise": v_factorise,
+    "identity_eval": v_identity_eval,
+    "pyth_leg": v_pyth_leg,
+    "pyth_ladder": v_pyth_ladder,
+    "triple_scale": v_triple_scale,
+    "coord_x": v_coord_x,
+    "coord_quadrant": v_coord_quadrant,
+    "axis_distance": v_axis_distance,
+    "graph_read": v_graph_read,
+    "area_rect": v_area_rect,
+    "area_triangle": v_area_triangle,
+    "area_pgram": v_area_pgram,
+    "area_trapezium": v_area_trapezium,
+    "area_composite": v_area_composite,
+    "perim_rect": v_perim_rect,
+    "area_convert": v_area_convert,
+    "area_context": v_area_context,
+})
+
+SET_VERIFIERS.update({
+    "quad_facts": _verify_quad_facts,
+})
+
+GENERATORS.update({
+    1: [
+        (gen_square_eval, v_square_eval, 7),
+        (gen_sqrt_perfect, v_sqrt_perfect, 7),
+        (gen_cube_eval, v_cube_eval, 6),
+        (gen_cuberoot_perfect, v_cuberoot_perfect, 6),
+        (gen_odd_sum, v_odd_sum, 5),
+        (gen_square_area, v_square_area, 5),
+        (gen_consec_squares, v_consec_squares, 5),
+    ],
+    4: [
+        (gen_quad_angle, verify_quad_angle, 6),
+        (gen_pgram_opp, v_pgram_opp, 7),
+        (gen_rect_diag, v_rect_diag, 6),
+        (gen_rhombus_perimeter, v_rhombus_perimeter, 6),
+        (gen_quad_facts, None, 7),
+        (gen_symmetry, verify_symmetry, 5),
+        (gen_polygon_sum, verify_polygon_sum, 5),
+    ],
+    5: [
+        (gen_hcf, v_hcf, 7),
+        (gen_lcm, v_lcm, 7),
+        (gen_divisibility, v_divisibility, 6),
+        (gen_prime_check, v_prime_check, 7),
+        (gen_remainder, v_remainder, 7),
+        (gen_last_digit, v_last_digit, 4),
+        (gen_power, v_power, 4),
+    ],
+    6: [
+        (gen_distributive, v_distributive, 8),
+        (gen_mental_98, v_mental_98, 7),
+        (gen_factorise, v_factorise, 7),
+        (gen_identity_eval, v_identity_eval, 6),
+        (gen_expand_product, verify_expand_product, 5),
+        (gen_like_terms, verify_like_terms, 5),
+        (gen_square_sum, verify_square_sum, 4),
+    ],
+    9: [
+        (gen_pyth_leg, v_pyth_leg, 8),
+        (gen_pyth_ladder, v_pyth_ladder, 6),
+        (gen_triple_scale, v_triple_scale, 6),
+        (gen_converse_check, None, 8),
+        (gen_right_set, None, 6),
+        (gen_power, v_power, 4),
+    ],
+    12: [
+        (gen_coord_x, v_coord_x, 8),
+        (gen_coord_quadrant, v_coord_quadrant, 8),
+        (gen_axis_distance, v_axis_distance, 8),
+        (gen_graph_read, v_graph_read, 7),
+        (gen_nth_term, verify_nth_term, 5),
+    ],
+    14: [
+        (gen_area_rect, v_area_rect, 6),
+        (gen_area_triangle, v_area_triangle, 6),
+        (gen_area_pgram, v_area_pgram, 6),
+        (gen_area_trapezium, v_area_trapezium, 6),
+        (gen_area_composite, v_area_composite, 5),
+        (gen_perim_rect, v_perim_rect, 6),
+        (gen_area_convert, v_area_convert, 4),
+        (gen_area_context, v_area_context, 6),
+    ],
+})
+
+
+def _verify_converse_check(item):
+    m = re.search(r"sides (\d+) cm, (\d+) cm, (\d+) cm", item.question_text)
+    a, b, c = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    is_right = a * a + b * b == c * c
+    expected = "Yes, it is right-angled" if is_right else "No, it is not right-angled"
+    return item.key == expected and expected not in item.distractors
+
+
+SET_VERIFIERS["converse_check"] = _verify_converse_check
 
 
 if __name__ == "__main__":
