@@ -39,7 +39,7 @@ const TEST_DURATION_SECONDS = 10 * 60
 
 const SUBJECTS = [
   { id: 'science', label: 'Science', meta: 'Class 8', available: true, icon: BookOpenCheck },
-  { id: 'mathematics', label: 'Mathematics', meta: 'Coming soon', available: false, icon: Calculator },
+  { id: 'mathematics', label: 'Mathematics', meta: 'Class 8', available: true, icon: Calculator },
   { id: 'english', label: 'English', meta: 'Coming soon', available: false, icon: Languages },
   { id: 'social-science', label: 'Social Science', meta: 'Coming soon', available: false, icon: Globe2 },
 ] as const
@@ -87,7 +87,12 @@ const SKILL_LABELS: Record<string, string> = {
   repeatability: 'checking results with repeated trials',
 }
 
-function MediaGallery({ media, compact = false }: { media?: QuestionBankMedia[]; compact?: boolean }) {
+function MediaGallery({ media, compact = false }: { media?: QuestionBankMedia[];
+
+const SUBJECT_NAME_BY_ID: Record<string, string> = {
+  science: 'Science',
+  mathematics: 'Mathematics',
+} compact?: boolean }) {
   const images = (media || []).filter((asset) => (asset.type || 'image') === 'image' && (asset.url || asset.src))
   if (images.length === 0) return null
 
@@ -261,7 +266,8 @@ export function QuestionBankPracticePage() {
 
   useEffect(() => {
     let active = true
-    void getQuestionBankChapters()
+    setChaptersLoading(true)
+    void getQuestionBankChapters(SUBJECT_NAME_BY_ID[selectedSubjectId])
       .then((availableChapters) => {
         if (!active) return
         setChapters(availableChapters)
@@ -279,7 +285,7 @@ export function QuestionBankPracticePage() {
     return () => {
       active = false
     }
-  }, [])
+  }, [selectedSubjectId])
 
   const submit = useCallback(async (wasTimedOut = false) => {
     if (!test || loading) return
