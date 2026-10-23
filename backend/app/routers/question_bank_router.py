@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import secrets
 from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -103,9 +103,14 @@ def _load_mastery(client: Any, user_id: str, chapter_id: str) -> List[Dict[str, 
 
 @router.get("/chapters")
 def list_question_bank_chapters(
+    subject: Optional[str] = None,
     auth: AuthContext = Depends(require_user),
 ) -> Dict[str, Any]:
-    """Return the published Grade 8 Science chapters available for practice."""
+    """Return the published Grade 8 chapters available for practice.
+
+    Defaults to Science for backward compatibility; pass ?subject=<name> (for
+    example Mathematics) to list chapters for another subject.
+    """
     # Authentication is enforced by require_user; the catalogue itself is
     # public question-bank data and is read with the server-only client.
     client = create_supabase_service_client()
@@ -113,7 +118,7 @@ def list_question_bank_chapters(
         client.table("curriculum_versions")
         .select("id,grade,subject,version_label")
         .eq("grade", 8)
-        .eq("subject", "Science")
+        .eq("subject", subject or "Science")
         .eq("status", "published")
         .execute()
     )
