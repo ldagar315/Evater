@@ -183,8 +183,18 @@ def seed_remote(
             for item in archive_items
         ]
         if archive_rows:
+            # question_bank_items has no source_tier / source_attribution_display
+            # columns (migration 20261020143000 covers question_bank only); item
+            # provenance lives in source_url / source_question_id / source_locator.
             client.table("question_bank_items").upsert(
-                _strip_pending_migration_columns(archive_rows),
+                [
+                    {
+                        key: value
+                        for key, value in row.items()
+                        if key not in ("source_tier", "source_attribution_display")
+                    }
+                    for row in archive_rows
+                ],
                 on_conflict="chapter_id,content_hash",
             ).execute()
         published = publish_candidates(
@@ -206,20 +216,6 @@ def seed_remote(
             }
         )
     return reports
-
-
-# Prod tables do not yet carry the source_tier / source_attribution_display
-# columns (migration 20261020143000 is not applied). Strip them from upsert
-# payloads until the migration lands; provenance still flows via source_url,
-# source_question_id, source_locator, and content_sources.
-_PENDING_MIGRATION_COLUMNS = ("source_tier", "source_attribution_display")
-
-
-def _strip_pending_migration_columns(rows):
-    return [
-        {key: value for key, value in row.items() if key not in _PENDING_MIGRATION_COLUMNS}
-        for row in rows
-    ]
 
 
 def _parse_chapters(value: str) -> tuple[ChapterSpec, ...]:
@@ -273,7 +269,9 @@ def main() -> int:
             items = load_question_items(path)
             if any(item.chapter_id != spec.id for item in items):
                 raise QuestionPackError(f"Item pack for Chapter {spec.sequence_number} contains a mismatched chapter_id.")
-            validate_question_items(items)
+            # Evater-authored packs (manual tier) carry no review-archive items;
+            # scraped NCERT packs must have at least one.
+            validate_question_items(items, minimum_count=0 if any(c.source_tier == "manual" for c in candidates) else 1)
             packs.append((spec, candidates))
             archive_items_by_chapter[spec.sequence_number] = items
             validation.append(

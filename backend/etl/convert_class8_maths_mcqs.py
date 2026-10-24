@@ -35,11 +35,16 @@ _UNIT_RE = re.compile(r"^\s*(-?[\d,]+(?:\.\d+)?)\s*([a-zA-Z^0-9%\u00b0]{0,10})\s
 def _parse_single_number(answer: str) -> tuple[float, str, str] | None:
     """Parse an official answer into (value, unit, canonical_text) or None."""
 
-    match = _UNIT_RE.match(answer.strip())
+    cleaned = answer.strip()
+    currency = ""
+    if cleaned.startswith("\u20b9"):
+        currency = "\u20b9"
+        cleaned = cleaned[1:].strip()
+    match = _UNIT_RE.match(cleaned)
     if not match:
         return None
     digits = match.group(1).replace(",", "")
-    unit = match.group(2).strip()
+    unit = (currency + match.group(2).strip()).strip()
     if unit.startswith("^"):
         return None  # power-form answers like 2^75 make meaningless distractors
     try:
@@ -204,8 +209,14 @@ def _convert_value(
     rng.shuffle(distractors)
     chosen = distractors[:3]
 
-    suffix = f" {unit}" if unit else ""
-    option_texts = [canonical + suffix] + [text + suffix for text in chosen]
+    if unit.startswith("\u20b9"):
+        prefix = "\u20b9"
+        rest = unit[1:].strip()
+        suffix = f" {rest}" if rest else ""
+    else:
+        prefix = ""
+        suffix = f" {unit}" if unit else ""
+    option_texts = [prefix + canonical + suffix] + [prefix + text + suffix for text in chosen]
     letters = ["A", "B", "C", "D"]
     order = list(range(4))
     rng.shuffle(order)
@@ -217,7 +228,7 @@ def _convert_value(
 
     # QC gate: 4 distinct options, key present, stem untouched.
     texts = [option["text"] for option in options]
-    if len(set(texts)) != 4 or options[letters.index(correct_letter)]["text"] != canonical + suffix:
+    if len(set(texts)) != 4 or options[letters.index(correct_letter)]["text"] != prefix + canonical + suffix:
         return None
 
     stem = item.question_text if part_label is None else f"{item.question_text} (part ({part_label}))"
@@ -225,13 +236,24 @@ def _convert_value(
     if not _stem_is_publishable(stem):
         return None
     question_family = f"ganita-mcq:{item.chapter_id}:{hashlib.sha1(_normalize(stem).encode()).hexdigest()[:12]}"
+    prov = (item.answer_spec or {}).get("answer_provenance")
+    verification_note = (item.answer_spec or {}).get("verification") or ""
+    if prov == "self_solved_verified":
+        explanation_text = f"Answer computed and independently verified by Evater's deterministic solver. Check: {verification_note}."
+        attribution_text = f"NCERT, {TEXTBOOK_SHORT} (ncert.nic.in); answer self-solved and verified by Evater; options derived deterministically"
+        verification_value = f"self_solved_verified: {verification_note}"
+    else:
+        explanation_text = f"Official NCERT answer key: {full_answer}."
+        attribution_text = f"NCERT, {TEXTBOOK_SHORT} (ncert.nic.in); options derived deterministically from the official answer key"
+        verification_value = "official_answer_key"
+
     return QuestionCandidate(
         chapter_id=item.chapter_id,
         concept_id=item.concept_id,
         question_text=_bounded(stem, 1000),
         options=[CandidateOption(id=option["id"], text=_bounded(option["text"], 500)) for option in options],
         correct_option_id=correct_letter,  # type: ignore[arg-type]
-        explanation=_bounded(f"Official NCERT answer key: {full_answer}.", 2000),
+        explanation=_bounded(explanation_text, 2000),
         hint=None,
         difficulty=item.difficulty,
         cognitive_level="apply",
@@ -248,13 +270,14 @@ def _convert_value(
         source_tier="ncert_attributed",
         rework_status="done",
         source_license=NCERT_LICENSE,
-        source_attribution=f"NCERT, {TEXTBOOK_SHORT} (ncert.nic.in); options derived deterministically from the official answer key",
+        source_attribution=attribution_text,
         question_family_key=question_family,
         variant_key="deterministic_mcq_conversion",
         answer_spec={
             "type": "mcq_single",
-            "source_answer": canonical + suffix,
-            "verification": "official_answer_key",
+            "source_answer": prefix + canonical + suffix,
+            "verification": verification_value,
+            "answer_provenance": (item.answer_spec or {}).get("answer_provenance"),
             "answer_source_url": item.source_url,
             "conversion": "deterministic_rules_from_official_key",
         },

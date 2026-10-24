@@ -17,8 +17,9 @@ class QuestionCandidate(BaseModel):
     chapter_id: UUID
     concept_id: UUID
     question_text: str = Field(min_length=10, max_length=1000)
+    question_type: Literal["mcq_single", "true_false", "numerical"] = "mcq_single"
     options: List[CandidateOption]
-    correct_option_id: Literal["A", "B", "C", "D"]
+    correct_option_id: Optional[Literal["A", "B", "C", "D"]] = None
     explanation: str = Field(min_length=5, max_length=2000)
     hint: Optional[str] = Field(default=None, max_length=500)
     difficulty: Literal["easy", "medium", "hard"]
@@ -65,12 +66,27 @@ class QuestionCandidate(BaseModel):
     def validate_question(self) -> "QuestionCandidate":
         ids = [option.id for option in self.options]
         texts = [option.text.strip().casefold() for option in self.options]
-        if ids != ["A", "B", "C", "D"] or len(set(ids)) != 4:
-            raise ValueError("Options must contain exactly A, B, C, and D in order.")
-        if len(set(texts)) != 4:
-            raise ValueError("Options must have unique text.")
-        if self.correct_option_id not in ids:
-            raise ValueError("correct_option_id must match one of the options.")
+        if self.question_type == "mcq_single":
+            if ids != ["A", "B", "C", "D"] or len(set(ids)) != 4:
+                raise ValueError("Options must contain exactly A, B, C, and D in order.")
+            if len(set(texts)) != 4:
+                raise ValueError("Options must have unique text.")
+            if self.correct_option_id not in ids:
+                raise ValueError("correct_option_id must match one of the options.")
+        elif self.question_type == "true_false":
+            if ids != ["A", "B"]:
+                raise ValueError("True/false questions must carry exactly options A and B.")
+            if len(set(texts)) != 2:
+                raise ValueError("Options must have unique text.")
+            if self.correct_option_id not in ids:
+                raise ValueError("correct_option_id must match one of the options.")
+        elif self.question_type == "numerical":
+            if self.options:
+                raise ValueError("Numerical questions must not carry options.")
+            if self.correct_option_id is not None:
+                raise ValueError("Numerical questions must not set correct_option_id.")
+            if self.answer_spec.get("expected_value") is None:
+                raise ValueError("Numerical questions need answer_spec.expected_value.")
         if not self.source_url.startswith(("https://", "manual://")):
             raise ValueError("source_url must use https:// or manual://.")
         if not self.content_hash:
@@ -99,7 +115,7 @@ class QuestionCandidate(BaseModel):
             "source_id": str(source_id) if source_id else None,
             "ingestion_job_id": str(ingestion_job_id) if ingestion_job_id else None,
             "source_url": self.source_url,
-            "question_type": "mcq_single",
+            "question_type": self.question_type,
             "question_text": self.question_text,
             "options_json": [option.model_dump() for option in self.options],
             "correct_option_id": self.correct_option_id,
@@ -121,6 +137,8 @@ class QuestionCandidate(BaseModel):
             "generation_spec": self.generation_spec,
             "source_question_id": self.source_question_id,
             "source_locator": self.source_locator,
+            "source_tier": self.source_tier,
+            "source_attribution_display": self.source_attribution,
             "content_hash": self.content_hash,
             "quality_score": 1.0 if self.review_status == "approved" else None,
             "status": status_override or ("published" if self.review_status == "approved" else "review"),
