@@ -145,7 +145,12 @@ def select_question_block(
     block_number: int = 1,
     routing: Optional[Mapping[str, Any]] = None,
 ) -> Dict[str, Any]:
-    """Select a deterministic, lightly adaptive block from published questions."""
+    """Select a deterministic, lightly adaptive block from published questions.
+
+    Picks rotate question types and spread concepts (live diversity counters),
+    while difficulty distance to the block target and concept mastery steer
+    the choice within each type.
+    """
 
     if count < 1:
         raise QuestionBankError("Question block size must be positive.")
@@ -165,26 +170,36 @@ def select_question_block(
     rng = random.Random(seed + block_number * 1009)
     rng.shuffle(pool)
     concept_counts: Dict[str, int] = defaultdict(int)
+    type_counts: Dict[str, int] = defaultdict(int)
 
     def rank(question: Mapping[str, Any]) -> tuple:
         concept_id = str(question["concept_id"])
         difficulty_distance = abs(DIFFICULTY_INDEX[question["difficulty"]] - DIFFICULTY_INDEX[target])
         concept_mastery = float(mastery.get(concept_id, 0))
         weak_concept_rank = -1 if concept_id in focus_ids else 0
+        # Saturating type term: 0 while this block still lacks the type, 1 once
+        # it is represented. Guarantees each published type appears once per
+        # block without forcing equal proportions.
+        type_absent = 0 if type_counts[question["question_type"]] == 0 else 1
         return (
             weak_concept_rank,
+            type_absent,
             difficulty_distance,
             concept_counts[concept_id],
             concept_mastery,
         )
 
-    ranked = sorted(pool, key=rank)
+    # Greedy re-ranking: diversity counters are read live by rank() and updated
+    # after every pick, so each selection rotates question types and spreads
+    # concepts instead of exhausting the top-ranked slice of a one-time sort.
+    remaining = list(pool)
     selected: List[Dict[str, Any]] = []
-    for question in ranked:
-        if len(selected) >= count:
-            break
-        selected.append(question)
-        concept_counts[str(question["concept_id"])] += 1
+    while remaining and len(selected) < count:
+        best = min(remaining, key=rank)
+        remaining.remove(best)
+        selected.append(best)
+        concept_counts[str(best["concept_id"])] += 1
+        type_counts[best["question_type"]] += 1
 
     if len(selected) != count:
         raise QuestionBankError("Unable to build a complete question block.")
