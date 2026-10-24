@@ -413,40 +413,67 @@ def submit_question_bank_block(
             ).data
             or [],
         )
-        if prefetch["existing_attempts"]:
-            raise HTTPException(status_code=409, detail="This test block was already submitted.")
         answer_rows = prefetch["answer_rows"]
         answer_rows_by_id = {str(row["id"]): row for row in answer_rows}
         if set(answer_rows_by_id) != set(expected_question_ids):
             raise HTTPException(status_code=409, detail="One or more published questions are no longer available.")
 
-        answers = {
-            question_id: _submitted_value(submitted_by_id[question_id])
-            for question_id in expected_question_ids
-        }
+        recovered = False
+        if prefetch["existing_attempts"]:
+            # Idempotent retry: an earlier submit recorded this block's attempts
+            # but its response never reached the student (deploy restart, cold
+            # start, network drop). Without recovery the test is stranded: every
+            # retry hits a 409 and the student can never finish it. Rebuild the
+            # outcome from the stored attempts - they are the authoritative
+            # first write - and let the idempotent follow-up work (mastery
+            # upsert, completion update, once-only leaderboard award) replay.
+            stored_attempts = (
+                client.table("question_attempts")
+                .select("test_question_id,answer_json")
+                .in_("test_question_id", [str(row["id"]) for row in test_questions])
+                .execute()
+            ).data or []
+            if len(stored_attempts) != len(test_questions):
+                raise HTTPException(status_code=409, detail="This test block was already submitted.")
+            stored_by_test_question = {str(row["test_question_id"]): row for row in stored_attempts}
+            answers = {
+                str(test_question["question_id"]): (
+                    (stored_by_test_question[str(test_question["id"])].get("answer_json") or {}).get("value")
+                )
+                for test_question in test_questions
+            }
+            recovered = True
+        else:
+            answers = {
+                question_id: _submitted_value(submitted_by_id[question_id])
+                for question_id in expected_question_ids
+            }
         results = score_block(
             [answer_rows_by_id[question_id] for question_id in expected_question_ids],
             answers,
         )
         result_by_id = {str(result["question_id"]): result for result in results}
 
-        client.table("question_attempts").insert(
-            [
-                {
-                    "test_attempt_id": test_id_text,
-                    "test_question_id": test_question["id"],
-                    "user_id": user_id,
-                    "chapter_id": test["chapter_id"],
-                    "question_id": test_question["question_id"],
-                    "selected_option_id": submitted_by_id[str(test_question["question_id"])].selected_option_id,
-                    "answer_json": _submitted_json(submitted_by_id[str(test_question["question_id"])]),
-                    "is_correct": result_by_id[str(test_question["question_id"])]["is_correct"],
-                    "marks_awarded": result_by_id[str(test_question["question_id"])]["marks_awarded"],
-                    "response_time_ms": submitted_by_id[str(test_question["question_id"])].response_time_ms,
-                }
-                for test_question in test_questions
-            ]
-        ).execute()
+        if recovered:
+            logger.info("Recovered already-recorded block %s for test %s", block_number, test_id_text)
+        else:
+            client.table("question_attempts").insert(
+                [
+                    {
+                        "test_attempt_id": test_id_text,
+                        "test_question_id": test_question["id"],
+                        "user_id": user_id,
+                        "chapter_id": test["chapter_id"],
+                        "question_id": test_question["question_id"],
+                        "selected_option_id": submitted_by_id[str(test_question["question_id"])].selected_option_id,
+                        "answer_json": _submitted_json(submitted_by_id[str(test_question["question_id"])]),
+                        "is_correct": result_by_id[str(test_question["question_id"])]["is_correct"],
+                        "marks_awarded": result_by_id[str(test_question["question_id"])]["marks_awarded"],
+                        "response_time_ms": submitted_by_id[str(test_question["question_id"])].response_time_ms,
+                    }
+                    for test_question in test_questions
+                ]
+            ).execute()
 
         # Independent follow-up work runs concurrently: the performance cache,
         # the mastery read, the completion totals, and the leaderboard award
