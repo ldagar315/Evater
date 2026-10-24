@@ -26,7 +26,7 @@ from ..question_bank import (
     update_mastery,
 )
 from .leaderboard_router import _parallel, award_completed_practice
-from ..supabase_client import create_supabase_service_client
+from ..supabase_client import create_supabase_service_client, run_with_retry
 
 logger = logging.getLogger(__name__)
 router = APIRouter(dependencies=[Depends(require_user)])
@@ -361,12 +361,14 @@ def submit_question_bank_block(
     leaderboard_award: Dict[str, int] | None = None
 
     try:
-        test_response = (
-            client.table("test_attempts")
-            .select("*")
-            .eq("id", test_id_text)
-            .eq("user_id", user_id)
-            .execute()
+        test_response = run_with_retry(
+            lambda: (
+                client.table("test_attempts")
+                .select("*")
+                .eq("id", test_id_text)
+                .eq("user_id", user_id)
+                .execute()
+            )
         )
         test = _one(test_response.data)
         if not test:
@@ -376,13 +378,15 @@ def submit_question_bank_block(
         if int(test["current_block"]) != block_number:
             raise HTTPException(status_code=409, detail="This test block is not the current block.")
 
-        test_questions = (
-            client.table("test_questions")
-            .select("id,question_id,display_order")
-            .eq("test_attempt_id", test_id_text)
-            .eq("block_number", block_number)
-            .order("display_order")
-            .execute()
+        test_questions = run_with_retry(
+            lambda: (
+                client.table("test_questions")
+                .select("id,question_id,display_order")
+                .eq("test_attempt_id", test_id_text)
+                .eq("block_number", block_number)
+                .order("display_order")
+                .execute()
+            )
         ).data or []
         expected_question_ids = [str(row["question_id"]) for row in test_questions]
         submitted_by_id = {str(answer.question_id): answer for answer in request.answers}
@@ -394,22 +398,26 @@ def submit_question_bank_block(
         # HTTPS round trip from the Modal container to the database region, so
         # parallelising them takes real time off the student's wait.
         prefetch = _parallel(
-            existing_attempts=lambda: (
-                client.table("question_attempts")
-                .select("test_question_id")
-                .in_("test_question_id", [str(row["id"]) for row in test_questions])
-                .execute()
+            existing_attempts=lambda: run_with_retry(
+                lambda: (
+                    client.table("question_attempts")
+                    .select("test_question_id")
+                    .in_("test_question_id", [str(row["id"]) for row in test_questions])
+                    .execute()
+                )
             ).data
             or [],
-            answer_rows=lambda: (
-                service_client.table("question_bank")
+            answer_rows=lambda: run_with_retry(
+                lambda: (
+                    service_client.table("question_bank")
                 .select(
                     "id,concept_id,question_text,options_json,correct_option_id,explanation,"
                     "question_type,difficulty,cognitive_level,skill_tags,misconception_tags,question_style,"
                     "estimated_time_seconds,marks,media_json,option_media_json,render_config,answer_spec"
                 )
-                .in_("id", expected_question_ids)
-                .execute()
+                    .in_("id", expected_question_ids)
+                    .execute()
+                )
             ).data
             or [],
         )
@@ -427,11 +435,13 @@ def submit_question_bank_block(
             # outcome from the stored attempts - they are the authoritative
             # first write - and let the idempotent follow-up work (mastery
             # upsert, completion update, once-only leaderboard award) replay.
-            stored_attempts = (
-                client.table("question_attempts")
-                .select("test_question_id,answer_json")
-                .in_("test_question_id", [str(row["id"]) for row in test_questions])
-                .execute()
+            stored_attempts = run_with_retry(
+                lambda: (
+                    client.table("question_attempts")
+                    .select("test_question_id,answer_json")
+                    .in_("test_question_id", [str(row["id"]) for row in test_questions])
+                    .execute()
+                )
             ).data or []
             if len(stored_attempts) != len(test_questions):
                 raise HTTPException(status_code=409, detail="This test block was already submitted.")
@@ -499,30 +509,36 @@ def submit_question_bank_block(
 
         side_tasks = {
             "performance": _performance_update,
-            "mastery_rows": lambda: _load_mastery(client, user_id, str(test["chapter_id"])),
+            "mastery_rows": lambda: run_with_retry(lambda: _load_mastery(client, user_id, str(test["chapter_id"]))),
         }
         if remaining:
-            side_tasks["all_selected"] = lambda: (
-                client.table("test_questions")
-                .select("question_id")
-                .eq("test_attempt_id", test_id_text)
-                .execute()
+            side_tasks["all_selected"] = lambda: run_with_retry(
+                lambda: (
+                    client.table("test_questions")
+                    .select("question_id")
+                    .eq("test_attempt_id", test_id_text)
+                    .execute()
+                )
             ).data or []
-            side_tasks["published_questions"] = lambda: _load_published_questions(
-                client, str(test["chapter_id"])
+            side_tasks["published_questions"] = lambda: run_with_retry(
+                lambda: _load_published_questions(client, str(test["chapter_id"]))
             )
         else:
-            side_tasks["all_attempts"] = lambda: (
-                client.table("question_attempts")
-                .select("marks_awarded")
-                .eq("test_attempt_id", test_id_text)
-                .execute()
+            side_tasks["all_attempts"] = lambda: run_with_retry(
+                lambda: (
+                    client.table("question_attempts")
+                    .select("marks_awarded")
+                    .eq("test_attempt_id", test_id_text)
+                    .execute()
+                )
             ).data or []
-            side_tasks["all_test_questions"] = lambda: (
-                client.table("test_questions")
-                .select("question_id")
-                .eq("test_attempt_id", test_id_text)
-                .execute()
+            side_tasks["all_test_questions"] = lambda: run_with_retry(
+                lambda: (
+                    client.table("test_questions")
+                    .select("question_id")
+                    .eq("test_attempt_id", test_id_text)
+                    .execute()
+                )
             ).data or []
             if test.get("mode") == "practice":
                 # Overlapped with the completion writes below so the league
@@ -630,11 +646,13 @@ def submit_question_bank_block(
             all_attempts = side_results["all_attempts"]
             all_test_questions = side_results["all_test_questions"]
             all_question_ids = [str(row["question_id"]) for row in all_test_questions]
-            all_question_rows = (
-                service_client.table("question_bank")
-                .select("id,marks")
-                .in_("id", all_question_ids)
-                .execute()
+            all_question_rows = run_with_retry(
+                lambda: (
+                    service_client.table("question_bank")
+                    .select("id,marks")
+                    .in_("id", all_question_ids)
+                    .execute()
+                )
             ).data or []
             maximum_marks = sum(int(row.get("marks") or 1) for row in all_question_rows)
             final_score = sum(int(attempt["marks_awarded"]) for attempt in all_attempts)
