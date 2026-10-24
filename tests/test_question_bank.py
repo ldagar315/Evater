@@ -278,3 +278,75 @@ def test_public_question_preserves_question_and_option_media():
 
     assert public["media"][0]["url"] == "/question.svg"
     assert public["options"][1]["media"][0]["url"] == "/option.svg"
+
+
+def make_typed_question(index: int, concept_id: str, question_type: str, difficulty: str = "easy"):
+    question = make_question(index, concept_id, difficulty)
+    question["question_type"] = question_type
+    if question_type == "true_false":
+        question["options_json"] = [
+            {"id": "A", "text": "True"},
+            {"id": "B", "text": "False"},
+        ]
+        question["correct_option_id"] = "A"
+    elif question_type == "numerical":
+        question["options_json"] = []
+        question["correct_option_id"] = None
+        question["correct_answer"] = "42"
+    return question
+
+
+def test_selection_serves_each_available_type_without_forcing_proportions():
+    questions = [make_question(i, f"concept-{(i % 3) + 1}", "medium") for i in range(1, 15)]
+    questions += [
+        make_typed_question(101, "concept-1", "true_false", "easy"),
+        make_typed_question(102, "concept-2", "true_false", "easy"),
+        make_typed_question(103, "concept-3", "numerical", "easy"),
+        make_typed_question(104, "concept-1", "numerical", "easy"),
+    ]
+
+    for seed in (1, 7, 42, 99):
+        block = select_question_block(
+            questions=questions,
+            mastery={"concept-1": 55, "concept-2": 40, "concept-3": 10},
+            seen_question_ids=[],
+            seed=seed,
+            count=10,
+        )
+        types = [question["question_type"] for question in block["questions"]]
+        assert "true_false" in types, f"seed {seed}: true_false starved"
+        assert "numerical" in types, f"seed {seed}: numerical starved"
+        # Presence is guaranteed, not equal shares: MCQs stay the bulk of the block.
+        assert types.count("mcq_single") >= 6
+        assert types.count("true_false") <= 3
+        assert types.count("numerical") <= 3
+
+
+def test_selection_spreads_concepts_with_live_balancing():
+    questions = [make_question(i, "concept-a", "medium") for i in range(1, 7)]
+    questions += [make_question(i, "concept-b", "medium") for i in range(7, 11)]
+
+    block = select_question_block(
+        questions=questions,
+        mastery={},
+        seen_question_ids=[],
+        seed=5,
+        count=5,
+    )
+    concepts = {question["concept_id"] for question in block["questions"]}
+    assert concepts == {"concept-a", "concept-b"}
+
+
+def test_selection_difficulty_still_steers_within_a_type():
+    questions = [make_question(i, f"concept-{i}", "easy") for i in range(1, 6)]
+    questions += [make_question(i, f"concept-{i}", "hard") for i in range(6, 11)]
+
+    block = select_question_block(
+        questions=questions,
+        mastery={},
+        seen_question_ids=[],
+        seed=11,
+        count=5,
+        routing={"difficulty": "easy"},
+    )
+    assert all(question["difficulty"] == "easy" for question in block["questions"])
