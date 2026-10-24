@@ -165,8 +165,9 @@ export async function createQuestionBankTest(
   return parseApiResponse<QuestionBankTest>(response)
 }
 
-export async function getQuestionBankChapters(): Promise<QuestionBankChapter[]> {
-  const response = await apiFetch(`${MODAL_API_URL}/api/v1/chapters`)
+export async function getQuestionBankChapters(subject?: string): Promise<QuestionBankChapter[]> {
+  const query = subject ? `?subject=${encodeURIComponent(subject)}` : ''
+  const response = await apiFetch(`${MODAL_API_URL}/api/v1/chapters${query}`)
   const payload = await parseApiResponse<{ chapters: QuestionBankChapter[] }>(response)
   return payload.chapters
 }

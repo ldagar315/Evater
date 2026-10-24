@@ -39,10 +39,15 @@ const TEST_DURATION_SECONDS = 10 * 60
 
 const SUBJECTS = [
   { id: 'science', label: 'Science', meta: 'Class 8', available: true, icon: BookOpenCheck },
-  { id: 'mathematics', label: 'Mathematics', meta: 'Coming soon', available: false, icon: Calculator },
+  { id: 'mathematics', label: 'Mathematics', meta: 'Class 8', available: true, icon: Calculator },
   { id: 'english', label: 'English', meta: 'Coming soon', available: false, icon: Languages },
   { id: 'social-science', label: 'Social Science', meta: 'Coming soon', available: false, icon: Globe2 },
 ] as const
+
+const SUBJECT_NAME_BY_ID: Record<string, string> = {
+  science: 'Science',
+  mathematics: 'Mathematics',
+}
 
 const TEST_MODES: Array<{
   id: QuestionBankMode
@@ -261,7 +266,8 @@ export function QuestionBankPracticePage() {
 
   useEffect(() => {
     let active = true
-    void getQuestionBankChapters()
+    setChaptersLoading(true)
+    void getQuestionBankChapters(SUBJECT_NAME_BY_ID[selectedSubjectId])
       .then((availableChapters) => {
         if (!active) return
         setChapters(availableChapters)
@@ -279,7 +285,7 @@ export function QuestionBankPracticePage() {
     return () => {
       active = false
     }
-  }, [])
+  }, [selectedSubjectId])
 
   const submit = useCallback(async (wasTimedOut = false) => {
     if (!test || loading) return
@@ -402,7 +408,7 @@ export function QuestionBankPracticePage() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-600">Practice session</p>
-                <h1 className="mt-2 text-2xl font-bold text-dark sm:text-3xl">Class 8 Science</h1>
+                <h1 className="mt-2 text-2xl font-bold text-dark sm:text-3xl">Class 8 {selectedSubject.label}</h1>
                 <p className="mt-1 text-sm text-neutral-500">{selectedChapter?.title || 'Practice chapter'}</p>
               </div>
               <div
