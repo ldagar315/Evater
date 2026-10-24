@@ -323,6 +323,9 @@ export function QuestionBankPracticePage() {
       setTest(result.next_block || null)
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'Could not submit this test.')
+      // The error banner renders at the top of the page; without this the
+      // student stays scrolled on the last question with no visible feedback.
+      window.scrollTo({ top: 0 })
     } finally {
       setLoading(false)
     }
@@ -561,16 +564,11 @@ export function QuestionBankPracticePage() {
                 disabled={loading}
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-dark px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {loading && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
                 {isLastQuestion ? 'Finish test' : 'Next question'}
                 {!loading && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
               </button>
             </div>
-            {loading && (
-              <p role="status" className="text-center text-sm text-neutral-600">
-                Scoring your answers. This can take up to 30 seconds, please keep this page open.
-              </p>
-            )}
+
           </div>
         ) : lastResult && reviewSummary ? (
           <div className="space-y-6">
@@ -796,6 +794,22 @@ export function QuestionBankPracticePage() {
               </div>
             </section>
 
+          </div>
+        )}
+
+        {/* Full-screen blocking overlay while a submission is scored. Covers the
+            whole page (not just the Finish button) and captures all pointer
+            interaction until the review (or next block) is ready. */}
+        {loading && test && (
+          <div
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/60"
+            role="alert"
+            aria-busy="true"
+            aria-live="assertive"
+          >
+            <div className="h-14 w-14 animate-spin rounded-full border-4 border-white/30 border-t-white" />
+            <p className="mt-6 text-lg font-semibold text-white">Scoring your answers...</p>
+            <p className="mt-2 text-sm text-white/80">This can take up to 30 seconds. Please don't close this page.</p>
           </div>
         )}
       </main>
