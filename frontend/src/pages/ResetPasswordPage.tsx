@@ -4,6 +4,7 @@ import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { Card, CardContent, CardHeader } from '../components/ui/Card'
 import { supabase } from '../lib/supabase'
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js'
 import { supabaseConfigured } from '../lib/supabaseConfig'
 import { BYPASS_AUTH, logAuthBypassWarning } from '../lib/auth/devBypass'
 import { Sparkles, AlertCircle } from 'lucide-react'
@@ -23,14 +24,14 @@ export function ResetPasswordPage() {
     }
 
     let active = true
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event: AuthChangeEvent, session: Session | null) => {
       if (!active) return
       if (event === 'PASSWORD_RECOVERY' || session) {
         setSessionReady(true)
       }
     })
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }: { data: { session: Session | null } }) => {
       if (!active) return
       setSessionReady((current) => current ?? !!session)
     })
