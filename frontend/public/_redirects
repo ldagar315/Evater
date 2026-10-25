@@ -21,4 +21,6 @@
 /privacy /index.html 200
 /terms /index.html 200
 /contact /index.html 200
+/forgot-password /index.html 200
+/reset-password /index.html 200
 /* /404.html 404
