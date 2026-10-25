@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { Card, CardContent, CardHeader } from '../ui/Card'
@@ -213,6 +213,14 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
                 disabled={!supabaseConfigured}
               />
               
+              {!isSignUp && (
+                <div className="-mt-3 text-right">
+                  <Link to="/forgot-password" className="text-sm text-primary-600 hover:text-primary-700 font-medium">
+                    Forgot password?
+                  </Link>
+                </div>
+              )}
+
               {isSignUp && (
                 <Input
                   label="Confirm Password"
@@ -275,4 +283,5 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
     </div>
   )
 }
+
 

@@ -10,6 +10,8 @@ import { BYPASS_AUTH } from './lib/auth/devBypass'
 
 const LandingPage = lazy(() => import('./pages/LandingPage').then((m) => ({ default: m.LandingPage })))
 const AuthPage = lazy(() => import('./pages/AuthPage').then((m) => ({ default: m.AuthPage })))
+const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage').then((m) => ({ default: m.ForgotPasswordPage })))
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage').then((m) => ({ default: m.ResetPasswordPage })))
 const ProfilePage = lazy(() => import('./pages/ProfilePage').then((m) => ({ default: m.ProfilePage })))
 const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m.HomePage })))
 const CreateTestPage = lazy(() => import('./pages/CreateTestPage').then((m) => ({ default: m.CreateTestPage })))
@@ -74,7 +76,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function AppRoutes() {
   const { user, loading, error } = useAuthContext()
   const location = useLocation()
-  const isPublicRoute = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/auth' || location.pathname.startsWith('/blog')
+  const isPublicRoute = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/auth' || location.pathname.startsWith('/blog') || location.pathname === '/forgot-password' || location.pathname === '/reset-password'
 
   // Public pages should remain useful when auth is slow or unavailable. This is
   // especially important for the blog, which must be crawlable without a session.
@@ -117,6 +119,9 @@ function AppRoutes() {
             </ProtectedRoute>
           } />
           
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
           {!user ? (
             <>
               <Route path="/auth" element={<AuthPage />} />
@@ -218,4 +223,5 @@ function App() {
 }
 
 export default App
+
 
