@@ -125,6 +125,16 @@ from = "/contact"
 to = "/index.html"
 status = 200
 
+[[redirects]]
+from = "/forgot-password"
+to = "/index.html"
+status = 200
+
+[[redirects]]
+from = "/reset-password"
+to = "/index.html"
+status = 200
+
 # Real 404 for unknown URLs. Netlify serves public/404.html with a 404 status.
 [[redirects]]
 from = "/*"
