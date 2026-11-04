@@ -1,5 +1,4 @@
 # Netlify redirects file as backup (keep in sync with netlify.toml)
-/api/* /.netlify/functions/:splat 200
 /auth /index.html 200
 /profile /index.html 200
 /home /index.html 200
