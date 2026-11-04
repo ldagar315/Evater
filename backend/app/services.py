@@ -27,28 +27,17 @@ def _get_groq_client() -> Groq:
     _groq_client = Groq(api_key=api_key)
     return _groq_client
 
-def answer_ocr_extraction(image__url_list: List[str]):
-    if not image__url_list:
+def ocr_answer_images(image_urls: List[str]) -> str:
+    """
+    Perform OCR on one or more answer-sheet image URLs.
+    """
+    if not image_urls:
         raise RemoteImageError(status_code=400, detail="No image URLs provided for OCR.")
     # Fetch images server-side with an allowlist and SSRF protections, then pass a data URI to DSPy.
-    new_image_url_list = [dspy.Image(fetch_image_data_uri(url)) for url in image__url_list]
+    new_image_url_list = [dspy.Image(fetch_image_data_uri(url)) for url in image_urls]
     # Using a specific LM for OCR as per original code
     with dspy.context(lm = dspy.LM('gemini/gemini-2.5-flash', api_key=os.getenv("GEMINI_API_KEY"))):
         ocr_text_answer = ocr_text(answer_sheet_images = new_image_url_list)
-    return ocr_text_answer.answer_sheet_text
-
-def ocr_text_single_image(image_url: str) -> str:
-    """
-    Perform OCR on a single image URL.
-    """
-    if not image_url:
-        raise RemoteImageError(status_code=400, detail="No image URL provided for OCR.")
-    # Fetch image server-side with an allowlist and SSRF protections, then pass a data URI to DSPy.
-    dspy_image = dspy.Image(fetch_image_data_uri(image_url))
-    # Using a specific LM for OCR as per original code
-    with dspy.context(lm = dspy.LM('gemini/gemini-2.5-flash', api_key=os.getenv("GEMINI_API_KEY"))):
-        # Reuse the existing signature but pass a single-item list
-        ocr_text_answer = ocr_text(answer_sheet_images = [dspy_image])
     return ocr_text_answer.answer_sheet_text
 
 def merge_qaf(
