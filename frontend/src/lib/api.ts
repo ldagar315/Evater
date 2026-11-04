@@ -165,6 +165,18 @@ export async function createQuestionBankTest(
   return parseApiResponse<QuestionBankTest>(response)
 }
 
+export async function createQuestionBankReviewTest(questionCount = 10): Promise<QuestionBankTest> {
+  const response = await apiFetch(`${MODAL_API_URL}/api/v1/review-tests`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      question_count: questionCount,
+      block_size: questionCount,
+    }),
+  })
+  return parseApiResponse<QuestionBankTest>(response)
+}
+
 export async function getQuestionBankChapters(subject?: string): Promise<QuestionBankChapter[]> {
   const query = subject ? `?subject=${encodeURIComponent(subject)}` : ''
   const response = await apiFetch(`${MODAL_API_URL}/api/v1/chapters${query}`)
