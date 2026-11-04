@@ -209,8 +209,15 @@ source venv/bin/activate  # Windows: .\venv\Scripts\activate
 
 ```bash
 pip install -r requirements.txt
-# Or install manually:
-# pip install fastapi uvicorn groq dspy python-dotenv pydantic fastapi-cors supabase google-genai httpx-aiohttp
+```
+
+requirements.txt is the single source of truth for backend dependencies;
+the Modal deployment builds its image from the same file.
+
+### Run locally:
+
+```bash
+uvicorn app.main:app --reload
 ```
 
 ### Create `.env` file:
