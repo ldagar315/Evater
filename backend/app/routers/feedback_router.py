@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from typing import Dict, Any
-from ..models import InputDataAnswer, ErrorResponse, Question, DirectFeedbackRequest, Answer
+from ..models import InputDataAnswer, ErrorResponse, Question, DirectFeedbackRequest, Answer, MergedFeedbackResponse, DirectFeedbackResponse
 from ..auth import require_user
 from ..dspy_modules import answer_seperation, feedback_generation, ocr_text
 from ..services import merge_qaf, ocr_answer_images
@@ -8,7 +7,7 @@ from ..remote_image import RemoteImageError
 
 router = APIRouter(dependencies=[Depends(require_user)])
 
-@router.post("/gen_answer", response_model=Dict[str, Any], responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@router.post("/gen_answer", response_model=MergedFeedbackResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
 def generate_feedback(InputDataAnswer: InputDataAnswer):
     # Pydantic handles validation
     
@@ -47,7 +46,7 @@ def generate_feedback(InputDataAnswer: InputDataAnswer):
     )
     return {"merged" : merged }
 
-@router.post("/gen_feedback_direct", response_model=Dict[str, Any], responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@router.post("/gen_feedback_direct", response_model=DirectFeedbackResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
 def generate_feedback_direct(request: DirectFeedbackRequest):
     """
     Directly generate feedback for questions and answers (text or image).
