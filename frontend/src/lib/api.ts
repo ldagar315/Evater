@@ -10,6 +10,11 @@ export const MODAL_WS_URL = (
   import.meta.env.VITE_MODAL_WS_URL || `${MODAL_API_URL.replace(/^http/, 'ws')}/ws/viva`
 ).replace(/\/+$/, '')
 
+// gen_* endpoints: call the Modal backend directly in production (backend CORS
+// already allows evater.xyz); keep the local dev-server proxy in development.
+export const externalApiUrl = (path: string): string =>
+  import.meta.env.PROD ? `${MODAL_API_URL}${path}` : `/api/external${path}`
+
 export async function getAccessToken(): Promise<string | null> {
   const {
     data: { session },
