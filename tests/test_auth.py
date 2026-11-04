@@ -219,7 +219,7 @@ def test_gen_answer_happy_path(monkeypatch):
             ),
         )
 
-    def _stub_answer_ocr_extraction(_image_urls):
+    def _stub_ocr_answer_images(_image_urls):
         return "ocr text"
 
     def _stub_answer_seperation(*, answer_sheet_text):
@@ -240,7 +240,7 @@ def test_gen_answer_happy_path(monkeypatch):
         )
 
     app.dependency_overrides[require_user] = _stub_require_user
-    monkeypatch.setattr(feedback_router_module, "answer_ocr_extraction", _stub_answer_ocr_extraction)
+    monkeypatch.setattr(feedback_router_module, "ocr_answer_images", _stub_ocr_answer_images)
     monkeypatch.setattr(feedback_router_module, "answer_seperation", _stub_answer_seperation)
     monkeypatch.setattr(feedback_router_module, "feedback_generation", _stub_feedback_generation)
 
