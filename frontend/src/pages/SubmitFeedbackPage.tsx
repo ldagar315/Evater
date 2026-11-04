@@ -161,7 +161,6 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
 
     console.log('API Payload:', JSON.stringify(payload, null, 2))
 
-    // Use Netlify function in production, proxy in development
     const apiUrl = externalApiUrl('/api/gen_answer')
 
     const response = await apiFetch(apiUrl, {
