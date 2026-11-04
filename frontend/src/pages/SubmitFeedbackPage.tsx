@@ -7,7 +7,7 @@ import { Header } from '../components/layout/Header'
 import { useAuthContext } from '../contexts/AuthContext'
 import { useAppState } from '../contexts/AppStateContext'
 import { supabase } from '../lib/supabase'
-import { apiFetch } from '../lib/api'
+import { apiFetch, externalApiUrl } from '../lib/api'
 import { QuestionsCreated, FeedbackResponse } from '../types'
 
 interface ApiFeedbackResponse {
@@ -162,9 +162,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
     console.log('API Payload:', JSON.stringify(payload, null, 2))
 
     // Use Netlify function in production, proxy in development
-    const apiUrl = import.meta.env.PROD
-      ? '/.netlify/functions/generate-feedback'
-      : '/api/external/api/gen_answer'
+    const apiUrl = externalApiUrl('/api/gen_answer')
 
     const response = await apiFetch(apiUrl, {
       method: 'POST',
