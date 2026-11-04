@@ -174,12 +174,6 @@ Request body:
 Scores one block, updates concept mastery, and returns the routed next block.
 The answer key is read only by the trusted backend service client.
 
-### /api/v1/mastery (GET)
-
-Returns the authenticated student's chapter-level concept mastery:
-
-    /api/v1/mastery?chapter_id=<chapter_id>
-
 ### Error Responses
 
 * `400 Bad Request`: Missing input fields
