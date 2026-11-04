@@ -1,18 +1,10 @@
-import os
 from modal import Image, App, Secret, asgi_app
 
-# Define the Modal Image with necessary dependencies
+# Define the Modal Image with necessary dependencies.
+# requirements.txt is the single source of truth for backend dependencies.
 # We explicitly include the local 'app' package using add_local_python_source
-image = Image.debian_slim(python_version="3.12").pip_install(
-    "fastapi",
-    "uvicorn",
-    "groq",
-    "dspy",
-    "python-dotenv", 
-    "pydantic", 
-    "supabase", 
-    "google-genai",
-    "httpx-aiohttp>=0.1.5,<0.2",
+image = Image.debian_slim(python_version="3.12").pip_install_from_requirements(
+    "requirements.txt"
 ).add_local_python_source("app")
 
 app = App("Evater_v1", image=image)
@@ -33,12 +25,3 @@ def wrapper():
     from app.main import app as web_app
 
     return web_app
-
-if __name__ == "__main__":
-    # This allows running locally via `python application.py` if needed, 
-    # though `uvicorn app.main:app` is preferred for local dev.
-    import uvicorn
-    from app.main import app as web_app
-
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(web_app, host="0.0.0.0", port=port)
