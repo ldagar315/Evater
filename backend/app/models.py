@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from typing import List, Optional, Literal, Dict, Any
 from uuid import UUID
 
@@ -44,6 +44,25 @@ class Question(BaseModel):
 
 class ErrorResponse(BaseModel):
     error: str
+
+class QuestionsResponse(BaseModel):
+    questions: List[Question]
+
+class MergedFeedbackItem(BaseModel):
+    # Raw question fields come from the client request; extras pass through untouched.
+    model_config = ConfigDict(extra="allow")
+    question_number: int
+    question_text: str
+    question_type: str
+    maximum_marks: Optional[int] = None
+    answer: Optional[Answer] = None
+    feedback: Optional[Feedback] = None
+
+class MergedFeedbackResponse(BaseModel):
+    merged: List[MergedFeedbackItem]
+
+class DirectFeedbackResponse(BaseModel):
+    feedback: List[Feedback]
 
 class SubConcept(BaseModel):
     sub_concept_name: str
