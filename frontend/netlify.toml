@@ -1,5 +1,4 @@
 [build]
-functions = "netlify/functions"
 publish = "dist"
 # Install the Chrome build that matches the pinned puppeteer before building;
 # Netlify's build image does not ship one and its node_modules cache skips
@@ -9,13 +8,6 @@ command = "npx puppeteer browsers install chrome && npx vite build"
 [build.environment]
 PUPPETEER_CACHE_DIRECTORY = "/opt/build/cache/puppeteer"
 
-[functions]
-node_bundler = "esbuild"
-
-[[redirects]]
-from = "/api/*"
-to = "/.netlify/functions/:splat"
-status = 200
 
 # App routes served by React Router (keep in sync with src/App.tsx).
 # Anything not listed here or in public/ falls through to 404.html
