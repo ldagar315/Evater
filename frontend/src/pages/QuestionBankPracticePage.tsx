@@ -854,4 +854,4 @@ export function QuestionBankPracticePage() {
       </main>
     </div>
   )
-        }
+}
