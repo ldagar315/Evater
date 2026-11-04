@@ -109,6 +109,11 @@ class QuestionBankTestRequest(BaseModel):
     block_size: int = Field(default=5, ge=1, le=20)
 
 
+class ReviewTestRequest(BaseModel):
+    question_count: int = Field(default=10, ge=1, le=100)
+    block_size: int = Field(default=10, ge=1, le=20)
+
+
 class QuestionBankAnswer(BaseModel):
     question_id: UUID
     selected_option_id: Optional[Literal["A", "B", "C", "D"]] = None
