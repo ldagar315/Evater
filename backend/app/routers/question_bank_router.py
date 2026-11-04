@@ -709,13 +709,3 @@ def submit_question_bank_block(
     except Exception as exc:
         logger.exception("Failed to submit question-bank block")
         raise HTTPException(status_code=500, detail="Could not submit test block.") from exc
-
-
-@router.get("/mastery")
-def get_question_bank_mastery(
-    chapter_id: UUID,
-    auth: AuthContext = Depends(require_user),
-) -> Dict[str, Any]:
-    client = create_supabase_service_client()
-    rows = _load_mastery(client, _user_id(auth), str(chapter_id))
-    return {"chapter_id": chapter_id, "concepts": rows}
