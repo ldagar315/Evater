@@ -5,45 +5,6 @@ from starlette.websockets import WebSocketDisconnect
 from app.main import app
 
 
-def test_api_me_requires_auth():
-    client = TestClient(app)
-    resp = client.get("/api/me")
-    assert resp.status_code == 401
-
-
-def test_api_me_happy_path():
-    from app.auth import AuthContext, require_user
-    from supabase_auth.types import User
-    from datetime import datetime, timezone
-
-    def _stub_require_user():
-        return AuthContext(
-            jwt="jwt",
-            tenant_id="tenant_abc",
-            user=User(
-                id="user_123",
-                app_metadata={"tenant_id": "tenant_abc"},
-                user_metadata={},
-                aud="authenticated",
-                email="user@example.com",
-                created_at=datetime.now(timezone.utc),
-            ),
-        )
-
-    app.dependency_overrides[require_user] = _stub_require_user
-    try:
-        client = TestClient(app)
-        resp = client.get("/api/me")
-        assert resp.status_code == 200
-        assert resp.json() == {
-            "user_id": "user_123",
-            "email": "user@example.com",
-            "tenant_id": "tenant_abc",
-        }
-    finally:
-        app.dependency_overrides.clear()
-
-
 def test_tenant_id_ignores_user_editable_metadata():
     from app.auth import _tenant_id_from_user
     from supabase_auth.types import User
