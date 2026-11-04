@@ -14,11 +14,13 @@ from ..models import (
     QuestionBankBlockResponse,
     QuestionBankBlockSubmission,
     QuestionFlagResponse,
+    ReviewTestRequest,
     QuestionBankTestRequest,
     QuestionBankTestResponse,
 )
 from ..question_bank import (
     QuestionBankError,
+    pick_review_focus,
     build_routing_decision,
     score_block,
     select_question_block,
@@ -88,6 +90,37 @@ def _load_published_questions(client: Any, chapter_id: str) -> List[Dict[str, An
         .execute()
     )
     return response.data or []
+
+
+def _load_published_questions_for_concepts(client: Any, concept_ids: List[str]) -> List[Dict[str, Any]]:
+    if not concept_ids:
+        return []
+    response = (
+        client.table("question_bank")
+        .select(PUBLIC_QUESTION_COLUMNS)
+        .in_("concept_id", [str(value) for value in concept_ids])
+        .eq("status", "published")
+        .execute()
+    )
+    return response.data or []
+
+
+def _load_mastery_all_chapters(
+    client: Any,
+    user_id: str,
+    chapter_ids: Optional[List[str]] = None,
+) -> List[Dict[str, Any]]:
+    query = (
+        client.table("concept_mastery")
+        .select(
+            "concept_id,chapter_id,mastery_score,attempt_count,correct_count,"
+            "last_difficulty,last_attempted_at,misconception_signals"
+        )
+        .eq("user_id", user_id)
+    )
+    if chapter_ids:
+        query = query.in_("chapter_id", [str(value) for value in chapter_ids])
+    return query.execute().data or []
 
 
 def _load_mastery(client: Any, user_id: str, chapter_id: str) -> List[Dict[str, Any]]:
@@ -173,6 +206,7 @@ def _update_question_performance(
     test: Dict[str, Any],
     submitted_by_id: Dict[str, QuestionBankAnswer],
     results: List[Dict[str, Any]],
+    chapter_by_question: Optional[Dict[str, str]] = None,
 ) -> None:
     """Maintain student-by-question counters for future adaptive selection.
 
@@ -206,7 +240,7 @@ def _update_question_performance(
             {
                 "user_id": user_id,
                 "question_id": question_id,
-                "chapter_id": str(test["chapter_id"]),
+                "chapter_id": (chapter_by_question or {}).get(question_id, str(test["chapter_id"])),
                 "attempt_count": attempt_count,
                 "correct_count": correct_count,
                 "wrong_count": wrong_count,
@@ -344,6 +378,125 @@ def create_question_bank_test(
         raise HTTPException(status_code=500, detail="Could not create test.") from exc
 
 
+@router.post("/review-tests", response_model=QuestionBankTestResponse)
+def create_question_bank_review_test(
+    request: ReviewTestRequest,
+    auth: AuthContext = Depends(require_user),
+) -> QuestionBankTestResponse:
+    """Create a cross-chapter review test from the student's weakest concepts.
+
+    Uses the concept_mastery history written by ordinary chapter practice:
+    concepts with enough attempts rank weakest-first, and the block is drawn
+    from published questions across those concepts' chapters. Review tests
+    carry chapter_id NULL on test_attempts (see the review_tests migration);
+    per-question rows keep their own chapter ids.
+    """
+    user_id = _user_id(auth)
+    client = create_supabase_service_client()
+
+    try:
+        mastery_rows = _load_mastery_all_chapters(client, user_id)
+        focus = pick_review_focus(mastery_rows)
+        if not focus:
+            raise HTTPException(
+                status_code=409,
+                detail="Review tests need a little practice history first. Complete a chapter practice, then come back.",
+            )
+        concept_ids = [item["concept_id"] for item in focus]
+        questions = _load_published_questions_for_concepts(client, concept_ids)
+        if len(questions) < request.question_count:
+            raise HTTPException(
+                status_code=409,
+                detail="Not enough published questions across your weak concepts yet. More chapter practice will unlock this.",
+            )
+        mastery_by_concept = {
+            str(row["concept_id"]): float(row.get("mastery_score") or 0) for row in mastery_rows
+        }
+        previous_questions = (
+            client.table("question_attempts")
+            .select("question_id")
+            .eq("user_id", user_id)
+            .order("created_at", desc=True)
+            .limit(20)
+            .execute()
+        ).data or []
+        seed = secrets.randbelow(2**62 - 1) + 1
+        first_block_size = min(request.block_size, request.question_count)
+        routing = {
+            "difficulty": "medium",
+            "focus_concept_ids": concept_ids,
+            "mode": "review",
+        }
+        selection = select_question_block(
+            questions=questions,
+            mastery=mastery_by_concept,
+            seen_question_ids=[str(row["question_id"]) for row in previous_questions],
+            seed=seed,
+            count=first_block_size,
+            mode="review",
+            block_number=1,
+            routing=routing,
+        )
+
+        test_insert = (
+            client.table("test_attempts")
+            .insert(
+                {
+                    "user_id": user_id,
+                    "chapter_id": None,
+                    "mode": "review",
+                    "question_count": request.question_count,
+                    "block_size": request.block_size,
+                    "current_block": 1,
+                    "seed": seed,
+                    "routing_profile": {
+                        "difficulty": selection["difficulty"],
+                        "focus_concept_ids": selection["focus_concept_ids"],
+                        "mode": "review",
+                        "review_concept_ids": concept_ids,
+                    },
+                }
+            )
+            .execute()
+        )
+        test_row = _one(test_insert.data)
+        if not test_row:
+            raise RuntimeError("Supabase did not return the created review test.")
+
+        test_id = str(test_row["id"])
+        client.table("test_questions").insert(
+            [
+                {
+                    "test_attempt_id": test_id,
+                    "question_id": question["id"],
+                    "block_number": 1,
+                    "display_order": index + 1,
+                    "selection_reason": selection["selection_reason"],
+                }
+                for index, question in enumerate(selection["questions"])
+            ]
+        ).execute()
+
+        return _question_response(
+            test_id=test_id,
+            block_number=1,
+            block_size=request.block_size,
+            question_count=request.question_count,
+            questions=selection["questions"],
+            routing=routing,
+        )
+    except HTTPException:
+        raise
+    except QuestionBankError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except RuntimeError as exc:
+        logger.error("Question-bank configuration error: %s", exc)
+        raise HTTPException(status_code=500, detail="Question-bank service is not configured.") from exc
+    except Exception as exc:
+        logger.exception("Failed to create review test")
+        raise HTTPException(status_code=500, detail="Could not create review test.") from exc
+
+
 @router.post("/tests/{test_id}/blocks/{block_number}/submit", response_model=QuestionBankBlockResponse)
 def submit_question_bank_block(
     test_id: UUID,
@@ -411,7 +564,7 @@ def submit_question_bank_block(
                 lambda: (
                     service_client.table("question_bank")
                 .select(
-                    "id,concept_id,question_text,options_json,correct_option_id,explanation,"
+                    "id,chapter_id,concept_id,question_text,options_json,correct_option_id,explanation,"
                     "question_type,difficulty,cognitive_level,skill_tags,misconception_tags,question_style,"
                     "estimated_time_seconds,marks,media_json,option_media_json,render_config,answer_spec"
                 )
@@ -425,6 +578,16 @@ def submit_question_bank_block(
         answer_rows_by_id = {str(row["id"]): row for row in answer_rows}
         if set(answer_rows_by_id) != set(expected_question_ids):
             raise HTTPException(status_code=409, detail="One or more published questions are no longer available.")
+
+        # Review tests span chapters: test_attempts.chapter_id is NULL, so every
+        # chapter-scoped write below resolves the chapter from the question row.
+        is_review = test.get("mode") == "review" or test.get("chapter_id") is None
+        chapter_by_question = (
+            {str(row["id"]): str(row["chapter_id"]) for row in answer_rows} if is_review else {}
+        )
+        chapter_by_concept = (
+            {str(row["concept_id"]): str(row["chapter_id"]) for row in answer_rows} if is_review else {}
+        )
 
         recovered = False
         if prefetch["existing_attempts"]:
@@ -473,7 +636,7 @@ def submit_question_bank_block(
                         "test_attempt_id": test_id_text,
                         "test_question_id": test_question["id"],
                         "user_id": user_id,
-                        "chapter_id": test["chapter_id"],
+                        "chapter_id": chapter_by_question.get(str(test_question["question_id"]), test["chapter_id"]),
                         "question_id": test_question["question_id"],
                         "selected_option_id": submitted_by_id[str(test_question["question_id"])].selected_option_id,
                         "answer_json": _submitted_json(submitted_by_id[str(test_question["question_id"])]),
@@ -501,6 +664,7 @@ def submit_question_bank_block(
                     test=test,
                     submitted_by_id=submitted_by_id,
                     results=results,
+                    chapter_by_question=chapter_by_question,
                 )
             except Exception:
                 # Raw question_attempts is authoritative; a cache failure
@@ -509,7 +673,17 @@ def submit_question_bank_block(
 
         side_tasks = {
             "performance": _performance_update,
-            "mastery_rows": lambda: run_with_retry(lambda: _load_mastery(client, user_id, str(test["chapter_id"]))),
+            "mastery_rows": lambda: run_with_retry(
+                lambda: (
+                    _load_mastery_all_chapters(
+                        client,
+                        user_id,
+                        sorted({chapter_by_question[str(row["question_id"])] for row in test_questions}),
+                    )
+                    if is_review
+                    else _load_mastery(client, user_id, str(test["chapter_id"]))
+                )
+            ),
         }
         if remaining:
             side_tasks["all_selected"] = lambda: run_with_retry(
@@ -521,7 +695,14 @@ def submit_question_bank_block(
                 )
             ).data or []
             side_tasks["published_questions"] = lambda: run_with_retry(
-                lambda: _load_published_questions(client, str(test["chapter_id"]))
+                lambda: (
+                    _load_published_questions_for_concepts(
+                        client,
+                        (test.get("routing_profile") or {}).get("review_concept_ids") or [],
+                    )
+                    if is_review
+                    else _load_published_questions(client, str(test["chapter_id"]))
+                )
             )
         else:
             side_tasks["all_attempts"] = lambda: run_with_retry(
@@ -570,7 +751,7 @@ def submit_question_bank_block(
             existing = existing_mastery.get(str(mastery_update["concept_id"]), {})
             mastery_rows_to_write.append({
                 "user_id": user_id,
-                "chapter_id": test["chapter_id"],
+                "chapter_id": chapter_by_concept.get(str(mastery_update["concept_id"]), test["chapter_id"]),
                 "concept_id": mastery_update["concept_id"],
                 "mastery_score": mastery_update["mastery_score"],
                 "attempt_count": mastery_update["attempt_count"],

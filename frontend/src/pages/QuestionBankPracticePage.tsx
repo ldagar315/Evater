@@ -21,6 +21,7 @@ import { useAppState } from '../contexts/AppStateContext'
 import {
   CLASS8_SCIENCE_CHAPTER1_ID,
   createQuestionBankTest,
+  createQuestionBankReviewTest,
   getQuestionBankChapters,
   QuestionBankBlockSubmissionResult,
   QuestionBankChapter,
@@ -225,6 +226,7 @@ export function QuestionBankPracticePage() {
   const [selectedSubjectId, setSelectedSubjectId] = useState('science')
   const [selectedChapterId, setSelectedChapterId] = useState(CLASS8_SCIENCE_CHAPTER1_ID)
   const [selectedMode, setSelectedMode] = useState<QuestionBankMode>('practice')
+  const [isReviewTest, setIsReviewTest] = useState(false)
   const [flaggedQuestionIds, setFlaggedQuestionIds] = useState<Record<string, boolean>>({})
   const [flaggingQuestionId, setFlaggingQuestionId] = useState<string | null>(null)
   const [flagMessage, setFlagMessage] = useState<string | null>(null)
@@ -242,8 +244,31 @@ export function QuestionBankPracticePage() {
   const timerIsUrgent = timeRemaining > 0 && timeRemaining <= 60
   const reviewSummary = lastResult ? getReviewSummary(reviewQuestions, lastResult) : null
 
+  const startReview = async () => {
+    setLoading(true)
+    setError(null)
+    setLastResult(null)
+    setReviewQuestions([])
+    setSubmittedByTimeout(false)
+    setTimedOut(false)
+    setAnswers({})
+    setCurrentQuestionIndex(0)
+    setFlagMessage(null)
+    try {
+      const nextTest = await createQuestionBankReviewTest(QUESTION_COUNT)
+      setIsReviewTest(true)
+      setTimeRemaining(TEST_DURATION_SECONDS)
+      setTest(nextTest)
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : 'Could not start the review test.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const start = async () => {
     if (!selectedChapterId) return
+    setIsReviewTest(false)
     setLoading(true)
     setError(null)
     setLastResult(null)
@@ -304,9 +329,9 @@ export function QuestionBankPracticePage() {
       if (result.completed) {
         setLatestPracticeResult({
           test_id: result.test_id,
-          chapter_id: selectedChapterId,
-          chapter_title: selectedChapter?.title || 'Practice chapter',
-          subject: selectedSubject.label,
+          chapter_id: isReviewTest ? 'weak-spot-review' : selectedChapterId,
+          chapter_title: isReviewTest ? 'Weak-spot review' : selectedChapter?.title || 'Practice chapter',
+          subject: isReviewTest ? 'Across chapters' : selectedSubject.label,
           block_score: result.block_score,
           block_total: result.block_total,
           percentage: result.percentage,
@@ -412,7 +437,7 @@ export function QuestionBankPracticePage() {
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-600">Practice session</p>
                 <h1 className="mt-2 text-2xl font-bold text-dark sm:text-3xl">Class 8 {selectedSubject.label}</h1>
-                <p className="mt-1 text-sm text-neutral-500">{selectedChapter?.title || 'Practice chapter'}</p>
+                <p className="mt-1 text-sm text-neutral-500">{isReviewTest ? 'Weak-spot review' : selectedChapter?.title || 'Practice chapter'}</p>
               </div>
               <div
                 className={`inline-flex min-h-11 items-center gap-2 rounded-xl border px-3 text-sm font-bold tabular-nums ${timerIsUrgent ? 'border-red-200 bg-red-50 text-red-700' : 'border-neutral-200 bg-white text-dark'}`}
@@ -775,6 +800,20 @@ export function QuestionBankPracticePage() {
                     })}
                   </div>
                 </fieldset>
+
+                <div className="border-t border-neutral-100 pt-7">
+                  <p className="text-sm font-bold text-dark">Weak-spot review</p>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-500">One test built from the concepts you find hardest across every chapter you have practised. It needs a little practice history first.</p>
+                  <button
+                    type="button"
+                    onClick={startReview}
+                    disabled={loading || chaptersLoading}
+                    className="mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary-200 bg-white px-5 py-3 font-semibold text-primary-700 transition-colors hover:border-primary-400 hover:bg-primary-50 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <ArrowRight className="h-4 w-4" aria-hidden="true" />}
+                    Start review test
+                  </button>
+                </div>
 
                 <div className="flex flex-col gap-4 border-t border-neutral-100 pt-7 sm:flex-row sm:items-center sm:justify-between">
                   <div>

@@ -212,6 +212,38 @@ def select_question_block(
     }
 
 
+def pick_review_focus(
+    mastery_rows: Sequence[Mapping[str, Any]],
+    min_attempts: int = 3,
+    max_concepts: int = 8,
+) -> List[Dict[str, str]]:
+    """Rank a student's weakest practised concepts for a review test.
+
+    Only concepts with enough signal (at least ``min_attempts`` attempts)
+    qualify, so one unlucky guess cannot brand a concept as weak. Weakest
+    mastery first; ties break towards the concept untouched the longest so
+    spaced review rotates, then by concept id for determinism. Returns
+    ``[{"concept_id": ..., "chapter_id": ...}, ...]`` weakest first.
+    """
+
+    qualified = [
+        row
+        for row in mastery_rows
+        if int(row.get("attempt_count") or 0) >= min_attempts
+    ]
+    qualified.sort(
+        key=lambda row: (
+            float(row.get("mastery_score") or 0),
+            str(row.get("last_attempted_at") or ""),
+            str(row.get("concept_id")),
+        )
+    )
+    return [
+        {"concept_id": str(row["concept_id"]), "chapter_id": str(row["chapter_id"])}
+        for row in qualified[:max_concepts]
+    ]
+
+
 def _clean_answer(value: Any) -> str:
     return re.sub(r"\s+", " ", str(value).strip().casefold())
 
