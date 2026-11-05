@@ -14,7 +14,13 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """Application configuration, loaded from environment variables."""
+    """Application configuration, loaded from environment variables.
+
+    Local-dev server knobs (PORT, FASTAPI_RELOAD) deliberately stay out of
+    Settings: they are only read by app.main's __main__ block with the
+    historical semantics (int(PORT), FASTAPI_RELOAD=="true"), and a malformed
+    value must not fail every get_settings() call.
+    """
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
@@ -34,10 +40,6 @@ class Settings(BaseSettings):
 
     # OCR image fetching
     ocr_allowed_image_hosts: str = ""
-
-    # Local server
-    port: int = 8000
-    fastapi_reload: bool = False
 
 # Settings the app cannot serve requests without. Checked and logged at
 # startup; request-time code still raises if they are missing.
