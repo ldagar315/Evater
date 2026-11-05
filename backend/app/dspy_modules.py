@@ -1,13 +1,12 @@
 import dspy
+from .config import get_settings
 import os
 from typing import List, Optional, Literal
-from dotenv import load_dotenv
 from .models import (
     Answer, Feedback, Question, TestStructure, TestStructureMCQ, 
     TestStructureSubjective, Concept, EvaluationOutput, Answer
 )
 
-load_dotenv()
 
 _DSPY_CONFIGURED = False
 
@@ -18,7 +17,7 @@ def ensure_dspy_configured() -> None:
     if _DSPY_CONFIGURED:
         return
 
-    api_key = os.getenv("CEREBRAS_API_KEY")
+    api_key = get_settings().cerebras_api_key
     if not api_key:
         raise RuntimeError("Missing CEREBRAS_API_KEY")
 

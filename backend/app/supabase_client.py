@@ -1,4 +1,4 @@
-import os
+import logging
 import time
 from typing import Any, Callable, Optional
 
@@ -7,13 +7,20 @@ import httpx
 from supabase import Client, create_client
 from supabase.lib.client_options import SyncClientOptions
 
+from .config import get_settings
+from .errors import ConfigurationError
+
+logger = logging.getLogger(__name__)
+
 
 def create_supabase_client(jwt: Optional[str] = None) -> Client:
-    supabase_url = os.getenv("SUPABASE_URL")
-    supabase_key = os.getenv("SUPABASE_API_KEY")
+    settings = get_settings()
+    supabase_url = settings.supabase_url
+    supabase_key = settings.supabase_api_key
 
     if not supabase_url or not supabase_key:
-        raise RuntimeError("Missing SUPABASE_URL or SUPABASE_API_KEY")
+        logger.error("Missing SUPABASE_URL or SUPABASE_API_KEY")
+        raise ConfigurationError()
 
     if jwt:
         options = SyncClientOptions(headers={"Authorization": f"Bearer {jwt}", "apikey": supabase_key})
@@ -29,11 +36,13 @@ def create_supabase_service_client() -> Client:
     separate from create_supabase_client prevents an anon/publishable key from
     being silently promoted to a privileged key.
     """
-    supabase_url = os.getenv("SUPABASE_URL")
-    service_role_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+    settings = get_settings()
+    supabase_url = settings.supabase_url
+    service_role_key = settings.supabase_service_role_key
 
     if not supabase_url or not service_role_key:
-        raise RuntimeError("Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY")
+        logger.error("Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY")
+        raise ConfigurationError()
 
     return create_client(supabase_url, service_role_key)
 

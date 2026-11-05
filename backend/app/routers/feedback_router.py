@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
-from ..models import InputDataAnswer, ErrorResponse, Question, DirectFeedbackRequest, Answer, MergedFeedbackResponse, DirectFeedbackResponse
+from typing import Dict, Any
+from ..models import InputDataAnswer, ErrorResponse, Question, DirectFeedbackRequest, Answer
 from ..auth import require_user
 from ..dspy_modules import answer_seperation, feedback_generation, ocr_text
 from ..services import merge_qaf, ocr_answer_images
@@ -7,17 +8,14 @@ from ..remote_image import RemoteImageError
 
 router = APIRouter(dependencies=[Depends(require_user)])
 
-@router.post("/gen_answer", response_model=MergedFeedbackResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@router.post("/gen_answer", response_model=Dict[str, Any], responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
 def generate_feedback(InputDataAnswer: InputDataAnswer):
     # Pydantic handles validation
     
     image_url = InputDataAnswer.image_url
     questions = InputDataAnswer.questions
 
-    try:
-        text = ocr_answer_images(image_url)
-    except RemoteImageError as e:
-        raise HTTPException(status_code=e.status_code, detail=e.detail)
+    text = ocr_answer_images(image_url)
 
     seperated_answers = answer_seperation(
         answer_sheet_text = text
@@ -46,7 +44,7 @@ def generate_feedback(InputDataAnswer: InputDataAnswer):
     )
     return {"merged" : merged }
 
-@router.post("/gen_feedback_direct", response_model=DirectFeedbackResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@router.post("/gen_feedback_direct", response_model=Dict[str, Any], responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
 def generate_feedback_direct(request: DirectFeedbackRequest):
     """
     Directly generate feedback for questions and answers (text or image).
@@ -70,10 +68,7 @@ def generate_feedback_direct(request: DirectFeedbackRequest):
             
         # If image is provided, run OCR and append/replace
         if ans_input.image_url:
-            try:
-                ocr_result = ocr_answer_images([ans_input.image_url])
-            except RemoteImageError as e:
-                raise HTTPException(status_code=e.status_code, detail=e.detail)
+            ocr_result = ocr_answer_images([ans_input.image_url])
             if final_answer_text:
                 final_answer_text += f"\n\n[Image Content]: {ocr_result}"
             else:

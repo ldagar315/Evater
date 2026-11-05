@@ -12,7 +12,6 @@ By default, only images hosted on the configured Supabase project host
 from __future__ import annotations
 
 import ipaddress
-import os
 import socket
 import base64
 from functools import lru_cache
@@ -20,6 +19,8 @@ from typing import Iterable, Optional, Set
 from urllib.parse import urljoin, urlsplit
 
 import httpx
+
+from .config import get_settings
 
 
 class RemoteImageError(Exception):
@@ -50,13 +51,13 @@ def get_allowed_image_hosts() -> Set[str]:
     """
     hosts: Set[str] = set()
 
-    supabase_url = os.getenv("SUPABASE_URL", "").strip()
+    supabase_url = get_settings().supabase_url.strip()
     if supabase_url:
         parsed = urlsplit(supabase_url)
         if parsed.hostname:
             hosts.add(parsed.hostname.lower())
 
-    extra = os.getenv("OCR_ALLOWED_IMAGE_HOSTS", "").strip()
+    extra = get_settings().ocr_allowed_image_hosts.strip()
     if extra:
         hosts |= _parse_csv_hosts(extra)
 

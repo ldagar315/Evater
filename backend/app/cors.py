@@ -1,8 +1,9 @@
-import os
 from typing import List, Optional
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from .config import get_settings
 
 
 def _split_origins(value: Optional[str]) -> List[str]:
@@ -13,7 +14,7 @@ def _split_origins(value: Optional[str]) -> List[str]:
 
 def is_production_env() -> bool:
     # Common environment markers across platforms
-    env = (os.getenv("ENV") or os.getenv("APP_ENV") or os.getenv("NODE_ENV") or "").lower()
+    env = get_settings().env.lower()
     # Default to production-safe behavior if unset/unknown to avoid accidentally allowing localhost in prod.
     return env not in {"dev", "development", "local", "test"}
 
@@ -21,7 +22,7 @@ def is_production_env() -> bool:
 def allowed_origins() -> List[str]:
     # Comma-separated list of allowed origins, e.g.:
     # APP_ORIGINS="https://evater.xyz,https://www.evater.xyz,https://staging.evater.xyz"
-    configured = _split_origins(os.getenv("APP_ORIGINS"))
+    configured = _split_origins(get_settings().app_origins)
     if configured:
         return configured
     if is_production_env():
