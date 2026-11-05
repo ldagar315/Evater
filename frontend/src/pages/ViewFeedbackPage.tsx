@@ -67,6 +67,7 @@ export function ViewFeedbackPage() {
   const getErrorIcon = (errorType: string) => {
     switch (errorType) {
       case 'none':
+      case 'No mistake':
         return <CheckCircle className="h-5 w-5 text-green-500" />
       case 'conceptual':
         return <XCircle className="h-5 w-5 text-red-500" />
@@ -208,7 +209,8 @@ export function ViewFeedbackPage() {
                         <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
                           {item.question_type?.replace('_', ' ') || 'Unknown'}
                         </span>
-                        {item.feedback?.error_type && item.feedback.error_type !== 'none' && (
+                        {item.feedback?.error_type && item.feedback.error_type !== 'none' &&
+                          item.feedback.error_type !== 'No mistake' && (
                           <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">
                             {item.feedback.error_type} error
                           </span>
@@ -243,3 +245,4 @@ export function ViewFeedbackPage() {
     </div>
   )
 }
+
