@@ -70,13 +70,6 @@ def register_error_handlers(app: FastAPI) -> None:
     async def remote_image_error_handler(request: Request, exc: RemoteImageError) -> JSONResponse:
         return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
 
-    @app.exception_handler(RuntimeError)
-    async def runtime_error_handler(request: Request, exc: RuntimeError) -> JSONResponse:
-        # RuntimeErrors reaching the server are configuration-style failures
-        # (e.g. missing Supabase env vars). Return a clean 500, log the detail.
-        logger.error("request %s configuration failure: %s", request_id_of(request), exc)
-        return JSONResponse(status_code=500, content={"detail": "Server configuration error."})
-
     @app.exception_handler(Exception)
     async def unhandled_error_handler(request: Request, exc: Exception) -> JSONResponse:
         logger.exception("request %s unhandled error", request_id_of(request))
