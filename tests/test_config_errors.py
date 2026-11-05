@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from app.config import get_settings, missing_critical_settings
-from app.errors import AppError, RequestIDMiddleware, register_error_handlers
+from app.errors import AppError, ConfigurationError, RequestIDMiddleware, register_error_handlers
 from app.remote_image import RemoteImageError
 
 
@@ -44,9 +44,13 @@ def _app():
     def r():
         raise RemoteImageError(status_code=400, detail="bad image")
 
-    @app.get("/runtime")
+    @app.get("/config-error")
     def rt():
-        raise RuntimeError("Missing SUPABASE_URL secret-ish detail")
+        raise ConfigurationError()
+
+    @app.get("/runtime")
+    def rtp():
+        raise RuntimeError("some non-config bug with secret-ish detail")
 
     @app.get("/generic")
     def g():
@@ -62,7 +66,10 @@ def test_handlers_map_errors_without_leaking_detail():
     assert "x-request-id" in r.headers
     r = c.get("/remote")
     assert r.status_code == 400 and r.json() == {"detail": "bad image"}
+    r = c.get("/config-error")
+    assert r.status_code == 500 and r.json() == {"detail": "Server configuration error."}
     r = c.get("/runtime")
-    assert r.status_code == 500 and "SUPABASE" not in r.text
+    assert r.status_code == 500 and r.json() == {"detail": "Internal server error."}
+    assert "secret-ish" not in r.text
     r = c.get("/generic")
     assert r.status_code == 500 and r.json() == {"detail": "Internal server error."}
