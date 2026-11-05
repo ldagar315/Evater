@@ -15,7 +15,7 @@ import { Header } from "../components/layout/Header";
 import { useAuthContext } from "../contexts/AuthContext";
 import { useAppState } from "../contexts/AppStateContext";
 import { supabase } from "../lib/supabase";
-import { apiFetch } from "../lib/api";
+import { apiFetch, externalApiUrl } from "../lib/api";
 import { QuestionsCreated, FeedbackResponse } from "../types";
 import { QuestionCard } from "../components/test/QuestionCard";
 
@@ -164,10 +164,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
       };
 
       // 3. Call direct feedback API
-      const apiUrl =
-        import.meta.env.PROD
-          ? "/.netlify/functions/generate-feedback-direct"
-          : "/api/external/api/gen_feedback_direct";
+      const apiUrl = externalApiUrl('/api/gen_feedback_direct');
 
       const response = await apiFetch(apiUrl, {
         method: "POST",
@@ -305,10 +302,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
       questions: { questions },
     };
 
-    const apiUrl =
-      import.meta.env.PROD
-        ? "/.netlify/functions/generate-feedback"
-        : "/api/external/api/gen_answer";
+    const apiUrl = externalApiUrl('/api/gen_answer');
 
     const response = await apiFetch(apiUrl, {
       method: "POST",

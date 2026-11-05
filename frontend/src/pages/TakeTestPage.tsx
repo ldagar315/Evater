@@ -7,7 +7,7 @@ import { Header } from '../components/layout/Header'
 import { MathText } from '../components/ui/MathRenderer'
 import { useAuthContext } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
-import { apiFetch } from '../lib/api'
+import { apiFetch, externalApiUrl } from '../lib/api'
 import { QuestionsCreated, Question } from '../types'
 
 interface MCQOption {
@@ -316,9 +316,7 @@ export function TakeTestPage() {
         }),
       }
 
-      const apiUrl = import.meta.env.PROD
-        ? '/.netlify/functions/generate-feedback-direct'
-        : '/api/external/api/gen_feedback_direct'
+      const apiUrl = externalApiUrl('/api/gen_feedback_direct')
 
       const response = await apiFetch(apiUrl, {
         method: 'POST',
