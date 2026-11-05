@@ -17,6 +17,7 @@ from ..models import (
     ReviewTestRequest,
     QuestionBankTestRequest,
     QuestionBankTestResponse,
+    ChapterListResponse,
 )
 from ..question_bank import (
     QuestionBankError,
@@ -134,11 +135,11 @@ def _load_mastery(client: Any, user_id: str, chapter_id: str) -> List[Dict[str, 
     return response.data or []
 
 
-@router.get("/chapters")
+@router.get("/chapters", response_model=ChapterListResponse)
 def list_question_bank_chapters(
     subject: Optional[str] = None,
     auth: AuthContext = Depends(require_user),
-) -> Dict[str, Any]:
+) -> ChapterListResponse:
     """Return the published Grade 8 chapters available for practice.
 
     Defaults to Science for backward compatibility; pass ?subject=<name> (for
