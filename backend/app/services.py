@@ -1,14 +1,12 @@
-import os
 import logging
 from typing import List, Dict, Any, Optional
-from dotenv import load_dotenv
 from supabase import Client
 from groq import Groq
 import dspy
+from .config import get_settings
 from .dspy_modules import ocr_text
 from .remote_image import fetch_image_data_uri, RemoteImageError
 
-load_dotenv()
 logger = logging.getLogger(__name__)
 
 _groq_client: Optional[Groq] = None
@@ -20,7 +18,7 @@ def _get_groq_client() -> Groq:
     if _groq_client is not None:
         return _groq_client
 
-    api_key = os.getenv("GROQ_API_KEY")
+    api_key = get_settings().groq_api_key
     if not api_key:
         raise RuntimeError("Missing GROQ_API_KEY")
 
@@ -36,7 +34,7 @@ def ocr_answer_images(image_urls: List[str]) -> str:
     # Fetch images server-side with an allowlist and SSRF protections, then pass a data URI to DSPy.
     new_image_url_list = [dspy.Image(fetch_image_data_uri(url)) for url in image_urls]
     # Using a specific LM for OCR as per original code
-    with dspy.context(lm = dspy.LM('gemini/gemini-2.5-flash', api_key=os.getenv("GEMINI_API_KEY"))):
+    with dspy.context(lm = dspy.LM('gemini/gemini-2.5-flash', api_key=get_settings().gemini_api_key)):
         ocr_text_answer = ocr_text(answer_sheet_images = new_image_url_list)
     return ocr_text_answer.answer_sheet_text
 
