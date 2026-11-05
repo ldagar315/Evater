@@ -200,6 +200,18 @@ class QuestionBankTestResponse(BaseModel):
     routing: RoutingDecision
 
 
+class ChapterInfo(BaseModel):
+    id: str
+    sequence_number: int
+    title: str
+    description: Optional[str] = None
+    curriculum_version_id: str
+
+
+class ChapterListResponse(BaseModel):
+    chapters: List[ChapterInfo]
+
+
 class QuestionFlagResponse(BaseModel):
     question_id: UUID
     flagged: bool = True
