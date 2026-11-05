@@ -10,3 +10,4 @@ httpx
 httpx-aiohttp>=0.1.5,<0.2
 beautifulsoup4>=4.12,<5
 pypdf>=5,<7
+pydantic-settings
