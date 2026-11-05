@@ -88,7 +88,9 @@ def test_gen_question_happy_path(monkeypatch):
     from app.models import Question
     from supabase_auth.types import User
 
-    import app.routers.test_router as test_router_module
+    import app.dspy_modules as dspy_modules_module
+    import app.services as services_module
+    import app.supabase_client as supabase_client_module
 
     def _stub_require_user():
         return AuthContext(
@@ -129,12 +131,12 @@ def test_gen_question_happy_path(monkeypatch):
         )
 
     app.dependency_overrides[require_user] = _stub_require_user
-    monkeypatch.setattr(test_router_module, "create_supabase_client", _stub_create_supabase_client)
-    monkeypatch.setattr(test_router_module, "get_chapter_summary", _stub_get_chapter_summary)
-    monkeypatch.setattr(test_router_module, "result_distribution", _stub_result_distribution)
-    monkeypatch.setattr(test_router_module, "result_distribution_mcq", _stub_result_distribution)
-    monkeypatch.setattr(test_router_module, "result_distribution_subjective", _stub_result_distribution)
-    monkeypatch.setattr(test_router_module, "test_generation", _stub_test_generation)
+    monkeypatch.setattr(supabase_client_module, "create_supabase_client", _stub_create_supabase_client)
+    monkeypatch.setattr(services_module, "get_chapter_summary", _stub_get_chapter_summary)
+    monkeypatch.setattr(dspy_modules_module, "result_distribution", _stub_result_distribution)
+    monkeypatch.setattr(dspy_modules_module, "result_distribution_mcq", _stub_result_distribution)
+    monkeypatch.setattr(dspy_modules_module, "result_distribution_subjective", _stub_result_distribution)
+    monkeypatch.setattr(dspy_modules_module, "test_generation", _stub_test_generation)
 
     try:
         client = TestClient(app)
@@ -164,7 +166,8 @@ def test_gen_answer_happy_path(monkeypatch):
     from app.models import Answer, Feedback
     from supabase_auth.types import User
 
-    import app.routers.feedback_router as feedback_router_module
+    import app.dspy_modules as dspy_modules_module
+    import app.services as services_module
 
     def _stub_require_user():
         return AuthContext(
@@ -201,9 +204,9 @@ def test_gen_answer_happy_path(monkeypatch):
         )
 
     app.dependency_overrides[require_user] = _stub_require_user
-    monkeypatch.setattr(feedback_router_module, "ocr_answer_images", _stub_ocr_answer_images)
-    monkeypatch.setattr(feedback_router_module, "answer_seperation", _stub_answer_seperation)
-    monkeypatch.setattr(feedback_router_module, "feedback_generation", _stub_feedback_generation)
+    monkeypatch.setattr(services_module, "ocr_answer_images", _stub_ocr_answer_images)
+    monkeypatch.setattr(dspy_modules_module, "answer_seperation", _stub_answer_seperation)
+    monkeypatch.setattr(dspy_modules_module, "feedback_generation", _stub_feedback_generation)
 
     try:
         client = TestClient(app)
