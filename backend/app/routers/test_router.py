@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from typing import Dict, Any
-from ..models import InputDataQuestion, ErrorResponse
+from ..models import InputDataQuestion, ErrorResponse, QuestionsResponse
 from ..auth import AuthContext, require_user
 from ..dspy_modules import (
     result_distribution, result_distribution_mcq, result_distribution_subjective, 
@@ -11,7 +10,7 @@ from ..supabase_client import create_supabase_client
 
 router = APIRouter(dependencies=[Depends(require_user)])
 
-@router.post("/gen_question", response_model=Dict[str, Any], responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
+@router.post("/gen_question", response_model=QuestionsResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
 def generate_questions(InputDataQuestion: InputDataQuestion, auth: AuthContext = Depends(require_user)):
     """ LLM calls X 2
     Database Call X 1 
