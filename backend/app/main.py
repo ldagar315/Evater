@@ -1,19 +1,29 @@
-import os
 import logging
+
 from fastapi import FastAPI
-from dotenv import load_dotenv
+
 from .routers import test_router, feedback_router, viva_router, question_bank_router, leaderboard_router
 from .cors import add_cors_middleware
-
-load_dotenv()
+from .config import get_settings, missing_critical_settings
+from .errors import RequestIDMiddleware, register_error_handlers
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 def create_app() -> FastAPI:
     app = FastAPI(title="Evater_v1")
 
+    missing = missing_critical_settings(get_settings())
+    if missing:
+        logger.error(
+            "Missing critical configuration: %s - requests that depend on it will fail",
+            ", ".join(missing),
+        )
+
     add_cors_middleware(app)
+    app.add_middleware(RequestIDMiddleware)
+    register_error_handlers(app)
 
     @app.get("/")
     def root():
@@ -32,5 +42,6 @@ app = create_app()
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("app.main:app", host="0.0.0.0", port=port, reload=os.environ.get("FASTAPI_RELOAD", "false").lower() == "true")
+
+    settings = get_settings()
+    uvicorn.run("app.main:app", host="0.0.0.0", port=settings.port, reload=settings.fastapi_reload)
