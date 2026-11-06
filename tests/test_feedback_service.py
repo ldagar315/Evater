@@ -216,55 +216,163 @@ Q_MCQ_SANITIZED = {
     "options": [{"text": "3"}, {"text": "4"}],  # no is_correct: sanitized wire
 }
 
+Q_MCQ_KEYED = {
+    "question_text": "Pick the even number.",
+    "question_type": "mcq_single",
+    "question_number": 3,
+    "difficulty": "Easy",
+    "contains_math_expression": False,
+    "maximum_marks": 1,
+    "options": [{"text": "3", "is_correct": False}, {"text": "4", "is_correct": True}],
+}
 
-def test_direct_feedback_accepts_sanitized_mcq_questions():
-    """The feedback flow must work WITHOUT client-held answer keys: a
-    sanitized MCQ question (options with no is_correct) is accepted, and no
-    answer key reaches the feedback LLM's question input."""
-    from app import feedback_service
-    from app.models import DirectFeedbackRequest
 
-    captured = {}
-
+def _capture_feedback(captured):
     def capture_feedback(*, question, answer):
         captured["question"] = question
         captured["answer"] = answer
         return types.SimpleNamespace(feedback=types.SimpleNamespace(model_dump=lambda: {
             "question_number": 3, "explanation": "x", "max_scored": 1,
             "error_type": "none", "next_step": "y"}))
+    return capture_feedback
+
+
+def test_mcq_without_test_id_fails_closed():
+    """Objective questions are never graded without server-held keys: no
+    silent LLM re-derivation."""
+    import pytest
+    from app import feedback_service
+    from app.models import DirectFeedbackRequest
 
     req = DirectFeedbackRequest(
         questions=[Q_MCQ_SANITIZED],
         answers=[{"question_number": 3, "answer_text": "4"}],
     )
-    out = feedback_service.generate_direct_feedback(req, feedback_fn=capture_feedback)
-    assert len(out) == 1
-    dumped = captured["question"].model_dump()
-    assert dumped["options"] == [{"text": "3"}, {"text": "4"}]
-    assert "is_correct" not in str(dumped)
+    with pytest.raises(feedback_service.AnswerKeysUnavailable):
+        feedback_service.generate_direct_feedback(req)
 
 
-def test_direct_feedback_tolerates_legacy_keyed_payload():
-    """Rollout compat: a legacy client still sending is_correct is accepted
-    (extra fields ignored), and the key is dropped before the LLM sees it."""
+def test_written_answer_without_test_id_still_works():
+    """Non-keyed types (short/long answer) grade key-free as before."""
     from app import feedback_service
     from app.models import DirectFeedbackRequest
 
     captured = {}
-
-    def capture_feedback(*, question, answer):
-        captured["question"] = question
-        return types.SimpleNamespace(feedback=types.SimpleNamespace(model_dump=lambda: {
-            "question_number": 3, "explanation": "x", "max_scored": 1,
-            "error_type": "none", "next_step": "y"}))
-
-    keyed = dict(Q_MCQ_SANITIZED)
-    keyed["options"] = [{"text": "3", "is_correct": False},
-                        {"text": "4", "is_correct": True}]
     req = DirectFeedbackRequest(
-        questions=[keyed],
-        answers=[{"question_number": 3, "answer_text": "4"}],
+        questions=[Q1],
+        answers=[{"question_number": 1, "answer_text": "a1"}],
     )
-    feedback_service.generate_direct_feedback(req, feedback_fn=capture_feedback)
-    dumped = captured["question"].model_dump()
-    assert all("is_correct" not in o for o in dumped["options"])
+    out = feedback_service.generate_direct_feedback(
+        req, feedback_fn=_capture_feedback(captured))
+    assert len(out) == 1
+    assert captured["question"].question_text == "q1?"
+
+
+def test_test_id_hydrates_keys_from_store_and_ignores_client_questions():
+    """With test_id, grading uses server-stored keyed questions; the
+    client-sent payload (even a substituted question text) is ignored."""
+    from app import feedback_service
+    from app.models import DirectFeedbackRequest
+
+    captured = {}
+    bogus = dict(Q_MCQ_SANITIZED)
+    bogus["question_text"] = "SUBSTITUTED BY CLIENT"
+    req = DirectFeedbackRequest(
+        questions=[bogus],
+        answers=[{"question_number": 3, "answer_text": "4"}],
+        test_id=42,
+    )
+    out = feedback_service.generate_direct_feedback(
+        req, jwt="j", user_id="u1",
+        feedback_fn=_capture_feedback(captured),
+        test_loader=lambda tid, jwt: {"id": 42, "created_by": "u1",
+                                      "test": [Q_MCQ_SANITIZED], "key_id": "key-1"},
+        key_loader=lambda kid: {"id": "key-1", "user_id": "u1",
+                                "questions": [Q_MCQ_KEYED]},
+    )
+    assert len(out) == 1
+    graded = captured["question"]
+    assert graded.question_text == "Pick the even number."  # server copy won
+    assert any(o.is_correct for o in graded.options)  # keys hydrated
+
+
+def test_test_id_legacy_row_keys_used_when_no_key_store_link():
+    """Pre-migration rows keep key-grounded grading: keys come from the
+    row's own stored test json (server-side), never from the client."""
+    from app import feedback_service
+    from app.models import DirectFeedbackRequest
+
+    captured = {}
+    req = DirectFeedbackRequest(
+        questions=[Q_MCQ_SANITIZED],
+        answers=[{"question_number": 3, "answer_text": "4"}],
+        test_id=7,
+    )
+    feedback_service.generate_direct_feedback(
+        req, jwt="j", user_id="u1",
+        feedback_fn=_capture_feedback(captured),
+        test_loader=lambda tid, jwt: {"id": 7, "created_by": "u1",
+                                      "test": [Q_MCQ_KEYED], "key_id": None},
+        key_loader=lambda kid: None,
+    )
+    assert any(o.is_correct for o in captured["question"].options)
+
+
+def test_test_id_other_users_test_rejected():
+    """Ownership: someone else's test_id is indistinguishable from missing."""
+    import pytest
+    from app import feedback_service
+    from app.models import DirectFeedbackRequest
+
+    req = DirectFeedbackRequest(
+        questions=[Q_MCQ_SANITIZED],
+        answers=[{"question_number": 3, "answer_text": "4"}],
+        test_id=99,
+    )
+    with pytest.raises(feedback_service.TestNotFound):
+        feedback_service.generate_direct_feedback(
+            req, jwt="j", user_id="u1",
+            test_loader=lambda tid, jwt: {"id": 99, "created_by": "OTHER",
+                                          "test": [Q_MCQ_KEYED], "key_id": None},
+            key_loader=lambda kid: None,
+        )
+
+
+def test_test_id_mismatched_key_row_rejected():
+    """Ownership chain: a key-store row owned by someone else fails closed."""
+    import pytest
+    from app import feedback_service
+    from app.models import DirectFeedbackRequest
+
+    req = DirectFeedbackRequest(
+        questions=[Q_MCQ_SANITIZED],
+        answers=[{"question_number": 3, "answer_text": "4"}],
+        test_id=42,
+    )
+    with pytest.raises(feedback_service.AnswerKeysUnavailable):
+        feedback_service.generate_direct_feedback(
+            req, jwt="j", user_id="u1",
+            test_loader=lambda tid, jwt: {"id": 42, "created_by": "u1",
+                                          "test": [Q_MCQ_SANITIZED], "key_id": "key-1"},
+            key_loader=lambda kid: {"id": "key-1", "user_id": "OTHER",
+                                    "questions": [Q_MCQ_KEYED]},
+        )
+
+
+def test_test_id_sanitized_row_without_keys_fails_closed_for_mcq():
+    import pytest
+    from app import feedback_service
+    from app.models import DirectFeedbackRequest
+
+    req = DirectFeedbackRequest(
+        questions=[Q_MCQ_SANITIZED],
+        answers=[{"question_number": 3, "answer_text": "4"}],
+        test_id=55,
+    )
+    with pytest.raises(feedback_service.AnswerKeysUnavailable):
+        feedback_service.generate_direct_feedback(
+            req, jwt="j", user_id="u1",
+            test_loader=lambda tid, jwt: {"id": 55, "created_by": "u1",
+                                          "test": [Q_MCQ_SANITIZED], "key_id": None},
+            key_loader=lambda kid: None,
+        )
