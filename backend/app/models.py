@@ -48,6 +48,23 @@ class ErrorResponse(BaseModel):
 class QuestionsResponse(BaseModel):
     questions: List[Question]
 
+class PublicMCQOption(BaseModel):
+    """MCQ option as sent to clients: answer key intentionally absent."""
+    text: str
+
+class PublicQuestion(BaseModel):
+    """gen_question response item with is_correct stripped (answer keys never leave the server)."""
+    question_text: str
+    question_type: Literal["mcq_single", "mcq_multi", "true_false", "short_answer", "long_answer"]
+    difficulty: Literal["Easy", "Medium", "Hard"]
+    question_number: int
+    options: Optional[List[PublicMCQOption]] = None
+    contains_math_expression: bool
+    maximum_marks: int = None
+
+class PublicQuestionsResponse(BaseModel):
+    questions: List[PublicQuestion]
+
 class MergedFeedbackItem(BaseModel):
     # Raw question fields come from the client request; extras pass through untouched.
     model_config = ConfigDict(extra="allow")
@@ -117,7 +134,10 @@ class AnswerInput(BaseModel):
     image_url: Optional[str] = None
 
 class DirectFeedbackRequest(BaseModel):
-    questions: List[Question]
+    # Key-free by contract: PublicQuestion options carry no is_correct, so the
+    # feedback flow never depends on client-held answer keys. Pydantic ignores
+    # extra fields, so legacy clients that still send keys remain accepted.
+    questions: List[PublicQuestion]
     answers: List[AnswerInput]
 
 
