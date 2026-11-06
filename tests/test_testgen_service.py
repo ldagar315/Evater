@@ -179,7 +179,7 @@ def test_gen_question_route_persists_keys_and_ships_sanitized(monkeypatch):
             "grade": "8", "subject": "Maths", "topic": "Linear Equations",
             "difficulty_level": "Medium", "length": "short",
             "test_type": "objective", "special_instructions": [],
-        })
+        }, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 200, resp.text
         body = resp.json()
         assert body["key_id"] == "12345678-1234-5678-1234-567812345678"
@@ -218,7 +218,7 @@ def test_gen_question_route_fails_closed_when_key_store_unavailable(monkeypatch)
             "grade": "8", "subject": "Maths", "topic": "Linear Equations",
             "difficulty_level": "Medium", "length": "short",
             "test_type": "objective", "special_instructions": [],
-        })
+        }, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 500, resp.text
     finally:
         app.dependency_overrides.clear()
