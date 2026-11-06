@@ -47,6 +47,7 @@ interface ApiQuestion {
 
 interface ApiResponse {
   questions: ApiQuestion[];
+  key_id?: string | null;
 }
 
 export function CreateTestPage() {
@@ -163,7 +164,7 @@ export function CreateTestPage() {
     length: string;
     test_type: string;
     special_instructions: string[];
-  }): Promise<ApiQuestion[]> => {
+  }): Promise<ApiResponse> => {
     const apiUrl = externalApiUrl('/api/gen_question');
 
     const response = await apiFetch(apiUrl, {
@@ -187,7 +188,7 @@ export function CreateTestPage() {
     }
 
     const data: ApiResponse = await response.json();
-    return data.questions;
+    return data;
   };
 
   const handleSubmit = async () => {
@@ -209,7 +210,8 @@ export function CreateTestPage() {
         special_instructions: [], // Kept empty as we moved to explicit test types
       };
 
-      const questions = await callGenerateQuestionsAPI(apiPayload);
+      const generation = await callGenerateQuestionsAPI(apiPayload);
+      const questions = generation.questions;
 
       const convertedQuestions: Question[] = questions.map((q) => ({
         question_text: q.question_text,
@@ -233,6 +235,7 @@ export function CreateTestPage() {
             length: length.toLowerCase(),
             special_instructions: [testType], // Storing test type in special instructions for backward compatibility/reference
             test: convertedQuestions,
+            key_id: generation.key_id ?? null,
           },
         ])
         .select()
