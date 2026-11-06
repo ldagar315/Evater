@@ -133,6 +133,24 @@ def test_gen_question_happy_path(monkeypatch):
     app.dependency_overrides[require_user] = _stub_require_user
     monkeypatch.setattr(supabase_client_module, "create_supabase_client", _stub_create_supabase_client)
     monkeypatch.setattr(services_module, "get_chapter_summary", _stub_get_chapter_summary)
+
+    # Key-store write at the response boundary (integrity fix).
+    from app.routers import test_router as test_router_module
+
+    class _StubKeysTable:
+        def insert(self, row):
+            assert row["user_id"] == "user_123"
+            return self
+
+        def execute(self):
+            return SimpleNamespace(data=[{"id": "12345678-1234-5678-1234-567812345678"}])
+
+    class _StubServiceClient:
+        def table(self, name):
+            assert name == "generated_test_keys"
+            return _StubKeysTable()
+
+    monkeypatch.setattr(test_router_module, "create_supabase_service_client", lambda: _StubServiceClient())
     monkeypatch.setattr(dspy_modules_module, "result_distribution", _stub_result_distribution)
     monkeypatch.setattr(dspy_modules_module, "result_distribution_mcq", _stub_result_distribution)
     monkeypatch.setattr(dspy_modules_module, "result_distribution_subjective", _stub_result_distribution)
@@ -154,6 +172,7 @@ def test_gen_question_happy_path(monkeypatch):
         body = resp.json()
         assert "questions" in body
         assert body["questions"][0]["maximum_marks"] == 1
+        assert body["key_id"] == "12345678-1234-5678-1234-567812345678"
     finally:
         app.dependency_overrides.clear()
 
