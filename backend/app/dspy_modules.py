@@ -3,7 +3,7 @@ from .config import get_settings
 import os
 from typing import List, Optional, Literal
 from .models import (
-    Answer, Feedback, Question, TestStructure, TestStructureMCQ, 
+    Answer, Feedback, PublicQuestion, Question, TestStructure, TestStructureMCQ,
     TestStructureSubjective, Concept, EvaluationOutput, Answer
 )
 
@@ -37,7 +37,7 @@ class AnswerSheet(dspy.Signature):
     answers: List[Answer] = dspy.OutputField()
 
 class Generate_Feedback(dspy.Signature):
-    question: Question = dspy.InputField()
+    question: PublicQuestion = dspy.InputField()
     answer: Answer = dspy.InputField()
     feedback: Feedback = dspy.OutputField()
 
