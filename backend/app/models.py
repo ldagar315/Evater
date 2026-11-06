@@ -64,6 +64,9 @@ class PublicQuestion(BaseModel):
 
 class PublicQuestionsResponse(BaseModel):
     questions: List[PublicQuestion]
+    # Opaque reference to the server-only key store row (generated_test_keys).
+    # Never the keys themselves.
+    key_id: Optional[UUID] = None
 
 class MergedFeedbackItem(BaseModel):
     # Raw question fields come from the client request; extras pass through untouched.
@@ -138,6 +141,10 @@ class DirectFeedbackRequest(BaseModel):
     # feedback flow never depends on client-held answer keys. Pydantic ignores
     # extra fields, so legacy clients that still send keys remain accepted.
     questions: List[PublicQuestion]
+    # When set, the server loads questions + answer keys from its own storage
+    # (ownership-checked) and IGNORES the client-sent questions for grading -
+    # clients can never steer grading toward another test's keys.
+    test_id: Optional[int] = None
     answers: List[AnswerInput]
 
 
