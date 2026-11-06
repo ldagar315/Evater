@@ -70,13 +70,13 @@ def test_ws_accepts_with_token(monkeypatch):
 def test_rest_routes_require_auth():
     client = TestClient(app)
 
-    resp = client.post("/api/gen_question", json={})
+    resp = client.post("/api/gen_question", json={}, headers={"X-Evater-Client": "web/2"})
     assert resp.status_code == 401
 
-    resp = client.post("/api/gen_answer", json={})
+    resp = client.post("/api/gen_answer", json={}, headers={"X-Evater-Client": "web/2"})
     assert resp.status_code == 401
 
-    resp = client.post("/api/gen_feedback_direct", json={})
+    resp = client.post("/api/gen_feedback_direct", json={}, headers={"X-Evater-Client": "web/2"})
     assert resp.status_code == 401
 
 
@@ -167,7 +167,7 @@ def test_gen_question_happy_path(monkeypatch):
             "test_type": "mixed",
             "special_instructions": [],
         }
-        resp = client.post("/api/gen_question", json=payload)
+        resp = client.post("/api/gen_question", json=payload, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 200
         body = resp.json()
         assert "questions" in body
@@ -235,7 +235,7 @@ def test_gen_answer_happy_path(monkeypatch):
                 "questions": [
                     {
                         "question_text": "2+2?",
-                        "question_type": "mcq_single",
+                        "question_type": "short_answer",
                         "difficulty": "Easy",
                         "question_number": 1,
                         "options": None,
@@ -245,7 +245,7 @@ def test_gen_answer_happy_path(monkeypatch):
                 ]
             },
         }
-        resp = client.post("/api/gen_answer", json=payload)
+        resp = client.post("/api/gen_answer", json=payload, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 200
         merged = resp.json()["merged"]
         assert merged[0]["question_number"] == 1
