@@ -42,7 +42,7 @@ interface ApiQuestion {
   maximum_marks: number;
   difficulty: "Easy" | "Medium" | "Hard";
   contains_math_expression: boolean;
-  options?: string[] | null;
+  options?: Array<{ text: string }> | null;
 }
 
 interface ApiResponse {
