@@ -144,6 +144,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
 
       // 2. Construct payload for direct feedback generation
       const feedbackPayload = {
+        test_id: test.id,
         questions: questions.map((q: any) => ({
           question_text: q.question_text,
           question_type: q.question_type,
