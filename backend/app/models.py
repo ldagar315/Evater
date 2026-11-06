@@ -130,6 +130,9 @@ class InputDataAnswer(BaseModel):
     image_url: Optional[List[str]] = Field(default_factory=list)
     questions: Dict[str, Any]
     text_answers: Optional[Dict[int, str]] = None
+    # Same contract as DirectFeedbackRequest.test_id: when set, the server
+    # loads questions + keys from its own storage and ignores the payload.
+    test_id: Optional[int] = None
 
 class AnswerInput(BaseModel):
     question_number: int
