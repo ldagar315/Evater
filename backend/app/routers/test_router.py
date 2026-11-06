@@ -1,13 +1,19 @@
-from fastapi import APIRouter, Depends, HTTPException
+from typing import Optional
+
+from fastapi import APIRouter, Depends, Header, HTTPException
 from ..models import InputDataQuestion, ErrorResponse, QuestionsResponse, PublicQuestionsResponse
 from ..auth import AuthContext, require_user
 from .. import testgen_service
 from ..supabase_client import create_supabase_service_client
+from ..client_version import require_supported_client
 
 router = APIRouter(dependencies=[Depends(require_user)])
 
 @router.post("/gen_question", response_model=PublicQuestionsResponse, responses={400: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
-def generate_questions(InputDataQuestion: InputDataQuestion, auth: AuthContext = Depends(require_user)):
+def generate_questions(InputDataQuestion: InputDataQuestion, auth: AuthContext = Depends(require_user), x_evater_client: Optional[str] = Header(None)):
+    # Reject pre-key-free clients BEFORE any LLM spend or key write: they would
+    # store the sanitized payload as a bare array and silently mis-grade it.
+    require_supported_client(x_evater_client)
     """ LLM calls X 2
     Database Call X 1
     Outputs -> A list of questions objects """
