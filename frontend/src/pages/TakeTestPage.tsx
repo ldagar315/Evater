@@ -8,6 +8,7 @@ import { MathText } from '../components/ui/MathRenderer'
 import { useAuthContext } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
 import { apiFetch, externalApiUrl } from '../lib/api'
+import { CLIENT_VERSION, unwrapTestQuestions } from '../lib/testQuestions'
 import { QuestionsCreated, Question } from '../types'
 
 interface MCQOption {
@@ -82,7 +83,7 @@ export function TakeTestPage() {
       }
 
       // Check if test has MCQ questions
-      const testQuestions = Array.isArray(data.test) ? data.test : []
+      const testQuestions = unwrapTestQuestions(data.test)
       const mcqQuestions = testQuestions.filter((q: Question) => 
         q.question_type === 'mcq_single' || q.question_type === 'mcq_multi'
       )
@@ -186,14 +187,13 @@ export function TakeTestPage() {
     try {
       const payload = {
         test_id: parseInt(testId!),
-        questions: questions.map((q) => ({
-          question_text: q.question_text,
-          question_type: q.question_type,
-          question_number: q.question_number,
-          maximum_marks: q.maximum_marks,
+        // Send the stored questions exactly as loaded (legacy rows still carry
+        // is_correct). The NEW backend ignores this and hydrates server-side
+        // via test_id; the OLD backend (deploy skew) needs the keyed payload
+        // to grade - the pre-change contract. Never stripped client-side.
+        questions: unwrapTestQuestions(test?.test).map((q: any) => ({
+          ...q,
           difficulty: capitalizeDifficulty(q.difficulty),
-          contains_math_expression: q.contains_math_expression,
-          options: q.mcq_options.map((o) => ({ text: o.text })),
         })),
         answers: questions.map((q) => {
           const ans = userAnswers.find((a) => a.questionId === q.question_number)
@@ -212,7 +212,7 @@ export function TakeTestPage() {
 
       const response = await apiFetch(apiUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Evater-Client': CLIENT_VERSION },
         body: JSON.stringify(payload),
       })
       if (!response.ok) throw new Error('Failed to generate feedback')
