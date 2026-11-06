@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, CheckCircle, XCircle, Clock, Award } from 'lucide-react'
+import { ArrowLeft, ArrowRight, XCircle, Clock, Award } from 'lucide-react'
 import { Button } from '../components/ui/Button'
 import { Card, CardContent } from '../components/ui/Card'
 import { Header } from '../components/layout/Header'
@@ -13,7 +13,6 @@ import { QuestionsCreated, Question } from '../types'
 interface MCQOption {
   id: string
   text: string
-  is_correct: boolean
 }
 
 interface MCQQuestion extends Question {
@@ -24,8 +23,6 @@ interface MCQQuestion extends Question {
 interface UserAnswer {
   questionId: number
   selectedOptions: string[]
-  isCorrect?: boolean
-  correctOptions?: string[]
 }
 
 export function TakeTestPage() {
@@ -38,11 +35,9 @@ export function TakeTestPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([])
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
-  const [showAnswer, setShowAnswer] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [testCompleted, setTestCompleted] = useState(false)
-  const [score, setScore] = useState(0)
   const [timeElapsed, setTimeElapsed] = useState(0)
   const [feedbackId, setFeedbackId] = useState<number | null>(null)
   const [savingResults, setSavingResults] = useState(false)
@@ -64,21 +59,6 @@ export function TakeTestPage() {
       return () => clearInterval(timer)
     }
   }, [testCompleted])
-
-  const playSound = (isCorrect: boolean) => {
-    try {
-      const soundFile = isCorrect ? '/yeah-boy-114748.mp3' : '/roblox-death-sound-effect.mp3'
-      const audio = new Audio(soundFile)
-      audio.volume = 0.5 // Set volume to 50%
-      audio.play().catch(error => {
-        console.log('Could not play sound:', error)
-        // Silently fail - don't break the user experience
-      })
-    } catch (error) {
-      console.log('Sound playback error:', error)
-      // Silently fail - don't break the user experience
-    }
-  }
 
   const fetchTest = async () => {
     try {
@@ -118,50 +98,15 @@ export function TakeTestPage() {
       const formattedQuestions: MCQQuestion[] = mcqQuestions.map((q: Question) => {
         const isMultipleCorrect = q.question_type === 'mcq_multi'
         
-        // Process options from the database
-        let mcqOptions: MCQOption[] = []
-        
-        if (q.options && q.options.length > 0) {
-          console.log('Processing options for question:', q.question_number, q.options) // Debug log
-          
-          mcqOptions = q.options.map((option, index) => {
-            // Handle both string options and object options
-            if (typeof option === 'string') {
-              // If it's a string, we need to determine correctness differently
-              // For now, we'll use a fallback approach
-              return {
-                id: `option_${index}`,
-                text: option,
-                is_correct: index === 0 // Fallback: assume first option is correct
-              }
-            } else if (typeof option === 'object' && option !== null) {
-              // Handle object options with is_correct field
-              return {
-                id: `option_${index}`,
-                text: option.text || option.label || String(option),
-                is_correct: Boolean(option.is_correct || option.isCorrect || false)
-              }
-            } else {
-              // Fallback for any other format
-              return {
-                id: `option_${index}`,
-                text: String(option),
-                is_correct: false
-              }
-            }
-          })
-        } else {
-          // Generate dummy options if none exist (fallback)
-          mcqOptions = generateDummyOptions(q.question_text, isMultipleCorrect)
+        // Answer keys never reach the client: options are rendered as
+        // text-only choices and grading happens after submission.
+        if (!q.options || q.options.length === 0) {
+          throw new Error(`Question ${q.question_number} has no options`)
         }
-
-        console.log('Formatted options for question:', q.question_number, mcqOptions) // Debug log
-
-        // Ensure at least one option is correct
-        const hasCorrectOption = mcqOptions.some(opt => opt.is_correct)
-        if (!hasCorrectOption && mcqOptions.length > 0) {
-          mcqOptions[0].is_correct = true // Make first option correct as fallback
-        }
+        const mcqOptions: MCQOption[] = q.options.map((option, index) => ({
+          id: `option_${index}`,
+          text: typeof option === 'string' ? option : String(option.text ?? option),
+        }))
 
         return {
           ...q,
@@ -186,33 +131,7 @@ export function TakeTestPage() {
     }
   }
 
-  const generateDummyOptions = (questionText: string, isMultipleCorrect: boolean): MCQOption[] => {
-    // Generate contextual options based on question content
-    const baseOptions = [
-      'Option A - Correct answer',
-      'Option B - Incorrect answer',
-      'Option C - Incorrect answer',
-      'Option D - Incorrect answer'
-    ]
-
-    if (isMultipleCorrect) {
-      return baseOptions.map((text, index) => ({
-        id: `option_${index}`,
-        text,
-        is_correct: index === 0 || index === 2 // Multiple correct for demo
-      }))
-    } else {
-      return baseOptions.map((text, index) => ({
-        id: `option_${index}`,
-        text,
-        is_correct: index === 0 // Single correct
-      }))
-    }
-  }
-
   const handleOptionSelect = (optionId: string) => {
-    if (showAnswer) return // Don't allow selection after showing answer
-
     const currentQuestion = questions[currentQuestionIndex]
     
     if (currentQuestion.isMultipleCorrect) {
@@ -229,53 +148,25 @@ export function TakeTestPage() {
   }
 
   const handleNext = () => {
-    if (!showAnswer) {
-      // Show answer first
-      const currentQuestion = questions[currentQuestionIndex]
-      const correctOptions = currentQuestion.mcq_options
-        .filter(option => option.is_correct) // Use is_correct field
-        .map(option => option.id)
-      
-      console.log('Checking answer for question:', currentQuestion.question_number)
-      console.log('Selected options:', selectedOptions)
-      console.log('Correct options:', correctOptions)
-      
-      // Check if answer is correct
-      const isCorrect = selectedOptions.length === correctOptions.length &&
-        selectedOptions.every(id => correctOptions.includes(id)) &&
-        correctOptions.every(id => selectedOptions.includes(id))
+    // Record the selection and move on. Correctness is only evaluated by the
+    // post-submission feedback flow - no answer keys exist on the client.
+    const currentQuestion = questions[currentQuestionIndex]
+    const updatedAnswers = [...userAnswers]
+    updatedAnswers[currentQuestionIndex] = {
+      questionId: currentQuestion.question_number,
+      selectedOptions: [...selectedOptions]
+    }
+    setUserAnswers(updatedAnswers)
 
-      console.log('Is answer correct?', isCorrect)
-
-      // Play sound effect based on correctness
-      playSound(isCorrect)
-
-      // Update user answers
-      const updatedAnswers = [...userAnswers]
-      updatedAnswers[currentQuestionIndex] = {
-        questionId: currentQuestion.question_number,
-        selectedOptions: [...selectedOptions],
-        isCorrect,
-        correctOptions
-      }
-      setUserAnswers(updatedAnswers)
-      setShowAnswer(true)
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(prev => prev + 1)
+      setSelectedOptions([])
     } else {
-      // Move to next question or complete test
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(prev => prev + 1)
-        setSelectedOptions([])
-        setShowAnswer(false)
-      } else {
-        completeTest()
-      }
+      completeTest()
     }
   }
 
   const completeTest = () => {
-    const correctAnswers = userAnswers.filter(answer => answer.isCorrect).length
-    const finalScore = Math.round((correctAnswers / questions.length) * 100)
-    setScore(finalScore)
     setTestCompleted(true) // This will stop the timer via useEffect dependency
     saveResults()
   }
@@ -301,7 +192,7 @@ export function TakeTestPage() {
           maximum_marks: q.maximum_marks,
           difficulty: capitalizeDifficulty(q.difficulty),
           contains_math_expression: q.contains_math_expression,
-          options: q.options || null,
+          options: q.mcq_options.map((o) => ({ text: o.text })),
         })),
         answers: questions.map((q) => {
           const ans = userAnswers.find((a) => a.questionId === q.question_number)
@@ -351,38 +242,9 @@ export function TakeTestPage() {
 
   const getOptionStyle = (option: MCQOption) => {
     const isSelected = selectedOptions.includes(option.id)
-    
-    if (!showAnswer) {
-      return isSelected 
-        ? 'bg-primary-100 border-primary-500 text-primary-900' 
-        : 'bg-white border-neutral-300 text-neutral-700 hover:bg-neutral-50'
-    }
-
-    // Show answer state - use is_correct field
-    if (option.is_correct) {
-      return 'bg-green-100 border-green-500 text-green-900'
-    } else if (isSelected && !option.is_correct) {
-      return 'bg-red-100 border-red-500 text-red-900'
-    } else {
-      return 'bg-neutral-100 border-neutral-300 text-neutral-600'
-    }
-  }
-
-  const getOptionIcon = (option: MCQOption) => {
-    const isSelected = selectedOptions.includes(option.id)
-    
-    if (!showAnswer) {
-      return null
-    }
-
-    // Use is_correct field for icon display
-    if (option.is_correct) {
-      return <CheckCircle className="h-5 w-5 text-green-600" />
-    } else if (isSelected && !option.is_correct) {
-      return <XCircle className="h-5 w-5 text-red-600" />
-    }
-    
-    return null
+    return isSelected
+      ? 'bg-primary-100 border-primary-500 text-primary-900'
+      : 'bg-white border-neutral-300 text-neutral-700 hover:bg-neutral-50'
   }
 
   if (loading) {
@@ -449,16 +311,12 @@ export function TakeTestPage() {
                 Congratulations on completing the MCQ test
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="p-6 bg-primary-50 rounded-xl border border-primary-200">
-                  <div className="text-3xl font-bold text-primary-600 mb-2">{score}%</div>
-                  <div className="text-sm text-primary-800">Final Score</div>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="p-6 bg-secondary-50 rounded-xl border border-secondary-200">
                   <div className="text-3xl font-bold text-secondary-600 mb-2">
-                    {userAnswers.filter(a => a.isCorrect).length}/{questions.length}
+                    {userAnswers.filter(a => a.selectedOptions.length > 0).length}/{questions.length}
                   </div>
-                  <div className="text-sm text-secondary-800">Correct Answers</div>
+                  <div className="text-sm text-secondary-800">Questions Answered</div>
                 </div>
                 <div className="p-6 bg-neutral-50 rounded-xl border border-neutral-200">
                   <div className="text-3xl font-bold text-neutral-600 mb-2">{formatTime(timeElapsed)}</div>
@@ -471,7 +329,7 @@ export function TakeTestPage() {
               )}
               {saveFailed && (
                 <p className="text-sm text-red-500 mb-4">
-                  Your results could not be saved. Your score is shown above.
+                  Your results could not be saved. Your answers are recorded above.
                 </p>
               )}
               <div className="flex flex-col justify-center gap-4 sm:flex-row">
@@ -577,14 +435,9 @@ export function TakeTestPage() {
                 <button
                   key={option.id}
                   onClick={() => handleOptionSelect(option.id)}
-                  disabled={showAnswer}
                   className={`min-h-11 w-full rounded-xl border-2 p-3 transition-all duration-200 flex items-center justify-between sm:p-4 ${getOptionStyle(
                     option
-                  )} ${
-                    showAnswer
-                      ? "cursor-default"
-                      : "cursor-pointer hover:scale-[1.02] hover:shadow-md"
-                  }`}
+                  )} cursor-pointer hover:scale-[1.02] hover:shadow-md`}
                 >
                   <div className="flex items-center">
                     <div className="w-6 h-6 rounded-full text-sm sm:text-base bg-neutral-600 text-white flex items-center justify-center mr-4">
@@ -598,22 +451,10 @@ export function TakeTestPage() {
                       )}
                     </span>
                   </div>
-                  {getOptionIcon(option)}
                 </button>
               ))}
             </div>
 
-            {/* Answer explanation */}
-            {showAnswer && (
-              <div className="mt-8 p-6 bg-neutral-50 rounded-xl max-w-3xl mx-auto border border-neutral-200">
-                <h4 className="font-semibold text-dark mb-2">Explanation:</h4>
-                <p className="text-neutral-700 text-sm">
-                  {userAnswers[currentQuestionIndex]?.isCorrect
-                    ? "Correct! Well done on selecting the right answer(s)."
-                    : "Incorrect. The correct answer(s) are highlighted in green above."}
-                </p>
-              </div>
-            )}
           </CardContent>
         </Card>
 
@@ -621,13 +462,11 @@ export function TakeTestPage() {
         <div className="flex justify-center">
           <Button
             onClick={handleNext}
-            disabled={selectedOptions.length === 0 && !showAnswer}
+            disabled={selectedOptions.length === 0}
             size="lg"
             className="px-8 py-3 text-base sm:text-lg font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
           >
-            {!showAnswer ? (
-              "Submit Answer"
-            ) : currentQuestionIndex < questions.length - 1 ? (
+            {currentQuestionIndex < questions.length - 1 ? (
               <>
                 Next Question
                 <ArrowRight className="h-5 w-5 ml-2" />
