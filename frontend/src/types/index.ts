@@ -56,6 +56,7 @@ export interface UserProfile {
 export interface QuestionsCreated {
   id: number
   created_at: string
+  key_id?: string | null
   grade?: string
   subject?: string
   chapter?: string
