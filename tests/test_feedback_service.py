@@ -6,7 +6,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
 
 from app import feedback_service
-from app.models import Answer, AnswerInput, DirectFeedbackRequest, Feedback, Question
+from app.models import (Answer, AnswerInput, DirectFeedbackRequest, Feedback,
+                         PublicQuestion, Question)
 
 Q1 = {"question_text": "q1?", "question_type": "short_answer", "question_number": 1,
       "maximum_marks": 2, "difficulty": "Easy", "contains_math_expression": False,
@@ -53,7 +54,7 @@ def test_merged_feedback_orders_and_preserves_extras():
 
 def test_build_direct_answers_text_image_combination():
     req = DirectFeedbackRequest(
-        questions=[Question.model_validate(Q1), Question.model_validate(Q2)],
+        questions=[PublicQuestion.model_validate(Q1), PublicQuestion.model_validate(Q2)],
         answers=[
             AnswerInput(question_number=1, answer_text="typed", image_url="https://x/img.png"),
             AnswerInput(question_number=2, image_url="https://x/img2.png"),
@@ -68,7 +69,7 @@ def test_build_direct_answers_text_image_combination():
 
 def test_build_direct_answers_empty_answer_placeholder():
     req = DirectFeedbackRequest(
-        questions=[Question.model_validate(Q1)],
+        questions=[PublicQuestion.model_validate(Q1)],
         answers=[AnswerInput(question_number=1)],
     )
     pairs = feedback_service.build_direct_answers(req, ocr_fn=lambda urls: "unused")
@@ -77,7 +78,7 @@ def test_build_direct_answers_empty_answer_placeholder():
 
 def test_generate_direct_feedback_maps_each_pair():
     req = DirectFeedbackRequest(
-        questions=[Question.model_validate(Q1), Question.model_validate(Q2)],
+        questions=[PublicQuestion.model_validate(Q1), PublicQuestion.model_validate(Q2)],
         answers=[AnswerInput(question_number=1, answer_text="a1"),
                  AnswerInput(question_number=2, answer_text="a2")],
     )
@@ -121,14 +122,15 @@ def test_gen_feedback_direct_route_through_response_model(monkeypatch):
 
 
 def test_response_models_wired_in_router_metadata():
-    from app.models import DirectFeedbackResponse, MergedFeedbackResponse, QuestionsResponse
+    from app.models import (DirectFeedbackResponse, MergedFeedbackResponse,
+                            PublicQuestionsResponse)
     from app.routers import feedback_router, test_router
 
     fb = {r.path: r for r in feedback_router.router.routes}
     tg = {r.path: r for r in test_router.router.routes}
     assert fb["/gen_answer"].response_model is MergedFeedbackResponse
     assert fb["/gen_feedback_direct"].response_model is DirectFeedbackResponse
-    assert tg["/gen_question"].response_model is QuestionsResponse
+    assert tg["/gen_question"].response_model is PublicQuestionsResponse
 
 
 def test_invalid_llm_payload_rejected_by_wired_response_model(monkeypatch):
@@ -202,3 +204,67 @@ def test_merged_item_missing_required_field_rejected(monkeypatch):
         assert resp.status_code == 500, resp.text
     finally:
         app.dependency_overrides.clear()
+
+
+Q_MCQ_SANITIZED = {
+    "question_text": "Pick the even number.",
+    "question_type": "mcq_single",
+    "question_number": 3,
+    "difficulty": "Easy",
+    "contains_math_expression": False,
+    "maximum_marks": 1,
+    "options": [{"text": "3"}, {"text": "4"}],  # no is_correct: sanitized wire
+}
+
+
+def test_direct_feedback_accepts_sanitized_mcq_questions():
+    """The feedback flow must work WITHOUT client-held answer keys: a
+    sanitized MCQ question (options with no is_correct) is accepted, and no
+    answer key reaches the feedback LLM's question input."""
+    from app import feedback_service
+    from app.models import DirectFeedbackRequest
+
+    captured = {}
+
+    def capture_feedback(*, question, answer):
+        captured["question"] = question
+        captured["answer"] = answer
+        return types.SimpleNamespace(feedback=types.SimpleNamespace(model_dump=lambda: {
+            "question_number": 3, "explanation": "x", "max_scored": 1,
+            "error_type": "none", "next_step": "y"}))
+
+    req = DirectFeedbackRequest(
+        questions=[Q_MCQ_SANITIZED],
+        answers=[{"question_number": 3, "answer_text": "4"}],
+    )
+    out = feedback_service.generate_direct_feedback(req, feedback_fn=capture_feedback)
+    assert len(out) == 1
+    dumped = captured["question"].model_dump()
+    assert dumped["options"] == [{"text": "3"}, {"text": "4"}]
+    assert "is_correct" not in str(dumped)
+
+
+def test_direct_feedback_tolerates_legacy_keyed_payload():
+    """Rollout compat: a legacy client still sending is_correct is accepted
+    (extra fields ignored), and the key is dropped before the LLM sees it."""
+    from app import feedback_service
+    from app.models import DirectFeedbackRequest
+
+    captured = {}
+
+    def capture_feedback(*, question, answer):
+        captured["question"] = question
+        return types.SimpleNamespace(feedback=types.SimpleNamespace(model_dump=lambda: {
+            "question_number": 3, "explanation": "x", "max_scored": 1,
+            "error_type": "none", "next_step": "y"}))
+
+    keyed = dict(Q_MCQ_SANITIZED)
+    keyed["options"] = [{"text": "3", "is_correct": False},
+                        {"text": "4", "is_correct": True}]
+    req = DirectFeedbackRequest(
+        questions=[keyed],
+        answers=[{"question_number": 3, "answer_text": "4"}],
+    )
+    feedback_service.generate_direct_feedback(req, feedback_fn=capture_feedback)
+    dumped = captured["question"].model_dump()
+    assert all("is_correct" not in o for o in dumped["options"])
