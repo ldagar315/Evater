@@ -8,7 +8,7 @@ attributes.
 from typing import Any, Dict, List, Tuple
 
 from . import dspy_modules, services
-from .models import Answer, DirectFeedbackRequest, Question
+from .models import Answer, DirectFeedbackRequest, PublicQuestion, Question
 
 
 def generate_merged_feedback(
@@ -51,13 +51,13 @@ def build_direct_answers(
     request: DirectFeedbackRequest,
     *,
     ocr_fn=None,
-) -> List[Tuple[Question, Answer]]:
+) -> List[Tuple[PublicQuestion, Answer]]:
     """Pair each direct-feedback answer with its question, assembling the
     final answer text (typed text and/or OCR of an uploaded image)."""
     ocr_fn = ocr_fn or services.ocr_answer_images
 
     question_map = {q.question_number: q for q in request.questions}
-    pairs: List[Tuple[Question, Answer]] = []
+    pairs: List[Tuple[PublicQuestion, Answer]] = []
     for ans_input in request.answers:
         question = question_map.get(ans_input.question_number)
         if not question:
