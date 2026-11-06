@@ -185,6 +185,7 @@ export function TakeTestPage() {
     setSaveFailed(false)
     try {
       const payload = {
+        test_id: parseInt(testId!),
         questions: questions.map((q) => ({
           question_text: q.question_text,
           question_type: q.question_type,
