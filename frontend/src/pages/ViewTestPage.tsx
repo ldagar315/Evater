@@ -16,6 +16,7 @@ import { useAuthContext } from "../contexts/AuthContext";
 import { useAppState } from "../contexts/AppStateContext";
 import { supabase } from "../lib/supabase";
 import { apiFetch, externalApiUrl } from "../lib/api";
+import { CLIENT_VERSION, unwrapTestQuestions } from "../lib/testQuestions";
 import { QuestionsCreated, FeedbackResponse } from "../types";
 import { QuestionCard } from "../components/test/QuestionCard";
 
@@ -121,7 +122,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
     setError("");
 
     try {
-      const questions = Array.isArray(test.test) ? test.test : [];
+      const questions = unwrapTestQuestions(test.test);
 
       // 1. Upload any image answers first and get URLs
       const uploadedImages: Record<number, string> = {};
@@ -169,7 +170,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
 
       const response = await apiFetch(apiUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "X-Evater-Client": CLIENT_VERSION },
         body: JSON.stringify(feedbackPayload),
       });
 
@@ -265,7 +266,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
         return;
       }
 
-      const questions = Array.isArray(test.test) ? test.test : [];
+      const questions = unwrapTestQuestions(test.test);
       const formattedQuestions = questions.map((q: any) => ({
         question_text: q.question_text,
         question_type: q.question_type,
@@ -301,13 +302,14 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
     const payload = {
       image_url: imageUrls,
       questions: { questions },
+      test_id: test!.id,
     };
 
     const apiUrl = externalApiUrl('/api/gen_answer');
 
     const response = await apiFetch(apiUrl, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "X-Evater-Client": CLIENT_VERSION },
       body: JSON.stringify(payload),
     });
 
@@ -342,7 +344,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
       </div>
     );
 
-  const questions = Array.isArray(test.test) ? test.test : [];
+  const questions = unwrapTestQuestions(test.test);
 
   return (
     <div className="min-h-screen bg-cream">
