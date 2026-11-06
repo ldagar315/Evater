@@ -3,7 +3,7 @@ from .config import get_settings
 import os
 from typing import List, Optional, Literal
 from .models import (
-    Answer, Feedback, PublicQuestion, Question, TestStructure, TestStructureMCQ,
+    Answer, Feedback, Question, TestStructure, TestStructureMCQ,
     TestStructureSubjective, Concept, EvaluationOutput, Answer
 )
 
@@ -37,7 +37,9 @@ class AnswerSheet(dspy.Signature):
     answers: List[Answer] = dspy.OutputField()
 
 class Generate_Feedback(dspy.Signature):
-    question: PublicQuestion = dspy.InputField()
+    # Server-side only: keys are hydrated from the key store before this call,
+    # so grading is anchored to the generated key exactly as before.
+    question: Question = dspy.InputField()
     answer: Answer = dspy.InputField()
     feedback: Feedback = dspy.OutputField()
 
