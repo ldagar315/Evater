@@ -58,12 +58,28 @@ def _has_keys(questions: List[Dict[str, Any]]) -> bool:
     )
 
 
+def _unwrap_stored_questions(test_json: Any) -> List[Dict[str, Any]]:
+    """Normalize the stored Questions_Created.test shapes to a question list.
+
+    Known shapes: a bare array of questions (legacy), an object with a
+    "questions" array (older format), and the v2 wrapper
+    {"v": 2, "questions": [...]} written after the key-integrity change.
+    Anything else yields an empty list (never a guess)."""
+    if isinstance(test_json, list):
+        return test_json
+    if isinstance(test_json, dict):
+        questions = test_json.get("questions")
+        if isinstance(questions, list):
+            return questions
+    return []
+
+
 def _load_server_side_questions(
     test_id: int,
     *,
     jwt: str,
     user_id: str,
-    answered_numbers: set,
+    answered_numbers: Optional[set],
     test_loader,
     key_loader,
 ) -> List[Dict[str, Any]]:
@@ -83,7 +99,7 @@ def _load_server_side_questions(
             raise AnswerKeysUnavailable()
         return key_row["questions"]
 
-    stored = row.get("test") or []
+    stored = _unwrap_stored_questions(row.get("test"))
     if _has_keys(stored):
         # Legacy rows predate the key store; their keys already live in the
         # row, readable server-side (never returned to the client).
@@ -92,8 +108,12 @@ def _load_server_side_questions(
     # Sanitized row without a key-store entry: objective questions cannot be
     # graded reliably. Fail closed instead of guessing. Types come from the
     # stored row, never the client payload.
+    # answered_numbers None (merged/OCR flow) means every stored question is in
+    # scope, since which ones were answered is only known after OCR.
     answered_types = {
-        q.get("question_type") for q in stored if q.get("question_number") in answered_numbers
+        q.get("question_type")
+        for q in stored
+        if answered_numbers is None or q.get("question_number") in answered_numbers
     }
     if answered_types & KEYED_QUESTION_TYPES:
         raise AnswerKeysUnavailable()
@@ -104,15 +124,43 @@ def generate_merged_feedback(
     image_urls: List[str],
     questions_payload: Dict[str, Any],
     *,
+    test_id: Optional[int] = None,
+    jwt: Optional[str] = None,
+    user_id: Optional[str] = None,
     ocr_fn=None,
     separate_fn=None,
     feedback_fn=None,
+    test_loader=None,
+    key_loader=None,
 ) -> List[Dict[str, Any]]:
     """gen_answer flow: OCR the answer sheet, split per-question answers,
-    generate feedback for each, and merge questions+answers+feedback."""
+    generate feedback for each, and merge questions+answers+feedback.
+
+    With test_id, questions and answer keys come from server-side storage
+    (ownership-checked), exactly like the direct flow. Without it, payloads
+    containing objective (keyed) question types fail closed."""
     ocr_fn = ocr_fn or services.ocr_answer_images
     separate_fn = separate_fn or dspy_modules.answer_seperation
     feedback_fn = feedback_fn or dspy_modules.feedback_generation
+
+    if test_id is not None:
+        if not jwt or not user_id:
+            raise TestNotFound()
+        rows = _load_server_side_questions(
+            test_id,
+            jwt=jwt,
+            user_id=user_id,
+            answered_numbers=None,
+            test_loader=test_loader or _default_test_loader,
+            key_loader=key_loader or _default_key_loader,
+        )
+        questions_payload = {"questions": rows}
+    else:
+        if any(
+            q.get("question_type") in KEYED_QUESTION_TYPES
+            for q in questions_payload.get("questions", [])
+        ):
+            raise AnswerKeysUnavailable()
 
     text = ocr_fn(image_urls)
     separated = separate_fn(answer_sheet_text=text)
