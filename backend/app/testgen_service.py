@@ -62,18 +62,23 @@ def generate_questions(
     questions = [q.model_dump() for q in generated_test.test]
     for q in questions:
         q["maximum_marks"] = maximum_marks_fn(q["question_type"])
-    return [_strip_answer_keys(q) for q in questions]
+    # Keyed questions stay inside the server: the router persists them to the
+    # key store and returns sanitize_questions(questions) to the client.
+    return questions
 
 
-def _strip_answer_keys(question: Dict[str, Any]) -> Dict[str, Any]:
-    """Never send answer keys to clients: drop is_correct from MCQ options.
+def sanitize_questions(questions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Copy questions with answer keys removed, for client responses.
 
     The question-bank v1 flow makes the same guarantee via PublicQuestionOption;
-    this keeps gen-flow options key-free at the service boundary, with the
-    router's response_model as a second layer."""
-    options = question.get("options")
-    if options:
-        question["options"] = [
-            {k: v for k, v in opt.items() if k != "is_correct"} for opt in options
-        ]
-    return question
+    the router's response_model enforces it as a second layer."""
+    sanitized = []
+    for question in questions:
+        q = dict(question)
+        if q.get("options"):
+            q["options"] = [
+                {k: v for k, v in opt.items() if k != "is_correct"}
+                for opt in q["options"]
+            ]
+        sanitized.append(q)
+    return sanitized
