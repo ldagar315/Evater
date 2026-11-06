@@ -8,6 +8,7 @@ import { useAuthContext } from "../contexts/AuthContext";
 import { useAppState } from "../contexts/AppStateContext";
 import { supabase } from "../lib/supabase";
 import { apiFetch, externalApiUrl } from "../lib/api";
+import { CLIENT_VERSION } from "../lib/testQuestions";
 import { TestGenerationParams, Question, ChapterContent } from "../types";
 import {
   BookOpen,
@@ -42,11 +43,12 @@ interface ApiQuestion {
   maximum_marks: number;
   difficulty: "Easy" | "Medium" | "Hard";
   contains_math_expression: boolean;
-  options?: string[] | null;
+  options?: Array<{ text: string }> | null;
 }
 
 interface ApiResponse {
   questions: ApiQuestion[];
+  key_id?: string | null;
 }
 
 export function CreateTestPage() {
@@ -163,13 +165,14 @@ export function CreateTestPage() {
     length: string;
     test_type: string;
     special_instructions: string[];
-  }): Promise<ApiQuestion[]> => {
+  }): Promise<ApiResponse> => {
     const apiUrl = externalApiUrl('/api/gen_question');
 
     const response = await apiFetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-Evater-Client": CLIENT_VERSION,
       },
       body: JSON.stringify(params),
     });
@@ -187,7 +190,7 @@ export function CreateTestPage() {
     }
 
     const data: ApiResponse = await response.json();
-    return data.questions;
+    return data;
   };
 
   const handleSubmit = async () => {
@@ -209,7 +212,8 @@ export function CreateTestPage() {
         special_instructions: [], // Kept empty as we moved to explicit test types
       };
 
-      const questions = await callGenerateQuestionsAPI(apiPayload);
+      const generation = await callGenerateQuestionsAPI(apiPayload);
+      const questions = generation.questions;
 
       const convertedQuestions: Question[] = questions.map((q) => ({
         question_text: q.question_text,
@@ -220,6 +224,25 @@ export function CreateTestPage() {
         contains_math_expression: q.contains_math_expression,
         options: q.options || undefined,
       }));
+
+      // Key-preservation invariant: keys are only dropped client-side when the
+      // backend PROVED it persisted them (key_id in the response). A key_id
+      // means the new backend already sanitized the payload; we strip keys
+      // again defensively and store the v2 wrapper, which old clients refuse
+      // visibly (Array.isArray guard) instead of silently mis-grading.
+      // Without key_id we are talking to the OLD backend (deploy skew): store
+      // exactly what it sent - a bare array WITH keys, the pre-change contract -
+      // so the keys survive for later migration instead of being lost.
+      const serverKeyed = Boolean(generation.key_id);
+      const storedTest = serverKeyed
+        ? {
+            v: 2 as const,
+            questions: convertedQuestions.map((q) => ({
+              ...q,
+              options: q.options?.map((o: any) => ({ text: o.text })),
+            })),
+          }
+        : convertedQuestions;
 
       const { data, error } = await supabase
         .from("Questions_Created")
@@ -232,7 +255,8 @@ export function CreateTestPage() {
             difficulty_level: difficulty.toLowerCase(),
             length: length.toLowerCase(),
             special_instructions: [testType], // Storing test type in special instructions for backward compatibility/reference
-            test: convertedQuestions,
+            test: storedTest,
+            key_id: generation.key_id ?? null,
           },
         ])
         .select()

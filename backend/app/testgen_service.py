@@ -62,4 +62,23 @@ def generate_questions(
     questions = [q.model_dump() for q in generated_test.test]
     for q in questions:
         q["maximum_marks"] = maximum_marks_fn(q["question_type"])
+    # Keyed questions stay inside the server: the router persists them to the
+    # key store and returns sanitize_questions(questions) to the client.
     return questions
+
+
+def sanitize_questions(questions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Copy questions with answer keys removed, for client responses.
+
+    The question-bank v1 flow makes the same guarantee via PublicQuestionOption;
+    the router's response_model enforces it as a second layer."""
+    sanitized = []
+    for question in questions:
+        q = dict(question)
+        if q.get("options"):
+            q["options"] = [
+                {k: v for k, v in opt.items() if k != "is_correct"}
+                for opt in q["options"]
+            ]
+        sanitized.append(q)
+    return sanitized

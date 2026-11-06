@@ -48,6 +48,26 @@ class ErrorResponse(BaseModel):
 class QuestionsResponse(BaseModel):
     questions: List[Question]
 
+class PublicMCQOption(BaseModel):
+    """MCQ option as sent to clients: answer key intentionally absent."""
+    text: str
+
+class PublicQuestion(BaseModel):
+    """gen_question response item with is_correct stripped (answer keys never leave the server)."""
+    question_text: str
+    question_type: Literal["mcq_single", "mcq_multi", "true_false", "short_answer", "long_answer"]
+    difficulty: Literal["Easy", "Medium", "Hard"]
+    question_number: int
+    options: Optional[List[PublicMCQOption]] = None
+    contains_math_expression: bool
+    maximum_marks: int = None
+
+class PublicQuestionsResponse(BaseModel):
+    questions: List[PublicQuestion]
+    # Opaque reference to the server-only key store row (generated_test_keys).
+    # Never the keys themselves.
+    key_id: Optional[UUID] = None
+
 class MergedFeedbackItem(BaseModel):
     # Raw question fields come from the client request; extras pass through untouched.
     model_config = ConfigDict(extra="allow")
@@ -110,6 +130,9 @@ class InputDataAnswer(BaseModel):
     image_url: Optional[List[str]] = Field(default_factory=list)
     questions: Dict[str, Any]
     text_answers: Optional[Dict[int, str]] = None
+    # Same contract as DirectFeedbackRequest.test_id: when set, the server
+    # loads questions + keys from its own storage and ignores the payload.
+    test_id: Optional[int] = None
 
 class AnswerInput(BaseModel):
     question_number: int
@@ -117,7 +140,14 @@ class AnswerInput(BaseModel):
     image_url: Optional[str] = None
 
 class DirectFeedbackRequest(BaseModel):
-    questions: List[Question]
+    # Key-free by contract: PublicQuestion options carry no is_correct, so the
+    # feedback flow never depends on client-held answer keys. Pydantic ignores
+    # extra fields, so legacy clients that still send keys remain accepted.
+    questions: List[PublicQuestion]
+    # When set, the server loads questions + answer keys from its own storage
+    # (ownership-checked) and IGNORES the client-sent questions for grading -
+    # clients can never steer grading toward another test's keys.
+    test_id: Optional[int] = None
     answers: List[AnswerInput]
 
 
