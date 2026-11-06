@@ -112,7 +112,7 @@ def test_gen_feedback_direct_route_through_response_model(monkeypatch):
         resp = client.post("/api/gen_feedback_direct", json={
             "questions": [Q1],
             "answers": [{"question_number": 1, "answer_text": "a1"}],
-        })
+        }, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 200, resp.text
         assert resp.json() == {"feedback": [{
             "question_number": 1, "explanation": "expl1", "max_scored": 2,
@@ -163,7 +163,7 @@ def test_invalid_llm_payload_rejected_by_wired_response_model(monkeypatch):
         resp = client.post("/api/gen_feedback_direct", json={
             "questions": [Q1],
             "answers": [{"question_number": 1, "answer_text": "a1"}],
-        })
+        }, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 500, resp.text
         assert resp.json() == {"detail": "Internal server error."}
     finally:
@@ -200,7 +200,7 @@ def test_merged_item_missing_required_field_rejected(monkeypatch):
     try:
         client = TestClient(app, raise_server_exceptions=False)
         resp = client.post("/api/gen_answer", json={
-            "image_url": ["https://x/a.png"], "questions": {"questions": [q_bad]}})
+            "image_url": ["https://x/a.png"], "questions": {"questions": [q_bad]}}, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 500, resp.text
     finally:
         app.dependency_overrides.clear()
@@ -376,3 +376,120 @@ def test_test_id_sanitized_row_without_keys_fails_closed_for_mcq():
                                           "test": [Q_MCQ_SANITIZED], "key_id": None},
             key_loader=lambda kid: None,
         )
+
+def test_gen_answer_route_hydrates_server_side_and_ignores_client_questions():
+    """gen_answer with test_id: questions + keys come from server storage."""
+    from datetime import datetime, timezone
+    from types import SimpleNamespace
+
+    from fastapi.testclient import TestClient
+    from supabase_auth.types import User
+
+    from app.auth import AuthContext, require_user
+    from app.main import app
+    import app.feedback_service as feedback_service_module
+    import app.dspy_modules as dspy_modules_module
+    import app.services as services_module
+
+    app.dependency_overrides[require_user] = lambda: AuthContext(
+        jwt="j",
+        tenant_id="t",
+        user=User(id="u1", app_metadata={}, user_metadata={}, aud="authenticated", email="u@e.com", created_at=datetime.now(timezone.utc)),
+    )
+
+    keyed = [
+        {
+            "question_text": "2+2?",
+            "question_type": "mcq_single",
+            "difficulty": "Easy",
+            "question_number": 1,
+            "maximum_marks": 1,
+            "contains_math_expression": False,
+            "options": [{"text": "3", "is_correct": False}, {"text": "4", "is_correct": True}],
+        }
+    ]
+    monkeypatch_loader = lambda test_id, jwt: {"id": test_id, "created_by": "u1", "test": keyed, "key_id": None}
+
+    seen = {}
+
+    def _stub_feedback(*, question, answer):
+        seen["question"] = question
+        return SimpleNamespace(feedback=SimpleNamespace(model_dump=lambda: {"question_number": 1, "explanation": "ok", "max_scored": 1, "error_type": "No mistake", "next_step": "none"}))
+
+    feedback_service_module._default_test_loader = staticmethod(monkeypatch_loader) if False else monkeypatch_loader
+    orig_ocr = services_module.ocr_answer_images
+    orig_sep = dspy_modules_module.answer_seperation
+    orig_fb = dspy_modules_module.feedback_generation
+    services_module.ocr_answer_images = lambda urls: "ocr text"
+    dspy_modules_module.answer_seperation = lambda *, answer_sheet_text: SimpleNamespace(answers=[SimpleNamespace(model_dump=lambda: {"question_number": 1, "answer": "4"}, question_number=1, answer="4")])
+    dspy_modules_module.feedback_generation = _stub_fb = _stub_feedback
+    try:
+        client = TestClient(app)
+        payload = {
+            "image_url": ["https://example.com/a.png"],
+            "questions": {"questions": [{"question_text": "CLIENT-SUBSTITUTED", "question_type": "mcq_single", "question_number": 1, "options": [{"text": "3", "is_correct": True}]}]},
+            "test_id": 42,
+        }
+        resp = client.post("/api/gen_answer", json=payload, headers={"X-Evater-Client": "web/2"})
+        assert resp.status_code == 200, resp.text
+        # The graded question came from server storage, not the client payload.
+        assert seen["question"].question_text == "2+2?"
+    finally:
+        services_module.ocr_answer_images = orig_ocr
+        dspy_modules_module.answer_seperation = orig_sep
+        dspy_modules_module.feedback_generation = orig_fb
+        app.dependency_overrides.clear()
+
+
+def test_gen_answer_route_fail_closed_keyed_without_test_id():
+    """Keyed question types without test_id -> 409, never LLM re-derivation."""
+    from datetime import datetime, timezone
+
+    from fastapi.testclient import TestClient
+    from supabase_auth.types import User
+
+    from app.auth import AuthContext, require_user
+    from app.main import app
+
+    app.dependency_overrides[require_user] = lambda: AuthContext(
+        jwt="j",
+        tenant_id="t",
+        user=User(id="u1", app_metadata={}, user_metadata={}, aud="authenticated", email="u@e.com", created_at=datetime.now(timezone.utc)),
+    )
+    try:
+        client = TestClient(app)
+        payload = {
+            "image_url": [],
+            "questions": {"questions": [{"question_text": "q", "question_type": "mcq_single", "question_number": 1, "options": [{"text": "a"}]}]},
+        }
+        resp = client.post("/api/gen_answer", json=payload, headers={"X-Evater-Client": "web/2"})
+        assert resp.status_code == 409
+    finally:
+        app.dependency_overrides.clear()
+
+
+def test_version_gate_rejects_missing_and_old_clients():
+    """Stale clients are stopped deterministically with a visible 409."""
+    from datetime import datetime, timezone
+
+    from fastapi.testclient import TestClient
+    from supabase_auth.types import User
+
+    from app.auth import AuthContext, require_user
+    from app.main import app
+
+    app.dependency_overrides[require_user] = lambda: AuthContext(
+        jwt="j",
+        tenant_id="t",
+        user=User(id="u1", app_metadata={}, user_metadata={}, aud="authenticated", email="u@e.com", created_at=datetime.now(timezone.utc)),
+    )
+    try:
+        client = TestClient(app)
+        gen_payload = {"grade": "8", "subject": "Maths", "topic": "X", "difficulty_level": "Medium", "length": "short", "test_type": "objective", "special_instructions": []}
+        fb_payload = {"answers": [{"question_number": 1, "answer_text": "4"}], "questions": []}
+        for endpoint, payload in [("/api/gen_question", gen_payload), ("/api/gen_feedback_direct", fb_payload), ("/api/gen_answer", {"questions": {"questions": []}})]:
+            assert client.post(endpoint, json=payload).status_code == 409, endpoint
+            assert client.post(endpoint, json=payload, headers={"X-Evater-Client": "web/1"}).status_code == 409, endpoint
+            assert "client_outdated" in client.post(endpoint, json=payload).json()["detail"], endpoint
+    finally:
+        app.dependency_overrides.clear()
