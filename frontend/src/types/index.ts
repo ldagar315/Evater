@@ -7,7 +7,6 @@ export interface Question {
   contains_math_expression: boolean
   options?: Array<{
     text: string
-    is_correct?: boolean
   }>
 }
 
