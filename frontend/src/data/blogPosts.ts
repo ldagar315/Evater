@@ -8,6 +8,107 @@ const teamAuthor = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '9',
+    title: 'NCERT Class 8 Maths Chapter 1: A Square and A Cube - Study Guide',
+    slug: 'ncert-class-8-maths-square-and-cube-study-guide',
+    excerpt: 'Ganita Prakash opens Class 8 Maths with a 100-locker puzzle that hides one big idea: only perfect squares have an odd number of factors. A simple way to learn squares, cubes and roots.',
+    content: `## What this chapter is about
+
+Ganita Prakash, the new Class 8 Maths textbook, opens with a puzzle. Queen Ratnamanjuri leaves 100 lockers and 100 relatives: person 1 opens every locker, person 2 toggles every second locker, person 3 toggles every third, and so on. Which lockers stay open at the end? The answer introduces the two heroes of the chapter: square numbers and cubic numbers.
+
+## The locker insight worth remembering
+
+**Only the lockers numbered 1, 4, 9, 16, 25 and the other perfect squares stay open, because squares are the only numbers with an odd number of factors.**
+
+Why? Factors come in pairs: for 12, the pairs are 1-12, 2-6 and 3-4, an even count. But for 36, the factor 6 pairs with itself, so the count is odd. A locker is toggled once for each factor, so only square-numbered lockers are toggled an odd number of times and stay open. If you can explain this in your own words, you have understood the heart of the chapter.
+
+## Square numbers
+
+A square number is a number multiplied by itself: n x n = n². The name comes from area: a square of side 5 units holds 25 unit squares. Know the first fifteen squares on sight: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225. They return constantly in later chapters, especially in the Baudhayana-Pythagoras theorem.
+
+## Cubic numbers
+
+A cubic number is a number multiplied by itself twice: n x n x n = n³. The picture is volume: a cube of side 3 units holds 27 unit cubes. The first ten cubes are 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000. Square and cube roots are simply the reverse questions: which number squared gives 144, and which number cubed gives 343?
+
+## Common mistakes to avoid
+
+- Writing 3 squared as 6. Squaring means multiplying the number by itself: 3 x 3 = 9, not 3 x 2.
+- Thinking a cube is "the square times 3". 4 cubed is 4 x 4 x 4 = 64, not 4 x 4 x 3 = 48.
+- Forgetting that 1 is both a perfect square (1 x 1) and a perfect cube (1 x 1 x 1).
+
+## How to practise this chapter
+
+Close the book and write the first fifteen squares and first ten cubes from memory, then check. When you meet a number like 729, ask whether it is a square, a cube, or both (it is both: 27 squared and 9 cubed). Short mixed question sets turn this into reflex. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.`,
+    featured_image: 'https://images.pexels.com/photos/7776206/pexels-photo-7776206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    author: teamAuthor,
+    category: 'Class 8 Maths',
+    tags: ['Class 8 Maths', 'NCERT', 'Ganita Prakash', 'Numbers'],
+    published_date: '2026-11-08',
+    read_time: 6,
+    is_featured: false,
+    status: 'draft',
+    seo: {
+      meta_title: 'Class 8 Maths A Square and A Cube: Study Guide',
+      meta_description: 'A Class 8 study guide to A Square and A Cube: perfect squares and cubes, the locker puzzle insight, common mistakes, and how to practise.'
+    }
+  },
+  {
+    id: '10',
+    title: 'NCERT Class 8 Science Chapter 5: Exploring Forces - Study Guide',
+    slug: 'ncert-class-8-science-exploring-forces-study-guide',
+    excerpt: 'Two friends cycling against the wind, up a rough hill road and back down without pedalling - every part of that ride is a force question. A practical guide to Curiosity Chapter 5.',
+    content: `## What this chapter covers
+
+Chapter 5 of the new Class 8 Science textbook (Curiosity) starts with two friends cycling against the wind, up a rough hill road, and rolling back down without pedalling. Every part of that ride is a force question. The chapter builds the idea of force, what forces do, the main types, weight, and why things float or sink.
+
+## Force in one line
+
+**A force is a push or a pull that comes from one object interacting with another. It is measured in newtons, written N.**
+
+No interaction, no force. When you push a table, your hand and the table are two objects interacting. The moment you stop pushing, the force between them is gone.
+
+## What a force can do
+
+- Make a resting object move, like a football when you kick it.
+- Change the speed of a moving object, like brakes slowing a bicycle.
+- Change the direction of motion, like a bat turning a moving ball.
+- Change the shape of an object, like pressing an inflated balloon.
+
+## Contact and non-contact forces
+
+Contact forces need touching surfaces: muscular force (your legs pedalling) and friction are the chapter's examples. Non-contact forces act at a distance: magnetic force, electrostatic force (a rubbed balloon attracting paper bits), and gravitational force (what pulls you downhill on that bicycle without pedalling).
+
+## Friction, the force students misread most
+
+Friction acts whenever an object moves or tries to move over another surface, and it always points opposite to the motion. It comes from tiny irregularities in the two surfaces locking into each other, which is why friction is greater on rough surfaces and why a wet, smooth floor is slippery. Friction is not only a solids thing: water and air also resist motion, which is why aeroplanes, ships and high-speed trains are built with shapes that reduce it. And friction is not a villain: without it you could not walk, write, or hold this book.
+
+## Weight, floating and sinking
+
+Weight is the force with which the Earth pulls an object, and it is measured with a spring balance in newtons. The chapter closes with floating and sinking: whether an object floats depends on how its weight compares with the push it gets from the liquid around it.
+
+## Common confusions to clear early
+
+- "An object at rest has no force on it." Usually it has several forces balancing each other out.
+- "Friction always slows things down, so it is bad." It also makes walking, gripping and writing possible.
+- "Heavier objects always sink." Floating depends on the push from the liquid too, not weight alone.
+
+## How to practise this chapter
+
+After each section, list three everyday examples of the idea from memory, then check the book. For friction, explain the bicycle story to someone else: uphill pedalling, the rough road, the wet patch, the freewheel downhill. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.`,
+    featured_image: 'https://images.pexels.com/photos/37439013/pexels-photo-37439013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    author: teamAuthor,
+    category: 'Class 8 Science',
+    tags: ['Class 8 Science', 'NCERT', 'Curiosity', 'Physics'],
+    published_date: '2026-11-08',
+    read_time: 6,
+    is_featured: false,
+    status: 'draft',
+    seo: {
+      meta_title: 'Class 8 Science Exploring Forces: Study Guide',
+      meta_description: 'A Class 8 study guide to Exploring Forces: what force does, contact and non-contact forces, friction explained, and how to practise the chapter.'
+    }
+  },
+  {
     id: '6',
     title: 'CBSE Class 8 Science Study Plan: A 30-Day NCERT Revision Schedule',
     slug: 'cbse-class-8-science-study-plan-30-day-ncert-revision',
