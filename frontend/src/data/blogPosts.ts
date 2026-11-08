@@ -24,6 +24,8 @@ Written as a formula: a² + b² = c², where c is the hypotenuse. The hypotenuse
 
 Draw a triangle with sides 3 cm, 4 cm and 5 cm. The angle between the two shorter sides is 90°. Now draw a square on each side and count the areas: 3² = 9, 4² = 16, 5² = 25. And 9 + 16 = 25. Try it again with 6, 8 and 10: 36 + 64 = 100. Once you have seen this with your own eyes, the formula stops being a line to memorise and becomes something you have checked yourself.
 
+![A 3-4-5 right-angled triangle with a square drawn on each of its three sides, showing the areas 3 squared = 9, 4 squared = 16 and 5 squared = 25](/blog/diagrams/pythagoras-squares.svg)
+
 ## Three ways questions use it
 
 1. **Find the hypotenuse:** you know the two shorter sides, so add their squares and take the square root. Sides 6 and 8 give 36 + 64 = 100, so the hypotenuse is 10.
@@ -74,6 +76,8 @@ Light from a source hits an object, bounces off it, and some of that light enter
 **The angle of incidence always equals the angle of reflection, and both are measured from the normal.**
 
 The normal is an imaginary line drawn perpendicular to the mirror exactly where the light ray hits it. When a question gives you a ray hitting a mirror, your first move is always the same: draw the normal. Measure from the normal, never from the mirror's surface.
+
+![A ray diagram showing reflection at a plane mirror: the incident ray and the reflected ray both make a 30 degree angle with the normal, so i equals r](/blog/diagrams/light-reflection.svg)
 
 ## Regular and diffused reflection
 
