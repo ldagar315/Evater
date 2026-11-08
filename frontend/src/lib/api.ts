@@ -285,9 +285,6 @@ export type SamplePaperQuestion = {
   question_type: QuestionBankType
   question_text: string
   options: QuestionBankOption[]
-  explanation?: string | null
-  difficulty: 'easy' | 'medium' | 'hard'
-  maximum_marks: number
   answer_summary: string
 }
 
