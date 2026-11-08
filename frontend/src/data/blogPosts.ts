@@ -48,7 +48,7 @@ Close the book and write the first fifteen squares and first ten cubes from memo
     published_date: '2026-11-08',
     read_time: 6,
     is_featured: false,
-    status: 'draft',
+    status: 'published',
     seo: {
       meta_title: 'Class 8 Maths A Square and A Cube: Study Guide',
       meta_description: 'A Class 8 study guide to A Square and A Cube: perfect squares and cubes, the locker puzzle insight, common mistakes, and how to practise.'
@@ -106,7 +106,7 @@ After each section, list three everyday examples of the idea from memory, then c
     published_date: '2026-11-08',
     read_time: 6,
     is_featured: false,
-    status: 'draft',
+    status: 'published',
     seo: {
       meta_title: 'Class 8 Science Exploring Forces: Study Guide',
       meta_description: 'A Class 8 study guide to Exploring Forces: what force does, contact and non-contact forces, friction explained, and how to practise the chapter.'
@@ -157,7 +157,7 @@ Attempt each problem before looking at the solution, and write the reason for ev
     published_date: '2026-11-06',
     read_time: 6,
     is_featured: false,
-    status: 'draft',
+    status: 'published',
     seo: {
       meta_title: 'Class 8 Maths Baudhayana-Pythagoras Theorem: Study Guide',
       meta_description: 'A simple Class 8 study guide to the Baudhayana-Pythagoras theorem: what it says, why it works, common mistakes, and how to practise it for exams.'
@@ -221,7 +221,7 @@ After each section, answer a short set of questions from memory before recheckin
     published_date: '2026-11-06',
     read_time: 6,
     is_featured: false,
-    status: 'draft',
+    status: 'published',
     seo: {
       meta_title: 'Class 8 Science Light: Mirrors and Lenses Study Guide',
       meta_description: 'A practical Class 8 study guide to Light: Mirrors and Lenses - reflection laws, plane and curved mirrors, convex and concave lenses, and how to practise ray diagrams.'
@@ -660,4 +660,3 @@ export const searchPosts = (query: string): BlogPost[] => {
     ...post.tags,
   ].some((value) => value.toLowerCase().includes(lowercaseQuery)))
 }
-
