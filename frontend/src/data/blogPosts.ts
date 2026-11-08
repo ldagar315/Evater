@@ -30,6 +30,8 @@ A square number is a number multiplied by itself: n x n = n². The name comes fr
 
 A cubic number is a number multiplied by itself twice: n x n x n = n³. The picture is volume: a cube of side 3 units holds 27 unit cubes. The first ten cubes are 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000. Square and cube roots are simply the reverse questions: which number squared gives 144, and which number cubed gives 343?
 
+![A 4 by 4 grid of 16 small squares next to a 3 by 3 by 3 cube made of 27 small cubes](/blog/diagrams/square-cube.svg)
+
 ## Common mistakes to avoid
 
 - Writing 3 squared as 6. Squaring means multiplying the number by itself: 3 x 3 = 9, not 3 x 2.
@@ -78,6 +80,8 @@ No interaction, no force. When you push a table, your hand and the table are two
 
 Contact forces need touching surfaces: muscular force (your legs pedalling) and friction are the chapter's examples. Non-contact forces act at a distance: magnetic force, electrostatic force (a rubbed balloon attracting paper bits), and gravitational force (what pulls you downhill on that bicycle without pedalling).
 
+![Two panels: a block pushed along the ground with friction opposing the push, labelled contact force, and a magnet pulling an iron pin upward without touching it, labelled non-contact force](/blog/diagrams/forces-contact-noncontact.svg)
+
 ## Friction, the force students misread most
 
 Friction acts whenever an object moves or tries to move over another surface, and it always points opposite to the motion. It comes from tiny irregularities in the two surfaces locking into each other, which is why friction is greater on rough surfaces and why a wet, smooth floor is slippery. Friction is not only a solids thing: water and air also resist motion, which is why aeroplanes, ships and high-speed trains are built with shapes that reduce it. And friction is not a villain: without it you could not walk, write, or hold this book.
@@ -124,6 +128,8 @@ Written as a formula: a² + b² = c², where c is the hypotenuse. The hypotenuse
 ## See it before you memorise it
 
 Draw a triangle with sides 3 cm, 4 cm and 5 cm. The angle between the two shorter sides is 90°. Now draw a square on each side and count the areas: 3² = 9, 4² = 16, 5² = 25. And 9 + 16 = 25. Try it again with 6, 8 and 10: 36 + 64 = 100. Once you have seen this with your own eyes, the formula stops being a line to memorise and becomes something you have checked yourself.
+
+![A 3-4-5 right-angled triangle with a square drawn on each of its three sides, showing the areas 3 squared = 9, 4 squared = 16 and 5 squared = 25](/blog/diagrams/pythagoras-squares.svg)
 
 ## Three ways questions use it
 
@@ -175,6 +181,8 @@ Light from a source hits an object, bounces off it, and some of that light enter
 **The angle of incidence always equals the angle of reflection, and both are measured from the normal.**
 
 The normal is an imaginary line drawn perpendicular to the mirror exactly where the light ray hits it. When a question gives you a ray hitting a mirror, your first move is always the same: draw the normal. Measure from the normal, never from the mirror's surface.
+
+![A ray diagram showing reflection at a plane mirror: the incident ray and the reflected ray both make a 30 degree angle with the normal, so i equals r](/blog/diagrams/light-reflection.svg)
 
 ## Regular and diffused reflection
 
