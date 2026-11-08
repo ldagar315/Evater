@@ -258,3 +258,65 @@ export async function getLeaderboard(
   const response = await apiFetch(`${MODAL_API_URL}/api/v1/leaderboard?${params.toString()}`)
   return parseApiResponse<LeaderboardResponse>(response)
 }
+
+// ---- Public sample papers (SEO pages; no auth required) ----
+
+export type SamplePaperChapterSummary = {
+  sequence_number: number
+  title: string
+  slug: string
+  published_count: number
+}
+
+export type SamplePapersSubject = {
+  subject: string
+  subject_name: string
+  chapters: SamplePaperChapterSummary[]
+}
+
+export type SamplePapersIndex = {
+  grade: number
+  subjects: SamplePapersSubject[]
+}
+
+export type SamplePaperQuestion = {
+  position: number
+  id: string
+  question_type: QuestionBankType
+  question_text: string
+  options: QuestionBankOption[]
+  explanation?: string | null
+  difficulty: 'easy' | 'medium' | 'hard'
+  maximum_marks: number
+  answer_summary: string
+}
+
+export type SamplePaper = {
+  grade: number
+  subject: string
+  subject_name: string
+  chapter: {
+    sequence_number: number
+    title: string
+    slug: string
+    description?: string | null
+  }
+  question_count: number
+  questions: SamplePaperQuestion[]
+}
+
+export async function getSamplePapersIndex(grade = 8): Promise<SamplePapersIndex> {
+  const response = await apiFetch(`${MODAL_API_URL}/api/v1/sample-papers/index?grade=${grade}`)
+  return parseApiResponse<SamplePapersIndex>(response)
+}
+
+export async function getSamplePaper(
+  subject: string,
+  chapterSlug: string,
+  grade = 8,
+): Promise<SamplePaper> {
+  const response = await apiFetch(
+    `${MODAL_API_URL}/api/v1/sample-papers/${encodeURIComponent(subject)}/${encodeURIComponent(chapterSlug)}?grade=${grade}`,
+  )
+  return parseApiResponse<SamplePaper>(response)
+}
