@@ -80,11 +80,11 @@ No interaction, no force. When you push a table, your hand and the table are two
 
 Contact forces need touching surfaces: muscular force (your legs pedalling) and friction are the chapter's examples. Non-contact forces act at a distance: magnetic force, electrostatic force (a rubbed balloon attracting paper bits), and gravitational force (what pulls you downhill on that bicycle without pedalling).
 
-![Two panels: a block pushed along the ground with friction opposing the push, labelled contact force, and a magnet pulling an iron pin upward without touching it, labelled non-contact force](/blog/diagrams/forces-contact-noncontact.svg)
+![Two panels: a pushed block sliding right along the ground with friction acting left at the contact surface, labelled contact force, and a magnet pulling an iron pin upward without touching it, labelled non-contact force](/blog/diagrams/forces-contact-noncontact.svg)
 
 ## Friction, the force students misread most
 
-Friction acts whenever an object moves or tries to move over another surface, and it always points opposite to the motion. It comes from tiny irregularities in the two surfaces locking into each other, which is why friction is greater on rough surfaces and why a wet, smooth floor is slippery. Friction is not only a solids thing: water and air also resist motion, which is why aeroplanes, ships and high-speed trains are built with shapes that reduce it. And friction is not a villain: without it you could not walk, write, or hold this book.
+Friction acts whenever two surfaces slide, or try to slide, against each other, and it points opposite to that sliding. It comes from tiny irregularities in the two surfaces locking into each other, which is why friction is greater on rough surfaces and why a wet, smooth floor is slippery. Friction is not only a solids thing: water and air also resist motion, which is why aeroplanes, ships and high-speed trains are built with shapes that reduce it. And friction is not a villain: without it you could not walk, write, or hold this book.
 
 ## Weight, floating and sinking
 
