@@ -65,7 +65,7 @@ export default defineConfig(({ mode }) => {
             prerender({
               routes: PRERENDER_ROUTES,
               renderer: new PuppeteerRenderer({
-                renderAfterTime: 3000,
+                renderAfterTime: 12000,  // generous wait so baked pages are never mid-fetch "Loading..." states; sample pages are noindex until data renders
                 launchOptions: { args: ['--no-sandbox', '--disable-setuid-sandbox'] },
               }),
             }),
