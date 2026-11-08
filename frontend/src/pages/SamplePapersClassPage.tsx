@@ -39,6 +39,7 @@ export function SamplePapersClassPage() {
         title="Class 8 Sample Papers - Science and Maths (NCERT) - Evater"
         description="Chapter-wise Class 8 sample papers with answer keys for the new NCERT books: Curiosity (Science) and Ganita Prakash (Mathematics)."
         path="/sample-papers/class-8"
+        robots={index && !error ? undefined : 'noindex'}
       />
       <Header />
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-10 sm:px-6 sm:py-14">
