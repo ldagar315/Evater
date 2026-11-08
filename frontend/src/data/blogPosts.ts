@@ -109,6 +109,117 @@ After each section, list three everyday examples of the idea from memory, then c
     }
   },
   {
+    id: '7',
+    title: 'NCERT Class 8 Maths: How to Prepare the Baudhayana-Pythagoras Theorem',
+    slug: 'ncert-class-8-maths-baudhayana-pythagoras-theorem',
+    excerpt: 'Chapter 9 of the new Class 8 Maths book asks you to understand the Baudhayana-Pythagoras theorem, not just quote it. A simple way to learn, visualise and practise it.',
+    content: `## What this chapter is about
+
+Chapter 9 of the new Class 8 Maths textbook (Ganita Prakash) introduces one of the oldest results in all of geometry: the relationship between the three sides of a right-angled triangle. You may know it as the Pythagoras theorem. The new book calls it the Baudhayana-Pythagoras theorem, because the Indian mathematician Baudhayana stated the same result in the Sulba-sutras a couple of centuries before Pythagoras.
+
+**In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides.**
+
+Written as a formula: a² + b² = c², where c is the hypotenuse. The hypotenuse is the side opposite the right angle, and it is always the longest side.
+
+## See it before you memorise it
+
+Draw a triangle with sides 3 cm, 4 cm and 5 cm. The angle between the two shorter sides is 90°. Now draw a square on each side and count the areas: 3² = 9, 4² = 16, 5² = 25. And 9 + 16 = 25. Try it again with 6, 8 and 10: 36 + 64 = 100. Once you have seen this with your own eyes, the formula stops being a line to memorise and becomes something you have checked yourself.
+
+## Three ways questions use it
+
+1. **Find the hypotenuse:** you know the two shorter sides, so add their squares and take the square root. Sides 6 and 8 give 36 + 64 = 100, so the hypotenuse is 10.
+2. **Find a shorter side:** you know the hypotenuse and one side, so subtract. Hypotenuse 13 and one side 5 give 169 - 25 = 144, so the missing side is 12.
+3. **Check whether a triangle is right-angled:** if the sides satisfy a² + b² = c², the angle opposite the longest side is exactly 90°. Carpenters and builders use this to set out right angles.
+
+## Triples worth recognising
+
+Some whole-number sets keep appearing: 3-4-5, 5-12-13, 8-15-17 and 7-24-25, plus their multiples (6-8-10 is just 3-4-5 doubled). Recognising a triple in an exam saves you a full calculation, but always check that the triangle is right-angled first.
+
+## Common mistakes to avoid
+
+- Using the theorem on a triangle that has no right angle. It only works for right-angled triangles.
+- Adding the squares when you should subtract. If you are finding a shorter side, subtract the known square from the hypotenuse square.
+- Forgetting that c must be the hypotenuse. The formula is about the longest side, not just "the third side".
+
+## How to practise this chapter
+
+Attempt each problem before looking at the solution, and write the reason for every wrong answer: concept gap, careless reading, or a calculation slip. Short, mixed question sets work better than one long reread. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.`,
+    featured_image: 'https://images.pexels.com/photos/5412233/pexels-photo-5412233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    author: teamAuthor,
+    category: 'Class 8 Maths',
+    tags: ['Class 8 Maths', 'NCERT', 'Ganita Prakash', 'Geometry'],
+    published_date: '2026-11-06',
+    read_time: 6,
+    is_featured: false,
+    status: 'draft',
+    seo: {
+      meta_title: 'Class 8 Maths Baudhayana-Pythagoras Theorem: Study Guide',
+      meta_description: 'A simple Class 8 study guide to the Baudhayana-Pythagoras theorem: what it says, why it works, common mistakes, and how to practise it for exams.'
+    }
+  },
+  {
+    id: '8',
+    title: 'NCERT Class 8 Science: Light - Mirrors and Lenses Study Guide',
+    slug: 'ncert-class-8-science-light-mirrors-lenses-study-guide',
+    excerpt: 'Chapter 10 of the new Class 8 Science book (Curiosity) brings mirrors and lenses into middle school. A practical guide to the ideas, the diagrams and the practice that makes them stick.',
+    content: `## What this chapter covers
+
+Chapter 10 of the new Class 8 Science textbook (Curiosity) is about how light behaves when it bounces off surfaces and when it passes through curved glass. That means mirrors (plane, concave and convex), lenses (convex and concave), and the diagrams that explain where images form. Most of the marks in this chapter come from understanding a small set of ideas clearly and drawing them correctly.
+
+## Start with how you see anything at all
+
+Light from a source hits an object, bounces off it, and some of that light enters your eyes. You see the object because of reflected light. Keep this picture in mind: every idea in the chapter is a version of it.
+
+## The laws of reflection
+
+**The angle of incidence always equals the angle of reflection, and both are measured from the normal.**
+
+The normal is an imaginary line drawn perpendicular to the mirror exactly where the light ray hits it. When a question gives you a ray hitting a mirror, your first move is always the same: draw the normal. Measure from the normal, never from the mirror's surface.
+
+## Regular and diffused reflection
+
+A smooth surface, like a mirror or still water, reflects parallel rays in one direction, so you see a clear image. A rough surface, like a wall or a page, scatters the rays in many directions, so you see the object but no image. This is why you can see your face in a steel spoon but not in a notebook.
+
+## Plane mirror images
+
+An image in a plane mirror is the same size as the object, appears the same distance behind the mirror as the object is in front, and is laterally inverted: left and right are swapped. That is why AMBULANCE is written in reverse on the front of the vehicle, so drivers ahead can read it correctly in their rear-view mirror.
+
+## Curved mirrors: concave and convex
+
+- **A concave mirror** curves inward, like the inside of a spoon. It brings light rays together, which is why torch headlights and shaving mirrors use it.
+- **A convex mirror** bulges outward, like the back of a spoon. It spreads light rays apart and shows a wider area, which is why it is used as a rear-view mirror in vehicles and a security mirror in shops.
+
+## Lenses: convex and concave
+
+A convex lens is thicker in the middle and brings light rays together. A magnifying glass and a camera lens are convex lenses. A concave lens is thinner in the middle and spreads light rays apart; spectacles for short-sightedness use concave lenses. The easy memory hook: concave caves in at the middle.
+
+## Diagrams do the learning
+
+Most students lose marks in this chapter on diagrams, not definitions. The fix is retrieval drawing: read one ray diagram, close the book, redraw it from memory with labels, then compare with the textbook. Repeat until the drawing comes out right the first time. Ten minutes of this beats an hour of staring at the printed figure.
+
+## Common confusions to clear early
+
+- Mixing up which one converges and which one diverges. Concave mirror and convex lens bring rays together; convex mirror and concave lens spread them apart.
+- Thinking lateral inversion flips everything. A plane mirror swaps left and right only, never up and down.
+- Assuming a magnified image means a bigger object. The object stays the same size; the lens changes how the light reaches your eye.
+
+## How to practise this chapter
+
+After each section, answer a short set of questions from memory before rechecking the book. Record why each wrong answer went wrong: concept gap, misread diagram, or a missing label. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.`,
+    featured_image: 'https://images.pexels.com/photos/3845161/pexels-photo-3845161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    author: teamAuthor,
+    category: 'Class 8 Science',
+    tags: ['Class 8 Science', 'NCERT', 'Curiosity', 'Physics'],
+    published_date: '2026-11-06',
+    read_time: 6,
+    is_featured: false,
+    status: 'draft',
+    seo: {
+      meta_title: 'Class 8 Science Light: Mirrors and Lenses Study Guide',
+      meta_description: 'A practical Class 8 study guide to Light: Mirrors and Lenses - reflection laws, plane and curved mirrors, convex and concave lenses, and how to practise ray diagrams.'
+    }
+  },
+  {
     id: '6',
     title: 'CBSE Class 8 Science Study Plan: A 30-Day NCERT Revision Schedule',
     slug: 'cbse-class-8-science-study-plan-30-day-ncert-revision',
