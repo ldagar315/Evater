@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 200" role="img" aria-label="Contact forces: a pushed block slides right along the ground while friction acts left at the contact surface. Non-contact forces: a magnet pulls an iron pin upward without touching it">
+  <rect x="0" y="0" width="460" height="200" fill="#fbfaf3"/>
+  <text x="115" y="24" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#272426">Contact force</text>
+  <text x="345" y="24" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#272426">Non-contact force</text>
+  <!-- ground -->
+  <line x1="20" y1="150" x2="210" y2="150" stroke="#272426" stroke-width="2.5"/>
+  <g stroke="#272426" stroke-width="1">
+    <line x1="35" y1="150" x2="27" y2="158"/><line x1="60" y1="150" x2="52" y2="158"/>
+    <line x1="85" y1="150" x2="77" y2="158"/><line x1="110" y1="150" x2="102" y2="158"/>
+    <line x1="135" y1="150" x2="127" y2="158"/><line x1="160" y1="150" x2="152" y2="158"/>
+    <line x1="185" y1="150" x2="177" y2="158"/>
+  </g>
+  <!-- block -->
+  <rect x="80" y="105" width="60" height="45" fill="rgba(55,194,163,0.15)" stroke="#272426" stroke-width="2"/>
+  <!-- motion arrow inside block: the block is sliding right -->
+  <line x1="88" y1="131" x2="120" y2="131" stroke="#37c2a3" stroke-width="3"/>
+  <polygon points="130,131 118,125 118,137" fill="#37c2a3"/>
+  <text x="110" y="120" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="#272426">slides</text>
+  <!-- push arrow (into block, rightward) -->
+  <line x1="28" y1="127" x2="66" y2="127" stroke="#37c2a3" stroke-width="3"/>
+  <polygon points="76,127 64,121 64,133" fill="#37c2a3"/>
+  <text x="30" y="116" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#272426">Push</text>
+  <!-- friction arrow (leftward, at base) -->
+  <line x1="172" y1="144" x2="152" y2="144" stroke="#272426" stroke-width="3"/>
+  <polygon points="142,144 154,138 154,150" fill="#272426"/>
+  <text x="150" y="136" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#272426">Friction</text>
+  <text x="115" y="170" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="#272426">as the block slides right,</text>
+  <text x="115" y="188" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="#272426">friction acts left at the surface</text>
+  <!-- magnet -->
+  <rect x="315" y="34" width="60" height="22" rx="3" fill="#272426"/>
+  <text x="345" y="49" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#fbfaf3">Magnet</text>
+  <!-- upward pull arrow -->
+  <line x1="345" y1="96" x2="345" y2="70" stroke="#37c2a3" stroke-width="3"/>
+  <polygon points="345,60 339,72 351,72" fill="#37c2a3"/>
+  <!-- iron pin -->
+  <rect x="337" y="100" width="16" height="26" rx="2" fill="rgba(55,194,163,0.15)" stroke="#272426" stroke-width="2"/>
+  <text x="345" y="141" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="#272426">Iron pin</text>
+  <text x="345" y="180" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" fill="#272426">pulls without touching</text>
+</svg>

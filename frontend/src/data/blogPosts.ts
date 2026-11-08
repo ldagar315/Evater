@@ -8,6 +8,226 @@ const teamAuthor = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '9',
+    title: 'NCERT Class 8 Maths Chapter 1: A Square and A Cube - Study Guide',
+    slug: 'ncert-class-8-maths-square-and-cube-study-guide',
+    excerpt: 'Ganita Prakash opens Class 8 Maths with a 100-locker puzzle that hides one big idea: only perfect squares have an odd number of factors. A simple way to learn squares, cubes and roots.',
+    content: `## What this chapter is about
+
+Ganita Prakash, the new Class 8 Maths textbook, opens with a puzzle. Queen Ratnamanjuri leaves 100 lockers and 100 relatives: person 1 opens every locker, person 2 toggles every second locker, person 3 toggles every third, and so on. Which lockers stay open at the end? The answer introduces the two heroes of the chapter: square numbers and cubic numbers.
+
+## The locker insight worth remembering
+
+**Only the lockers numbered 1, 4, 9, 16, 25 and the other perfect squares stay open, because squares are the only numbers with an odd number of factors.**
+
+Why? Factors come in pairs: for 12, the pairs are 1-12, 2-6 and 3-4, an even count. But for 36, the factor 6 pairs with itself, so the count is odd. A locker is toggled once for each factor, so only square-numbered lockers are toggled an odd number of times and stay open. If you can explain this in your own words, you have understood the heart of the chapter.
+
+## Square numbers
+
+A square number is a number multiplied by itself: n x n = n². The name comes from area: a square of side 5 units holds 25 unit squares. Know the first fifteen squares on sight: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225. They return constantly in later chapters, especially in the Baudhayana-Pythagoras theorem.
+
+## Cubic numbers
+
+A cubic number is a number multiplied by itself twice: n x n x n = n³. The picture is volume: a cube of side 3 units holds 27 unit cubes. The first ten cubes are 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000. Square and cube roots are simply the reverse questions: which number squared gives 144, and which number cubed gives 343?
+
+![A 4 by 4 grid of 16 small squares next to a 3 by 3 by 3 cube made of 27 small cubes](/blog/diagrams/square-cube.svg)
+
+## Common mistakes to avoid
+
+- Writing 3 squared as 6. Squaring means multiplying the number by itself: 3 x 3 = 9, not 3 x 2.
+- Thinking a cube is "the square times 3". 4 cubed is 4 x 4 x 4 = 64, not 4 x 4 x 3 = 48.
+- Forgetting that 1 is both a perfect square (1 x 1) and a perfect cube (1 x 1 x 1).
+
+## How to practise this chapter
+
+Close the book and write the first fifteen squares and first ten cubes from memory, then check. When you meet a number like 729, ask whether it is a square, a cube, or both (it is both: 27 squared and 9 cubed). Short mixed question sets turn this into reflex. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.`,
+    featured_image: 'https://images.pexels.com/photos/7776206/pexels-photo-7776206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    author: teamAuthor,
+    category: 'Class 8 Maths',
+    tags: ['Class 8 Maths', 'NCERT', 'Ganita Prakash', 'Numbers'],
+    published_date: '2026-11-08',
+    read_time: 6,
+    is_featured: false,
+    status: 'published',
+    seo: {
+      meta_title: 'Class 8 Maths A Square and A Cube: Study Guide',
+      meta_description: 'A Class 8 study guide to A Square and A Cube: perfect squares and cubes, the locker puzzle insight, common mistakes, and how to practise.'
+    }
+  },
+  {
+    id: '10',
+    title: 'NCERT Class 8 Science Chapter 5: Exploring Forces - Study Guide',
+    slug: 'ncert-class-8-science-exploring-forces-study-guide',
+    excerpt: 'Two friends cycling against the wind, up a rough hill road and back down without pedalling - every part of that ride is a force question. A practical guide to Curiosity Chapter 5.',
+    content: `## What this chapter covers
+
+Chapter 5 of the new Class 8 Science textbook (Curiosity) starts with two friends cycling against the wind, up a rough hill road, and rolling back down without pedalling. Every part of that ride is a force question. The chapter builds the idea of force, what forces do, the main types, weight, and why things float or sink.
+
+## Force in one line
+
+**A force is a push or a pull that comes from one object interacting with another. It is measured in newtons, written N.**
+
+No interaction, no force. When you push a table, your hand and the table are two objects interacting. The moment you stop pushing, the force between them is gone.
+
+## What a force can do
+
+- Make a resting object move, like a football when you kick it.
+- Change the speed of a moving object, like brakes slowing a bicycle.
+- Change the direction of motion, like a bat turning a moving ball.
+- Change the shape of an object, like pressing an inflated balloon.
+
+## Contact and non-contact forces
+
+Contact forces need touching surfaces: muscular force (your legs pedalling) and friction are the chapter's examples. Non-contact forces act at a distance: magnetic force, electrostatic force (a rubbed balloon attracting paper bits), and gravitational force (what pulls you downhill on that bicycle without pedalling).
+
+![Two panels: a pushed block sliding right along the ground with friction acting left at the contact surface, labelled contact force, and a magnet pulling an iron pin upward without touching it, labelled non-contact force](/blog/diagrams/forces-contact-noncontact.svg)
+
+## Friction, the force students misread most
+
+Friction acts whenever two surfaces slide, or try to slide, against each other, and it points opposite to that sliding. It comes from tiny irregularities in the two surfaces locking into each other, which is why friction is greater on rough surfaces and why a wet, smooth floor is slippery. Friction is not only a solids thing: water and air also resist motion, which is why aeroplanes, ships and high-speed trains are built with shapes that reduce it. And friction is not a villain: without it you could not walk, write, or hold this book.
+
+## Weight, floating and sinking
+
+Weight is the force with which the Earth pulls an object, and it is measured with a spring balance in newtons. The chapter closes with floating and sinking: whether an object floats depends on how its weight compares with the push it gets from the liquid around it.
+
+## Common confusions to clear early
+
+- "An object at rest has no force on it." Usually it has several forces balancing each other out.
+- "Friction always slows things down, so it is bad." It also makes walking, gripping and writing possible.
+- "Heavier objects always sink." Floating depends on the push from the liquid too, not weight alone.
+
+## How to practise this chapter
+
+After each section, list three everyday examples of the idea from memory, then check the book. For friction, explain the bicycle story to someone else: uphill pedalling, the rough road, the wet patch, the freewheel downhill. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.`,
+    featured_image: 'https://images.pexels.com/photos/37439013/pexels-photo-37439013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    author: teamAuthor,
+    category: 'Class 8 Science',
+    tags: ['Class 8 Science', 'NCERT', 'Curiosity', 'Physics'],
+    published_date: '2026-11-08',
+    read_time: 6,
+    is_featured: false,
+    status: 'published',
+    seo: {
+      meta_title: 'Class 8 Science Exploring Forces: Study Guide',
+      meta_description: 'A Class 8 study guide to Exploring Forces: what force does, contact and non-contact forces, friction explained, and how to practise the chapter.'
+    }
+  },
+  {
+    id: '7',
+    title: 'NCERT Class 8 Maths: How to Prepare the Baudhayana-Pythagoras Theorem',
+    slug: 'ncert-class-8-maths-baudhayana-pythagoras-theorem',
+    excerpt: 'Chapter 9 of the new Class 8 Maths book asks you to understand the Baudhayana-Pythagoras theorem, not just quote it. A simple way to learn, visualise and practise it.',
+    content: `## What this chapter is about
+
+Chapter 9 of the new Class 8 Maths textbook (Ganita Prakash) introduces one of the oldest results in all of geometry: the relationship between the three sides of a right-angled triangle. You may know it as the Pythagoras theorem. The new book calls it the Baudhayana-Pythagoras theorem, because the Indian mathematician Baudhayana stated the same result in the Sulba-sutras a couple of centuries before Pythagoras.
+
+**In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides.**
+
+Written as a formula: a² + b² = c², where c is the hypotenuse. The hypotenuse is the side opposite the right angle, and it is always the longest side.
+
+## See it before you memorise it
+
+Draw a triangle with sides 3 cm, 4 cm and 5 cm. The angle between the two shorter sides is 90°. Now draw a square on each side and count the areas: 3² = 9, 4² = 16, 5² = 25. And 9 + 16 = 25. Try it again with 6, 8 and 10: 36 + 64 = 100. Once you have seen this with your own eyes, the formula stops being a line to memorise and becomes something you have checked yourself.
+
+![A 3-4-5 right-angled triangle with a square drawn on each of its three sides, showing the areas 3 squared = 9, 4 squared = 16 and 5 squared = 25](/blog/diagrams/pythagoras-squares.svg)
+
+## Three ways questions use it
+
+1. **Find the hypotenuse:** you know the two shorter sides, so add their squares and take the square root. Sides 6 and 8 give 36 + 64 = 100, so the hypotenuse is 10.
+2. **Find a shorter side:** you know the hypotenuse and one side, so subtract. Hypotenuse 13 and one side 5 give 169 - 25 = 144, so the missing side is 12.
+3. **Check whether a triangle is right-angled:** if the sides satisfy a² + b² = c², the angle opposite the longest side is exactly 90°. Carpenters and builders use this to set out right angles.
+
+## Triples worth recognising
+
+Some whole-number sets keep appearing: 3-4-5, 5-12-13, 8-15-17 and 7-24-25, plus their multiples (6-8-10 is just 3-4-5 doubled). Recognising a triple in an exam saves you a full calculation, but always check that the triangle is right-angled first.
+
+## Common mistakes to avoid
+
+- Using the theorem on a triangle that has no right angle. It only works for right-angled triangles.
+- Adding the squares when you should subtract. If you are finding a shorter side, subtract the known square from the hypotenuse square.
+- Forgetting that c must be the hypotenuse. The formula is about the longest side, not just "the third side".
+
+## How to practise this chapter
+
+Attempt each problem before looking at the solution, and write the reason for every wrong answer: concept gap, careless reading, or a calculation slip. Short, mixed question sets work better than one long reread. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.`,
+    featured_image: 'https://images.pexels.com/photos/5412233/pexels-photo-5412233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    author: teamAuthor,
+    category: 'Class 8 Maths',
+    tags: ['Class 8 Maths', 'NCERT', 'Ganita Prakash', 'Geometry'],
+    published_date: '2026-11-06',
+    read_time: 6,
+    is_featured: false,
+    status: 'published',
+    seo: {
+      meta_title: 'Class 8 Maths Baudhayana-Pythagoras Theorem: Study Guide',
+      meta_description: 'A simple Class 8 study guide to the Baudhayana-Pythagoras theorem: what it says, why it works, common mistakes, and how to practise it for exams.'
+    }
+  },
+  {
+    id: '8',
+    title: 'NCERT Class 8 Science: Light - Mirrors and Lenses Study Guide',
+    slug: 'ncert-class-8-science-light-mirrors-lenses-study-guide',
+    excerpt: 'Chapter 10 of the new Class 8 Science book (Curiosity) brings mirrors and lenses into middle school. A practical guide to the ideas, the diagrams and the practice that makes them stick.',
+    content: `## What this chapter covers
+
+Chapter 10 of the new Class 8 Science textbook (Curiosity) is about how light behaves when it bounces off surfaces and when it passes through curved glass. That means mirrors (plane, concave and convex), lenses (convex and concave), and the diagrams that explain where images form. Most of the marks in this chapter come from understanding a small set of ideas clearly and drawing them correctly.
+
+## Start with how you see anything at all
+
+Light from a source hits an object, bounces off it, and some of that light enters your eyes. You see the object because of reflected light. Keep this picture in mind: every idea in the chapter is a version of it.
+
+## The laws of reflection
+
+**The angle of incidence always equals the angle of reflection, and both are measured from the normal.**
+
+The normal is an imaginary line drawn perpendicular to the mirror exactly where the light ray hits it. When a question gives you a ray hitting a mirror, your first move is always the same: draw the normal. Measure from the normal, never from the mirror's surface.
+
+![A ray diagram showing reflection at a plane mirror: the incident ray and the reflected ray both make a 30 degree angle with the normal, so i equals r](/blog/diagrams/light-reflection.svg)
+
+## Regular and diffused reflection
+
+A smooth surface, like a mirror or still water, reflects parallel rays in one direction, so you see a clear image. A rough surface, like a wall or a page, scatters the rays in many directions, so you see the object but no image. This is why you can see your face in a steel spoon but not in a notebook.
+
+## Plane mirror images
+
+An image in a plane mirror is the same size as the object, appears the same distance behind the mirror as the object is in front, and is laterally inverted: left and right are swapped. That is why AMBULANCE is written in reverse on the front of the vehicle, so drivers ahead can read it correctly in their rear-view mirror.
+
+## Curved mirrors: concave and convex
+
+- **A concave mirror** curves inward, like the inside of a spoon. It brings light rays together, which is why torch headlights and shaving mirrors use it.
+- **A convex mirror** bulges outward, like the back of a spoon. It spreads light rays apart and shows a wider area, which is why it is used as a rear-view mirror in vehicles and a security mirror in shops.
+
+## Lenses: convex and concave
+
+A convex lens is thicker in the middle and brings light rays together. A magnifying glass and a camera lens are convex lenses. A concave lens is thinner in the middle and spreads light rays apart; spectacles for short-sightedness use concave lenses. The easy memory hook: concave caves in at the middle.
+
+## Diagrams do the learning
+
+Most students lose marks in this chapter on diagrams, not definitions. The fix is retrieval drawing: read one ray diagram, close the book, redraw it from memory with labels, then compare with the textbook. Repeat until the drawing comes out right the first time. Ten minutes of this beats an hour of staring at the printed figure.
+
+## Common confusions to clear early
+
+- Mixing up which one converges and which one diverges. Concave mirror and convex lens bring rays together; convex mirror and concave lens spread them apart.
+- Thinking lateral inversion flips everything. A plane mirror swaps left and right only, never up and down.
+- Assuming a magnified image means a bigger object. The object stays the same size; the lens changes how the light reaches your eye.
+
+## How to practise this chapter
+
+After each section, answer a short set of questions from memory before rechecking the book. Record why each wrong answer went wrong: concept gap, misread diagram, or a missing label. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.`,
+    featured_image: 'https://images.pexels.com/photos/3845161/pexels-photo-3845161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    author: teamAuthor,
+    category: 'Class 8 Science',
+    tags: ['Class 8 Science', 'NCERT', 'Curiosity', 'Physics'],
+    published_date: '2026-11-06',
+    read_time: 6,
+    is_featured: false,
+    status: 'published',
+    seo: {
+      meta_title: 'Class 8 Science Light: Mirrors and Lenses Study Guide',
+      meta_description: 'A practical Class 8 study guide to Light: Mirrors and Lenses - reflection laws, plane and curved mirrors, convex and concave lenses, and how to practise ray diagrams.'
+    }
+  },
+  {
     id: '6',
     title: 'CBSE Class 8 Science Study Plan: A 30-Day NCERT Revision Schedule',
     slug: 'cbse-class-8-science-study-plan-30-day-ncert-revision',
@@ -440,4 +660,3 @@ export const searchPosts = (query: string): BlogPost[] => {
     ...post.tags,
   ].some((value) => value.toLowerCase().includes(lowercaseQuery)))
 }
-
