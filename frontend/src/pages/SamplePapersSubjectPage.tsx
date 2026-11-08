@@ -42,7 +42,7 @@ export function SamplePapersSubjectPage() {
         title={`Class 8 ${subjectName} Sample Papers - All Chapters - Evater`}
         description={`Chapter-wise Class 8 ${subjectName} sample papers with answer keys, drawn from Evater's question bank.`}
         path={`/sample-papers/class-8/${subjectSlug}`}
-        robots={notFound ? 'noindex' : undefined}
+        robots={subject && !error && !notFound ? undefined : 'noindex'}
       />
       <Header />
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-10 sm:px-6 sm:py-14">
