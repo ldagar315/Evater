@@ -88,7 +88,7 @@ export function SamplePaperChapterPage() {
             : 'Chapter-wise sample paper with answer key from Evater.'
         }
         path={`/sample-papers/class-${GRADE}/${subjectSlug}/${chapterSlug}`}
-        robots={status === 'notfound' || status === 'error' ? 'noindex' : undefined}
+        robots={status === 'ready' ? undefined : 'noindex'}
       />
       <Header />
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10 sm:px-6 sm:py-14">
