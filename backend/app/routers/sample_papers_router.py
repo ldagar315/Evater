@@ -13,7 +13,11 @@ import logging
 import re
 from typing import Any, Dict, List
 
-from fastapi import APIRouter, HTTPException, Query, Response
+import threading
+import time
+from collections import deque
+
+from fastapi import APIRouter, HTTPException, Query, Request, Response
 
 from ..question_bank import _correct_summary, to_public_question
 from ..supabase_client import create_supabase_service_client
@@ -24,6 +28,63 @@ router = APIRouter()
 MIN_PUBLISHED_QUESTIONS = 15
 PAPER_QUESTION_COUNT = 15
 CACHE_CONTROL = "public, max-age=3600"
+
+# --- Bounded abuse/cost protection (in-memory, per container) ---------------
+# Anonymous read-only endpoints still cost a handful of PostgREST reads per
+# hit, so responses are cached server-side and each client IP is capped.
+CACHE_TTL_SECONDS = 3600
+RATE_LIMIT_REQUESTS = 60
+RATE_LIMIT_WINDOW_SECONDS = 60
+_MAX_TRACKED_IPS = 5000
+
+_cache_lock = threading.Lock()
+_response_cache: Dict[str, Any] = {}
+_rate_lock = threading.Lock()
+_rate_windows: Dict[str, deque] = {}
+
+
+def _cache_get(key: str) -> Any:
+    now = time.monotonic()
+    with _cache_lock:
+        entry = _response_cache.get(key)
+        if entry and now - entry[0] < CACHE_TTL_SECONDS:
+            return entry[1]
+        if entry:
+            _response_cache.pop(key, None)
+    return None
+
+
+def _cache_set(key: str, value: Any) -> None:
+    with _cache_lock:
+        if len(_response_cache) > 500:
+            _response_cache.clear()
+        _response_cache[key] = (time.monotonic(), value)
+
+
+def _client_ip(request: Request) -> str:
+    forwarded = request.headers.get("x-forwarded-for", "")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
+
+def _enforce_rate_limit(request: Request) -> None:
+    ip = _client_ip(request)
+    now = time.monotonic()
+    with _rate_lock:
+        window = _rate_windows.setdefault(ip, deque())
+        while window and now - window[0] > RATE_LIMIT_WINDOW_SECONDS:
+            window.popleft()
+        if len(window) >= RATE_LIMIT_REQUESTS:
+            raise HTTPException(
+                status_code=429,
+                detail="Too many requests. Please retry shortly.",
+                headers={"Retry-After": str(RATE_LIMIT_WINDOW_SECONDS)},
+            )
+        if len(_rate_windows) > _MAX_TRACKED_IPS:
+            _rate_windows.clear()
+            window = _rate_windows.setdefault(ip, deque())
+        window.append(now)
 
 # URL subject slugs -> question-bank subject names. "maths" is accepted as an
 # alias; the canonical slug emitted by the index is derived from the subject
@@ -115,8 +176,14 @@ def _pick_paper_questions(questions: List[Dict[str, Any]], count: int) -> List[D
 
 
 @router.get("/sample-papers/index")
-def sample_papers_index(response: Response, grade: int = Query(8, ge=6, le=10)) -> Dict[str, Any]:
+def sample_papers_index(request: Request, response: Response, grade: int = Query(8, ge=6, le=10)) -> Dict[str, Any]:
     """Chapters with published-question counts, for the hub/subject pages."""
+    _enforce_rate_limit(request)
+    cache_key = f"index:{grade}"
+    cached = _cache_get(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = CACHE_CONTROL
+        return cached
     client = create_supabase_service_client()
     curricula = (
         client.table("curriculum_versions")
@@ -144,21 +211,31 @@ def sample_papers_index(response: Response, grade: int = Query(8, ge=6, le=10)) 
                 ],
             }
         )
+    payload = {"grade": grade, "subjects": subjects}
+    _cache_set(cache_key, payload)
     response.headers["Cache-Control"] = CACHE_CONTROL
-    return {"grade": grade, "subjects": subjects}
+    return payload
 
 
 @router.get("/sample-papers/{subject}/{chapter_slug}")
 def sample_paper(
+    request: Request,
     response: Response,
     subject: str,
     chapter_slug: str,
     grade: int = Query(8, ge=6, le=10),
 ) -> Dict[str, Any]:
     """One deterministic sample paper: chapter info, questions, answer key."""
+    _enforce_rate_limit(request)
     subject_name = SUBJECT_SLUGS.get(subject.lower())
     if not subject_name:
         raise HTTPException(status_code=404, detail="Unknown subject.")
+
+    cache_key = f"paper:{grade}:{subject}:{chapter_slug}"
+    cached = _cache_get(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = CACHE_CONTROL
+        return cached
 
     client = create_supabase_service_client()
     chapters = _load_published_chapters(client, grade, subject_name)
@@ -187,16 +264,20 @@ def sample_paper(
             {"options": public["options"], "correct_option_id": row.get("correct_option_id")},
             row.get("answer_spec") or {},
         )
+        # Anonymous payload is trimmed to exactly the fields the pages render
+        # (position, id, question_type, question_text, options, answer_summary).
         payload_questions.append(
             {
                 "position": index + 1,
-                **public,
+                "id": public["id"],
+                "question_type": public["question_type"],
+                "question_text": public["question_text"],
+                "options": public["options"],
                 "answer_summary": answer_summary,
             }
         )
 
-    response.headers["Cache-Control"] = CACHE_CONTROL
-    return {
+    payload = {
         "grade": grade,
         "subject": subject,
         "subject_name": subject_name,
@@ -209,3 +290,6 @@ def sample_paper(
         "question_count": len(payload_questions),
         "questions": payload_questions,
     }
+    _cache_set(cache_key, payload)
+    response.headers["Cache-Control"] = CACHE_CONTROL
+    return payload
