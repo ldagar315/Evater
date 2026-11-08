@@ -31,6 +31,10 @@ const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then((m) =>
 const LeagueInfoPage = lazy(() => import('./pages/LeagueInfoPage').then((m) => ({ default: m.LeagueInfoPage })))
 const QuestionTypePreviewPage = lazy(() => import('./pages/QuestionTypePreviewPage').then((m) => ({ default: m.QuestionTypePreviewPage })))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })))
+const SamplePapersHubPage = lazy(() => import('./pages/SamplePapersHubPage').then((m) => ({ default: m.SamplePapersHubPage })))
+const SamplePapersClassPage = lazy(() => import('./pages/SamplePapersClassPage').then((m) => ({ default: m.SamplePapersClassPage })))
+const SamplePapersSubjectPage = lazy(() => import('./pages/SamplePapersSubjectPage').then((m) => ({ default: m.SamplePapersSubjectPage })))
+const SamplePaperChapterPage = lazy(() => import('./pages/SamplePaperChapterPage').then((m) => ({ default: m.SamplePaperChapterPage })))
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading, error } = useAuthContext()
@@ -110,6 +114,10 @@ function AppRoutes() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/sample-papers" element={<SamplePapersHubPage />} />
+          <Route path="/sample-papers/class-8" element={<SamplePapersClassPage />} />
+          <Route path="/sample-papers/class-8/:subject" element={<SamplePapersSubjectPage />} />
+          <Route path="/sample-papers/class-8/:subject/:chapterSlug" element={<SamplePaperChapterPage />} />
           <Route path="/privacy" element={<Navigate to="/about#privacy" replace />} />
           <Route path="/terms" element={<Navigate to="/about#terms" replace />} />
           <Route path="/contact" element={<Navigate to="/about" replace />} />
