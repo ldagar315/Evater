@@ -14,6 +14,10 @@ const PRERENDER_ROUTES = [
   '/blog/study-difficult-science-chapters-without-rote-memorisation',
   '/blog/practice-tests-vs-revision-exam-scores',
   '/blog/how-students-in-middle-school-should-learn',
+  '/blog/ncert-class-8-maths-baudhayana-pythagoras-theorem',
+  '/blog/ncert-class-8-science-light-mirrors-lenses-study-guide',
+  '/blog/ncert-class-8-maths-square-and-cube-study-guide',
+  '/blog/ncert-class-8-science-exploring-forces-study-guide',
   // Sample papers (kebab-case chapter slugs; same slugify rule as the backend
   // sample_papers_router). Hubs + Class 8 chapters, added with the routes PR.
   '/sample-papers',
@@ -87,4 +91,3 @@ export default defineConfig(({ mode }) => {
     },
   }
 })
-
