@@ -7,6 +7,7 @@ const footerLinks = {
   product: [
     { label: "Home", to: "/home" },
     { label: "Practice", to: "/practice" },
+    { label: "My tests", to: "/my-tests" },
     { label: "Leaderboard", to: "/leaderboard" },
     { label: "Profile", to: "/profile" },
   ],

@@ -7,6 +7,7 @@ import {
   Coins,
   FileText,
   GraduationCap,
+  History,
   Lock,
   School,
   Sparkles,
@@ -132,10 +133,14 @@ export function HomePage() {
               Practice one chapter at a time, understand every mistake, and build
               the confidence to keep going.
             </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button onClick={() => navigate('/practice')} size="lg" className="w-full sm:w-auto">
                 <Target className="mr-2 h-5 w-5" aria-hidden="true" />
                 Start practice
+              </Button>
+              <Button onClick={() => navigate('/my-tests')} size="lg" variant="outline" className="w-full sm:w-auto">
+                <History className="mr-2 h-5 w-5" aria-hidden="true" />
+                My tests
               </Button>
               <Button
                 onClick={() => navigate('/leaderboard')}
