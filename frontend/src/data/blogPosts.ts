@@ -576,7 +576,7 @@ Plan your week ahead and set aside time for each subject, homework, rest, and pl
 
 ### Active recall and spaced review
 
-Do not only reread. Close your book and see how much you can remember. Review the same idea today, again in three days, and once more the following week. [Read our active recall guide](/blog/active-recall-class-6-10-exams) for a simple routine.
+Do not only reread. Close your book and see how much you can remember. Review the same idea today, again in three days, and once more the following week. [Read our active recall guide](/blog/active-recall-class-6-10-exams/) for a simple routine.
 
 ### A balanced lifestyle
 
