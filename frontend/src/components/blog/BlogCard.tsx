@@ -20,7 +20,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
   return (
     <article className={`group overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-xl hover:shadow-primary-900/5 ${featured ? 'lg:grid lg:grid-cols-[1.08fr_0.92fr]' : 'flex h-full flex-col'}`}>
       <Link
-        to={`/blog/${post.slug}`}
+        to={`/blog/${post.slug}/`}
         className={`relative block overflow-hidden bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 ${featured ? 'min-h-[18rem] lg:min-h-[27rem]' : 'aspect-[16/10]'}`}
         aria-label={`Read ${post.title}`}
       >
@@ -50,7 +50,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
         </div>
 
         <h3 className={`${featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl'} font-extrabold leading-tight tracking-tight text-dark`}>
-          <Link to={`/blog/${post.slug}`} className="rounded-md outline-none transition-colors hover:text-primary-700 focus:ring-2 focus:ring-primary-500">
+          <Link to={`/blog/${post.slug}/`} className="rounded-md outline-none transition-colors hover:text-primary-700 focus:ring-2 focus:ring-primary-500">
             {post.title}
           </Link>
         </h3>
@@ -65,7 +65,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
             <span>{post.read_time} min read</span>
           </div>
           <Link
-            to={`/blog/${post.slug}`}
+            to={`/blog/${post.slug}/`}
             className="inline-flex min-h-11 items-center gap-1 rounded-xl px-2 text-sm font-extrabold text-dark transition-colors hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
           >
             Read article
