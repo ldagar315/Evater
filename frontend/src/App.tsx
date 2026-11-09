@@ -122,9 +122,10 @@ function AppRoutes() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
 
+          <Route path="/auth" element={loading ? <LoadingFallback /> : user ? <Navigate to="/home" replace /> : <AuthPage />} />
+
           {!user ? (
             <>
-              <Route path="/auth" element={<AuthPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </>
           ) : (
@@ -223,5 +224,4 @@ function App() {
 }
 
 export default App
-
 

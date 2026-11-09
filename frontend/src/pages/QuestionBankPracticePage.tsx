@@ -222,6 +222,8 @@ export function QuestionBankPracticePage() {
   const [timedOut, setTimedOut] = useState(false)
   const [loading, setLoading] = useState(false)
   const [chaptersLoading, setChaptersLoading] = useState(true)
+  const [chapterError, setChapterError] = useState('')
+  const [chapterReload, setChapterReload] = useState(0)
   const [chapters, setChapters] = useState<QuestionBankChapter[]>([])
   const [selectedSubjectId, setSelectedSubjectId] = useState('science')
   const [selectedChapterId, setSelectedChapterId] = useState(CLASS8_SCIENCE_CHAPTER1_ID)
@@ -292,6 +294,8 @@ export function QuestionBankPracticePage() {
   useEffect(() => {
     let active = true
     setChaptersLoading(true)
+    setChapterError('')
+    setChapters([])
     void getQuestionBankChapters(SUBJECT_NAME_BY_ID[selectedSubjectId])
       .then((availableChapters) => {
         if (!active) return
@@ -301,7 +305,7 @@ export function QuestionBankPracticePage() {
         }
       })
       .catch((caught) => {
-        if (active) setError(caught instanceof Error ? caught.message : 'Could not load practice chapters.')
+        if (active) setChapterError(caught instanceof Error ? caught.message : 'Could not load practice chapters.')
       })
       .finally(() => {
         if (active) setChaptersLoading(false)
@@ -310,7 +314,7 @@ export function QuestionBankPracticePage() {
     return () => {
       active = false
     }
-  }, [selectedSubjectId])
+  }, [selectedSubjectId, chapterReload])
 
   const submit = useCallback(async (wasTimedOut = false) => {
     if (!test || loading) return
@@ -762,18 +766,22 @@ export function QuestionBankPracticePage() {
                   <label htmlFor="practice-chapter" className="text-sm font-bold text-dark">Chapter</label>
                   <select
                     id="practice-chapter"
-                    value={selectedChapterId}
+                    aria-busy={chaptersLoading}
+                    value={chaptersLoading || chapters.length === 0 ? '' : selectedChapterId}
                     onChange={(event) => setSelectedChapterId(event.target.value)}
                     disabled={chaptersLoading || loading || chapters.length === 0}
                     className="mt-3 min-h-12 w-full rounded-xl border border-neutral-200 bg-white px-3 text-sm font-semibold text-dark outline-none transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
                   >
+                    {(chaptersLoading || chapters.length === 0) && <option value="">{chaptersLoading ? 'Loading chapters...' : chapterError ? 'Could not load chapters' : 'No chapters available'}</option>}
                     {chapters.map((chapter) => (
                       <option key={chapter.id} value={chapter.id}>
                         Chapter {chapter.sequence_number} · {chapter.title}
                       </option>
                     ))}
                   </select>
-                  <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-500">{selectedChapter?.description || 'Select a chapter to begin.'}</p>
+                  {chaptersLoading && <p role="status" className="mt-2 text-sm text-neutral-500">Loading chapters. The first visit can take a moment.</p>}
+                  {chapterError && <div role="alert" className="mt-2 text-sm text-red-700">{chapterError} <button type="button" onClick={() => setChapterReload((value) => value + 1)} className="min-h-11 font-semibold underline">Retry chapters</button></div>}
+                  {!chaptersLoading && !chapterError && <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-500">{selectedChapter?.description || 'No published chapters are available for this subject yet.'}</p>}
                 </div>
 
                 <fieldset className="border-t border-neutral-100 pt-7">

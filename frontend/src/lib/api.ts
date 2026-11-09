@@ -1,4 +1,5 @@
 import { supabase } from './supabase'
+import { createChapterCache } from './chapterCache'
 
 const DEFAULT_MODAL_API_URL = 'https://ldagar315--evater-v1-wrapper.modal.run'
 
@@ -182,11 +183,17 @@ export async function createQuestionBankReviewTest(questionCount = 10): Promise<
   return parseApiResponse<QuestionBankTest>(response)
 }
 
-export async function getQuestionBankChapters(subject?: string): Promise<QuestionBankChapter[]> {
-  const query = subject ? `?subject=${encodeURIComponent(subject)}` : ''
-  const response = await apiFetch(`${MODAL_API_URL}/api/v1/chapters${query}`)
-  const payload = await parseApiResponse<{ chapters: QuestionBankChapter[] }>(response)
-  return payload.chapters
+const loadCachedChapters = createChapterCache<QuestionBankChapter[]>()
+export async function getQuestionBankChapters(subject = 'Science'): Promise<QuestionBankChapter[]> {
+  const { data: { session } } = await supabase.auth.getSession()
+  if (!session?.user?.id || !session.access_token) throw new Error('Please sign in again to load chapters.')
+  return loadCachedChapters(session.user.id, subject, async () => {
+    const response = await fetch(`${MODAL_API_URL}/api/v1/chapters?subject=${encodeURIComponent(subject)}`, {
+      headers: { Authorization: `Bearer ${session.access_token}` },
+    })
+    const payload = await parseApiResponse<{ chapters: QuestionBankChapter[] }>(response)
+    return payload.chapters
+  })
 }
 
 export async function submitQuestionBankBlock(
