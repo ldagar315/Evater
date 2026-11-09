@@ -77,7 +77,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function AppRoutes() {
   const { user, loading, error } = useAuthContext()
   const location = useLocation()
-  const isPublicRoute = location.pathname === '/' || location.pathname === '/about' || location.pathname === '/auth' || location.pathname.startsWith('/blog') || location.pathname === '/forgot-password' || location.pathname === '/reset-password'
+  const isPublicRoute = location.pathname === '/' || location.pathname.replace(/\/$/, '') === '/about' || location.pathname === '/auth' || location.pathname.startsWith('/blog') || location.pathname === '/forgot-password' || location.pathname === '/reset-password'
 
   // Public pages should remain useful when auth is slow or unavailable. This is
   // especially important for the blog, which must be crawlable without a session.
@@ -111,9 +111,9 @@ function AppRoutes() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/privacy" element={<Navigate to="/about#privacy" replace />} />
-          <Route path="/terms" element={<Navigate to="/about#terms" replace />} />
-          <Route path="/contact" element={<Navigate to="/about" replace />} />
+          <Route path="/privacy" element={<Navigate to="/about/#privacy" replace />} />
+          <Route path="/terms" element={<Navigate to="/about/#terms" replace />} />
+          <Route path="/contact" element={<Navigate to="/about/" replace />} />
           <Route path="/general-feedback" element={
             <ProtectedRoute>
               <GeneralFeedbackPage />
@@ -226,4 +226,3 @@ function App() {
 }
 
 export default App
-
