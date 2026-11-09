@@ -53,6 +53,11 @@ to = "/index.html"
 status = 200
 
 [[redirects]]
+from = "/my-tests"
+to = "/index.html"
+status = 200
+
+[[redirects]]
 from = "/previous-tests"
 to = "/index.html"
 status = 200
