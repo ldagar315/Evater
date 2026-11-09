@@ -16,6 +16,7 @@ import { useProfile } from '../../hooks/useProfile'
 
 const memberLinks = [
   { label: 'Practice', to: '/practice' },
+  { label: 'My tests', to: '/my-tests' },
   { label: 'Leaderboard', to: '/leaderboard' },
   { label: 'Profile', to: '/profile' },
 ]
@@ -78,6 +79,7 @@ export function Header() {
             key={link.to}
             to={link.to}
             onClick={closeMenus}
+            aria-current={active ? 'page' : undefined}
             className={mobile
               ? `flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold transition-colors ${active ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-white hover:text-dark'}`
               : `min-h-10 rounded-xl px-3 text-sm font-bold transition-colors ${active ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-neutral-50 hover:text-dark'}`}
