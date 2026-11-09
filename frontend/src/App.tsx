@@ -20,6 +20,7 @@ const TakeTestPage = lazy(() => import('./pages/TakeTestPage').then((m) => ({ de
 const SubmitFeedbackPage = lazy(() => import('./pages/SubmitFeedbackPage').then((m) => ({ default: m.SubmitFeedbackPage })))
 const ViewFeedbackPage = lazy(() => import('./pages/ViewFeedbackPage').then((m) => ({ default: m.ViewFeedbackPage })))
 const GeneralFeedbackPage = lazy(() => import('./pages/GeneralFeedbackPage').then((m) => ({ default: m.GeneralFeedbackPage })))
+const MyTestsPage = lazy(() => import('./pages/MyTestsPage').then((m) => ({ default: m.MyTestsPage })))
 const PreviousTestsPage = lazy(() => import('./pages/PreviousTestsPage').then((m) => ({ default: m.PreviousTestsPage })))
 const PreviousFeedbacksPage = lazy(() => import('./pages/PreviousFeedbacksPage').then((m) => ({ default: m.PreviousFeedbacksPage })))
 const BlogPage = lazy(() => import('./pages/BlogPage').then((m) => ({ default: m.BlogPage })))
@@ -160,6 +161,7 @@ function AppRoutes() {
                   <LeagueInfoPage />
                 </ProtectedRoute>
               } />
+              <Route path="/my-tests" element={<ProtectedRoute><MyTestsPage /></ProtectedRoute>} />
               <Route path="/previous-tests" element={
                 <ProtectedRoute>
                   <PreviousTestsPage />
@@ -223,5 +225,4 @@ function App() {
 }
 
 export default App
-
 
