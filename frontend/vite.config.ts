@@ -7,17 +7,6 @@ import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
 const PRERENDER_ROUTES = [
   '/',
   '/about',
-  '/blog',
-  '/blog/cbse-class-8-science-study-plan-30-day-ncert-revision',
-  '/blog/active-recall-class-6-10-exams',
-  '/blog/ncert-class-8-science-prepare-chapter-tests',
-  '/blog/study-difficult-science-chapters-without-rote-memorisation',
-  '/blog/practice-tests-vs-revision-exam-scores',
-  '/blog/how-students-in-middle-school-should-learn',
-  '/blog/ncert-class-8-maths-baudhayana-pythagoras-theorem',
-  '/blog/ncert-class-8-science-light-mirrors-lenses-study-guide',
-  '/blog/ncert-class-8-maths-square-and-cube-study-guide',
-  '/blog/ncert-class-8-science-exploring-forces-study-guide',
   // Sample papers (kebab-case chapter slugs; same slugify rule as the backend
   // sample_papers_router). Hubs + Class 8 chapters, added with the routes PR.
   '/sample-papers',
@@ -51,6 +40,17 @@ const PRERENDER_ROUTES = [
   '/sample-papers/class-8/mathematics/tales-by-dots-and-lines',
   '/sample-papers/class-8/mathematics/algebra-play',
   '/sample-papers/class-8/mathematics/area',
+  '/blog',
+  '/blog/cbse-class-8-science-study-plan-30-day-ncert-revision',
+  '/blog/active-recall-class-6-10-exams',
+  '/blog/ncert-class-8-science-prepare-chapter-tests',
+  '/blog/study-difficult-science-chapters-without-rote-memorisation',
+  '/blog/practice-tests-vs-revision-exam-scores',
+  '/blog/how-students-in-middle-school-should-learn',
+  '/blog/ncert-class-8-maths-baudhayana-pythagoras-theorem',
+  '/blog/ncert-class-8-science-light-mirrors-lenses-study-guide',
+  '/blog/ncert-class-8-maths-square-and-cube-study-guide',
+  '/blog/ncert-class-8-science-exploring-forces-study-guide',
 ];
 
 // https://vitejs.dev/config/
