@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { Select } from '../components/ui/Select'
+import { SchoolSearch } from '../components/ui/SchoolSearch'
 import { Header } from '../components/layout/Header'
 import { useAuthContext } from '../contexts/AuthContext'
 import { useProfile } from '../hooks/useProfile'
@@ -38,7 +39,6 @@ export function ProfilePage() {
   const [school, setSchool] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
-  const [saved, setSaved] = useState(false)
 
   const gradeOptions = useMemo(
     () => Array.from({ length: 5 }, (_, index) => ({ value: index + 6, label: `Class ${index + 6}` })),
@@ -59,13 +59,11 @@ export function ProfilePage() {
     setSelectedGrade(profile?.grade?.toString() || '')
     setSchool(profile?.school || '')
     setError('')
-    setSaved(false)
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     setError('')
-    setSaved(false)
 
     if (!name.trim() || !selectedGrade || !school.trim()) {
       setError('Please complete your name, class, and school.')
@@ -90,7 +88,11 @@ export function ProfilePage() {
         return
       }
 
-      setSaved(true)
+      if (!result.data) {
+        setError('Your profile could not be confirmed saved. Please try again.')
+        return
+      }
+      navigate('/home', { replace: true })
     } catch (caught) {
       setError(getErrorMessage(caught))
     } finally {
@@ -202,7 +204,6 @@ export function ProfilePage() {
                 value={name}
                 onChange={(event) => {
                   setName(event.target.value)
-                  setSaved(false)
                 }}
                 required
                 placeholder="Enter your full name"
@@ -212,23 +213,13 @@ export function ProfilePage() {
                 value={selectedGrade}
                 onChange={(event) => {
                   setSelectedGrade(event.target.value)
-                  setSaved(false)
                 }}
                 options={[{ value: '', label: 'Select your class' }, ...gradeOptions]}
                 required
               />
             </div>
 
-            <Input
-              label="School"
-              value={school}
-              onChange={(event) => {
-                setSchool(event.target.value)
-                setSaved(false)
-              }}
-              required
-              placeholder="Enter your school name"
-            />
+            <SchoolSearch value={school} onChange={setSchool} />
 
             <div>
               <label className="block text-sm font-medium text-dark">Email address</label>
@@ -245,11 +236,6 @@ export function ProfilePage() {
               </div>
             )}
 
-            {saved && (
-              <div className="flex items-center gap-2 rounded-xl border border-primary-200 bg-primary-50 px-4 py-3 text-sm font-semibold text-primary-800" role="status" aria-live="polite">
-                <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> Profile saved successfully.
-              </div>
-            )}
 
             <div className="flex flex-col gap-3 border-t border-neutral-100 pt-6 sm:flex-row sm:justify-end">
               {profile && (
@@ -275,4 +261,3 @@ export function ProfilePage() {
     </div>
   )
 }
-
