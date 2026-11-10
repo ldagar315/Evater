@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { SITE_URL } from './seoConfig'
+import { SITE_URL, publicPagePath } from './seoConfig'
 
 interface SeoProps {
   title: string
@@ -59,7 +59,7 @@ export function Seo({
   jsonLd,
 }: SeoProps) {
   useEffect(() => {
-    const canonicalUrl = `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+    const canonicalUrl = `${SITE_URL}${publicPagePath(path)}`
     const previousTitle = document.title
     document.title = title
 

@@ -12,15 +12,15 @@ const footerLinks = {
     { label: "Profile", to: "/profile" },
   ],
   resources: [
-    { label: "Blog", to: "/blog" },
-    { label: "Study guides", to: "/blog?category=study-skills" },
-    { label: "About Evater", to: "/about" },
+    { label: "Blog", to: "/blog/" },
+    { label: "Study guides", to: "/blog/?category=study-skills" },
+    { label: "About Evater", to: "/about/" },
     { label: "Share feedback", to: "/general-feedback" },
   ],
   legal: [
-    { label: "Privacy overview", to: "/about#privacy" },
-    { label: "Terms overview", to: "/about#terms" },
-    { label: "Cookie overview", to: "/about#cookies" },
+    { label: "Privacy overview", to: "/about/#privacy" },
+    { label: "Terms overview", to: "/about/#terms" },
+    { label: "Cookie overview", to: "/about/#cookies" },
   ],
 };
 

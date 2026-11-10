@@ -101,7 +101,7 @@ export function BlogPostPage() {
               <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">404 article</p>
               <h1 className="text-3xl font-extrabold text-dark">This guide has moved</h1>
               <p className="mx-auto mt-3 max-w-md leading-7 text-neutral-500">The article may have been unpublished, or the URL may be incomplete.</p>
-              <Button onClick={() => navigate('/blog')} className="mt-7">Back to the blog</Button>
+              <Button onClick={() => navigate('/blog/')} className="mt-7">Back to the blog</Button>
             </CardContent>
           </Card>
         </main>
@@ -110,7 +110,7 @@ export function BlogPostPage() {
     )
   }
 
-  const path = `/blog/${post.slug}`
+  const path = `/blog/${post.slug}/`
   const articleSchema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -131,7 +131,7 @@ export function BlogPostPage() {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
           { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE_URL}${path}` },
         ],
       },
@@ -182,7 +182,7 @@ export function BlogPostPage() {
               <Home className="h-4 w-4" aria-hidden="true" /> <span className="sr-only sm:not-sr-only">Home</span>
             </Link>
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
-            <Link to="/blog" className="rounded-lg px-2 py-2 hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500">Blog</Link>
+            <Link to="/blog/" className="rounded-lg px-2 py-2 hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500">Blog</Link>
             <ChevronRight className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span className="truncate rounded-lg px-2 py-2 font-semibold text-dark" aria-current="page">{post.title}</span>
           </div>
@@ -192,7 +192,7 @@ export function BlogPostPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900/60 via-[#173b38]/90 to-dark/95" />
           <img src={post.featured_image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-screen" width={1400} height={900} />
           <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-            <Link to={`/blog?category=${encodeURIComponent(post.category.toLowerCase().replace(/[^a-z0-9]+/g, '-'))}`} className="inline-flex min-h-10 items-center rounded-full border border-secondary-300/40 bg-secondary-300/15 px-4 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-100 hover:bg-secondary-300/25 focus:outline-none focus:ring-2 focus:ring-secondary-300">
+            <Link to={`/blog/?category=${encodeURIComponent(post.category.toLowerCase().replace(/[^a-z0-9]+/g, '-'))}`} className="inline-flex min-h-10 items-center rounded-full border border-secondary-300/40 bg-secondary-300/15 px-4 text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-100 hover:bg-secondary-300/25 focus:outline-none focus:ring-2 focus:ring-secondary-300">
               {post.category}
             </Link>
             <h1 className="mt-7 max-w-4xl text-4xl font-extrabold leading-[1.08] tracking-[-0.04em] sm:text-5xl lg:text-6xl">{post.title}</h1>
@@ -272,7 +272,7 @@ export function BlogPostPage() {
                   <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Keep learning</p>
                   <h2 id="related-heading" className="text-3xl font-extrabold tracking-tight text-dark">More like this</h2>
                 </div>
-                <Link to="/blog" className="hidden min-h-11 items-center gap-1 rounded-xl px-2 text-sm font-extrabold text-primary-700 hover:bg-primary-50 sm:inline-flex">All articles <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+                <Link to="/blog/" className="hidden min-h-11 items-center gap-1 rounded-xl px-2 text-sm font-extrabold text-primary-700 hover:bg-primary-50 sm:inline-flex">All articles <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
               </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {relatedPosts.map((relatedPost) => <BlogCard key={relatedPost.id} post={relatedPost} />)}
@@ -290,7 +290,7 @@ export function BlogPostPage() {
             </div>
             <div className="flex shrink-0 flex-wrap gap-3">
               <Link to={user ? '/home' : '/auth'} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{user ? 'Go to dashboard' : 'Get started free'}</Link>
-              <Link to="/blog" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">Read more articles <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" /></Link>
+              <Link to="/blog/" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">Read more articles <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" /></Link>
             </div>
           </div>
         </section>

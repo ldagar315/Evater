@@ -34,7 +34,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const isBlogPage = location.pathname.startsWith('/blog')
-  const isAboutPage = location.pathname === '/about'
+  const isAboutPage = location.pathname.replace(/\/$/, '') === '/about'
   const displayName = profile?.name || profile?.user_name || 'User'
   const initials = displayName.trim().charAt(0).toUpperCase() || 'U'
 
@@ -113,14 +113,14 @@ export function Header() {
             <div className="hidden h-6 w-px bg-neutral-200 lg:block" aria-hidden="true" />
             <nav aria-label="Information navigation" className="hidden items-center gap-1 lg:flex">
               <Link
-                to="/blog"
+                to="/blog/"
                 onClick={closeMenus}
                 className={`min-h-10 rounded-xl px-3 text-sm font-semibold transition-colors ${isBlogPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-500 hover:bg-neutral-50 hover:text-dark'}`}
               >
                 Blog
               </Link>
               <Link
-                to="/about"
+                to="/about/"
                 onClick={closeMenus}
                 aria-current={isAboutPage ? 'page' : undefined}
                 className={`min-h-10 rounded-xl px-3 text-sm font-semibold transition-colors ${isAboutPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-500 hover:bg-neutral-50 hover:text-dark'}`}
@@ -246,14 +246,14 @@ export function Header() {
 
             <nav aria-label="Information navigation" className="space-y-1 border-t border-neutral-200 pt-4">
               <Link
-                to="/blog"
+                to="/blog/"
                 onClick={closeMenus}
                 className={`flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold transition-colors ${isBlogPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-white hover:text-dark'}`}
               >
                 Blog
               </Link>
               <Link
-                to="/about"
+                to="/about/"
                 onClick={closeMenus}
                 aria-current={isAboutPage ? 'page' : undefined}
                 className={`flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold transition-colors ${isAboutPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-white hover:text-dark'}`}

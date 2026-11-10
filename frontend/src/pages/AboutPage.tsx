@@ -41,7 +41,7 @@ export function AboutPage() {
         '@type': 'AboutPage',
         name: 'About Evater',
         description: aboutDescription,
-        url: `${SITE_URL}/about`,
+        url: `${SITE_URL}/about/`,
         mainEntity: { '@id': `${SITE_URL}/#organization` },
       },
       {
@@ -97,7 +97,7 @@ export function AboutPage() {
                 <Link to={primaryPath} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">
                   {primaryLabel} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Link>
-                <Link to="/blog" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">
+                <Link to="/blog/" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">
                   Read the learning journal
                 </Link>
               </div>

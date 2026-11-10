@@ -58,7 +58,7 @@ export function BlogSection({ showInDashboard = false }: BlogSectionProps) {
           </div>
           
           <Button
-            onClick={() => navigate('/blog')}
+            onClick={() => navigate('/blog/')}
             variant="outline"
             size="sm"
             className="w-full flex items-center justify-center text-purple-600 border-purple-300 hover:bg-purple-50"
@@ -91,7 +91,7 @@ export function BlogSection({ showInDashboard = false }: BlogSectionProps) {
         
         <div className="text-center">
           <Link
-            to="/blog"
+            to="/blog/"
             className="inline-flex min-h-12 items-center justify-center rounded-lg bg-primary-500 px-8 py-3 text-lg font-medium text-white shadow-lg transition-all duration-200 hover:bg-primary-600 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           >
             View All Posts

@@ -67,13 +67,13 @@ export function BlogPage() {
     '@type': 'CollectionPage',
     name: 'Evater Learning Journal',
     description: pageDescription,
-    url: `${SITE_URL}/blog`,
+    url: `${SITE_URL}/blog/`,
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: filteredPosts.map((post, index) => ({
         '@type': 'ListItem',
         position: index + 1,
-        url: `${SITE_URL}/blog/${post.slug}`,
+        url: `${SITE_URL}/blog/${post.slug}/`,
         name: post.title,
       })),
     },
@@ -152,7 +152,7 @@ export function BlogPage() {
             </div>
             <nav aria-label="Blog categories" className="flex flex-wrap gap-2 lg:max-w-2xl lg:justify-end">
               <Link
-                to="/blog"
+                to="/blog/"
                 className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 ${!selectedCategory ? 'border-dark bg-dark text-white' : 'border-neutral-300 bg-white text-neutral-600 hover:border-primary-300 hover:text-primary-700'}`}
               >
                 {!selectedCategory && <Check className="h-4 w-4" aria-hidden="true" />} All articles
@@ -162,7 +162,7 @@ export function BlogPage() {
                 return (
                   <Link
                     key={category.id}
-                    to={`/blog?category=${encodeURIComponent(category.slug)}`}
+                    to={`/blog/?category=${encodeURIComponent(category.slug)}`}
                     className={`inline-flex min-h-11 items-center rounded-full border px-4 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 ${active ? 'border-primary-700 bg-primary-700 text-white' : 'border-neutral-300 bg-white text-neutral-600 hover:border-primary-300 hover:text-primary-700'}`}
                   >
                     {category.name} <span className="ml-1.5 text-xs opacity-70">{category.post_count}</span>
@@ -179,7 +179,7 @@ export function BlogPage() {
                   <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Start here</p>
                   <h2 id="featured-heading" className="text-2xl font-extrabold tracking-tight text-dark sm:text-3xl">Featured guide</h2>
                 </div>
-                <Link to={`/blog/${featuredPost.slug}`} className="hidden min-h-11 items-center gap-1 rounded-xl px-2 text-sm font-bold text-primary-700 hover:bg-primary-50 sm:inline-flex">
+                <Link to={`/blog/${featuredPost.slug}/`} className="hidden min-h-11 items-center gap-1 rounded-xl px-2 text-sm font-bold text-primary-700 hover:bg-primary-50 sm:inline-flex">
                   Read the guide <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>

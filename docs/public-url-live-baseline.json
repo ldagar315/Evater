@@ -1,0 +1,71 @@
+{
+  "checked_at": "2026-11-10T01:12:20+05:30",
+  "scope": "Read-only baseline before PR; production still has old no-slash canonicals. Target status only, not indexing proof.",
+  "pages": [
+    {
+      "url": "https://evater.xyz/",
+      "status": 200,
+      "final_url": "https://evater.xyz/"
+    },
+    {
+      "url": "https://evater.xyz/about/",
+      "status": 200,
+      "final_url": "https://evater.xyz/about/"
+    },
+    {
+      "url": "https://evater.xyz/blog/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/"
+    },
+    {
+      "url": "https://evater.xyz/blog/cbse-class-8-science-study-plan-30-day-ncert-revision/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/cbse-class-8-science-study-plan-30-day-ncert-revision/"
+    },
+    {
+      "url": "https://evater.xyz/blog/active-recall-class-6-10-exams/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/active-recall-class-6-10-exams/"
+    },
+    {
+      "url": "https://evater.xyz/blog/ncert-class-8-science-prepare-chapter-tests/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/ncert-class-8-science-prepare-chapter-tests/"
+    },
+    {
+      "url": "https://evater.xyz/blog/study-difficult-science-chapters-without-rote-memorisation/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/study-difficult-science-chapters-without-rote-memorisation/"
+    },
+    {
+      "url": "https://evater.xyz/blog/practice-tests-vs-revision-exam-scores/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/practice-tests-vs-revision-exam-scores/"
+    },
+    {
+      "url": "https://evater.xyz/blog/how-students-in-middle-school-should-learn/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/how-students-in-middle-school-should-learn/"
+    },
+    {
+      "url": "https://evater.xyz/blog/ncert-class-8-maths-baudhayana-pythagoras-theorem/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/ncert-class-8-maths-baudhayana-pythagoras-theorem/"
+    },
+    {
+      "url": "https://evater.xyz/blog/ncert-class-8-science-light-mirrors-lenses-study-guide/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/ncert-class-8-science-light-mirrors-lenses-study-guide/"
+    },
+    {
+      "url": "https://evater.xyz/blog/ncert-class-8-maths-square-and-cube-study-guide/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/ncert-class-8-maths-square-and-cube-study-guide/"
+    },
+    {
+      "url": "https://evater.xyz/blog/ncert-class-8-science-exploring-forces-study-guide/",
+      "status": 200,
+      "final_url": "https://evater.xyz/blog/ncert-class-8-science-exploring-forces-study-guide/"
+    }
+  ]
+}
