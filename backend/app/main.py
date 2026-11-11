@@ -3,7 +3,7 @@ import os
 
 from fastapi import FastAPI
 
-from .routers import test_router, feedback_router, viva_router, question_bank_router, leaderboard_router
+from .routers import test_router, feedback_router, viva_router, question_bank_router, leaderboard_router, sample_papers_router
 from .cors import add_cors_middleware
 from .config import get_settings, missing_critical_settings
 from .errors import RequestIDMiddleware, register_error_handlers
@@ -36,6 +36,8 @@ def create_app() -> FastAPI:
     app.include_router(question_bank_router.router, prefix="/api/v1", tags=["Question Bank"])
     app.include_router(leaderboard_router.router, prefix="/api/v1", tags=["Leaderboard"])
     app.include_router(viva_router.router, tags=["Viva WebSocket"])
+    # Public (unauthenticated) read-only routes for the SEO sample-paper pages.
+    app.include_router(sample_papers_router.router, prefix="/api/v1", tags=["Sample Papers"])
     return app
 
 

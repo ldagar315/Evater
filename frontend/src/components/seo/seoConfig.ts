@@ -6,7 +6,7 @@ export function publicPagePath(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`
   const match = normalized.match(/^([^?#]*)(.*)$/)!
   const pathname = match[1]
-  return (pathname === '/about' || pathname === '/about/' || pathname === '/blog' || (/^\/blog\/[^/.]+\/?$/.test(pathname)))
+  return (pathname.startsWith('/sample-papers') || pathname === '/about' || pathname === '/about/' || pathname === '/blog' || (/^\/blog\/[^/.]+\/?$/.test(pathname)))
     ? `${pathname.replace(/\/+$/, '')}/${match[2]}`
     : normalized
 }

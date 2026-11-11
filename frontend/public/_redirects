@@ -17,6 +17,9 @@
 /submit-feedback/* /index.html 200
 /view-feedback/* /index.html 200
 /blog/* /index.html 200
+/sample-papers /index.html 200
+/sample-papers/class-8 /index.html 200
+/sample-papers/* /index.html 200
 /about /index.html 200
 /privacy /index.html 200
 /terms /index.html 200
