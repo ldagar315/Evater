@@ -1,3 +1,4 @@
+import pytest
 import copy
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -16,7 +17,12 @@ class Query:
   return SimpleNamespace(data=([{'id':'curriculum-fixture','subject':'Science'}] if self.name=='curriculum_versions' else [chapter] if self.name=='chapters' else questions))
 class FakeDB:
  def table(self,name):return Query(name)
-r.create_supabase_service_client=lambda:FakeDB()
+@pytest.fixture(autouse=True)
+def offline_database(monkeypatch):
+ monkeypatch.setattr(r, "create_supabase_service_client", lambda:FakeDB())
+ reset()
+ yield
+ reset()
 def reset():r._response_cache.clear();r._rate_windows.clear()
 def test_success_key_is_public_only_here():
  reset();res=client.get('/api/v1/sample-papers/science/fixture-chapter');assert res.status_code==200;d=res.json();assert d['question_count']==15;assert d['questions'][0]['answer_summary']=='A. A answer';assert set(d['questions'][0])=={'position','id','question_type','question_text','options','answer_summary'}
