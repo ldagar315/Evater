@@ -52,7 +52,7 @@ const learningPillars = [
   },
 ]
 
-const focusAreas = ['Class 6–10 practice', 'Maths & Science', 'Chapter revision', 'Exam preparation']
+const focusAreas = ['Class 8 practice', 'Maths & Science', 'Chapter revision', 'Exam preparation']
 
 const feedbackPoints = [
   {
@@ -108,9 +108,9 @@ export function LandingPage() {
     <div className="min-h-screen bg-cream font-sans text-dark">
       <Seo
         title="Evater | Tests made fun. Progress made visible."
-        description="Evater helps students in Classes 6–10 take tests, understand feedback, and practise again without leaving the learning loop."
+        description="Evater helps Class 8 students practise Maths and Science, understand feedback, and decide what to review next."
         path="/"
-        keywords={['Class 6–10 practice', 'NCERT practice', 'study feedback', 'exam preparation', 'Evater']}
+        keywords={['Class 8 practice', 'NCERT practice', 'study feedback', 'exam preparation', 'Evater']}
         jsonLd={{
           '@context': 'https://schema.org',
           '@graph': [
@@ -119,7 +119,7 @@ export function LandingPage() {
               '@id': `${SITE_URL}/#website`,
               name: 'Evater',
               url: SITE_URL,
-              description: 'A focused test, feedback, and retry loop for students in Classes 6–10.',
+              description: 'A focused test, feedback, and retry loop for Class 8 Maths and Science.',
               publisher: { '@id': `${SITE_URL}/#organization` },
             },
             {
@@ -508,4 +508,3 @@ export function LandingPage() {
     </div>
   )
 }
-
