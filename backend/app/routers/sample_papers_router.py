@@ -19,6 +19,7 @@ from collections import deque
 
 from fastapi import APIRouter, HTTPException, Query, Request, Response
 
+from ..sample_paper_models import SamplePaper, SamplePapersIndex
 from ..question_bank import _correct_summary, to_public_question
 from ..supabase_client import create_supabase_service_client
 
@@ -175,7 +176,7 @@ def _pick_paper_questions(questions: List[Dict[str, Any]], count: int) -> List[D
     return picked
 
 
-@router.get("/sample-papers/index")
+@router.get("/sample-papers/index", response_model=SamplePapersIndex)
 def sample_papers_index(request: Request, response: Response, grade: int = Query(8, ge=6, le=10)) -> Dict[str, Any]:
     """Chapters with published-question counts, for the hub/subject pages."""
     _enforce_rate_limit(request)
@@ -217,7 +218,7 @@ def sample_papers_index(request: Request, response: Response, grade: int = Query
     return payload
 
 
-@router.get("/sample-papers/{subject}/{chapter_slug}")
+@router.get("/sample-papers/{subject}/{chapter_slug}", response_model=SamplePaper)
 def sample_paper(
     request: Request,
     response: Response,
