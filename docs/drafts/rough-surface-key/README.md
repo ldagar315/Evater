@@ -8,4 +8,6 @@ The proposed data-only SQL changes one exact published row, its source-answer le
 
 Offline tests reproduce the wrong key with the existing scorer and test the proposed B key, unchanged metadata, both ETL-convention hashes, and narrow rollback safeguards. Passing these tests is not PostgreSQL or production-schema rehearsal. No live fix or historical repair is claimed.
 
-Run from repository root: python -m pytest docs/drafts/rough-surface-key/test_light_rough_surface_correction.py -q
+Run from repository root: python -m pytest --import-mode=importlib docs/drafts/rough-surface-key/5-test_light_key_review.py -q
+
+The uploaded fixture names have numeric prefixes: 1-correct-one-light-answer.DRAFT.sql, 2-published-row.json and 3-corrected-row-proposal.json. The regression test references those exact filenames. These are review artifacts outside the migration path.
