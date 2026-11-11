@@ -8,6 +8,30 @@ const teamAuthor = {
 
 export const blogPosts: BlogPost[] = [
   {
+    "id": "11",
+    "title": "NCERT Class 8 Maths Chapter 4: Quadrilaterals - Study Guide",
+    "slug": "ncert-class-8-maths-quadrilaterals-study-guide",
+    "excerpt": "Chapter 4 of Ganita Prakash takes the four-sided shapes you have drawn since primary school and asks a harder question: what exactly makes a square a square, and when is a rhombus secretly a square too?",
+    "content": "Chapter 4 of Ganita Prakash takes the four-sided shapes you have drawn since primary school and asks a harder question: what exactly makes a square a square, and when is a rhombus secretly a square too?\n\n## What this chapter is about\n\nGanita Prakash Chapter 4 is about four-sided figures - quadrilaterals. You start with the shapes you already know, rectangles and squares, then widen the family: parallelograms, rhombuses, kites and trapeziums. The point is not memorising a list. The chapter keeps asking you to fold, measure and argue until each property feels discovered rather than dictated.\n\n## The angle sum that starts everything\n\nSplit any quadrilateral along a diagonal and you get two triangles. Each triangle's angles add up to 180 degrees, so the four angles of any quadrilateral add up to 360 degrees, whatever its shape. This one fact powers most of the chapter's reasoning. If three angles of a quadrilateral are 80, 100 and 70 degrees, the fourth has to be 110, because the total must be 360.\n\n## The six shapes and how they relate\n\n- Rectangle: four right angles. Opposite sides equal, diagonals equal in length and bisecting each other.\n- Square: a rectangle with all four sides equal. Diagonals equal, bisecting each other, and meeting at 90 degrees.\n- Parallelogram: both pairs of opposite sides parallel. Opposite sides and opposite angles equal, diagonals bisecting each other.\n- Rhombus: all four sides equal. Opposite angles equal, diagonals bisecting each other at 90 degrees and bisecting the corner angles.\n- Kite: two non-overlapping adjacent pairs of equal sides (AB = BC and CD = DA). Every rhombus is also a kite.\n- Trapezium: at least one pair of parallel opposite sides - so in this book, every parallelogram is also a trapezium.\n\n## The family insight: a square is a rectangle and a rhombus\n\nThis is the idea students trip over. A special case is not a different shape. A square has four equal sides, so it satisfies the rhombus definition. It also has four right angles, so it satisfies the rectangle definition. A square is both: a rhombus with right angles, or a rectangle with equal sides. The reverse is false - a rhombus need not be a square (its angles can be slanted) and a rectangle need not be a square (its sides can be unequal). Rectangles, squares and rhombuses are all special parallelograms, because in each one both pairs of opposite sides are parallel. The kite family overlaps here too: every rhombus is a kite, and the one shape that is both a kite and a rectangle is the square. The chapter's own exercise asks you to draw this family map.\n\n![Quadrilateral family map: squares are both rectangles and rhombuses; parallelograms are trapeziums under the book's inclusive definition; rhombuses are also kites.](/blog/diagrams/quadrilateral-family.svg)\n\n## Common mistakes to avoid\n\n- Using 180 degrees for a quadrilateral's angle sum. That is the triangle rule; quadrilaterals total 360 degrees.\n- Saying \"a square is not a rhombus\". It is - a rhombus with right angles.\n- Thinking four equal sides make a square. A rhombus has four equal sides and need have no right angle.\n- Assuming diagonals always bisect each other. That holds for parallelograms (including rectangles, rhombuses and squares) but not for kites or for trapeziums that are not parallelograms.\n\n## How to practise this chapter\n\nSketch each shape from its definition alone, then check which properties your sketch actually shows. Play the takeaway game: a rhombus, but one angle is exactly 90 degrees - what shape do you get? (A square.) Short mixed question sets turn these definitions into reflex. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.",
+    "featured_image": 'https://images.pexels.com/photos/5412233/pexels-photo-5412233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    "category": "Class 8 Maths",
+    "tags": [
+        "Class 8 Maths",
+        "NCERT",
+        "Ganita Prakash",
+        "Geometry"
+    ],
+    "published_date": "2026-11-11",
+    "read_time": 6,
+    "is_featured": false,
+    "status": "published",
+    "seo": {
+        "meta_title": "NCERT Class 8 Maths Chapter 4: Quadrilaterals - Study Guide",
+        "meta_description": "Ganita Prakash Chapter 4 turns four-sided shapes into one connected family. Learn rectangles, squares, parallelograms, rhombuses, kites and trapeziums, and the mistakes to skip."
+    },
+    "author": teamAuthor
+  },
+  {
     id: '9',
     title: 'NCERT Class 8 Maths Chapter 1: A Square and A Cube - Study Guide',
     slug: 'ncert-class-8-maths-square-and-cube-study-guide',
