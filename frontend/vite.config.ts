@@ -18,7 +18,7 @@ const PRERENDER_ROUTES = [
   '/blog/ncert-class-8-science-light-mirrors-lenses-study-guide',
   '/blog/ncert-class-8-maths-square-and-cube-study-guide',
   '/blog/ncert-class-8-science-exploring-forces-study-guide',
-  '/blog/ncert-class-8-maths-quadrilaterals-study-guide',
+  '/blog/quadrilaterals-shape-properties-guide',
 ];
 
 // https://vitejs.dev/config/
