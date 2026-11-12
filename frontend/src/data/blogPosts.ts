@@ -8,6 +8,54 @@ const teamAuthor = {
 
 export const blogPosts: BlogPost[] = [
   {
+    "id": "12",
+    "title": "NCERT Class 8 Science Chapter 6: Pressure, Winds, Storms, and Cyclones - Study Guide",
+    "slug": "ncert-class-8-science-pressure-winds-storms-cyclones-study-guide",
+    "excerpt": "Why do water tanks sit on the roof, why can a storm rip a roof off a house, and what makes a cyclone spin? Curiosity Chapter 6 answers all three with one idea: pressure.",
+    "content": "Why do water tanks sit on the roof, why can a storm rip a roof off a house, and what makes a cyclone spin? Curiosity Chapter 6 answers all three with one idea: pressure.\n\n## What this chapter is about\n\nThe new Class 8 Science book, Curiosity, devotes Chapter 6 to a chain of ideas that runs from a schoolbag strap to a tropical cyclone. Force acting over an area gives pressure. Air itself exerts pressure. Differences in air pressure make wind. And extreme pressure differences build storms, thunderstorms and cyclones. Learn the chain in order and each event stops being a separate fact to memorise.\n\n## Pressure: force acting on an area\n\nThe same force feels sharper over a smaller area. That is why a nail's point enters wood while its flat head does not, and why wide bag straps hurt your shoulders less than thin ones. Pressure is force divided by area, measured in pascals (N/m2). Liquids exert pressure too, and it grows with depth - which is why water tanks are placed at a height: the tall column of water below the tank supplies the pressure that pushes water through your taps.\n\n## Air pushes too\n\nAir has weight, and the whole atmosphere presses on us from every direction. We do not feel it because our bodies push back with equal pressure. You can see it with a rubber sucker pressed onto a smooth tile: pressing pushes most of the air out, and the outside air pressure holds the sucker in place.\n\n## Pressure differences make wind\n\nUneven heating of the Earth's surface creates pressure differences, and air moves from a high-pressure region to a low-pressure one. That moving air is wind. Sea breeze and land breeze are everyday examples: by day the land heats faster, warm air rises, and cooler air flows in from the sea; at night the pattern reverses. The chapter also uses two hanging balloons to show how moving air can reduce pressure between them. Strong winds can damage roofs, but opening doors and windows is not a safety measure. During a cyclone, keep doors and windows shut, stay away from glass, and follow official warnings and evacuation instructions. Do not go outside during the calm eye of the storm; dangerous winds can return.\n\n## Storms, lightning and cyclones\n\nWhen warm, moist air rises fast, it cools, its water vapour condenses into clouds, and rain, hail or snow follows: a storm. Inside storm clouds, ice particles and water droplets rub together and separate electric charge. When the built-up charge jumps - within a cloud, between clouds, or down to the ground - you see lightning and hear thunder. Pre-monsoon thunderstorms have local names, like Kalboishakhi in West Bengal, Bihar and Jharkhand and Bordoisila in Assam. A lightning conductor is part of a properly installed lightning-protection system that provides a path for electric charge into the ground. It is not a reason to stay outdoors during a thunderstorm.\n\nA cyclone can develop over a warm ocean as rising moist air condenses and releases heat. Surrounding air moves towards the low-pressure centre, and the Earth's rotation helps set the system spinning. The centre is called the eye; the strongest winds and heaviest rain are around it. When a cyclone moves over land, it loses its warm-ocean energy supply and usually weakens, but damaging winds, flooding and storm surge can continue. A storm surge is seawater driven towards the coast by a storm. The India Meteorological Department (IMD) tracks cyclones and issues warnings; follow official alerts and evacuation instructions.\n\n![Cyclone cross-section: warm moist air rises in the eyewall around the calm eye.](/blog/diagrams/cyclone-cross-section.svg)\n\n## Common mistakes to avoid\n\n- Mixing up force and pressure. A small force on a tiny area can produce more pressure than a large force spread wide.\n- Saying wind blows from low pressure to high pressure. It is the other way: high to low, like air escaping a balloon.\n- Mistaking the calm eye for an all-clear. Stay sheltered until officials say it is safe; dangerous winds can return as the eye passes.\n- Thinking lightning comes from clouds colliding. It is electric charge, built up by rubbing ice and water droplets inside the cloud, suddenly discharging.\n\n## How to practise this chapter\n\nExplain each link of the chain aloud - force and area, air pressure, wind, storm, cyclone - then test yourself with mixed questions until the order is automatic. Notice that Chapter 5's ideas are doing the work here: pressure is force acting on an area. [Evater practice tests](/practice) can help you turn chapter reading into an attempt-and-feedback loop, free to try.",
+    "featured_image": "https://images.pexels.com/photos/5412233/pexels-photo-5412233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "category": "Class 8 Science",
+    "tags": [
+        "Class 8 Science",
+        "Pressure",
+        "Winds",
+        "Cyclones"
+    ],
+    "published_date": "2026-11-12",
+    "read_time": 6,
+    "is_featured": false,
+    "status": "published",
+    "seo": {
+        "meta_title": "NCERT Class 8 Science Chapter 6: Pressure, Winds, Storms, and Cyclones - Study Guide",
+        "meta_description": "Curiosity Chapter 6 connects a schoolbag strap to a spinning cyclone with one idea: pressure. A clear study guide to winds, storms, lightning and cyclone safety."
+    },
+    "author": teamAuthor
+  },
+  {
+    "id": "11",
+    "title": "Quadrilaterals: how to name a shape from its properties",
+    "slug": "quadrilaterals-shape-properties-guide",
+    "excerpt": "A tilted square is still a square. A long, narrow rectangle is still a rectangle. The picture is a clue, but the sides and angles decide the name. When a geometry question gives you measurements or parallel-side markings, use those facts instead of judging how the drawing looks.",
+    "content": "## Classify a shape by checking its properties\n\nA tilted square is still a square. A long, narrow rectangle is still a rectangle. The picture is a clue, but the sides and angles decide the name. When a geometry question gives you measurements or parallel-side markings, use those facts instead of judging how the drawing looks.\n\nThis guide is about ordinary, non-self-crossing quadrilaterals: closed shapes made from four straight sides. Start with a checklist: Which sides are parallel? Which sides are equal? Which angles are right angles?\n\n## One shape can have several names\n\nA parallelogram has two pairs of parallel opposite sides. A rectangle has four right angles. A rhombus has four equal sides. A square has both four right angles and four equal sides, so it meets the definitions of both a rectangle and a rhombus. Those names do not cancel each other out.\n\nTry two examples. A rectangle with side lengths 9 cm and 4 cm is not a square, because all four sides are not equal. A rhombus with angles of 60 and 120 degrees is not a square, because its angles are not right angles. The extra condition is what makes a square special.\n\n## Check which definition the question uses\n\nSome shape names have more than one convention. A trapezium is often defined as having at least one pair of parallel opposite sides, but some courses use exactly one pair. Under the first definition, a parallelogram qualifies; under the second, it does not. Read the definition in your question or course before classifying it.\n\nFor a kite, this guide uses two separate pairs of adjacent equal sides. This inclusive definition allows a rhombus to be a kite. If your course excludes rhombuses from kites, follow that stated convention. A difference in definitions is not fixed by drawing the shape more carefully.\n\n## Use a property as evidence, not a shortcut\n\nIn a parallelogram, the diagonals cut each other into equal halves. A rectangle adds equal diagonal lengths. A rhombus adds perpendicular diagonals. A square has all of these properties.\n\nBe careful with the reverse direction. Equal diagonals alone do not prove a shape is a rectangle. Perpendicular diagonals alone do not prove it is a square. Ask what other information is given before deciding that a property identifies one shape.\n\n## Try these checks without looking back\n\n1. A quadrilateral has four equal sides and one right angle. What is its most specific name? A square: it is a rhombus, and a right angle forces the remaining angles to be right angles too.\n\n2. A shape has two pairs of parallel opposite sides. Must its diagonals have the same length? No. That information gives you a parallelogram, not necessarily a rectangle.\n\n3. Can changing a rectangle's orientation stop it being a rectangle? No. Turning the page does not change its side lengths, parallel sides or angles.\n\nFor each answer, write the fact that supports it. Then draw a different example that still fits the definition. That gives you something more useful than a memorised picture: a reason you can check.",
+    "featured_image": "https://images.pexels.com/photos/5412233/pexels-photo-5412233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "category": "Class 8 Maths",
+    "tags": [
+        "Geometry",
+        "Quadrilaterals",
+        "Shape properties"
+    ],
+    "published_date": "2026-11-12",
+    "read_time": 4,
+    "is_featured": false,
+    "status": "published",
+    "seo": {
+        "meta_title": "Quadrilaterals: how to name a shape from its properties",
+        "meta_description": "Classify quadrilaterals by their sides, angles and diagonals. Check naming conventions and test your reasoning with worked examples."
+    }
+,
+    "author": teamAuthor
+  },
+  {
     id: '9',
     title: 'NCERT Class 8 Maths Chapter 1: A Square and A Cube - Study Guide',
     slug: 'ncert-class-8-maths-square-and-cube-study-guide',

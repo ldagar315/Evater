@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 316" role="img" aria-label="Cross-section of a cyclone: warm moist air rises in the eyewall on each side of the calm eye, winds spiral in from higher pressure of about 1008 millibar, and the strongest winds and heaviest rain ring the eye">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#272426"/>
+    </marker>
+    <marker id="arrt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#37c2a3"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="460" height="316" fill="#fbfaf3"/>
+  <!-- mechanism notes -->
+  <text x="230" y="20" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#272426">Warm, moist air rises in the eyewall around the calm eye,</text>
+  <text x="230" y="38" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#272426">condenses and releases heat; Earth's rotation spins the inflow</text>
+  <!-- eye column: calm, no arrows -->
+  <text x="232" y="62" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" fill="#272426">Eye</text>
+  <line x1="216" y1="70" x2="216" y2="246" stroke="#585254" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <line x1="248" y1="70" x2="248" y2="246" stroke="#585254" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <!-- clouds over the eyewalls -->
+  <g fill="rgba(39,36,38,0.14)" stroke="#272426" stroke-width="1.5">
+    <ellipse cx="168" cy="70" rx="48" ry="20"/>
+    <ellipse cx="296" cy="70" rx="48" ry="20"/>
+  </g>
+  <!-- rain at the eyewalls -->
+  <g stroke="#585254" stroke-width="1.3">
+    <line x1="134" y1="94" x2="126" y2="118"/><line x1="146" y1="96" x2="138" y2="120"/><line x1="200" y1="96" x2="192" y2="120"/><line x1="210" y1="94" x2="202" y2="118"/>
+    <line x1="254" y1="94" x2="246" y2="118"/><line x1="266" y1="96" x2="258" y2="120"/><line x1="320" y1="96" x2="312" y2="120"/><line x1="332" y1="94" x2="324" y2="118"/>
+  </g>
+  <text x="14" y="150" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#272426">Strongest winds and</text>
+  <text x="14" y="166" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#272426">heaviest rain ring the eye</text>
+  <!-- rising air in the eyewalls, curving away from the eye -->
+  <g stroke="#37c2a3" stroke-width="2.2" fill="none">
+    <path d="M 162 246 C 156 200, 150 150, 146 100" marker-end="url(#arrt)"/>
+    <path d="M 190 246 C 186 200, 182 150, 178 100" marker-end="url(#arrt)"/>
+    <path d="M 274 246 C 278 200, 282 150, 286 100" marker-end="url(#arrt)"/>
+    <path d="M 302 246 C 308 200, 314 150, 318 100" marker-end="url(#arrt)"/>
+  </g>
+  <!-- spiralling inflow toward the eyewalls -->
+  <g stroke="#272426" stroke-width="2" fill="none">
+    <path d="M 16 214 C 70 204, 110 212, 150 230" marker-end="url(#arr)"/>
+    <path d="M 444 214 C 390 204, 350 212, 312 230" marker-end="url(#arr)"/>
+  </g>
+  <text x="14" y="192" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#272426">Winds spiral in from higher pressure (about 1008 mb)</text>
+  <!-- ocean -->
+  <rect x="0" y="252" width="460" height="28" fill="rgba(55,194,163,0.15)"/>
+  <g stroke="#37c2a3" stroke-width="1.5" fill="none">
+    <path d="M 0 252 q 15 -7 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0"/>
+  </g>
+  <text x="230" y="271" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#272426">Warm ocean</text>
+  <text x="230" y="306" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" fill="#585254">The eye is calm, with the lowest pressure (about 994 mb)</text>
+</svg>
