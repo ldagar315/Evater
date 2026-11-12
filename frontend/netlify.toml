@@ -97,10 +97,8 @@ from = "/view-feedback/*"
 to = "/index.html"
 status = 200
 
-[[redirects]]
-from = "/blog/*"
-to = "/index.html"
-status = 200
+# Blog pages are prerendered directory indexes. Do not add a /blog/* SPA
+# fallback: unknown article URLs must reach the real 404 below.
 
 [[redirects]]
 from = "/about"
