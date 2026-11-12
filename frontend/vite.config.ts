@@ -19,6 +19,7 @@ const PRERENDER_ROUTES = [
   '/blog/ncert-class-8-maths-square-and-cube-study-guide',
   '/blog/ncert-class-8-science-exploring-forces-study-guide',
   '/blog/quadrilaterals-shape-properties-guide',
+  '/blog/ncert-class-8-science-pressure-winds-storms-cyclones-study-guide',
 ];
 
 // https://vitejs.dev/config/
