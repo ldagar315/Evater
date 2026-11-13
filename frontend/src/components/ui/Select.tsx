@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string
@@ -6,15 +6,18 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   options: { value: string | number; label: string }[]
 }
 
-export function Select({ label, error, options, className = '', ...props }: SelectProps) {
+export function Select({ label, error, options, className = '', id, ...props }: SelectProps) {
+  const generatedId = useId()
+  const selectId = id ?? generatedId
   return (
     <div className="space-y-1">
       {label && (
-        <label className="block text-sm font-medium text-dark">
+        <label htmlFor={selectId} className="block text-sm font-medium text-dark">
           {label}
         </label>
       )}
       <select
+        id={selectId}
         className={`block min-h-11 w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 shadow-sm transition-colors duration-200 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 hover:border-neutral-400 ${error ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20' : ''} ${className}`}
         {...props}
       >
