@@ -311,7 +311,7 @@ export function HomePage() {
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary-50 text-primary-700">
                       <Target className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <div className="min-w-0 max-w-full">
+                    <div className="min-w-0">
                       <p className="text-xs font-bold uppercase tracking-[0.16em] text-neutral-500">{latestPractice.subject}</p>
                       <p className="mt-1 truncate text-lg font-bold text-dark">{latestPractice.chapter_title}</p>
                       <p className="mt-1 text-sm text-neutral-500">Completed {formatDate(latestPractice.completed_at)}</p>
