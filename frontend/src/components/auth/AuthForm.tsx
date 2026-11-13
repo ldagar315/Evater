@@ -20,6 +20,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
   const [error, setError] = useState('')
+  const [awaitingConfirmation, setAwaitingConfirmation] = useState(false)
 
   const { signIn, signUp, signInWithGoogle, error: authError } = useAuthContext()
 
@@ -41,14 +42,22 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
     }
 
     try {
-      const { error } = isSignUp 
+      const { data, error } = isSignUp
         ? await signUp(email, password)
         : await signIn(email, password)
 
       if (error) {
         setError(error.message)
-      } else {
+      } else if (data?.session?.user?.id) {
         onSuccess()
+      } else if (isSignUp) {
+        // A successful request is not necessarily an authenticated session.
+        // Do not navigate to a protected route while email confirmation is pending.
+        setPassword('')
+        setConfirmPassword('')
+        setAwaitingConfirmation(true)
+      } else {
+        setError('Sign-in did not return a session. Please try again.')
       }
     } catch (err) {
       setError('An unexpected error occurred')
@@ -70,9 +79,9 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
       const { error } = await signInWithGoogle()
       if (error) {
         setError(error.message)
-      } else {
-        onSuccess()
       }
+      // OAuth success here only starts the provider redirect. The auth state
+      // listener and existing route guards handle the returned session.
     } catch (err) {
       setError('Failed to sign in with Google')
     } finally {
@@ -86,9 +95,9 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
         {/* Logo and Branding */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-24 h-16 mb-4">
-            <img 
-              src="/Evater_logo_2.png" 
-              alt="Evater Logo" 
+            <img
+              src="/Evater_logo_2.png"
+              alt="Evater Logo"
               className="h-16 w-auto object-contain"
             />
           </div>
@@ -138,15 +147,31 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
                 {isSignUp ? 'Create Account' : 'Welcome Back'}
               </h2>
               <p className="mt-2 text-sm text-neutral-600">
-                {isSignUp 
-                  ? 'Free to try. Create your account to start practising' 
+                {isSignUp
+                  ? 'Free to try. Create your account to start practising'
                   : 'Sign in to continue your learning journey'
                 }
               </p>
             </div>
           </CardHeader>
-          
+
           <CardContent>
+            {awaitingConfirmation ? (
+              <div role="status" className="space-y-4 rounded-lg border border-primary-200 bg-primary-50 p-4">
+                <h3 className="font-semibold text-dark">Check your email</h3>
+                <p className="text-sm text-neutral-700">
+                  If your email needs confirmation, use the link in your inbox before signing in. Check your spam folder too.
+                </p>
+                <Button type="button" className="w-full" onClick={() => {
+                  setAwaitingConfirmation(false)
+                  setIsSignUp(false)
+                  setError('')
+                }}>
+                  Back to sign in
+                </Button>
+              </div>
+            ) : (
+              <>
             {/* Google Sign-In Button */}
             <div className="mb-6">
               <Button
@@ -202,7 +227,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
                 placeholder="Enter your email"
                 disabled={!supabaseConfigured}
               />
-              
+
               <Input
                 label="Password"
                 type="password"
@@ -212,7 +237,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
                 placeholder="Enter your password"
                 disabled={!supabaseConfigured}
               />
-              
+
               {!isSignUp && (
                 <div className="-mt-3 text-right">
                   <Link to="/forgot-password" className="text-sm text-primary-600 hover:text-primary-700 font-medium">
@@ -232,7 +257,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
                   disabled={!supabaseConfigured}
                 />
               )}
-              
+
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-sm text-red-700 font-medium">{error}</p>
@@ -241,7 +266,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
                   )}
                 </div>
               )}
-              
+
               <Button
                 type="submit"
                 className="w-full py-3 text-base font-medium"
@@ -251,7 +276,7 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
                 {isSignUp ? 'Create Your Account' : 'Sign In to Evater'}
               </Button>
             </form>
-            
+
             <div className="mt-6 text-center">
               <button
                 type="button"
@@ -262,12 +287,14 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
                 className="inline-flex min-h-11 items-center text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
                 disabled={loading || googleLoading || !supabaseConfigured}
               >
-                {isSignUp 
-                  ? 'Already have an account? Sign in' 
+                {isSignUp
+                  ? 'Already have an account? Sign in'
                   : "Don't have an account? Sign up"
                 }
               </button>
             </div>
+              </>
+            )}
           </CardContent>
         </Card>
 
@@ -283,5 +310,4 @@ export function AuthForm({ onSuccess }: AuthFormProps) {
     </div>
   )
 }
-
 
