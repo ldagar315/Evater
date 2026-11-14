@@ -136,8 +136,8 @@ export function ProfilePage() {
           )}
         </div>
 
-        <section className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)]">
-          <div className="rounded-3xl bg-dark p-6 text-white shadow-xl shadow-dark/10 sm:p-8">
+        <section className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)]">
+          <div className="min-w-0 rounded-3xl bg-dark p-6 text-white shadow-xl shadow-dark/10 sm:p-8">
             <div className="flex items-start justify-between gap-5">
               <div className="flex min-w-0 items-center gap-4">
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-primary-500 text-2xl font-bold text-white">
@@ -152,7 +152,7 @@ export function ProfilePage() {
               <ShieldCheck className="h-5 w-5 shrink-0 text-primary-300" aria-label="Account protected" />
             </div>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="rounded-2xl bg-white/10 p-4">
                 <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-neutral-300">
                   <GraduationCap className="h-4 w-4 text-secondary-300" aria-hidden="true" /> Class
@@ -168,7 +168,7 @@ export function ProfilePage() {
             </div>
           </div>
 
-          <aside className="rounded-3xl border border-secondary-200 bg-secondary-50 p-6 sm:p-8">
+          <aside className="min-w-0 rounded-3xl border border-secondary-200 bg-secondary-50 p-6 sm:p-8">
             <div className="flex items-center justify-between gap-4">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-secondary-700 shadow-sm">
                 <Coins className="h-5 w-5" aria-hidden="true" />
