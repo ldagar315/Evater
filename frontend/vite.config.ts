@@ -8,6 +8,10 @@ const PRERENDER_ROUTES = [
   '/',
   '/about',
   '/blog',
+  '/blog/ncert-class-8-science-investigative-world-study-guide',
+  '/blog/ncert-class-8-science-invisible-living-world-study-guide',
+  '/blog/ncert-class-8-science-health-ultimate-treasure-study-guide',
+
   '/blog/cbse-class-8-science-study-plan-30-day-ncert-revision',
   '/blog/active-recall-class-6-10-exams',
   '/blog/ncert-class-8-science-prepare-chapter-tests',
