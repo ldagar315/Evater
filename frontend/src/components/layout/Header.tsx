@@ -30,6 +30,8 @@ export function Header() {
   const location = useLocation()
   const { user, signOut } = useAuthContext()
   const { profile } = useProfile(user?.id)
+  const [signOutError, setSignOutError] = useState<string | null>(null)
+  const [signingOut, setSigningOut] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -55,8 +57,20 @@ export function Header() {
   }, [location.pathname])
 
   const handleSignOut = async () => {
-    await signOut()
-    navigate('/auth')
+    setSigningOut(true)
+    setSignOutError(null)
+    try {
+      const { error } = await signOut()
+      if (error) {
+        setSignOutError('Could not sign out. Please try again.')
+        return
+      }
+      navigate('/auth')
+    } catch {
+      setSignOutError('Could not sign out. Please try again.')
+    } finally {
+      setSigningOut(false)
+    }
   }
 
   const goTo = (path: string) => {
@@ -190,10 +204,11 @@ export function Header() {
                         <button
                           type="button"
                           onClick={handleSignOut}
+                          disabled={signingOut}
                           className="flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
                           role="menuitem"
                         >
-                          <LogOut className="mr-2 h-4 w-4" aria-hidden="true" /> Sign out
+                          <LogOut className="mr-2 h-4 w-4" aria-hidden="true" /> {signingOut ? 'Signing out...' : 'Sign out'}
                         </button>
                       </div>
                     </div>
@@ -223,6 +238,10 @@ export function Header() {
           </button>
         </div>
       </div>
+
+      {signOutError && (
+        <p role="alert" className="mx-auto max-w-7xl px-4 py-3 text-sm font-semibold text-red-700">{signOutError}</p>
+      )}
 
       {mobileMenuOpen && (
         <div className="absolute right-4 top-full z-50 max-h-[calc(100vh-5rem)] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl border border-neutral-200 bg-cream shadow-xl shadow-dark/10 md:hidden">
@@ -267,8 +286,9 @@ export function Header() {
                 <Button onClick={() => goTo('/profile')} variant="outline" className="w-full">
                   Edit profile
                 </Button>
-                <Button onClick={handleSignOut} variant="ghost" className="w-full text-red-600 hover:bg-red-50 hover:text-red-700">
-                  <LogOut className="mr-2 h-4 w-4" aria-hidden="true" /> Sign out
+                <Button onClick={handleSignOut}
+                          disabled={signingOut} variant="ghost" className="w-full text-red-600 hover:bg-red-50 hover:text-red-700">
+                  <LogOut className="mr-2 h-4 w-4" aria-hidden="true" /> {signingOut ? 'Signing out...' : 'Sign out'}
                 </Button>
               </div>
             ) : (
