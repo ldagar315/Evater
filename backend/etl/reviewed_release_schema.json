@@ -1,0 +1,411 @@
+{
+  "columns": [
+    {
+      "column_name": "answer_spec",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'{}'::jsonb",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "chapter_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "cognitive_level",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "concept_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "content_hash",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "correct_option_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO",
+      "column_default": "now()",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "curriculum_version_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "difficulty",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "estimated_time_seconds",
+      "data_type": "smallint",
+      "udt_name": "int2",
+      "is_nullable": "NO",
+      "column_default": "60",
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "explanation",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "generation_spec",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'{}'::jsonb",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "hint",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "ingestion_job_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "marks",
+      "data_type": "smallint",
+      "udt_name": "int2",
+      "is_nullable": "NO",
+      "column_default": "1",
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "media_json",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'[]'::jsonb",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "misconception_tags",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "option_media_json",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'{}'::jsonb",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "options_json",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "published_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "quality_score",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 4,
+      "numeric_scale": 3,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "question_family_key",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "question_style",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'direct'::text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "question_text",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "question_type",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'mcq_single'::text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "render_config",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'{}'::jsonb",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "reviewed_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "reviewed_by",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "skill_tags",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "source_attribution_display",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "source_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "source_locator",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "source_question_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "source_tier",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "source_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'draft'::text",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "variant_key",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "character_maximum_length": null
+    }
+  ],
+  "constraints": [
+    "CHECK (((char_length(TRIM(BOTH FROM question_text)) >= 10) AND (char_length(TRIM(BOTH FROM question_text)) <= 5000)))",
+    "CHECK (((correct_option_id IS NULL) OR (correct_option_id = ANY (ARRAY['A'::text, 'B'::text, 'C'::text, 'D'::text]))))",
+    "CHECK (((estimated_time_seconds >= 10) AND (estimated_time_seconds <= 600)))",
+    "CHECK (((explanation IS NULL) OR ((char_length(TRIM(BOTH FROM explanation)) >= 5) AND (char_length(TRIM(BOTH FROM explanation)) <= 5000))))",
+    "CHECK (((quality_score >= (0)::numeric) AND (quality_score <= (1)::numeric)))",
+    "CHECK ((cognitive_level = ANY (ARRAY['recall'::text, 'understand'::text, 'apply'::text, 'analyze'::text])))",
+    "CHECK ((difficulty = ANY (ARRAY['easy'::text, 'medium'::text, 'hard'::text])))",
+    "CHECK ((jsonb_typeof(answer_spec) = 'object'::text))",
+    "CHECK ((jsonb_typeof(generation_spec) = 'object'::text))",
+    "CHECK ((jsonb_typeof(media_json) = 'array'::text))",
+    "CHECK ((jsonb_typeof(option_media_json) = 'object'::text))",
+    "CHECK ((jsonb_typeof(options_json) = 'array'::text))",
+    "CHECK ((jsonb_typeof(render_config) = 'object'::text))",
+    "CHECK ((marks > 0))",
+    "CHECK ((question_style = ANY (ARRAY['direct'::text, 'scenario'::text, 'experiment'::text, 'data'::text, 'diagram'::text])))",
+    "CHECK ((question_type = ANY (ARRAY['mcq_single'::text, 'mcq_multi'::text, 'assertion_reason'::text, 'true_false'::text, 'fill_blank'::text, 'numerical'::text, 'case_study'::text, 'diagram_based'::text, 'matching'::text])))",
+    "CHECK ((status = ANY (ARRAY['draft'::text, 'validated'::text, 'review'::text, 'published'::text, 'rejected'::text, 'retired'::text])))",
+    "FOREIGN KEY (chapter_id) REFERENCES chapters(id) ON DELETE RESTRICT",
+    "FOREIGN KEY (concept_id) REFERENCES concepts(id) ON DELETE RESTRICT",
+    "FOREIGN KEY (curriculum_version_id) REFERENCES curriculum_versions(id) ON DELETE RESTRICT",
+    "FOREIGN KEY (ingestion_job_id) REFERENCES ingestion_jobs(id) ON DELETE SET NULL",
+    "FOREIGN KEY (reviewed_by) REFERENCES auth.users(id) ON DELETE SET NULL",
+    "FOREIGN KEY (source_id) REFERENCES content_sources(id) ON DELETE SET NULL",
+    "PRIMARY KEY (id)",
+    "UNIQUE (chapter_id, content_hash)"
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "batch_id": "class8-original-reviewed-2026-11-14-v1",
+  "owner_publication_approval": "pending",
+  "expected_count": 80,
+  "questions_sha256": "1fd41b5c0001dfe16b5368b541b263b2908eff99c0fa2cfc2f3071597dd111be",
+  "question_ids": [
+    "class8-light-lenses-original-01",
+    "class8-light-lenses-original-02",
+    "class8-light-lenses-original-03",
+    "class8-light-lenses-original-04",
+    "class8-light-lenses-original-05",
+    "class8-light-lenses-original-06",
+    "class8-light-lenses-original-07",
+    "class8-light-lenses-original-08",
+    "class8-light-lenses-original-10",
+    "class8-microbes-original-beneficial-microbes-01",
+    "class8-microbes-original-beneficial-microbes-02",
+    "class8-microbes-original-beneficial-microbes-03",
+    "class8-microbes-original-beneficial-microbes-04",
+    "class8-microbes-original-beneficial-microbes-05",
+    "class8-microbes-original-beneficial-microbes-08",
+    "class8-microbes-original-beneficial-microbes-10",
+    "class8-microbes-original-decomposition-01",
+    "class8-microbes-original-decomposition-02",
+    "class8-microbes-original-decomposition-03",
+    "class8-microbes-original-decomposition-05",
+    "class8-microbes-original-decomposition-06",
+    "class8-microbes-original-decomposition-09",
+    "class8-original-contact-force-01",
+    "class8-original-contact-force-02",
+    "class8-original-contact-force-03",
+    "class8-original-contact-force-04",
+    "class8-original-contact-force-05",
+    "class8-original-contact-force-06",
+    "class8-original-contact-force-08",
+    "class8-original-contact-force-09",
+    "class8-original-contact-force-10",
+    "class8-original-digit-properties-01",
+    "class8-original-digit-properties-02",
+    "class8-original-digit-properties-03",
+    "class8-original-digit-properties-04",
+    "class8-original-digit-properties-05",
+    "class8-original-digit-properties-06",
+    "class8-original-digit-properties-07",
+    "class8-original-digit-properties-08",
+    "class8-original-digit-properties-09",
+    "class8-original-digit-properties-10",
+    "class8-original-estimation-01",
+    "class8-original-estimation-02",
+    "class8-original-estimation-03",
+    "class8-original-estimation-04",
+    "class8-original-estimation-05",
+    "class8-original-estimation-06",
+    "class8-original-estimation-07",
+    "class8-original-estimation-08",
+    "class8-original-estimation-09",
+    "class8-original-estimation-10",
+    "class8-original-non-contact-force-01",
+    "class8-original-non-contact-force-02",
+    "class8-original-non-contact-force-03",
+    "class8-original-non-contact-force-04",
+    "class8-original-non-contact-force-05",
+    "class8-original-non-contact-force-06",
+    "class8-original-non-contact-force-07",
+    "class8-original-non-contact-force-08",
+    "class8-original-non-contact-force-10",
+    "class8-power-original-base-conversion-01",
+    "class8-power-original-base-conversion-02",
+    "class8-power-original-base-conversion-03",
+    "class8-power-original-base-conversion-04",
+    "class8-power-original-base-conversion-05",
+    "class8-power-original-base-conversion-06",
+    "class8-power-original-base-conversion-07",
+    "class8-power-original-base-conversion-08",
+    "class8-power-original-base-conversion-09",
+    "class8-power-original-base-conversion-10",
+    "class8-power-original-large-numbers-01",
+    "class8-power-original-large-numbers-02",
+    "class8-power-original-large-numbers-03",
+    "class8-power-original-large-numbers-04",
+    "class8-power-original-large-numbers-05",
+    "class8-power-original-large-numbers-06",
+    "class8-power-original-large-numbers-07",
+    "class8-power-original-large-numbers-08",
+    "class8-power-original-large-numbers-09",
+    "class8-power-original-large-numbers-10"
+  ],
+  "difficulty_counts": {
+    "easy": 47,
+    "medium": 33
+  },
+  "concepts": {
+    "10a9cff5-ac4f-59cc-96b9-818041179495": {
+      "chapter_id": "655fb63a-8ece-5f08-a18d-ac92f79bbb1d",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "expected_count": 9
+    },
+    "0bfd45b7-ab37-5d81-980a-dfb7324ff930": {
+      "chapter_id": "72a1433e-84d0-5fe2-9583-62640ce82f74",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "expected_count": 9
+    },
+    "e03ae6e8-44c7-5c82-84ab-069c36945cb1": {
+      "chapter_id": "72a1433e-84d0-5fe2-9583-62640ce82f74",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "expected_count": 9
+    },
+    "028f6291-85c4-509e-9ed8-c02ce1e42abc": {
+      "chapter_id": "963ac621-10cd-5d84-9988-34836a9574b8",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "expected_count": 10
+    },
+    "f100f877-8d48-5fe1-a963-72f917eaceef": {
+      "chapter_id": "963ac621-10cd-5d84-9988-34836a9574b8",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "expected_count": 10
+    },
+    "344b40b0-8244-59c2-9230-40749c248bbe": {
+      "chapter_id": "abeb652b-a6a2-5aee-802c-2336b0ff625e",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "expected_count": 10
+    },
+    "ccc860c6-3b59-525f-b074-e2254e34fcda": {
+      "chapter_id": "abeb652b-a6a2-5aee-802c-2336b0ff625e",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "expected_count": 10
+    },
+    "3760ee5f-606f-57a6-af27-a269ad9383e3": {
+      "chapter_id": "dee38ff1-3b43-585d-a80e-59de5ab5c97d",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "expected_count": 7
+    },
+    "8443ad48-da44-5272-afa9-168b216d7202": {
+      "chapter_id": "dee38ff1-3b43-585d-a80e-59de5ab5c97d",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "expected_count": 6
+    }
+  },
+  "guides": {
+    "power-play-guide.md": "ec922b574d52308ed06aa4fc8c77d459d3032eb1ae7675d4b260ca52cfd9d27f",
+    "invisible-living-world-guide.md": "f7b250f161a4d1f012a8ba2e7f071d1c6b8d96239cb21bd563d4bd03e82d10fc",
+    "lenses-guide.md": "8660ba5268500ff95e60909c7e107eb7ec382433e03fe7a158c7dc749206e934"
+  },
+  "scope_note": "80 reviewed recommendations,10reserveexcluded;guidecopyisselective;source-mapping/snapshotnotproductionverification"
+}
