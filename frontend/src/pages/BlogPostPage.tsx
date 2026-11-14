@@ -1,3 +1,4 @@
+import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { supportsConceptPractice } from '../lib/api'
 import { blogPracticeTargets } from '../data/blogPracticeTargets'
 import { practiceHref } from '../lib/practiceTarget'
@@ -240,6 +241,7 @@ export function BlogPostPage() {
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
             </div>
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
+            {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
 
             {conceptPracticeReady && blogPracticeTargets[post.slug] && <section id="concept-practice" aria-label="Practise concepts from this article" className="my-10 rounded-2xl border border-teal-200 bg-teal-50 p-5 sm:p-7">
