@@ -1,3 +1,4 @@
+import { ChapterConceptLinks } from '../components/practice/ChapterConceptLinks'
 import { parsePracticeTarget } from '../lib/practiceTarget'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import {
@@ -826,6 +827,8 @@ export function QuestionBankPracticePage() {
                   {chapterError && <div role="alert" className="mt-2 text-sm text-red-700">{chapterError} <button type="button" onClick={() => setChapterReload((value) => value + 1)} className="min-h-11 font-semibold underline">Retry chapters</button></div>}
                   {!chaptersLoading && !chapterError && <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-500">{selectedChapter?.description || 'No published chapters are available for this subject yet.'}</p>}
                 </div>
+
+                {!intent.provided && !chaptersLoading && !chapterError && selectedChapter && <ChapterConceptLinks subject={selectedSubjectId} chapter={selectedChapterId} />}
 
                 <fieldset className="border-t border-neutral-100 pt-7">
                   <legend className="text-sm font-bold text-dark">How do you want to practise?</legend>

@@ -1,3 +1,4 @@
+import { reviewedPracticeTargets } from './reviewedPracticeTargets'
 import type { PracticeTarget } from '../lib/practiceTarget'
 export const blogPracticeTargets: Record<string, Array<PracticeTarget & { label: string }>> = {
   "ncert-class-8-maths-square-and-cube-study-guide": [
@@ -18,7 +19,8 @@ export const blogPracticeTargets: Record<string, Array<PracticeTarget & { label:
       "subject": "mathematics",
       "chapter": "963ac621-10cd-5d84-9988-34836a9574b8",
       "concept": "c150eabd-930b-5657-b987-b4c45a71e75c"
-    }
+    },
+    ...reviewedPracticeTargets.filter(t => t.chapter === "963ac621-10cd-5d84-9988-34836a9574b8"),
   ],
   "ncert-class-8-science-exploring-forces-study-guide": [
     {
@@ -38,7 +40,8 @@ export const blogPracticeTargets: Record<string, Array<PracticeTarget & { label:
       "subject": "science",
       "chapter": "72a1433e-84d0-5fe2-9583-62640ce82f74",
       "concept": "5edeb60f-395a-5523-aca3-6c09e0c332f7"
-    }
+    },
+    ...reviewedPracticeTargets.filter(t => t.chapter === "72a1433e-84d0-5fe2-9583-62640ce82f74"),
   ],
   "ncert-class-8-science-light-mirrors-lenses-study-guide": [
     {
