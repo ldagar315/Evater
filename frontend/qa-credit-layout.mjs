@@ -81,6 +81,7 @@ for (const width of [320,390,1280]) for (const scenario of ['standard','zero','m
     if(scenario==='standard')await page.screenshot({path:join(output,`${width}-menu.png`),fullPage:false})
     const menuCredit=await page.evaluateHandle(()=>[...document.querySelectorAll('header a[aria-label^="View credits"]')].find(e=>e.getBoundingClientRect().width>0));await menuCredit.asElement().click()
     assert(await page.$('button[aria-label="Open navigation menu"]'),'Menu did not close')
+    await page.waitForFunction(()=>document.activeElement?.id==='credits')
   }
   await page.click('#credits a[href="/practice"]')
   await page.waitForFunction(()=>location.pathname==='/practice')
