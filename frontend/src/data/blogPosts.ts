@@ -1,3 +1,4 @@
+import { scienceFurtherGuides } from './scienceFurtherGuides'
 import { BlogPost, BlogCategory } from '../types/blog'
 import { scienceChapterGuides } from './scienceChapterGuides'
 
@@ -8,6 +9,7 @@ const teamAuthor = {
 }
 
 export const blogPosts: BlogPost[] = [
+  ...scienceFurtherGuides,
   ...scienceChapterGuides,
   {
     id: '9',
