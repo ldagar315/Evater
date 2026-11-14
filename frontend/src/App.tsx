@@ -1,3 +1,4 @@
+import { authHref, authReturn } from './lib/practiceTarget'
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { ErrorBoundary } from './components/ErrorBoundary'
@@ -35,6 +36,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ de
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading, error } = useAuthContext()
+  const location = useLocation()
   const { profile, loading: profileLoading } = useProfile(user?.id)
 
   if (BYPASS_AUTH) {
@@ -64,11 +66,11 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   }
 
   if (!user) {
-    return <Navigate to="/auth" replace />
+    return <Navigate to={authHref('/auth', location.pathname + location.search)} replace />
   }
 
   if (!profile) {
-    return <Navigate to="/profile" replace />
+    return <Navigate to={authHref('/profile', location.pathname + location.search)} replace />
   }
 
   return <>{children}</>
@@ -123,9 +125,9 @@ function AppRoutes() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
 
-          <Route path="/auth" element={loading ? <LoadingFallback /> : user ? <Navigate to="/home" replace /> : <AuthPage />} />
+          <Route path="/auth" element={loading ? <LoadingFallback /> : user ? <Navigate to={authReturn(location.search)} replace /> : <AuthPage />} />
 
-          <Route path="/profile" element={user ? <ProfilePage /> : <Navigate to="/auth" replace />} />
+          <Route path="/profile" element={user ? <ProfilePage /> : <Navigate to={authHref('/auth', authReturn(location.search))} replace />} />
               <Route path="/home" element={
                 <ProtectedRoute>
                   <HomePage />
