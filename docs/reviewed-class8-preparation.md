@@ -1,32 +1,43 @@
-# Class8 reviewed content preparation
+# Class 8 reviewed content and controlled release preparation
 
-This PR prepares the exact80recommended questions and3selectiveguide bodies,excluding10reservevariants. User steering: tests must be usable through Evater UI; database presence alone is not acceptance. No production data writes, guide activation or agent merge are part of this preparation PR.
+This PR contains the exact 80 reviewed questions and three held guide previews. Ten reserve variants are excluded. It now includes an offline SQL transaction builder for the exact 80-question release. Merging the PR does not run SQL, publish questions, publish guides, or change production settings.
 
-## Safe behaviour on merge
+## Unchanged application behavior
 
-- Existing blog catalogue/routes and ordinary test behaviour stay unchanged.
-- Reviewed guide preview exists only under Vite development mode at /reviewed-content/lenses, /reviewed-content/power-play and /reviewed-content/invisible-living-world.
-- Compile-time guards remove the route, component and pending guide text from production assets. Production direct route returns the existing not-found UI.
-- No guide is silently added to blogPosts, sitemap or prerender routes.
-- Scoped backend adapter has no network/publish client. It validates the exact reviewed proposal and prepares review-status rows only, regardless of manifest approval claims.
-- Existing general100-itempublishvalidator remains byte-for-byte unchanged. It is not padded or bypassed.
+- Existing blog catalog, sitemap and ordinary tests stay unchanged.
+- The three guide previews exist only in Vite development mode at `/reviewed-content/lenses`, `/reviewed-content/power-play` and `/reviewed-content/invisible-living-world`.
+- Production builds exclude their preview route, component and pending text. Production direct navigation returns the existing not-found page.
+- The review adapter still produces review-status rows only. Its behavior is unchanged.
+- The general fixed-100 publishing validator stays unchanged. No question padding, false difficulty labels or fake quality scores are used.
 
-## Verified locally
+## Exact 80-question release path
 
-12adaptertestsPASS: exact80manifest/counts/mappings/guidehashes,changedtext/difficulty/IDs/reserve/chapter/selection/guidefailclosed,invalidkey/duplicateoptionrejected byexistingmodel,claimedapprovalcannotpublish.
+`backend/etl/reviewed_release.py` is an offline SQL builder, not a database client or startup migration. It pins the reviewed question payload SHA-256 in code, independently of the editable manifest. Its deterministic IDs identify only this release. Per-question source fields distinguish original Evater practice from the NCERT curriculum/fact references. Quality score and named reviewer remain null: publication is not a measured quality score or independent teacher certification.
 
-Full production build with Chrome prerender PASS. Production HTML/JS/JSON/Markdown scan has no pending guide text or review route/component. Browser checks:3guides at320/390/1280,allinternalnavigation,unknownslugfallback,productiondirectrouteexclusion;0pageerrors. External HTTP blocked in local browser QA, real local app assets rendered. No live student session or account writes were tested.
+From the repository root, generate the default rehearsal transaction:
 
-Full app TypeScript command remains nonzero on both exactbase andproposal.54normalizeddiagnostics each,noneadded orremoved. This is not a clean-typecheck claim.
+```sh
+PYTHONPATH=backend python -m etl.reviewed_release content/reviewed/class8-2026-11-14 > exact80-rehearsal.sql
+```
 
-Earlier isolated PostgreSQL14.24 rehearsal using repository-derivedquestion_bankDDL:80reviewrowsinsert/rollback/localcommit/idempotencePASS;0publishedrows. ID-only parent stubs do not prove productionRLS/triggers/schema parity.
+The default transaction ends in `ROLLBACK`. `--commit` changes the ending to `COMMIT`, but does not connect or execute it. Operator authority and deployment readiness must be checked separately before execution.
 
-## Remaining before real UI-ready publication
+The transaction locks question_bank against concurrent writers for the short release, checks all 38 production column definitions and 25 constraints, rejects unexpected triggers, and checks published concept/chapter/version mappings. It permits either no existing release rows or an exact, complete 80-row replay. A partial release or any conflicting ID, chapter/hash, source-question ID, explanation, answer, provenance or other controlled field aborts the transaction. It does not overwrite or republish existing rows. Publication timestamps are assigned by PostgreSQL; replay preserves them and all other existing fields.
 
-1. Resolve the exact publication scope from the user's approval exchange; no10reserveorunrelatedcontent.
-2. Re-read current production concept/chapter/version IDs,statuses,counts,schema,privileges and source registry. Snapshot IDs are not a live write preflight.
-3. Implement a separately reviewed scoped publication path compatible with80items, preserving approved text and difficulty labels. Do not call the old fixed-distribution gate with falsified labels.
-4. Integrate approved student guides into the actual public catalogue only when authorized. Keep PR100 capability and live inventory checks for exact concept CTAs,never chapter fallback under a concept label.
-5. After owner merge/deploy and authorized import,verify actualpublishedcountsand keys,openblogthroughEvaterUI,sign-in/profilecontinuity,exactconceptsetup/start/answer/submit/results. Syntheticfixtures are not realaccountpersistenceproof. Stop for unresolved identity/permission at that boundary.
+`--retire` generates a separate exact-row retirement rollback, also ending in `ROLLBACK` by default. It checks every controlled field except status before retiring the 80 rows. It never deletes questions or changes test attempts, so existing attempt references survive. A changed release row blocks retirement for inspection. A retired release cannot be silently republished by rerunning the publication transaction.
 
-Guide scope: Lenses is a concept guide, Power Play and Invisible Living World are selective chapter guides. This is not full Class8coverage or independentteacher/learnercalibrationcertification.
+## Evidence
+
+- 20 focused unit tests pass across the unchanged review adapter and new release builder. Mutating question content and updating its manifest digest still fails the pinned release check.
+- PostgreSQL 14.24 rehearsal used captured live 38-column/25-constraint definitions and real curriculum IDs/status/mappings. Parent tables were minimal, and execution used the local database owner. This does not prove production authentication/role parity.
+- Rehearsal checks: default insert/rollback, commit 80, stable full-row replay, partial 79 rejection, changed explanation conflict, same hash with a different ID conflict, retired/mis-mapped concept, schema/constraint changes, post-insert failure rollback, default retirement rollback, retirement commit/replay, refusal to republish retired rows, and unchanged unrelated existing data. Report: `qa/reviewed-release-report.json`.
+- Earlier responsive guide previews and production exclusion checks passed. Full app TypeScript remained nonzero with the same 54 normalized diagnostics on base and proposal, not a clean typecheck.
+
+## Still required for the real UI outcome
+
+1. Owner merge of PR100 and this PR. No automated merge is included.
+2. Verify actual deployed main files, Netlify production and Modal backend exact commits, public practice capabilities and live inventory. A ready preview is not production.
+3. Re-read current production schema, mappings, counts, conflicts and source evidence immediately before executing the exact authorized 80-question transaction. Stop on differences; do not use the generic publishing path to work around them.
+4. Verify the 80 published rows, then open the blog through the actual Evater UI and complete the exact-concept setup/start/answer/submit/results journey on the authorized QA account. Database presence alone is not acceptance.
+
+Three guides remain held. Neither this release nor its selective guide previews claim full Class 8 coverage. Real existing-account Google-button login and unchanged-profile save/home redirect/reload were checked separately in production. Those checks do not establish first-time signup, email-confirmation delivery or new-profile insertion.
