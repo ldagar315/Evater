@@ -1,6 +1,7 @@
+import { signOutSession, validateSessionUser } from '../lib/sessionRecovery'
 import { authReturn } from '../lib/practiceTarget'
 import { useEffect, useState } from 'react'
-import { User } from '@supabase/supabase-js'
+import { AuthChangeEvent, AuthError, Session, User } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
 import { supabaseConfigured } from '../lib/supabaseConfig'
 import { BYPASS_AUTH, DEV_USER, logAuthBypassWarning } from '../lib/auth/devBypass'
@@ -12,6 +13,7 @@ export function useAuth() {
 
   useEffect(() => {
     let mounted = true
+    let revision = 0
 
     if (BYPASS_AUTH) {
       logAuthBypassWarning('useAuth bootstrap')
@@ -23,61 +25,75 @@ export function useAuth() {
       }
     }
 
-    const initializeAuth = async () => {
+    const applySession = async (hasSession: boolean) => {
+      const current = ++revision
+      if (!hasSession) {
+        if (mounted) { setUser(null); setError(null); setLoading(false) }
+        return
+      }
+      if (mounted) setLoading(true)
       try {
-        // Check if Supabase is properly configured
-        if (!supabaseConfigured) {
-          console.warn('Supabase environment variables not configured')
-          if (mounted) {
-            // Public routes such as the blog should still render when local auth
-            // is not configured. Protected routes will redirect to /auth and the
-            // auth form will surface the underlying sign-in error when submitted.
-            setError(null)
-            setLoading(false)
-          }
-          return
+        const result = await validateSessionUser()
+        if (mounted && current === revision) {
+          setUser(result.user)
+          setError(result.error)
         }
-
-        // Get initial session
-        const { data: { session }, error: sessionError } = await supabase.auth.getSession()
-        
-        if (sessionError) {
-          console.error('Session error:', sessionError)
-          if (mounted) {
-            setError('Failed to initialize authentication')
-          }
-        } else if (mounted) {
-          setUser(session?.user ?? null)
-          setError(null)
-        }
-      } catch (err) {
-        console.error('Auth initialization error:', err)
-        if (mounted) {
+      } catch {
+        if (mounted && current === revision) {
+          setUser(null)
           setError('Authentication service unavailable')
         }
       } finally {
-        if (mounted) {
-          setLoading(false)
-        }
+        if (mounted && current === revision) setLoading(false)
       }
     }
 
-    initializeAuth()
-
-    // Listen for auth changes
+    // SDK auth callbacks run under its session lock. Schedule validation outside
+    // that callback so getUser cannot deadlock. Revision checks discard late
+    // validation after sign-out, account changes, or unmount.
+    const timers = new Set<ReturnType<typeof setTimeout>>()
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        console.log('Auth state change:', event, session?.user?.email)
-        if (mounted) {
-          setUser(session?.user ?? null)
-          setError(null)
-          setLoading(false)
+      (_event: AuthChangeEvent, session: Session | null) => {
+        ++revision
+        if (!session) {
+          if (mounted) { setUser(null); setError(null); setLoading(false) }
+          return
         }
+        if (mounted) setLoading(true)
+        const expected = revision
+        const timer = setTimeout(() => {
+          timers.delete(timer)
+          if (mounted && revision === expected) void applySession(true)
+        }, 0)
+        timers.add(timer)
       }
     )
 
+    // Missing local config must not keep public routes in a loading state.
+    if (!supabaseConfigured) {
+      setLoading(false)
+    } else {
+      const initialRevision = revision
+      void supabase.auth.getSession().then(({ data, error: sessionError }: { data: { session: Session | null }; error: AuthError | null }) => {
+        if (!mounted || revision !== initialRevision) return
+        if (sessionError) {
+          setError('Failed to initialize authentication')
+          setLoading(false)
+        } else {
+          void applySession(Boolean(data.session))
+        }
+      }).catch(() => {
+        if (mounted && revision === initialRevision) {
+          setError('Authentication service unavailable')
+          setLoading(false)
+        }
+      })
+    }
+
     return () => {
       mounted = false
+      ++revision
+      timers.forEach(clearTimeout)
       subscription.unsubscribe()
     }
   }, [])
@@ -146,7 +162,7 @@ export function useAuth() {
       return { error: null }
     }
     try {
-      const { error } = await supabase.auth.signOut()
+      const { error } = await signOutSession()
       return { error }
     } catch (err) {
       console.error('Sign out error:', err)
