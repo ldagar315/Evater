@@ -1,3 +1,4 @@
+import { authReturn } from '../lib/practiceTarget'
 import React, { useEffect, useMemo, useState } from 'react'
 import {
   ArrowRight,
@@ -9,7 +10,7 @@ import {
   ShieldCheck,
   User,
 } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { Select } from '../components/ui/Select'
@@ -32,6 +33,7 @@ function getErrorMessage(error: unknown) {
 
 export function ProfilePage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { user } = useAuthContext()
   const { profile, loading, createProfile, updateProfile } = useProfile(user?.id)
   const [name, setName] = useState('')
@@ -92,7 +94,7 @@ export function ProfilePage() {
         setError('Your profile could not be confirmed saved. Please try again.')
         return
       }
-      navigate('/home', { replace: true })
+      navigate(authReturn(location.search), { replace: true })
     } catch (caught) {
       setError(getErrorMessage(caught))
     } finally {
