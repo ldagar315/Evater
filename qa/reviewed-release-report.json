@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "engine": "PostgreSQL 14.24 (Ubuntu 14.24-0ubuntu0.22.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, 64-bit",
+  "schema": "Captured production38columns/25constraintdefinitions, minimal FK parent tables with real IDs/status/mappings; RLS enabled, localpublic SELECT policy, superuser execution",
+  "checks": [
+    "Default ROLLBACK:80valid inserts,0persisted",
+    "COMMIT80published, replay80fullrowsincludingtimestampsunchanged",
+    "Altered explanation collision: failed closed, full rows unchanged (Partial release or conflicting existing record: no writes)",
+    "Partial79release: failed closed, full rows unchanged (Partial release or conflicting existing record: no writes)",
+    "Retired concept: failed closed, full rows unchanged (Live curriculum mapping/status mismatch)",
+    "Concept chapter mismatch: failed closed, full rows unchanged (Live curriculum mapping/status mismatch)",
+    "Schema extra column: failed closed, full rows unchanged (Question bank column schema changed: repeat preflight)",
+    "Schema extra constraint: failed closed, full rows unchanged (Question bank constraints changed: repeat preflight)",
+    "Unexpected trigger: failed closed, full rows unchanged (Unexpected production trigger: repeat preflight)",
+    "Same hash different existing ID: failed closed, full rows unchanged (Partial release or conflicting existing record: no writes)",
+    "Final cleanCOMMIT80published afternegativefixtures",
+    "DefaultretirementROLLBACKleaves80published",
+    "Retirement changed-row fixture fails closed",
+    "RetirementCOMMIT80andstableidempotentreplay;unrelatedrowunchanged;nodeletions",
+    "Retired release cannot be silently republished: failed closed, full rows unchanged (Partial release or conflicting existing record: no writes)",
+    "PostinsertfailureROLLBACKrestores0"
+  ],
+  "not_claimed": [
+    "Productiondata mutation",
+    "Productionprivilegedroleauthenticationparity",
+    "ActualproductionUIavailability",
+    "Independentteacherrevieworlearnercalibration"
+  ]
+}
