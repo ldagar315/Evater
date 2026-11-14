@@ -18,6 +18,8 @@ from ..models import (
     QuestionBankTestRequest,
     QuestionBankTestResponse,
     ChapterListResponse,
+    ConceptTestRequest,
+    PracticeTargetResponse,
 )
 from ..question_bank import (
     QuestionBankError,
@@ -265,10 +267,51 @@ def _update_question_performance(
     ).execute()
 
 
+def _published_concept(client: Any, chapter_id: str, concept_id: str) -> Dict[str, Any]:
+    chapter = _one(client.table("chapters").select("id").eq("id", chapter_id).eq("status", "published").execute().data)
+    concept = _one(client.table("concepts").select("id,title").eq("id", concept_id).eq("chapter_id", chapter_id).eq("status", "published").execute().data)
+    if not chapter or not concept:
+        raise HTTPException(status_code=404, detail="Published concept not found in this chapter.")
+    return concept
+
+
+def _concept_questions(client: Any, chapter_id: str, concept_id: str) -> List[Dict[str, Any]]:
+    # Keep both constraints, including for later blocks. Never broaden to the chapter.
+    return (client.table("question_bank").select(PUBLIC_QUESTION_COLUMNS)
+            .eq("chapter_id", chapter_id).eq("concept_id", concept_id)
+            .eq("status", "published").order("id").execute()).data or []
+
+
+@router.get("/practice-target", response_model=PracticeTargetResponse)
+def practice_target(chapter_id: UUID, concept_id: UUID, auth: AuthContext = Depends(require_user)) -> PracticeTargetResponse:
+    client = create_supabase_service_client()
+    concept = _published_concept(client, str(chapter_id), str(concept_id))
+    rows = (client.table("question_bank").select("id").eq("chapter_id", str(chapter_id))
+            .eq("concept_id", str(concept_id)).eq("status", "published").execute()).data or []
+    return PracticeTargetResponse(chapter_id=chapter_id, concept_id=concept_id,
+                                  title=concept["title"], published_question_count=len(rows))
+
+
+@router.post("/concept-tests", response_model=QuestionBankTestResponse)
+def create_concept_test(request: ConceptTestRequest, auth: AuthContext = Depends(require_user)) -> QuestionBankTestResponse:
+    # A distinct endpoint fails visibly against old servers, which ignore extra
+    # JSON fields on /tests. A rolling deploy must never silently widen the scope.
+    # Single-block only: even an old submit server sees no remaining questions
+    # to select, so mixed versions cannot widen the scope on later blocks.
+    if request.block_size != request.question_count:
+        raise HTTPException(status_code=422, detail="Concept practice requires one complete block.")
+    return _create_question_bank_test(request, auth, str(request.concept_id))
+
+
 @router.post("/tests", response_model=QuestionBankTestResponse)
-def create_question_bank_test(
+def create_question_bank_test(request: QuestionBankTestRequest, auth: AuthContext = Depends(require_user)) -> QuestionBankTestResponse:
+    return _create_question_bank_test(request, auth)
+
+
+def _create_question_bank_test(
     request: QuestionBankTestRequest,
-    auth: AuthContext = Depends(require_user),
+    auth: AuthContext,
+    concept_id: Optional[str] = None,
 ) -> QuestionBankTestResponse:
     """Create a deterministic/adaptive test from the published question bank."""
     user_id = _user_id(auth)
@@ -286,11 +329,14 @@ def create_question_bank_test(
         if not _one(chapter_response.data):
             raise HTTPException(status_code=404, detail="Published chapter not found.")
 
-        questions = _load_published_questions(client, str(request.chapter_id))
+        if concept_id:
+            _published_concept(client, str(request.chapter_id), concept_id)
+        questions = (_concept_questions(client, str(request.chapter_id), concept_id) if concept_id
+                     else _load_published_questions(client, str(request.chapter_id)))
         if len(questions) < request.question_count:
             raise HTTPException(
                 status_code=409,
-                detail=f"This chapter has {len(questions)} published questions; {request.question_count} are required.",
+                detail=f"This {'concept' if concept_id else 'chapter'} has {len(questions)} published questions; {request.question_count} are required.",
             )
 
         mastery_rows = _load_mastery(client, user_id, str(request.chapter_id))
@@ -331,6 +377,7 @@ def create_question_bank_test(
                         "difficulty": selection["difficulty"],
                         "focus_concept_ids": selection["focus_concept_ids"],
                         "mode": request.mode,
+                        **({"selected_concept_id": concept_id} if concept_id else {}),
                     },
                 }
             )
@@ -358,6 +405,7 @@ def create_question_bank_test(
             "difficulty": selection["difficulty"],
             "focus_concept_ids": selection["focus_concept_ids"],
             "status": "on_track",
+            **({"selected_concept_id": concept_id} if concept_id else {}),
         }
         return _question_response(
             test_id=test_id,
@@ -702,7 +750,11 @@ def submit_question_bank_block(
                         (test.get("routing_profile") or {}).get("review_concept_ids") or [],
                     )
                     if is_review
-                    else _load_published_questions(client, str(test["chapter_id"]))
+                    else (
+                        _concept_questions(client, str(test["chapter_id"]), str(test["routing_profile"]["selected_concept_id"]))
+                        if (test.get("routing_profile") or {}).get("selected_concept_id")
+                        else _load_published_questions(client, str(test["chapter_id"]))
+                    )
                 )
             )
         else:
@@ -775,6 +827,8 @@ def submit_question_bank_block(
             results,
             previous_difficulty=previous_routing.get("difficulty"),
         )
+        if previous_routing.get("selected_concept_id"):
+            routing["selected_concept_id"] = previous_routing["selected_concept_id"]
         block_score = sum(int(result["marks_awarded"]) for result in results)
         block_total = sum(int(result["maximum_marks"]) for result in results)
         block_percentage = round((block_score / block_total) * 100, 2) if block_total else 0
