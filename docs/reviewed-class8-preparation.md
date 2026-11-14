@@ -28,9 +28,9 @@ The transaction locks question_bank against concurrent writers for the short rel
 
 ## Evidence
 
-- 20 focused unit tests pass across the unchanged review adapter and new release builder. Mutating question content and updating its manifest digest still fails the pinned release check.
+- 31 tests pass across the unchanged general ETL tests, review adapter and new release builder. Mutating question content and updating its manifest digest still fails the pinned release check.
 - PostgreSQL 14.24 rehearsal used captured live 38-column/25-constraint definitions and real curriculum IDs/status/mappings. Parent tables were minimal, and execution used the local database owner. This does not prove production authentication/role parity.
-- Rehearsal checks: default insert/rollback, commit 80, stable full-row replay, partial 79 rejection, changed explanation conflict, same hash with a different ID conflict, retired/mis-mapped concept, schema/constraint changes, post-insert failure rollback, default retirement rollback, retirement commit/replay, refusal to republish retired rows, and unchanged unrelated existing data. Report: `qa/reviewed-release-report.json`.
+- Rehearsal checks: default insert/rollback, commit 80, stable full-row replay, partial 79 rejection, changed explanation conflict, same hash with a different ID conflict, retired/mis-mapped concept, schema/constraint changes, post-insert failure rollback, default retirement rollback, retirement commit/replay, refusal to republish retired rows, and unchanged unrelated existing data. Report: `qa/reviewed-release-report.json`. Reproduce with `python qa/rehearse_reviewed_release.py --evidence PATH_TO_CAPTURED_PREFLIGHT`, against a disposable local PostgreSQL socket on port 55441. The script creates and removes its own uniquely named database; it has no remote database connection path.
 - Earlier responsive guide previews and production exclusion checks passed. Full app TypeScript remained nonzero with the same 54 normalized diagnostics on base and proposal, not a clean typecheck.
 
 ## Still required for the real UI outcome
