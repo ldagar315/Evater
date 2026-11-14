@@ -20,7 +20,7 @@ export function CreditBalance({ balance, variant = 'compact', onNavigate }: {
           <span className="rounded-full border border-white/20 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-neutral-200">Your account</span>
         </div>
         <h2 id="credit-heading" className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-secondary-300">Credits</h2>
-        <p className="mt-2 break-all text-5xl font-bold tracking-tight" aria-label={creditLabel(balance)}>{value}</p>
+        <p className={`mt-2 break-all font-bold tracking-tight ${value.length > 8 ? 'text-3xl sm:text-4xl' : 'text-5xl'}`} aria-label={creditLabel(balance)}>{value}</p>
         <p className="mt-2 text-sm text-neutral-300">{known ? 'Current balance' : 'Your balance could not be loaded.'}</p>
       </div>
       <div className="space-y-5 p-6 sm:p-8">
