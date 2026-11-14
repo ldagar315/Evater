@@ -1,4 +1,3 @@
-import { CreditBalance } from '../credits/CreditBalance'
 import React, { useEffect, useRef, useState } from 'react'
 import {
   ChevronDown,
@@ -133,7 +132,6 @@ export function Header() {
           <div className="hidden items-center gap-3 md:flex">
             {user ? (
               <>
-                <div className="hidden lg:block"><CreditBalance balance={profile?.credits} onNavigate={closeMenus} /></div>
                 <div className="relative" ref={dropdownRef}>
                   <button
                     type="button"
@@ -232,7 +230,6 @@ export function Header() {
                     <p className="truncate text-xs text-neutral-500">{profile?.school || 'Evater learner'}</p>
                   </div>
                 </div>
-                <CreditBalance balance={profile?.credits} onNavigate={closeMenus} />
               </div>
             )}
 
