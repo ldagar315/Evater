@@ -35,6 +35,14 @@ from ..supabase_client import create_supabase_service_client, run_with_retry
 
 logger = logging.getLogger(__name__)
 router = APIRouter(dependencies=[Depends(require_user)])
+capabilities_router = APIRouter()
+
+
+@capabilities_router.get("/practice-capabilities")
+def practice_capabilities() -> Dict[str, int]:
+    # Public deployment contract only. No account, curriculum or bank data.
+    return {"concept_test_contract": 1}
+
 
 PUBLIC_QUESTION_COLUMNS = (
     "id,chapter_id,concept_id,question_type,question_text,options_json,explanation,hint,"
