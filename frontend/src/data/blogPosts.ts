@@ -1,4 +1,5 @@
 import { BlogPost, BlogCategory } from '../types/blog'
+import { scienceChapterGuides } from './scienceChapterGuides'
 
 const teamAuthor = {
   name: 'Evater Team',
@@ -7,6 +8,7 @@ const teamAuthor = {
 }
 
 export const blogPosts: BlogPost[] = [
+  ...scienceChapterGuides,
   {
     id: '9',
     title: 'NCERT Class 8 Maths Chapter 1: A Square and A Cube - Study Guide',
