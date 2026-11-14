@@ -1,3 +1,4 @@
+import { parsePracticeTarget } from '../lib/practiceTarget'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   AlertCircle,
@@ -15,7 +16,7 @@ import {
   RotateCcw,
   Trophy,
 } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Header } from '../components/layout/Header'
 import { useAppState } from '../contexts/AppStateContext'
 import {
@@ -23,6 +24,8 @@ import {
   createQuestionBankTest,
   createQuestionBankReviewTest,
   getQuestionBankChapters,
+  getPracticeTarget,
+  PracticeTargetAvailability,
   QuestionBankBlockSubmissionResult,
   QuestionBankChapter,
   QuestionBankMedia,
@@ -211,6 +214,12 @@ function getReviewSummary(
 
 export function QuestionBankPracticePage() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const intent = useMemo(() => parsePracticeTarget(location.search), [location.search])
+  const target = intent.target
+  const [targetAvailability, setTargetAvailability] = useState<PracticeTargetAvailability | null>(null)
+  const [targetError, setTargetError] = useState('')
+  const [targetLoading, setTargetLoading] = useState(false)
   const { setLatestPracticeResult } = useAppState()
   const [test, setTest] = useState<QuestionBankTest | null>(null)
   const [answers, setAnswers] = useState<Record<string, unknown>>({})
@@ -225,8 +234,8 @@ export function QuestionBankPracticePage() {
   const [chapterError, setChapterError] = useState('')
   const [chapterReload, setChapterReload] = useState(0)
   const [chapters, setChapters] = useState<QuestionBankChapter[]>([])
-  const [selectedSubjectId, setSelectedSubjectId] = useState('science')
-  const [selectedChapterId, setSelectedChapterId] = useState(CLASS8_SCIENCE_CHAPTER1_ID)
+  const [selectedSubjectId, setSelectedSubjectId] = useState(target?.subject || 'science')
+  const [selectedChapterId, setSelectedChapterId] = useState(target?.chapter || CLASS8_SCIENCE_CHAPTER1_ID)
   const [selectedMode, setSelectedMode] = useState<QuestionBankMode>('practice')
   const [isReviewTest, setIsReviewTest] = useState(false)
   const [flaggedQuestionIds, setFlaggedQuestionIds] = useState<Record<string, boolean>>({})
@@ -268,8 +277,28 @@ export function QuestionBankPracticePage() {
     }
   }
 
+  const targetReady = !intent.provided || Boolean(target && targetAvailability && targetAvailability.concept_id === target.concept && targetAvailability.chapter_id === target.chapter && !targetError && !targetLoading && selectedChapter && selectedChapterId === target.chapter && selectedSubjectId === target.subject && targetAvailability.published_question_count > 0)
+  const sessionCount = target ? Math.min(QUESTION_COUNT, targetAvailability?.published_question_count || 0) : QUESTION_COUNT
+
+  useEffect(() => {
+    setTargetAvailability(null)
+    setTargetError('')
+    if (!target) return
+    setSelectedSubjectId(target.subject)
+    setSelectedChapterId(target.chapter)
+    let active = true
+    setTargetLoading(true)
+    void getPracticeTarget(target.chapter, target.concept).then(value => {
+      if (!active) return
+      if (value.chapter_id !== target.chapter || value.concept_id !== target.concept || !Number.isInteger(value.published_question_count) || value.published_question_count < 0) throw new Error('Practice target could not be verified.')
+      setTargetAvailability(value)
+    }).catch(caught => { if (active) setTargetError(caught instanceof Error ? caught.message : 'Could not verify this concept.') })
+      .finally(() => { if (active) setTargetLoading(false) })
+    return () => { active = false }
+  }, [target])
+
   const start = async () => {
-    if (!selectedChapterId) return
+    if (!selectedChapterId || !targetReady || !sessionCount) return
     setIsReviewTest(false)
     setLoading(true)
     setError(null)
@@ -281,7 +310,7 @@ export function QuestionBankPracticePage() {
     setCurrentQuestionIndex(0)
     setFlagMessage(null)
     try {
-      const nextTest = await createQuestionBankTest(QUESTION_COUNT, QUESTION_COUNT, selectedChapterId, selectedMode)
+      const nextTest = await createQuestionBankTest(sessionCount, sessionCount, selectedChapterId, selectedMode, target?.concept)
       setTimeRemaining(TEST_DURATION_SECONDS)
       setTest(nextTest)
     } catch (caught) {
@@ -296,11 +325,19 @@ export function QuestionBankPracticePage() {
     setChaptersLoading(true)
     setChapterError('')
     setChapters([])
+    if (intent.provided && !target) {
+      setSelectedChapterId('')
+      setChaptersLoading(false)
+      return () => { active = false }
+    }
     void getQuestionBankChapters(SUBJECT_NAME_BY_ID[selectedSubjectId])
       .then((availableChapters) => {
         if (!active) return
         setChapters(availableChapters)
-        if (availableChapters.length > 0) {
+        if (target) {
+          setSelectedChapterId(target.chapter)
+          if (!availableChapters.some(chapter => chapter.id === target.chapter)) setChapterError('This concept chapter is not available for the selected subject.')
+        } else if (availableChapters.length > 0) {
           setSelectedChapterId((current) => availableChapters.some((chapter) => chapter.id === current) ? current : availableChapters[0].id)
         }
       })
@@ -314,7 +351,7 @@ export function QuestionBankPracticePage() {
     return () => {
       active = false
     }
-  }, [selectedSubjectId, chapterReload])
+  }, [selectedSubjectId, chapterReload, target, intent.provided])
 
   const submit = useCallback(async (wasTimedOut = false) => {
     if (!test || loading) return
@@ -441,7 +478,7 @@ export function QuestionBankPracticePage() {
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-600">Practice session</p>
                 <h1 className="mt-2 text-2xl font-bold text-dark sm:text-3xl">{isReviewTest ? 'Across chapters' : `Class 8 ${selectedSubject.label}`}</h1>
-                <p className="mt-1 text-sm text-neutral-500">{isReviewTest ? 'Weak-spot review' : selectedChapter?.title || 'Practice chapter'}</p>
+                <p className="mt-1 text-sm text-neutral-500">{isReviewTest ? 'Weak-spot review' : targetAvailability?.title || selectedChapter?.title || 'Practice chapter'}</p>
               </div>
               <div
                 className={`inline-flex min-h-11 items-center gap-2 rounded-xl border px-3 text-sm font-bold tabular-nums ${timerIsUrgent ? 'border-red-200 bg-red-50 text-red-700' : 'border-neutral-200 bg-white text-dark'}`}
@@ -737,6 +774,12 @@ export function QuestionBankPracticePage() {
               </div>
 
               <div className="space-y-8 p-6 sm:p-10">
+                {intent.provided && <section aria-label="Article practice target" className="rounded-2xl border border-teal-200 bg-teal-50 p-5">
+                  <h2 className="text-lg font-bold text-dark">{targetAvailability?.title || 'Concept practice'}</h2>
+                  <p className="mt-2 text-sm leading-6 text-neutral-700" role="status">{!target ? 'This concept link is incomplete or invalid. No other chapter has been selected.' : targetLoading ? 'Checking published questions for this concept...' : targetError ? targetError : targetAvailability?.published_question_count === 0 ? 'No published questions for this concept yet. We will not substitute another topic.' : targetAvailability ? `${sessionCount} questions from this concept only. Start when you are ready.` : 'This concept could not be verified.'}</p>
+                  {target && chapterError && <p className="mt-2 text-sm text-red-700">{chapterError}</p>}
+                  <button type="button" onClick={() => navigate('/practice')} className="mt-3 min-h-11 text-sm font-bold text-teal-800 underline">Choose different practice instead</button>
+                </section>}
                 <fieldset>
                   <legend className="text-sm font-bold text-dark">Subject</legend>
                   <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -748,7 +791,7 @@ export function QuestionBankPracticePage() {
                           key={subject.id}
                           type="button"
                           onClick={() => subject.available && setSelectedSubjectId(subject.id)}
-                          disabled={!subject.available}
+                          disabled={!subject.available || intent.provided}
                           aria-pressed={isSelected}
                           className={`relative min-h-24 rounded-2xl border px-3 py-4 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${isSelected ? 'border-primary-500 bg-primary-50 text-primary-950 shadow-sm' : subject.available ? 'border-neutral-200 bg-white text-dark hover:border-primary-300 hover:bg-primary-50/50' : 'cursor-not-allowed border-neutral-100 bg-neutral-50 text-neutral-400'}`}
                         >
@@ -769,7 +812,7 @@ export function QuestionBankPracticePage() {
                     aria-busy={chaptersLoading}
                     value={chaptersLoading || chapters.length === 0 ? '' : selectedChapterId}
                     onChange={(event) => setSelectedChapterId(event.target.value)}
-                    disabled={chaptersLoading || loading || chapters.length === 0}
+                    disabled={chaptersLoading || loading || chapters.length === 0 || intent.provided}
                     className="mt-3 min-h-12 w-full rounded-xl border border-neutral-200 bg-white px-3 text-sm font-semibold text-dark outline-none transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
                   >
                     {(chaptersLoading || chapters.length === 0) && <option value="">{chaptersLoading ? 'Loading chapters...' : chapterError ? 'Could not load chapters' : 'No chapters available'}</option>}
@@ -815,7 +858,7 @@ export function QuestionBankPracticePage() {
                   <button
                     type="button"
                     onClick={startReview}
-                    disabled={loading || chaptersLoading}
+                    disabled={loading || chaptersLoading || intent.provided}
                     className="mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-primary-200 bg-white px-5 py-3 font-semibold text-primary-700 transition-colors hover:border-primary-400 hover:bg-primary-50 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <ArrowRight className="h-4 w-4" aria-hidden="true" />}
@@ -825,13 +868,13 @@ export function QuestionBankPracticePage() {
 
                 <div className="flex flex-col gap-4 border-t border-neutral-100 pt-7 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-sm font-bold text-dark">10 questions · 10 minutes</p>
+                    <p className="text-sm font-bold text-dark">{sessionCount || 0} questions · 10 minutes</p>
                     <p className="mt-1 text-sm text-neutral-500">{selectedSubject.label} · {selectedModeOption.label}</p>
                   </div>
                   <button
                     type="button"
                     onClick={start}
-                    disabled={loading || chaptersLoading || chapters.length === 0 || !selectedSubject.available}
+                    disabled={loading || chaptersLoading || chapters.length === 0 || !selectedSubject.available || !targetReady}
                     className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary-600 px-5 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <ArrowRight className="h-4 w-4" aria-hidden="true" />}
