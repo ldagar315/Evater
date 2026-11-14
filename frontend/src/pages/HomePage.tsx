@@ -120,13 +120,13 @@ export function HomePage() {
       )}
 
       <main className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">
-        <section className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] lg:items-stretch">
-          <div className="flex flex-col justify-center">
+        <section className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] lg:items-stretch">
+          <div className="flex min-w-0 flex-col justify-center">
             <p className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-primary-700">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
               Student workspace
             </p>
-            <h1 className="max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-dark sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-3xl break-words text-4xl font-bold leading-[1.08] tracking-tight text-dark sm:text-5xl lg:text-6xl">
               Good to see you, <span className="text-primary-600">{firstName}</span>.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600 sm:text-lg">
@@ -197,7 +197,7 @@ export function HomePage() {
                 <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl sm:h-11 sm:w-11 ${stat.iconClass}`}>
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 max-w-full">
                   <p className="text-[0.6rem] font-bold uppercase tracking-[0.12em] text-neutral-500 sm:text-xs sm:tracking-[0.16em]">
                     {stat.label}
                   </p>
