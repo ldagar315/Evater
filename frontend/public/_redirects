@@ -16,7 +16,7 @@
 /take-test/* /index.html 200
 /submit-feedback/* /index.html 200
 /view-feedback/* /index.html 200
-/blog/* /index.html 200
+# Blog pages are prerendered files; unknown slugs must reach the real 404.
 /about /index.html 200
 /privacy /index.html 200
 /terms /index.html 200

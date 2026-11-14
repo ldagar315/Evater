@@ -15,4 +15,7 @@ for route in sorted(routes):
 for text in (config, backup):
     assert text.index('/my-tests') < text.rindex('/404.html'), 'Known routes must precede real404 fallback'
 assert 'status = 404' in config and '/* /404.html 404' in backup
+# A blog wildcard shadows the real-404 rule and serves home HTML to unknown slugs.
+assert not re.search(r'from = "/blog/\*"', config), 'Blog wildcard hides unknown-page404 in netlify.toml'
+assert not any(line.strip().startswith('/blog/* ') for line in backup.splitlines()), 'Blog wildcard hides unknown-page404 in _redirects'
 print(f'PASS: {len(routes)} static app paths including /my-tests have200 app fallbacks in both rule sources; unknown paths retain404.')
