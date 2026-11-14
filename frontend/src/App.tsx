@@ -32,6 +32,10 @@ const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then((m) =>
 const LeagueInfoPage = lazy(() => import('./pages/LeagueInfoPage').then((m) => ({ default: m.LeagueInfoPage })))
 const QuestionTypePreviewPage = lazy(() => import('./pages/QuestionTypePreviewPage').then((m) => ({ default: m.QuestionTypePreviewPage })))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })))
+// Compile-time development guard: pending content never enters production routes/chunks.
+const ReviewedContentPreviewPage = import.meta.env.DEV
+  ? lazy(() => import('./pages/ReviewedContentPreviewPage').then((m) => ({ default: m.ReviewedContentPreviewPage })))
+  : null
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading, error } = useAuthContext()
@@ -109,6 +113,7 @@ function AppRoutes() {
           {/* Public routes */}
           <Route path="/" element={!user ? <LandingPage /> : <Navigate to="/home" replace />} />
           <Route path="/blog" element={<BlogPage />} />
+          {import.meta.env.DEV && ReviewedContentPreviewPage && <Route path="/reviewed-content/:slug?" element={<ReviewedContentPreviewPage />} />}
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy" element={<Navigate to="/about/#privacy" replace />} />
