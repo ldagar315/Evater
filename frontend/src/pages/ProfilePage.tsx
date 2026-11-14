@@ -1,4 +1,3 @@
-import { CreditBalance } from '../components/credits/CreditBalance'
 import { authReturn } from '../lib/practiceTarget'
 import React, { useEffect, useMemo, useState } from 'react'
 import {
@@ -55,15 +54,6 @@ export function ProfilePage() {
     setSchool(profile.school || '')
   }, [profile])
 
-  useEffect(() => {
-    if (loading || location.hash !== '#credits') return
-    const frame = requestAnimationFrame(() => {
-      const target = document.getElementById('credits')
-      target?.scrollIntoView({ block: 'start', behavior: 'auto' })
-      target?.focus({ preventScroll: true })
-    })
-    return () => cancelAnimationFrame(frame)
-  }, [loading, location.hash, location.key])
 
   const resetForm = () => {
     setName(profile?.name || profile?.user_name || '')
@@ -147,7 +137,7 @@ export function ProfilePage() {
           )}
         </div>
 
-        <section className="mt-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)]">
+        <section className="mt-10">
           <div className="min-w-0 rounded-3xl bg-dark p-6 text-white shadow-xl shadow-dark/10 sm:p-8">
             <div className="flex items-start justify-between gap-5">
               <div className="flex min-w-0 items-center gap-4">
@@ -179,7 +169,6 @@ export function ProfilePage() {
             </div>
           </div>
 
-          <CreditBalance balance={profile?.credits} variant="panel" />
         </section>
 
         <section className="mt-8 rounded-3xl border border-neutral-200 bg-white shadow-sm">
