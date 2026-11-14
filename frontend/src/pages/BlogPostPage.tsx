@@ -1,3 +1,4 @@
+import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { supportsConceptPractice } from '../lib/api'
 import { blogPracticeTargets } from '../data/blogPracticeTargets'
 import { practiceHref } from '../lib/practiceTarget'
@@ -16,7 +17,6 @@ import { useAuthContext } from '../contexts/AuthContext'
 import { getPostBySlug, getRelatedPosts } from '../data/blogPosts'
 import { BlogPost } from '../types/blog'
 import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
-import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
