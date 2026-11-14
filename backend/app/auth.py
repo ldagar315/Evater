@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+from time import perf_counter
 from dataclasses import dataclass
 from typing import Optional
 
@@ -18,6 +19,8 @@ class AuthContext:
     jwt: str
     user: User
     tenant_id: Optional[str]
+    # Internal phase duration only. Never holds or exposes credential data.
+    validation_ms: Optional[float] = None
 
 
 def _extract_bearer_token(authorization: Optional[str]) -> str:
@@ -49,6 +52,7 @@ def _tenant_id_from_user(user: User) -> Optional[str]:
 
 
 def require_user(authorization: Optional[str] = Header(default=None)) -> AuthContext:
+    started = perf_counter()
     jwt = _extract_bearer_token(authorization)
 
     try:
@@ -67,7 +71,8 @@ def require_user(authorization: Optional[str] = Header(default=None)) -> AuthCon
         raise HTTPException(status_code=401, detail="Unauthorized", headers={"WWW-Authenticate": "Bearer"})
 
     tenant_id = _tenant_id_from_user(user_response.user)
-    return AuthContext(jwt=jwt, user=user_response.user, tenant_id=tenant_id)
+    return AuthContext(jwt=jwt, user=user_response.user, tenant_id=tenant_id,
+                       validation_ms=(perf_counter() - started) * 1000)
 
 
 async def require_user_websocket(websocket: WebSocket) -> AuthContext:

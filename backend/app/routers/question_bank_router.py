@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import secrets
+from time import perf_counter
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
 from uuid import UUID
@@ -157,7 +158,9 @@ def list_question_bank_chapters(
     """
     # Authentication is enforced by require_user; the catalogue itself is
     # public question-bank data and is read with the server-only client.
+    client_started = perf_counter()
     client = create_supabase_service_client()
+    query_started = perf_counter()
     # The chapters -> curriculum_versions FK makes this a many-to-one join.
     # !inner is required: a published chapter must not leak from a draft,
     # retired, other-grade or other-subject curriculum. One PostgREST read
@@ -172,6 +175,17 @@ def list_question_bank_chapters(
         .eq("status", "published")
         .order("sequence_number")
         .execute()
+    )
+    query_finished = perf_counter()
+    # Successful catalogue requests only. Durations and bounded subject labels,
+    # never JWTs, user IDs, request headers, rows, keys, or exceptions. This is
+    # phase measurement, not evidence that cold starts or network time vanished.
+    logger.info(
+        "chapter_catalogue_timing auth_ms=%s client_ms=%.1f query_ms=%.1f subject=%s",
+        "unknown" if auth.validation_ms is None else f"{auth.validation_ms:.1f}",
+        (query_started - client_started) * 1000,
+        (query_finished - query_started) * 1000,
+        subject if subject in {"Science", "Mathematics"} else "other" if subject else "Science",
     )
     # Keep the existing public response shape and never expose join metadata.
     return {"chapters": [
