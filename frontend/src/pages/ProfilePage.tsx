@@ -63,7 +63,7 @@ export function ProfilePage() {
       target?.focus({ preventScroll: true })
     })
     return () => cancelAnimationFrame(frame)
-  }, [loading, location.hash])
+  }, [loading, location.hash, location.key])
 
   const resetForm = () => {
     setName(profile?.name || profile?.user_name || '')
