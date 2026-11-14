@@ -158,27 +158,28 @@ def list_question_bank_chapters(
     # Authentication is enforced by require_user; the catalogue itself is
     # public question-bank data and is read with the server-only client.
     client = create_supabase_service_client()
-    curriculum_response = (
-        client.table("curriculum_versions")
-        .select("id,grade,subject,version_label")
-        .eq("grade", 8)
-        .eq("subject", subject or "Science")
-        .eq("status", "published")
-        .execute()
-    )
-    curriculum_ids = [str(row["id"]) for row in (curriculum_response.data or [])]
-    if not curriculum_ids:
-        return {"chapters": []}
-
+    # The chapters -> curriculum_versions FK makes this a many-to-one join.
+    # !inner is required: a published chapter must not leak from a draft,
+    # retired, other-grade or other-subject curriculum. One PostgREST read
+    # replaces the old two serial catalogue reads, without caching status.
     chapter_response = (
         client.table("chapters")
-        .select("id,sequence_number,title,description,curriculum_version_id")
-        .in_("curriculum_version_id", curriculum_ids)
+        .select("id,sequence_number,title,description,curriculum_version_id,"
+                "curriculum_versions!inner(id)")
+        .eq("curriculum_versions.grade", 8)
+        .eq("curriculum_versions.subject", subject or "Science")
+        .eq("curriculum_versions.status", "published")
         .eq("status", "published")
         .order("sequence_number")
         .execute()
     )
-    return {"chapters": chapter_response.data or []}
+    # Keep the existing public response shape and never expose join metadata.
+    return {"chapters": [
+        {key: row[key] for key in (
+            "id", "sequence_number", "title", "description", "curriculum_version_id"
+        )}
+        for row in (chapter_response.data or [])
+    ]}
 
 
 @router.post("/questions/{question_id}/flag", response_model=QuestionFlagResponse)

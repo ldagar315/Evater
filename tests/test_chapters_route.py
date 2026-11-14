@@ -86,3 +86,56 @@ def test_chapters_empty_when_no_published_curriculum(monkeypatch):
 
 def test_chapters_requires_auth():
     assert TestClient(app).get("/api/v1/chapters").status_code == 401
+
+@pytest.mark.parametrize('query,subject', [('', 'Science'), ('?subject=Mathematics', 'Mathematics'), ('?subject=Unknown', 'Unknown'), ('?subject=', 'Science')])
+def test_chapters_single_sdk_request_preserves_filters_and_response(monkeypatch,query,subject):
+    """Use the real Supabase/PostgREST builder, not a permissive query stub."""
+    import httpx
+    from supabase import create_client
+    from supabase.lib.client_options import SyncClientOptions
+    requests=[]
+    def transport(request):
+        requests.append(request)
+        assert request.method=='GET'
+        assert request.url.path=='/rest/v1/chapters'
+        params=dict(request.url.params)
+        assert params=={
+            'select':'id,sequence_number,title,description,curriculum_version_id,curriculum_versions!inner(id)',
+            'curriculum_versions.grade':'eq.8',
+            'curriculum_versions.subject':'eq.'+subject,
+            'curriculum_versions.status':'eq.published',
+            'status':'eq.published','order':'sequence_number.asc',
+        }
+        return httpx.Response(200,json=[{
+            'id':'ch-1','sequence_number':1,'title':'Published only','description':None,
+            'curriculum_version_id':'cv-1','curriculum_versions':{'id':'cv-1'},
+            'unexpected_internal_metadata':'must not leak',
+        }],headers={'content-type':'application/json'})
+    with httpx.Client(transport=httpx.MockTransport(transport))as http:
+        client=create_client('https://example.supabase.co','test-key',options=SyncClientOptions(httpx_client=http))
+        app.dependency_overrides[require_user]=_auth
+        monkeypatch.setattr(qb_router,'create_supabase_service_client',lambda:client)
+        try:
+            result=TestClient(app).get('/api/v1/chapters'+query)
+            assert result.status_code==200,result.text
+            assert result.json()=={'chapters':[{'id':'ch-1','sequence_number':1,'title':'Published only','description':None,'curriculum_version_id':'cv-1'}]}
+            assert len(requests)==1
+        finally:app.dependency_overrides.clear()
+
+
+def test_chapters_auth_rejection_never_touches_catalogue(monkeypatch):
+    def forbidden():raise AssertionError('Unauthenticated catalogue read')
+    monkeypatch.setattr(qb_router,'create_supabase_service_client',forbidden)
+    assert TestClient(app).get('/api/v1/chapters').status_code==401
+
+
+def test_chapters_sdk_error_is_not_silently_cached_or_empty(monkeypatch):
+    class Broken:
+        def table(self,name):raise RuntimeError('read failed fixture')
+    app.dependency_overrides[require_user]=_auth
+    monkeypatch.setattr(qb_router,'create_supabase_service_client',lambda:Broken())
+    try:
+        result=TestClient(app,raise_server_exceptions=False).get('/api/v1/chapters')
+        assert result.status_code==500
+        assert result.json()!={'chapters':[]}
+    finally:app.dependency_overrides.clear()
