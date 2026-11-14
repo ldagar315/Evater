@@ -15,3 +15,9 @@ Backend selected suite: 35 passed, including 11 new concept tests and existing q
 Frontend unit suite: 22 passed. Full app typecheck is NOT clean: exact-main baseline has 57 diagnostics, proposed has 56, with no new normalized diagnostic and one removed unused React import. Command: `npx tsc --noEmit -p tsconfig.app.json`. Both exit nonzero. Build/prerender passed separately.
 
 No new article prose, student content, production settings, DB data, merge or spending is included. Four existing chapter articles receive static target metadata, with live availability checked only after sign-in. Original content drafts and whole-Class-8 coverage are separate work.
+
+## Deployment capability gate
+
+A public read-only `/api/v1/practice-capabilities` advertises contract version 1 only in the new backend. Blog concept CTAs and their body-link rewrites appear only after a fresh, successful version-1 response. Old backend 404, errors, unrecognized contract or a failed read leave only an honestly labelled "Choose chapter practice" action. There is no remembered readiness flag. Thus Netlify may deploy first without exposing concept-test links; Modal may deploy first without changing the old frontend. No ordering or production setting change is needed. The protected concept setup still fails visibly if a previously ready backend becomes unavailable.
+
+Updated final local tests: 42 browser checks (14 at each width), 36 selected backend tests (12 concept tests), 22 frontend units. Backend route mount is checked, and the capability response contains no account or curriculum data. Hosted verification must be rerun against the updated head. Prior 39-check hosted result belongs to the pre-gate head, not this revision.
