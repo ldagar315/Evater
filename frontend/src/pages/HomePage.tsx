@@ -1,11 +1,9 @@
-import { CreditBalance } from '../components/credits/CreditBalance'
 import React from 'react'
 import {
   ArrowRight,
   ArrowUpRight,
   BarChart3,
   Brain,
-  Coins,
   FileText,
   GraduationCap,
   History,
@@ -59,12 +57,6 @@ export function HomePage() {
       value: profile?.school || 'Not set',
       icon: School,
       iconClass: 'bg-secondary-50 text-secondary-700',
-    },
-    {
-      label: 'Credits',
-      value: profile?.credits ?? '—',
-      icon: Coins,
-      iconClass: 'bg-yellow-50 text-yellow-700',
     },
   ]
 
@@ -187,10 +179,9 @@ export function HomePage() {
           </aside>
         </section>
 
-        <section aria-label="Account snapshot" className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3">
+        <section aria-label="Account snapshot" className="mt-8 grid grid-cols-2 gap-2 sm:mt-10 sm:gap-3">
           {accountStats.map((stat) => {
             const Icon = stat.icon
-            if (stat.label === 'Credits') return <CreditBalance key={stat.label} balance={profile?.credits} variant="summary" />
             return (
               <div
                 key={stat.label}
