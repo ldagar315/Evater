@@ -10,6 +10,7 @@ from app.models import ConceptTestRequest, QuestionBankBlockSubmission, Question
 from app.routers import question_bank_router as qb
 app = FastAPI()
 app.include_router(qb.router, prefix="/api/v1")
+app.include_router(qb.capabilities_router, prefix="/api/v1")
 from test_review_tests import FakeClient, FakeTable, auth, make_q, USER_ID, CHAPTER_A, CHAPTER_B, CONCEPT_A, CONCEPT_B
 
 
@@ -112,3 +113,16 @@ def test_other_user_cannot_submit_a_concept_test(monkeypatch):
         qb.submit_question_bank_block(str(created.test_id), 1, QuestionBankBlockSubmission(answers=[]), SimpleNamespace(user=SimpleNamespace(id=CHAPTER_B)))
     assert e.value.status_code == 404
     assert fake.tables['question_attempts'].rows == initial
+
+
+def test_public_capability_route_has_no_account_or_bank_data():
+    c = TestClient(app)
+    result = c.get('/api/v1/practice-capabilities')
+    assert result.status_code == 200
+    assert result.json() == {"concept_test_contract": 1}
+    # Assert this public router is actually mounted by the real app factory.
+    import ast
+    from pathlib import Path
+    tree = ast.parse((Path(__file__).parents[1] / 'backend/app/main.py').read_text())
+    assert any(isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == 'include_router'
+               and n.args and ast.unparse(n.args[0]) == 'question_bank_router.capabilities_router' for n in ast.walk(tree))
