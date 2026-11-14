@@ -8,6 +8,17 @@ const PRERENDER_ROUTES = [
   '/',
   '/about',
   '/blog',
+  '/blog/ncert-class-8-science-keeping-time-skies-study-guide',
+  '/blog/ncert-class-8-science-nature-ecosystems-harmony-study-guide',
+  '/blog/ncert-class-8-science-earth-life-sustaining-planet-study-guide',
+
+  '/blog/ncert-class-8-science-elements-compounds-mixtures-study-guide',
+  '/blog/ncert-class-8-science-solutes-solvents-solutions-density-study-guide',
+
+  '/blog/ncert-class-8-science-electricity-magnetic-heating-effects-study-guide',
+  '/blog/ncert-class-8-science-pressure-winds-storms-cyclones-study-guide',
+  '/blog/ncert-class-8-science-particulate-nature-of-matter-study-guide',
+
   '/blog/ncert-class-8-science-investigative-world-study-guide',
   '/blog/ncert-class-8-science-invisible-living-world-study-guide',
   '/blog/ncert-class-8-science-health-ultimate-treasure-study-guide',
