@@ -125,13 +125,7 @@ function AppRoutes() {
 
           <Route path="/auth" element={loading ? <LoadingFallback /> : user ? <Navigate to="/home" replace /> : <AuthPage />} />
 
-          {!user ? (
-            <>
-              <Route path="*" element={<NotFoundPage />} />
-            </>
-          ) : (
-            <>
-              <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={user ? <ProfilePage /> : <Navigate to="/auth" replace />} />
               <Route path="/home" element={
                 <ProtectedRoute>
                   <HomePage />
@@ -199,8 +193,6 @@ function AppRoutes() {
                 </ProtectedRoute>
               } />
               <Route path="*" element={<NotFoundPage />} />
-            </>
-          )}
         </Routes>
       </div>
       {/* Only show footer on authenticated pages */}
