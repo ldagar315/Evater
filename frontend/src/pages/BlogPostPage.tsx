@@ -16,6 +16,7 @@ import { useAuthContext } from '../contexts/AuthContext'
 import { getPostBySlug, getRelatedPosts } from '../data/blogPosts'
 import { BlogPost } from '../types/blog'
 import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
+import { ReflectionSimulation } from '../components/blog/ReflectionSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
@@ -241,6 +242,7 @@ export function BlogPostPage() {
             </div>
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
+              {post.slug === 'ncert-class-8-science-light-mirrors-lenses-study-guide' && <ReflectionSimulation />}
 
             {conceptPracticeReady && blogPracticeTargets[post.slug] && <section id="concept-practice" aria-label="Practise concepts from this article" className="my-10 rounded-2xl border border-teal-200 bg-teal-50 p-5 sm:p-7">
               <h2 className="text-2xl font-extrabold text-dark">Put this concept to the test</h2>
