@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useId } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button";
 import { Select } from "../components/ui/Select";
@@ -50,6 +50,7 @@ interface ApiResponse {
 }
 
 export function CreateTestPage() {
+  const chapterHeadingId = useId();
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const { setLastGeneratedTest } = useAppState();
@@ -369,12 +370,13 @@ export function CreateTestPage() {
               !subject ? "opacity-50 pointer-events-none" : ""
             }`}
           >
-            <h2 className="text-lg font-semibold text-dark mb-4 flex items-center">
+            <h2 id={chapterHeadingId} className="text-lg font-semibold text-dark mb-4 flex items-center">
               <Layout className="w-5 h-5 mr-2 text-primary-600" />
               Select Topic/Chapter
             </h2>
             <div className="bg-white p-1 rounded-xl shadow-sm border border-neutral-200">
               <Select
+                aria-labelledby={chapterHeadingId}
                 value={chapter}
                 onChange={(e) => setChapter(e.target.value)}
                 options={[
