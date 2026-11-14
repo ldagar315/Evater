@@ -273,3 +273,13 @@ export async function getPracticeTarget(chapterId: string, conceptId: string): P
   const response = await apiFetch(`${MODAL_API_URL}/api/v1/practice-target?` + new URLSearchParams({ chapter_id: chapterId, concept_id: conceptId }))
   return parseApiResponse<PracticeTargetAvailability>(response)
 }
+
+// Read-only and public: a missing/old backend must not expose new concept CTAs.
+export async function supportsConceptPractice(signal?: AbortSignal): Promise<boolean> {
+  try {
+    const response = await fetch(`${MODAL_API_URL}/api/v1/practice-capabilities`, { signal, cache: 'no-store' })
+    if (!response.ok) return false
+    const payload: unknown = await response.json()
+    return Boolean(payload && typeof payload === 'object' && 'concept_test_contract' in payload && payload.concept_test_contract === 1)
+  } catch { return false }
+}
