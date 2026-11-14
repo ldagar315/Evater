@@ -1,10 +1,11 @@
-import React from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { authReturn } from '../lib/practiceTarget'
+import { Navigate, useNavigate, useLocation } from 'react-router-dom'
 import { AuthForm } from '../components/auth/AuthForm'
 import { BYPASS_AUTH, logAuthBypassWarning } from '../lib/auth/devBypass'
 
 export function AuthPage() {
   const navigate = useNavigate()
+  const location = useLocation()
 
   if (BYPASS_AUTH) {
     logAuthBypassWarning('AuthPage redirect')
@@ -12,7 +13,8 @@ export function AuthPage() {
   }
 
   const handleAuthSuccess = () => {
-    navigate('/profile')
+    const next = authReturn(location.search)
+    navigate(next === '/home' ? '/profile' : next)
   }
 
   return <AuthForm onSuccess={handleAuthSuccess} />

@@ -157,12 +157,14 @@ export async function createQuestionBankTest(
   blockSize = 5,
   chapterId = CLASS8_SCIENCE_CHAPTER1_ID,
   mode: QuestionBankMode = 'practice',
+  conceptId?: string,
 ): Promise<QuestionBankTest> {
-  const response = await apiFetch(`${MODAL_API_URL}/api/v1/tests`, {
+  const response = await apiFetch(`${MODAL_API_URL}/api/v1/${conceptId ? 'concept-tests' : 'tests'}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       chapter_id: chapterId,
+      ...(conceptId ? { concept_id: conceptId } : {}),
       mode,
       question_count: questionCount,
       block_size: blockSize,
@@ -264,4 +266,20 @@ export async function getLeaderboard(
   const params = new URLSearchParams({ scope, period })
   const response = await apiFetch(`${MODAL_API_URL}/api/v1/leaderboard?${params.toString()}`)
   return parseApiResponse<LeaderboardResponse>(response)
+}
+
+export type PracticeTargetAvailability = { chapter_id: string; concept_id: string; title: string; published_question_count: number }
+export async function getPracticeTarget(chapterId: string, conceptId: string): Promise<PracticeTargetAvailability> {
+  const response = await apiFetch(`${MODAL_API_URL}/api/v1/practice-target?` + new URLSearchParams({ chapter_id: chapterId, concept_id: conceptId }))
+  return parseApiResponse<PracticeTargetAvailability>(response)
+}
+
+// Read-only and public: a missing/old backend must not expose new concept CTAs.
+export async function supportsConceptPractice(signal?: AbortSignal): Promise<boolean> {
+  try {
+    const response = await fetch(`${MODAL_API_URL}/api/v1/practice-capabilities`, { signal, cache: 'no-store' })
+    if (!response.ok) return false
+    const payload: unknown = await response.json()
+    return Boolean(payload && typeof payload === 'object' && 'concept_test_contract' in payload && payload.concept_test_contract === 1)
+  } catch { return false }
 }

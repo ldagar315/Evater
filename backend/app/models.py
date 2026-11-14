@@ -128,6 +128,18 @@ class QuestionBankTestRequest(BaseModel):
     block_size: int = Field(default=5, ge=1, le=20)
 
 
+class ConceptTestRequest(QuestionBankTestRequest):
+    concept_id: UUID
+    question_count: int = Field(default=10, ge=1, le=20)
+
+
+class PracticeTargetResponse(BaseModel):
+    chapter_id: UUID
+    concept_id: UUID
+    title: str
+    published_question_count: int
+
+
 class ReviewTestRequest(BaseModel):
     question_count: int = Field(default=10, ge=1, le=100)
     block_size: int = Field(default=10, ge=1, le=20)

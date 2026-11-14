@@ -1,3 +1,6 @@
+import { supportsConceptPractice } from '../lib/api'
+import { blogPracticeTargets } from '../data/blogPracticeTargets'
+import { practiceHref } from '../lib/practiceTarget'
 import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Calendar, Check, ChevronRight, Clock, Home, Share2, Tag } from 'lucide-react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -42,6 +45,14 @@ export function BlogPostPage() {
   const [post, setPost] = useState<BlogPost | null>(null)
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
+  const [conceptPracticeReady, setConceptPracticeReady] = useState(false)
+  useEffect(() => {
+    const controller = new AbortController()
+    setConceptPracticeReady(false)
+    void supportsConceptPractice(controller.signal).then(ready => { if (!controller.signal.aborted) setConceptPracticeReady(ready) })
+    return () => controller.abort()
+  }, [slug])
+
   const [shareStatus, setShareStatus] = useState<'idle' | 'copied' | 'error'>('idle')
 
   useEffect(() => {
@@ -155,6 +166,7 @@ export function BlogPostPage() {
     },
     h3: ({ children }: { children?: React.ReactNode }) => <h3>{children}</h3>,
     a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
+      if (href === '/practice' && conceptPracticeReady && blogPracticeTargets[post.slug]) return <a href="#concept-practice">{children}</a>
       if (href?.startsWith('/')) return <Link to={href}>{children}</Link>
       return <a href={href} target="_blank" rel="noreferrer">{children}</a>
     },
@@ -228,6 +240,12 @@ export function BlogPostPage() {
             </div>
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
 
+            {conceptPracticeReady && blogPracticeTargets[post.slug] && <section id="concept-practice" aria-label="Practise concepts from this article" className="my-10 rounded-2xl border border-teal-200 bg-teal-50 p-5 sm:p-7">
+              <h2 className="text-2xl font-extrabold text-dark">Put this concept to the test</h2>
+              <p className="mt-3 text-sm leading-6 text-neutral-600">Choose a concept. We check its published questions before you start, and keep your choice through sign-in.</p>
+              <div className="mt-4 flex flex-wrap gap-3">{blogPracticeTargets[post.slug].map(target => <Link key={target.concept} to={practiceHref(target)} className="inline-flex min-h-12 items-center rounded-xl bg-teal-800 px-4 py-3 text-sm font-bold text-white hover:bg-teal-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-800">{target.label}<ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Link>)}</div>
+              <p className="mt-3 text-xs leading-5 text-neutral-500">The set length depends on current availability. Opening a link does not create a test.</p>
+            </section>}
             {post.faqs && post.faqs.length > 0 && (
               <section aria-labelledby="faq-heading" className="mt-12 border-t border-neutral-200 pt-10">
                 <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Quick answers</p>
@@ -291,7 +309,7 @@ export function BlogPostPage() {
               <p className="mt-3 max-w-2xl leading-7 text-primary-50/70">Evater helps you move from “I read it” to “I can use it.”</p>
             </div>
             <div className="flex shrink-0 flex-wrap gap-3">
-              <Link to={user ? '/home' : '/auth'} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{user ? 'Go to dashboard' : 'Get started free'}</Link>
+              <Link to={conceptPracticeReady && blogPracticeTargets[post.slug] ? practiceHref(blogPracticeTargets[post.slug][0]) : '/practice'} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{conceptPracticeReady && blogPracticeTargets[post.slug] ? 'Practise this concept' : 'Choose chapter practice'}</Link>
               <Link to="/blog/" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">Read more articles <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" /></Link>
             </div>
           </div>

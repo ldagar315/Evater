@@ -1,3 +1,4 @@
+import { authReturn } from '../lib/practiceTarget'
 import { useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
@@ -91,6 +92,7 @@ export function useAuth() {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        ...(authReturn(window.location.search) !== '/home' ? { options: { emailRedirectTo: window.location.origin + authReturn(window.location.search) } } : {}),
       })
       return { data, error }
     } catch (err) {
@@ -127,7 +129,7 @@ export function useAuth() {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/home`
+          redirectTo: window.location.origin + authReturn(window.location.search)
         }
       })
       return { data, error }
