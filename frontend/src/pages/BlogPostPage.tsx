@@ -12,6 +12,7 @@ import { Card, CardContent } from '../components/ui/Card'
 import { useAuthContext } from '../contexts/AuthContext'
 import { getPostBySlug, getRelatedPosts } from '../data/blogPosts'
 import { BlogPost } from '../types/blog'
+import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -225,6 +226,7 @@ export function BlogPostPage() {
             <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-dark prose-h2:scroll-mt-28 prose-p:leading-8 prose-p:text-neutral-600 prose-a:font-bold prose-a:text-primary-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-dark prose-li:text-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:text-neutral-700 prose-img:rounded-2xl">
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
             </div>
+            {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
 
             {post.faqs && post.faqs.length > 0 && (
               <section aria-labelledby="faq-heading" className="mt-12 border-t border-neutral-200 pt-10">
