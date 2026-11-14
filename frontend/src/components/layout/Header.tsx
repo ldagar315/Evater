@@ -1,7 +1,7 @@
+import { CreditBalance } from '../credits/CreditBalance'
 import React, { useEffect, useRef, useState } from 'react'
 import {
   ChevronDown,
-  Coins,
   GraduationCap,
   LogOut,
   Menu,
@@ -133,11 +133,7 @@ export function Header() {
           <div className="hidden items-center gap-3 md:flex">
             {user ? (
               <>
-                <div className="hidden min-h-10 items-center gap-2 rounded-xl border border-secondary-200 bg-secondary-50 px-3 text-sm font-bold text-secondary-800 lg:inline-flex">
-                  <Coins className="h-4 w-4" aria-hidden="true" />
-                  <span>{profile?.credits ?? '—'}</span>
-                  <span className="hidden text-xs font-semibold text-secondary-700 lg:inline">credits</span>
-                </div>
+                <div className="hidden lg:block"><CreditBalance balance={profile?.credits} onNavigate={closeMenus} /></div>
                 <div className="relative" ref={dropdownRef}>
                   <button
                     type="button"
@@ -228,7 +224,7 @@ export function Header() {
         <div className="absolute right-4 top-full z-50 max-h-[calc(100vh-5rem)] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl border border-neutral-200 bg-cream shadow-xl shadow-dark/10 md:hidden">
           <div className="space-y-5 p-5">
             {user && (
-              <div className="flex items-center justify-between rounded-2xl border border-neutral-200 bg-white p-4">
+              <div className="flex flex-col gap-4 rounded-2xl border border-neutral-200 bg-white p-4">
                 <div className="flex min-w-0 items-center gap-3">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-sm font-bold text-primary-700">{initials}</span>
                   <div className="min-w-0">
@@ -236,9 +232,7 @@ export function Header() {
                     <p className="truncate text-xs text-neutral-500">{profile?.school || 'Evater learner'}</p>
                   </div>
                 </div>
-                <div className="inline-flex items-center gap-1.5 rounded-lg bg-secondary-50 px-2.5 py-2 text-sm font-bold text-secondary-800">
-                  <Coins className="h-4 w-4" aria-hidden="true" /> {profile?.credits ?? '—'}
-                </div>
+                <CreditBalance balance={profile?.credits} onNavigate={closeMenus} />
               </div>
             )}
 

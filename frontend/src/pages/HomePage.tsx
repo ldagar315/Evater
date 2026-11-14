@@ -1,3 +1,4 @@
+import { CreditBalance } from '../components/credits/CreditBalance'
 import React from 'react'
 import {
   ArrowRight,
@@ -189,6 +190,7 @@ export function HomePage() {
         <section aria-label="Account snapshot" className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3">
           {accountStats.map((stat) => {
             const Icon = stat.icon
+            if (stat.label === 'Credits') return <CreditBalance key={stat.label} balance={profile?.credits} variant="summary" />
             return (
               <div
                 key={stat.label}
