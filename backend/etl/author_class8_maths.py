@@ -27,6 +27,7 @@ from pathlib import Path
 from uuid import uuid5
 
 from .class8_maths_catalog import CHAPTERS
+from .class8_maths_topics import TOPICS
 
 SOURCE_URL = "manual://evater/authored/class8-maths"
 ATTRIBUTION = "Evater original (authored and code-verified)"
@@ -480,7 +481,33 @@ VERIFIERS = {
 }
 
 
+# Chapter 9 must not accept an unrelated family merely because its slug exists.
+# Keep this explicit: answer arithmetic alone cannot verify concept alignment.
+PYTHAGORAS_FAMILY_TOPICS = {
+    "pyth_statement": "pythagoras-statement",
+    "pyth_leg": "finding-sides",
+    "pyth_ladder": "applications",
+    "triple_scale": "pythagorean-triples",
+    "converse_check": "converse",
+    "right_set": "converse",
+    "tf_pyth_triple": "converse",
+    "num_pyth_hyp": "finding-sides",
+}
+
+
+def validate_authored_alignment(item: AuthoredItem, spec) -> None:
+    if item.chapter != spec.sequence_number:
+        raise ValueError("Authored item chapter differs from destination chapter")
+    if item.topic_slug not in {topic.slug for topic in TOPICS[spec.sequence_number]}:
+        raise ValueError(f"Unknown chapter concept: {item.topic_slug}")
+    if spec.sequence_number == 9:
+        expected = PYTHAGORAS_FAMILY_TOPICS.get(item.family)
+        if expected is None or item.topic_slug != expected:
+            raise ValueError(f"Invalid Pythagoras family/concept: {item.family}/{item.topic_slug}")
+
+
 def build_candidate(item: AuthoredItem, spec, rng: random.Random) -> dict:
+    validate_authored_alignment(item, spec)
     concept_id = uuid5(spec.id, f"concept:{item.topic_slug}")
     if item.qtype == "true_false":
         options = [{"id": "A", "text": "True"}, {"id": "B", "text": "False"}]
@@ -573,7 +600,6 @@ SLUG_REMAP = {
     (6, "expressions"): "expansion",
     (6, "like-terms"): "simplification",
     (9, "congruence"): "converse",
-    (9, "exponents"): "pythagoras-statement",
     (12, "patterns-generalisation"): "data-stories",
     (13, "identities"): "expressions",
 }
@@ -593,6 +619,7 @@ def author_chapter(chapter: int, seed: int) -> tuple[list[dict], list[str]]:
             try:
                 item = gen(rng, chapter)
                 item.topic_slug = SLUG_REMAP.get((chapter, item.topic_slug), item.topic_slug)
+                validate_authored_alignment(item, spec)
             except Exception as exc:
                 report.append(f"GEN-ERROR: {exc}")
                 continue
@@ -1809,6 +1836,35 @@ def gen_identity_eval(rng, chapter):
     )
 
 
+def v_pyth_statement(text):
+    match = re.fullmatch(
+        r"In a right-angled triangle, ([a-z]) is the hypotenuse and ([a-z]) and ([a-z]) are the legs\. Which equation states the Pythagoras theorem\?",
+        text,
+    )
+    if match is None or len(set(match.groups())) != 3:
+        raise ValueError("Unrecognised Pythagoras statement")
+    hypotenuse, leg_a, leg_b = match.groups()
+    return f"{leg_a}^2 + {leg_b}^2 = {hypotenuse}^2"
+
+
+def gen_pyth_statement(rng, chapter):
+    leg_a, leg_b, hypotenuse = rng.choice([
+        ("a", "b", "c"), ("p", "q", "r"), ("x", "y", "z"), ("l", "m", "n"),
+    ])
+    return AuthoredItem(
+        family="pyth_statement", chapter=chapter, topic_slug="pythagoras-statement",
+        question_text=f"In a right-angled triangle, {hypotenuse} is the hypotenuse and {leg_a} and {leg_b} are the legs. Which equation states the Pythagoras theorem?",
+        key=f"{leg_a}^2 + {leg_b}^2 = {hypotenuse}^2",
+        distractors=[f"{leg_a} + {leg_b} = {hypotenuse}", f"{leg_a}^2 - {leg_b}^2 = {hypotenuse}^2", f"({leg_a} + {leg_b})^2 = {hypotenuse}^2"],
+        explanation=f"For a right-angled triangle, the sum of the squares of the two legs equals the square of the hypotenuse: {leg_a}^2 + {leg_b}^2 = {hypotenuse}^2. The hypotenuse is opposite the right angle.",
+        difficulty="easy", skill_tags=["pythagoras", "theorem-statement"],
+        params={"legs": [leg_a, leg_b], "hypotenuse": hypotenuse},
+    )
+
+
+VERIFIERS["pyth_statement"] = v_pyth_statement
+
+
 def v_pyth_leg(text):
     m = re.search(r"hypotenuse (\d+) cm and one side (\d+) cm", text)
     c, a = int(m.group(1)), int(m.group(2))
@@ -2239,7 +2295,7 @@ GENERATORS.update({
         (gen_triple_scale, v_triple_scale, 6),
         (gen_converse_check, None, 8),
         (gen_right_set, None, 6),
-        (gen_power, v_power, 4),
+        (gen_pyth_statement, v_pyth_statement, 4),
     ],
     12: [
         (gen_coord_x, v_coord_x, 8),
