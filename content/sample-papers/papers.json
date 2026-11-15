@@ -1,0 +1,463 @@
+[
+  {
+    "title": "Light: Mirrors and Lenses",
+    "subject": "Science",
+    "filename": "1-class-8-light-sample-paper.pdf",
+    "objective": [
+      [
+        "A ray of light bounces off a polished steel plate. What is this change called?",
+        [
+          "Magnetisation",
+          "Evaporation",
+          "Conduction",
+          "Reflection"
+        ],
+        "D",
+        "Light returning from a surface is reflection."
+      ],
+      [
+        "An image can be caught clearly on a white card. Which description fits it?",
+        [
+          "Virtual",
+          "Always upright",
+          "Always larger",
+          "Real"
+        ],
+        "D",
+        "An image formed where rays actually meet can be projected on a screen."
+      ],
+      [
+        "For an ordinary object in front of a convex mirror, the image is:",
+        [
+          "Upright and always larger",
+          "Upright and smaller",
+          "Always on a screen",
+          "Inverted and larger"
+        ],
+        "B",
+        "A convex mirror gives an upright, diminished virtual image of a real object."
+      ],
+      [
+        "Which mirror can show a larger upright view of a tooth when held sufficiently close?",
+        [
+          "Plane",
+          "Convex",
+          "Concave",
+          "All mirrors always do"
+        ],
+        "C",
+        "A concave mirror magnifies an object placed within its focal length."
+      ],
+      [
+        "A parallel beam passes through a concave lens in air. The emerging rays generally:",
+        [
+          "All stop",
+          "Remain parallel in every case",
+          "Spread apart",
+          "Become sound"
+        ],
+        "C",
+        "A concave lens is a diverging lens in air."
+      ],
+      [
+        "A simple hand magnifier normally uses which lens?",
+        [
+          "An opaque disc",
+          "Convex",
+          "Concave",
+          "A plane mirror"
+        ],
+        "B",
+        "A convex lens gives an enlarged upright view when the object is inside its focal length."
+      ],
+      [
+        "Why can a page be seen from many positions under a lamp?",
+        [
+          "The page produces sunlight",
+          "Its rough surface scatters reflected light",
+          "All rays return along one line",
+          "Reflection never occurs"
+        ],
+        "B",
+        "Diffuse reflection sends light in many directions."
+      ],
+      [
+        "A ray makes an angle of 30° with the normal to a plane mirror. Its angle of reflection is:",
+        [
+          "15°",
+          "90°",
+          "30°",
+          "60°"
+        ],
+        "C",
+        "The angle of reflection equals the angle of incidence, measured from the normal."
+      ],
+      [
+        "Light changes direction as it crosses obliquely from air into water. This is:",
+        [
+          "Condensation",
+          "Electric current",
+          "Rusting",
+          "Refraction"
+        ],
+        "D",
+        "Refraction is the change in light direction associated with passing between media."
+      ],
+      [
+        "A pencil is 20 cm in front of a plane mirror. How far behind the mirror is its image?",
+        [
+          "20 cm",
+          "40 cm",
+          "10 cm",
+          "0 cm"
+        ],
+        "A",
+        "The virtual image in a plane mirror is as far behind it as the object is in front."
+      ]
+    ],
+    "subjective": [
+      [
+        "A road-corner mirror lets a driver see a wide area, but vehicles look smaller. Name a suitable mirror and explain why apparent size can mislead distance judgement.",
+        2,
+        "A convex mirror gives a wider field of view and an upright diminished image. The smaller image can make a vehicle seem farther away than it really is.",
+        "1 mark for convex mirror with diminished image; 1 for relating small apparent size to misleading distance judgement."
+      ],
+      [
+        "A student looks through a hand magnifier at small print held closer than the focal length. Name the lens and describe the image orientation and size.",
+        2,
+        "The magnifier uses a convex lens. With print inside the focal length, the image is virtual, upright and enlarged.",
+        "1 mark for convex lens; 1 for upright enlarged image at the stated position."
+      ],
+      [
+        "Give one useful application each of a concave mirror and a convex mirror, and connect each application to its image or reflection property.",
+        2,
+        "A concave mirror close to a tooth can give an enlarged view for inspection. A convex vehicle mirror gives a wide field of view with smaller upright images. Other correct examples are acceptable.",
+        "1 mark per valid use with a correct property, one for each mirror type."
+      ],
+      [
+        "A narrow ray strikes a plane mirror at 40° to the normal. Find the reflection angle, explain what the normal is, and state the law used.",
+        3,
+        "The angle of reflection is 40°. The normal is a line perpendicular to the mirror at the point where the ray strikes. The angle of incidence equals the angle of reflection.",
+        "1 mark for 40°; 1 for the perpendicular normal; 1 for the correct reflection law."
+      ],
+      [
+        "A pencil behind a partly filled curved glass looks different through the water. Describe one possible change and explain why the exact appearance depends on the setup.",
+        3,
+        "It may look displaced, distorted or differently sized. Refraction at the air, glass and water boundaries changes ray direction; curved surfaces have a lens effect. The result depends on the pencil position, glass shape and viewing direction, so one universal bend pattern is not required.",
+        "1 mark for a plausible observation; 1 for refraction/lens effect; 1 for dependence on viewing geometry."
+      ]
+    ],
+    "references": [
+      "Concept references: OpenStax Physics, Reflection and Lenses.",
+      "https://openstax.org/books/physics/pages/16-1-reflection",
+      "https://openstax.org/books/physics/pages/16-3-lenses"
+    ]
+  },
+  {
+    "title": "Electricity: Magnetic and Heating Effects",
+    "subject": "Science",
+    "filename": "2-class-8-electricity-sample-paper.pdf",
+    "objective": [
+      [
+        "A magnetic compass is placed near a wire. A deflection that appears when a low-voltage circuit is switched on demonstrates the current's:",
+        [
+          "Magnetic effect",
+          "Chemical composition",
+          "Mass",
+          "Colour"
+        ],
+        "A",
+        "A current-carrying wire produces a magnetic field."
+      ],
+      [
+        "Which arrangement makes a simple classroom electromagnet?",
+        [
+          "An insulated coil around an iron nail carrying current",
+          "A dry wooden stick alone",
+          "An unconnected coil with no magnet nearby",
+          "A glass rod in darkness"
+        ],
+        "A",
+        "Current through a coil magnetises an iron core."
+      ],
+      [
+        "With current and turns unchanged, adding an iron core to a classroom coil usually makes its magnetic effect:",
+        [
+          "Always zero",
+          "A source of light only",
+          "Unrelated to the coil",
+          "Stronger"
+        ],
+        "D",
+        "An iron core strengthens the coil's magnetic effect."
+      ],
+      [
+        "Which change is expected to weaken an electromagnet, with other conditions fixed?",
+        [
+          "Reducing the current",
+          "Adding an iron core",
+          "Using more turns at the same current",
+          "Increasing the current"
+        ],
+        "A",
+        "A smaller current generally gives a weaker magnetic field."
+      ],
+      [
+        "The useful effect in a resistance heater is mainly:",
+        [
+          "Electrical energy transferred to heat",
+          "Light travelling backwards",
+          "Water turning into iron",
+          "Magnetism disappearing permanently"
+        ],
+        "A",
+        "Current in a resistive element transfers energy as heat."
+      ],
+      [
+        "A wire remains warm just after a switch is opened. Which conclusion is justified?",
+        [
+          "The circuit must use mains electricity",
+          "The cell must be new",
+          "Current must still be flowing",
+          "It may retain heat from earlier current"
+        ],
+        "D",
+        "Residual warmth alone does not establish present current flow."
+      ],
+      [
+        "Which is the safer classroom way to look for current in an electric-cell circuit?",
+        [
+          "Touch exposed wire until it feels hot",
+          "Connect the wire to mains",
+          "Compare a nearby compass with switch off and on",
+          "Short the cell for several minutes"
+        ],
+        "C",
+        "A controlled low-voltage compass test avoids using touch or overheating as the test."
+      ],
+      [
+        "Why is insulated wire used for the turns of a coil?",
+        [
+          "To replace the cell",
+          "To turn iron into copper",
+          "To make all current disappear",
+          "To prevent unintended contact between adjacent turns"
+        ],
+        "D",
+        "Insulation helps stop neighbouring turns from shorting together."
+      ],
+      [
+        "Compared with burning smoky solid fuel indoors, electric cooking produces:",
+        [
+          "No fuel-combustion smoke at the appliance",
+          "No need for electrical energy",
+          "Smoke from burning wood inside the appliance in every case",
+          "No environmental impacts anywhere"
+        ],
+        "A",
+        "Point-of-use smoke is avoided, but upstream impacts depend on electricity generation."
+      ],
+      [
+        "When the switch opens a simple cell-and-coil circuit, the current normally:",
+        [
+          "Increases without limit",
+          "Stops in the broken circuit",
+          "Turns into water",
+          "Flows equally through the air gap"
+        ],
+        "B",
+        "An open switch breaks the conducting path."
+      ]
+    ],
+    "subjective": [
+      [
+        "A cell-powered coil with an iron core stops lifting clips after being left on. Give one plausible cause, explain its effect, and say why a warm wire alone cannot prove that cause.",
+        3,
+        "The cell may have weakened, reducing current and magnetic pull. A poor connection is another plausible cause of reduced current. Warmth can remain from earlier current and does not uniquely identify a weak cell or prove that current still flows.",
+        "1 mark for a plausible cause; 1 for a correct current/field link; 1 for the limit of warmth as evidence. Accept equivalent explanations."
+      ],
+      [
+        "An iron core is removed from a coil while the current and compass position stay the same. Will the coil still have a magnetic effect, and how will its strength usually compare?",
+        2,
+        "Yes. A current-carrying coil still produces a magnetic field. Without its iron core, the magnetic effect is generally weaker in this classroom setup.",
+        "1 mark for continued magnetic effect with current; 1 for weaker effect under unchanged conditions."
+      ],
+      [
+        "Describe how to make a temporary electromagnet using a cell, insulated wire, an iron nail and a switch. Include a safety limit.",
+        2,
+        "Wind the insulated wire around the nail and connect it through a switch to a low-voltage cell. Close the switch briefly to magnetise the core and open it afterward; do not use mains power or leave a heating coil connected.",
+        "1 mark for coil/core/current construction; 1 for switching and a suitable low-voltage/overheating precaution."
+      ],
+      [
+        "A lamp is unavailable. Describe a non-touch test for current in a low-voltage classroom circuit and the comparison that makes it useful.",
+        2,
+        "Place a magnetic compass near the wire or coil, away from other magnets. Compare its direction with the switch open and closed. A reproducible switch-related deflection supports a magnetic effect from current.",
+        "1 mark for compass placement; 1 for off/on comparison. Do not require touching the wire."
+      ],
+      [
+        "Give two societal benefits of replacing a smoky indoor fire with electric heating, then explain why this does not prove zero overall pollution.",
+        3,
+        "Electric heating can reduce indoor smoke exposure and the effort of collecting solid fuel, and can offer convenient control. Its full environmental impact still depends on electricity generation and other upstream processes.",
+        "1 mark each for two supported benefits; 1 for the upstream-impact qualification. Accept equivalent supported benefits."
+      ]
+    ],
+    "references": [
+      "Concept references: current and magnetic effects; point-of-use smoke distinction.",
+      "https://openstax.org/books/physics/pages/20-2-motors-generators-and-transformers",
+      "https://www.who.int/news-room/fact-sheets/detail/household-air-pollution-and-health"
+    ]
+  },
+  {
+    "title": "The Baudhayana-Pythagoras Theorem",
+    "subject": "Mathematics",
+    "filename": "3-class-8-pythagoras-sample-paper.pdf",
+    "objective": [
+      [
+        "A right triangle has perpendicular sides 9 cm and 12 cm. Its hypotenuse is:",
+        [
+          "15 cm",
+          "18 cm",
+          "21 cm",
+          "13 cm"
+        ],
+        "A",
+        "√(9²+12²)=√225=15 cm."
+      ],
+      [
+        "Which equation holds when h is the hypotenuse and u, v are the legs?",
+        [
+          "u²=h²+v²",
+          "h=u+v",
+          "h²=u²+v²",
+          "h²=u²−v²"
+        ],
+        "C",
+        "The square of the hypotenuse equals the sum of the squares of the legs."
+      ],
+      [
+        "A right triangle has hypotenuse 17 and one leg 8. The other leg is:",
+        [
+          "9",
+          "12",
+          "15",
+          "25"
+        ],
+        "C",
+        "√(17²−8²)=√225=15."
+      ],
+      [
+        "Which set can be the sides of a right triangle?",
+        [
+          "6, 8, 11",
+          "2, 3, 8",
+          "6, 8, 10",
+          "4, 4, 9"
+        ],
+        "C",
+        "6²+8²=10², and the triangle inequality holds."
+      ],
+      [
+        "The diagonal of a square of side 4 cm is:",
+        [
+          "4√2 cm",
+          "16 cm",
+          "8 cm",
+          "2√2 cm"
+        ],
+        "A",
+        "d²=4²+4²=32, hence d=4√2 cm."
+      ],
+      [
+        "A rectangle has sides 7 and 24 units. Its diagonal is:",
+        [
+          "25",
+          "49",
+          "17",
+          "31"
+        ],
+        "A",
+        "√(7²+24²)=√625=25."
+      ],
+      [
+        "In a right triangle, the side opposite the right angle is called the:",
+        [
+          "Median",
+          "Base of every triangle",
+          "Radius",
+          "Hypotenuse"
+        ],
+        "D",
+        "The hypotenuse is opposite the right angle."
+      ],
+      [
+        "Do the lengths 7, 10 and 12 form a right triangle?",
+        [
+          "No triangle is possible",
+          "Yes, because 7+10>12",
+          "No, because 7²+10²≠12²",
+          "Yes, because all are integers"
+        ],
+        "C",
+        "They form a triangle, but 49+100=149, not 144."
+      ],
+      [
+        "A ladder reaches 12 m up a wall with its foot 5 m from the wall. Its length is:",
+        [
+          "17 m",
+          "60 m",
+          "7 m",
+          "13 m"
+        ],
+        "D",
+        "The wall and level ground are perpendicular: √(12²+5²)=13 m."
+      ],
+      [
+        "The hypotenuse of a non-degenerate right triangle is:",
+        [
+          "The sum of both legs",
+          "Longer than each leg",
+          "Always equal to a leg",
+          "Shorter than each leg"
+        ],
+        "B",
+        "For positive legs, h² exceeds each individual leg square."
+      ]
+    ],
+    "subjective": [
+      [
+        "Find the diagonal of a square with side 6 cm. Give an exact value and a decimal approximation to two places.",
+        2,
+        "d²=6²+6²=72. Thus d=6√2 cm, approximately 8.49 cm.",
+        "1 mark for the correct right-triangle equation; 1 for 6√2 cm with a suitable approximation."
+      ],
+      [
+        "A rhombus has diagonals of 18 and 24 units. Find its side length, explaining which triangle you use.",
+        2,
+        "The diagonals bisect at right angles, giving legs 9 and 12. A rhombus side is √(9²+12²)=15 units.",
+        "1 mark for half-diagonals 9 and 12 as perpendicular legs; 1 for 15 units."
+      ],
+      [
+        "Using positive side lengths a, b and hypotenuse c, justify why c is longer than either leg.",
+        2,
+        "c²=a²+b². Since both leg lengths are positive, c²>a² and c²>b². Taking positive square roots gives c>a and c>b.",
+        "1 mark for the theorem and positive-square comparison; 1 for the correct conclusion. Accept another sound justification."
+      ],
+      [
+        "Give five different rectangles whose two side lengths and diagonal are positive integers. Check one example using the theorem.",
+        3,
+        "Examples (side, side, diagonal): (9,12,15), (12,16,20), (10,24,26), (16,30,34), (14,48,50). For example 9²+12²=81+144=225=15². Other valid integer triples are accepted, including scaled triples.",
+        "0 marks for no valid examples; 1 for one or two; 2 for three or four; 3 for five valid examples with at least one correct check. Five without a check: 2 marks. Reordered duplicates count once."
+      ],
+      [
+        "Find the area of an equilateral triangle of side 8 units. Explain why its altitude divides the base into two equal parts.",
+        3,
+        "The altitude creates two right triangles with equal hypotenuses 8 and a shared leg, so they are congruent and the half-bases are 4. The height is √(8²−4²)=4√3. Area=½×8×4√3=16√3 square units, about 27.71.",
+        "1 mark for justifying half-base 4; 1 for height 4√3; 1 for area 16√3 square units."
+      ]
+    ],
+    "references": [
+      "Concept reference: the Pythagorean theorem. All numerical examples in this paper have been independently calculated.",
+      "This is original practice material, not a reproduction of a textbook exercise."
+    ]
+  }
+]
