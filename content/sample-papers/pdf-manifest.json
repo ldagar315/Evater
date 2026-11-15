@@ -1,0 +1,17 @@
+[
+  {
+    "filename": "1-class-8-light-sample-paper.pdf",
+    "sha256": "b7e10fa7fef5ba7c008f336ce10a3a905a5fac870f04d862901e6f70c1ca963e",
+    "bytes": 51887
+  },
+  {
+    "filename": "2-class-8-electricity-sample-paper.pdf",
+    "sha256": "26b420269895a8e68b6016ec6007c61bf056890322795a1550ac22cf89e5a332",
+    "bytes": 52603
+  },
+  {
+    "filename": "3-class-8-pythagoras-sample-paper.pdf",
+    "sha256": "5d8af32824c74bd2208ed55ec481eec6c0b378d33d11786e5d2d91b7cd8ab56c",
+    "bytes": 52014
+  }
+]
