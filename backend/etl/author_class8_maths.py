@@ -1932,7 +1932,7 @@ def gen_converse_check(rng, chapter):
     a, b, c = rng.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (9, 12, 15)])
     while True:
         x, y, z = sorted(rng.randint(2, 26) for _ in range(3))
-        if x * x + y * y != z * z:
+        if x + y > z and x * x + y * y != z * z:
             break
     right = rng.random() < 0.5
     if right:
@@ -2320,6 +2320,8 @@ GENERATORS.update({
 def _verify_converse_check(item):
     m = re.search(r"sides (\d+) cm, (\d+) cm, (\d+) cm", item.question_text)
     a, b, c = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    if not (0 < a <= b <= c and a + b > c):
+        return False
     is_right = a * a + b * b == c * c
     expected = "Yes, it is right-angled" if is_right else "No, it is not right-angled"
     return item.key == expected and expected not in item.distractors
@@ -2965,6 +2967,8 @@ def v_tf_pyth_triple(text):
     m = re.search(r"sides (\d+) cm, (\d+) cm, and (\d+) cm is right-angled", text)
     a, b, c = (int(g) for g in m.groups())
     x, y, z = sorted([a, b, c])
+    if x <= 0 or x + y <= z:
+        raise ValueError("The stated side lengths do not form a triangle")
     return "True" if x * x + y * y == z * z else "False"
 
 
@@ -2974,7 +2978,7 @@ def gen_tf_pyth_triple(rng, chapter):
     else:
         while True:
             a, b, c = sorted(rng.randint(3, 26) for _ in range(3))
-            if a * a + b * b != c * c:
+            if a + b > c and a * a + b * b != c * c:
                 break
     truth = a * a + b * b == c * c
     return _tf("tf_pyth_triple", chapter, "converse",
