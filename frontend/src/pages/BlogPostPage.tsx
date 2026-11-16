@@ -21,6 +21,7 @@ import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
+  timeZone: 'UTC',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
