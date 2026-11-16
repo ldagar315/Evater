@@ -9,6 +9,7 @@ interface BlogCardProps {
 }
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
+  timeZone: 'UTC',
   month: 'short',
   day: 'numeric',
   year: 'numeric',

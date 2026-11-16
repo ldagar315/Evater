@@ -1,3 +1,4 @@
+import { NumberStoryVisual } from '../components/blog/NumberStoryVisual'
 import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { supportsConceptPractice } from '../lib/api'
 import { blogPracticeTargets } from '../data/blogPracticeTargets'
@@ -20,6 +21,7 @@ import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
+  timeZone: 'UTC',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -240,6 +242,8 @@ export function BlogPostPage() {
             <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-dark prose-h2:scroll-mt-28 prose-p:leading-8 prose-p:text-neutral-600 prose-a:font-bold prose-a:text-primary-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-dark prose-li:text-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:text-neutral-700 prose-img:rounded-2xl">
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
             </div>
+              {post.slug === 'ncert-class-8-maths-story-of-numbers-study-guide' && <NumberStoryVisual />}
+
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
             {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
