@@ -19,17 +19,17 @@ def test_three_complete_original_papers():
             assert key in 'ABCD'
         assert all(q[0] and q[2] and q[3] for q in paper['subjective'])
 
-def test_pdf_bytes_and_banner_destinations():
-    banner = (ROOT / 'frontend/src/components/SamplePaperDownloads.tsx').read_text()
+def test_pdf_bytes_and_library_destinations():
+    library = (ROOT / 'frontend/src/data/samplePapers.ts').read_text()
     assert {m['filename'] for m in MANIFEST} == {p['filename'] for p in PAPERS}
     for item in MANIFEST:
         data = (ROOT / 'frontend/public' / item['filename']).read_bytes()
         assert data.startswith(b'%PDF-') and data.rstrip().endswith(b'%%EOF')
         assert hashlib.sha256(data).hexdigest() == item['sha256']
         assert len(data) == item['bytes']
-        assert '/' + item['filename'] in banner
+        assert '/' + item['filename'] in library
     for page in ['LandingPage', 'HomePage']:
-        assert '<SamplePaperDownloads />' in (ROOT / f'frontend/src/pages/{page}.tsx').read_text()
+        assert 'SamplePaperDownloads' not in (ROOT / f'frontend/src/pages/{page}.tsx').read_text()
 
 def test_maths_objective_answers_independently():
     questions = PAPERS[2]['objective']
@@ -58,3 +58,12 @@ def test_science_safety_and_qualification():
     assert 'off/on comparison' in electricity[3][3]
     assert 'upstream' in electricity[4][2]
     assert 'one universal bend pattern is not required' in PAPERS[0]['subjective'][4][2]
+
+
+def test_papers_public_route_and_banner_removal():
+    app = (ROOT / 'frontend/src/App.tsx').read_text()
+    assert '<Route path="/papers" element={<PapersPage />} />' in app
+    assert "['/about', '/papers']" in app
+    assert "'/papers'," in (ROOT / 'frontend/vite.config.ts').read_text()
+    assert 'https://evater.xyz/papers/' in (ROOT / 'frontend/public/sitemap.xml').read_text()
+    assert (ROOT / 'frontend/src/components/layout/Header.tsx').read_text().count('to="/papers/"') == 2
