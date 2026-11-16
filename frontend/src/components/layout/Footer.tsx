@@ -12,6 +12,7 @@ const footerLinks = {
     { label: "Profile", to: "/profile" },
   ],
   resources: [
+    { label: "Papers", to: "/papers/" },
     { label: "Blog", to: "/blog/" },
     { label: "Study guides", to: "/blog/?category=study-skills" },
     { label: "About Evater", to: "/about/" },
