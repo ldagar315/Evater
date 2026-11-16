@@ -1,4 +1,3 @@
-import { SamplePaperDownloads } from '../components/SamplePaperDownloads'
 import { ArrowRight, BookOpen, Brain, CheckCircle2, ChevronRight, CircleDot, Lightbulb, MessageCircle, PenLine, Quote, RotateCcw, Sparkles, Star, Target, Trophy, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
@@ -135,7 +134,6 @@ export function LandingPage() {
       />
 
       <Header />
-      <SamplePaperDownloads />
 
       <main>
         <section className="relative isolate overflow-hidden bg-[#173b38] text-white">

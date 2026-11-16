@@ -1,4 +1,3 @@
-import { SamplePaperDownloads } from '../components/SamplePaperDownloads'
 import React from 'react'
 import {
   ArrowRight,
@@ -100,7 +99,6 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-cream font-sans text-dark">
       <Header />
-      <SamplePaperDownloads />
 
       {BYPASS_AUTH && (
         <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">

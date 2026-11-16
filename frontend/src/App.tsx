@@ -27,6 +27,7 @@ const PreviousFeedbacksPage = lazy(() => import('./pages/PreviousFeedbacksPage')
 const BlogPage = lazy(() => import('./pages/BlogPage').then((m) => ({ default: m.BlogPage })))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then((m) => ({ default: m.BlogPostPage })))
 const VivaPage = lazy(() => import('./pages/VivaPage').then((m) => ({ default: m.VivaPage })))
+const PapersPage = lazy(() => import('./pages/PapersPage').then((m) => ({ default: m.PapersPage })))
 const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })))
 const QuestionBankPracticePage = lazy(() => import('./pages/QuestionBankPracticePage').then((m) => ({ default: m.QuestionBankPracticePage })))
 const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then((m) => ({ default: m.LeaderboardPage })))
@@ -83,7 +84,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function AppRoutes() {
   const { user, loading, error } = useAuthContext()
   const location = useLocation()
-  const isPublicRoute = location.pathname === '/' || location.pathname.replace(/\/$/, '') === '/about' || location.pathname === '/auth' || location.pathname.startsWith('/blog') || location.pathname === '/forgot-password' || location.pathname === '/reset-password'
+  const isPublicRoute = location.pathname === '/' || ['/about', '/papers'].includes(location.pathname.replace(/\/$/, '')) || location.pathname === '/auth' || location.pathname.startsWith('/blog') || location.pathname === '/forgot-password' || location.pathname === '/reset-password'
 
   // Public pages should remain useful when auth is slow or unavailable. This is
   // especially important for the blog, which must be crawlable without a session.
@@ -118,6 +119,7 @@ function AppRoutes() {
           {import.meta.env.DEV && ReviewedContentPreviewPage && <Route path="/reviewed-content/:slug?" element={<ReviewedContentPreviewPage />} />}
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/papers" element={<PapersPage />} />
           <Route path="/privacy" element={<Navigate to="/about/#privacy" replace />} />
           <Route path="/terms" element={<Navigate to="/about/#terms" replace />} />
           <Route path="/contact" element={<Navigate to="/about/" replace />} />

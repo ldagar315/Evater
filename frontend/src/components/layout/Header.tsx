@@ -32,6 +32,7 @@ export function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const isPapersPage = location.pathname.replace(/\/$/, '') === '/papers'
   const isBlogPage = location.pathname.startsWith('/blog')
   const isAboutPage = location.pathname.replace(/\/$/, '') === '/about'
   const displayName = profile?.name || profile?.user_name || 'User'
@@ -107,10 +108,14 @@ export function Header() {
             />
           </Link>
 
-          <div className="hidden items-center gap-5 md:flex">
+          <div className="hidden items-center gap-5 xl:flex">
             {user && renderMemberLinks()}
             <div className="hidden h-6 w-px bg-neutral-200 lg:block" aria-hidden="true" />
             <nav aria-label="Information navigation" className="hidden items-center gap-1 lg:flex">
+              <Link to="/papers/" onClick={closeMenus} aria-current={isPapersPage ? 'page' : undefined}
+                className={`min-h-10 rounded-xl px-3 text-sm font-semibold transition-colors ${isPapersPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-primary-50 hover:text-dark'}`}>
+                Papers
+              </Link>
               <Link
                 to="/blog/"
                 onClick={closeMenus}
@@ -129,7 +134,7 @@ export function Header() {
             </nav>
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-3 xl:flex">
             {user ? (
               <>
                 <div className="relative" ref={dropdownRef}>
@@ -209,7 +214,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen((open) => !open)}
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-600 transition-colors hover:border-primary-200 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 md:hidden"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-600 transition-colors hover:border-primary-200 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 xl:hidden"
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
@@ -219,7 +224,7 @@ export function Header() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="absolute right-4 top-full z-50 max-h-[calc(100vh-5rem)] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl border border-neutral-200 bg-cream shadow-xl shadow-dark/10 md:hidden">
+        <div className="absolute right-4 top-full z-50 max-h-[calc(100vh-5rem)] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl border border-neutral-200 bg-cream shadow-xl shadow-dark/10 xl:hidden">
           <div className="space-y-5 p-5">
             {user && (
               <div className="flex flex-col gap-4 rounded-2xl border border-neutral-200 bg-white p-4">
@@ -236,6 +241,10 @@ export function Header() {
             {user && renderMemberLinks(true)}
 
             <nav aria-label="Information navigation" className="space-y-1 border-t border-neutral-200 pt-4">
+              <Link to="/papers/" onClick={closeMenus} aria-current={isPapersPage ? 'page' : undefined}
+                className={`flex min-h-11 w-full items-center rounded-xl px-3 text-sm font-semibold transition-colors ${isPapersPage ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-primary-50 hover:text-dark'}`}>
+                Papers
+              </Link>
               <Link
                 to="/blog/"
                 onClick={closeMenus}
