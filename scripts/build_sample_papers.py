@@ -29,8 +29,30 @@ def build(p):
  for i,q in enumerate(p['objective'],1):story.append(para(f'{i}. {q[2]} — {q[3]}'))
  story += [Spacer(1,12),para('Section B · Model answers','Head2')]
  for i,q in enumerate(p['subjective'],11):story.append(KeepTogether([para(f'{i}. {q[2]}'),para('Marking: '+q[3],'Small2'),Spacer(1,9)]))
- story += [Spacer(1,10),para('Topic references','Head2')]+[para(x,'Small2') for x in p['references']]+[para('Questions, contexts, values, options and model answers in this edition were written for Evater. Source references support the concepts; textbook exercises, illustrations and third-party question-bank wording are not reproduced. Edition: 16 November 2026.','Small2')]
+ story += [Spacer(1,10),KeepTogether([para('Topic references','Head2')]+[para(x,'Small2') for x in p['references']]+[para('Questions, contexts, values, options and model answers in this edition were written for Evater. Source references support the concepts; textbook exercises, illustrations and third-party question-bank wording are not reproduced. Edition: 16 November 2026.','Small2')])]
  doc.build(story,onFirstPage=page,onLaterPages=page)
  return {'filename':p['filename'],'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'bytes':out.stat().st_size}
+# These already-published editions are immutable. Building the expanded collection
+# must not silently rewrite files that learners may already have downloaded.
+PRESERVED = {
+ '1-class-8-light-sample-paper.pdf': 'b7e10fa7fef5ba7c008f336ce10a3a905a5fac870f04d862901e6f70c1ca963e',
+ '2-class-8-electricity-sample-paper.pdf': '26b420269895a8e68b6016ec6007c61bf056890322795a1550ac22cf89e5a332',
+ '3-class-8-pythagoras-sample-paper.pdf': '5d8af32824c74bd2208ed55ec481eec6c0b378d33d11786e5d2d91b7cd8ab56c',
+}
+def build_collection():
+ papers=json.loads((ROOT/'content/sample-papers/papers.json').read_text())
+ result=[]
+ for p in papers:
+  filename=p['filename']
+  if filename in PRESERVED:
+   data=(ROOT/'frontend/public'/filename).read_bytes()
+   digest=hashlib.sha256(data).hexdigest()
+   if digest != PRESERVED[filename]:
+    raise ValueError('Published PDF changed: '+filename)
+   result.append({'filename':filename,'sha256':digest,'bytes':len(data)})
+  else:
+   result.append(build(p))
+ (ROOT/'content/sample-papers/pdf-manifest.json').write_text(json.dumps(result,indent=2)+'\n')
+ return result
 if __name__=='__main__':
- papers=json.loads((ROOT/'content/sample-papers/papers.json').read_text());result=[build(p) for p in papers];(ROOT/'content/sample-papers/pdf-manifest.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
+ print(json.dumps(build_collection()))
