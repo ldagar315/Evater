@@ -459,5 +459,3725 @@
       "Concept reference: the Pythagorean theorem. All numerical examples in this paper have been independently calculated.",
       "This is original practice material, not a reproduction of a textbook exercise."
     ]
+  },
+  {
+    "title": "A Square and A Cube",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch01-a-square-and-a-cube-sample-paper.pdf",
+    "objective": [
+      [
+        "What is 17 squared?",
+        [
+          "289",
+          "249",
+          "269",
+          "299"
+        ],
+        "A",
+        "17 squared means 17 x 17 = 289."
+      ],
+      [
+        "What is the value of 6 cubed?",
+        [
+          "216",
+          "36",
+          "126",
+          "512"
+        ],
+        "A",
+        "6 cubed means 6 x 6 x 6 = 216."
+      ],
+      [
+        "Which of these numbers is a perfect square?",
+        [
+          "200",
+          "96",
+          "121",
+          "50"
+        ],
+        "C",
+        "121 = 11 x 11, so it is a perfect square; the others are not."
+      ],
+      [
+        "Which of these numbers is a perfect cube?",
+        [
+          "75",
+          "250",
+          "100",
+          "343"
+        ],
+        "D",
+        "343 = 7 x 7 x 7, so it is a perfect cube."
+      ],
+      [
+        "What is the units digit of 27 squared?",
+        [
+          "3",
+          "7",
+          "9",
+          "1"
+        ],
+        "C",
+        "27 squared is 729, whose units digit is 9; only the units digit 7 of 27 needs to be squared: 7 x 7 = 49."
+      ],
+      [
+        "What is the sum of the first four odd numbers (1 + 3 + 5 + 7)?",
+        [
+          "16",
+          "20",
+          "14",
+          "12"
+        ],
+        "A",
+        "1 + 3 + 5 + 7 = 16, which is 4 squared, matching the pattern that the sum of the first n odd numbers is n squared."
+      ],
+      [
+        "Which number between 50 and 70 is a perfect square?",
+        [
+          "68",
+          "54",
+          "60",
+          "64"
+        ],
+        "D",
+        "64 = 8 squared is the only perfect square between 49 and 81."
+      ],
+      [
+        "What is the units digit of 9 cubed?",
+        [
+          "1",
+          "7",
+          "9",
+          "3"
+        ],
+        "C",
+        "9 cubed is 729, so its units digit is 9; odd powers of 9 end in 9."
+      ],
+      [
+        "What is the value of 2 cubed multiplied by 3 squared?",
+        [
+          "72",
+          "96",
+          "36",
+          "54"
+        ],
+        "A",
+        "2 cubed = 8 and 3 squared = 9, and 8 x 9 = 72."
+      ],
+      [
+        "A triangle has sides 5 cm, 12 cm and 13 cm. Which statement is true?",
+        [
+          "5 squared + 12 squared = 13 squared",
+          "12 squared + 13 squared = 5 squared",
+          "5 squared + 13 squared = 12 squared",
+          "5 squared + 12 squared = 12 squared"
+        ],
+        "A",
+        "25 + 144 = 169 = 13 squared, so 5, 12, 13 is a Pythagorean triple."
+      ]
+    ],
+    "subjective": [
+      [
+        "Show that 225 is a perfect square and name the number whose square it is.",
+        2,
+        "225 = 15 x 15 = 15 squared, so 225 is a perfect square, namely the square of 15.",
+        "1 mark for expressing 225 as 15 x 15; 1 mark for stating it is 15 squared."
+      ],
+      [
+        "Small cubes of side 1 cm are packed into a big cube of side 3 cm. How many small cubes fit inside? Explain your reasoning.",
+        2,
+        "The big cube has 3 cubes along each edge, so it holds 3 x 3 x 3 = 27 small cubes.",
+        "1 mark for using 3 cubed or a 3 x 3 x 3 arrangement; 1 mark for 27."
+      ],
+      [
+        "What is a square number and what is a triangular number? Give one number that is both, with justification.",
+        2,
+        "A square number is a number that is the square of a whole number; a triangular number counts dots in a triangle of rows 1 + 2 + ... + n. 36 is both: 36 = 6 squared and 36 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8. (1 is also both.)",
+        "1 mark for both definitions; 1 mark for a correct example with justification, such as 36 = 6 squared = 8 x 9 / 2."
+      ],
+      [
+        "Find the smallest positive integer by which 72 must be multiplied to make it a perfect square. Show your working.",
+        3,
+        "72 = 2 x 2 x 2 x 3 x 3 = 2 cubed x 3 squared. The prime 2 occurs an odd number of times, so multiplying by 2 pairs it up: 72 x 2 = 144 = 12 squared. The smallest such number is 2.",
+        "1 mark for prime factorisation of 72; 1 mark for identifying the unpaired factor 2; 1 mark for confirming 144 = 12 squared."
+      ],
+      [
+        "Compute 13 squared minus 12 squared, and describe the pattern for the difference of two consecutive squares.",
+        3,
+        "13 squared - 12 squared = 169 - 144 = 25, which equals 13 + 12. In general, (n + 1) squared - n squared = 2 n + 1, the sum of the two consecutive numbers.",
+        "1 mark for both square values; 1 mark for the difference 25; 1 mark for the pattern (n + 1) squared - n squared = 2 n + 1 (or n + (n + 1))."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 1: A Square and A Cube.",
+      "https://ncert.nic.in/textbook/pdf/hegp101.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 1
+  },
+  {
+    "title": "Power Play",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch02-power-play-sample-paper.pdf",
+    "objective": [
+      [
+        "What is the value of 2 to the power 5?",
+        [
+          "32",
+          "10",
+          "25",
+          "64"
+        ],
+        "A",
+        "2 to the power 5 = 2 x 2 x 2 x 2 x 2 = 32."
+      ],
+      [
+        "Using the laws of exponents, 3 to the power 4 multiplied by 3 to the power 2 equals:",
+        [
+          "9 to the power 6",
+          "3 to the power 8",
+          "3 to the power 6",
+          "3 to the power 2"
+        ],
+        "C",
+        "When multiplying powers with the same base, add the exponents: 4 + 2 = 6."
+      ],
+      [
+        "Using the laws of exponents, 7 to the power 8 divided by 7 to the power 5 equals:",
+        [
+          "7 to the power 13",
+          "7 to the power 2",
+          "7 to the power 40",
+          "7 to the power 3"
+        ],
+        "D",
+        "When dividing powers with the same base, subtract the exponents: 8 - 5 = 3."
+      ],
+      [
+        "(2 to the power 3) to the power 2 equals:",
+        [
+          "8 to the power 9",
+          "2 to the power 6",
+          "2 to the power 9",
+          "2 to the power 5"
+        ],
+        "B",
+        "When a power is raised to another power, multiply the exponents: 3 x 2 = 6. (The value is 64.)"
+      ],
+      [
+        "What is the value of 5 to the power 0?",
+        [
+          "50",
+          "1",
+          "0",
+          "5"
+        ],
+        "B",
+        "Any non-zero number raised to the power 0 equals 1."
+      ],
+      [
+        "3 to the power -2 equals:",
+        [
+          "1/9",
+          "-9",
+          "1/6",
+          "-6"
+        ],
+        "A",
+        "A negative exponent means a reciprocal: 3 to the power -2 = 1 / (3 squared) = 1/9."
+      ],
+      [
+        "34,000 written in scientific (standard) notation is:",
+        [
+          "3.4 x 10 to the power 3",
+          "34 x 10 to the power 3",
+          "0.34 x 10 to the power 5",
+          "3.4 x 10 to the power 4"
+        ],
+        "D",
+        "34,000 = 3.4 x 10,000 = 3.4 x 10 to the power 4, with the factor between 1 and 10."
+      ],
+      [
+        "Which of these is the largest number?",
+        [
+          "4 squared",
+          "5 squared",
+          "2 to the power 5",
+          "3 cubed"
+        ],
+        "C",
+        "2 to the power 5 = 32, while 3 cubed = 27, 4 squared = 16 and 5 squared = 25."
+      ],
+      [
+        "0.0007 written in scientific (standard) notation is:",
+        [
+          "7 x 10 to the power -4",
+          "7 x 10 to the power -3",
+          "7 x 10 to the power 4",
+          "0.7 x 10 to the power -3"
+        ],
+        "A",
+        "The decimal point moves 4 places to the right to give 7, so 0.0007 = 7 x 10 to the power -4."
+      ],
+      [
+        "A sheet of paper 0.1 mm thick is folded 5 times, doubling its thickness each fold. Its new thickness is:",
+        [
+          "0.5 mm",
+          "3.2 mm",
+          "1.6 mm",
+          "6.4 mm"
+        ],
+        "B",
+        "After 5 folds the thickness is 0.1 x 2 to the power 5 = 0.1 x 32 = 3.2 mm."
+      ]
+    ],
+    "subjective": [
+      [
+        "Simplify (2 to the power 4 x 2 to the power 3) divided by 2 to the power 5, giving your answer as a whole number.",
+        2,
+        "2 to the power (4 + 3 - 5) = 2 to the power 2 = 4.",
+        "1 mark for correctly adding and subtracting exponents; 1 mark for the value 4."
+      ],
+      [
+        "Write 0.00056 in scientific (standard) notation and explain how you chose the exponent.",
+        2,
+        "0.00056 = 5.6 x 10 to the power -4. The decimal point moves 4 places to the right to reach 5.6, so the power of 10 is -4.",
+        "1 mark for 5.6 as the coefficient; 1 mark for the exponent -4 with a correct reason."
+      ],
+      [
+        "Using the division law of exponents, explain why any non-zero number raised to the power 0 equals 1.",
+        2,
+        "For a non-zero a, a to the power m divided by a to the power m = a to the power (m - m) = a to the power 0. But any non-zero number divided by itself is 1, so a to the power 0 = 1.",
+        "1 mark for using a to the power m / a to the power m; 1 mark for concluding a to the power 0 = 1."
+      ],
+      [
+        "Which is greater: 2 to the power 10 or 10 squared? By roughly how many times? Show your working.",
+        3,
+        "2 to the power 10 = 1024 and 10 squared = 100. 1024 > 100, so 2 to the power 10 is greater; it is about 10 times as large (1024 / 100 = 10.24).",
+        "1 mark for evaluating 2 to the power 10 = 1024; 1 mark for 10 squared = 100; 1 mark for the comparison with a sensible 'how many times'."
+      ],
+      [
+        "A single bacterium doubles every hour. Starting with 1 bacterium at 9:00 AM, how many bacteria are there at 12:00 noon? Express the count both as a power of 2 and as a number.",
+        3,
+        "At 10:00 there are 2, at 11:00 there are 4, and at 12:00 there are 8. That is 2 to the power 3 = 8 bacteria after 3 hours.",
+        "1 mark for the doubling pattern per hour; 1 mark for recognising 3 hours gives 2 to the power 3; 1 mark for the value 8."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 2: Power Play.",
+      "https://ncert.nic.in/textbook/pdf/hegp102.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 2
+  },
+  {
+    "title": "A Story of Numbers",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch03-a-story-of-numbers-sample-paper.pdf",
+    "objective": [
+      [
+        "In standard modern Roman numerals, XL stands for:",
+        [
+          "40",
+          "90",
+          "110",
+          "60"
+        ],
+        "A",
+        "XL is one of the allowed subtractive forms in standard Roman notation: X before L gives 50 -10 = 40. Subtraction is limited to specific pairs such as IV, IX, XL, XC, CD and CM."
+      ],
+      [
+        "In the number 5,08,274 written in the Indian system, the digit 8 is in which place?",
+        [
+          "Ten-thousands",
+          "Lakhs",
+          "Hundreds",
+          "Thousands"
+        ],
+        "D",
+        "5,08,274 is 5 lakh, 8 thousand, 2 hundred and 74, so 8 is in the thousands place."
+      ],
+      [
+        "The binary number 1011 (base 2) written in base 10 is:",
+        [
+          "13",
+          "9",
+          "10",
+          "11"
+        ],
+        "D",
+        "1011 in base 2 = 1 x 8 + 0 x 4 + 1 x 2 + 1 x 1 = 11."
+      ],
+      [
+        "In the base 5 number system, which set of digits is used?",
+        [
+          "0, 1, 2, 3, 4",
+          "0, 1, 2, 3, 4, 5",
+          "0, 1, 2, 3",
+          "1, 2, 3, 4, 5"
+        ],
+        "A",
+        "Base 5 uses exactly five digits, 0 to 4; the digit 5 never appears."
+      ],
+      [
+        "49 written in standard modern Roman numerals is:",
+        [
+          "XXXIX",
+          "XXXXIX",
+          "IL",
+          "XLIX"
+        ],
+        "D",
+        "49 = 40 + 9 = XL + IX = XLIX, using the subtraction rule for both parts."
+      ],
+      [
+        "The ancient Egyptian number system was built on which base?",
+        [
+          "2",
+          "60",
+          "10",
+          "5"
+        ],
+        "C",
+        "Egyptian numerals used powers of 10, with a new symbol for each power (1, 10, 100 and so on)."
+      ],
+      [
+        "The Mesopotamian (Babylonian) number system used which base?",
+        [
+          "100",
+          "20",
+          "60",
+          "10"
+        ],
+        "C",
+        "The Babylonians used base 60, which is why we still count 60 seconds in a minute and 60 minutes in an hour."
+      ],
+      [
+        "25 written in binary (base 2) is:",
+        [
+          "10101",
+          "10011",
+          "11001",
+          "11100"
+        ],
+        "C",
+        "25 = 16 + 8 + 1, so in binary it is 11001."
+      ],
+      [
+        "The number 34 written in base 5 equals which base 10 number?",
+        [
+          "34",
+          "19",
+          "17",
+          "120"
+        ],
+        "B",
+        "34 in base 5 = 3 x 5 + 4 = 19 in base 10."
+      ],
+      [
+        "Which feature of the Hindu-Arabic system makes writing and computing with large numbers easy?",
+        [
+          "Place value together with zero",
+          "Only addition is possible",
+          "A different symbol for every number",
+          "No symbol for zero"
+        ],
+        "A",
+        "In the Hindu-Arabic system a digit's position gives its value, and zero acts as a placeholder, so any number can be written with just ten digits."
+      ]
+    ],
+    "subjective": [
+      [
+        "Write 99 in standard modern Roman notation and explain the subtractive pairs used.",
+        2,
+        "99 =90+9 =XC+IX =XCIX. In these allowed subtractive pairs, X before C means 90 and I before X means 9. Arbitrary smaller-before-larger pairs are not allowed in standard modern notation.",
+        "1 mark for XCIX; 1 mark for correctly explaining the subtraction rule."
+      ],
+      [
+        "Convert the binary number 1101 (base 2) into a base 10 number, showing the place values you used.",
+        2,
+        "1101 in base 2 = 1 x 8 + 1 x 4 + 0 x 2 + 1 x 1 = 8 + 4 + 0 + 1 = 13.",
+        "1 mark for the correct powers of 2 as place values; 1 mark for the total 13."
+      ],
+      [
+        "Why is the base 2 (binary) system convenient for computers?",
+        2,
+        "Binary uses only two digits, 0 and 1. Electronic circuits naturally have two states (off and on), so each binary digit can be stored and processed as one switch being off or on.",
+        "1 mark for noting binary has exactly two digits; 1 mark for linking the two digits to two electrical states."
+      ],
+      [
+        "Convert the base 10 number 42 into base 5, showing your working.",
+        3,
+        "The powers of 5 are 1, 5, 25. 42 = 1 x 25 + 17, and 17 = 3 x 5 + 2. So 42 = 1 x 25 + 3 x 5 + 2 x 1, which is 132 in base 5.",
+        "1 mark for using powers of 5 (1, 5, 25); 1 mark for a correct division/decomposition; 1 mark for the answer 132 (base 5)."
+      ],
+      [
+        "Describe one difference between the additive Egyptian numeral system and a decimal place-value system. Explain why place value makes multiplication easier.",
+        3,
+        "In the additive Egyptian system, each symbol has a fixed value and repeated symbols are added. In a decimal place-value system the same digit has different values by position: the 3 in 3, 30 and 300. Zero can hold an empty place. To multiply 23 by 10, each digit moves one place to the left, giving 230; the place-value structure makes this rule work. Roman numerals also use some subtraction, so they are not a purely additive example.",
+        "1 mark for a correct description of an additive system; 1 mark for place value with zero; 1 mark for a correct explanation or example of easier multiplication."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 3: A Story of Numbers.",
+      "https://ncert.nic.in/textbook/pdf/hegp103.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 3
+  },
+  {
+    "title": "Quadrilaterals",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch04-quadrilaterals-sample-paper.pdf",
+    "objective": [
+      [
+        "The sum of the four interior angles of any quadrilateral is:",
+        [
+          "270 degrees",
+          "540 degrees",
+          "180 degrees",
+          "360 degrees"
+        ],
+        "D",
+        "A diagonal splits a quadrilateral into two triangles, and 2 x 180 degrees = 360 degrees."
+      ],
+      [
+        "In a parallelogram, opposite sides are always:",
+        [
+          "Perpendicular",
+          "Equal but not parallel",
+          "Equal and parallel",
+          "Parallel but not equal"
+        ],
+        "C",
+        "By definition both pairs of opposite sides of a parallelogram are parallel, and they are also equal in length."
+      ],
+      [
+        "Which statement about the diagonals of a rectangle is true?",
+        [
+          "They never bisect each other",
+          "They are equal and bisect each other",
+          "They are always perpendicular",
+          "They are always unequal"
+        ],
+        "B",
+        "A rectangle's diagonals are equal in length and cut each other in half; they are not perpendicular unless it is a square."
+      ],
+      [
+        "The diagonals of a rhombus:",
+        [
+          "Are parallel to each other",
+          "Never intersect",
+          "Are always equal in length",
+          "Bisect each other at right angles"
+        ],
+        "D",
+        "A rhombus's diagonals bisect each other at 90 degrees; they are equal only when the rhombus is a square."
+      ],
+      [
+        "A parallelogram with all four sides equal is called a:",
+        [
+          "Pentagon",
+          "Rhombus",
+          "Trapezium",
+          "Rectangle"
+        ],
+        "B",
+        "A rhombus is a parallelogram whose four sides are all equal."
+      ],
+      [
+        "Three angles of a quadrilateral are 70 degrees, 80 degrees and 100 degrees. The fourth angle is:",
+        [
+          "110 degrees",
+          "120 degrees",
+          "105 degrees",
+          "100 degrees"
+        ],
+        "A",
+        "360 - (70 + 80 + 100) = 360 - 250 = 110 degrees."
+      ],
+      [
+        "A quadrilateral has two parallel sides. The two interior angles on the same non-parallel side add up to:",
+        [
+          "270 degrees",
+          "90 degrees",
+          "180 degrees",
+          "360 degrees"
+        ],
+        "C",
+        "The non-parallel side is a transversal of the parallel sides, so the co-interior angles are supplementary: they add to 180 degrees."
+      ],
+      [
+        "Each interior angle of a rectangle measures:",
+        [
+          "120 degrees",
+          "60 degrees",
+          "90 degrees",
+          "It varies from rectangle to rectangle"
+        ],
+        "C",
+        "All four angles of a rectangle are right angles, 90 degrees each."
+      ],
+      [
+        "A kite is a quadrilateral with:",
+        [
+          "Two pairs of equal adjacent sides",
+          "Opposite sides equal",
+          "Diagonals always equal",
+          "All angles equal"
+        ],
+        "A",
+        "A kite has two distinct pairs of equal-length sides that are adjacent to each other."
+      ],
+      [
+        "The diagonals of a square are:",
+        [
+          "Equal and perpendicular",
+          "Equal but not perpendicular",
+          "Neither equal nor perpendicular",
+          "Perpendicular but unequal"
+        ],
+        "A",
+        "A square is both a rectangle and a rhombus, so its diagonals are equal in length and cut each other at right angles."
+      ]
+    ],
+    "subjective": [
+      [
+        "One angle of a parallelogram is 70 degrees. Find the other three angles, giving reasons.",
+        2,
+        "Adjacent angles of a parallelogram add up to 180 degrees, so the angle next to the 70 degree angle is 110 degrees. Opposite angles are equal, so the four angles are 70, 110, 70 and 110 degrees.",
+        "1 mark for using adjacent supplementary angles to get 110 degrees; 1 mark for all four angles with opposite angles equal."
+      ],
+      [
+        "Explain why the two diagonals of a square divide it into four congruent triangles.",
+        2,
+        "The diagonals of a square are equal, bisect each other and meet at right angles. Each of the four triangles formed has two sides equal to half a diagonal and the included angle 90 degrees, so by the SAS condition all four triangles are congruent.",
+        "1 mark for the diagonal properties of a square; 1 mark for a valid congruence argument (SAS or equivalent)."
+      ],
+      [
+        "Name one property that a rectangle and a rhombus share, and one property on which they differ.",
+        2,
+        "Shared: both are parallelograms, so opposite sides are equal and parallel (or: their diagonals bisect each other). Different: every angle of a rectangle is 90 degrees, while a rhombus need not have right angles; and all sides of a rhombus are equal, while a rectangle need not have all sides equal.",
+        "1 mark for any correct shared property; 1 mark for any correct difference."
+      ],
+      [
+        "The four angles of a quadrilateral are in the ratio 1 : 2 : 3 : 4. Find all four angles.",
+        3,
+        "Let the angles be x, 2 x, 3 x and 4 x. Their sum is 10 x = 360 degrees, so x = 36 degrees. The angles are 36, 72, 108 and 144 degrees.",
+        "1 mark for setting the angles as multiples of x; 1 mark for using the 360 degree sum to get x = 36; 1 mark for all four angles."
+      ],
+      [
+        "The diagonals of a rhombus are 10 cm and 24 cm. Find the length of its side, explaining each step.",
+        3,
+        "The diagonals of a rhombus bisect each other at right angles, so each side is the hypotenuse of a right triangle with legs 5 cm and 12 cm. Side = square root of (5 squared + 12 squared) = square root of (25 + 144) = square root of 169 = 13 cm.",
+        "1 mark for halving the diagonals using perpendicular bisection; 1 mark for applying the Pythagoras theorem; 1 mark for the side 13 cm."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 4: Quadrilaterals.",
+      "https://ncert.nic.in/textbook/pdf/hegp104.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 4
+  },
+  {
+    "title": "Number Play",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch05-number-play-sample-paper.pdf",
+    "objective": [
+      [
+        "Which of these numbers is divisible by 3?",
+        [
+          "5123",
+          "3411",
+          "1234",
+          "2345"
+        ],
+        "B",
+        "The digit sum of 3411 is 3 + 4 + 1 + 1 = 9, a multiple of 3. The other digit sums (10, 14, 11) are not."
+      ],
+      [
+        "Which of these numbers is divisible by 4?",
+        [
+          "322",
+          "330",
+          "314",
+          "316"
+        ],
+        "D",
+        "A number is divisible by 4 when its last two digits are divisible by 4, and 16 is divisible by 4."
+      ],
+      [
+        "The smallest prime number is:",
+        [
+          "0",
+          "2",
+          "1",
+          "3"
+        ],
+        "B",
+        "2 is prime (its only factors are 1 and 2). 1 is not prime, and 0 is not prime."
+      ],
+      [
+        "Which of these numbers is divisible by 9?",
+        [
+          "5,392",
+          "5,391",
+          "5,390",
+          "5,381"
+        ],
+        "B",
+        "The digit sum of 5391 is 5 + 3 + 9 + 1 = 18, a multiple of 9; the other digit sums (17, 19, 17) are not."
+      ],
+      [
+        "Which number is NOT divisible by 5?",
+        [
+          "505",
+          "232",
+          "240",
+          "135"
+        ],
+        "B",
+        "Multiples of 5 end in 0 or 5; 232 ends in 2."
+      ],
+      [
+        "The highest common factor (HCF) of 12 and 18 is:",
+        [
+          "6",
+          "4",
+          "3",
+          "12"
+        ],
+        "A",
+        "Factors of 12 are 1, 2, 3, 4, 6, 12 and of 18 are 1, 2, 3, 6, 9, 18; the largest common factor is 6."
+      ],
+      [
+        "The least common multiple (LCM) of 4 and 6 is:",
+        [
+          "12",
+          "10",
+          "8",
+          "24"
+        ],
+        "A",
+        "Multiples of 4: 4, 8, 12, ...; multiples of 6: 6, 12, ...; the smallest common multiple is 12."
+      ],
+      [
+        "The prime factorisation of 60 is:",
+        [
+          "2 cubed x 15",
+          "2 x 3 x 10",
+          "2 squared x 3 x 5",
+          "2 x 3 squared x 5"
+        ],
+        "C",
+        "60 = 2 x 2 x 3 x 5; options with 10 or 15 are not prime factorisations."
+      ],
+      [
+        "Which of these numbers is divisible by 11?",
+        [
+          "1234",
+          "2728",
+          "4321",
+          "3456"
+        ],
+        "B",
+        "For 2728, (7 + 8) - (2 + 2) = 11, a multiple of 11, so 2728 is divisible by 11 (2728 = 11 x 248). The others give differences that are not multiples of 11."
+      ],
+      [
+        "A number is divisible by both 2 and 3. It must also be divisible by:",
+        [
+          "12",
+          "6",
+          "5",
+          "9"
+        ],
+        "B",
+        "Being divisible by both 2 and 3 (which share no common factor) means being divisible by 2 x 3 = 6."
+      ]
+    ],
+    "subjective": [
+      [
+        "Test 6,732 for divisibility by 3 and by 9, showing the rule you use.",
+        2,
+        "The digit sum is 6 + 7 + 3 + 2 = 18. Since 18 is a multiple of both 3 and 9, 6,732 is divisible by both 3 and 9 (6732 = 9 x 748).",
+        "1 mark for the digit-sum rule and the sum 18; 1 mark for both correct conclusions."
+      ],
+      [
+        "Find the HCF of 24 and 36 by listing their factors.",
+        2,
+        "Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24. Factors of 36: 1, 2, 3, 4, 6, 9, 12, 18, 36. The common factors are 1, 2, 3, 4, 6, 12, so the HCF is 12.",
+        "1 mark for correct factor lists; 1 mark for the HCF 12."
+      ],
+      [
+        "Explain why every even number greater than 2 cannot be prime.",
+        2,
+        "An even number greater than 2 has 1, 2 and itself as factors, and possibly more. Since it has a factor other than 1 and itself (namely 2), it is composite, not prime.",
+        "1 mark for noting 2 is always a factor; 1 mark for the conclusion using the definition of a prime."
+      ],
+      [
+        "Use the divisibility rule for 11 to decide whether 98,989 is divisible by 11. Show your working.",
+        3,
+        "Group alternate digits: (9 + 9 + 9) = 27 and (8 + 8) = 16. Their difference is 27 - 16 = 11, which is a multiple of 11, so 98,989 is divisible by 11. Check: 98,989 = 11 x 8,999.",
+        "1 mark for stating/applying the alternate-digit rule; 1 mark for computing 27 - 16 = 11; 1 mark for the correct conclusion."
+      ],
+      [
+        "Two bells ring together at 9:00 AM. One rings every 12 minutes and the other every 18 minutes. At what time will they next ring together? Explain your method.",
+        3,
+        "They ring together at common multiples of 12 and 18. The LCM of 12 and 18 is 36, so they next ring together 36 minutes after 9:00 AM, at 9:36 AM.",
+        "1 mark for choosing the LCM method; 1 mark for LCM = 36; 1 mark for the time 9:36 AM."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 5: Number Play.",
+      "https://ncert.nic.in/textbook/pdf/hegp105.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 5
+  },
+  {
+    "title": "We Distribute, Yet Things Multiply",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch06-we-distribute-yet-things-multiply-sample-paper.pdf",
+    "objective": [
+      [
+        "3(x + 5) expands to:",
+        [
+          "3x + 5",
+          "3x + 8",
+          "x + 15",
+          "3x + 15"
+        ],
+        "D",
+        "By the distributive property, 3(x + 5) = 3 x + 3 x 5 = 3 x + 15."
+      ],
+      [
+        "(a + b) squared equals:",
+        [
+          "a squared + b squared",
+          "a squared - 2ab + b squared",
+          "2a + 2b",
+          "a squared + 2ab + b squared"
+        ],
+        "D",
+        "(a + b)(a + b) = a squared + ab + ba + b squared = a squared + 2 ab + b squared; the middle term 2 ab is essential."
+      ],
+      [
+        "Using (10 + 3) squared, the value of 13 squared is:",
+        [
+          "109",
+          "139",
+          "196",
+          "169"
+        ],
+        "D",
+        "13 squared = 100 + 2 x 10 x 3 + 9 = 100 + 60 + 9 = 169."
+      ],
+      [
+        "102 x 98 can be computed as (100 + 2)(100 - 2), which equals:",
+        [
+          "9,994",
+          "9,900",
+          "10,016",
+          "9,996"
+        ],
+        "D",
+        "(100 + 2)(100 - 2) = 100 squared - 2 squared = 10,000 - 4 = 9,996."
+      ],
+      [
+        "a squared - b squared factorises as:",
+        [
+          "(a - b) squared",
+          "(a + b) squared",
+          "(a + b)(a - b)",
+          "a squared + b squared"
+        ],
+        "C",
+        "The difference of two squares is the product of the sum and the difference: (a + b)(a - b)."
+      ],
+      [
+        "(x + 2)(x + 5) expands to:",
+        [
+          "x squared + 3x + 10",
+          "x squared + 7x + 7",
+          "x squared + 7x + 10",
+          "x squared + 10x + 7"
+        ],
+        "C",
+        "x squared + 5 x + 2 x + 10 = x squared + 7 x + 10."
+      ],
+      [
+        "The distributive property says that a(b + c) equals:",
+        [
+          "a + bc",
+          "ab + c",
+          "ab + ac",
+          "abc"
+        ],
+        "C",
+        "Multiplication distributes over addition: a(b + c) = ab + ac."
+      ],
+      [
+        "Using (100 - 1) squared, the value of 99 squared is:",
+        [
+          "9,901",
+          "9,801",
+          "9,701",
+          "9,999"
+        ],
+        "B",
+        "99 squared = 10,000 - 200 + 1 = 9,801."
+      ],
+      [
+        "(a - b) squared equals:",
+        [
+          "a squared - 2ab + b squared",
+          "a squared + 2ab + b squared",
+          "a squared - b squared",
+          "a squared + 2ab - b squared"
+        ],
+        "A",
+        "(a - b)(a - b) = a squared - ab - ba + b squared = a squared - 2 ab + b squared."
+      ],
+      [
+        "5(2 x - 3) expands to:",
+        [
+          "10x - 3",
+          "10x - 15",
+          "2x - 15",
+          "7x - 15"
+        ],
+        "B",
+        "5(2 x - 3) = 10 x - 15; the 5 multiplies both terms inside the bracket."
+      ]
+    ],
+    "subjective": [
+      [
+        "Expand (x + 4) squared and verify your expansion by substituting x = 1.",
+        2,
+        "(x + 4) squared = x squared + 8 x + 16. At x = 1: the expansion gives 1 + 8 + 16 = 25, and (1 + 4) squared = 5 squared = 25. The two agree.",
+        "1 mark for the correct expansion; 1 mark for a correct numeric verification."
+      ],
+      [
+        "Use the identity (a + b)(a - b) = a squared - b squared to compute 53 x 47.",
+        2,
+        "53 x 47 = (50 + 3)(50 - 3) = 50 squared - 3 squared = 2,500 - 9 = 2,491.",
+        "1 mark for writing the product as (50 + 3)(50 - 3); 1 mark for 2,491."
+      ],
+      [
+        "A student writes (x + 3) squared = x squared + 9. Point out the mistake and give the correct expansion.",
+        2,
+        "The middle term is missing: squaring a sum is not the sum of the squares. The correct expansion is (x + 3) squared = x squared + 6 x + 9, because (x + 3)(x + 3) = x squared + 3 x + 3 x + 9.",
+        "1 mark for identifying the missing middle term 2 x x x 3 = 6 x; 1 mark for the correct expansion x squared + 6 x + 9."
+      ],
+      [
+        "Show that (a + b) squared - (a - b) squared = 4 ab, and verify it for a = 5, b = 2.",
+        3,
+        "(a + b) squared - (a - b) squared = (a squared + 2 ab + b squared) - (a squared - 2 ab + b squared) = 4 ab. For a = 5, b = 2: 7 squared - 3 squared = 49 - 9 = 40, and 4 x 5 x 2 = 40. The identity checks out.",
+        "1 mark for expanding both squares; 1 mark for simplifying to 4 ab; 1 mark for the numeric verification (40 = 40)."
+      ],
+      [
+        "For x >0, a rectangle measures (x + 3) cm by (x + 2) cm. Split it into four smaller rectangles, write the area of each piece, and hence express the total area as an expanded expression.",
+        3,
+        "Splitting the sides as x and 3, and x and 2, the four pieces have areas x squared, 2 x, 3 x and 6. The total area is x squared + 3 x + 2 x + 6 = x squared + 5 x + 6, which equals (x + 3)(x + 2).",
+        "1 mark for the four pieces with correct areas; 1 mark for adding them; 1 mark for x squared + 5 x + 6."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 6: We Distribute, Yet Things Multiply.",
+      "https://ncert.nic.in/textbook/pdf/hegp106.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 6
+  },
+  {
+    "title": "Proportional Reasoning-1",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch07-proportional-reasoning-1-sample-paper.pdf",
+    "objective": [
+      [
+        "The ratio 12 : 18 in its simplest form is:",
+        [
+          "2 : 3",
+          "4 : 6",
+          "6 : 9",
+          "3 : 4"
+        ],
+        "A",
+        "Dividing both terms by their HCF 6 gives 2 : 3. (6 : 9 and 4 : 6 are equivalent but not simplest.)"
+      ],
+      [
+        "3 kg of rice costs 150 rupees. The price per kilogram is:",
+        [
+          "50 rupees",
+          "60 rupees",
+          "55 rupees",
+          "45 rupees"
+        ],
+        "A",
+        "150 / 3 = 50 rupees per kg."
+      ],
+      [
+        "A car travels 180 km in 3 hours at a constant speed. In 5 hours at the same speed it will travel:",
+        [
+          "240 km",
+          "280 km",
+          "300 km",
+          "320 km"
+        ],
+        "C",
+        "Speed is 180 / 3 = 60 km per hour, so in 5 hours it covers 60 x 5 = 300 km."
+      ],
+      [
+        "If 4 pens cost 60 rupees, then 10 pens cost:",
+        [
+          "100 rupees",
+          "120 rupees",
+          "150 rupees",
+          "200 rupees"
+        ],
+        "C",
+        "One pen costs 60 / 4 = 15 rupees, so 10 pens cost 15 x 10 = 150 rupees."
+      ],
+      [
+        "The ratio of 500 m to 2 km, in simplest form, is:",
+        [
+          "1 : 2",
+          "1 : 4",
+          "5 : 2",
+          "2 : 5"
+        ],
+        "B",
+        "2 km = 2,000 m, and 500 : 2000 = 1 : 4 after dividing by 500."
+      ],
+      [
+        "A recipe needs 2 cups of flour for 12 cookies. To bake 30 cookies at the same rate, the flour needed is:",
+        [
+          "6 cups",
+          "5 cups",
+          "8 cups",
+          "4 cups"
+        ],
+        "B",
+        "30 cookies is 30 / 12 = 2.5 batches, needing 2 x 2.5 = 5 cups of flour."
+      ],
+      [
+        "600 rupees is divided between two children in the ratio 1 : 2. The shares are:",
+        [
+          "150 and 450 rupees",
+          "200 and 400 rupees",
+          "250 and 350 rupees",
+          "300 and 300 rupees"
+        ],
+        "B",
+        "There are 1 + 2 = 3 parts; each part is 600 / 3 = 200 rupees, giving 200 and 400 rupees."
+      ],
+      [
+        "On a map, 1 cm represents 5 km. A road 7 cm long on the map is actually:",
+        [
+          "35 km",
+          "30 km",
+          "40 km",
+          "25 km"
+        ],
+        "A",
+        "7 x 5 = 35 km."
+      ],
+      [
+        "Which ratio is equivalent to 4 : 5?",
+        [
+          "8 : 12",
+          "16 : 15",
+          "12 : 15",
+          "5 : 4"
+        ],
+        "C",
+        "Multiplying both terms by 3 gives 12 : 15, which is equivalent to 4 : 5."
+      ],
+      [
+        "A 2 m pole casts a 3 m long shadow. At the same time, a 6 m pole casts a shadow of:",
+        [
+          "9 m",
+          "12 m",
+          "6 m",
+          "8 m"
+        ],
+        "A",
+        "At the same time, shadow length is proportional to height: 3 x (6 / 2) = 3 x 3 = 9 m."
+      ]
+    ],
+    "subjective": [
+      [
+        "Write the ratio 45 : 75 in its simplest form, showing the step you use.",
+        2,
+        "The HCF of 45 and 75 is 15. Dividing both terms by 15, 45 : 75 = 3 : 5.",
+        "1 mark for dividing by a common factor (ideally the HCF 15); 1 mark for 3 : 5."
+      ],
+      [
+        "8 notebooks cost 240 rupees. Using the unitary method, find the cost of 5 notebooks.",
+        2,
+        "One notebook costs 240 / 8 = 30 rupees, so 5 notebooks cost 30 x 5 = 150 rupees.",
+        "1 mark for the unit price of 30 rupees; 1 mark for 150 rupees."
+      ],
+      [
+        "Share 840 rupees between Asha and Bina in the ratio 3 : 4. How much does each get?",
+        2,
+        "There are 3 + 4 = 7 parts, so each part is 840 / 7 = 120 rupees. Asha gets 3 x 120 = 360 rupees and Bina gets 4 x 120 = 480 rupees.",
+        "1 mark for finding one part as 120 rupees; 1 mark for both shares 360 and 480 rupees."
+      ],
+      [
+        "A bus covers 240 km in 4 hours at a constant speed. How long will it take to cover 420 km at the same speed? Show your working.",
+        3,
+        "Speed = 240 / 4 = 60 km per hour. Time for 420 km = 420 / 60 = 7 hours.",
+        "1 mark for the speed 60 km/h; 1 mark for dividing 420 by the speed; 1 mark for 7 hours."
+      ],
+      [
+        "A photo 10 cm wide and 15 cm tall is enlarged without distortion so that its width becomes 25 cm. Find its new height, explaining why the height changes in the same ratio.",
+        3,
+        "An undistorted enlargement keeps width and height in the same ratio, so both are multiplied by the same scale factor. The scale factor is 25 / 10 = 2.5, so the new height is 15 x 2.5 = 37.5 cm.",
+        "1 mark for recognising both dimensions scale equally; 1 mark for the scale factor 2.5; 1 mark for 37.5 cm."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 7: Proportional Reasoning-1.",
+      "https://ncert.nic.in/textbook/pdf/hegp107.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 7
+  },
+  {
+    "title": "Fractions in Disguise",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch08-fractions-in-disguise-sample-paper.pdf",
+    "objective": [
+      [
+        "Which percentage is the same as the fraction 3/5?",
+        [
+          "75%",
+          "35%",
+          "6%",
+          "60%"
+        ],
+        "D",
+        "3/5 = 3/5 x 100% = 60%."
+      ],
+      [
+        "What is 25% of 240?",
+        [
+          "120",
+          "80",
+          "60",
+          "24"
+        ],
+        "C",
+        "25% of 240 = (25/100) x 240 = 60."
+      ],
+      [
+        "A water bottle costs Rs 500. Its price rises by 10%. The new price is:",
+        [
+          "Rs 550",
+          "Rs 490",
+          "Rs 510",
+          "Rs 600"
+        ],
+        "A",
+        "Increase = 10% of 500 = Rs 50, so the new price is Rs 550."
+      ],
+      [
+        "Meena scores 36 marks out of 50 in a quiz. Her score as a percentage is:",
+        [
+          "72%",
+          "36%",
+          "86%",
+          "64%"
+        ],
+        "A",
+        "36/50 x 100 = 72%."
+      ],
+      [
+        "A shop offers a 15% discount on a bag marked Rs 800. The selling price is:",
+        [
+          "Rs 120",
+          "Rs 720",
+          "Rs 680",
+          "Rs 785"
+        ],
+        "C",
+        "Discount = 15% of 800 = Rs 120, so the selling price is 800 - 120 = Rs 680."
+      ],
+      [
+        "A trader buys a lamp for Rs 200 and sells it for Rs 250. His profit percentage is:",
+        [
+          "50%",
+          "20%",
+          "55%",
+          "25%"
+        ],
+        "D",
+        "Profit = Rs 50 on a cost price of Rs 200, so profit% = 50/200 x 100 = 25%."
+      ],
+      [
+        "Which of these numbers is the largest?",
+        [
+          "0.45",
+          "7/20",
+          "41%",
+          "2/5"
+        ],
+        "A",
+        "41% = 0.41, 2/5 = 0.40, 7/20 = 0.35, and 0.45 is greater than all three."
+      ],
+      [
+        "A town has 2000 students. The number grows by 10% of the original count every year, with no compounding. After 2 years the count is:",
+        [
+          "4000",
+          "2400",
+          "2420",
+          "2200"
+        ],
+        "B",
+        "Each year adds 10% of 2000 = 200, so after 2 years it is 2000 + 400 = 2400."
+      ],
+      [
+        "30% of a number is 45. The number is:",
+        [
+          "135",
+          "150",
+          "13.5",
+          "75"
+        ],
+        "B",
+        "If 30% of N = 45, then N = 45 x 100/30 = 150."
+      ],
+      [
+        "A shopkeeper's sales are Rs 50,000. The goods cost him Rs 30,000 and his other expenses are Rs 5,000. His net profit is:",
+        [
+          "Rs 25,000",
+          "Rs 20,000",
+          "Rs 45,000",
+          "Rs 15,000"
+        ],
+        "D",
+        "Gross profit = 50,000 - 30,000 = Rs 20,000; net profit = 20,000 - 5,000 = Rs 15,000."
+      ]
+    ],
+    "subjective": [
+      [
+        "Riya scores 27 out of 30 in a Maths test and 40 out of 50 in a Science test. Use percentages to decide in which test she did better.",
+        2,
+        "Maths: 27/30 x 100 = 90%. Science: 40/50 x 100 = 80%. Since 90% > 80%, Riya did better in the Maths test, even though she scored more raw marks in Science.",
+        "1 mark for both correct percentages; 1 mark for the correct comparison and conclusion."
+      ],
+      [
+        "A shirt is marked Rs 1200 and is sold at a 25% discount. Find the discount amount and the selling price.",
+        2,
+        "Discount = 25% of 1200 = Rs 300. Selling price = 1200 - 300 = Rs 900.",
+        "1 mark for the discount of Rs 300; 1 mark for the selling price of Rs 900."
+      ],
+      [
+        "A price of Rs 100 is first increased by 50% and the new price is then decreased by 50%. Show that the final price is not Rs 100, and explain why.",
+        2,
+        "After a 50% increase the price is Rs 150. A 50% decrease on Rs 150 removes Rs 75, giving Rs 75. The second change acts on a larger base (Rs 150), so the decrease is bigger than the earlier increase and the final price is lower.",
+        "1 mark for the final price of Rs 75; 1 mark for explaining that the two 50% changes act on different bases."
+      ],
+      [
+        "Asha deposits Rs 10,000 in a scheme that pays 8% of the original deposit every year, without compounding. Find the interest earned in 3 years and the total amount after 3 years.",
+        3,
+        "Interest each year = 8% of 10,000 = Rs 800. Over 3 years, interest = 3 x 800 = Rs 2400. Total amount = 10,000 + 2400 = Rs 12,400.",
+        "1 mark for Rs 800 per year; 1 mark for total interest Rs 2400; 1 mark for the final amount Rs 12,400."
+      ],
+      [
+        "A shopkeeper buys a toy for Rs 350 and sells it for Rs 420. Find his profit and profit percentage. At what price should he sell it to make a 30% profit?",
+        3,
+        "Profit = 420 - 350 = Rs 70. Profit% = 70/350 x 100 = 20%. For a 30% profit, profit = 30% of 350 = Rs 105, so the selling price should be 350 + 105 = Rs 455.",
+        "1 mark for profit Rs 70; 1 mark for 20%; 1 mark for the selling price Rs 455."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 8: Fractions in Disguise.",
+      "https://ncert.nic.in/textbook/pdf/hegp201.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 8
+  },
+  {
+    "title": "Proportional Reasoning-2",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch10-proportional-reasoning-2-sample-paper.pdf",
+    "objective": [
+      [
+        "A map has the scale ratio 1 : 1,00,000. Two places are 3 cm apart on the map. Their actual distance apart is:",
+        [
+          "3 km",
+          "300 m",
+          "300 km",
+          "30 km"
+        ],
+        "A",
+        "3 cm on the map means 3,00,000 cm in reality, and 3,00,000 cm = 3 km."
+      ],
+      [
+        "Rs 600 is divided between two friends in the ratio 2 : 3. The smaller share is:",
+        [
+          "Rs 240",
+          "Rs 200",
+          "Rs 300",
+          "Rs 360"
+        ],
+        "A",
+        "Total parts = 5; one part = Rs 120, so the smaller share is 2 x 120 = Rs 240."
+      ],
+      [
+        "A concrete mix uses cement, sand and gravel in the ratio 1 : 2 : 3. In 60 kg of mix, the amount of sand is:",
+        [
+          "20 kg",
+          "30 kg",
+          "40 kg",
+          "10 kg"
+        ],
+        "A",
+        "Total parts = 6; one part = 10 kg, so sand = 2 x 10 = 20 kg."
+      ],
+      [
+        "In a class of 40 students, 10 travel to school on foot. In a pie chart of travel modes, the angle of the 'on foot' slice is:",
+        [
+          "40 deg",
+          "100 deg",
+          "90 deg",
+          "10 deg"
+        ],
+        "C",
+        "10 out of 40 is one quarter of the class, and one quarter of 360 deg is 90 deg."
+      ],
+      [
+        "The angles of all the slices of a pie chart always add up to:",
+        [
+          "270 deg",
+          "180 deg",
+          "100 deg",
+          "360 deg"
+        ],
+        "D",
+        "A pie chart is a full circle, so its slices total 360 degrees."
+      ],
+      [
+        "6 workers take 8 days to build a wall. Working at the same rate, 12 workers would take:",
+        [
+          "2 days",
+          "4 days",
+          "8 days",
+          "16 days"
+        ],
+        "B",
+        "Workers and days are in inverse proportion: 6 x 8 = 12 x days, so days = 4."
+      ],
+      [
+        "x and y are in inverse proportion. When x = 4, y = 18. When x = 6, y equals:",
+        [
+          "9",
+          "24",
+          "27",
+          "12"
+        ],
+        "D",
+        "The product stays constant: 4 x 18 = 72, so y = 72 / 6 = 12."
+      ],
+      [
+        "A train covers a fixed distance. If its speed is doubled, the time taken becomes:",
+        [
+          "Four times",
+          "Double",
+          "Half",
+          "Unchanged"
+        ],
+        "C",
+        "For a fixed distance, speed and time are inversely proportional, so doubling the speed halves the time."
+      ],
+      [
+        "Which pair of quantities is in inverse proportion?",
+        [
+          "Number of notebooks bought and their total cost",
+          "A child's age and height",
+          "Distance walked and time at a fixed speed",
+          "Number of equally productive workers and time for a divisible fixed job"
+        ],
+        "D",
+        "Assuming equal constant work rates and a job that can be shared without delays, workers multiplied by time is constant."
+      ],
+      [
+        "A drink mixes water and syrup in the ratio 4 : 1. What percentage of the drink is syrup?",
+        [
+          "20%",
+          "40%",
+          "10%",
+          "25%"
+        ],
+        "A",
+        "Syrup is 1 part out of 5, and 1/5 x 100 = 20%."
+      ]
+    ],
+    "subjective": [
+      [
+        "A map uses the scale 1 : 2,50,000. Two towns are 8 cm apart on the map. Find their actual distance apart in kilometres.",
+        2,
+        "Actual distance = 8 x 2,50,000 = 20,00,000 cm. Converting: 20,00,000 cm = 20,000 m = 20 km.",
+        "1 mark for multiplying by the scale; 1 mark for the correct conversion to 20 km."
+      ],
+      [
+        "Divide Rs 1800 among three children in the ratio 2 : 3 : 4. Show each share.",
+        2,
+        "Total parts = 2 + 3 + 4 = 9. One part = 1800 / 9 = Rs 200. The shares are 2 x 200 = Rs 400, 3 x 200 = Rs 600 and 4 x 200 = Rs 800, which add back to Rs 1800.",
+        "1 mark for one part = Rs 200; 1 mark for all three correct shares."
+      ],
+      [
+        "Explain the difference between direct proportion and inverse proportion, giving one everyday example of each.",
+        2,
+        "In direct proportion, both quantities grow together and their ratio is constant, for example the number of pens bought and the total cost. In inverse proportion, one quantity grows as the other shrinks and their product is constant, for example the speed of a car and the time for a fixed journey.",
+        "1 mark for a correct statement of each type (constant ratio vs constant product); 1 mark for two sensible examples."
+      ],
+      [
+        "A family spends its monthly budget of Rs 9000 as follows: food 50%, rent 30%, savings 20%. Find the pie-chart angle and the amount for each head.",
+        3,
+        "Angles: food = 50% of 360 deg = 180 deg, rent = 30% of 360 deg = 108 deg, savings = 20% of 360 deg = 72 deg. Amounts: food = Rs 4500, rent = Rs 2700, savings = Rs 1800.",
+        "1 mark for the three angles; 1 mark for the three amounts; 1 mark for correct method linking percentage of the circle to percentage of the budget."
+      ],
+      [
+        "4 identical pipes together fill a tank in 9 hours. How long would 6 such pipes take? How many pipes are needed to fill the tank in 3 hours? Assume all pipes fill at the same rate.",
+        3,
+        "Pipes and time are in inverse proportion, and 4 x 9 = 36 pipe-hours fill the tank. With 6 pipes, time = 36 / 6 = 6 hours. For 3 hours, pipes needed = 36 / 3 = 12.",
+        "1 mark for identifying inverse proportion (36 pipe-hours); 1 mark for 6 hours; 1 mark for 12 pipes."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 10: Proportional Reasoning-2.",
+      "https://ncert.nic.in/textbook/pdf/hegp203.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 10
+  },
+  {
+    "title": "Exploring Some Geometric Themes",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch11-exploring-some-geometric-themes-sample-paper.pdf",
+    "objective": [
+      [
+        "The self-similarity of the Sierpinski fractals studied in this chapter means that:",
+        [
+          "It cannot be drawn",
+          "A small part looks like the whole",
+          "It is always a circle",
+          "It has no pattern"
+        ],
+        "B",
+        "The construction repeats at smaller scales; smaller parts resemble the whole pattern."
+      ],
+      [
+        "To build a Sierpinski Carpet, a square is divided into 9 equal squares and the centre square is removed. After one step, how many filled squares remain?",
+        [
+          "8",
+          "6",
+          "9",
+          "7"
+        ],
+        "A",
+        "9 - 1 = 8 filled squares remain after the centre is removed."
+      ],
+      [
+        "In the first step of a Sierpinski Gasket, a triangle is divided into 4 equal triangles and the middle one is removed. How many filled triangles remain?",
+        [
+          "4",
+          "3",
+          "1",
+          "2"
+        ],
+        "B",
+        "4 - 1 = 3 filled triangles remain."
+      ],
+      [
+        "A Koch Snowflake begins with which shape?",
+        [
+          "A hexagon",
+          "A circle",
+          "An equilateral triangle",
+          "A square"
+        ],
+        "C",
+        "The Koch Snowflake starts from an equilateral triangle, with a smaller triangle bump added to each side at every step."
+      ],
+      [
+        "How many edges does a cube have?",
+        [
+          "12",
+          "8",
+          "6",
+          "14"
+        ],
+        "A",
+        "A cube has 6 faces, 12 edges and 8 vertices."
+      ],
+      [
+        "A pyramid with a square base has how many faces?",
+        [
+          "8",
+          "6",
+          "4",
+          "5"
+        ],
+        "D",
+        "A square pyramid has 1 square base and 4 triangular side faces, so 5 faces in all."
+      ],
+      [
+        "A convex polyhedron has 6 faces and 12 edges. Using faces +vertices -edges =2, how many vertices does it have?",
+        [
+          "10",
+          "6",
+          "20",
+          "8"
+        ],
+        "D",
+        "Vertices = 2 + edges - faces = 2 + 12 - 6 = 8."
+      ],
+      [
+        "A net of a solid is:",
+        [
+          "The shadow of the solid",
+          "A rope used to measure it",
+          "A flat pattern that folds up into the solid",
+          "A solid with no faces"
+        ],
+        "C",
+        "A net is a flat arrangement of faces that can be folded to form the solid."
+      ],
+      [
+        "A right prism whose two ends are hexagons has how many faces?",
+        [
+          "7",
+          "8",
+          "6",
+          "12"
+        ],
+        "B",
+        "It has 2 hexagonal ends and 6 rectangular side faces, so 8 faces in all."
+      ],
+      [
+        "How many edges does a triangular prism have?",
+        [
+          "12",
+          "9",
+          "5",
+          "6"
+        ],
+        "B",
+        "A triangular prism has 5 faces, 9 edges and 6 vertices."
+      ]
+    ],
+    "subjective": [
+      [
+        "What is self-similarity? Name one fractal from your textbook and describe the rule that creates it.",
+        2,
+        "Self-similarity means a small part of a shape looks like the whole shape. Example: in the Sierpinski Carpet, a square is divided into 9 equal squares and the middle square is removed; the same rule is then repeated on every remaining square. (The Sierpinski Gasket or Koch Snowflake with their rules is also acceptable.)",
+        "1 mark for a correct meaning of self-similarity; 1 mark for a named fractal with its repeating rule."
+      ],
+      [
+        "How many squares make up a net of a cube? When arranging them, why must squares be joined along full edges?",
+        2,
+        "A cube's net has 6 squares, one for each face. Squares must share full edges so that, when folded, the edges of the faces meet exactly; a square joined only at a corner or part of an edge would leave a gap or overlap.",
+        "1 mark for 6 squares; 1 mark for the edge-joining reason."
+      ],
+      [
+        "Count the faces, edges and vertices of a triangular prism, and check that Euler's rule holds for it.",
+        2,
+        "A triangular prism has 5 faces (2 triangles and 3 rectangles), 9 edges and 6 vertices. Euler's rule: 5 + 6 - 9 = 2, so the rule holds.",
+        "1 mark for the three correct counts; 1 mark for verifying 5 + 6 - 9 = 2."
+      ],
+      [
+        "A square of area 81 cm2 is turned into the first step of a Sierpinski Carpet by removing the middle of 9 equal squares. What area remains? If the same removal is repeated on each remaining square (step 2), what area remains then?",
+        3,
+        "Each small square has area 81 / 9 = 9 cm2, so after step 1 the remaining area is 81 - 9 = 72 cm2. At step 2, each of the 8 squares loses one ninth of its area, so the remaining area is 72 x 8/9 = 64 cm2.",
+        "1 mark for 72 cm2 after step 1; 1 mark for recognising each remaining square loses one ninth; 1 mark for 64 cm2 after step 2."
+      ],
+      [
+        "A pyramid is built on a base with 10 sides. Find its number of faces, edges and vertices, and verify Euler's rule.",
+        3,
+        "Faces: 1 base + 10 triangular sides = 11. Edges: 10 around the base + 10 rising to the apex = 20. Vertices: 10 on the base + 1 apex = 11. Check: 11 + 11 - 20 = 2, so Euler's rule holds.",
+        "1 mark for each correct count (11 faces, 20 edges, 11 vertices), with the Euler check required for full marks."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 11: Exploring Some Geometric Themes.",
+      "https://ncert.nic.in/textbook/pdf/hegp204.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 11
+  },
+  {
+    "title": "Tales by Dots and Lines",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch12-tales-by-dots-and-lines-sample-paper.pdf",
+    "objective": [
+      [
+        "The mean of 6, 10, 14, 18 and 22 is:",
+        [
+          "12",
+          "14",
+          "16",
+          "70"
+        ],
+        "B",
+        "The sum is 70 and there are 5 values, so the mean is 70 / 5 = 14."
+      ],
+      [
+        "For any two numbers, their mean lies:",
+        [
+          "Closer to the smaller number",
+          "Closer to the larger number",
+          "Exactly halfway between them",
+          "Anywhere between them"
+        ],
+        "C",
+        "The mean of two numbers is exactly midway between them on the number line."
+      ],
+      [
+        "A new value greater than the mean is added to a data set. The mean will:",
+        [
+          "Decrease",
+          "Stay the same",
+          "Increase",
+          "Become zero"
+        ],
+        "C",
+        "Including a value above the mean pulls the balance point up, so the mean increases."
+      ],
+      [
+        "A new value exactly equal to the mean is added to a data set. The mean will:",
+        [
+          "Stay the same",
+          "Decrease slightly",
+          "Double",
+          "Increase slightly"
+        ],
+        "A",
+        "Adding a value equal to the mean does not shift the balance point, so the mean is unchanged."
+      ],
+      [
+        "The mean of 5 numbers is 20. The total of the 5 numbers is:",
+        [
+          "25",
+          "4",
+          "100",
+          "15"
+        ],
+        "C",
+        "Total = mean x count = 20 x 5 = 100."
+      ],
+      [
+        "The mean of 10, 10, 11 and 17 is:",
+        [
+          "48",
+          "11",
+          "12",
+          "13"
+        ],
+        "C",
+        "The sum is 48 and 48 / 4 = 12."
+      ],
+      [
+        "A line graph is usually the best choice to show:",
+        [
+          "The share of each cost in a budget",
+          "How a value changes over time",
+          "The heights of different buildings",
+          "Which fruit is most popular in class"
+        ],
+        "B",
+        "Line graphs suit continuous change over time; bar graphs compare separate categories and pie charts show shares."
+      ],
+      [
+        "To show how the temperature changed through one day, the most suitable display is:",
+        [
+          "A tally table alone",
+          "A line graph",
+          "A bar graph of categories",
+          "A pictograph"
+        ],
+        "B",
+        "Temperature varies continuously with time, and a line graph shows that trend clearly."
+      ],
+      [
+        "If every value in a data set is increased by 3, the mean:",
+        [
+          "Increases by 3 times the count",
+          "Is multiplied by 3",
+          "Stays the same",
+          "Increases by 3"
+        ],
+        "D",
+        "Adding 3 to every value raises the total by 3 x count, so the mean rises by exactly 3."
+      ],
+      [
+        "A value smaller than the mean is removed from a data set. The mean of the remaining values will:",
+        [
+          "Increase",
+          "Become negative",
+          "Decrease",
+          "Stay the same"
+        ],
+        "A",
+        "Removing a below-average value leaves a higher balance point, so the mean increases."
+      ]
+    ],
+    "subjective": [
+      [
+        "Find the mean of 12, 15, 18, 21 and 24. Then show that the distances of the values below the mean balance the distances above it.",
+        2,
+        "Mean = (12 + 15 + 18 + 21 + 24) / 5 = 90 / 5 = 18. Distances below: 18 - 12 = 6 and 18 - 15 = 3, totalling 9. Distances above: 21 - 18 = 3 and 24 - 18 = 6, totalling 9. The two sides balance, which is why 18 is the centre of the data.",
+        "1 mark for the mean 18; 1 mark for showing the two sides total the same distance (9 each)."
+      ],
+      [
+        "The mean of 4 numbers is 25. A fifth number, 40, is added to the set. Find the new mean.",
+        2,
+        "The original total is 4 x 25 = 100. After adding 40, the total is 140 over 5 numbers, so the new mean is 140 / 5 = 28.",
+        "1 mark for the original total 100; 1 mark for the new mean 28."
+      ],
+      [
+        "Using the fair-share idea of the mean, explain what the mean of 2, 5 and 8 chocolates tells us about three children sharing their chocolates equally.",
+        2,
+        "Together the children have 2 + 5 + 8 = 15 chocolates. If they pooled and shared them equally, each would get 15 / 3 = 5. The mean, 5, is the equal share each child would have.",
+        "1 mark for the total and division; 1 mark for interpreting the mean as the equal share."
+      ],
+      [
+        "A cricketer scores 45, 60, 30, 75 and 40 in five matches. Find her mean score. In the sixth match she scores 80. Without full calculation, say whether the mean will rise or fall, then compute the new mean.",
+        3,
+        "Mean of five matches = (45 + 60 + 30 + 75 + 40) / 5 = 250 / 5 = 50. Since 80 is greater than the current mean, the mean will rise. New total = 250 + 80 = 330, so the new mean = 330 / 6 = 55.",
+        "1 mark for the mean 50; 1 mark for predicting a rise with a correct reason; 1 mark for the new mean 55."
+      ],
+      [
+        "Give one situation where a line graph is the right choice and one where a bar graph is better, with reasons. Also name one way a graph can mislead a reader.",
+        3,
+        "A line graph suits continuous change over time, such as temperature recorded each hour during a day. A bar graph suits comparing separate categories, such as how many students prefer each sport. A graph can mislead if its axis uses unequal intervals without showing the change, or if an unlabelled truncated axis exaggerates a difference. A clearly labelled non-zero temperature axis is not automatically misleading.",
+        "1 mark for a fitting line-graph example; 1 mark for a fitting bar-graph example; 1 mark for a valid misleading feature."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 12: Tales by Dots and Lines.",
+      "https://ncert.nic.in/textbook/pdf/hegp205.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 12
+  },
+  {
+    "title": "Algebra Play",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch13-algebra-play-sample-paper.pdf",
+    "objective": [
+      [
+        "In this number trick: think of a number, double it, add 6, divide by 2, subtract your original number. The result is always:",
+        [
+          "3",
+          "0",
+          "6",
+          "The original number"
+        ],
+        "A",
+        "For a number x, the steps give (2 x + 6)/2 - x = x + 3 - x = 3, whatever x is."
+      ],
+      [
+        "In a sum pyramid, a brick contains 14 and one of the two bricks directly beneath it contains 9. What is the other lower number?",
+        [
+          "14",
+          "23",
+          "126",
+          "5"
+        ],
+        "D",
+        "Each upper brick is the sum of the two below: 14-9 =5."
+      ],
+      [
+        "Use the rule: each upper brick is the sum of the two directly below it. A two-row number pyramid has 3 and 5 in the bottom row. The number at the top is:",
+        [
+          "35",
+          "15",
+          "2",
+          "8"
+        ],
+        "D",
+        "The top is the sum of the two below: 3 + 5 = 8."
+      ],
+      [
+        "Use the rule: each upper brick is the sum of the two directly below it. A three-row pyramid has 1, 2 and 3 in its bottom row. The number at the top is:",
+        [
+          "8",
+          "7",
+          "6",
+          "9"
+        ],
+        "A",
+        "The middle row is 1 + 2 = 3 and 2 + 3 = 5, so the top is 3 + 5 = 8."
+      ],
+      [
+        "Use the rule: each upper brick is the sum of the two directly below it. A three-row pyramid has a, b and c in its bottom row. The expression for the topmost number is:",
+        [
+          "2a + b + 2c",
+          "a x b x c",
+          "a + b + c",
+          "a + 2b + c"
+        ],
+        "D",
+        "The middle row is a + b and b + c, so the top is (a + b) + (b + c) = a + 2 b + c."
+      ],
+      [
+        "On a calendar page, a 2 x 2 grid starts at the number n. The other three numbers are n + 1, n + 7 and n + 8. Their total is:",
+        [
+          "2n + 8",
+          "4n + 8",
+          "n + 16",
+          "4n + 16"
+        ],
+        "D",
+        "n + (n + 1) + (n + 7) + (n + 8) = 4 n + 16."
+      ],
+      [
+        "Which of these numbers is divisible by 3?",
+        [
+          "1000",
+          "2026",
+          "1234",
+          "5121"
+        ],
+        "D",
+        "The digit sum of 5121 is 5 + 1 + 2 + 1 = 9, which is divisible by 3; the others have digit sums of 10, 10 and 1."
+      ],
+      [
+        "A number is divisible by 9 exactly when:",
+        [
+          "Its last digit is 9",
+          "Its digit sum is even",
+          "It is odd",
+          "Its digit sum is divisible by 9"
+        ],
+        "D",
+        "The test for 9 uses the digit sum: the number and its digit sum leave the same remainder on division by 9."
+      ],
+      [
+        "Split 10 into two positive whole-number parts so that their product is as large as possible. The largest product is:",
+        [
+          "21",
+          "24",
+          "25",
+          "16"
+        ],
+        "C",
+        "Equal parts maximise the product: 5 x 5 = 25 beats 4 x 6 = 24, 3 x 7 = 21 and so on."
+      ],
+      [
+        "The solution of 2 x + 3 = 11 is:",
+        [
+          "x = 14",
+          "x = 7",
+          "x = 3",
+          "x = 4"
+        ],
+        "D",
+        "2 x = 11 - 3 = 8, so x = 4. Check: 2 x 4 + 3 = 11."
+      ]
+    ],
+    "subjective": [
+      [
+        "A trick says: think of a number, double it, add 10, divide by 2, then subtract the number you started with. Use algebra to show why the answer is always 5.",
+        2,
+        "Let the number be x. Doubling gives 2 x; adding 10 gives 2 x + 10; dividing by 2 gives x + 5; subtracting x leaves 5. Since x disappears, the answer is 5 for every starting number.",
+        "1 mark for writing the steps with x; 1 mark for showing x cancels to leave 5."
+      ],
+      [
+        "Use the rule: each upper brick is the sum of the two directly below it. A three-row number pyramid has 4, 7 and 2 in its bottom row. Fill in the rest of the pyramid.",
+        2,
+        "Middle row: 4 + 7 = 11 and 7 + 2 = 9. Top: 11 + 9 = 20.",
+        "1 mark for the middle row (11 and 9); 1 mark for the top (20)."
+      ],
+      [
+        "In the calendar trick, the four numbers of a 2 x 2 grid add to 64. Find the four numbers.",
+        2,
+        "If the first number is n, the grid holds n, n + 1, n + 7 and n + 8, so 4 n + 16 = 64. Then 4 n = 48 and n = 12. The numbers are 12, 13, 19 and 20.",
+        "1 mark for setting up 4 n + 16 = 64; 1 mark for the four correct numbers."
+      ],
+      [
+        "Use the rule: each upper brick is the sum of the two directly below it. Derive the expression for the topmost number of a three-row pyramid whose bottom row is a, b, c. Then use it to find the top when the bottom row is 2, 5, 9, without filling in the whole pyramid.",
+        3,
+        "The middle row is a + b and b + c, so the top is (a + b) + (b + c) = a + 2 b + c. For 2, 5, 9: top = 2 + 2 x 5 + 9 = 21.",
+        "1 mark for the middle row in terms of a, b, c; 1 mark for the expression a + 2 b + c; 1 mark for 21."
+      ],
+      [
+        "Test whether 73,82,451 (7382451) is divisible by 9, and explain why the digit-sum test works.",
+        3,
+        "The digit sum is 7 + 3 + 8 + 2 + 4 + 5 + 1 = 30, and 30 is not divisible by 9, so 7382451 is not divisible by 9. Why it works: each power of 10 (10, 100, 1000, ...) is 1 more than a multiple of 9, so every digit contributes only its own value to the remainder; the number and its digit sum therefore leave the same remainder on division by 9.",
+        "1 mark for the digit sum 30; 1 mark for the correct conclusion; 1 mark for the place-value reason."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 13: Algebra Play.",
+      "https://ncert.nic.in/textbook/pdf/hegp206.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 13
+  },
+  {
+    "title": "Area",
+    "subject": "Mathematics",
+    "filename": "class-8-maths-ch14-area-sample-paper.pdf",
+    "objective": [
+      [
+        "The area of a triangle with base b and perpendicular height h is:",
+        [
+          "b + h",
+          "2 x b x h",
+          "(1/2) x b x h",
+          "b x h"
+        ],
+        "C",
+        "Two copies of a triangle form a parallelogram with the same base and perpendicular height. One triangle therefore has half the area base x height."
+      ],
+      [
+        "A triangle has base 12 cm and perpendicular height 7 cm. Its area is:",
+        [
+          "42 cm2",
+          "19 cm2",
+          "38 cm2",
+          "84 cm2"
+        ],
+        "A",
+        "Area = (1/2) x 12 x 7 = 42 cm2."
+      ],
+      [
+        "A diagonal of a rectangle divides it into:",
+        [
+          "Four equal triangles",
+          "Two triangles of different areas",
+          "A square and a triangle",
+          "Two congruent triangles of equal area"
+        ],
+        "D",
+        "The diagonal splits the rectangle into two congruent right triangles, each half the rectangle's area."
+      ],
+      [
+        "A parallelogram has base 10 cm and perpendicular height 6 cm. Its area is:",
+        [
+          "60 cm2",
+          "16 cm2",
+          "30 cm2",
+          "120 cm2"
+        ],
+        "A",
+        "Area of a parallelogram = base x height = 10 x 6 = 60 cm2."
+      ],
+      [
+        "A median of a triangle (the line from a vertex to the midpoint of the opposite side) divides the triangle into:",
+        [
+          "Three equal triangles",
+          "Two triangles of equal area",
+          "A triangle and a trapezium",
+          "Two congruent triangles always"
+        ],
+        "B",
+        "The two parts have equal bases (the side is halved) and the same height from the vertex, so their areas are equal."
+      ],
+      [
+        "Two triangles stand on the same base and lie between the same pair of parallel lines. Their areas are:",
+        [
+          "Always different",
+          "Impossible to compare",
+          "In the ratio 1 : 2",
+          "Equal"
+        ],
+        "D",
+        "Between the same parallels the height is the same, and the bases are equal, so the areas are equal."
+      ],
+      [
+        "The diagonals of a rhombus are 10 cm and 8 cm. Its area is:",
+        [
+          "18 cm2",
+          "80 cm2",
+          "20 cm2",
+          "40 cm2"
+        ],
+        "D",
+        "Area of a rhombus = (1/2) x d1 x d2 = (1/2) x 10 x 8 = 40 cm2."
+      ],
+      [
+        "A square plot has side 9 m. Its area is:",
+        [
+          "18 m2",
+          "72 m2",
+          "81 m2",
+          "36 m2"
+        ],
+        "C",
+        "Area of a square = side x side = 9 x 9 = 81 m2."
+      ],
+      [
+        "A trapezium has parallel sides 8 cm and 12 cm, and the distance between them is 5 cm. Its area is:",
+        [
+          "40 cm2",
+          "100 cm2",
+          "50 cm2",
+          "60 cm2"
+        ],
+        "C",
+        "Area = (1/2) x (8 + 12) x 5 = (1/2) x 20 x 5 = 50 cm2."
+      ],
+      [
+        "A triangle has base 16 cm and area 64 cm2. Its perpendicular height is:",
+        [
+          "16 cm",
+          "2 cm",
+          "8 cm",
+          "4 cm"
+        ],
+        "C",
+        "64 = (1/2) x 16 x h gives h = 64 x 2 / 16 = 8 cm."
+      ]
+    ],
+    "subjective": [
+      [
+        "Find the area of a triangle with base 15 cm and perpendicular height 8 cm, and explain where the 'half' in the formula comes from.",
+        2,
+        "Area = (1/2) x 15 x 8 = 60 cm2. Two copies of any triangle can be joined along a sloping side to form a parallelogram with the same base and perpendicular height. Its area is base x height, so the area of one triangle is half that.",
+        "1 mark for 60 cm2; 1 mark for explaining that two identical triangles form a parallelogram of area base x height."
+      ],
+      [
+        "A parallelogram has base 14 cm and area 126 cm2. Find its height.",
+        2,
+        "Area = base x height, so height = 126 / 14 = 9 cm.",
+        "1 mark for using area = base x height; 1 mark for 9 cm."
+      ],
+      [
+        "Explain why two triangles on the same base and between the same pair of parallel lines must have equal areas.",
+        2,
+        "The area of a triangle depends only on its base and its height. The two triangles share the same base, and because their top vertices lie on a line parallel to the base, both heights equal the distance between the parallel lines. Same base and same height give equal areas.",
+        "1 mark for identifying equal heights from the parallels; 1 mark for the full same-base-same-height argument."
+      ],
+      [
+        "The diagonals of a rhombus are 12 cm and 16 cm. Find its area, and show how splitting the rhombus along a diagonal leads to the formula (1/2) x d1 x d2.",
+        3,
+        "Area = (1/2) x 12 x 16 = 96 cm2. One diagonal, 16 cm, splits the rhombus into two triangles. The diagonals of a rhombus bisect each other at right angles, so each triangle has base 16 and height 12 / 2 = 6. Each area is (1/2) x 16 x 6 = 48 cm2, and 2 x 48 = 96 cm2, matching the formula.",
+        "1 mark for 96 cm2; 1 mark for splitting into two triangles; 1 mark for the height being half the other diagonal."
+      ],
+      [
+        "A field is shaped like a trapezium with parallel sides 25 m and 15 m, 10 m apart. Find its area, and the cost of levelling it at Rs 12 per square metre.",
+        3,
+        "Area = (1/2) x (25 + 15) x 10 = (1/2) x 40 x 10 = 200 m2. Cost = 200 x 12 = Rs 2400.",
+        "1 mark for the trapezium formula set up correctly; 1 mark for 200 m2; 1 mark for Rs 2400."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Mathematics, Ganita Prakash, Chapter 14: Area.",
+      "https://ncert.nic.in/textbook/pdf/hegp207.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 14
+  },
+  {
+    "title": "Exploring the Investigative World of Science",
+    "subject": "Science",
+    "filename": "class-8-science-ch01-exploring-the-investigative-world-of-science-sample-paper.pdf",
+    "objective": [
+      [
+        "A scientific investigation usually begins with:",
+        [
+          "Buying new equipment",
+          "Careful observation and a question",
+          "Publishing the result",
+          "Copying an old answer"
+        ],
+        "B",
+        "Investigation starts from noticing something and asking a focused question about it."
+      ],
+      [
+        "Which of these is a focused, testable question?",
+        [
+          "Are experiments fun?",
+          "Does the size of a paper plane's wings change how long it stays in the air?",
+          "Why is the kitchen interesting?",
+          "Why do people like science?"
+        ],
+        "B",
+        "A testable question names what will be changed and what will be observed or measured."
+      ],
+      [
+        "Kunal suspects wet clothes dry faster on windy days. Which condition should he deliberately change to test this?",
+        [
+          "Whether identical wet cloth pieces hang in moving air or still air",
+          "The time of washing",
+          "The detergent used",
+          "The colour of the clothes"
+        ],
+        "A",
+        "The investigator picks one condition to change (air movement) so its effect on drying can be seen."
+      ],
+      [
+        "In Kunal's drying test, which conditions should be kept the same for both cloth pieces?",
+        [
+          "The day of the week",
+          "Nothing needs to match",
+          "Only the hanger",
+          "Cloth type, wetness, and where the sun falls on them"
+        ],
+        "D",
+        "Keeping the other conditions the same makes it a fair comparison, so any difference is due to air movement."
+      ],
+      [
+        "Which of these observations gives a number that can be measured?",
+        [
+          "Whether the cloth feels nice",
+          "Whether the cloth smells fresh",
+          "The time the cloth takes to dry completely",
+          "Whether the cloth looks neat"
+        ],
+        "C",
+        "Some observations are yes/no, while others, like drying time in minutes, are measurable numbers."
+      ],
+      [
+        "Why should an investigator keep notes of everything seen during an experiment, even smells and splashes?",
+        [
+          "Teachers require decoration",
+          "Unexpected details can later explain the result or suggest new questions",
+          "It makes the work longer",
+          "Notebooks look scientific"
+        ],
+        "B",
+        "Honest, complete records let the conclusion rest on evidence and often spark the next question."
+      ],
+      [
+        "A good investigation usually ends with:",
+        [
+          "A conclusion supported by evidence, and often fresh questions",
+          "A promise never to repeat it",
+          "No further doubts",
+          "A single reading"
+        ],
+        "A",
+        "Each answer typically opens new questions; that is how science keeps moving."
+      ],
+      [
+        "Why do scientists prefer changing only one thing at a time in an experiment?",
+        [
+          "It makes experiments shorter",
+          "It saves money",
+          "It shows which change caused the observed difference",
+          "It avoids measurement"
+        ],
+        "C",
+        "If several things change together, their effects mix and no single cause can be identified."
+      ],
+      [
+        "A drying test gives 18 minutes on one trial and 26 minutes on another. What is the most useful next step?",
+        [
+          "Declare all measurements useless",
+          "Repeat the test and check whether the conditions changed",
+          "Erase the slower result",
+          "Choose whichever result is preferred"
+        ],
+        "B",
+        "Repeated measurements and checking conditions can help explain variation."
+      ],
+      [
+        "Which features of Earth does the chapter highlight as making life possible here?",
+        [
+          "Its rings",
+          "It is the largest planet",
+          "Liquid water, and an atmosphere that gives oxygen and shields harmful ultraviolet rays",
+          "Its many moons"
+        ],
+        "C",
+        "Earth lies at a distance where water stays liquid, and its atmosphere supplies oxygen while blocking harmful ultraviolet rays."
+      ]
+    ],
+    "subjective": [
+      [
+        "A younger student says, 'Science is only done in laboratories with costly instruments.' Using an example from daily life, explain why this is not true.",
+        2,
+        "Science begins with curiosity and careful observation, which need no special equipment. A kitchen or playground works: noticing that wet clothes dry faster on a windy balcony, or that one vessel of milk sours sooner than another, can start a real investigation. Asking what happens if we change something, and testing it step by step, is doing science.",
+        "1 mark for rejecting the lab-only idea using curiosity and observation; 1 mark for a valid everyday example of a simple investigation."
+      ],
+      [
+        "In a teacher-led demonstration, two equal volumes of water start at the same temperature. One contains a measured amount of salt. The teacher compares the times taken to reach boiling. Name the changed factor, two controls and the measured outcome.",
+        2,
+        "Changed factor: presence or measured amount of salt. Controls include starting water volume, starting temperature, vessel and heating setting. Outcome: time to reach boiling, measured consistently. Only the teacher handles hot equipment.",
+        "1 mark for the changed factor and outcome; 1 mark for two appropriate controls."
+      ],
+      [
+        "While testing whether thicker paper makes stronger planes, Arnav changes both the paper thickness and the wing shape, and the new plane flies longer. Why can he not conclude that thicker paper helped?",
+        2,
+        "Because two things changed at once, their effects are mixed: the longer flight could be due to the thicker paper, the new wing shape, or both together. To find the cause, he must repeat the test changing only one feature at a time while keeping the other the same.",
+        "1 mark for recognising mixed effects; 1 mark for stating the one-change-at-a-time remedy."
+      ],
+      [
+        "Describe a simple investigation you could do at home to answer: 'Does a fan make wet clothes dry faster?' State your question, your plan, what you will observe or measure, and one new question your result might raise.",
+        3,
+        "Plan: take two identical cloth pieces, wet them equally, and hang one in front of a running fan and the other in still air in the same room, keeping sunlight and room conditions the same for both. Observe or measure: which dries first, or the drying time of each in minutes. The result might raise new questions, such as whether warm air dries clothes even faster than moving air, or whether thin cloth behaves differently from thick cloth.",
+        "1 mark for a fair plan changing only air movement; 1 for a clear observation or measurement; 1 for a sensible follow-up question."
+      ],
+      [
+        "An investigation produces a result that disagrees with the student prediction. The student wants to delete that trial. Explain why this would weaken the investigation, and suggest two better next steps.",
+        3,
+        "Deleting a result just because it disagrees biases the evidence. Better steps include checking the method or measurement, repeating the test under the same conditions, and recording all outcomes before revising the explanation. A surprising result can reveal a new factor or a problem in the method.",
+        "1 mark for explaining bias from selective deletion; 1 mark for each of two sound next steps."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 1: Exploring the Investigative World of Science.",
+      "https://ncert.nic.in/textbook/pdf/hecu101.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 1
+  },
+  {
+    "title": "The Invisible Living World: Beyond Our Naked Eye",
+    "subject": "Science",
+    "filename": "class-8-science-ch02-the-invisible-living-world-beyond-our-naked-eye-sample-paper.pdf",
+    "objective": [
+      [
+        "In 1665, Robert Hooke described tiny compartments he saw through his microscope and published them in:",
+        [
+          "A farmer's almanac",
+          "The Origin of Species",
+          "A health diary",
+          "Micrographia"
+        ],
+        "D",
+        "Hooke's book Micrographia presented his microscope observations, including the structures he called cells."
+      ],
+      [
+        "Who was the first person to observe living microorganisms with hand-made microscopes?",
+        [
+          "Robert Hooke",
+          "Thomas Edison",
+          "James Watt",
+          "Antonie van Leeuwenhoek"
+        ],
+        "D",
+        "Leeuwenhoek, a Dutch scientist, built powerful simple microscopes and was the first to see the living microbial world."
+      ],
+      [
+        "Which cell part is present in a plant cell but absent from an animal cell?",
+        [
+          "Cytoplasm",
+          "Cell wall",
+          "Cell membrane",
+          "Nucleus"
+        ],
+        "B",
+        "Plant cells have an extra outer cell wall that provides rigidity and strength; animal cells do not."
+      ],
+      [
+        "A bacterium differs from a plant or animal cell because its genetic material lies in a region called the:",
+        [
+          "Nucleoid",
+          "Nucleus",
+          "Chloroplast",
+          "Cell wall"
+        ],
+        "A",
+        "Bacteria have no membrane-bound nucleus; their genetic material sits in the nucleoid region."
+      ],
+      [
+        "A low-cost, foldable paper microscope that students can carry anywhere is called a:",
+        [
+          "Periscope",
+          "Telescope",
+          "Foldscope",
+          "Stethoscope"
+        ],
+        "C",
+        "A foldscope is an affordable paper microscope used to observe microbes without a laboratory."
+      ],
+      [
+        "Which statement about viruses is correct?",
+        [
+          "They prepare their own food",
+          "They are acellular and multiply only inside the cells of a host",
+          "They are made of many cells",
+          "They are visible without any instrument"
+        ],
+        "B",
+        "Viruses are acellular: they are not made of cells and can reproduce only inside a suitable host."
+      ],
+      [
+        "Idli batter left in a warm kitchen rises and turns slightly sour overnight. The main reason is:",
+        [
+          "Bacteria such as Lactobacillus, and yeast, ferment the batter",
+          "The rice grains grow",
+          "The bowl releases air",
+          "Warmth melts the salt"
+        ],
+        "A",
+        "Fermentation by Lactobacillus and yeast produces gas and mild acid, making the batter rise and sour."
+      ],
+      [
+        "Pea and lentil plants often need less nitrogen fertiliser because their roots host:",
+        [
+          "Algae that make sugar",
+          "Viruses that kill weeds",
+          "Mushrooms that eat insects",
+          "Rhizobium bacteria that trap nitrogen from the air"
+        ],
+        "D",
+        "Microorganisms in the root nodules of legumes trap nitrogen from the air and improve soil fertility."
+      ],
+      [
+        "Why does refrigerating cooked food slow down its spoilage?",
+        [
+          "Plastic boxes repel fungi",
+          "Low temperature slows the growth and activity of spoilage microorganisms",
+          "Cold adds vitamins",
+          "The fridge kills all microbes instantly"
+        ],
+        "B",
+        "Microbes need suitable warmth to grow; refrigeration slows them, so food stays good longer."
+      ],
+      [
+        "Which action best helps reduce antibiotic misuse?",
+        [
+          "Share unused tablets with a friend",
+          "Use antibiotics only when prescribed and follow the prescriber instructions",
+          "Change doses without advice",
+          "Take antibiotics for every cold"
+        ],
+        "B",
+        "Antibiotics should be used only when needed and exactly as prescribed. Inappropriate use can select for resistant bacteria."
+      ]
+    ],
+    "subjective": [
+      [
+        "List four groups of the invisible living world introduced in this chapter, with one example or feature of each.",
+        2,
+        "Any four: bacteria (single-celled, some make curd or fix nitrogen), fungi (yeast ferments dough; mushrooms are macro fungi), protozoa (single-celled, some cause disease), microscopic algae (some are single-celled and make food), viruses (acellular, multiply only inside hosts).",
+        "Half mark per group with a correct example or feature, up to 2 marks."
+      ],
+      [
+        "A researcher grows the same bread mould on two identical prepared samples. Both receive the same starting amount of mould and are kept at the same temperature, but one sample is kept much drier. Growth is slower on the dry sample. What factor was tested, and what can and cannot be concluded?",
+        2,
+        "The tested factor is moisture. The result supports the claim that this mould grows more slowly under the drier conditions tested. It does not prove that every microorganism needs air or the same moisture level, and it does not prove the dry sample contains no microbes. This is a described laboratory result, not an instruction to grow mould at home.",
+        "1 mark for identifying moisture and the supported growth comparison; 1 mark for a sensible limit on the conclusion."
+      ],
+      [
+        "A food-storage poster says: food kept in a refrigerator is sterile forever. Identify two errors in that statement using what you know about microorganisms.",
+        2,
+        "Refrigeration usually slows microbial growth but does not kill all microorganisms or sterilise food. Food can still spoil over time; cleanliness, suitable storage and safe use times remain important. A cold appearance or absence of smell is not proof that food is safe.",
+        "1 mark for refrigeration not sterilising food; 1 mark for continued spoilage/safe-storage limitation."
+      ],
+      [
+        "A root-nodule diagram shows Rhizobium receiving sugars from a legume and providing usable nitrogen compounds to it. Explain the benefit to each partner and name the atmospheric resource involved.",
+        3,
+        "The plant supplies sugars made by photosynthesis to the bacteria. Rhizobium fixes atmospheric nitrogen into forms the plant can use. Both partners benefit, which is a mutualistic relationship.",
+        "1 mark for sugars supplied by the plant; 1 mark for usable nitrogen supplied by the bacteria; 1 mark for atmospheric nitrogen fixation or the correctly explained mutual benefit."
+      ],
+      [
+        "'Microorganisms are friends as well as foes.' Support this statement with two helpful and two harmful roles of microorganisms.",
+        3,
+        "Helpful (any two): Lactobacillus makes curd; yeast makes bread and bhatura soft and fluffy; microbes decompose plant and animal waste into simple substances and clean up the environment; they help produce medicines. Harmful (any two): some cause communicable diseases such as typhoid or flu; some spoil food, making it smell or rot. Conclusion: invisible does not mean unimportant, so we use helpful microbes and guard against harmful ones.",
+        "1 mark for two helpful roles; 1 for two harmful roles; 1 for a coherent use of both sides."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 2: The Invisible Living World: Beyond Our Naked Eye.",
+      "https://ncert.nic.in/textbook/pdf/hecu102.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 2
+  },
+  {
+    "title": "Health: The Ultimate Treasure",
+    "subject": "Science",
+    "filename": "class-8-science-ch03-health-the-ultimate-treasure-sample-paper.pdf",
+    "objective": [
+      [
+        "According to this chapter, being healthy means:",
+        [
+          "Eating supplements daily",
+          "Physical, mental and social well-being, not just the absence of disease",
+          "Playing one sport",
+          "Never needing a doctor"
+        ],
+        "B",
+        "Health is complete physical, mental and social well-being, which is more than not falling sick."
+      ],
+      [
+        "Which of these diseases is non-communicable?",
+        [
+          "Ringworm",
+          "Conjunctivitis",
+          "Vitamin-A-deficiency night blindness",
+          "Dengue"
+        ],
+        "C",
+        "Vitamin-A-deficiency night blindness is not infectious and does not pass between people; ringworm, conjunctivitis and dengue can have infectious causes."
+      ],
+      [
+        "Ringworm spreads mainly through:",
+        [
+          "Contaminated drinking water",
+          "Mosquito bites",
+          "Cold weather",
+          "Close contact with an infected person or their belongings"
+        ],
+        "D",
+        "Ringworm is a communicable skin infection that passes by contact; breaking the contact route prevents it."
+      ],
+      [
+        "Chikungunya reaches people through:",
+        [
+          "Sharing towels",
+          "The bite of an infected mosquito",
+          "Houseflies on food",
+          "Dusty air"
+        ],
+        "B",
+        "Like malaria and dengue, chikungunya is carried by mosquitoes, so bite prevention and removing stagnant water are key."
+      ],
+      [
+        "Vaccination protects us by:",
+        [
+          "Adding extra blood",
+          "Replacing the need for sleep",
+          "Killing every germ in the body",
+          "Preparing the immune system to recognise a specific pathogen"
+        ],
+        "D",
+        "A vaccine safely trains the immune system, so a later real infection is fought off faster and more strongly."
+      ],
+      [
+        "A person who has recovered from chickenpox rarely gets it again because:",
+        [
+          "The virus becomes friendly",
+          "Chickenpox visits only children",
+          "The immune system remembers the pathogen and responds strongly on re-exposure",
+          "Skin becomes germ-proof"
+        ],
+        "C",
+        "The first encounter builds immune memory, so the response to the same pathogen later is much stronger."
+      ],
+      [
+        "After floods, officials advise drinking only boiled or clean water mainly to prevent:",
+        [
+          "Arthritis",
+          "Diseases such as cholera and typhoid",
+          "Asthma attacks",
+          "Night blindness"
+        ],
+        "B",
+        "Floodwater can contaminate drinking sources with infectious excreta, spreading water-borne diseases like cholera and typhoid."
+      ],
+      [
+        "A doctor refuses to give an antibiotic for a viral fever because:",
+        [
+          "Antibiotics act on bacteria, so they do not help against viruses",
+          "Antibiotics are always painful",
+          "Viral fevers need no rest",
+          "Antibiotics work only at night"
+        ],
+        "A",
+        "Using antibiotics for viral infections is ineffective, and such misuse promotes antibiotic resistance."
+      ],
+      [
+        "Which habit most directly lowers the risk of lifestyle diseases like obesity and type 2 diabetes?",
+        [
+          "Skipping meals often",
+          "Long screen time",
+          "Daily sugary drinks",
+          "Regular physical activity with a balanced diet"
+        ],
+        "D",
+        "Non-communicable lifestyle diseases are strongly linked to diet and inactivity, so movement and balanced food protect against them."
+      ],
+      [
+        "Which is a healthy way to cope with exam stress?",
+        [
+          "Doubling screen time",
+          "Isolating yourself for weeks",
+          "Talking to someone you trust, playing, and sleeping well",
+          "Skipping food to study"
+        ],
+        "C",
+        "Health includes mental and emotional well-being; supportive relationships, rest and activity are healthy coping strategies."
+      ]
+    ],
+    "subjective": [
+      [
+        "An information card lists vitamin-A-deficiency night blindness and dengue. Explain why mosquito control can lower dengue risk but cannot prevent the vitamin deficiency. State one appropriate preventive measure for the deficiency.",
+        2,
+        "Dengue is caused by an infectious virus transmitted by mosquitoes, so reducing bites and breeding can reduce transmission. A vitamin deficiency is not transmitted by mosquitoes; access to an adequate balanced diet with vitamin-A sources helps prevent it. Do not self-prescribe vitamin supplements.",
+        "1 mark for the different infectious/nutritional causes; 1 mark for the relevant dietary prevention."
+      ],
+      [
+        "A canteen worker at school handles food all day. Suggest two hygiene practices that protect students' health, and explain how each works.",
+        2,
+        "Any two: washing hands with soap before handling food and after using the toilet, which removes infectious agents from hands; keeping nails trimmed and hair covered, which keeps dirt and microbes out of food; not working while ill, which stops pathogens reaching the food. Each practice breaks a transmission route from the handler to the food.",
+        "1 mark for each valid practice with a correct explanation, up to 2 marks."
+      ],
+      [
+        "A student wants to use a sibling's antibiotic tablets for a cold without medical advice. Explain why this is not a safe plan, referring to viruses and antibiotic resistance.",
+        2,
+        "Many colds are caused by viruses, against which antibiotics do not work. Sharing or misusing antibiotics can cause harm and select for resistant bacteria. A qualified clinician should decide whether an antibiotic is needed and how it is used.",
+        "1 mark for the viral-cold limitation; 1 mark for the misuse/resistance risk and need for qualified advice."
+      ],
+      [
+        "A neighbourhood checks for mosquito breeding before the monsoon. Suggest two practical actions to reduce dengue risk and explain how one action works.",
+        3,
+        "Empty or cover containers holding standing water, remove water-holding waste, maintain clean drains, use screens and suitable repellents, or another valid action. Dengue-transmitting mosquitoes can breed in standing water and often bite during the day, so daytime bite prevention matters as well as removing breeding sites.",
+        "1 mark for each of two valid actions; 1 mark for explaining breeding reduction or bite prevention."
+      ],
+      [
+        "Your cousin spends five hours a day on a phone, skips breakfast, and sleeps late. Pick three changes you would suggest and explain how each improves health.",
+        3,
+        "Any three: cut recreational screen time, which improves sleep and frees time for play; eat a balanced breakfast, which gives energy and protects against under- or over-nutrition; fix a regular sleep schedule, which supports rest, mood and concentration; add daily physical activity, which lowers the risk of obesity and diabetes. Each change links a habit to a health outcome.",
+        "1 mark per change with a correct health explanation, up to 3 marks."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 3: Health: The Ultimate Treasure.",
+      "https://ncert.nic.in/textbook/pdf/hecu103.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 3
+  },
+  {
+    "title": "Exploring Forces",
+    "subject": "Science",
+    "filename": "class-8-science-ch05-exploring-forces-sample-paper.pdf",
+    "objective": [
+      [
+        "A rickshaw puller setting the rickshaw in motion applies which kind of force?",
+        [
+          "Magnetic force",
+          "Gravitational force",
+          "Electrostatic force",
+          "Muscular force"
+        ],
+        "D",
+        "Force applied using the body's muscles is muscular force, and it needs contact."
+      ],
+      [
+        "A magnet picks up an iron pin without touching it. This shows that magnetic force is a:",
+        [
+          "Muscular force",
+          "Frictional force",
+          "Contact force",
+          "Non-contact force"
+        ],
+        "D",
+        "Magnetic force acts across a distance, so it is a non-contact force."
+      ],
+      [
+        "After combing dry hair, the comb attracts small bits of thread. The force responsible is:",
+        [
+          "Gravitational force",
+          "Electrostatic force",
+          "Frictional force",
+          "Muscular force"
+        ],
+        "B",
+        "Rubbing charges the comb, and the charged comb exerts an electrostatic force on light objects."
+      ],
+      [
+        "Raindrops fall towards the ground because gravitational force:",
+        [
+          "Always attracts objects towards the Earth",
+          "Pushes clouds apart",
+          "Acts only on metals",
+          "Works only at night"
+        ],
+        "A",
+        "Gravity is always attractive; the Earth pulls objects, including raindrops, towards itself."
+      ],
+      [
+        "A potter pressing a lump of clay on the wheel changes the clay's:",
+        [
+          "Smell",
+          "Weight",
+          "Shape",
+          "Colour"
+        ],
+        "C",
+        "A force can change the shape of an object, as pressing and shaping clay shows."
+      ],
+      [
+        "A bicycle coasting on a flat road gradually slows down even without brakes, mainly because of:",
+        [
+          "The tyres becoming magnetic",
+          "Friction and air resistance opposing its motion",
+          "Gravity pushing it backwards",
+          "Its colour"
+        ],
+        "B",
+        "Friction between the tyres and road, and air resistance, act opposite to the motion and reduce speed."
+      ],
+      [
+        "Why is powder sprinkled on a carrom board?",
+        [
+          "To increase friction",
+          "To make it colourful",
+          "To reduce friction so the coins slide smoothly",
+          "To cool the board"
+        ],
+        "C",
+        "Powder makes the surface smoother, reducing friction so the striker and coins glide easily."
+      ],
+      [
+        "A suitcase of mass 5 kg is carried to the Moon. Which statement is correct?",
+        [
+          "Its weight doubles",
+          "Its mass stays 5 kg but its weight becomes smaller",
+          "Its mass becomes zero",
+          "Its mass and weight both stay the same"
+        ],
+        "B",
+        "Mass, the amount of matter, does not change with place; weight is gravity's pull, which is weaker on the Moon."
+      ],
+      [
+        "A toy boat floats at rest. Its weight is 12 N. What is the upward force of the water on it?",
+        [
+          "0 N",
+          "Its mass in kilograms",
+          "More than 12 N at all times",
+          "12 N"
+        ],
+        "D",
+        "A floating object at rest is in vertical balance: upward buoyant force equals its weight, 12 N."
+      ],
+      [
+        "A swing gradually slows and stops after you stop pumping it. This happens because:",
+        [
+          "No forces act on it",
+          "Gravity stops at heights",
+          "Unbalanced forces like friction and air resistance keep acting on it",
+          "Motion creates no force ever"
+        ],
+        "C",
+        "A change in motion always means an unbalanced force is acting; here friction and air resistance slow the swing."
+      ]
+    ],
+    "subjective": [
+      [
+        "Name three different effects a force can produce, with one new everyday example for each.",
+        2,
+        "Any three: change speed (pressing brakes slows a scooter), change direction (a fielder deflects a ball), start or stop motion (a push starts a trolley), change shape (stretching a rubber band or squeezing a sponge).",
+        "2 marks for three effects each with a valid example; 1 mark for two."
+      ],
+      [
+        "Classify as contact or non-contact forces: pushing a shopping trolley, a magnet moving a paper clip from a distance, a shoe gripping the floor, the Earth holding the Moon in its path.",
+        2,
+        "Contact forces: pushing the trolley and the shoe gripping the floor (friction), because they need touching surfaces. Non-contact forces: the magnet on the paper clip and the Earth holding the Moon (gravity), because they act across a distance.",
+        "1 mark for the correct split; 1 mark for the touch-versus-distance reasoning."
+      ],
+      [
+        "An equipment trolley needs a larger push on a rough mat than on smooth tiles to maintain the same slow speed. Explain what this suggests about friction, and why the trolley does not speed up at constant speed.",
+        2,
+        "The rough mat produces greater resistance in this comparison. At constant speed, the forward push is balanced by the resisting forces, so there is no resultant force causing acceleration.",
+        "1 mark for the greater resisting friction on the mat; 1 mark for balanced forces at constant speed."
+      ],
+      [
+        "A sensor reads an object weight as 18 N in a model environment with gravity one-sixth as strong as Earth. Predict its Earth weight. State whether its mass changes and distinguish mass from weight.",
+        3,
+        "Earth weight would be 6 x18 = 108 N. The mass remains the same: mass measures the amount of matter, while weight is the gravitational force on the object and depends on the local gravitational field.",
+        "1 mark for 108 N; 1 mark for mass unchanged; 1 mark for distinguishing mass and gravitational force."
+      ],
+      [
+        "A bicycle mechanic oils the chain but keeps the brake pads rough. Explain why one part is made smoother and the other is kept rough.",
+        3,
+        "The chain should move freely, so oiling it reduces friction, preventing wear and saving effort. The brake pads must grip the wheel rim to stop the cycle, so they are kept rough to provide high friction. This shows friction is reduced where motion should be easy and increased where grip or stopping is needed.",
+        "1 mark for oil reducing chain friction; 1 for rough pads increasing friction for braking; 1 for the general principle."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 5: Exploring Forces.",
+      "https://ncert.nic.in/textbook/pdf/hecu105.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 5
+  },
+  {
+    "title": "Pressure, Winds, Storms, and Cyclones",
+    "subject": "Science",
+    "filename": "class-8-science-ch06-pressure-winds-storms-and-cyclones-sample-paper.pdf",
+    "objective": [
+      [
+        "The SI unit of pressure is:",
+        [
+          "Metre per second (m/s)",
+          "Newton (N)",
+          "Kilogram (kg)",
+          "Pascal (Pa), that is newton per square metre"
+        ],
+        "D",
+        "Pressure is force per unit area, so its SI unit is N/m2, also called the pascal."
+      ],
+      [
+        "School bags are made with broad shoulder straps because:",
+        [
+          "Broad straps look better",
+          "The same weight over a larger area produces less pressure on the shoulders",
+          "Narrow straps are costlier",
+          "Broad straps weigh less"
+        ],
+        "B",
+        "Spreading the force over a larger area lowers the pressure, so the straps do not dig into the shoulders."
+      ],
+      [
+        "A stool weighs 240 N and stands on four legs, each touching the floor over 0.004 m2. The pressure on the floor is:",
+        [
+          "15000 Pa",
+          "6000 Pa",
+          "240 Pa",
+          "960 Pa"
+        ],
+        "A",
+        "Total area is 4 x 0.004 = 0.016 m2, so pressure = 240 / 0.016 = 15000 Pa."
+      ],
+      [
+        "The wall of a dam is built much thicker at the bottom than at the top because:",
+        [
+          "Water pressure increases with depth, so the base must bear the greatest push",
+          "It saves cement",
+          "Fish push the base",
+          "It helps boating"
+        ],
+        "A",
+        "Liquid pressure grows with depth, so the deepest part of the dam faces the largest force."
+      ],
+      [
+        "Which statement about pressure in liquids and gases is correct?",
+        [
+          "They exert pressure on the walls of the container as well",
+          "They never exert pressure sideways",
+          "They exert pressure only at the bottom",
+          "Only solids exert pressure"
+        ],
+        "A",
+        "Fluids push in all directions, including on the walls of their container."
+      ],
+      [
+        "When you suck air out of a juice carton, the carton crumples. This happens because:",
+        [
+          "The juice becomes heavy",
+          "Cartons fear suction",
+          "The pressure inside drops, and the outside atmospheric pressure crushes the carton",
+          "Gravity increases inside"
+        ],
+        "C",
+        "Removing air lowers the inside pressure, so the greater atmospheric pressure outside pushes the walls in."
+      ],
+      [
+        "Late at night near the sea, a gentle breeze often blows from the land towards the sea because:",
+        [
+          "Waves push the breeze back",
+          "Land stays hotter all night",
+          "Land cools faster, so cooler higher-pressure air over land moves towards the warmer sea",
+          "The Moon pulls the air"
+        ],
+        "C",
+        "At night the land cools faster than the sea; warm air rises over the sea and cooler air from the land flows in to take its place."
+      ],
+      [
+        "Two important requirements for the formation of a thunderstorm are:",
+        [
+          "Dry air and fog",
+          "Snow and silence",
+          "Moisture and strong winds",
+          "Moonlight and dust"
+        ],
+        "C",
+        "Warm moist air and strong upward and downward winds drive thunderstorm clouds and charge build-up."
+      ],
+      [
+        "A lightning conductor protects a tall building because it:",
+        [
+          "Cools the roof",
+          "Provides a safe path for the electric charge to travel into the ground",
+          "Stores lightning as power",
+          "Scares the clouds away"
+        ],
+        "B",
+        "A properly installed conductor and earthing system provides a low-resistance route to ground, reducing the risk of damage. It does not guarantee protection against every effect of lightning."
+      ],
+      [
+        "On receiving a cyclone warning, people in a coastal area should:",
+        [
+          "Go to the beach to watch",
+          "Keep an emergency kit ready and move to a designated cyclone shelter if asked",
+          "Ignore official advisories",
+          "Open all windows"
+        ],
+        "B",
+        "Preparedness and moving to a cyclone shelter when advised are the recommended safety steps."
+      ]
+    ],
+    "subjective": [
+      [
+        "A drawing pin slips into a soft board with gentle thumb pressure, while the blunt end of the same pin does not. Explain using force and area.",
+        2,
+        "The thumb applies roughly the same force in both cases. The pointed tip has a very small area, so the pressure at the tip is large and it pierces the board. The blunt end has a larger area, so the same force produces much smaller pressure, which is not enough to push it in.",
+        "1 mark for same force over different areas; 1 mark for the pressure comparison explaining piercing."
+      ],
+      [
+        "Explain how we are able to drink juice through a straw, using the idea of atmospheric pressure.",
+        2,
+        "When we suck, we remove some air from the straw, lowering the pressure inside it. The atmospheric pressure pressing on the juice surface in the glass is now greater than the pressure inside the straw, so it pushes the juice up into the straw and into the mouth.",
+        "1 mark for lowered pressure inside the straw; 1 mark for atmospheric pressure pushing the liquid up."
+      ],
+      [
+        "Describe, as a chain of three steps, how unequal heating of the Earth's surface produces wind.",
+        2,
+        "The Sun heats some regions more than others. Warm air over the hotter region expands and rises, creating a low-pressure area there. Cooler air from surrounding higher-pressure regions moves in to take its place, and this moving air is wind.",
+        "1 mark for warm air rising and low pressure; 1 mark for cooler air moving in from higher pressure; both steps in a correct chain."
+      ],
+      [
+        "A storm explanation contains three errors: warm moist air sinks to form clouds; charge separation never occurs; thunder is seen before light. Correct each error using a short scientific statement.",
+        3,
+        "Warm moist air rises and cools; water vapour can condense into cloud droplets. Collisions among cloud particles can separate charge, and a large potential difference can lead to a lightning discharge. Lightning is normally seen before its thunder is heard because light travels much faster than sound.",
+        "1 mark for rising/cooling/condensation; 1 mark for charge separation and discharge; 1 mark for light reaching the observer before sound."
+      ],
+      [
+        "During a fictional cyclone drill, one family receives an official evacuation instruction while a neighbour forwards an unverified message claiming the storm has vanished. Give three decisions the family should make, with a safety reason for each.",
+        3,
+        "Follow the official evacuation instruction and designated route because local authorities assess the hazard. Check updates through official sources instead of forwarding rumours. Take the prepared emergency kit and move promptly to the shelter without approaching floodwater or fallen power lines. Accept other sound decisions with clear reasons; do not wait for visible danger before following evacuation advice.",
+        "1 mark for each of three valid decisions with a safety reason."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 6: Pressure, Winds, Storms, and Cyclones.",
+      "https://ncert.nic.in/textbook/pdf/hecu106.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 6
+  },
+  {
+    "title": "Particulate Nature of Matter",
+    "subject": "Science",
+    "filename": "class-8-science-ch07-particulate-nature-of-matter-sample-paper.pdf",
+    "objective": [
+      [
+        "The particle model says that all matter is made of:",
+        [
+          "Only visible grains",
+          "Pure light",
+          "One continuous sheet",
+          "Extremely small particles with spaces between them"
+        ],
+        "D",
+        "Matter consists of tiny particles; the spaces, motion and attraction between them explain how materials behave."
+      ],
+      [
+        "Grinding a piece of jaggery into a fine powder changes:",
+        [
+          "Jaggery into a new element",
+          "Only the size of each piece; every speck is still jaggery",
+          "Sweetness into saltiness",
+          "The substance itself"
+        ],
+        "B",
+        "Breaking or grinding is a physical change; the tiny grains remain the same substance."
+      ],
+      [
+        "A metal spoon keeps its shape no matter which container it is placed in, because:",
+        [
+          "Metal has no particles",
+          "Spoons dislike bowls",
+          "Its particles fly freely",
+          "Its particles are strongly held in fixed positions"
+        ],
+        "D",
+        "In solids, strong interparticle attractions hold particles in fixed positions, giving a fixed shape and volume."
+      ],
+      [
+        "Honey poured into a jar slowly takes the jar's shape because:",
+        [
+          "Honey is a gas",
+          "Its particles stay close but can move past each other",
+          "Honey has no particles",
+          "Jars attract honey"
+        ],
+        "B",
+        "Liquid particles are close together but not fixed, so liquids flow and take the shape of their container."
+      ],
+      [
+        "A syringe filled with air, its tip closed, can be pushed in a little. This shows that:",
+        [
+          "Air is a solid",
+          "Gas particles have large spaces between them that can be squeezed smaller",
+          "Syringes are soft",
+          "Air has no particles"
+        ],
+        "B",
+        "Gases are compressible because their particles are far apart with large interparticle spaces."
+      ],
+      [
+        "An agarbatti lit in one corner soon smells across the whole room because:",
+        [
+          "The room shrinks",
+          "Gas particles are in constant motion and spread through the air, mixing with it",
+          "Fragrance travels by wires",
+          "Smoke is heavy"
+        ],
+        "B",
+        "Diffusion in gases is fast because their particles move freely and spread into all available space."
+      ],
+      [
+        "Sugar mixes faster in hot milk than in cold milk because:",
+        [
+          "At higher temperatures the particles move faster, so mixing and dissolving happen more quickly",
+          "Cold milk has no particles",
+          "Sugar is afraid of cold",
+          "Hot milk is sweeter"
+        ],
+        "A",
+        "Heating increases particle motion, which speeds up spreading and dissolving."
+      ],
+      [
+        "A spoonful of salt stirred into a pot of dal makes the whole pot taste salty because:",
+        [
+          "The dissolved salt particles spread uniformly among the particles of the liquid",
+          "Stirring creates salt",
+          "Dal has no taste of its own",
+          "Salt multiplies"
+        ],
+        "A",
+        "On dissolving, the particles of the solute spread evenly throughout the liquid, so every part tastes the same."
+      ],
+      [
+        "A wet handkerchief dries faster on a sunny railing than in a closed room because:",
+        [
+          "Sunlight glues water down",
+          "Closed rooms add water",
+          "The railing drinks the water",
+          "Warmth increases the motion of water particles, so evaporation is faster"
+        ],
+        "D",
+        "Evaporation speeds up when heating increases particle motion and moving air carries the vapour away."
+      ],
+      [
+        "On a hot afternoon, solid ghee in a jar turns liquid. This change is:",
+        [
+          "Rusting",
+          "A physical change called melting",
+          "A chemical change",
+          "Burning"
+        ],
+        "B",
+        "Melting is a physical change: the particles gain energy and move more freely, but no new substance forms."
+      ]
+    ],
+    "subjective": [
+      [
+        "State four main ideas of the particle model of matter.",
+        2,
+        "Any four: matter is made of tiny particles; there are spaces between the particles; particles are in constant motion; particles attract one another; the arrangement and motion of particles differ in solids, liquids and gases; heating increases particle motion while cooling decreases it.",
+        "Half mark per correct idea, up to 2 marks."
+      ],
+      [
+        "Ice, water and steam are the same substance. Using the particle model, explain why they behave so differently.",
+        2,
+        "In ice the particles are tightly packed in fixed positions and only vibrate, so ice is hard with a fixed shape. In water the particles are close but can move past each other, so it flows and takes the container's shape. In steam the particles are far apart and move freely, filling all available space. The substance is the same; the arrangement, spacing and motion of its particles differ.",
+        "1 mark for solid versus liquid behaviour; 1 mark for gas behaviour, both explained through particle arrangement and motion."
+      ],
+      [
+        "A particle-model animation shows solid particles completely motionless and liquid particles with no attraction between them. Identify and correct both modelling errors.",
+        2,
+        "Solid particles are not motionless: they vibrate about fixed positions. Liquid particles remain close and attract one another, but can move past one another; the attraction has not vanished.",
+        "1 mark for solid vibration; 1 mark for liquid attraction with mobility."
+      ],
+      [
+        "Two sealed model boxes contain the same number of particles. In A the particles are closely packed and vibrate about fixed positions; in B they are far apart and move freely. Identify the model states, compare compressibility, and explain why the particle count alone does not determine volume.",
+        3,
+        "A models a solid; B models a gas. A is difficult to compress because its particles are already close together, whereas B is readily compressed by reducing the large spaces. Equal particle counts do not require equal volumes because the spacing and arrangement differ.",
+        "1 mark for solid/gas identification; 1 mark for the compressibility comparison using spacing; 1 mark for explaining why equal counts do not imply equal volume."
+      ],
+      [
+        "A wet pavement dries after the rain stops. Explain where the water goes, and why the pavement dries sooner on a windy day.",
+        3,
+        "The water evaporates: its particles, always in motion, escape from the surface into the air as vapour. Wind carries away the vapour-rich air near the surface and brings drier air, so more water particles can leave quickly. On a still day the air near the wet surface stays humid and drying is slower. No new substance is formed, so evaporation is a physical change.",
+        "1 mark for evaporation as particles escaping into air; 1 for wind removing vapour and speeding drying; 1 for recognising it as a physical change."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 7: Particulate Nature of Matter.",
+      "https://ncert.nic.in/textbook/pdf/hecu107.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 7
+  },
+  {
+    "title": "Nature of Matter: Elements, Compounds, and Mixtures",
+    "subject": "Science",
+    "filename": "class-8-science-ch08-nature-of-matter-elements-compounds-and-mixtures-sample-paper.pdf",
+    "objective": [
+      [
+        "Which of these is an element?",
+        [
+          "Oxygen",
+          "Common salt",
+          "Water",
+          "Soil"
+        ],
+        "A",
+        "Oxygen is made of only one kind of atom; water and salt are compounds and soil is a mixture."
+      ],
+      [
+        "A pure substance made of two or more elements chemically combined in a fixed ratio is called:",
+        [
+          "a mixture",
+          "a solvent",
+          "a compound",
+          "an alloy"
+        ],
+        "C",
+        "A compound forms when elements combine chemically in a fixed ratio, giving new properties."
+      ],
+      [
+        "Which of these is a uniform (homogeneous) mixture?",
+        [
+          "Muddy water",
+          "Sand mixed with iron filings",
+          "Oil floating on water",
+          "Salt dissolved fully in water"
+        ],
+        "D",
+        "A fully dissolved salt solution looks the same throughout, so it is a uniform mixture."
+      ],
+      [
+        "Iron filings mixed with sulfur powder (not heated) can be separated with a magnet because:",
+        [
+          "the magnet attracts sulfur too",
+          "the sulfur evaporates on standing",
+          "each component keeps its own properties in a mixture",
+          "the two have reacted chemically"
+        ],
+        "C",
+        "In a mixture the components are not chemically combined, so each keeps its own properties, including iron's magnetism."
+      ],
+      [
+        "In a teacher-led laboratory demonstration, iron and sulfur react on heating to form a black solid. What is the main product?",
+        [
+          "iron oxide (rust)",
+          "iron sulfide",
+          "brass",
+          "pure sulfur"
+        ],
+        "B",
+        "Heating makes iron and sulfur react chemically to form the compound iron sulfide, a new substance with new properties."
+      ],
+      [
+        "Which of these is a compound?",
+        [
+          "Seawater",
+          "Air",
+          "Bronze",
+          "Carbon dioxide"
+        ],
+        "D",
+        "Carbon dioxide is carbon and oxygen chemically combined in a fixed ratio; the others are mixtures."
+      ],
+      [
+        "Brass, made by mixing copper and zinc uniformly, is best classified as:",
+        [
+          "a compound",
+          "a pure metal",
+          "an alloy, which is a uniform mixture",
+          "an element"
+        ],
+        "C",
+        "Brass is an alloy: the metals are mixed, not chemically combined in a fixed ratio."
+      ],
+      [
+        "The smallest particle of an element that can take part in a chemical reaction is:",
+        [
+          "an atom",
+          "a mixture",
+          "a solution",
+          "a molecule of a compound"
+        ],
+        "A",
+        "An atom is the smallest unit of an element that participates in chemical reactions."
+      ],
+      [
+        "In water, hydrogen and oxygen are always combined in the same fixed ratio. This shows that water is:",
+        [
+          "a compound",
+          "an alloy",
+          "a mixture",
+          "an element"
+        ],
+        "A",
+        "A fixed ratio of chemically combined elements is the defining feature of a compound."
+      ],
+      [
+        "A mixture of sand and salt can best be separated by:",
+        [
+          "using only a magnet",
+          "it cannot be separated at all",
+          "heating the mixture strongly",
+          "dissolving the salt in water, filtering, then evaporating the water"
+        ],
+        "D",
+        "Salt dissolves but sand does not, so filtration removes the sand and evaporation recovers the salt."
+      ]
+    ],
+    "subjective": [
+      [
+        "Classify seawater as an element, compound or mixture, and justify your answer.",
+        2,
+        "Seawater is a (mostly uniform) mixture. It contains water, dissolved salts and gases that are not chemically combined, keep their own properties, and can be separated by physical methods such as evaporation.",
+        "1 mark for mixture; 1 for the justification (components not chemically combined, separable by physical methods)."
+      ],
+      [
+        "Explain why air is called a mixture but water is called a compound.",
+        2,
+        "In air, the gases are physically mixed: their proportions can vary and each gas keeps its own properties. In water, hydrogen and oxygen are chemically combined in a fixed ratio, and water has completely different properties from both gases.",
+        "1 mark for air's variable physical mixing; 1 for water's fixed chemical combination and new properties."
+      ],
+      [
+        "Two cards describe powders. Card P: a magnet removes one component and leaves another behind. Card Q: every particle is a chemically joined unit containing two kinds of atom. Which card describes a mixture, and which a compound? Explain.",
+        2,
+        "P is a mixture: physical separation shows that a component retains its properties. Q is a compound: different elements are chemically combined in each unit.",
+        "1 mark for P with physical-separation reasoning; 1 mark for Q with chemical-combination reasoning."
+      ],
+      [
+        "Classify each of the following as an element, a compound or a mixture: copper, ammonia, milk, helium, vinegar, ethanol.",
+        3,
+        "Elements: copper, helium. Compounds: ammonia, ethanol. Mixtures: milk, vinegar.",
+        "1 mark for both elements correct; 1 for both compounds correct; 1 for both mixtures correct."
+      ],
+      [
+        "A display labels a uniform copper-zinc alloy as an element because it looks like one substance. Identify the error. Explain why being uniform does not by itself prove that a material is an element, and give a different kind of uniform material.",
+        3,
+        "An alloy can contain more than one element even though it looks uniform. Brass contains copper and zinc, so it is a mixture, not an element. Uniformity describes the distribution of components, not the number of kinds of atom. A fully dissolved salt solution is another uniform mixture; a pure compound such as water is also an acceptable uniform example.",
+        "1 mark for rejecting the element label using copper and zinc; 1 mark for distinguishing uniform appearance from elemental composition; 1 mark for a valid further example."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 8: Nature of Matter: Elements, Compounds, and Mixtures.",
+      "https://ncert.nic.in/textbook/pdf/hecu108.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 8
+  },
+  {
+    "title": "The Amazing World of Solutes, Solvents, and Solutions",
+    "subject": "Science",
+    "filename": "class-8-science-ch09-the-amazing-world-of-solutes-solvents-and-solutions-sample-paper.pdf",
+    "objective": [
+      [
+        "In a glass of salt water, the salt is the:",
+        [
+          "solute",
+          "solution",
+          "residue",
+          "solvent"
+        ],
+        "A",
+        "The substance that dissolves is the solute; water is the solvent."
+      ],
+      [
+        "Which of these dissolves in water to form a solution?",
+        [
+          "Chalk powder",
+          "Sugar",
+          "Sand",
+          "Mustard oil"
+        ],
+        "B",
+        "Sugar is soluble in water; chalk, sand and oil are not."
+      ],
+      [
+        "A solution in which no more solute can dissolve at that temperature is called:",
+        [
+          "a pure solvent",
+          "an unsaturated solution",
+          "a dilute solution",
+          "a saturated solution"
+        ],
+        "D",
+        "A saturated solution holds the maximum amount of solute possible at that temperature."
+      ],
+      [
+        "For most solid solutes, raising the temperature of the water generally:",
+        [
+          "turns the solute into a gas",
+          "decreases their solubility",
+          "has no effect on solubility",
+          "increases their solubility"
+        ],
+        "D",
+        "Most solids dissolve more in hotter water, so solubility usually increases with temperature."
+      ],
+      [
+        "Stirring helps sugar dissolve faster in water mainly because it:",
+        [
+          "evaporates the water",
+          "changes sugar into a new substance",
+          "makes the sugar particles magnetic",
+          "brings fresh solvent into contact with the solute"
+        ],
+        "D",
+        "Stirring continuously brings unsaturated solvent into contact with undissolved solute, speeding up dissolving."
+      ],
+      [
+        "An object has a mass of 100 g and a volume of 50 cm³. Its density is:",
+        [
+          "50 g/cm³",
+          "5000 g/cm³",
+          "0.5 g/cm³",
+          "2 g/cm³"
+        ],
+        "D",
+        "Density = mass ÷ volume = 100 ÷ 50 = 2 g/cm³."
+      ],
+      [
+        "Two liquids are not mixed in this question. Equal 50 mL samples have masses 60 g and 45 g. Which sample has the greater density?",
+        [
+          "The 45 g sample",
+          "They must have equal densities",
+          "Density cannot be compared without their colours",
+          "The 60 g sample"
+        ],
+        "D",
+        "For equal volumes, the sample with the larger mass has the larger density: 60/50 = 1.2 g/mL, compared with 45/50 = 0.9 g/mL."
+      ],
+      [
+        "A small stone sinks in a bucket of water, but a much heavier block of ice floats. What does this show?",
+        [
+          "water pushes only cold objects up",
+          "ice is less dense than water while the stone is denser",
+          "ice dissolves slowly in water",
+          "heavier things always sink"
+        ],
+        "B",
+        "Floating and sinking depend on density, not mass alone: ice is less dense than water and the stone is denser."
+      ],
+      [
+        "Which of these is NOT a true solution?",
+        [
+          "Copper sulfate dissolved in water",
+          "Salt water",
+          "Muddy water",
+          "Air"
+        ],
+        "C",
+        "Muddy water has solid particles suspended, not dissolved, so it is not a true solution."
+      ],
+      [
+        "A fixed mass of water is heated and expands. Its density:",
+        [
+          "stays exactly the same",
+          "decreases",
+          "becomes zero",
+          "increases"
+        ],
+        "B",
+        "The same mass now occupies a larger volume, so density = mass ÷ volume decreases."
+      ]
+    ],
+    "subjective": [
+      [
+        "Define solute and solvent. Identify them when a little sugar and salt dissolve completely in a glass of water.",
+        2,
+        "A solute is a substance that dissolves; the solvent is the substance in which it dissolves. Sugar and salt are the solutes here, and water is the solvent.",
+        "1 mark for both definitions; 1 mark for identifying sugar/salt as solutes and water as solvent."
+      ],
+      [
+        "A sugar solution is saturated at room temperature. What does saturated mean, and how could more sugar be dissolved without adding water?",
+        2,
+        "At that temperature the solution contains the maximum sugar that can dissolve. Warming it usually increases the solubility of sugar, so more sugar can dissolve.",
+        "1 mark for the temperature-qualified definition; 1 mark for warming the sugar solution."
+      ],
+      [
+        "Equal masses of sugar with the same grain size are put into equal volumes of water, one cold and one warm. Both are stirred equally. Where should sugar dissolve faster, and why?",
+        2,
+        "Sugar should dissolve faster in the warm water. Higher temperature increases particle motion and generally increases the rate at which sugar dissolves. The water volumes, sugar mass, grain size and stirring are held the same for a fair comparison.",
+        "1 mark for warm water; 1 mark for explaining the temperature effect on dissolving rate."
+      ],
+      [
+        "A laboratory needs 80 cm3 of a liquid with density 1.25 g/cm3. An empty measuring vessel has mass 30 g. What total mass should the filled vessel have? Explain how you account for the vessel.",
+        3,
+        "Liquid mass = density x volume = 1.25 x80 = 100 g. The balance includes the 30 g vessel, so the filled vessel should have mass 130 g.",
+        "1 mark for mass = density x volume; 1 mark for 100 g of liquid; 1 mark for adding the 30 g vessel to obtain 130 g."
+      ],
+      [
+        "Two covered cups each contain 100 mL of water at the same temperature. Cup A contains 10 g dissolved sugar; cup B contains 20 g dissolved sugar. Both can still dissolve more. A student says cup B is saturated because it is sweeter. Evaluate the claim, then describe a fair way to check saturation without tasting.",
+        3,
+        "The claim is unsupported: B is more concentrated than A, but both are stated to be unsaturated. Saturation means no more solute dissolves at that temperature, not merely that the solution is sweet. Add a small measured amount of sugar, stir and allow enough time at constant temperature. Sugar remaining undissolved after mixing indicates saturation under those conditions. Never taste laboratory samples.",
+        "1 mark for distinguishing concentration from saturation; 1 mark for constant-temperature addition/stirring; 1 mark for interpreting persistent undissolved sugar after sufficient time."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 9: The Amazing World of Solutes, Solvents, and Solutions.",
+      "https://ncert.nic.in/textbook/pdf/hecu109.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 9
+  },
+  {
+    "title": "Keeping Time with the Skies",
+    "subject": "Science",
+    "filename": "class-8-science-ch11-keeping-time-with-the-skies-sample-paper.pdf",
+    "objective": [
+      [
+        "The length of a day is based on which repeating motion?",
+        [
+          "Earth's rotation on its axis",
+          "Earth's revolution around the Sun",
+          "The Sun's movement around the galaxy",
+          "The Moon's revolution around Earth"
+        ],
+        "A",
+        "One rotation of Earth on its axis gives the cycle of day and night."
+      ],
+      [
+        "We can see the Moon because:",
+        [
+          "it glows from volcanic heat",
+          "it is lit by Earth's city lights",
+          "it reflects sunlight towards us",
+          "it produces its own light"
+        ],
+        "C",
+        "The Moon shines by reflecting sunlight; we see only the sunlit part facing us."
+      ],
+      [
+        "The phases of the Moon are caused by:",
+        [
+          "the Moon stopping its rotation",
+          "the changing relative positions of the Sun, Earth and Moon",
+          "clouds covering parts of the Moon",
+          "Earth's shadow falling on the Moon"
+        ],
+        "B",
+        "As the Moon orbits Earth, we see different portions of its sunlit half. Earth's shadow causes eclipses, not the regular phases."
+      ],
+      [
+        "One complete cycle of the Moon's phases, from full Moon to the next full Moon, takes about:",
+        [
+          "7 days",
+          "365 days",
+          "29.5 days",
+          "24 hours"
+        ],
+        "C",
+        "The Moon's phase cycle is about 29.5 days, which is the basis of the month."
+      ],
+      [
+        "The length of a year is based on:",
+        [
+          "the daily rising of stars",
+          "the phases of the Moon",
+          "Earth's rotation on its axis",
+          "Earth's revolution around the Sun"
+        ],
+        "D",
+        "One revolution of Earth around the Sun takes about 365.25 days, defining the year."
+      ],
+      [
+        "Leap years are needed because:",
+        [
+          "the Moon is slowing down",
+          "calendars were invented on a leap day",
+          "a year is about 365 and a quarter days",
+          "a year is exactly 365 days"
+        ],
+        "C",
+        "The extra quarter day each year adds up, so an extra day is added roughly every four years."
+      ],
+      [
+        "Luni-solar calendars add an extra (intercalary) month from time to time in order to:",
+        [
+          "make every year 13 months long",
+          "honour astronomers",
+          "keep lunar months aligned with the seasons",
+          "shorten the year"
+        ],
+        "C",
+        "Twelve lunar months fall about 11 days short of the solar year, so an intercalary month realigns festivals with seasons."
+      ],
+      [
+        "On a particular night the Moon is highest in the sky around midnight. Its phase is most likely:",
+        [
+          "full Moon",
+          "new Moon",
+          "waxing crescent",
+          "waning crescent"
+        ],
+        "A",
+        "A full Moon is opposite the Sun, so it rises near sunset, is highest around midnight and sets near sunrise."
+      ],
+      [
+        "Ravi says, 'The Moon can only be seen at night.' His statement is:",
+        [
+          "false, because the Moon makes its own light in the day",
+          "true, because the Moon orbits only at night",
+          "true, because sunlight hides the Moon",
+          "false, because the Moon is often visible during the day too"
+        ],
+        "D",
+        "Depending on its phase, the Moon is above the horizon during many daytime hours and can often be seen in daylight."
+      ],
+      [
+        "Days, lunar months and solar years are useful natural measures of time because they are based on:",
+        [
+          "the orders of kings",
+          "lucky numbers",
+          "sky motions that repeat in a predictable way",
+          "weather records"
+        ],
+        "C",
+        "Days, months and years follow the predictable, repeating motions of the Earth, Moon and Sun."
+      ]
+    ],
+    "subjective": [
+      [
+        "Explain why the Moon shows phases. Make clear why Earth's shadow is not the cause of the regular phases.",
+        2,
+        "The Moon is lit by the Sun on one half. As it orbits Earth, we see different portions of that lit half, producing the cycle of phases. Earth's shadow falls on the Moon only during a lunar eclipse, which is occasional and brief, not the regular monthly cycle.",
+        "1 mark for changing view of the sunlit half as the Moon orbits; 1 for distinguishing eclipses from the regular phases."
+      ],
+      [
+        "A fictional lunar calendar uses 12 months of 29.5 days each. Calculate its year length and the difference from a 365.25-day solar year. Why might a calendar intended to follow both lunar months and seasons need an adjustment?",
+        2,
+        "12 x29.5 = 354 days. The difference is 365.25-354 = 11.25 days. Without adjustment, the lunar months shift relative to the seasons; occasional extra months can help a luni-solar calendar realign them. These are approximate model values.",
+        "1 mark for 354 days and 11.25-day difference; 1 mark for the seasonal-alignment explanation."
+      ],
+      [
+        "A toy Earth completes one rotation every 8 seconds and one circuit of its lamp-Sun every 96 seconds. How many toy days fit in one toy year? Which two different motions do your calculation and labels represent?",
+        2,
+        "96/8 = 12 toy days per toy year. Rotation on the axis represents the day; the circuit around the lamp represents revolution around the Sun and the year. The toy rates are not the actual rates of Earth.",
+        "1 mark for 12; 1 mark for correctly distinguishing rotation/day and revolution/year."
+      ],
+      [
+        "An observation log records a thin crescent, then a half-lit Moon, then a gibbous Moon on successively later evenings. Identify whether the visible illuminated fraction is increasing or decreasing, name this part of the cycle, and predict the next main phase if the trend continues.",
+        3,
+        "The visible illuminated fraction is increasing. This is the waxing part of the cycle. After waxing gibbous, the next main phase is full Moon. The Sun continues to illuminate about half the Moon; our view of that half changes.",
+        "1 mark for increasing visible lit fraction; 1 mark for waxing; 1 mark for full Moon next."
+      ],
+      [
+        "In an approximate model, each year has 365.25 days. A calendar designer proposes 365-day years for three years, followed by one 366-day year. Compare the total calendar days with the model over four years. Explain what this corrects and why it is still an approximation.",
+        3,
+        "The calendar has 3 x365+366 = 1461 days. The model has 4 x365.25 = 1461 days, so the totals match over four years. The extra day compensates for the accumulated quarter-days. A real solar year is not exactly 365.25 days, so real calendars need more detailed long-term rules.",
+        "1 mark for 1461 calendar days; 1 mark for 1461 model days; 1 mark for explaining the quarter-day correction and approximate year length."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 11: Keeping Time with the Skies.",
+      "https://ncert.nic.in/textbook/pdf/hecu111.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 11
+  },
+  {
+    "title": "How Nature Works in Harmony",
+    "subject": "Science",
+    "filename": "class-8-science-ch12-how-nature-works-in-harmony-sample-paper.pdf",
+    "objective": [
+      [
+        "All the members of one kind of organism living in an area together form:",
+        [
+          "an ecosystem",
+          "a food web",
+          "a community",
+          "a population"
+        ],
+        "D",
+        "A population is all the individuals of one species in an area."
+      ],
+      [
+        "A community of living organisms together with the non-living surroundings forms:",
+        [
+          "a population",
+          "an ecosystem",
+          "a habitat only",
+          "a food chain"
+        ],
+        "B",
+        "An ecosystem includes both the living community and the non-living (abiotic) environment."
+      ],
+      [
+        "In most ecosystems, the producers are:",
+        [
+          "herbivores",
+          "decomposers",
+          "green plants",
+          "carnivores"
+        ],
+        "C",
+        "Green plants make their own food by photosynthesis, producing food for the rest of the ecosystem."
+      ],
+      [
+        "The main role of decomposers such as bacteria and fungi is to:",
+        [
+          "break down dead matter and recycle nutrients",
+          "pollinate flowers",
+          "hunt other animals",
+          "produce oxygen by photosynthesis"
+        ],
+        "A",
+        "Decomposers break down dead organisms and waste, returning nutrients to the soil for producers to use."
+      ],
+      [
+        "A food-web diagram shows both small fish and insects being eaten by a bird. What is the best reason to draw both feeding links?",
+        [
+          "The bird may use more than one food source",
+          "Energy flows only from birds to plants",
+          "All organisms occupy the same feeding level",
+          "Every bird eats every organism"
+        ],
+        "A",
+        "A food web shows alternative and interconnected feeding relationships rather than one single route."
+      ],
+      [
+        "Which of these is a non-living (abiotic) component of an ecosystem?",
+        [
+          "Sunlight",
+          "Fungus",
+          "Deer",
+          "Grass"
+        ],
+        "A",
+        "Sunlight is a non-living component; the others are living organisms."
+      ],
+      [
+        "A coastal district plants mangroves along its shore to reduce damage from storm surges. This works mainly because mangroves:",
+        [
+          "have dense roots and trunks that act as a barrier slowing incoming waves",
+          "attract rain clouds away from the coast",
+          "release oxygen that cools the sea",
+          "make the soil salty so waves avoid it"
+        ],
+        "A",
+        "Dense mangrove trees and roots slow and break up incoming waves, shielding the land behind them."
+      ],
+      [
+        "A food web is best described as:",
+        [
+          "a single straight chain of eating",
+          "many interlinked food chains",
+          "a list of decomposers only",
+          "a type of spider's web"
+        ],
+        "B",
+        "In nature most organisms eat and are eaten by more than one species, linking food chains into a web."
+      ],
+      [
+        "A compost heap becomes very dry. Leaf breakdown slows, although microbes are still present. Which conclusion is best supported?",
+        [
+          "Dryness turns leaves into elements",
+          "Abiotic conditions can affect decomposer activity",
+          "Decomposers are unnecessary",
+          "All the microbes have vanished"
+        ],
+        "B",
+        "Water availability is a non-living condition that can affect the activity of decomposers. Slow breakdown alone does not prove they have vanished."
+      ],
+      [
+        "Which of these is a human-made ecosystem?",
+        [
+          "An agricultural field",
+          "A mangrove forest",
+          "A mountain river",
+          "A natural pond"
+        ],
+        "A",
+        "A farm field is created and maintained by people, with chosen crops replacing natural vegetation."
+      ]
+    ],
+    "subjective": [
+      [
+        "A grower removes all fallen leaves from one garden bed but returns well-decomposed leaf compost to another. Explain why the second practice can help nutrient recycling, and identify the group that made the compost.",
+        2,
+        "Bacteria, fungi and other decomposer organisms break down the leaves. Returning decomposed material helps return mineral nutrients to the soil, where plants can use them again. This does not mean compost guarantees every nutrient a plant needs.",
+        "1 mark for decomposers; 1 mark for the dead-material-to-soil-to-plant nutrient link."
+      ],
+      [
+        "What is the difference between a population and a community? Give one example of each.",
+        2,
+        "A population is all the individuals of one species in an area, for example all the neem trees in a park. A community is all the different populations of organisms living together in that area, for example the park's trees, birds, insects, fungi and grass together.",
+        "1 mark for correct definitions; 1 for a valid example of each."
+      ],
+      [
+        "A coastal planning team lists two benefits of a mangrove belt: shelter for young fish and reduced wave energy near the shore. Explain why one belt can supply both benefits without claiming that it stops every storm.",
+        2,
+        "The roots and shallow sheltered water provide habitat for young fish. Dense vegetation and roots can dissipate some wave energy. Protection depends on storm strength, water depth and the belt, so mangroves do not guarantee that flooding or damage is prevented.",
+        "1 mark for the habitat explanation; 1 mark for wave-energy reduction with a sensible limit."
+      ],
+      [
+        "A bird eats both seed-eating insects and fruit. The insects feed on plants. Write two food chains ending with the bird, explain why together they form part of a food web, and state why one missing food source need not make the bird disappear immediately.",
+        3,
+        "Chains: plants ->insects ->bird, and fruit-producing plants ->bird. They are linked through the bird and plants, so they are part of a food web. The bird has an alternative food source; its response also depends on food availability and other conditions.",
+        "1 mark for both valid chains; 1 mark for explaining their shared links; 1 mark for the alternative-food explanation."
+      ],
+      [
+        "In a school plot, bean plants grow beside flowering herbs. Bees visit the herbs and bean flowers. A plan would replace every plant with one crop and spray a broad insecticide. Identify two possible ecological costs and propose one lower-impact alternative.",
+        3,
+        "Replacing the mixed planting can reduce habitat and food variety. A broad insecticide can kill pollinators as well as pests, which may affect pollination. An alternative is to retain flowering strips and use targeted pest management, or another justified measure that reduces non-target harm.",
+        "1 mark for loss of plant/habitat variety; 1 mark for a pollinator or other non-target effect; 1 mark for a justified lower-impact alternative."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 12: How Nature Works in Harmony.",
+      "https://ncert.nic.in/textbook/pdf/hecu112.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 12
+  },
+  {
+    "title": "Our Home: Earth, a Unique Life Sustaining Planet",
+    "subject": "Science",
+    "filename": "class-8-science-ch13-our-home-earth-a-unique-life-sustaining-planet-sample-paper.pdf",
+    "objective": [
+      [
+        "Two imaginary worlds have the same distance from their star, but one has no substantial atmosphere. Which conclusion is sound?",
+        [
+          "The airless world must have breathable air",
+          "Atmosphere also affects temperature and surface water conditions",
+          "Distance alone guarantees identical surface conditions",
+          "Both worlds must have identical living organisms"
+        ],
+        "B",
+        "Distance from a star is only one condition: atmospheric composition and pressure also matter."
+      ],
+      [
+        "Earth's magnetic field helps protect life by:",
+        [
+          "making the sky blue",
+          "deflecting many harmful charged particles coming from the Sun",
+          "creating gravity",
+          "keeping the oceans warm"
+        ],
+        "B",
+        "The magnetic field deflects much of the solar wind, shielding the atmosphere and living things."
+      ],
+      [
+        "A field survey lists rock types, soil types, bird species and plant species. Which pair belongs in its geodiversity record?",
+        [
+          "Rock types and soil types",
+          "Plant species and soil types only",
+          "Bird species and rock types only",
+          "Bird species and plant species"
+        ],
+        "A",
+        "Geodiversity concerns non-living natural variety; birds and plants are biodiversity."
+      ],
+      [
+        "If Earth had no atmosphere, its surface temperature would most likely:",
+        [
+          "swing between very hot days and very cold nights",
+          "become uniformly cold everywhere",
+          "stay perfectly comfortable",
+          "remain unchanged"
+        ],
+        "A",
+        "The atmosphere traps and distributes heat; without it, temperatures would swing to extremes like on the Moon."
+      ],
+      [
+        "Which gas do green plants take in for photosynthesis?",
+        [
+          "Hydrogen",
+          "Carbon dioxide",
+          "Nitrogen",
+          "Oxygen"
+        ],
+        "B",
+        "Plants use carbon dioxide, water and sunlight to make food, releasing oxygen."
+      ],
+      [
+        "Liquid water can exist steadily on Earth's surface mainly because:",
+        [
+          "Earth spins very fast",
+          "Earth is the largest planet",
+          "the Moon pulls the water into place",
+          "Earth's distance from the Sun and its atmosphere keep temperatures in a suitable range"
+        ],
+        "D",
+        "Earth's distance from the Sun, combined with its atmosphere and pressure, keeps much of its water liquid."
+      ],
+      [
+        "The Moon has almost no atmosphere even though it is rocky like Earth. The main reason is:",
+        [
+          "Its weaker gravity makes it easier for gases to escape",
+          "it spins too fast",
+          "its craters absorb the gases",
+          "it is too close to the Sun"
+        ],
+        "A",
+        "The Moon has much less mass than Earth. Its low escape speed and exposure to the solar wind make retaining a thick long-lived atmosphere difficult."
+      ],
+      [
+        "Biodiversity refers to:",
+        [
+          "the strength of winds",
+          "the depth of the oceans",
+          "the variety of living organisms in a region",
+          "the number of rocks in a region"
+        ],
+        "C",
+        "Biodiversity is the variety of life - different species, their genes and the ecosystems they form."
+      ],
+      [
+        "Cutting down a large forest patch for roads is most likely to cause:",
+        [
+          "loss of habitats and reduced local biodiversity",
+          "an immediate rise in groundwater",
+          "no change at all",
+          "more rainfall and a cooler local climate"
+        ],
+        "A",
+        "Removing forest destroys habitats, reduces biodiversity and can warm and dry the local climate."
+      ],
+      [
+        "Which of these is an example of vegetative propagation?",
+        [
+          "A tadpole hatching from frog eggs",
+          "A mustard plant growing from a seed",
+          "A new potato plant sprouting from a potato piece with an 'eye'",
+          "A chick hatching from an egg"
+        ],
+        "C",
+        "Vegetative propagation is new plants growing from plant parts such as stems, roots or leaves - a potato tuber piece, for instance."
+      ]
+    ],
+    "subjective": [
+      [
+        "A poster says: a planet at the right distance from its star must support humans outdoors. Give two reasons that the distance alone cannot justify this conclusion.",
+        2,
+        "The planet might lack breathable air at suitable pressure. It might also lack accessible liquid water or suitable temperature regulation; distance alone does not determine its atmosphere, pressure or water. Radiation shielding or other clearly explained life-support needs are also acceptable.",
+        "1 mark for each of two distinct explained conditions beyond distance."
+      ],
+      [
+        "Sort these roles between the atmosphere and the magnetic field: supplying oxygen for human respiration, and deflecting many charged particles from the Sun. Why should the two protective systems not be treated as identical?",
+        2,
+        "Oxygen is supplied by the atmosphere. The magnetic field deflects many solar charged particles. Air is matter surrounding Earth, whereas a magnetic field is not breathable matter; they have different functions even though both help protect the planet.",
+        "1 mark for correctly assigning both roles; 1 mark for a clear distinction between the two systems."
+      ],
+      [
+        "A nursery grows one set of plants from stem cuttings and another set from seeds formed by pollination and fertilisation. Which method is vegetative propagation? Which involves sexual reproduction? Give one reason for each.",
+        2,
+        "The stem-cutting method is vegetative propagation because a new plant grows from a vegetative part of the parent. Seeds formed after fertilisation involve sexual reproduction because male and female reproductive cells fuse.",
+        "1 mark for cutting/vegetative with reason; 1 mark for fertilised-seed/sexual with reason."
+      ],
+      [
+        "An Earth-system chart shows plants releasing water vapour, clouds forming, and rain soaking into soil. Name the living, air, water and solid-Earth systems involved, then explain one link between them.",
+        3,
+        "Plants belong to the biosphere; air to the atmosphere; water in rain, soil moisture and vapour participates in the hydrosphere; soil and rock belong to the geosphere. For example, plants move water from soil into the atmosphere by transpiration, and rainfall returns water to the ground.",
+        "1 mark for biosphere and atmosphere correctly identified; 1 mark for hydrosphere and geosphere correctly identified; 1 mark for a valid explained link."
+      ],
+      [
+        "A city plan protects an existing wetland, reduces burning of fossil fuels and prevents untreated sewage entering streams. Match each action to one of these problems: biodiversity loss, climate change and pollution. Explain one connection between any two problems.",
+        3,
+        "Wetland protection helps limit biodiversity loss. Reducing fossil-fuel burning helps limit greenhouse-gas emissions and climate change. Sewage treatment reduces water pollution. Connections include polluted water harming species, or climate change altering habitats and biodiversity. One action can benefit more than one problem.",
+        "1 mark for the three main matches; 1 mark for one scientifically valid connection; 1 mark for explaining how that connection affects living things or their habitat."
+      ]
+    ],
+    "references": [
+      "NCERT Class 8 Science, Curiosity, Chapter 13: Our Home: Earth, a Unique Life Sustaining Planet.",
+      "https://ncert.nic.in/textbook/pdf/hecu113.pdf",
+      "Concept reference only. Questions and model answers are original Evater practice material, not an official NCERT paper."
+    ],
+    "chapter": 13
   }
-]
+    ]
