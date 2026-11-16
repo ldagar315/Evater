@@ -8,8 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS = json.loads((ROOT / 'content/sample-papers/papers.json').read_text())
 MANIFEST = json.loads((ROOT / 'content/sample-papers/pdf-manifest.json').read_text())
 
-def test_three_complete_original_papers():
-    assert len(PAPERS) == 3
+def test_complete_original_papers():
+    assert len(PAPERS) == 27
     for paper in PAPERS:
         assert len(paper['objective']) == 10
         assert len(paper['subjective']) == 5
