@@ -40,7 +40,7 @@ Brackets matter for signs. (−3)² = 9 because the whole negative number is squ
 
 In standard scientific notation, write a positive number as c × 10ᵏ with 1 ≤ c < 10 and integer k. For example, 52,000 = 5.2 × 10⁴. The expression 52 × 10³ has the same value but its coefficient is too large for standard scientific notation.
 
-A small value works the same way: 0.00063 = 6.3 × 10⁻⁴. Check by moving the decimal back: four divisions by 10 turn 6.3 into 0.00063. Comparing exponents alone works for positive numbers already written with coefficients in the standard interval. Without that condition, normalize first.
+A small value works the same way: 0.00063 = 6.3 × 10⁻⁴. Check by moving the decimal back: four divisions by 10 turn 6.3 into 0.00063. For two positive numbers in this form with different exponents, the one with the larger exponent is larger. If the exponents match, compare the coefficients. If either number is not in standard form, normalize first.
 
 ## Six checks before you leave
 
