@@ -8,6 +8,8 @@ const PRERENDER_ROUTES = [
   '/',
   '/about',
   '/blog',
+  '/blog/ncert-class-8-maths-power-play-study-guide',
+  '/blog/ncert-class-8-maths-area-study-guide',
   '/blog/ncert-class-8-science-keeping-time-skies-study-guide',
   '/blog/ncert-class-8-science-nature-ecosystems-harmony-study-guide',
   '/blog/ncert-class-8-science-earth-life-sustaining-planet-study-guide',
