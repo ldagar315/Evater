@@ -7,6 +7,7 @@ import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
 const PRERENDER_ROUTES = [
   '/',
   '/about',
+  '/papers',
   '/blog',
   '/blog/ncert-class-8-maths-power-play-study-guide',
   '/blog/ncert-class-8-maths-area-study-guide',
