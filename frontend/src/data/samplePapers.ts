@@ -10,10 +10,16 @@ export interface SamplePaper {
   questions: number
   marks: number
   minutes: number
+  format?: 'chapter' | 'mixed'
+  objectiveQuestions?: number
+  writtenQuestions?: number
 }
 
-/** One independently authored paper per catalog chapter; the first three published PDFs keep their original bytes. */
+/** Original chapter and mixed-chapter practice papers. Existing chapter PDF bytes are unchanged. */
 export const samplePapers: SamplePaper[] = [
+  {"id": "maths-mixed", "title": "Mathematics mixed-chapter practice paper", "subtitle": "Longer practice \u00b7 Short answers, extended answers and cases", "classLevel": 8, "subject": "Mathematics", "topic": "Maths mixed chapters", "keywords": ["math", "maths", "sample paper", "practice paper", "mixed", "exam", "case", "reasoning"], "href": "/1-class-8-maths-mixed-chapter-practice-paper.pdf", "questions": 24, "marks": 60, "minutes": 150, "format": "mixed", "objectiveQuestions": 12, "writtenQuestions": 12},
+  {"id": "science-mixed", "title": "Science mixed-chapter practice paper", "subtitle": "Longer practice \u00b7 Short answers, extended answers and cases", "classLevel": 8, "subject": "Science", "topic": "Science mixed chapters", "keywords": ["science", "sample paper", "practice paper", "mixed", "exam", "case", "reasoning"], "href": "/2-class-8-science-mixed-chapter-practice-paper.pdf", "questions": 24, "marks": 60, "minutes": 150, "format": "mixed", "objectiveQuestions": 12, "writtenQuestions": 12},
+
   { id: 'light', title: 'Light', subtitle: 'Mirrors and lenses', classLevel: 8, subject: 'Science', topic: 'Light', keywords: ['reflection', 'refraction', 'optics', 'convex', 'concave', 'mirrors', 'lenses'], href: '/1-class-8-light-sample-paper.pdf', questions: 15, marks: 22, minutes: 45 },
   { id: 'electricity', title: 'Electricity', subtitle: 'Magnetic and heating effects', classLevel: 8, subject: 'Science', topic: 'Electricity', keywords: ['magnetism', 'electromagnet', 'current', 'circuits', 'heating', 'cells'], href: '/2-class-8-electricity-sample-paper.pdf', questions: 15, marks: 22, minutes: 45 },
   { id: 'pythagoras', title: 'The Pythagoras theorem', subtitle: 'The Baudhayana-Pythagoras theorem', classLevel: 8, subject: 'Mathematics', topic: 'Pythagoras', keywords: ['maths', 'math', 'right triangle', 'triangles', 'hypotenuse', 'geometry', 'Baudhayana'], href: '/3-class-8-pythagoras-sample-paper.pdf', questions: 15, marks: 22, minutes: 45 },

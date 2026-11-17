@@ -1,0 +1,754 @@
+{
+  "title": "Class 8 Science mixed-chapter practice paper",
+  "status": "original_draft_not_published",
+  "marks": 60,
+  "suggested_minutes": 150,
+  "official_pattern": false,
+  "coverage_note": "One or more questions mapped to every current repository catalog chapter. Selective concept sampling, not exhaustive syllabus coverage or official CBSE certification.",
+  "instructions": [
+    "Attempt all 24 questions. There is no internal choice.",
+    "Section A: 12 objective questions, 1 mark each. Section B: 6 short answers, 3 marks each. Section C: 4 extended answers, 5 marks each. Section D: 2 case questions, 5 marks each.",
+    "Use a separate sheet for working. Suggested time is an Evater practice choice, not an official board rule.",
+    "Model answers and marking guidance follow. Accept equivalent correct reasoning."
+  ],
+  "questions": [
+    {
+      "type": "mcq",
+      "chapter": 3,
+      "topic": "public-health",
+      "marks": 1,
+      "stem": "A school records fewer stomach infections after improving drinking-water treatment and handwashing facilities. Which conclusion is best supported by this observation alone?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Handwashing eliminates every possible disease."
+        },
+        {
+          "id": "B",
+          "text": "The changes may have reduced exposure to some disease-causing microbes."
+        },
+        {
+          "id": "C",
+          "text": "Every pupil is now immune to all stomach infections."
+        },
+        {
+          "id": "D",
+          "text": "The observation proves which single change caused the reduction."
+        }
+      ],
+      "answer": "B",
+      "explanation": "Safer water and handwashing can reduce exposure to pathogens. Because both changes happened together and other factors may differ, the observation alone cannot isolate one cause or prove complete protection.",
+      "reused_original_draft_id": "c8-reasoning-20261117-16",
+      "number": 1,
+      "chapter_title": "Health: The Ultimate Treasure",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu103.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 3,
+      "topic": "deficiency",
+      "marks": 1,
+      "stem": "A student says, \"A person with a nutrient-deficiency disease must have caught it from a classmate.\" Which evidence most directly challenges that explanation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Some classmates sit close together."
+        },
+        {
+          "id": "B",
+          "text": "Several diseases can spread through contaminated water."
+        },
+        {
+          "id": "C",
+          "text": "Long-term lack of a needed nutrient can cause disease without transmission from another person."
+        },
+        {
+          "id": "D",
+          "text": "People with every type of disease must be isolated."
+        }
+      ],
+      "answer": "C",
+      "explanation": "A deficiency can result from inadequate nutrient intake or use, rather than an infection passed between people. A health professional should assess a real illness; this is a classification question, not a diagnosis.",
+      "reused_original_draft_id": "c8-reasoning-20261117-17",
+      "number": 2,
+      "chapter_title": "Health: The Ultimate Treasure",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu103.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 3,
+      "topic": "immunity",
+      "marks": 1,
+      "stem": "A vaccination programme reduces the number of cases of a particular infection in a community. Which statement explains the purpose of vaccination most accurately?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It helps the immune system prepare to recognise a particular pathogen."
+        },
+        {
+          "id": "B",
+          "text": "It replaces the need for safe water and hygiene."
+        },
+        {
+          "id": "C",
+          "text": "It supplies every nutrient missing from a diet."
+        },
+        {
+          "id": "D",
+          "text": "It is an antibiotic that directly kills all bacteria."
+        }
+      ],
+      "answer": "A",
+      "explanation": "Vaccination helps train immune responses against particular pathogens. It does not replace nutrition or hygiene, and a vaccine is not an antibiotic.",
+      "reused_original_draft_id": "c8-reasoning-20261117-18",
+      "number": 3,
+      "chapter_title": "Health: The Ultimate Treasure",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu103.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 4,
+      "topic": "electromagnet",
+      "marks": 1,
+      "stem": "A teacher compares coils on identical iron cores using the same low-voltage cell briefly. A 15-turn coil lifts 4 identical clips and a 30-turn coil lifts 7. What is the most careful conclusion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The 30-turn coil will lift any mass."
+        },
+        {
+          "id": "B",
+          "text": "Doubling turns always doubles the number of clips."
+        },
+        {
+          "id": "C",
+          "text": "The 15-turn coil has no magnetic effect."
+        },
+        {
+          "id": "D",
+          "text": "In this trial, the coil with more turns lifted more clips."
+        }
+      ],
+      "answer": "D",
+      "explanation": "The result supports a stronger lifting effect with more turns under these conditions. The counts are not exactly doubled, and one trial cannot establish an unlimited or universal rule. Only brief, supervised low-voltage tests should be used.",
+      "reused_original_draft_id": "c8-reasoning-20261117-19",
+      "number": 4,
+      "chapter_title": "Electricity: Magnetic and Heating Effects",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu104.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 4,
+      "topic": "conductors-insulators",
+      "marks": 1,
+      "stem": "Two wires have metal cores covered with plastic. A learner says the plastic makes the current stronger. Which correction is best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The plastic must carry all the current instead of the metal."
+        },
+        {
+          "id": "B",
+          "text": "The metal provides a conducting path; the plastic helps insulate the outside."
+        },
+        {
+          "id": "C",
+          "text": "Current flows only through the air around the wire."
+        },
+        {
+          "id": "D",
+          "text": "The covering changes every wire into an electromagnet."
+        }
+      ],
+      "answer": "B",
+      "explanation": "The metal core conducts electricity, while the plastic covering is an insulator that helps prevent unintended contact. A covering is not a current booster.",
+      "reused_original_draft_id": "c8-reasoning-20261117-20",
+      "number": 5,
+      "chapter_title": "Electricity: Magnetic and Heating Effects",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu104.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 4,
+      "topic": "fuse-safety",
+      "marks": 1,
+      "stem": "A classroom model shows a safety fuse opening a circuit when current becomes excessive. A learner proposes replacing the fuse with thick copper wire so it never breaks. Why is this unsafe?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Copper wire cannot conduct electricity."
+        },
+        {
+          "id": "B",
+          "text": "A fuse is meant to make the current permanently larger."
+        },
+        {
+          "id": "C",
+          "text": "The replacement may fail to interrupt an excessive current and removes the intended protection."
+        },
+        {
+          "id": "D",
+          "text": "An open fuse means every connected device must already be safe."
+        }
+      ],
+      "answer": "C",
+      "explanation": "The fuse is chosen to interrupt excessive current. An arbitrary thick wire can defeat that protection and allow overheating. Do not modify real electrical protection; a qualified adult should handle electrical faults.",
+      "reused_original_draft_id": "c8-reasoning-20261117-21",
+      "number": 6,
+      "chapter_title": "Electricity: Magnetic and Heating Effects",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu104.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 7,
+      "topic": "gas-state",
+      "marks": 1,
+      "stem": "Two blocked model syringes contain equal volumes, one of air and one of water. Under similar gentle pressure, the air compresses much more. Which comparison best explains this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Air has much more reducible space between particles than liquid water."
+        },
+        {
+          "id": "B",
+          "text": "Each air particle is a soft balloon that collapses."
+        },
+        {
+          "id": "C",
+          "text": "Water particles have no spaces at all in any condition."
+        },
+        {
+          "id": "D",
+          "text": "Air particles vanish under pressure, unlike water particles."
+        }
+      ],
+      "answer": "A",
+      "explanation": "Gas particles have much larger separations that can be reduced. Liquid water particles are already close together, so water is much less compressible. This does not mean liquid particles have no spaces or gas particles vanish.",
+      "reused_original_draft_id": "c8-reasoning-20261117-22",
+      "number": 7,
+      "chapter_title": "Particulate Nature of Matter",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu107.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 7,
+      "topic": "temperature-particles",
+      "marks": 1,
+      "stem": "In a recorded demonstration, identical dye drops spread faster in warm water than in cool water. The cups and water amounts are the same and neither is stirred. Which explanation best fits the particle model?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Warm water particles are larger and crush the dye."
+        },
+        {
+          "id": "B",
+          "text": "Cold water contains no moving particles."
+        },
+        {
+          "id": "C",
+          "text": "The dye becomes a different element in warm water."
+        },
+        {
+          "id": "D",
+          "text": "Higher temperature is associated with faster particle motion, helping the dye spread."
+        }
+      ],
+      "answer": "D",
+      "explanation": "Particles move at both temperatures. Faster motion at higher temperature can speed spreading; real demonstrations should also consider bulk water motion. The observation does not mean particles grow or change elements.",
+      "reused_original_draft_id": "c8-reasoning-20261117-23",
+      "number": 8,
+      "chapter_title": "Particulate Nature of Matter",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu107.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 7,
+      "topic": "change-state",
+      "marks": 1,
+      "stem": "A closed transparent container holds ice and liquid water. As the ice melts, no material enters or leaves. Which statement about the water particles is most appropriate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The particles in the melted ice cease to exist."
+        },
+        {
+          "id": "B",
+          "text": "The particles become arranged less rigidly and can move past one another."
+        },
+        {
+          "id": "C",
+          "text": "Each water particle must change into an air particle."
+        },
+        {
+          "id": "D",
+          "text": "Liquid water has no attraction between its particles."
+        }
+      ],
+      "answer": "B",
+      "explanation": "Melting changes particle arrangement and movement, not the identity of the water particles. In a liquid the particles can move past one another while still attracting each other.",
+      "reused_original_draft_id": "c8-reasoning-20261117-24",
+      "number": 9,
+      "chapter_title": "Particulate Nature of Matter",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu107.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 1,
+      "topic": "fair-investigation",
+      "marks": 1,
+      "stem": "A class compares how far two toy cars roll. One car is released from a higher ramp and has smoother wheels. Why can the results not isolate the effect of ramp height?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Both cars move under gravity."
+        },
+        {
+          "id": "B",
+          "text": "Two potentially relevant factors were changed together."
+        },
+        {
+          "id": "C",
+          "text": "Distance can never be measured."
+        },
+        {
+          "id": "D",
+          "text": "A fair comparison must always use different wheels."
+        }
+      ],
+      "answer": "B",
+      "explanation": "Ramp height and wheel condition both changed, so the observed difference cannot be attributed to height alone.",
+      "number": 10,
+      "chapter_title": "Exploring the Investigative World of Science",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu101.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 2,
+      "topic": "decomposition",
+      "marks": 1,
+      "stem": "A sealed compost demonstration records a decrease in dead leaf material over time. Which process helps return substances from the leaves to the environment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reflection"
+        },
+        {
+          "id": "B",
+          "text": "Evaporation of every mineral"
+        },
+        {
+          "id": "C",
+          "text": "Decomposition by organisms such as fungi and bacteria"
+        },
+        {
+          "id": "D",
+          "text": "Conversion of all matter into sunlight"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Decomposers break down dead material, helping recycle matter. They do not turn all matter into light.",
+      "number": 11,
+      "chapter_title": "The Invisible Living World: Beyond Our Naked Eye",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu102.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 5,
+      "topic": "force-effects",
+      "marks": 1,
+      "stem": "A student presses a soft sponge and its shape changes. Which conclusion is supported?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A contact force can change the shape of an object."
+        },
+        {
+          "id": "B",
+          "text": "A force can only make an object move faster."
+        },
+        {
+          "id": "C",
+          "text": "The sponge must have gained mass."
+        },
+        {
+          "id": "D",
+          "text": "All contact forces are magnetic."
+        }
+      ],
+      "answer": "A",
+      "explanation": "Pressing involves contact. The changed shape shows one possible effect of a force; a force does not only change speed.",
+      "number": 12,
+      "chapter_title": "Exploring Forces",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu105.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 1,
+      "topic": "designing-an-investigation",
+      "marks": 3,
+      "stem": "A class wants to test whether parachute canopy area affects descent time. Name the variable to change, one relevant variable to keep the same, and the quantity to measure.",
+      "answer": "Change canopy area. Keep drop height, payload mass or canopy material/shape controlled (any one relevant control). Measure time taken to descend the same vertical distance.",
+      "marking": [
+        {
+          "point": "Change canopy area",
+          "marks": 1
+        },
+        {
+          "point": "One valid controlled variable",
+          "marks": 1
+        },
+        {
+          "point": "Measure descent time over fixed distance",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 13,
+      "chapter_title": "Exploring the Investigative World of Science",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu101.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 2,
+      "topic": "microbial-activity",
+      "marks": 3,
+      "stem": "Two otherwise comparable sealed food samples are stored for the same time, one cool and one warm. More microbial growth is recorded in the warm sample. Give a cautious conclusion, one other factor that should be controlled, and one reason the result does not show all microbes are harmful.",
+      "answer": "Under these tested conditions growth was greater in the warm sample; it is not a universal rule for every microbe/temperature. Control sample amount/type, starting contamination or storage time. Some microbes have useful roles such as fermentation or decomposition. This is interpretation of records, not an instruction to culture unknown microbes.",
+      "marking": [
+        {
+          "point": "Qualified conclusion about the tested conditions",
+          "marks": 1
+        },
+        {
+          "point": "One valid control",
+          "marks": 1
+        },
+        {
+          "point": "One useful microbial role",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 14,
+      "chapter_title": "The Invisible Living World: Beyond Our Naked Eye",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu102.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 6,
+      "topic": "pressure-area",
+      "marks": 3,
+      "stem": "A force of 50 N acts uniformly on an area of 0.01 m\u00b2. Calculate the pressure. If the same force acts on 0.025 m\u00b2, calculate the new pressure and state how spreading the force affects pressure.",
+      "answer": "P=F/A: 5000 Pa initially, 2000 Pa on the larger area. The same force spread over a larger area produces lower pressure.",
+      "marking": [
+        {
+          "point": "5000 Pa usingF/A",
+          "marks": 1
+        },
+        {
+          "point": "2000 Pa",
+          "marks": 1
+        },
+        {
+          "point": "Larger area lowers pressure for fixed force",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "50/0.025",
+        2000
+      ],
+      "number": 15,
+      "chapter_title": "Pressure, Winds, Storms, and Cyclones",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu106.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 8,
+      "topic": "classifying-substances",
+      "marks": 3,
+      "stem": "Classify each as an element, a compound or a mixture: pure iron; pure sodium chloride; sand stirred into water. Which of the three could be separated into its starting substances by filtration?",
+      "answer": "Iron is an element; sodium chloride is a compound; sand in water is a mixture. Filtration can separate sand from water, not split iron or sodium chloride into simpler substances.",
+      "marking": [
+        {
+          "point": "Iron element and sodium chloride compound",
+          "marks": 1
+        },
+        {
+          "point": "Sand-water mixture",
+          "marks": 1
+        },
+        {
+          "point": "Filtration separates the sand-water mixture",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 16,
+      "chapter_title": "Nature of Matter: Elements, Compounds, and Mixtures",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu108.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 9,
+      "topic": "solubility-calculation",
+      "marks": 3,
+      "stem": "At a stated temperature, a salt dissolves up to 20 g per 100 gof water. Assume this limit scales with the amount of water. If 45 gof salt is stirred into 150 gof water at that temperature, find the maximum dissolved mass and the mass left undissolved. Explain the word saturated here.",
+      "answer": "Maximum dissolved mass=20\u00d7150/100=30 g. Undissolved mass=45-30=15 g. The solution is saturated because it contains the maximum dissolved amount at this temperature.",
+      "marking": [
+        {
+          "point": "30 gmaximum dissolved",
+          "marks": 1
+        },
+        {
+          "point": "15 gundissolved",
+          "marks": 1
+        },
+        {
+          "point": "Correct temperature-dependent meaning of saturated",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "45-20*150/100",
+        15
+      ],
+      "number": 17,
+      "chapter_title": "The Amazing World of Solutes, Solvents, and Solutions",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu109.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 10,
+      "topic": "mirror-images",
+      "marks": 3,
+      "stem": "A small object is placed between the pole and focus of a concave mirror. State the orientation and size of the image relative to the object. Can that image be caught on a screen? Explain.",
+      "answer": "The image is upright and enlarged. It is virtual, so it cannot be projected onto a screen.",
+      "marking": [
+        {
+          "point": "Upright",
+          "marks": 1
+        },
+        {
+          "point": "Enlarged",
+          "marks": 1
+        },
+        {
+          "point": "No screen image because virtual",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 18,
+      "chapter_title": "Light: Mirrors and Lenses",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu110.pdf"
+    },
+    {
+      "type": "extended",
+      "chapter": 11,
+      "topic": "moon-and-calendars",
+      "marks": 5,
+      "stem": "Explain why the Moon shows phases without blaming Earth's shadow. Use 29.5 days as an approximate new-moon-to-new-moon interval. Estimate the time from new Moon to full Moon and the length of 12 such lunar cycles. Compare that total with a 365-day year.",
+      "answer": "We see different fractions of the Moon's sunlit half as its position relative to Earth and Sun changes; ordinary phases are not Earth's shadow. New to full is about half a cycle: 14.75 days.12 cycles are 354 days, about 11 days shorter than 365 days. These are approximations.",
+      "marking": [
+        {
+          "point": "Different visible fractions of the sunlit half",
+          "marks": 1
+        },
+        {
+          "point": "Changing relative positions, not ordinary Earth-shadow explanation",
+          "marks": 1
+        },
+        {
+          "point": "About 14.75 days",
+          "marks": 1
+        },
+        {
+          "point": "354 days",
+          "marks": 1
+        },
+        {
+          "point": "11 days shorter",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "29.5*12",
+        354
+      ],
+      "number": 19,
+      "chapter_title": "Keeping Time with the Skies",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu111.pdf"
+    },
+    {
+      "type": "extended",
+      "chapter": 12,
+      "topic": "food-web-reasoning",
+      "marks": 5,
+      "stem": "A simplified food web contains grass\u2192grasshopper\u2192frog\u2192snake and grass\u2192rabbit\u2192snake; arrows point from food to consumer. Name the producer and two herbivores. If snake numbers fall, describe one possible chain of changes involving frogs and grasshoppers. Why is that a prediction rather than a certainty?",
+      "answer": "Grass is the producer; grasshoppers and rabbits are herbivores. With fewer snakes, frog numbers might rise, increasing predation on grasshoppers, whose numbers might fall. Food supply, other predators, disease and other factors can change the outcome.",
+      "marking": [
+        {
+          "point": "Grass producer",
+          "marks": 1
+        },
+        {
+          "point": "Grasshopper and rabbit herbivores",
+          "marks": 1
+        },
+        {
+          "point": "Possible frog increase",
+          "marks": 1
+        },
+        {
+          "point": "Possible grasshopper decrease linked to frog predation",
+          "marks": 1
+        },
+        {
+          "point": "Valid uncertainty/other-factor explanation",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 20,
+      "chapter_title": "How Nature Works in Harmony",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu112.pdf"
+    },
+    {
+      "type": "extended",
+      "chapter": 13,
+      "topic": "earth-systems",
+      "marks": 5,
+      "stem": "Explain how liquid water, the atmosphere and suitable temperature conditions support life on Earth. Give one example of an interaction between living things and one of these Earth systems. Does observing these conditions prove life cannot exist anywhere else?",
+      "answer": "Liquid water is a medium needed for many life processes. The atmosphere provides gases such as oxygen for respiration and carbon dioxide for photosynthesis, and helps regulate conditions. Suitable temperatures allow liquid water and biological processes. For example plants take up water and release water vapour, linking life and the water cycle. These observations do not prove life elsewhere is impossible.",
+      "marking": [
+        {
+          "point": "Role of liquid water",
+          "marks": 1
+        },
+        {
+          "point": "Relevant atmosphere role",
+          "marks": 1
+        },
+        {
+          "point": "Relevant temperature role",
+          "marks": 1
+        },
+        {
+          "point": "Valid living/nonliving system interaction",
+          "marks": 1
+        },
+        {
+          "point": "Reject unsupported claim of impossibility elsewhere",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 21,
+      "chapter_title": "Our Home: Earth, a Unique Life Sustaining Planet",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu113.pdf"
+    },
+    {
+      "type": "extended",
+      "chapter": 7,
+      "topic": "particle-model-comparison",
+      "marks": 5,
+      "stem": "Compare solids, liquids and gases for shape and volume. Then explain melting in terms of particle arrangement and movement. State whether melting water ice changes the identity of the water particles.",
+      "answer": "Solid: definite shape and volume. Liquid: definite volume, takes container shape. Gas: neither fixed shape nor fixed volume. On melting, particles leave a rigid arrangement and can move past one another. Water particles remain water; melting is a change of state.",
+      "marking": [
+        {
+          "point": "Correct solid comparison",
+          "marks": 1
+        },
+        {
+          "point": "Correct liquid comparison",
+          "marks": 1
+        },
+        {
+          "point": "Correct gas comparison",
+          "marks": 1
+        },
+        {
+          "point": "Melting arrangement/movement explanation",
+          "marks": 1
+        },
+        {
+          "point": "Water-particle identity unchanged",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 22,
+      "chapter_title": "Particulate Nature of Matter",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu107.pdf"
+    },
+    {
+      "type": "case",
+      "chapter": 5,
+      "topic": "magnetic-and-friction-forces",
+      "marks": 5,
+      "stem": "A toy with an iron part moves towards a bar magnet before they touch. It then rolls across a rough level surface and stops. Finally, a student presses the toy into soft clay, leaving a dent. (a) Name the force from the magnet. [1] (b) Is that force contact or non-contact? Use the observation. [1] (c) Name the force that opposes the rolling motion on the rough surface and classify it as contact or non-contact. [2] (d) What effect of force is shown by the dent in the clay? [1]",
+      "answer": "(a) Magnetic force. (b) Non-contact: the toy moves towards the magnet before they touch. (c) Friction, a contact force between the toy and surface. (d) A force can change an object's shape.",
+      "marking": [
+        {
+          "point": "Magnetic force",
+          "marks": 1
+        },
+        {
+          "point": "Non-contact, linked to motion before touching",
+          "marks": 1
+        },
+        {
+          "point": "Friction opposes rolling motion",
+          "marks": 1
+        },
+        {
+          "point": "Friction is a contact force between surfaces",
+          "marks": 1
+        },
+        {
+          "point": "Force changes the shape of the clay",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 23,
+      "chapter_title": "Exploring Forces",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu105.pdf"
+    },
+    {
+      "type": "case",
+      "chapter": 9,
+      "topic": "density-records",
+      "marks": 5,
+      "stem": "Recorded masses for 100 mL samples are: liquid A 80 g, liquid B 120 g, water 100 g. Assume A and B do not mix with water or with the salt solution mentioned below. (a) Calculate the densities of A and B in g/mL. [2] (b) Which liquid would form a layer above water? [1] (c) A new salt solution has density 1.1 g/mL. Predict whether B would settle above or below it, using the data. [2]",
+      "answer": "(a)A=0.8 g/mL; B=1.2 g/mL. (b)A, because its density is below water's 1.0 g/mL. (c)B below the salt solution because 1.2>1.1, under the stated immiscibility assumption.",
+      "marking": [
+        {
+          "point": "A 0.8 g/mL",
+          "marks": 1
+        },
+        {
+          "point": "B 1.2 g/mL",
+          "marks": 1
+        },
+        {
+          "point": "A above water",
+          "marks": 1
+        },
+        {
+          "point": "B below salt solution",
+          "marks": 1
+        },
+        {
+          "point": "Correct 1.2 versus 1.1 density comparison",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 24,
+      "chapter_title": "The Amazing World of Solutes, Solvents, and Solutions",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu109.pdf"
+    }
+  ]
+}
