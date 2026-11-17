@@ -1,137 +1,85 @@
-# Class 8 Maths: Proportional Reasoning-1 - Topic-wise Study Resources
+# Class 8 Maths: Proportional Reasoning-1 - Watch, Understand and Practise
 
-Topic-wise resource guide. Video coverage remains partial: a linked clip supports a specific idea, not the whole chapter.
+Pick one topic at a time. Watch, work through the example, then hide the answer and have a go yourself.
 
-Start with the topic you cannot explain, not a full-chapter one-shot. Read the matching textbook explanation, use a focused resource, then close it and answer the question.
+## 1. Compare quantities with ratios
 
-[Read the NCERT chapter](https://ncert.nic.in/textbook/pdf/hegp107.pdf)
+### Watch: Equivalent ratios
 
-These four editorial groups are a learning route, not an exhaustive list of official subheadings. Match the chapter title and textbook part to your school copy.
-
-## 1. Multiplicative comparison and ratios
-
-Ask how many times as much rather than how much more. Keep the order of the two quantities fixed.
-
-### Equivalent ratios
-
-4:43 | YouTube | Khan Academy
+Khan Academy
 
 [Open the video](https://www.youtube.com/watch?v=eb-GHXCqkhQ)
 
-[Read the supporting source](https://puzzicle.org/math/cc-sixth-grade-math/v/equivalent-ratios)
+### Understand it
 
-English. No end-to-end playback check.
+A ratio compares quantities in a stated order. If there are 8 red beads and 12 blue beads, red : blue is 8 : 12 = 2 : 3. Divide both parts by the same number to keep the comparison unchanged. Reversing the order gives blue : red = 3 : 2.
 
-Tests ratio equivalence by multiplying or dividing both terms by the same factor and keeping their order. Includes 7:6 and 16:12 examples. Within the preferred 3-5 minute window. A worked application, not all ratio methods. It does not teach converting metres to centimetres before comparing quantities, so that part of the units group remains a gap.
+### Try it yourself
 
-Runtime evidence: Independent Puzzicle VideoObject PT4M43S, inLanguage en, matching YouTube embedID; full English transcript
+A bowl has 15 green counters and 10 yellow counters. Find green : yellow in simplest form. Does 3 : 2 mean there are only five counters?
 
-### Try without looking
+**Check:** 3 : 2. No: it describes the relative amounts, not the total. Draw five equal groups, each with 3 green and 2 yellow counters, to recover all 25.
 
-What is the ratio of 8 red beads to 12 blue beads in simplest form?
+## 2. Put the units right first
 
-Answer: 2:3.
+### Watch: Equivalent ratios
 
-## 2. Equivalent ratios and units
-
-Convert to compatible units before simplifying. Multiply or divide both ratio terms by the same nonzero factor.
-
-### Convert the units before simplifying
-
-Original worked explanation, not a video.
-
-A 75 cm model is compared with a 3 m object. Keep the requested order: model : object. Convert 3 m to 300 cm, then write 75 : 300. Divide both parts by 75 to get 1 : 4.
-
-Writing 75 : 3 before converting would wrongly claim the model is 25 times as long. You can use metres instead: 0.75 : 3 also simplifies to 1 : 4. For a dimensionless length-to-length ratio, use one common unit and check that the smaller object has the smaller ratio part.
-
-[Read the supporting source](https://cartana.org/maths/videos/simplifying-ratios)
-
-This is a written resource and worked example, not a verified short-video addition. Ratios comparing different physical quantities can retain units; the common-unit rule here is for like quantities.
-
-New-step question: Simplify 1.5 kg : 600 g. What does reversing the order give?
-
-New-step answer: 1500 g : 600 g = 5 : 2. Reversing the order gives 2 : 5.
-
-### Simplifying ratios: different units
-
-Written resource, not a video. Cartana. [Supporting reading](https://cartana.org/maths/videos/simplifying-ratios)
-
-Read the 50 cm model and 2 m car example: convert to 50:200, then simplify to 1:4. Only the written teaching is counted here; video runtime and complete spoken content have not been checked.
-
-### Equivalent ratios
-
-4:43 | YouTube | Khan Academy
+Khan Academy
 
 [Open the video](https://www.youtube.com/watch?v=eb-GHXCqkhQ)
 
-[Read the supporting source](https://puzzicle.org/math/cc-sixth-grade-math/v/equivalent-ratios)
+### Understand it
 
-English. No end-to-end playback check.
+The video shows why scaling both parts keeps a ratio equivalent. Apply that idea after converting like quantities to the same unit.
 
-Tests ratio equivalence by multiplying or dividing both terms by the same factor and keeping their order. Includes 7:6 and 16:12 examples. Within the preferred 3-5 minute window. A worked application, not all ratio methods. It does not teach converting metres to centimetres before comparing quantities, so that part of the units group remains a gap.
+A 75 cm model compared with a 3 m object gives model : object = 75 : 300 = 1 : 4. Writing 75 : 3 skips the unit conversion and gives the wrong comparison. Check that the shorter length has the smaller ratio part.
 
-Runtime evidence: Independent Puzzicle VideoObject PT4M43S, inLanguage en, matching YouTube embedID; full English transcript
+### Try it yourself
 
-### Try without looking
+Simplify 2 m : 50 cm. Then simplify 1.5 kg : 600 g. Write the common unit before cancelling anything.
 
-Simplify 2 m : 50 cm.
+**Check:** 200 cm : 50 cm = 4 : 1. Also 1,500 g : 600 g = 5 : 2. For revision, make up a new example where the first quantity looks smaller until you convert the units.
 
-Answer: 200:50 = 4:1.
+## 3. Find the value of one
 
-## 3. Proportional reasoning and unit rates
+### Watch: Direct variation
 
-Find the value for one unit, then scale. First decide whether proportionality is a reasonable model.
-
-### Direct variation 1
-
-3:39 | YouTube | Khan Academy
+Khan Academy
 
 [Open the video](https://www.youtube.com/watch?v=rSadG6EtJmY)
 
-[Read the supporting source](https://www.youtube.com/watch?v=rSadG6EtJmY)
+### Understand it
 
-English. End-to-end audio playback has not been checked.
+The video uses a constant price per unit. The same thinking works in rupees: if 4 identical notebooks cost ₹60, one costs ₹15, so 7 cost ₹105.
 
-Builds a direct-variation equation from a constant price per unit. The units are dollars and gallons; the proportional reasoning transfers to rupees and litres.
+Before scaling, ask whether the rate really stays the same. A fixed delivery charge or a bulk discount can change the model.
 
-Runtime evidence: KPU exact-title listing
+### Try it yourself
 
-### Try without looking
+At a constant price, 3 pens cost ₹36. What do 8 pens cost? Would the same method give the full bill if every order had an extra ₹20 delivery charge?
 
-If 4 identical notebooks cost ₹60, what do 7 cost at the same rate?
+**Check:** One pen costs ₹12, so 8 cost ₹96. With the extra charge, the full bill is ₹116. Separate the fixed charge from the cost that scales.
 
-Answer: ₹105, because one costs ₹15.
+## 4. Share an amount unequally
 
-## 4. Unequal sharing and conversions
+### Watch: Sharing a total in a ratio
 
-Add ratio parts to find the value of one part. For conversions, track the units through every step.
-
-### Ratio sharing the total - Corbettmaths
-
-3:44 | YouTube | corbettmaths
+Corbettmaths
 
 [Open the video](https://www.youtube.com/watch?v=cflZnf9H5l4)
 
-[Read the supporting source](https://corbettmaths.com/2013/03/03/ratio-sharing-the-total/)
+### Understand it
 
-English. End-to-end audio playback has not been checked.
+To share ₹600 in the ratio 2 : 3, add the parts: 2 + 3 = 5. One part is ₹600 ÷ 5 = ₹120. The shares are ₹240 and ₹360. Check both the ratio and the total.
 
-Works both two-term and three-term sharing by adding ratio parts, finding one part and checking the total. Try the same method in rupees rather than copying the currency context.
+### Try it yourself
 
-Runtime evidence: publisher metadata
+Share ₹840 in the ratio 3 : 4. Explain why dividing ₹840 by 3 would not find one part.
 
-### Try without looking
+**Check:** There are 7 parts, so one part is ₹120. The shares are ₹360 and ₹480. The 3 describes only the first share, not all the parts.
 
-Share ₹600 in the ratio 2:3.
+## Your five-minute revision
 
-Answer: ₹240 and ₹360. Five parts share ₹600, so each part is ₹120.
+Without looking back, write the steps for simplifying a ratio, converting units, finding a unit rate and sharing a total. Try one fresh question for each. If an answer seems odd, check the order, units and total before changing your calculation.
 
-## After the resource
-
-Explain the idea in your own words. If you miss the check, return to the step you could not explain, rather than replaying the full lesson.
-
-[Browse Evater sample papers](/papers/). Match the subject and chapter. These are independently authored Evater papers, not official NCERT papers.
-
-## Evidence and limits
-
-Each resource has a linked source and stated runtime provenance. Evidence is transcript, lesson text or publisher description, not complete audiovisual or current Indian playback verification. No universal-best or full-chapter-coverage claim.
+[Try an Evater sample paper](/papers/) and choose ratio questions to practise next.
