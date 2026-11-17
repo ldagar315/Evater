@@ -1,0 +1,1607 @@
+{
+  "batch_id": "class8-reasoning-2026-11-17-v1",
+  "status": "review_only_no_production_import",
+  "publication_approved": false,
+  "purpose": "Original reasoning-format expansion informed by competitor format audit, not copied questions or a claim of live topic inventory deficits",
+  "questions": [
+    {
+      "draft_id": "c8-reasoning-20261117-01",
+      "subject": "Mathematics",
+      "chapter_number": 1,
+      "chapter_title": "A Square and A Cube",
+      "topic_slug": "square-patterns",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "963ac621-10cd-5d84-9988-34836a9574b8",
+        "concept_id": "5643cec2-2d95-588c-9294-51db54b591a9",
+        "question_text": "A pixel picture is a filled 12 by 12 square. A designer adds one complete outer border, making a 14 by 14 square. How many pixels were added?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "24"
+          },
+          {
+            "id": "B",
+            "text": "28"
+          },
+          {
+            "id": "C",
+            "text": "52"
+          },
+          {
+            "id": "D",
+            "text": "196"
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "The added border contains 14\u00b2 - 12\u00b2 = 196 - 144 = 52 pixels. It includes both extra rows and columns without counting corners twice.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "square-patterns"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp101.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-1",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "755f56655fac324e614a476e2fbab105012aba56f649d1a01f5e14681b8b04f6"
+      },
+      "arithmetic_check": {
+        "expression": "14**2-12**2",
+        "expected": 52
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-02",
+      "subject": "Mathematics",
+      "chapter_number": 1,
+      "chapter_title": "A Square and A Cube",
+      "topic_slug": "square-roots",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "963ac621-10cd-5d84-9988-34836a9574b8",
+        "concept_id": "01eac4da-eb09-58aa-9be1-8953309b5c74",
+        "question_text": "A gardener marks a square bed using 324 equal square tiles, with no gaps or overlaps. A learner says each side has 81 tiles because 324 divided by 4 is 81. Which correction is valid?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "A side has 18 tiles because 18 \u00d7 18 = 324."
+          },
+          {
+            "id": "B",
+            "text": "A side has 81 tiles because a square has four sides."
+          },
+          {
+            "id": "C",
+            "text": "A side has 162 tiles because there are two dimensions."
+          },
+          {
+            "id": "D",
+            "text": "A side has 20 tiles because 324 is between 300 and 400."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "The total tiles equal side count multiplied by itself. Since 18\u00b2 = 324, each side has 18 tiles. Dividing area by four does not find the side.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "square-roots"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp101.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-2",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "605437658a22d9c781820df1c0c59fe3eec1f48ae4a0474b89e6f8f15fbab4d2"
+      },
+      "arithmetic_check": {
+        "expression": "18**2",
+        "expected": 324
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-03",
+      "subject": "Mathematics",
+      "chapter_number": 1,
+      "chapter_title": "A Square and A Cube",
+      "topic_slug": "perfect-cubes",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "963ac621-10cd-5d84-9988-34836a9574b8",
+        "concept_id": "45e818be-c0fb-5de2-afcb-95a5e45a7d13",
+        "question_text": "A solid display cube contains 216 identical small cubes. One layer, one small cube thick, is removed from the top. How many small cubes remain?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "210"
+          },
+          {
+            "id": "B",
+            "text": "180"
+          },
+          {
+            "id": "C",
+            "text": "144"
+          },
+          {
+            "id": "D",
+            "text": "36"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "There are 6 small cubes along each edge because 6\u00b3 = 216. The removed layer has 6 \u00d7 6 = 36 cubes, leaving 216 - 36 = 180.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "perfect-cubes"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp101.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-3",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "61cf0aafe656c0ca4d582d6badbc1ff76d5709db25cc6a72622574a295d70e34"
+      },
+      "arithmetic_check": {
+        "expression": "216-6**2",
+        "expected": 180
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-04",
+      "subject": "Mathematics",
+      "chapter_number": 2,
+      "chapter_title": "Power Play",
+      "topic_slug": "scientific-notation",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "abeb652b-a6a2-5aee-802c-2336b0ff625e",
+        "concept_id": "3feb0354-c16c-532c-810d-a3e8739a99d6",
+        "question_text": "A sensor stores a distance as 0.000072 metre. A report writes this as 7.2 \u00d7 10^-5 metre. Which check supports the report?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "The exponent is negative, so the distance must be below zero."
+          },
+          {
+            "id": "B",
+            "text": "Multiplying 7.2 by 100000 gives the original distance."
+          },
+          {
+            "id": "C",
+            "text": "Moving the decimal five places right makes 0.000072 smaller."
+          },
+          {
+            "id": "D",
+            "text": "Dividing 7.2 by 100000 gives 0.000072."
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "10^-5 = 1/100000. Thus 7.2 \u00d7 10^-5 = 7.2/100000 = 0.000072. A negative exponent does not make a positive number negative.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "scientific-notation"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp102.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-4",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "b90b2e80da038ec835bd0f34a5802d25531404b00fd9b27a32039f81c0a469fa"
+      },
+      "arithmetic_check": {
+        "expression": "7.2/100000",
+        "expected": 7.2e-05
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-05",
+      "subject": "Mathematics",
+      "chapter_number": 2,
+      "chapter_title": "Power Play",
+      "topic_slug": "laws-of-exponents",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "abeb652b-a6a2-5aee-802c-2336b0ff625e",
+        "concept_id": "12661d69-60ca-59df-bf4d-ad87c7afa7a3",
+        "question_text": "A learner simplifies (3^4)^2 as 3^6 by adding the exponents. Which replacement and reason are correct?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "3^8, because a power of a power multiplies the exponents."
+          },
+          {
+            "id": "B",
+            "text": "3^16, because the exponents must be squared twice."
+          },
+          {
+            "id": "C",
+            "text": "6^6, because both bases and exponents are added."
+          },
+          {
+            "id": "D",
+            "text": "3^2, because the outer exponent is subtracted."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "(3^4)^2 means 3^4 \u00d7 3^4, which is 3^(4+4) = 3^8. The power-of-a-power rule gives 4 \u00d7 2 = 8.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "laws-of-exponents"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp102.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-5",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "4f053da8738ba116b8f9dff00bd9ffaefa0af02e89741a3da61d2b446c9d3b97"
+      },
+      "arithmetic_check": {
+        "expression": "(3**4)**2",
+        "expected": 6561
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-06",
+      "subject": "Mathematics",
+      "chapter_number": 2,
+      "chapter_title": "Power Play",
+      "topic_slug": "comparing-powers",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "abeb652b-a6a2-5aee-802c-2336b0ff625e",
+        "concept_id": "b758e287-a444-5504-a920-01994afa8c4b",
+        "question_text": "Two file backups contain 2^15 bytes and 8^5 bytes. What can be concluded without expanding either number?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "The first is larger because 15 is larger than 5."
+          },
+          {
+            "id": "B",
+            "text": "The second is larger because 8 is larger than 2."
+          },
+          {
+            "id": "C",
+            "text": "They are equal because 8^5 = (2^3)^5 = 2^15."
+          },
+          {
+            "id": "D",
+            "text": "Their sum must be 10^20 bytes."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "Use a common base: 8 = 2\u00b3, so 8^5 = 2^15. Comparing exponents alone is not valid when bases differ.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "comparing-powers",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp102.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-6",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "565152f2a3d6d032691f9b9237401cb48b3aeaf4773b4bd937e1044bab81b048"
+      },
+      "arithmetic_check": {
+        "expression": "2**15-8**5",
+        "expected": 0
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-07",
+      "subject": "Mathematics",
+      "chapter_number": 4,
+      "chapter_title": "Quadrilaterals",
+      "topic_slug": "angle-sum",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "0175c8fd-4e48-51cd-a243-baf13bdec15a",
+        "concept_id": "f65f7692-023b-53c6-9214-8840ab4369e3",
+        "question_text": "A four-sided garden has interior angles 82\u00b0, 98\u00b0 and 112\u00b0 marked at three corners. What must the fourth interior angle be?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "78\u00b0"
+          },
+          {
+            "id": "B",
+            "text": "68\u00b0"
+          },
+          {
+            "id": "C",
+            "text": "112\u00b0"
+          },
+          {
+            "id": "D",
+            "text": "158\u00b0"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "The interior angles of a quadrilateral total 360\u00b0. The missing angle is 360 - (82 + 98 + 112) = 68\u00b0.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "angle-sum",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp104.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-7",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "7f80d126d9f7ec74461c0a09f30f1b133892d9cd1e22e8e53991a204ae7edaa6"
+      },
+      "arithmetic_check": {
+        "expression": "360-82-98-112",
+        "expected": 68
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-08",
+      "subject": "Mathematics",
+      "chapter_number": 4,
+      "chapter_title": "Quadrilaterals",
+      "topic_slug": "diagonals",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "0175c8fd-4e48-51cd-a243-baf13bdec15a",
+        "concept_id": "4b19cfa3-025b-546d-9166-21789a35ae46",
+        "question_text": "A maker joins two straight rods at their midpoints. Each rod is 14 cm long, and they cross at an angle of 70\u00b0. Joining the four rod ends in order makes a quadrilateral. Which is the most specific description?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "A square, because the rods have equal lengths."
+          },
+          {
+            "id": "B",
+            "text": "A rhombus that cannot be a rectangle."
+          },
+          {
+            "id": "C",
+            "text": "A trapezium with exactly one parallel pair."
+          },
+          {
+            "id": "D",
+            "text": "A rectangle that is not a square."
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "The rods are equal diagonals that bisect each other, so the quadrilateral is a rectangle. Its diagonals are not perpendicular here, so it is not a square.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "diagonals",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp104.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-8",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "8d42d1baa886788aa4fb814da970cb6f2e5abcb3cec05f3827f8e14377735f01"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-09",
+      "subject": "Mathematics",
+      "chapter_number": 4,
+      "chapter_title": "Quadrilaterals",
+      "topic_slug": "rhombus",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "0175c8fd-4e48-51cd-a243-baf13bdec15a",
+        "concept_id": "80d774f1-b5cc-56cf-8a0a-bfddabd90686",
+        "question_text": "A rhombus has one interior angle of 64\u00b0. A learner labels all four angles 64\u00b0 because all four sides are equal. Which pair of angle measures is correct?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "64\u00b0 and 116\u00b0"
+          },
+          {
+            "id": "B",
+            "text": "64\u00b0 and 26\u00b0"
+          },
+          {
+            "id": "C",
+            "text": "64\u00b0 and 296\u00b0"
+          },
+          {
+            "id": "D",
+            "text": "64\u00b0 only"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Equal sides do not require all angles to be equal. In a rhombus, opposite angles are equal and neighbouring angles total 180\u00b0, so the other angle is 116\u00b0.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "rhombus"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp104.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-9",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "261ee8778c2652049ed609f32d07a53444a585db3fcc4e84a38ac8fd281b2f51"
+      },
+      "arithmetic_check": {
+        "expression": "180-64",
+        "expected": 116
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-10",
+      "subject": "Mathematics",
+      "chapter_number": 6,
+      "chapter_title": "We Distribute, Yet Things Multiply",
+      "topic_slug": "distributive-property",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "51145b42-4361-5fa0-872d-48b428ffaf5d",
+        "concept_id": "5190f735-b370-5cbf-a12a-8e0669f3bc97",
+        "question_text": "A shop packs 27 art kits, each with 18 pencils. Which calculation counts every pencil exactly once?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "27 \u00d7 10 + 8"
+          },
+          {
+            "id": "B",
+            "text": "(20 + 7) \u00d7 (10 + 8) = 20 \u00d7 10 + 7 \u00d7 8"
+          },
+          {
+            "id": "C",
+            "text": "27 \u00d7 20 - 27 \u00d7 2"
+          },
+          {
+            "id": "D",
+            "text": "27 \u00d7 20 - 2"
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "18 = 20 - 2, so 27 \u00d7 18 = 27 \u00d7 20 - 27 \u00d7 2 = 486. Both terms must include the factor 27.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "distributive-property",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp106.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-10",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "12c7e3001c0c47e5e07d19a13809d7d1a69cb9aa9b667fd85857666af55ac398"
+      },
+      "arithmetic_check": {
+        "expression": "27*20-27*2",
+        "expected": 486
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-11",
+      "subject": "Mathematics",
+      "chapter_number": 6,
+      "chapter_title": "We Distribute, Yet Things Multiply",
+      "topic_slug": "identities",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "51145b42-4361-5fa0-872d-48b428ffaf5d",
+        "concept_id": "510ab707-d969-515a-b524-6f0d0bb2f7c6",
+        "question_text": "A student writes (x + 4)^2 = x^2 + 16. A classmate tests x = 3 and gets 49 on the left but 25 on the right. Which term repairs the identity for every x?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "4x"
+          },
+          {
+            "id": "B",
+            "text": "8x"
+          },
+          {
+            "id": "C",
+            "text": "x^2"
+          },
+          {
+            "id": "D",
+            "text": "16x"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "(x + 4)\u00b2 = x\u00b2 + 2 \u00d7 x \u00d7 4 + 16 = x\u00b2 + 8x + 16. The test exposes the missing middle term; expansion shows the general repair.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "identities"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp106.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-11",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "06df4c6d4f3c2c9c7d8b4d3f891fe7aecb7361097d763fb392c1c2a040806b1c"
+      },
+      "arithmetic_check": {
+        "expression": "(3+4)**2-(3**2+16)",
+        "expected": 24
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-12",
+      "subject": "Mathematics",
+      "chapter_number": 6,
+      "chapter_title": "We Distribute, Yet Things Multiply",
+      "topic_slug": "area-models",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "51145b42-4361-5fa0-872d-48b428ffaf5d",
+        "concept_id": "c57736f5-98cc-5bb6-a735-64c55c0f7c3a",
+        "question_text": "A rectangular poster has sides (y + 5) cm and (y - 2) cm, where y > 2. Which expression gives its area in square centimetres?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "y^2 + 7y - 10"
+          },
+          {
+            "id": "B",
+            "text": "y^2 - 10"
+          },
+          {
+            "id": "C",
+            "text": "y^2 - 3y - 10"
+          },
+          {
+            "id": "D",
+            "text": "y^2 + 3y - 10"
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "Distribute both terms: (y+5)(y-2) = y\u00b2 - 2y + 5y - 10 = y\u00b2 + 3y - 10. The condition y > 2 keeps both lengths positive.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "area-models",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp106.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-12",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "68698641079332a1c6d4cfa64ed76d60294c5ddb01fbe640cad115552c6d8666"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-13",
+      "subject": "Mathematics",
+      "chapter_number": 7,
+      "chapter_title": "Proportional Reasoning-1",
+      "topic_slug": "scale-maps",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "501bd29c-fd1b-5454-bea3-0a779852bf49",
+        "concept_id": "350645e9-499d-52b9-9d90-23375e30c515",
+        "question_text": "A map uses 1 cm for 250 m. Two routes measure 7.2 cm and 6.4 cm. A learner says the shorter route saves 0.8 km. What is the correct saving?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "0.2 km"
+          },
+          {
+            "id": "B",
+            "text": "2 km"
+          },
+          {
+            "id": "C",
+            "text": "0.8 km"
+          },
+          {
+            "id": "D",
+            "text": "20 km"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "The difference is 0.8 cm on the map, which represents 0.8 \u00d7 250 = 200 m = 0.2 km. The learner treated a map-centimetre difference as kilometres.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "scale-maps"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp107.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-13",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "e2da0047c1eb2a8a813ca3e414915d23748b0b23d355904a728d62d3123fccd3"
+      },
+      "arithmetic_check": {
+        "expression": "(7.2-6.4)*250/1000",
+        "expected": 0.2
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-14",
+      "subject": "Mathematics",
+      "chapter_number": 7,
+      "chapter_title": "Proportional Reasoning-1",
+      "topic_slug": "ratio-division",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "501bd29c-fd1b-5454-bea3-0a779852bf49",
+        "concept_id": "5b596765-62ca-5264-8b5f-56e1c6d69825",
+        "question_text": "Two clubs share 960 craft tokens in the ratio 5 : 3. Each club then gives 40 tokens to a joint display. What is the ratio of the tokens they have left?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "5 : 3"
+          },
+          {
+            "id": "B",
+            "text": "7 : 4"
+          },
+          {
+            "id": "C",
+            "text": "3 : 2"
+          },
+          {
+            "id": "D",
+            "text": "14 : 9"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Initially they get 600 and 360. After giving 40 each, they have 560 and 320, whose ratio simplifies to 7:4. Subtracting equal amounts does not preserve a ratio.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "ratio-division"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp107.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-14",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "452dc2b600817581388c3b8e6f6fb50f963feeaf332b0228261719248c0ee841"
+      },
+      "arithmetic_check": {
+        "expression": "(960*5/8-40)/(960*3/8-40)",
+        "expected": 1.75
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-15",
+      "subject": "Mathematics",
+      "chapter_number": 7,
+      "chapter_title": "Proportional Reasoning-1",
+      "topic_slug": "comparing-ratios",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "501bd29c-fd1b-5454-bea3-0a779852bf49",
+        "concept_id": "a5e2d242-ebdb-5ec0-bec8-02996519a297",
+        "question_text": "Printer P makes 84 labels in 6 minutes and printer Q makes 110 labels in 10 minutes. Both run at constant rates. Which comparison is correct?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Q is faster because 110 is greater than 84."
+          },
+          {
+            "id": "B",
+            "text": "The rates are equal because both print labels."
+          },
+          {
+            "id": "C",
+            "text": "P is faster by 3 labels per minute."
+          },
+          {
+            "id": "D",
+            "text": "P is faster by 26 labels per minute."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "P prints 84/6 = 14 labels per minute; Q prints 110/10 = 11. Compare unit rates: P is faster by 3 labels per minute.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "analyze",
+        "skill_tags": [
+          "comparing-ratios",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "data",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp107.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-15",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "48ca0711ee484f44c5d8a9742b2a268edd84db70b22d937865096047ffd5a191"
+      },
+      "arithmetic_check": {
+        "expression": "84/6-110/10",
+        "expected": 3
+      }
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-16",
+      "subject": "Science",
+      "chapter_number": 3,
+      "chapter_title": "Health: The Ultimate Treasure",
+      "topic_slug": "public-health",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "84f86a35-c2b1-55a1-8e9c-b347c1c4f8f5",
+        "concept_id": "d7a87c1d-8c23-5cc0-8a67-f732864a4d55",
+        "question_text": "A school records fewer stomach infections after improving drinking-water treatment and handwashing facilities. Which conclusion is best supported by this observation alone?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Handwashing eliminates every possible disease."
+          },
+          {
+            "id": "B",
+            "text": "The changes may have reduced exposure to some disease-causing microbes."
+          },
+          {
+            "id": "C",
+            "text": "Every pupil is now immune to all stomach infections."
+          },
+          {
+            "id": "D",
+            "text": "The observation proves which single change caused the reduction."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Safer water and handwashing can reduce exposure to pathogens. Because both changes happened together and other factors may differ, the observation alone cannot isolate one cause or prove complete protection.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "analyze",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "public-health"
+        ],
+        "misconception_tags": [],
+        "question_style": "data",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu103.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-16",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "95eb20cc0cf1a69a62e3089d1a87223e7d23e90b4f2836a6063cfde6ae91c9df"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-17",
+      "subject": "Science",
+      "chapter_number": 3,
+      "chapter_title": "Health: The Ultimate Treasure",
+      "topic_slug": "deficiency",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "84f86a35-c2b1-55a1-8e9c-b347c1c4f8f5",
+        "concept_id": "76788491-21fa-518b-9694-0f29b4e69e7c",
+        "question_text": "A student says, \"A person with a nutrient-deficiency disease must have caught it from a classmate.\" Which evidence most directly challenges that explanation?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Some classmates sit close together."
+          },
+          {
+            "id": "B",
+            "text": "Several diseases can spread through contaminated water."
+          },
+          {
+            "id": "C",
+            "text": "Long-term lack of a needed nutrient can cause disease without transmission from another person."
+          },
+          {
+            "id": "D",
+            "text": "People with every type of disease must be isolated."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "A deficiency can result from inadequate nutrient intake or use, rather than an infection passed between people. A health professional should assess a real illness; this is a classification question, not a diagnosis.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "deficiency",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu103.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-17",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "06a5e834f5d9bbaadc646d1875f61e836b825b593fcedb8e08926b695d8b0609"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-18",
+      "subject": "Science",
+      "chapter_number": 3,
+      "chapter_title": "Health: The Ultimate Treasure",
+      "topic_slug": "immunity",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "84f86a35-c2b1-55a1-8e9c-b347c1c4f8f5",
+        "concept_id": "a1d28ea0-15c1-59ed-911a-0585339baddd",
+        "question_text": "A vaccination programme reduces the number of cases of a particular infection in a community. Which statement explains the purpose of vaccination most accurately?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "It helps the immune system prepare to recognise a particular pathogen."
+          },
+          {
+            "id": "B",
+            "text": "It replaces the need for safe water and hygiene."
+          },
+          {
+            "id": "C",
+            "text": "It supplies every nutrient missing from a diet."
+          },
+          {
+            "id": "D",
+            "text": "It is an antibiotic that directly kills all bacteria."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Vaccination helps train immune responses against particular pathogens. It does not replace nutrition or hygiene, and a vaccine is not an antibiotic.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "immunity"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu103.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-18",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "7dd613cfd3bec49021a5b71350a7935aa00372eab6b26fb39d3c69dd01fe7696"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-19",
+      "subject": "Science",
+      "chapter_number": 4,
+      "chapter_title": "Electricity: Magnetic and Heating Effects",
+      "topic_slug": "electromagnet",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "6f276b17-2cff-5b2e-bdb0-6fd438ff2981",
+        "concept_id": "d405293b-5d26-5836-b5b8-92fbc176e43e",
+        "question_text": "A teacher compares coils on identical iron cores using the same low-voltage cell briefly. A 15-turn coil lifts 4 identical clips and a 30-turn coil lifts 7. What is the most careful conclusion?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "The 30-turn coil will lift any mass."
+          },
+          {
+            "id": "B",
+            "text": "Doubling turns always doubles the number of clips."
+          },
+          {
+            "id": "C",
+            "text": "The 15-turn coil has no magnetic effect."
+          },
+          {
+            "id": "D",
+            "text": "In this trial, the coil with more turns lifted more clips."
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "The result supports a stronger lifting effect with more turns under these conditions. The counts are not exactly doubled, and one trial cannot establish an unlimited or universal rule. Only brief, supervised low-voltage tests should be used.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "analyze",
+        "skill_tags": [
+          "electromagnet",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "data",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu104.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-19",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "a120d06e51bda790c7f9252b401cb455c990d38be0d1d724688e852315b7ea41"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-20",
+      "subject": "Science",
+      "chapter_number": 4,
+      "chapter_title": "Electricity: Magnetic and Heating Effects",
+      "topic_slug": "conductors-insulators",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "6f276b17-2cff-5b2e-bdb0-6fd438ff2981",
+        "concept_id": "f7f3446d-4bb1-590b-a9e6-6cc7cb940eea",
+        "question_text": "Two wires have metal cores covered with plastic. A learner says the plastic makes the current stronger. Which correction is best?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "The plastic must carry all the current instead of the metal."
+          },
+          {
+            "id": "B",
+            "text": "The metal provides a conducting path; the plastic helps insulate the outside."
+          },
+          {
+            "id": "C",
+            "text": "Current flows only through the air around the wire."
+          },
+          {
+            "id": "D",
+            "text": "The covering changes every wire into an electromagnet."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "The metal core conducts electricity, while the plastic covering is an insulator that helps prevent unintended contact. A covering is not a current booster.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "conductors-insulators",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu104.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-20",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "6df51361dd5c8a29781df663705dc428f294a3cf87f67772a684a4882b4b2d9a"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-21",
+      "subject": "Science",
+      "chapter_number": 4,
+      "chapter_title": "Electricity: Magnetic and Heating Effects",
+      "topic_slug": "fuse-safety",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "6f276b17-2cff-5b2e-bdb0-6fd438ff2981",
+        "concept_id": "96c1b62c-4428-5e28-a815-6e92df9735e2",
+        "question_text": "A classroom model shows a safety fuse opening a circuit when current becomes excessive. A learner proposes replacing the fuse with thick copper wire so it never breaks. Why is this unsafe?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Copper wire cannot conduct electricity."
+          },
+          {
+            "id": "B",
+            "text": "A fuse is meant to make the current permanently larger."
+          },
+          {
+            "id": "C",
+            "text": "The replacement may fail to interrupt an excessive current and removes the intended protection."
+          },
+          {
+            "id": "D",
+            "text": "An open fuse means every connected device must already be safe."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "The fuse is chosen to interrupt excessive current. An arbitrary thick wire can defeat that protection and allow overheating. Do not modify real electrical protection; a qualified adult should handle electrical faults.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "fuse-safety"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu104.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-21",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "1df354457fb6216f47c9bb29bcd4f34ff7fbffc48e6077087ad62d9f83b93f7c"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-22",
+      "subject": "Science",
+      "chapter_number": 7,
+      "chapter_title": "Particulate Nature of Matter",
+      "topic_slug": "gas-state",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "0f5d96b3-1cc9-5e20-a01b-bec30b07ae2c",
+        "concept_id": "d8967ab8-05e8-574a-a057-06279a2ed60d",
+        "question_text": "Two blocked model syringes contain equal volumes, one of air and one of water. Under similar gentle pressure, the air compresses much more. Which comparison best explains this?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Air has much more reducible space between particles than liquid water."
+          },
+          {
+            "id": "B",
+            "text": "Each air particle is a soft balloon that collapses."
+          },
+          {
+            "id": "C",
+            "text": "Water particles have no spaces at all in any condition."
+          },
+          {
+            "id": "D",
+            "text": "Air particles vanish under pressure, unlike water particles."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Gas particles have much larger separations that can be reduced. Liquid water particles are already close together, so water is much less compressible. This does not mean liquid particles have no spaces or gas particles vanish.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "gas-state"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu107.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-22",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "685a53b2243e934f83fdffc8cfd8d368756a60ca25c353b6f14aab6afb81cdd9"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-23",
+      "subject": "Science",
+      "chapter_number": 7,
+      "chapter_title": "Particulate Nature of Matter",
+      "topic_slug": "temperature-particles",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "0f5d96b3-1cc9-5e20-a01b-bec30b07ae2c",
+        "concept_id": "85e07887-0bd0-55a6-a0e6-afa0d55e6ad7",
+        "question_text": "In a recorded demonstration, identical dye drops spread faster in warm water than in cool water. The cups and water amounts are the same and neither is stirred. Which explanation best fits the particle model?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Warm water particles are larger and crush the dye."
+          },
+          {
+            "id": "B",
+            "text": "Cold water contains no moving particles."
+          },
+          {
+            "id": "C",
+            "text": "The dye becomes a different element in warm water."
+          },
+          {
+            "id": "D",
+            "text": "Higher temperature is associated with faster particle motion, helping the dye spread."
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "Particles move at both temperatures. Faster motion at higher temperature can speed spreading; real demonstrations should also consider bulk water motion. The observation does not mean particles grow or change elements.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "analyze",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "temperature-particles"
+        ],
+        "misconception_tags": [],
+        "question_style": "data",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu107.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-23",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "c31b379ea58b6bfb427837961ebf4405d5e6b74f2674292d09321f81b40340ca"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning-20261117-24",
+      "subject": "Science",
+      "chapter_number": 7,
+      "chapter_title": "Particulate Nature of Matter",
+      "topic_slug": "change-state",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "0f5d96b3-1cc9-5e20-a01b-bec30b07ae2c",
+        "concept_id": "567ce626-c3c4-5dc9-a2d5-04cefb4e4fc1",
+        "question_text": "A closed transparent container holds ice and liquid water. As the ice melts, no material enters or leaves. Which statement about the water particles is most appropriate?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "The particles in the melted ice cease to exist."
+          },
+          {
+            "id": "B",
+            "text": "The particles become arranged less rigidly and can move past one another."
+          },
+          {
+            "id": "C",
+            "text": "Each water particle must change into an air particle."
+          },
+          {
+            "id": "D",
+            "text": "Liquid water has no attraction between its particles."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Melting changes particle arrangement and movement, not the identity of the water particles. In a liquid the particles can move past one another while still attracting each other.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "change-state",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu107.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning-2026-11-17-24",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "1b3aac3990c6e1a5c8b458e5f9c14e0056b3861ab0a3174a5a90631902466cdd"
+      },
+      "arithmetic_check": null
+    }
+  ]
+}
