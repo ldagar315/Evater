@@ -38,3 +38,14 @@ def test_released_pdfs_and_editable_source_agree():
             assert len(matches) == 1, (subject, q['number'], 'stem/data split')
             for option in q.get('options', []):
                 assert ''.join((option['id'] + '. ' + option['text']).split()) in matches[0]
+
+
+def test_science_force_prompts_stay_with_chapter_level():
+    paper = json.loads((PACK / 'science.json').read_text())
+    q12, q23 = paper['questions'][11], paper['questions'][22]
+    assert q12['chapter'] == q23['chapter'] == 5
+    assert q12['topic'] == 'force-effects'
+    assert q23['topic'] == 'magnetic-and-friction-forces'
+    for q in [q12,q23]:
+        assert not any(term in (q['stem'] + q['answer']).lower() for term in ['resultant','vector sum','unbalanced','velocity'])
+    assert sum(item['marks'] for item in q23['marking']) == 5
