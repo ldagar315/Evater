@@ -28,7 +28,7 @@ def test_released_pdfs_and_editable_source_agree():
         pytest.skip('pdftotext not installed')
     for subject, short in [('mathematics', 'maths'), ('science', 'science')]:
         source = json.loads((PACK / (subject + '.json')).read_text())
-        pdf = ROOT / 'frontend/public' / ('class-8-' + short + '-mixed-chapter-practice-paper.pdf')
+        pdf = ROOT / 'frontend/public' / (('1-' if short == 'maths' else '2-') + 'class-8-' + short + '-mixed-chapter-practice-paper.pdf')
         text = subprocess.check_output(['pdftotext', str(pdf), '-']).decode()
         pages = [''.join(page.split()) for page in text.split('\f')]
         assert 'EVATER DRAFT' not in text and 'catalog' not in text and 'review draft' not in text
