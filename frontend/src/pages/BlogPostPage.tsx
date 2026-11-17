@@ -181,7 +181,6 @@ export function BlogPostPage() {
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         />
-        <a className="mt-2 inline-block text-sm font-semibold text-primary-700 underline" href={href} target="_blank" rel="noreferrer">Open on YouTube if the player is unavailable</a>
       </span>
       if (href === '/practice' && conceptPracticeReady && blogPracticeTargets[post.slug]) return <a href="#concept-practice">{children}</a>
       if (href?.startsWith('/')) return <Link to={href}>{children}</Link>
