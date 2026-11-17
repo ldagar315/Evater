@@ -8,6 +8,8 @@ const PRERENDER_ROUTES = [
   '/',
   '/about',
   '/papers',
+  '/papers/class-8-maths',
+  '/papers/class-8-science',
   '/blog',
   '/blog/class-8-maths-a-square-and-a-cube-study-resources',
   '/blog/class-8-maths-fractions-in-disguise-study-resources',
