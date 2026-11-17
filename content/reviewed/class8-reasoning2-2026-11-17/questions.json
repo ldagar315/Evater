@@ -1,0 +1,1595 @@
+{
+  "batch_id": "class8-reasoning-2026-11-17-v2",
+  "status": "review_only_no_production_import",
+  "publication_approved": false,
+  "purpose": "Original reasoning candidates in chapter categories not represented by the preceding reasoning batch; not a live bank inventory gap claim",
+  "questions": [
+    {
+      "draft_id": "c8-reasoning2-20261117-01",
+      "subject": "Mathematics",
+      "chapter_number": 3,
+      "chapter_title": "A Story of Numbers",
+      "topic_slug": "base-systems",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "108ab9e9-97f3-58bc-9c2a-0ddb012b3a46",
+        "concept_id": "658c21b4-2f86-58fe-bd82-f58bd287572c",
+        "question_text": "A counter uses base five and currently displays 34. One more item is added. What should the display show?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "35"
+          },
+          {
+            "id": "B",
+            "text": "40"
+          },
+          {
+            "id": "C",
+            "text": "100"
+          },
+          {
+            "id": "D",
+            "text": "44"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Base five has digits 0 to 4. Adding one to the units digit 4 makes zero units and carries one group of five, so 34 becomes 40.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "base-systems",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp103.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-1",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "0f96d432d674c4e06447bc76b6b014e0143fa1fbd412c943add39719e9259127"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-02",
+      "subject": "Mathematics",
+      "chapter_number": 3,
+      "chapter_title": "A Story of Numbers",
+      "topic_slug": "place-value",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "108ab9e9-97f3-58bc-9c2a-0ddb012b3a46",
+        "concept_id": "51c0abc5-5287-5901-87d7-cdf5cf4975c9",
+        "question_text": "Two decimal labels are 404 and 440. A learner says the zeros have the same effect because both numbers contain two 4s. Which comparison is correct?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "They are equal because both digit sums are 8."
+          },
+          {
+            "id": "B",
+            "text": "404 is 36 greater."
+          },
+          {
+            "id": "C",
+            "text": "440 is 36 greater because a 4 has moved from units to tens."
+          },
+          {
+            "id": "D",
+            "text": "440 is 4 greater because it ends in zero."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "In 404, the final 4 contributes 4. In 440, the middle 4 contributes 40. Their difference is 40 - 4 = 36.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "place-value"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp103.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-2",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "29a4dfe82caa084b74e632c980b953c8ac19296ef77d9c989369aaeaf71f02f7"
+      },
+      "arithmetic_check": {
+        "expression": "440-404",
+        "expected": 36
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-03",
+      "subject": "Mathematics",
+      "chapter_number": 8,
+      "chapter_title": "Fractions in Disguise",
+      "topic_slug": "percent-of",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "cc78dcff-0577-54e7-8c9a-c1f5dfc60c55",
+        "concept_id": "fc14ff3a-5f50-5513-bc1f-f10458be486f",
+        "question_text": "A class has 40 pupils. On Monday 75% attend; on Tuesday 80% attend. How many more pupils attend on Tuesday?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "2"
+          },
+          {
+            "id": "B",
+            "text": "5"
+          },
+          {
+            "id": "C",
+            "text": "20"
+          },
+          {
+            "id": "D",
+            "text": "32"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Monday attendance is 30 and Tuesday attendance is 32. A rise of 5 percentage points is 5% of 40, or 2 pupils.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "percent-of"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp201.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-3",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "8ae43aec65b6feaa8fcafe99d3e910c8c3e63d28f38b1d41c1b2865c98d8f0ad"
+      },
+      "arithmetic_check": {
+        "expression": "40*(80-75)/100",
+        "expected": 2
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-04",
+      "subject": "Mathematics",
+      "chapter_number": 8,
+      "chapter_title": "Fractions in Disguise",
+      "topic_slug": "increase-decrease",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "cc78dcff-0577-54e7-8c9a-c1f5dfc60c55",
+        "concept_id": "c0651a72-fff5-536b-b185-a7abd12b4b61",
+        "question_text": "After a 20% reduction, a bicycle costs Rs 2400. Which calculation recovers its price before the reduction?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "2400 x 0.20"
+          },
+          {
+            "id": "B",
+            "text": "2400 x 1.20"
+          },
+          {
+            "id": "C",
+            "text": "2400 - 480"
+          },
+          {
+            "id": "D",
+            "text": "2400 divided by 0.80"
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "The reduced price is 80% of the original price, so divide 2400 by 0.80 to get Rs 3000. Adding 20% of the reduced price uses the wrong base.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "increase-decrease"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp201.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-4",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "da3c474e7e8a4de4dd4b5cb2ed23bad2d905c66673b1d73dd38be8e25a31a20f"
+      },
+      "arithmetic_check": {
+        "expression": "2400/.8",
+        "expected": 3000
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-05",
+      "subject": "Mathematics",
+      "chapter_number": 8,
+      "chapter_title": "Fractions in Disguise",
+      "topic_slug": "profit-loss",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "cc78dcff-0577-54e7-8c9a-c1f5dfc60c55",
+        "concept_id": "7ed5ef94-3526-595a-9112-5f7fe5b691db",
+        "question_text": "A shop buys a model for Rs 800 and sells it for Rs 920. A learner divides the Rs 120 gain by Rs 920 to find profit percent. Which correction is right?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Divide by the cost price Rs 800 to get 15%."
+          },
+          {
+            "id": "B",
+            "text": "Divide by Rs 120 to get 100%."
+          },
+          {
+            "id": "C",
+            "text": "Subtract 15% from Rs 920."
+          },
+          {
+            "id": "D",
+            "text": "The profit is 120%, since the gain is Rs 120."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Profit percent compares the gain with the cost price: 120/800 x 100 = 15%. The selling price is not the denominator.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "profit-loss"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp201.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-5",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "5a9ca6b63bb35294085cc88753707c4893cb6edc11bb6bee23f250c9a9fff78d"
+      },
+      "arithmetic_check": {
+        "expression": "(920-800)/800*100",
+        "expected": 15
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-06",
+      "subject": "Mathematics",
+      "chapter_number": 9,
+      "chapter_title": "The Baudhayana-Pythagoras Theorem",
+      "topic_slug": "finding-sides",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "c9106af8-b1a5-595a-9574-930eafe06b44",
+        "concept_id": "fb022e3a-eaab-5902-8e56-f46fb2580c51",
+        "question_text": "A right-angled support has hypotenuse 26 cm and one perpendicular side 10 cm. A learner subtracts 10 from 26 and gets 16 cm for the other side. What is the other side?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "16 cm"
+          },
+          {
+            "id": "B",
+            "text": "36 cm"
+          },
+          {
+            "id": "C",
+            "text": "24 cm"
+          },
+          {
+            "id": "D",
+            "text": "28 cm"
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "Subtract the squared lengths, then take the square root: 26 squared - 10 squared = 576, so the unknown side is 24 cm.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "finding-sides"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp202.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-6",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "de56701be1a95f134d34f151775ae573e2ef084b076b6e6991da4a81d8da5768"
+      },
+      "arithmetic_check": {
+        "expression": "26**2-10**2",
+        "expected": 576
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-07",
+      "subject": "Mathematics",
+      "chapter_number": 9,
+      "chapter_title": "The Baudhayana-Pythagoras Theorem",
+      "topic_slug": "applications",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "c9106af8-b1a5-595a-9574-930eafe06b44",
+        "concept_id": "1a7387e1-1487-5204-96d5-6c5a6e29c17e",
+        "question_text": "A rectangle measures 8 m by 15 m. A cable runs along its diagonal with no slack. How much shorter is it than following two adjacent edges between the same opposite corners?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "6 m"
+          },
+          {
+            "id": "B",
+            "text": "8 m"
+          },
+          {
+            "id": "C",
+            "text": "15 m"
+          },
+          {
+            "id": "D",
+            "text": "17 m"
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "The diagonal is 17 m because 8 squared + 15 squared = 17 squared. Two adjacent edges total 23 m, so the saving is 6 m.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "applications",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp202.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-7",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "5840b7146e9ee00e6d757045eb26d4f4bb2f5c1236d10dd08ccee78c8ca7f938"
+      },
+      "arithmetic_check": {
+        "expression": "8+15-17",
+        "expected": 6
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-08",
+      "subject": "Mathematics",
+      "chapter_number": 9,
+      "chapter_title": "The Baudhayana-Pythagoras Theorem",
+      "topic_slug": "pythagorean-triples",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "c9106af8-b1a5-595a-9574-930eafe06b44",
+        "concept_id": "75b9835a-7ad8-5b76-aeec-93b14f19b411",
+        "question_text": "Three rods have lengths 9 cm, 12 cm and 15 cm. Which calculation checks the Pythagorean relationship correctly?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "9 + 12 = 15"
+          },
+          {
+            "id": "B",
+            "text": "15 squared + 9 squared = 12 squared"
+          },
+          {
+            "id": "C",
+            "text": "9 squared + 15 squared = 12 squared"
+          },
+          {
+            "id": "D",
+            "text": "9 squared + 12 squared = 15 squared"
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "The largest length belongs alone on one side: 81 + 144 = 225. Adding unsquared lengths is not the Pythagorean relationship.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "pythagorean-triples"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp202.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-8",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "822d65080105533873dd5c7723464f8643d6b06892500decfd1cf62582584439"
+      },
+      "arithmetic_check": {
+        "expression": "9**2+12**2-15**2",
+        "expected": 0
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-09",
+      "subject": "Mathematics",
+      "chapter_number": 11,
+      "chapter_title": "Exploring Some Geometric Themes",
+      "topic_slug": "nets",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "b8f6f6f4-791e-5eb9-a938-1ca5ddced7a0",
+        "concept_id": "74275c5f-5002-5c76-be9d-44deaf7feed4",
+        "question_text": "A learner cuts six equal square faces for a cube net but has not chosen how to join them. Which statement is justified?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Any arrangement of six joined squares must fold into a cube."
+          },
+          {
+            "id": "B",
+            "text": "Six equal squares are the right faces, but their arrangement must also fold without overlap."
+          },
+          {
+            "id": "C",
+            "text": "A cube net must contain exactly one triangular face."
+          },
+          {
+            "id": "D",
+            "text": "The squares must all be different sizes."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "A net must fold into the solid. Having the correct faces is necessary, but an unsuitable arrangement can make faces overlap or leave the solid unclosed.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "nets"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp204.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-9",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "4b1644699bd20a6620ba350da3c1620f3339173ce931b2c3d37b3ad9672f3aeb"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-10",
+      "subject": "Mathematics",
+      "chapter_number": 12,
+      "chapter_title": "Tales by Dots and Lines",
+      "topic_slug": "line-graphs",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "7192eeb4-10af-531f-a2cf-bebf1ccc7ba7",
+        "concept_id": "cb35ba5e-c97c-52bc-b499-622b08282043",
+        "question_text": "A line graph records a tank at 20 L at 9 AM, 35 L at 10 AM and 30 L at 11 AM. Which statement is supported by these readings alone?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "The tank lost 5 L from 9 AM to 11 AM."
+          },
+          {
+            "id": "B",
+            "text": "The tank gained exactly 15 L during every hour."
+          },
+          {
+            "id": "C",
+            "text": "The tank had a net gain of 10 L from 9 AM to 11 AM."
+          },
+          {
+            "id": "D",
+            "text": "The tank could never have overflowed between readings."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "The last reading minus the first is 30 - 20 = 10 L. The three readings do not determine everything that happened between them.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "line-graphs"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp205.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-10",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "baca2d07fddcf1ce1801a66606009f4e75b4304d443369b2b572517157714ad6"
+      },
+      "arithmetic_check": {
+        "expression": "30-20",
+        "expected": 10
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-11",
+      "subject": "Mathematics",
+      "chapter_number": 13,
+      "chapter_title": "Algebra Play",
+      "topic_slug": "forming-equations",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "a4197fa3-02be-5943-9b4a-433c56f8bc09",
+        "concept_id": "af8ee24d-2865-5b1b-8bad-34163da445ab",
+        "question_text": "In a three-level number pyramid, each box is the sum of the two boxes below it. The bottom row is 3, x, 8 and the top is 25. Which equation finds x?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "3 + x + 8 = 25"
+          },
+          {
+            "id": "B",
+            "text": "3 + 2x + 8 = 25"
+          },
+          {
+            "id": "C",
+            "text": "3x + 8 = 25"
+          },
+          {
+            "id": "D",
+            "text": "3 + x + 16 = 25"
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "The middle boxes are 3 + x and x + 8. Adding them gives 3 + 2x + 8 = 25, so x appears twice.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "forming-equations"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp206.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-11",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "ef397d5c7541e7859cdbb190f9a66c9b0ba8ef95ec9df367e4b1214fe85c18e5"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-12",
+      "subject": "Mathematics",
+      "chapter_number": 13,
+      "chapter_title": "Algebra Play",
+      "topic_slug": "patterns-generalisation",
+      "curriculum_version_id": "77777777-7777-4777-8777-777777777777",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "a4197fa3-02be-5943-9b4a-433c56f8bc09",
+        "concept_id": "a82e7312-8d47-5c65-bac8-a44e7d6b2886",
+        "question_text": "Each box in a three-level number pyramid is the sum of the two boxes below it. Only the middle number in the bottom row increases by 2. What happens to the top number?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "It rises by 2."
+          },
+          {
+            "id": "B",
+            "text": "It stays unchanged."
+          },
+          {
+            "id": "C",
+            "text": "It falls by 2."
+          },
+          {
+            "id": "D",
+            "text": "It rises by 4 because the changed number contributes through both middle-row boxes."
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "Writing the bottom row as a, b, c gives top a + 2b + c. Replacing b by b + 2 adds 4 to the top, not 2.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "patterns-generalisation"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hegp206.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-12",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "5ebef32a7d556179764aa74c3db087376d59e324082e06adef16d4eed672df67"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-13",
+      "subject": "Science",
+      "chapter_number": 2,
+      "chapter_title": "The Invisible Living World: Beyond Our Naked Eye",
+      "topic_slug": "cells",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "dee38ff1-3b43-585d-a80e-59de5ab5c97d",
+        "concept_id": "9f748769-ba15-585d-a49f-02061de01d49",
+        "question_text": "A cell drawing shows a cell membrane, a cell wall and chloroplasts. Which conclusion is best supported?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "It is a typical green plant cell rather than an animal cell."
+          },
+          {
+            "id": "B",
+            "text": "It is an animal cell because it has a membrane."
+          },
+          {
+            "id": "C",
+            "text": "It cannot be living because it has a wall."
+          },
+          {
+            "id": "D",
+            "text": "Every cell with a membrane has chloroplasts."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "A cell wall and chloroplasts support identification as a green plant cell. A membrane alone does not distinguish plant from animal cells.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "cells",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu102.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-13",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "cc865a38d880ba3c3510186e1e69df62d4d2b13d66e89bcd51d1cdf478d12ef2"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-14",
+      "subject": "Science",
+      "chapter_number": 2,
+      "chapter_title": "The Invisible Living World: Beyond Our Naked Eye",
+      "topic_slug": "beneficial-microbes",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "dee38ff1-3b43-585d-a80e-59de5ab5c97d",
+        "concept_id": "3760ee5f-606f-57a6-af27-a269ad9383e3",
+        "question_text": "A baker uses the same dough recipe twice. Dough with living yeast rises; dough without yeast does not. Which explanation fits the yeast treatment?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Yeast creates extra flour from nothing."
+          },
+          {
+            "id": "B",
+            "text": "The dough rises only because yeast is a solid."
+          },
+          {
+            "id": "C",
+            "text": "Yeast activity releases gas that forms spaces in the dough."
+          },
+          {
+            "id": "D",
+            "text": "Yeast prevents all chemical changes in dough."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "Yeast acts on sugar and releases carbon dioxide. Gas bubbles increase the dough volume; the observation is not evidence of flour being created.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "beneficial-microbes",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu102.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-14",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "87e74c636201586cf35b6216149282130badd9c4681c80b3d10f172a489bb6ca"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-15",
+      "subject": "Science",
+      "chapter_number": 5,
+      "chapter_title": "Exploring Forces",
+      "topic_slug": "friction",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "72a1433e-84d0-5fe2-9583-62640ce82f74",
+        "concept_id": "72e721ba-2457-55d6-9b93-39b0dea7a449",
+        "question_text": "The same toy car is released from the same ramp height onto two level surfaces. It stops sooner on the rough surface. Which explanation is consistent with friction?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "The rough surface creates only a non-contact force."
+          },
+          {
+            "id": "B",
+            "text": "The contact force from the rough surface opposes the car's motion more strongly."
+          },
+          {
+            "id": "C",
+            "text": "Friction always pushes a moving car forward."
+          },
+          {
+            "id": "D",
+            "text": "A level surface cannot exert friction."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Friction is a contact force that opposes motion or attempted motion between surfaces. With other conditions held similar, the earlier stop on the rough surface is consistent with stronger friction.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "friction"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu105.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-15",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "874fa0ef1fc0ff62cf0b510014c5407d7742e1c9728c010e5a24b12e07771953"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-16",
+      "subject": "Science",
+      "chapter_number": 5,
+      "chapter_title": "Exploring Forces",
+      "topic_slug": "electrostatic-force",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "72a1433e-84d0-5fe2-9583-62640ce82f74",
+        "concept_id": "3b355f96-1cf1-5c24-b181-b94de4080eeb",
+        "question_text": "A rubbed plastic strip attracts tiny paper pieces before touching them. Which conclusion is justified?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Every attractive force is magnetic."
+          },
+          {
+            "id": "B",
+            "text": "The strip must have turned into a magnet."
+          },
+          {
+            "id": "C",
+            "text": "The paper must contain living cells."
+          },
+          {
+            "id": "D",
+            "text": "A non-contact electrostatic force can act on the paper."
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "A charged rubbed object can exert electrostatic force on paper without contact. Attraction alone does not identify magnetism.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "electrostatic-force",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu105.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-16",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "fe2f861143adbf4dabac0ed5f319e7e58dc6f080ad0c94ac7f58af6310cfc103"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-17",
+      "subject": "Science",
+      "chapter_number": 6,
+      "chapter_title": "Pressure, Winds, Storms, and Cyclones",
+      "topic_slug": "area-pressure",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "be72b302-9f83-5efb-bdb4-232d3dfbfbdd",
+        "concept_id": "7be0fb21-ce74-5308-86a4-bfdaa38042d8",
+        "question_text": "The same loaded bag rests first on a 0.04 square metre face and then on a 0.02 square metre face. Its weight is unchanged. What happens to the pressure on the floor?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "It doubles."
+          },
+          {
+            "id": "B",
+            "text": "It halves."
+          },
+          {
+            "id": "C",
+            "text": "It stays the same."
+          },
+          {
+            "id": "D",
+            "text": "It becomes zero."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "Pressure is force divided by area. With the same force and half the contact area, pressure doubles.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "area-pressure",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu106.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-17",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "86cea36cb2181e7b26a9c98961a76fb7a724a2816bd944485063961a077e2d81"
+      },
+      "arithmetic_check": {
+        "expression": "0.04/0.02",
+        "expected": 2
+      }
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-18",
+      "subject": "Science",
+      "chapter_number": 6,
+      "chapter_title": "Pressure, Winds, Storms, and Cyclones",
+      "topic_slug": "wind",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "be72b302-9f83-5efb-bdb4-232d3dfbfbdd",
+        "concept_id": "f24c9d3d-c25b-5809-956b-39f84a7d9cf5",
+        "question_text": "A model has neighbouring regions of relatively high and low air pressure. Which direction of airflow is consistent with pressure differences?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Low pressure to high pressure in every case."
+          },
+          {
+            "id": "B",
+            "text": "No airflow can occur unless both pressures are zero."
+          },
+          {
+            "id": "C",
+            "text": "From relatively high pressure towards relatively low pressure."
+          },
+          {
+            "id": "D",
+            "text": "Only vertically upwards, regardless of pressure."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "A pressure difference drives air from a region of higher pressure towards lower pressure. This is the basic model; it does not mean every real wind follows an uncurved path.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "wind"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu106.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-18",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "ac614d33d3a7437ee68d89acc2e9a2547dee26205b4d56b2430465f35af498fc"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-19",
+      "subject": "Science",
+      "chapter_number": 8,
+      "chapter_title": "Nature of Matter: Elements, Compounds, and Mixtures",
+      "topic_slug": "separation",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "76fcc021-898f-5edc-b6e2-f6a0c2b04b94",
+        "concept_id": "fcad46ca-7a98-504a-a1cf-d7f498cf9a38",
+        "question_text": "A sample contains sand mixed with iron filings. A magnet removes the filings, leaving the sand. What does this support?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "The sample was one pure compound."
+          },
+          {
+            "id": "B",
+            "text": "The components retained different properties and formed a mixture."
+          },
+          {
+            "id": "C",
+            "text": "The magnet converted sand into iron."
+          },
+          {
+            "id": "D",
+            "text": "All mixtures can be separated with a magnet."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Magnetic separation uses iron retaining its magnetic property in the mixture. It does not mean every mixture is magnetic or that a new element was created.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "separation"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu108.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-19",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "a98ac0bc6a3ed14b9bf2e2ec80dba30428d8d798f50d3ba54b14105e084e868f"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-20",
+      "subject": "Science",
+      "chapter_number": 9,
+      "chapter_title": "The Amazing World of Solutes, Solvents, and Solutions",
+      "topic_slug": "concentration",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "c9e482a1-a9ec-51b1-bd1d-9ba586873a3d",
+        "concept_id": "8a88d11f-e1e0-5c15-bcac-4b0b8d1e5cda",
+        "question_text": "Two solutions each contain 100 mL water at the same temperature. A has 5 g dissolved sugar and B has 15 g, with all sugar dissolved. Which statement follows?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "A has more dissolved sugar per equal amount of water."
+          },
+          {
+            "id": "B",
+            "text": "B must be saturated."
+          },
+          {
+            "id": "C",
+            "text": "Both have the same concentration because the water amounts match."
+          },
+          {
+            "id": "D",
+            "text": "B is more concentrated, but the data do not show whether it is saturated."
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "B contains more solute for the same amount of solvent. Saturation requires knowing whether more solute can dissolve at that temperature; the stated masses alone do not establish that.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "concentration",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu109.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-20",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "57a11e4e13f400afd09aaefa1d7088d0b4cdd341a36f01bf7fccc925ed38819e"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-21",
+      "subject": "Science",
+      "chapter_number": 10,
+      "chapter_title": "Light: Mirrors and Lenses",
+      "topic_slug": "spherical-mirrors",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "655fb63a-8ece-5f08-a18d-ac92f79bbb1d",
+        "concept_id": "cb9320c8-e848-575e-9a59-50d384e6a6e2",
+        "question_text": "A shop wants to see a wider area behind a counter and accepts smaller upright images. Which mirror is the best fit?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "A convex mirror."
+          },
+          {
+            "id": "B",
+            "text": "A plane mirror because it always gives the widest view."
+          },
+          {
+            "id": "C",
+            "text": "A concave mirror used only to focus sunlight."
+          },
+          {
+            "id": "D",
+            "text": "Any mirror gives exactly the same field of view."
+          }
+        ],
+        "correct_option_id": "A",
+        "explanation": "A convex mirror gives upright diminished images and a wider field of view, so it is useful for viewing a larger area.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "spherical-mirrors"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu110.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-21",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "3cce122a23ab8f6ae3f5ce17231419c7677f7942a213a4c65cd0d043f6b1698d"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-22",
+      "subject": "Science",
+      "chapter_number": 11,
+      "chapter_title": "Keeping Time with the Skies",
+      "topic_slug": "moon-phases",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "0071246e-7871-51fe-bccd-9e131d29cc48",
+        "concept_id": "8599d23f-e4b9-5c54-857d-e762fe124c3c",
+        "question_text": "A class records a sequence of Moon shapes: thin crescent, half, then more than half illuminated. Which next research step would test whether the pattern repeats?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Watch an unrelated star for one minute."
+          },
+          {
+            "id": "B",
+            "text": "Assume the sequence proves the Moon makes its own light."
+          },
+          {
+            "id": "C",
+            "text": "Continue dated Moon observations over several weeks and compare the sequence."
+          },
+          {
+            "id": "D",
+            "text": "Stop observing because three drawings prove every future phase."
+          }
+        ],
+        "correct_option_id": "C",
+        "explanation": "A repeating cycle is tested by observations across enough time to see whether the pattern returns. Three drawings alone do not establish the whole cycle or show that the Moon produces its own light.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "moon-phases"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu111.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-22",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "10b34762ef49be3fdbba693f09e1a202a603c143772ebd06e2d9cc435f18116c"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-23",
+      "subject": "Science",
+      "chapter_number": 12,
+      "chapter_title": "How Nature Works in Harmony",
+      "topic_slug": "decomposers",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "948518fd-e79b-5a5a-96b6-115b01e5b45c",
+        "concept_id": "4c3df164-cedd-5bde-9c65-69604d8d5f0a",
+        "question_text": "Dead leaves accumulate while decomposer activity falls. Which consequence is most directly connected to the reduced decomposition?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Plants immediately stop needing sunlight."
+          },
+          {
+            "id": "B",
+            "text": "Nutrients in dead matter return to the soil more slowly."
+          },
+          {
+            "id": "C",
+            "text": "All consumers instantly become producers."
+          },
+          {
+            "id": "D",
+            "text": "The dead leaves create unlimited new soil nutrients at once."
+          }
+        ],
+        "correct_option_id": "B",
+        "explanation": "Decomposers break down dead matter and help return nutrients. Reduced activity slows that recycling; it does not change the basic roles of plants and consumers.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "decomposers",
+          "evidence-and-reasoning"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu112.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-23",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "8a6757d772bccec50d79722d3633da97c6e4d0d9595dbe263ea741dfcb18c585"
+      },
+      "arithmetic_check": null
+    },
+    {
+      "draft_id": "c8-reasoning2-20261117-24",
+      "subject": "Science",
+      "chapter_number": 13,
+      "chapter_title": "Our Home: Earth, a Unique Life Sustaining Planet",
+      "topic_slug": "habitability",
+      "curriculum_version_id": "11111111-1111-4111-8111-111111111111",
+      "mapping_status": "repository_catalog_mapping_not_live_DB_verified",
+      "difficulty_basis": "editorial estimate, not student calibrated",
+      "candidate": {
+        "chapter_id": "87879271-0bb2-50ce-aa6d-ece5d21be8dc",
+        "concept_id": "e8d9771e-a493-503b-9ab8-215d8218710d",
+        "question_text": "A distant planet has liquid water, but no information is available about its atmosphere, temperature range or energy sources. Which conclusion is justified?",
+        "question_type": "mcq_single",
+        "options": [
+          {
+            "id": "A",
+            "text": "Living things have definitely been found there."
+          },
+          {
+            "id": "B",
+            "text": "The planet must support all Earth organisms."
+          },
+          {
+            "id": "C",
+            "text": "An atmosphere can never affect habitability."
+          },
+          {
+            "id": "D",
+            "text": "Liquid water is one relevant clue, but it does not establish that the planet supports life."
+          }
+        ],
+        "correct_option_id": "D",
+        "explanation": "Habitability depends on several interacting conditions. Finding liquid water is relevant evidence, not proof that organisms exist or that all other conditions are suitable.",
+        "hint": null,
+        "difficulty": "medium",
+        "cognitive_level": "apply",
+        "skill_tags": [
+          "evidence-and-reasoning",
+          "habitability"
+        ],
+        "misconception_tags": [],
+        "question_style": "scenario",
+        "estimated_time_seconds": 100,
+        "marks": 1,
+        "source_url": "https://ncert.nic.in/textbook/pdf/hecu113.pdf",
+        "source_locator": "Concept background only; original Evater question, not an NCERT exercise",
+        "source_question_id": null,
+        "source_license": "Original Evater authored question; NCERT linked for concept background only",
+        "source_attribution": "Original Evater practice question",
+        "source_tier": "manual",
+        "rework_status": "not_required",
+        "question_family_key": "reasoning2-2026-11-17-24",
+        "variant_key": null,
+        "media": [],
+        "option_media": {},
+        "render_config": {},
+        "answer_spec": {},
+        "generation_spec": {},
+        "license_status": "original_authored",
+        "review_status": "review",
+        "content_hash": "2b2d5d67744176e60493d0159a8ba3543d80001afe3ec7038e8de5eabb58f271"
+      },
+      "arithmetic_check": null
+    }
+  ]
+          }
