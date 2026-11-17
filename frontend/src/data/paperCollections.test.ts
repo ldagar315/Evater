@@ -10,7 +10,7 @@ describe('public Class 8 paper collections', () => {
       expect(page.description).toContain('answers')
       expect(page.path.endsWith('/')).toBe(true)
       const papers = samplePapers.filter(p => !page.subject || p.subject === page.subject)
-      expect(papers.length).toBe(key === 'all' ? 27 : key === 'maths' ? 14 : 13)
+      expect(papers.length).toBe(key === 'all' ? 29 : key === 'maths' ? 15 : 14)
       expect(filterPapers(papers, { query: '', classLevel: '', subject: '', topic: '' })).toHaveLength(papers.length)
       expect(filterPapers(papers, { query: 'no-such-topic', classLevel: '', subject: '', topic: '' })).toHaveLength(0)
     }
