@@ -4,8 +4,8 @@ import { resourceGuides } from './resourceGuides'
 import { blogPosts, getPostBySlug } from './blogPosts'
 import { youtubeVideoId } from '../components/blog/resourceVideo'
 describe('student resource lessons', () => {
- it('keeps all three live routes and distinct identities', () => {
-  expect(resourceGuides).toHaveLength(3)
+ it('keeps all six live routes and distinct identities', () => {
+  expect(resourceGuides).toHaveLength(6)
   expect(new Set(blogPosts.map(p=>p.id)).size).toBe(blogPosts.length)
   expect(new Set(blogPosts.map(p=>p.slug)).size).toBe(blogPosts.length)
   const sitemap=readFileSync('public/sitemap.xml','utf8'),vite=readFileSync('vite.config.ts','utf8')
@@ -15,7 +15,7 @@ describe('student resource lessons', () => {
   resourceGuides.forEach((p,i)=>{
    const topics=p.content.split(/^## /m).slice(1,5)
    expect(topics).toHaveLength(4)
-   expect(p.content.match(/\[Open the video\]/g)).toHaveLength([4,4,2][i])
+   expect(p.content.match(/\[Open the video\]/g)).toHaveLength([4,4,2,4,3,2][i])
    topics.forEach(t=>{expect(t.match(/\[Open the video\]/g)?.length??0).toBeLessThanOrEqual(1);expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')})
    const urls=[...p.content.matchAll(/\]\((https?:[^)]+)\)/g)].map(m=>m[1])
    urls.forEach(url=>expect(youtubeVideoId(url)).not.toBeNull())
@@ -26,6 +26,10 @@ describe('student resource lessons', () => {
   })
  })
  it('keeps important mathematical conditions and practical safety', () => {
+  expect(resourceGuides[3].content).toContain('11 < √123 < 12')
+  expect(resourceGuides[4].content).toContain('original ₹200')
+  expect(resourceGuides[5].content).toContain('energy flows through')
+  expect(resourceGuides[5].content).not.toContain('body decompose')
   expect(resourceGuides[0].content).toContain('nonzero')
   expect(resourceGuides[0].content).toContain('1 ≤ c < 10')
   expect(resourceGuides[1].content).toContain('75 : 300 = 1 : 4')
