@@ -354,29 +354,29 @@
     {
       "type": "mcq",
       "chapter": 5,
-      "topic": "balanced-forces",
+      "topic": "force-effects",
       "marks": 1,
-      "stem": "A stationary hanging sign has a downward weight of 20 N and an upward support force of 20 N. What is its resultant force?",
+      "stem": "A student presses a soft sponge and its shape changes. Which conclusion is supported?",
       "options": [
         {
           "id": "A",
-          "text": "0 N"
+          "text": "A contact force can change the shape of an object."
         },
         {
           "id": "B",
-          "text": "20 N upward"
+          "text": "A force can only make an object move faster."
         },
         {
           "id": "C",
-          "text": "20 N downward"
+          "text": "The sponge must have gained mass."
         },
         {
           "id": "D",
-          "text": "40 N downward"
+          "text": "All contact forces are magnetic."
         }
       ],
       "answer": "A",
-      "explanation": "The equal forces act in opposite directions, so their vector sum is zero.",
+      "explanation": "Pressing involves contact. The changed shape shows one possible effect of a force; a force does not only change speed.",
       "number": 12,
       "chapter_title": "Exploring Forces",
       "concept_background_source": "https://ncert.nic.in/textbook/pdf/hecu105.pdf"
@@ -685,29 +685,29 @@
     {
       "type": "case",
       "chapter": 5,
-      "topic": "force-data",
+      "topic": "magnetic-and-friction-forces",
       "marks": 5,
-      "stem": "A model ball is held stationary by a magnetic force of 8 N upward while its weight is 8 N downward. (a) Find its resultant force. [1] (b) The upward force falls to 6 N while its weight stays 8 N. Give the new resultant magnitude and direction. [2] (c) Explain why the ball will no longer remain stationary under only these two forces. [2]",
-      "answer": "(a)0 N. (b)2 N downward. (c)The forces are unbalanced; the non-zero resultant changes its motion, so it begins moving downward from rest.",
+      "stem": "A toy with an iron part moves towards a bar magnet before they touch. It then rolls across a rough level surface and stops. Finally, a student presses the toy into soft clay, leaving a dent. (a) Name the force from the magnet. [1] (b) Is that force contact or non-contact? Use the observation. [1] (c) Name the force that opposes the rolling motion on the rough surface and classify it as contact or non-contact. [2] (d) What effect of force is shown by the dent in the clay? [1]",
+      "answer": "(a) Magnetic force. (b) Non-contact: the toy moves towards the magnet before they touch. (c) Friction, a contact force between the toy and surface. (d) A force can change an object's shape.",
       "marking": [
         {
-          "point": "Initial resultant 0 N",
+          "point": "Magnetic force",
           "marks": 1
         },
         {
-          "point": "New magnitude 2 N",
+          "point": "Non-contact, linked to motion before touching",
           "marks": 1
         },
         {
-          "point": "Downward direction",
+          "point": "Friction opposes rolling motion",
           "marks": 1
         },
         {
-          "point": "Forces now unbalanced",
+          "point": "Friction is a contact force between surfaces",
           "marks": 1
         },
         {
-          "point": "Resultant changes motion from rest downward",
+          "point": "Force changes the shape of the clay",
           "marks": 1
         }
       ],
