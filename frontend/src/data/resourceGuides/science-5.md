@@ -1,115 +1,75 @@
-# Class 8 Science: Exploring Forces - Topic-wise Study Resources
+# Class 8 Science: Exploring Forces - Watch, Understand and Practise
 
-Topic-wise resource guide. Video coverage remains partial: a linked clip supports a specific idea, not the whole chapter.
+Start with an everyday object. Ask what is pushing or pulling it, in which direction, and what changes. Use the videos and short activities below to test your explanation.
 
-Start with the topic you cannot explain, not a full-chapter one-shot. Read the matching textbook explanation, use a focused resource, then close it and answer the question.
+## 1. What can a force do?
 
-[Read the NCERT chapter](https://ncert.nic.in/textbook/pdf/hecu105.pdf)
+### Think it through
 
-These four editorial groups are a learning route, not an exhaustive list of official subheadings. Match the chapter title and textbook part to your school copy.
+A push or pull can change an object's speed, direction or shape. But a force does not always make an object move: a book can stay still on a table because the downward pull of gravity is balanced by the table's upward support force.
 
-## 1. Forces as interactions
+Draw the book and two arrows. Label what exerts each force. When the forces balance, there is no change in the book's motion.
 
-Identify the objects interacting and the direction of each force. A force can change motion or shape; it need not always make an object move.
+### Try it yourself
 
-### Forces That Cause Change | Forces & Motion | Physics | FuseSchool
+Gently press a soft sponge on a stable table. What changes? Now think about a ball rolling straight ahead: what could change its direction?
 
-2:26 | Alugha, not YouTube | Fuse School
-
-[Open the video](https://alugha.com/videos/0ee6726e-1c1d-11ea-854e-353cfe5b88f1?lang=eng)
-
-[Read the supporting source](https://alugha.com/videos/0ee6726e-1c1d-11ea-854e-353cfe5b88f1?lang=eng)
-
-English. End-to-end audio playback has not been checked.
-
-Explains how pushes and pulls can change shape, speed or direction. The later elastic/plastic deformation material goes beyond the core introductory target. This is 34 seconds shorter than the preferred range. This is a publisher-hosted Alugha alternative, not a verified YouTube link.
-
-Runtime evidence: publisher metadata
-
-### Try without looking
-
-Can forces act on a book that remains still on a table?
-
-Answer: Yes. Gravity and the table’s support force can balance.
+**Check:** The sponge changes shape. A sideways push can change the ball's direction. Describe the objects interacting, not only the change you see.
 
 ## 2. Contact and non-contact forces
 
-Compare friction, muscular or support forces with gravitational, magnetic and electrostatic interactions. Contact is not required for every force.
+### Watch: Recognizing Force Types
 
-### Recognizing Force Types
-
-4:49 | YouTube | The Physics Classroom
+The Physics Classroom
 
 [Open the video](https://www.youtube.com/watch?v=beo130kj9R4)
 
-[Read the supporting source](https://www.physicsclassroom.com/concept-builder/newtons-laws/recognizing-forces/video)
+### Understand it
 
-English. Not reviewed end to end; regional availability not verified.
+Some forces need contact: a hand pushes a door, a table supports a book, and friction acts between touching surfaces. Gravity, magnetic forces and electrostatic forces can act without direct contact. The video uses extra names such as normal force and tension; focus first on what exerts each force and whether the objects touch.
 
-Compares contact forces with gravity, magnetic and electrostatic forces. Includes normal force, tension, friction and air resistance. Within the preferred 3-5 minutes. Early high-school naming detail is optional; use the Class 8 chapter for demonstrations and application questions. Full publisher English transcript checked and a meaningful player frame inspected; not end-to-end or India playback verification.
+### Try it yourself
 
-Runtime evidence: publisher metadata and/or ordinary loaded player
+Classify these: a stretched rope pulling a bucket, Earth pulling a falling leaf, and a magnet attracting a paper clip before they touch. Draw one force arrow for each.
 
-### Try without looking
+**Check:** The rope's pull is a contact force. Gravity and the magnetic force are non-contact forces. Point each arrow in the direction of the pull on the object you chose.
 
-Is gravity a contact force?
+## 3. Why friction matters
 
-Answer: No. It acts without direct contact.
+### Watch: Slipping, Sliding Science!
 
-## 3. Friction and its effects
-
-Explain what surfaces tend to do relative to each other. Friction can be useful as well as resist motion.
-
-### Slipping, Sliding Science! | Physics for Kids
-
-4:21 | YouTube | SciShow Kids / Complexly
+SciShow Kids / Complexly
 
 [Open the video](https://www.youtube.com/watch?v=Ps90zArJEJY)
 
-[Read the supporting source](https://nerdfighteria.info/v/Ps90zArJEJY/)
+### Understand it
 
-English. No end-to-end playback check.
+Friction acts between touching surfaces and resists their relative sliding or tendency to slide. It can slow a sliding book, but it also gives your shoes grip while you walk. The video introduces the idea through simple examples; now practise explaining the direction of friction.
 
-Defines friction between sliding or potentially sliding surfaces; compares book/table versus rough sidewalk, shoe grip, and water lubrication. Core friction introduction, but pitched younger than Class8and not full limiting/static/kinetic friction treatment. Within the preferred 3-5 minute window. YouTube4:21is corroborated in2educational/reference sources, not measured live on YouTube. DCMP3:58is a separate hosted edition and must not be substituted. No direct YouTube playback check. Use as viewing, not an instruction to run or slide on wet floors/plastic. Prefer book-on-surfaces demonstration with adult/teacher supervision. Roughness is an introductory model, not a universal rule that smooth surfaces always have less friction. Ice slipperiness is more complex than surface smoothness alone.
+With an adult or teacher, gently slide a closed book across two dry, stable surfaces. Compare how quickly it slows. Keep the demonstration small: do not run or slide on wet floors or plastic sheets. Roughness is a useful first model, not a rule that every smoother surface always has less friction.
 
-Runtime evidence: Independent Nerdfighteria page provides exact YouTube link, full English transcript and4:21duration. School District42library independently lists same title/creator and4:21. Frost Science museum handout links exact video. DCMP confirms creator/distributor Complexly and friction topic, but its hosted edition is3:58.
+### Try it yourself
 
-### Try without looking
+A book slides to the right across a table. Which way does friction act on the book? Why would a world with no friction make walking difficult?
 
-Why is friction helpful when walking?
-
-Answer: It provides grip between the foot and ground.
+**Check:** Friction acts to the left on the sliding book. Walking needs grip between your foot and the ground. Remember: friction can help us as well as slow things down.
 
 ## 4. Mass, weight and floating
 
-Keep amount of matter separate from gravitational force. Explain floating through the balance of weight and upward force, not weight alone.
+### Think it through
 
-### Gravity on Earth and in space
+Mass is measured in kilograms. Weight is the gravitational force on an object, measured in newtons. The same object can have the same mass but a different weight where gravity is different.
 
-4:54 | BBC Bitesize, not YouTube | BBC Bitesize
+Water pushes upward on an immersed object. For an object floating at rest, this upward buoyant force balances its weight. A heavy object does not automatically sink: whether it floats also depends on its overall density and how much water it displaces. A hollow boat can displace enough water to support its weight.
 
-[Open the video](https://www.bbc.co.uk/bitesize/articles/z6xjdp3)
+### Try it yourself
 
-[Read the supporting source](https://www.bbc.co.uk/bitesize/articles/z6xjdp3)
+Explain why "heavy things sink and light things float" is not a reliable rule. Then draw the two vertical forces on a boat floating at rest.
 
-English. No end-to-end playback check.
+**Check:** Total weight alone is not enough to decide. The upward buoyant force and downward weight balance for a boat floating at rest. Use the force balance in your explanation, not just the word "light".
 
-Explains weight as force, mass in kilograms, weight in newtons and differing gravitational field strengths. This is mass and weight only; floating remains a separate gap. Within the preferred 3-5 minute window. Uses g approximately 10 N/kg on Earth. Fairground ride changes apparent weight, not actual local gravity. Larger planetary mass alone does not determine surface gravity, radius also matters; do not repeat that simplification.
+## Your five-minute revision
 
-Runtime evidence: Publisher embedded video-block isoDuration=PT4M54S
+Choose a book on a table, a sliding toy and a floating boat. For each, name the interacting objects, draw force arrows, and explain whether the motion changes. Cover your first drawing and repeat it from memory. Fix one missing force or direction at a time.
 
-### Try without looking
-
-Does every heavy object sink in water?
-
-Answer: No. Floating depends on buoyancy and the object’s overall density and shape, not only its total weight.
-
-## After the resource
-
-Explain the idea in your own words. If you miss the check, return to the step you could not explain, rather than replaying the full lesson.
-
-[Browse Evater sample papers](/papers/). Match the subject and chapter. These are independently authored Evater papers, not official NCERT papers.
-
-## Evidence and limits
-
-Each resource has a linked source and stated runtime provenance. Evidence is transcript, lesson text or publisher description, not complete audiovisual or current Indian playback verification. No universal-best or full-chapter-coverage claim.
+[Try an Evater sample paper](/papers/) and choose force questions that test your explanations.
