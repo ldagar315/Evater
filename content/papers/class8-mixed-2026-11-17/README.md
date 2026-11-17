@@ -14,3 +14,6 @@ Public format research: Delhi's Class 8 Maths practice paper uses a 60-mark / 2.
 https://edustud.nic.in/edu/PracticePaper26_27/8/PP2026_Class_8_Math_EM.pdf
 
 No competitor question text, diagrams or third-party PDFs are included. No ranking guarantee. Website cards state actual counts and distinguish mixed practice from chapter revision.
+
+## Forces source-fit correction
+The current Forces chapter introduces balancing informally and explicitly leaves formal balanced-forces study to higher grades. Science question 12 and case 23 therefore use contact-force effects, magnetic/non-contact evidence and friction classification, not resultant-force arithmetic or vector terminology. This revision preserves the paper totals and chapter sampling.
