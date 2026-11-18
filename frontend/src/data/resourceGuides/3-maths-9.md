@@ -1,6 +1,6 @@
 # Class 8 Maths: The Baudhayana-Pythagoras Theorem - Watch, Understand and Practise
 
-Pick one topic. Use the video where shown, read the short explanation, then try the question before checking your answer. These four topics are a starting point; use your textbook for the rest of the chapter.
+Pick one topic. Use the video where shown, read the short explanation, then try the question before checking your answer. These six topics, including a short history extension, are a starting point; use your textbook for the rest of the chapter.
 
 ## 1. Right triangles and the hypotenuse
 
@@ -67,6 +67,30 @@ A proof must explain why the relationship holds for every right triangle, not on
 Does testing five triples prove the theorem for every right triangle?
 
 **Check:** No. Examples support a pattern but are not a general proof.
+
+## 5. The diagonal of a square and an isosceles right triangle
+
+### Think it through
+
+Draw a square of side 6 cm and one diagonal. The diagonal splits it into two right triangles with equal legs. If the diagonal is c, then c² = 6² + 6² = 72. Since a length is positive, c = √72 = 6√2 cm, not 12 cm. The square built on this diagonal has area 72 cm², twice the original square's 36 cm². This connects the area picture to the side length.
+
+### Try it yourself
+
+A square has side 5 cm. Give its diagonal length exactly, and the area of a square built on that diagonal.
+
+**Check:** The diagonal is 5√2 cm. Its square has area (5√2)² = 50 cm², twice 25 cm².
+
+## 6. A history extension: what changes with cubes?
+
+### Think it through
+
+The power 2 matters. Although 3² + 4² = 5², replacing every square with a cube does not keep the equality: 3³ + 4³ = 27 + 64 = 91, while 5³ = 125. Fermat's Last Theorem says that xⁿ + yⁿ = zⁿ has no solution in positive integers when n is an integer greater than 2. It was a long-standing open problem in history, but Andrew Wiles proved it in the 1990s. You are not expected to prove it here. One failed cube example shows why a familiar triple cannot be reused; it does not prove the general theorem.
+
+### Try it yourself
+
+Does checking that 3³ + 4³ is not 5³ prove that no positive-integer cube solutions exist?
+
+**Check:** No. It rules out just that triple. A claim about every possible triple needs a general proof.
 
 ## Your five-minute revision
 
