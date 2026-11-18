@@ -13,9 +13,10 @@ describe('student resource lessons', () => {
  })
  it('teaches each topic on-page with at most one verified YouTube video', () => {
   resourceGuides.forEach((p,i)=>{
-   const topics=p.content.split(/^## /m).slice(1,5)
-   expect(topics).toHaveLength(4)
-   expect(p.content.match(/\[Open the video\]/g)??[]).toHaveLength([4,4,2,4,3,2,4,2,1,2,2,3,4,4,4,2,3,3,2,0,3,2,1,1,3,1,1][i])
+   const topics=p.content.split(/^## /m).slice(1).filter(t=>/^\d+\./.test(t))
+   expect(topics).toHaveLength(p.id === 'resource-maths-9' ? 6 : 4)
+   const expectedVideos = [4,4,2,4,3,2,4,2,3,2,2,3,4,4,4,2,3,3,2,3,3,2,1,1,4,1,1]
+   expect(p.content.match(/\[Open the video\]/g)??[]).toHaveLength(expectedVideos[i])
    topics.forEach(t=>{expect(t.match(/\[Open the video\]/g)?.length??0).toBeLessThanOrEqual(1);expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')})
    const urls=[...p.content.matchAll(/\]\((https?:[^)]+)\)/g)].map(m=>m[1])
    urls.forEach(url=>expect(youtubeVideoId(url)).not.toBeNull())
@@ -31,6 +32,20 @@ describe('student resource lessons', () => {
   expect(find('resource-maths-11')).toContain('5 faces, 9 edges and 6 vertices')
   expect(find('resource-science-6')).toContain('perpendicular force')
   expect(find('resource-science-4')).toContain('chemical reactions')
+ })
+ it('adds six topic placements and a bounded historical extension without unsafe activities', () => {
+  const find=(id:string)=>resourceGuides.find(p=>p.id===id)!.content
+  expect(find('resource-science-4')).toContain('can overheat and catch fire')
+  expect(find('resource-science-4')).toContain('do not copy')
+  expect(find('resource-science-2')).toContain('teacher-prepared slides')
+  expect(find('resource-science-10')).toContain('Do not try focusing sunlight')
+  const pythagoras=find('resource-maths-9')
+  expect(pythagoras).toContain('6√2 cm')
+  expect(pythagoras).toContain('Andrew Wiles proved it')
+  expect(pythagoras).toContain('One failed cube example')
+  expect(6**2+6**2).toBe(72)
+  expect(3**3+4**3).toBe(91)
+  expect(5**3).toBe(125)
  })
  it('keeps important mathematical conditions and practical safety', () => {
   expect(resourceGuides[3].content).toContain('11 < √123 < 12')
