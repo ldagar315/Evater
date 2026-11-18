@@ -72,7 +72,7 @@ Does testing five triples prove the theorem for every right triangle?
 
 ### Think it through
 
-Draw a square of side 6 cm and one diagonal. The diagonal splits it into two right triangles with equal legs. If the diagonal is c, then c² = 6² + 6² = 72. Since a length is positive, c = √72 = 6√2 cm, not 12 cm. The square built on this diagonal has area 72 cm², twice the original square's 36 cm². This connects the area picture to the side length.
+Draw a square of side 12 cm and join the midpoints of neighbouring sides. The tilted square inside leaves four equal corner triangles, each with perpendicular legs 6 cm and 6 cm. Each triangle has area ½ × 6 × 6 = 18 cm², so the tilted square has area 144 - 4 × 18 = 72 cm². Its side c is also the diagonal of a 6 cm square. Since c² = 72 and a length is positive, c = √72 = 6√2 cm, not 12 cm. The square built on this diagonal has twice the original 6 cm square's area: 72 cm² rather than 36 cm². This area picture builds the result before using the general theorem.
 
 ### Try it yourself
 
