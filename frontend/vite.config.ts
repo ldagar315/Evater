@@ -97,8 +97,6 @@ export default defineConfig(({ mode }) => {
               routes: PRERENDER_ROUTES,
               renderer: new PuppeteerRenderer({
                 renderAfterTime: 3000,
-                // Cap concurrent pages: rendering every public route at once starves
-                // page loads and trips the 30s navigation timeout on smaller builders.
                 maxConcurrentRoutes: 4,
                 skipThirdPartyRequests: true,
                 launchOptions: { args: ['--no-sandbox', '--disable-setuid-sandbox'] },
