@@ -12,7 +12,7 @@ Amoeba Sisters
 
 ### Understand it
 
-Focus on why magnification and resolution both matter; the video also introduces microscope types beyond this lesson. Watch its slide preparation as a demonstration, and use only teacher-prepared slides for your own work. A microscope reveals structures too small to see clearly with the naked eye. A cell is the basic structural and functional unit of living organisms. A labelled cell diagram is a simplified model: real cells vary, and a diagram is not a photograph of every cell. 
+Focus on why magnification and resolution both matter; the video also introduces microscope types beyond this lesson. Watch its slide preparation as a demonstration, and use only teacher-prepared slides for your own work. A microscope reveals structures too small to see clearly with the naked eye. A cell is the basic structural and functional unit of living organisms. A labelled cell diagram is a simplified model: real cells vary, and a diagram is not a photograph of every cell.
 
 Typical plant cells have a cell wall outside the membrane; green plant cells also contain chloroplasts. Animal cells do not have a cell wall or chloroplasts. Typical plant and animal cells have a membrane, cytoplasm and a nucleus. Bacterial cells differ: they do not have a well-defined nucleus. 
 
