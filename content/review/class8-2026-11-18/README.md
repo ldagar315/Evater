@@ -12,7 +12,7 @@ Accepted candidate SHA256: `84a088f64b8032ebf75065155ba22599734f69cb33030fca3b38
 
 ## Checks
 
-Run `python3 validate.py` from this directory. It checks the exact accepted bytes, 54 questions, chapter coverage, review-only flags, unique IDs and exact stems, four distinct options, valid keys and all 26 arithmetic assertions using a restricted arithmetic parser, not eval. Actual answer positions: A11, B17, C14, D12. They are varied, not perfectly balanced.
+Run `python3 validate.py` from this directory. It checks the accepted bytes after removing only terminal newlines (GitHub's editor adds one), 54 questions, chapter coverage, review-only flags, unique IDs and exact stems, four distinct options, valid keys and all 26 arithmetic assertions using a restricted arithmetic parser, not eval. Actual answer positions: A11, B17, C14, D12. They are varied, not perfectly balanced.
 
 The arithmetic assertions are mechanical spot checks, not proof of every question's meaning. Independent subject review checked keys, ambiguity, chapter fit and similarity to existing practice/review questions. A semantic challenge identified 11 Maths candidates that were numerical variants of earlier tasks; those were replaced and rechecked. Exact-stem uniqueness alone would not have found them. This is a bounded comparison against the reviewed Evater corpus, not a global originality guarantee.
 
