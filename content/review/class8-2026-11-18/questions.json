@@ -1,0 +1,1977 @@
+{
+ "batch_id": "class8-review-54-2026-11-18",
+ "status": "review",
+ "publication_approved": false,
+ "purpose": "54 original review-only MCQs, two per actual Class 8 chapter (14 Maths + 13 Science). Not a DB import, not live-bank additions, no official CBSE pattern or teacher-calibration claim.",
+ "base_commit": "d27ea38e338080c6a717abe50c2dcf8bcf9b6050",
+ "questions": [
+  {
+   "draft_id": "class8-review-nov18-q01",
+   "subject": "Mathematics",
+   "chapter_number": 1,
+   "chapter_title": "A Square and A Cube",
+   "topic": "Triangular numbers and dot patterns",
+   "question_type": "mcq",
+   "question_text": "Triangular numbers count dots in growing triangles: 1, 3, 6, 10, ... What is the sixth triangular number?",
+   "options": [
+    {
+     "id": "A",
+     "text": "15"
+    },
+    {
+     "id": "B",
+     "text": "36"
+    },
+    {
+     "id": "C",
+     "text": "28"
+    },
+    {
+     "id": "D",
+     "text": "21"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "Each new row adds one more dot than before: +2, +3, +4, +5, +6. The sixth is 1+2+3+4+5+6 = 21.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "1+2+3+4+5+6",
+    "expected": 21.0
+   },
+   "private_source_fit_note": "Triangular numbers sit beside square numbers in NCERT Ganita Prakash ch1; static paper only asks to define both, this computes one.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q02",
+   "subject": "Mathematics",
+   "chapter_number": 1,
+   "chapter_title": "A Square and A Cube",
+   "topic": "Numbers that are both squares and cubes",
+   "question_type": "mcq",
+   "question_text": "Asha says 64 is special because it is a perfect square. Bina says it is special because it is a perfect cube. Who is right?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Only Asha"
+    },
+    {
+     "id": "B",
+     "text": "Only Bina"
+    },
+    {
+     "id": "C",
+     "text": "Both of them"
+    },
+    {
+     "id": "D",
+     "text": "Neither of them"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "64 = 8 x 8, so it is a perfect square, and 64 = 4 x 4 x 4, so it is also a perfect cube. Both are right.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Square-and-cube recognition is ch1; static singles out squares or cubes and asks square+triangular subjectively, sixth-power numbers are a fresh probe. Second revision after similarity check flagged the both-square-and-cube list template against static which-of-these items; dialogue framing removes the structural overlap.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q03",
+   "subject": "Mathematics",
+   "chapter_number": 2,
+   "chapter_title": "Power Play",
+   "topic": "Multiplying numbers in scientific notation",
+   "question_type": "mcq",
+   "question_text": "What is (4 x 10^3) multiplied by (2 x 10^2)?",
+   "options": [
+    {
+     "id": "A",
+     "text": "8 x 10^5"
+    },
+    {
+     "id": "B",
+     "text": "8 x 10^6"
+    },
+    {
+     "id": "C",
+     "text": "6 x 10^5"
+    },
+    {
+     "id": "D",
+     "text": "8 x 10^1"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "Multiply the coefficients: 4 x 2 = 8. Add the exponents: 3 + 2 = 5. Result: 8 x 10^5.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "4*2*10**5",
+    "expected": 800000.0
+   },
+   "private_source_fit_note": "Combining coefficient multiplication with the product law is ch2; existing items only convert or compare sci-notation numbers, none multiplies two of them. Rev 4 replaced the same-base division item (number swap of static 7^8/7^5).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q04",
+   "subject": "Mathematics",
+   "chapter_number": 2,
+   "chapter_title": "Power Play",
+   "topic": "Numbers between powers of ten",
+   "question_type": "mcq",
+   "question_text": "The number 6,300,000 lies between which two consecutive powers of 10?",
+   "options": [
+    {
+     "id": "A",
+     "text": "10^4 and 10^5"
+    },
+    {
+     "id": "B",
+     "text": "10^5 and 10^6"
+    },
+    {
+     "id": "C",
+     "text": "10^6 and 10^7"
+    },
+    {
+     "id": "D",
+     "text": "10^7 and 10^8"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "10^6 is 1,000,000 and 10^7 is 10,000,000. Since 6,300,000 is between them, the answer is 10^6 and 10^7.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Powers of 10 as size anchors is ch2; existing items convert or compare, this locates a number between powers. Rev 4 replaced the timed microbe doubling (same structure as static bacterium doubling).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q05",
+   "subject": "Mathematics",
+   "chapter_number": 3,
+   "chapter_title": "A Story of Numbers",
+   "topic": "Early numerals and place value",
+   "question_type": "mcq",
+   "question_text": "In the ancient Egyptian system, symbols repeat to build a number. A carving shows the symbol for 10 three times and the symbol for 1 four times. What number is carved?",
+   "options": [
+    {
+     "id": "A",
+     "text": "304"
+    },
+    {
+     "id": "B",
+     "text": "44"
+    },
+    {
+     "id": "C",
+     "text": "13"
+    },
+    {
+     "id": "D",
+     "text": "34"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "Three tens make 30 and four ones make 4, so 30 + 4 = 34. Egyptian numerals add repeated symbols without place value.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "3*10+4",
+    "expected": 34.0
+   },
+   "private_source_fit_note": "Egyptian additive numerals are ch3; static asks only which base, this decodes a number from symbols.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q06",
+   "subject": "Mathematics",
+   "chapter_number": 3,
+   "chapter_title": "A Story of Numbers",
+   "topic": "Roman numeral rules",
+   "question_type": "mcq",
+   "question_text": "Which of these is not a valid standard Roman numeral?",
+   "options": [
+    {
+     "id": "A",
+     "text": "XIX, read as 19"
+    },
+    {
+     "id": "B",
+     "text": "IC, meant as 99"
+    },
+    {
+     "id": "C",
+     "text": "XIV, read as 14"
+    },
+    {
+     "id": "D",
+     "text": "XL, read as 40"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "In standard notation, I can be subtracted only from V or X, so IC is not allowed; 99 is written XCIX. XIX, XIV and XL all follow the rules.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Roman subtractive-rule recognition is ch3. The static paper's written Q11 already covers writing 99 and explaining subtractive pairs, so this item's distinction is invalid-numeral recognition in MCQ form, not wholly new rule coverage. Rev 5 replaced the 44-decode (value swap of the static Roman 49 item).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q07",
+   "subject": "Mathematics",
+   "chapter_number": 4,
+   "chapter_title": "Quadrilaterals",
+   "topic": "Properties of parallelograms",
+   "question_type": "mcq",
+   "question_text": "In a parallelogram, one side is 9 cm and the side next to it is 5 cm. What is its perimeter?",
+   "options": [
+    {
+     "id": "A",
+     "text": "14 cm"
+    },
+    {
+     "id": "B",
+     "text": "23 cm"
+    },
+    {
+     "id": "C",
+     "text": "45 cm"
+    },
+    {
+     "id": "D",
+     "text": "28 cm"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "Opposite sides of a parallelogram are equal, so the four sides are 9, 5, 9, 5. Perimeter = 2 x (9 + 5) = 28 cm.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "2*(9+5)",
+    "expected": 28.0
+   },
+   "private_source_fit_note": "Applies opposite-sides-equal from ch4; static items state the property, this uses it for a perimeter.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q08",
+   "subject": "Mathematics",
+   "chapter_number": 4,
+   "chapter_title": "Quadrilaterals",
+   "topic": "Angles on a straight line at a corner",
+   "question_type": "mcq",
+   "question_text": "At one corner of a quadrilateral, one side is extended so it forms a straight line with the next side. The interior angle at that corner is 75 degrees. What is the angle outside the quadrilateral that sits beside it on the straight line?",
+   "options": [
+    {
+     "id": "A",
+     "text": "75 degrees"
+    },
+    {
+     "id": "B",
+     "text": "105 degrees"
+    },
+    {
+     "id": "C",
+     "text": "115 degrees"
+    },
+    {
+     "id": "D",
+     "text": "285 degrees"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "The two angles lie together on a straight line and add to 180 degrees, so the outside angle is 180 - 75 = 105 degrees.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "180-75",
+    "expected": 105.0
+   },
+   "private_source_fit_note": "Linear-pair reasoning applied to a quadrilateral corner, per integrator direction (term exterior angle avoided). Primary source: NCERT Ganita Prakash ch4 Quadrilaterals, https://ncert.nic.in/textbook/pdf/hegp104.pdf .",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q09",
+   "subject": "Mathematics",
+   "chapter_number": 5,
+   "chapter_title": "Number Play",
+   "topic": "Divisibility tests combined",
+   "question_type": "mcq",
+   "question_text": "A two-digit number is divisible by both 3 and 5, and its digits add to 12. Which number is it?",
+   "options": [
+    {
+     "id": "A",
+     "text": "60"
+    },
+    {
+     "id": "B",
+     "text": "45"
+    },
+    {
+     "id": "C",
+     "text": "75"
+    },
+    {
+     "id": "D",
+     "text": "90"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "Divisible by 5 means it ends in 0 or 5. Digit sum 12 rules out 45 (sum 9), 60 (sum 6) and 90 (sum 9). 75 has digit sum 12 and 7+5 = 12 is divisible by 3.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "7+5",
+    "expected": 12.0
+   },
+   "private_source_fit_note": "Combined divisibility conditions are ch5; this adds a digit-sum constraint not used in static items.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q10",
+   "subject": "Mathematics",
+   "chapter_number": 5,
+   "chapter_title": "Number Play",
+   "topic": "Factors and multiples",
+   "question_type": "mcq",
+   "question_text": "A hall has tiles in rows of 16 and also fits exactly in rows of 24. What is the smallest number of tiles possible?",
+   "options": [
+    {
+     "id": "A",
+     "text": "96"
+    },
+    {
+     "id": "B",
+     "text": "48"
+    },
+    {
+     "id": "C",
+     "text": "72"
+    },
+    {
+     "id": "D",
+     "text": "192"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "The count must be a common multiple of 16 and 24. The least common multiple of 16 and 24 is 48.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "16*3",
+    "expected": 48.0
+   },
+   "private_source_fit_note": "LCM in a tiling context; static paper asks LCM of 4 and 6 and a bells question, new numbers and setting.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q11",
+   "subject": "Mathematics",
+   "chapter_number": 6,
+   "chapter_title": "We Distribute, Yet Things Multiply",
+   "topic": "Factorising an expression",
+   "question_type": "mcq",
+   "question_text": "Which factorisation of x^2 + 8x + 15 is correct?",
+   "options": [
+    {
+     "id": "A",
+     "text": "(x + 3)(x + 5)"
+    },
+    {
+     "id": "B",
+     "text": "(x + 1)(x + 15)"
+    },
+    {
+     "id": "C",
+     "text": "(x + 2)(x + 6)"
+    },
+    {
+     "id": "D",
+     "text": "(x + 4)(x + 4)"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "We need two numbers that multiply to 15 and add to 8: 3 and 5. Check: (x + 3)(x + 5) = x^2 + 8x + 15.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "3+5",
+    "expected": 8.0
+   },
+   "private_source_fit_note": "Factorisation direction is ch6; static items only expand forward, so the reverse direction is new. Rev 4 replaced the (x+3)(x+7) expansion (number swap of static (x+2)(x+5)).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q12",
+   "subject": "Mathematics",
+   "chapter_number": 6,
+   "chapter_title": "We Distribute, Yet Things Multiply",
+   "topic": "Finding an unknown inside an identity",
+   "question_type": "mcq",
+   "question_text": "If (x + 2)(x + b) = x^2 + 7x + 10 for every value of x, what is b?",
+   "options": [
+    {
+     "id": "A",
+     "text": "3"
+    },
+    {
+     "id": "B",
+     "text": "4"
+    },
+    {
+     "id": "C",
+     "text": "5"
+    },
+    {
+     "id": "D",
+     "text": "8"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "The constant term gives 2b = 10, so b = 5. Check the x term: 2 + 5 = 7. Both agree.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "2*5",
+    "expected": 10.0
+   },
+   "private_source_fit_note": "Reading coefficients in an identity is ch6; existing items expand or compute, none solves for an unknown inside the factors. Rev 4 replaced the 61 x 59 item (number swap of static 102 x 98).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q13",
+   "subject": "Mathematics",
+   "chapter_number": 7,
+   "chapter_title": "Proportional Reasoning-1",
+   "topic": "Comparing unit prices",
+   "question_type": "mcq",
+   "question_text": "Shop A sells 250 g of tea for 40 rupees. Shop B sells 400 g of the same tea for 60 rupees. Which shop sells it cheaper per gram?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Shop A"
+    },
+    {
+     "id": "B",
+     "text": "Shop B"
+    },
+    {
+     "id": "C",
+     "text": "Both cost the same per gram"
+    },
+    {
+     "id": "D",
+     "text": "Cannot be compared"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "A costs 40/250 = 0.16 rupees per gram; B costs 60/400 = 0.15 rupees per gram. B is cheaper per gram.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "60/400*1000",
+    "expected": 150.0
+   },
+   "private_source_fit_note": "Unit-price comparison of two rates is ch7; existing unitary items ask one straight cost. Rev 4 replaced the notebooks item (number swap of the static notebooks unitary item).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q14",
+   "subject": "Mathematics",
+   "chapter_number": 7,
+   "chapter_title": "Proportional Reasoning-1",
+   "topic": "Working back from one share",
+   "question_type": "mcq",
+   "question_text": "Two brothers share some money in the ratio 4 : 5. The larger share is 750 rupees. What was the total amount shared?",
+   "options": [
+    {
+     "id": "A",
+     "text": "1200 rupees"
+    },
+    {
+     "id": "B",
+     "text": "1350 rupees"
+    },
+    {
+     "id": "C",
+     "text": "1500 rupees"
+    },
+    {
+     "id": "D",
+     "text": "675 rupees"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "The larger share is 5 parts = 750 rupees, so one part is 150. Total parts are 9, giving 9 x 150 = 1350 rupees.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "750//5*9",
+    "expected": 1350.0
+   },
+   "private_source_fit_note": "Reverse share problem is ch7; existing items only go from total to shares. Rev 4 replaced the forward share item (same template as static 1:2 and 3:4 shares).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q15",
+   "subject": "Mathematics",
+   "chapter_number": 8,
+   "chapter_title": "Fractions in Disguise",
+   "topic": "Comparing percentages of quantities",
+   "question_type": "mcq",
+   "question_text": "Which is greater: 30% of 80 or 40% of 60?",
+   "options": [
+    {
+     "id": "A",
+     "text": "30% of 80"
+    },
+    {
+     "id": "B",
+     "text": "40% of 60"
+    },
+    {
+     "id": "C",
+     "text": "They are equal"
+    },
+    {
+     "id": "D",
+     "text": "It cannot be decided"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "30% of 80 = 24 and 40% of 60 = 24. They are equal.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "30*80//100",
+    "expected": 24.0
+   },
+   "private_source_fit_note": "Comparing two percentage-of-quantity values is ch8; existing items compute a single percentage. Rev 4 replaced the 35%-of-640 item (number swap of static 25% of 240).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q16",
+   "subject": "Mathematics",
+   "chapter_number": 8,
+   "chapter_title": "Fractions in Disguise",
+   "topic": "Finding cost price from selling price",
+   "question_type": "mcq",
+   "question_text": "A shopkeeper sells a toy for 450 rupees and makes a profit of 25% on the cost price. What was the cost price?",
+   "options": [
+    {
+     "id": "A",
+     "text": "337.50 rupees"
+    },
+    {
+     "id": "B",
+     "text": "375 rupees"
+    },
+    {
+     "id": "C",
+     "text": "400 rupees"
+    },
+    {
+     "id": "D",
+     "text": "360 rupees"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "Selling price = cost + 25% of cost = 1.25 x cost. So cost = 450 / 1.25 = 360 rupees.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "450*100//125",
+    "expected": 360.0
+   },
+   "private_source_fit_note": "Reverse profit problem is ch8; existing items go from cost to profit percent. Rev 4 replaced the 600-to-690 item (number swap of static profit items).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q17",
+   "subject": "Mathematics",
+   "chapter_number": 9,
+   "chapter_title": "The Baudhayana-Pythagoras Theorem",
+   "topic": "Meaning of the theorem",
+   "question_type": "mcq",
+   "question_text": "In the rearrangement proofs of the Baudhayana-Pythagoras theorem, the area of the square on the hypotenuse equals:",
+   "options": [
+    {
+     "id": "A",
+     "text": "Twice the area of the triangle"
+    },
+    {
+     "id": "B",
+     "text": "The square of the perimeter"
+    },
+    {
+     "id": "C",
+     "text": "The product of the two legs"
+    },
+    {
+     "id": "D",
+     "text": "The sum of the areas of the squares on the two legs"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "The theorem says the square on the hypotenuse equals the sum of the squares on the two legs, which the rearrangement shows by moving the same pieces.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Area-rearrangement statement is ch9 topic 4; all existing items compute sides, none asks the area statement itself. Rev 4 removed the leftover arithmetic annotation, which did not verify this conceptual answer.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q18",
+   "subject": "Mathematics",
+   "chapter_number": 9,
+   "chapter_title": "The Baudhayana-Pythagoras Theorem",
+   "topic": "Using the theorem with shadows",
+   "question_type": "mcq",
+   "question_text": "A vertical pole 12 m tall casts a straight shadow 16 m long on level ground. How far is the top of the pole from the tip of the shadow?",
+   "options": [
+    {
+     "id": "A",
+     "text": "28 m"
+    },
+    {
+     "id": "B",
+     "text": "24 m"
+    },
+    {
+     "id": "C",
+     "text": "20 m"
+    },
+    {
+     "id": "D",
+     "text": "18 m"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "Pole, shadow and the slanting line form a right triangle: 12^2 + 16^2 = 144 + 256 = 400 = 20^2. The distance is 20 m.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "(12**2+16**2)**0.5",
+    "expected": 20.0
+   },
+   "private_source_fit_note": "Applied right triangle is ch9; static ladder uses 12 and 5, new triple (12-16-20) and scenario.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q19",
+   "subject": "Mathematics",
+   "chapter_number": 10,
+   "chapter_title": "Proportional Reasoning-2",
+   "topic": "Recognising inverse proportion in a table",
+   "question_type": "mcq",
+   "question_text": "A table shows x = 2, 4, 8 with matching y = 24, 12, 6. Which statement is correct?",
+   "options": [
+    {
+     "id": "A",
+     "text": "x and y are in inverse proportion, because xy is always 48"
+    },
+    {
+     "id": "B",
+     "text": "x and y are in direct proportion, because y falls as x rises"
+    },
+    {
+     "id": "C",
+     "text": "They show neither kind of proportion"
+    },
+    {
+     "id": "D",
+     "text": "x and y are in direct proportion, because x:y is constant"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "2 x 24 = 4 x 12 = 8 x 6 = 48. A constant product means inverse proportion.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "2*24",
+    "expected": 48.0
+   },
+   "private_source_fit_note": "Identifying proportionality from data is ch10; existing items compute an unknown or name a pair. Rev 4 replaced the taps item (same structure and 9-hour value as the static pipes question).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q20",
+   "subject": "Mathematics",
+   "chapter_number": 10,
+   "chapter_title": "Proportional Reasoning-2",
+   "topic": "Pie charts and totals",
+   "question_type": "mcq",
+   "question_text": "In a pie chart, the 90 degree slice for cycling represents 12 students. How many students were surveyed in all?",
+   "options": [
+    {
+     "id": "A",
+     "text": "24"
+    },
+    {
+     "id": "B",
+     "text": "36"
+    },
+    {
+     "id": "C",
+     "text": "48"
+    },
+    {
+     "id": "D",
+     "text": "60"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "90 degrees is a quarter of the pie, so 12 students are a quarter of the total: 12 x 4 = 48.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "12*360//90",
+    "expected": 48.0
+   },
+   "private_source_fit_note": "Two-step angle-to-total direction is ch10; existing items go count-to-angle or angle-to-count. Rev 4 reworked again to a distinct direction.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q21",
+   "subject": "Mathematics",
+   "chapter_number": 11,
+   "chapter_title": "Exploring Some Geometric Themes",
+   "topic": "Nets of solids",
+   "question_type": "mcq",
+   "question_text": "Which solid can be folded from a net made of four identical equilateral triangles?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Triangular pyramid"
+    },
+    {
+     "id": "B",
+     "text": "Cube"
+    },
+    {
+     "id": "C",
+     "text": "Triangular prism"
+    },
+    {
+     "id": "D",
+     "text": "Square pyramid"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "A triangular pyramid (tetrahedron) has exactly four triangular faces, so four identical triangles can fold into it.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Nets and solids are ch11; static asks about cube nets and prism edge counts, tetrahedron net is new.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q22",
+   "subject": "Mathematics",
+   "chapter_number": 11,
+   "chapter_title": "Exploring Some Geometric Themes",
+   "topic": "From edge count to end polygon",
+   "question_type": "mcq",
+   "question_text": "A prism has 18 edges in total. Its two ends are which polygon?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Pentagon"
+    },
+    {
+     "id": "B",
+     "text": "Triangle"
+    },
+    {
+     "id": "C",
+     "text": "Octagon"
+    },
+    {
+     "id": "D",
+     "text": "Hexagon"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "A prism with n-sided ends has 3n edges. 3n = 18 gives n = 6, so the ends are hexagons.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "18//3",
+    "expected": 6.0
+   },
+   "private_source_fit_note": "Reverse edge-count reasoning is ch11; existing items go from polygon to faces or edges. Rev 4 replaced the pentagonal edge count (number swap of static prism counts).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q23",
+   "subject": "Mathematics",
+   "chapter_number": 12,
+   "chapter_title": "Tales by Dots and Lines",
+   "topic": "Finding a missing value from the mean",
+   "question_type": "mcq",
+   "question_text": "The mean of the four numbers 4, 9, 11 and x is 9. What is x?",
+   "options": [
+    {
+     "id": "A",
+     "text": "8"
+    },
+    {
+     "id": "B",
+     "text": "10"
+    },
+    {
+     "id": "C",
+     "text": "12"
+    },
+    {
+     "id": "D",
+     "text": "14"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "The four numbers total 4 x 9 = 36. The three known numbers total 4 + 9 + 11 = 24, so x = 36 - 24 = 12.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "4*9-4-9-11",
+    "expected": 12.0
+   },
+   "private_source_fit_note": "Missing-value-from-mean is ch12; existing items only go forward to a total or a new mean. Rev 4 replaced the mean-times-count item (number swap of static mean-20-total item).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q24",
+   "subject": "Mathematics",
+   "chapter_number": 12,
+   "chapter_title": "Tales by Dots and Lines",
+   "topic": "Reading a bar graph",
+   "question_type": "mcq",
+   "question_text": "A bar graph shows books read per month: May 6, June 9, July 15. A student says July's bar is twice June's. What is the correct comparison?",
+   "options": [
+    {
+     "id": "A",
+     "text": "The bars must be equal"
+    },
+    {
+     "id": "B",
+     "text": "July is 6 more than June, not twice"
+    },
+    {
+     "id": "C",
+     "text": "July is exactly twice June"
+    },
+    {
+     "id": "D",
+     "text": "June is more than July"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "Twice 9 would be 18, but July is 15. July read 15 - 9 = 6 more books than June.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "15-9",
+    "expected": 6.0
+   },
+   "private_source_fit_note": "Reading and interpreting displays is ch12; static focuses on choosing displays and means, this challenges a visual misread.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q25",
+   "subject": "Mathematics",
+   "chapter_number": 13,
+   "chapter_title": "Algebra Play",
+   "topic": "Digit reversal explained with algebra",
+   "question_type": "mcq",
+   "question_text": "Ria takes the two-digit number 83, reverses its digits to get 38, and subtracts: 83 - 38 = 45. Trying other two-digit numbers the same way, the difference is always:",
+   "options": [
+    {
+     "id": "A",
+     "text": "Divisible by 9"
+    },
+    {
+     "id": "B",
+     "text": "Always a prime number"
+    },
+    {
+     "id": "C",
+     "text": "Always an even number"
+    },
+    {
+     "id": "D",
+     "text": "Divisible by 5"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "If the digits are a and b, the numbers are 10a + b and 10b + a, so the difference is 9a - 9b = 9 x (a - b), always a multiple of 9. Check: 45 = 9 x 5.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "83-38",
+    "expected": 45.0
+   },
+   "private_source_fit_note": "Algebra explaining number patterns is ch13. Replaced the think-of-a-number trick after integrator challenge: its structure duplicated the static paper's trick template. Digit reversal (9(a-b)) is a different algebraic pattern.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q26",
+   "subject": "Mathematics",
+   "chapter_number": 13,
+   "chapter_title": "Algebra Play",
+   "topic": "Consecutive numbers with algebra",
+   "question_type": "mcq",
+   "question_text": "Three consecutive whole numbers add up to 72. What is the largest of the three?",
+   "options": [
+    {
+     "id": "A",
+     "text": "23"
+    },
+    {
+     "id": "B",
+     "text": "24"
+    },
+    {
+     "id": "C",
+     "text": "25"
+    },
+    {
+     "id": "D",
+     "text": "26"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "Let the middle one be n: (n - 1) + n + (n + 1) = 3n = 72, so n = 24 and the largest is 25.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "72//3+1",
+    "expected": 25.0
+   },
+   "private_source_fit_note": "Consecutive-number equation is ch13; existing items cover pyramids, calendar grids and tricks but not this structure. Rev 4 replaced the calendar-offset item (same 2x2 grid structure as static calendar questions).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q27",
+   "subject": "Mathematics",
+   "chapter_number": 14,
+   "chapter_title": "Area",
+   "topic": "Comparing areas of triangle and parallelogram",
+   "question_type": "mcq",
+   "question_text": "A triangle and a parallelogram share the same base, 12 cm, and the same perpendicular height, 5 cm. How do their areas compare?",
+   "options": [
+    {
+     "id": "A",
+     "text": "The triangle's area is half the parallelogram's"
+    },
+    {
+     "id": "B",
+     "text": "The parallelogram's area is half the triangle's"
+    },
+    {
+     "id": "C",
+     "text": "They are equal"
+    },
+    {
+     "id": "D",
+     "text": "The triangle's area is double the parallelogram's"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "Parallelogram area = 12 x 5 = 60; triangle area = half of that = 30. With equal base and height, the triangle always has half the area.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "12*5//2",
+    "expected": 30.0
+   },
+   "private_source_fit_note": "Triangle-vs-parallelogram relationship is ch14; static computes each separately, this asks the comparison directly.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q28",
+   "subject": "Science",
+   "chapter_number": 1,
+   "chapter_title": "Exploring the Investigative World of Science",
+   "topic": "Choosing a fair test",
+   "question_type": "mcq",
+   "question_text": "Ritu wants to test whether seeds sprout faster in warm or cool conditions. Which setup is the fairest test?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Warm seeds watered daily, cool seeds never watered"
+    },
+    {
+     "id": "B",
+     "text": "Identical seeds and soil, same water, only temperature different"
+    },
+    {
+     "id": "C",
+     "text": "Warm seeds in soil, cool seeds on wet tissue"
+    },
+    {
+     "id": "D",
+     "text": "Different seed types at each temperature"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "A fair test changes only one variable, here temperature, and keeps seed type, soil and water the same.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Fair testing and variables are ch1 Science (Curiosity); static tests drying clothes and paper planes, fresh context.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q29",
+   "subject": "Science",
+   "chapter_number": 1,
+   "chapter_title": "Exploring the Investigative World of Science",
+   "topic": "Recording and using evidence",
+   "question_type": "mcq",
+   "question_text": "In an experiment, one trial gives a result very different from the other three trials. What should the investigator do first?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Erase it so the report looks neat"
+    },
+    {
+     "id": "B",
+     "text": "Repeat the trial and check the measurements"
+    },
+    {
+     "id": "C",
+     "text": "Stop the experiment immediately"
+    },
+    {
+     "id": "D",
+     "text": "Average it away and say nothing"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "Unexpected results are checked, not hidden. Repeating the trial and re-measuring shows whether it was a slip or a real pattern.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Honest recording and revising from evidence is ch1; static asks about deleting a disagreeing result, this adds the repeat-and-check action.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q30",
+   "subject": "Science",
+   "chapter_number": 2,
+   "chapter_title": "The Invisible Living World: Beyond Our Naked Eye",
+   "topic": "Levels of organisation",
+   "question_type": "mcq",
+   "question_text": "Which sequence shows the correct order from the smallest to the largest level of organisation in a living thing?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Cell -> tissue -> organ -> organism"
+    },
+    {
+     "id": "B",
+     "text": "Tissue -> cell -> organism -> organ"
+    },
+    {
+     "id": "C",
+     "text": "Organ -> cell -> tissue -> organism"
+    },
+    {
+     "id": "D",
+     "text": "Cell -> organ -> tissue -> organism"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "Cells group into tissues, tissues form organs, and organs work together in an organism.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Levels of organisation is ch2 topic 2 with no existing question coverage; fermentation (the earlier q30 idea) was already well covered. Rev 4 diversification.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q31",
+   "subject": "Science",
+   "chapter_number": 2,
+   "chapter_title": "The Invisible Living World: Beyond Our Naked Eye",
+   "topic": "Microscopes and cells",
+   "question_type": "mcq",
+   "question_text": "What did the invention of the microscope allow scientists to do for the first time?",
+   "options": [
+    {
+     "id": "A",
+     "text": "See stars beyond the Sun"
+    },
+    {
+     "id": "B",
+     "text": "Measure air pressure accurately"
+    },
+    {
+     "id": "C",
+     "text": "See individual cells and tiny living organisms"
+    },
+    {
+     "id": "D",
+     "text": "Split light into colours"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "Microscopes magnify very small things, opening up the study of cells and microorganisms that eyes alone cannot see.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Microscope history (Hooke, Leeuwenhoek) anchors ch2; this asks the purpose rather than names and dates in static items.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q32",
+   "subject": "Science",
+   "chapter_number": 3,
+   "chapter_title": "Health: The Ultimate Treasure",
+   "topic": "How diseases spread",
+   "question_type": "mcq",
+   "question_text": "Which disease is most directly prevented by covering water storage tanks and clearing stagnant water?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Scurvy"
+    },
+    {
+     "id": "B",
+     "text": "Night blindness"
+    },
+    {
+     "id": "C",
+     "text": "Diabetes"
+    },
+    {
+     "id": "D",
+     "text": "Dengue"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "Dengue spreads through mosquitoes that breed in stagnant water. Removing breeding water lowers dengue risk.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Vector control is ch3; static asks how chikungunya reaches people and lists mosquito actions, this frames prevention by breeding-site removal.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q33",
+   "subject": "Science",
+   "chapter_number": 3,
+   "chapter_title": "Health: The Ultimate Treasure",
+   "topic": "Completing a prescribed antibiotic course",
+   "question_type": "mcq",
+   "question_text": "A doctor asks a patient to finish the full course of an antibiotic even after feeling better. Why?",
+   "options": [
+    {
+     "id": "A",
+     "text": "To make the medicine taste better"
+    },
+    {
+     "id": "B",
+     "text": "So that surviving bacteria do not multiply again and become harder to kill"
+    },
+    {
+     "id": "C",
+     "text": "Because antibiotics also cure viral fevers"
+    },
+    {
+     "id": "D",
+     "text": "To make the fever return briefly"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "Stopping early can leave some bacteria alive; they may multiply and can become resistant, making future infections harder to treat. Antibiotics do not act on viruses.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Responsible antibiotic use is ch3; static asks why a doctor refuses antibiotics for viral fever, reasoning pack asks none of this. Rev 4 replaced the vaccine-preparation item (same proposition as reasoning1 immunity probe).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q34",
+   "subject": "Science",
+   "chapter_number": 4,
+   "chapter_title": "Electricity: Magnetic and Heating Effects",
+   "topic": "Heating effect of current",
+   "question_type": "mcq",
+   "question_text": "Which device mainly uses the heating effect of electric current?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Electromagnet crane"
+    },
+    {
+     "id": "B",
+     "text": "Compass needle"
+    },
+    {
+     "id": "C",
+     "text": "Electric iron"
+    },
+    {
+     "id": "D",
+     "text": "Electric bell"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "An electric iron turns electrical energy into heat in its element. Bells and cranes use the magnetic effect of current, and a compass needle responds to magnetic fields.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Heating vs magnetic effects is ch4; static asks about a resistance heater, this contrasts four devices. Explanation corrected after integrator challenge: a compass responds to magnetic fields, not only current.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q35",
+   "subject": "Science",
+   "chapter_number": 4,
+   "chapter_title": "Electricity: Magnetic and Heating Effects",
+   "topic": "Iron core and electromagnet strength",
+   "question_type": "mcq",
+   "question_text": "A learner winds 25 turns of insulated copper wire around an iron nail and connects the coil to a low-voltage cell: it lifts 6 paper clips. Keeping the same coil, same cell and same connections, she slides the coil off the nail and around a wooden stick of the same size. Now it lifts almost no clips. What does this comparison show?",
+   "options": [
+    {
+     "id": "A",
+     "text": "The wooden stick blocks the electric current"
+    },
+    {
+     "id": "B",
+     "text": "An iron core makes the electromagnet much stronger"
+    },
+    {
+     "id": "C",
+     "text": "The cell became weaker during the test"
+    },
+    {
+     "id": "D",
+     "text": "Copper wire does not work near wood"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "Only the core material changed. The same coil, same number of turns and same cell keep the current path unchanged, so the big drop in lifted clips shows that the iron core greatly strengthens the magnetic effect.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Electromagnet core effect is ch4 activity content. Third version after integrator reservation: the earlier setups varied turns on one cell, confounding resistance and current. This version keeps the identical coil, turns, cell and connections and swaps only the core material, a clean single-variable comparison.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q36",
+   "subject": "Science",
+   "chapter_number": 5,
+   "chapter_title": "Exploring Forces",
+   "topic": "What forces can do",
+   "question_type": "mcq",
+   "question_text": "A goalkeeper catches a fast football. Which effect of force is mainly shown?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Force changes the ball's colour"
+    },
+    {
+     "id": "B",
+     "text": "Force stops a moving object"
+    },
+    {
+     "id": "C",
+     "text": "Force makes the ball float"
+    },
+    {
+     "id": "D",
+     "text": "Force changes the shape of the ball"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "The ball was moving and the catch brings it to rest, so the force changed its state of motion.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Effects of force (motion/shape) are ch5 without any resultant-force formalism; static examples are clay and rickshaw, fresh sports context.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q37",
+   "subject": "Science",
+   "chapter_number": 5,
+   "chapter_title": "Exploring Forces",
+   "topic": "Friction in daily life",
+   "question_type": "mcq",
+   "question_text": "Why do tyres and shoe soles have grooves or treads?",
+   "options": [
+    {
+     "id": "A",
+     "text": "To increase friction for better grip"
+    },
+    {
+     "id": "B",
+     "text": "To make them lighter"
+    },
+    {
+     "id": "C",
+     "text": "To make them look attractive only"
+    },
+    {
+     "id": "D",
+     "text": "To reduce the weight they carry"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "Treads increase friction between the surface and the road, which prevents slipping.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Friction's usefulness is ch5; static asks about carrom powder and oily chains vs rough brakes, treads are a fresh example.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q38",
+   "subject": "Science",
+   "chapter_number": 6,
+   "chapter_title": "Pressure, Winds, Storms, and Cyclones",
+   "topic": "Pressure and area",
+   "question_type": "mcq",
+   "question_text": "Why is it easier to push a sharp nail into wood than a blunt nail with the same force?",
+   "options": [
+    {
+     "id": "A",
+     "text": "The sharp tip has a smaller area, so the pressure is larger"
+    },
+    {
+     "id": "B",
+     "text": "Wood attracts sharp metal"
+    },
+    {
+     "id": "C",
+     "text": "A sharp nail weighs less"
+    },
+    {
+     "id": "D",
+     "text": "A blunt nail bends more"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "Pressure = force divided by area. A small tip area concentrates the same force into larger pressure, so it enters the wood.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Force-over-area is ch6; static uses drawing pins and bag straps, sharp vs blunt nail is a new framing.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q39",
+   "subject": "Science",
+   "chapter_number": 6,
+   "chapter_title": "Pressure, Winds, Storms, and Cyclones",
+   "topic": "How winds form",
+   "question_type": "mcq",
+   "question_text": "During the day near the sea, land heats faster than water. Which way does the afternoon sea breeze usually blow?",
+   "options": [
+    {
+     "id": "A",
+     "text": "From land to sea, because warm air sinks over land"
+    },
+    {
+     "id": "B",
+     "text": "Always from east to west"
+    },
+    {
+     "id": "C",
+     "text": "There is no breeze during the day"
+    },
+    {
+     "id": "D",
+     "text": "From sea to land, because cooler air moves in to replace rising warm air"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "Warm air rises over the hot land, and cooler air from above the sea flows in to take its place, making a sea-to-land breeze.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Unequal heating and land/sea breeze is ch6; static asks about the night land breeze, this is the daytime counterpart.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q40",
+   "subject": "Science",
+   "chapter_number": 7,
+   "chapter_title": "Particulate Nature of Matter",
+   "topic": "Changes of state",
+   "question_type": "mcq",
+   "question_text": "Steam touches a cold steel plate and tiny droplets of water appear on it. Which change of state is this?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Melting"
+    },
+    {
+     "id": "B",
+     "text": "Evaporation"
+    },
+    {
+     "id": "C",
+     "text": "Condensation"
+    },
+    {
+     "id": "D",
+     "text": "Boiling"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "Steam is water as a gas. When it cools on the plate, its particles slow and come together as liquid droplets: condensation.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Change-of-state identification is ch7. Rev 4 replaced the perfume diffusion item (identical underlying proposition to the resource lesson's still-air smell probe).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q41",
+   "subject": "Science",
+   "chapter_number": 7,
+   "chapter_title": "Particulate Nature of Matter",
+   "topic": "States and particle arrangement",
+   "question_type": "mcq",
+   "question_text": "Compared with a gas, the particles in a solid are generally:",
+   "options": [
+    {
+     "id": "A",
+     "text": "Spread evenly through any container"
+    },
+    {
+     "id": "B",
+     "text": "Far apart and moving freely everywhere"
+    },
+    {
+     "id": "C",
+     "text": "Not moving at all, with no energy"
+    },
+    {
+     "id": "D",
+     "text": "Closely packed and mainly vibrating about fixed positions"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "In solids, particles are packed closely in fixed positions and can only vibrate. Gas particles are far apart and move freely.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Particle arrangement by state is ch7; static compares shape/volume and a motionless-solid cartoon error, this contrasts solid vs gas directly.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q42",
+   "subject": "Science",
+   "chapter_number": 8,
+   "chapter_title": "Nature of Matter: Elements, Compounds, and Mixtures",
+   "topic": "Elements, compounds and mixtures",
+   "question_type": "mcq",
+   "question_text": "Which list contains only mixtures?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Air, seawater, brass"
+    },
+    {
+     "id": "B",
+     "text": "Oxygen, water, gold"
+    },
+    {
+     "id": "C",
+     "text": "Steam, iron, nitrogen"
+    },
+    {
+     "id": "D",
+     "text": "Salt, sugar, copper"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "Air (gases mixed), seawater (salts in water) and brass (copper-zinc alloy) are all mixtures. The other lists are elements and compounds.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Classification is ch8; static classifies seawater and brass individually, this asks for the all-mixture list.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q43",
+   "subject": "Science",
+   "chapter_number": 8,
+   "chapter_title": "Nature of Matter: Elements, Compounds, and Mixtures",
+   "topic": "Separating mixtures",
+   "question_type": "mcq",
+   "question_text": "A mixture contains iron nails, sand and salt. Which order separates all three sensibly?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Heat the whole mixture strongly"
+    },
+    {
+     "id": "B",
+     "text": "Dissolve in water, then use a magnet, then evaporate the water"
+    },
+    {
+     "id": "C",
+     "text": "Evaporate everything first, then filter"
+    },
+    {
+     "id": "D",
+     "text": "Use a magnet, then dissolve the salt in water and filter the sand, then evaporate the water"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "A magnet removes the iron first while the mixture is dry; a magnet can still pick out wet iron, so the order alone is not what makes the other options fail. Water then dissolves only the salt, filtering traps the sand, and evaporating the water recovers the salt. The dissolving-first option fails because it never filters: the sand stays in the mixture and ends up mixed with the recovered salt after evaporation. Evaporating a dry mixture does nothing, and strong heating does not separate the three.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Separation techniques are ch8; static asks iron filings + sulfur with a magnet, this adds a three-component ordered plan. Rev 7 corrected the explanation per integrator: magnetic removal works on wet iron too; the dissolving-first option fails because filtration is omitted, leaving sand mixed with the recovered salt.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q44",
+   "subject": "Science",
+   "chapter_number": 9,
+   "chapter_title": "The Amazing World of Solutes, Solvents, and Solutions",
+   "topic": "Saturation and solubility",
+   "question_type": "mcq",
+   "question_text": "At 30 degrees C, no more sugar dissolves in a glass of water and some settles at the bottom. The solution is:",
+   "options": [
+    {
+     "id": "A",
+     "text": "Dilute"
+    },
+    {
+     "id": "B",
+     "text": "Unsaturated"
+    },
+    {
+     "id": "C",
+     "text": "Saturated at that temperature"
+    },
+    {
+     "id": "D",
+     "text": "A pure substance"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "When no more solute dissolves at that temperature and extra remains undissolved, the solution is saturated.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Saturation definition is ch9; static asks the term directly and how to dissolve more, this asks recognition from an observation.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q45",
+   "subject": "Science",
+   "chapter_number": 9,
+   "chapter_title": "The Amazing World of Solutes, Solvents, and Solutions",
+   "topic": "Density and floating",
+   "question_type": "mcq",
+   "question_text": "A sealed empty plastic bottle floats on water, but the same bottle filled with sand sinks. What is the best explanation?",
+   "options": [
+    {
+     "id": "A",
+     "text": "The bottle pushed less water aside once it was filled with sand"
+    },
+    {
+     "id": "B",
+     "text": "Filling it with sand raised the bottle's overall density above the water's density"
+    },
+    {
+     "id": "C",
+     "text": "The water became denser when the heavier bottle was placed in it"
+    },
+    {
+     "id": "D",
+     "text": "The bottle's outer volume became smaller once the sand was inside"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "The sand makes the same bottle much heavier for the same outer volume, so its average density rises above the water's density and it sinks. The water did not change, the bottle's outer volume stayed the same, and when submerged it actually pushed aside more water, not less.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Floating/sinking through density comparison is ch9. Rev 5: stem now asks for the best explanation and every distractor is strictly false - the previous gravity option was technically true for a heavier object, per integrator.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q46",
+   "subject": "Science",
+   "chapter_number": 10,
+   "chapter_title": "Light: Mirrors and Lenses",
+   "topic": "Laws of reflection",
+   "question_type": "mcq",
+   "question_text": "A ray strikes a plane mirror so that the angle between the ray and the mirror surface is 50 degrees. What is its angle of reflection?",
+   "options": [
+    {
+     "id": "A",
+     "text": "25 degrees"
+    },
+    {
+     "id": "B",
+     "text": "40 degrees"
+    },
+    {
+     "id": "C",
+     "text": "50 degrees"
+    },
+    {
+     "id": "D",
+     "text": "130 degrees"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "Angles are measured from the normal, not the surface. The incidence angle is 90 - 50 = 40 degrees, so reflection is also 40 degrees.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "90-50",
+    "expected": 40.0
+   },
+   "private_source_fit_note": "Law of reflection with a surface-angle twist is ch10; static gives 30 and 40 degrees to the normal directly, this adds the complementary step.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q47",
+   "subject": "Science",
+   "chapter_number": 10,
+   "chapter_title": "Light: Mirrors and Lenses",
+   "topic": "Refraction in daily life",
+   "question_type": "mcq",
+   "question_text": "A straight straw in a glass of water looks bent at the water surface. What causes this?",
+   "options": [
+    {
+     "id": "A",
+     "text": "The water magnifies the whole straw"
+    },
+    {
+     "id": "B",
+     "text": "Refraction as light from the straw crosses from water into air"
+    },
+    {
+     "id": "C",
+     "text": "The straw actually bends in water"
+    },
+    {
+     "id": "D",
+     "text": "Reflection from the glass wall"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "Light from the underwater part changes direction when it leaves the water and enters air, so the straw appears bent at the surface. The straw itself stays straight.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Refraction observations are ch10; static covers air-into-water bending and a curved-glass pencil, the bent-straw explanation is a fresh probe.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q48",
+   "subject": "Science",
+   "chapter_number": 11,
+   "chapter_title": "Keeping Time with the Skies",
+   "topic": "Lunar calendars and seasonal drift",
+   "question_type": "mcq",
+   "question_text": "A year of 12 lunar months is about 354 days, about 11 days shorter than the solar year. If a harvest festival is fixed by a pure lunar calendar and falls in October this year, what happens over the years if no correction is made?",
+   "options": [
+    {
+     "id": "A",
+     "text": "It stays in October every year"
+    },
+    {
+     "id": "B",
+     "text": "It drifts through the seasons, arriving earlier each solar year"
+    },
+    {
+     "id": "C",
+     "text": "It becomes a month longer each year"
+    },
+    {
+     "id": "D",
+     "text": "It disappears after one year"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "Each solar year the lunar year ends about 11 days earlier, so the festival keeps shifting earlier through the seasons. Luni-solar calendars add an extra month from time to time to prevent this.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "365-354",
+    "expected": 11.0
+   },
+   "private_source_fit_note": "Seasonal-drift reasoning is ch11; static asks the purpose of intercalary months directly. Rev 4 replaced the bare 6 x 29.5 multiplication (numeric variant of the static 12-month computation).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q49",
+   "subject": "Science",
+   "chapter_number": 11,
+   "chapter_title": "Keeping Time with the Skies",
+   "topic": "Calendars and leap years",
+   "question_type": "mcq",
+   "question_text": "A solar year is about 365.25 days. If a calendar used exactly 365 days every year with no leap day, after 40 years the calendar would be off by about:",
+   "options": [
+    {
+     "id": "A",
+     "text": "40 days"
+    },
+    {
+     "id": "B",
+     "text": "4 days"
+    },
+    {
+     "id": "C",
+     "text": "1 day"
+    },
+    {
+     "id": "D",
+     "text": "10 days"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "Each year loses 0.25 day, so 40 x 0.25 = 10 days of drift. Leap years exist to stop this drift.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "40*0.25",
+    "expected": 10.0
+   },
+   "private_source_fit_note": "Leap-year reasoning is ch11; static asks why leap years are needed and a 3+1 cycle model, this quantifies drift.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q50",
+   "subject": "Science",
+   "chapter_number": 12,
+   "chapter_title": "How Nature Works in Harmony",
+   "topic": "Energy along a food chain",
+   "question_type": "mcq",
+   "question_text": "In the food chain grass -> deer -> tiger, which level has the least total energy available to it?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Grass"
+    },
+    {
+     "id": "B",
+     "text": "Deer"
+    },
+    {
+     "id": "C",
+     "text": "Tiger"
+    },
+    {
+     "id": "D",
+     "text": "All levels have equal energy"
+    }
+   ],
+   "correct_option_id": "C",
+   "explanation": "Energy is lost at each step as organisms use it for life processes, so the least energy reaches the top consumer, the tiger.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Energy decrease up a food chain is ch12; existing items read food-web arrows or name roles, none reason about energy transfer. Rev 4 reworked the trophic-level naming item.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q51",
+   "subject": "Science",
+   "chapter_number": 12,
+   "chapter_title": "How Nature Works in Harmony",
+   "topic": "Interdependence in an ecosystem",
+   "question_type": "mcq",
+   "question_text": "A garden is sprayed with a chemical that kills most of its insects. What is the most likely first effect on the garden's birds that eat insects?",
+   "options": [
+    {
+     "id": "A",
+     "text": "The birds increase because plants grow better"
+    },
+    {
+     "id": "B",
+     "text": "The birds' food becomes scarce, so their numbers may fall"
+    },
+    {
+     "id": "C",
+     "text": "Nothing changes, because birds do not depend on insects"
+    },
+    {
+     "id": "D",
+     "text": "The birds turn into decomposers"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "The birds depend on insects for food. Removing most insects makes food scarce, so bird numbers are likely to fall - one part of an ecosystem affects another.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Interdependence reasoning is ch12 topic 4. Rev 4 replaced the decomposer-recycler item (same proposition as reasoning2 and static items).",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q52",
+   "subject": "Science",
+   "chapter_number": 13,
+   "chapter_title": "Our Home: Earth, a Unique Life Sustaining Planet",
+   "topic": "Conditions that support life",
+   "question_type": "mcq",
+   "question_text": "Which set of conditions makes Earth suitable for life as we know it?",
+   "options": [
+    {
+     "id": "A",
+     "text": "A very thin atmosphere and constant freezing cold"
+    },
+    {
+     "id": "B",
+     "text": "No water and strong solar wind on the surface"
+    },
+    {
+     "id": "C",
+     "text": "A surface covered only in dry rock"
+    },
+    {
+     "id": "D",
+     "text": "Liquid water, a suitable temperature range and a protective atmosphere"
+    }
+   ],
+   "correct_option_id": "D",
+   "explanation": "Life as we know it needs liquid water, moderate temperatures and an atmosphere that supplies gases and shields harmful radiation.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Life-supporting conditions are ch13; static asks about liquid water and atmosphere separately, this combines them in one set.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q53",
+   "subject": "Science",
+   "chapter_number": 13,
+   "chapter_title": "Our Home: Earth, a Unique Life Sustaining Planet",
+   "topic": "Protecting Earth's systems",
+   "question_type": "mcq",
+   "question_text": "A town wants to protect its local lake ecosystem. Which action would help most?",
+   "options": [
+    {
+     "id": "A",
+     "text": "Treating sewage before it reaches the lake and keeping a green buffer of plants around it"
+    },
+    {
+     "id": "B",
+     "text": "Filling part of the lake for parking"
+    },
+    {
+     "id": "C",
+     "text": "Removing all fish to reduce competition"
+    },
+    {
+     "id": "D",
+     "text": "Letting factory waste flow in untreated"
+    }
+   ],
+   "correct_option_id": "A",
+   "explanation": "Treating sewage stops nutrient overload and poisoning, and plant buffers filter runoff. The other actions damage the ecosystem.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": null,
+   "private_source_fit_note": "Threats and protection are ch13; static has a city plan protecting a wetland, this is a fresh lake scenario.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  },
+  {
+   "draft_id": "class8-review-nov18-q54",
+   "subject": "Mathematics",
+   "chapter_number": 14,
+   "chapter_title": "Area",
+   "topic": "Estimating area on a grid",
+   "question_type": "mcq",
+   "question_text": "On a 1 cm square grid, a leaf shape covers 12 full squares and 6 half squares. What is the best estimate of its area?",
+   "options": [
+    {
+     "id": "A",
+     "text": "12 square cm"
+    },
+    {
+     "id": "B",
+     "text": "15 square cm"
+    },
+    {
+     "id": "C",
+     "text": "18 square cm"
+    },
+    {
+     "id": "D",
+     "text": "21 square cm"
+    }
+   ],
+   "correct_option_id": "B",
+   "explanation": "Count full squares fully and half squares as halves: 12 + 3 = 15 square cm.",
+   "suggested_difficulty": "medium",
+   "marks": 1,
+   "review_state": "review",
+   "arithmetic_check": {
+    "expression": "12+6//2",
+    "expected": 15.0
+   },
+   "private_source_fit_note": "Grid area estimation with full and half squares is an application of NCERT Ganita Prakash ch14 Area (hegp207, p149 unit full/fractional squares, p150 halves), https://ncert.nic.in/textbook/pdf/hegp207.pdf - an application of that method, not the textbook's exact leaf example. Rev 4 replaced the composite-subtraction item.",
+   "provenance": "independently authored for this review pack; not copied from any bank"
+  }
+ ]
+}
