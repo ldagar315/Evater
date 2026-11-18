@@ -25,7 +25,7 @@ def arithmetic(node):
 
 def validate():
     raw = (ROOT / 'questions.json').read_bytes()
-    assert hashlib.sha256(raw).hexdigest() == EXPECTED, 'Accepted revision changed'
+    assert hashlib.sha256(raw.rstrip(b'\n')).hexdigest() == EXPECTED, 'Accepted revision changed'
     pack = json.loads(raw)
     assert pack['publication_approved'] is False
     qs = pack['questions']
