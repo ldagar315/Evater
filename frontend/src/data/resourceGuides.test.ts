@@ -4,8 +4,8 @@ import { resourceGuides } from './resourceGuides'
 import { blogPosts, getPostBySlug } from './blogPosts'
 import { youtubeVideoId } from '../components/blog/resourceVideo'
 describe('student resource lessons', () => {
- it('keeps all nine live routes and distinct identities', () => {
-  expect(resourceGuides).toHaveLength(9)
+ it('keeps all 27 lesson routes and distinct identities', () => {
+  expect(resourceGuides).toHaveLength(27)
   expect(new Set(blogPosts.map(p=>p.id)).size).toBe(blogPosts.length)
   expect(new Set(blogPosts.map(p=>p.slug)).size).toBe(blogPosts.length)
   const sitemap=readFileSync('public/sitemap.xml','utf8'),vite=readFileSync('vite.config.ts','utf8')
@@ -15,7 +15,7 @@ describe('student resource lessons', () => {
   resourceGuides.forEach((p,i)=>{
    const topics=p.content.split(/^## /m).slice(1,5)
    expect(topics).toHaveLength(4)
-   expect(p.content.match(/\[Open the video\]/g)).toHaveLength([4,4,2,4,3,2,4,2,1][i])
+   expect(p.content.match(/\[Open the video\]/g)??[]).toHaveLength([4,4,2,4,3,2,4,2,1,2,2,3,4,4,4,2,3,3,2,0,3,2,1,1,3,1,1][i])
    topics.forEach(t=>{expect(t.match(/\[Open the video\]/g)?.length??0).toBeLessThanOrEqual(1);expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')})
    const urls=[...p.content.matchAll(/\]\((https?:[^)]+)\)/g)].map(m=>m[1])
    urls.forEach(url=>expect(youtubeVideoId(url)).not.toBeNull())
@@ -24,6 +24,13 @@ describe('student resource lessons', () => {
    for(const ledger of ['Runtime evidence','supporting source','Supporting reading','transcript','playback check','Evidence and limits','Video coverage remains partial']) expect(p.content.toLowerCase()).not.toContain(ledger.toLowerCase())
    expect(p.excerpt).not.toContain('coverage remains partial')
   })
+ })
+ it('keeps new topic scope and safety grounded', () => {
+  const find=(id:string)=>resourceGuides.find(p=>p.id===id)!.content
+  expect(find('resource-maths-11')).not.toContain("Euler")
+  expect(find('resource-maths-11')).toContain('5 faces, 9 edges and 6 vertices')
+  expect(find('resource-science-6')).toContain('perpendicular force')
+  expect(find('resource-science-4')).toContain('chemical reactions')
  })
  it('keeps important mathematical conditions and practical safety', () => {
   expect(resourceGuides[3].content).toContain('11 < √123 < 12')

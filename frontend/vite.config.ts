@@ -5,6 +5,25 @@ import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
 
 // Public, crawlable routes that get static HTML at build time. App routes stay client-rendered.
 const PRERENDER_ROUTES = [
+  '/blog/class-8-maths-quadrilaterals-study-resources',
+  '/blog/class-8-maths-number-play-study-resources',
+  '/blog/class-8-maths-the-baudhayana-pythagoras-theorem-study-resources',
+  '/blog/class-8-maths-proportional-reasoning-2-study-resources',
+  '/blog/class-8-maths-exploring-some-geometric-themes-study-resources',
+  '/blog/class-8-maths-tales-by-dots-and-lines-study-resources',
+  '/blog/class-8-maths-algebra-play-study-resources',
+  '/blog/class-8-maths-area-study-resources',
+  '/blog/class-8-science-exploring-the-investigative-world-of-science-study-resources',
+  '/blog/class-8-science-health-the-ultimate-treasure-study-resources',
+  '/blog/class-8-science-electricity-magnetic-and-heating-effects-study-resources',
+  '/blog/class-8-science-pressure-winds-storms-and-cyclones-study-resources',
+  '/blog/class-8-science-particulate-nature-of-matter-study-resources',
+  '/blog/class-8-science-nature-of-matter-elements-compounds-and-mixtures-study-resources',
+  '/blog/class-8-science-the-amazing-world-of-solutes-solvents-and-solutions-study-resources',
+  '/blog/class-8-science-light-mirrors-and-lenses-study-resources',
+  '/blog/class-8-science-keeping-time-with-the-skies-study-resources',
+  '/blog/class-8-science-our-home-earth-a-unique-life-sustaining-planet-study-resources',
+
   '/',
   '/about',
   '/papers',
@@ -66,6 +85,8 @@ export default defineConfig(({ mode }) => {
               routes: PRERENDER_ROUTES,
               renderer: new PuppeteerRenderer({
                 renderAfterTime: 3000,
+                maxConcurrentRoutes: 4,
+                skipThirdPartyRequests: true,
                 launchOptions: { args: ['--no-sandbox', '--disable-setuid-sandbox'] },
               }),
             }),
