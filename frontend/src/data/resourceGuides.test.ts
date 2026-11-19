@@ -13,9 +13,9 @@ describe('student resource lessons', () => {
  })
  it('teaches each topic on-page with at most one verified YouTube video', () => {
   resourceGuides.forEach((p,i)=>{
-   const topics=p.content.split(/^## /m).slice(1,5)
-   expect(topics).toHaveLength(4)
-   expect(p.content.match(/\[Open the video\]/g)??[]).toHaveLength([4,4,2,4,3,2,4,2,1,2,2,3,4,4,4,2,3,3,2,0,3,2,1,1,3,1,1][i])
+   const topics=p.content.split(/^## /m).slice(1).filter(t=>/^\d+\./.test(t))
+   expect(topics).toHaveLength(p.id === 'resource-maths-5' ? 7 : 4)
+   expect(p.content.match(/\[Open the video\]/g)??[]).toHaveLength([4,4,2,4,3,2,4,2,1,2,2,3,4,4,4,2,3,3,2,0,3,4,1,2,3,1,1][i])
    topics.forEach(t=>{expect(t.match(/\[Open the video\]/g)?.length??0).toBeLessThanOrEqual(1);expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')})
    const urls=[...p.content.matchAll(/\]\((https?:[^)]+)\)/g)].map(m=>m[1])
    urls.forEach(url=>expect(youtubeVideoId(url)).not.toBeNull())
