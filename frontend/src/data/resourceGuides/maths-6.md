@@ -24,13 +24,20 @@ Calculate 17 × 98 without long multiplication.
 
 ### Think it through
 
-Every term in the first bracket must multiply every term in the second. For (x + 3)(x + 2), the four products are x², 2x, 3x and 6. Combine the like terms to get x² + 5x + 6. A four-part rectangle helps you check that no product is missing. Label one side x + 3 and the other x + 2; the four smaller areas are x², 2x, 3x and 6. Grouping the two x-terms does not change the area.
+Expand (2x + 3)(x - 4) by multiplying every term in one bracket by every term in the other. Keep all four contributions visible:
+
+- 2x × x = 2x²
+- 2x × (-4) = -8x
+- 3 × x = 3x
+- 3 × (-4) = -12
+
+Add the entries: 2x² - 8x + 3x - 12 = 2x² - 5x - 12. The negative sign belongs to -4, including when it multiplies 3. At x = 5, the brackets give 13 × 1 = 13 and the expansion gives 50 - 25 - 12 = 13. This checks one value; multiplying every term explains the identity for every x.
 
 ### Try it yourself
 
-Expand (x + 3)(x + 2).
+Expand (3y - 2)(y + 5). Then evaluate the original and expanded expressions at y = -1. Explain why the constant term is negative.
 
-**Check:** x² + 5x + 6.
+**Check:** 3y² + 13y - 10. At y = -1, both give -20. The constant is (-2) × 5 = -10, not +10.
 
 ## 3. Squares and difference of squares
 
@@ -54,13 +61,15 @@ Why is (x + 4)² not x² + 16?
 
 ### Think it through
 
-A number check can expose a wrong expansion, but the algebra explains the fix. In 3(x - 5), the 3 multiplies x and -5, giving 3x - 15. Substituting x = 6 gives 3 on both sides. The incorrect 3x - 5 would give 13 instead. One counterexample is enough to disprove the proposed identity, but matching at one chosen value would not prove an identity for every x. The distributive step supplies the reason it works in general.
+Consider 4(2t - 3) - 2(t + 5). A proposed answer 6t - 2 has lost the negative multiplier on 5. Distribute first, keeping each sign: 8t - 12 - 2t - 10 = 6t - 22. At t = 0, the original gives -12 - 10 = -22, so the proposed answer -2 is already disproved. A counterexample exposes an error; the correct distributive steps explain the repair.
+
+Beware of a check that passes accidentally. The wrong claim (u + 2)² = u² + 4 is true at u = 0, but at u = 1 its sides are 9 and 5. The missing term is 4u. Matching at one value does not prove an identity.
 
 ### Try it yourself
 
-A student writes 3(x - 5) = 3x - 5. Fix it.
+A student writes -3(2p - 5) + 4p = -2p - 15. Identify the incorrect product, repair the answer, and use p = 2 to check both sides.
 
-**Check:** 3x - 15. The factor 3 multiplies both terms.
+**Check:** (-3) × (-5) is +15, not -15. The result is -2p + 15. At p = 2, the original and corrected expression both give 11; the student's answer gives -19.
 
 ## Your five-minute revision
 
