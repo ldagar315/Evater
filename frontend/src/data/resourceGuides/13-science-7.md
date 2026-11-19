@@ -40,27 +40,39 @@ Why is a gas generally easier to compress than a liquid?
 
 ## 3. Diffusion and particle motion
 
-### Think it through
+### Watch: Diffusion of Gases
 
-Particles are continually moving. When gases mix, their particles spread among one another; a smell can therefore travel across a room. The particles do not choose a destination or deliberately seek empty space. Draw a before-and-after particle model and explain how motion can produce the change.
+FuseSchool
+
+[Open the video](https://www.youtube.com/watch?v=KRLNDTmBFZY)
+
+### Understand it
+
+Gas particles move in random directions and collide with other particles. Overall, a gas spreads from where its particles are more concentrated to where they are less concentrated. This is diffusion, not a plan made by the particles. After mixing, particles keep moving even when there is no overall concentration difference. Use the flower-smell example as a particle model; do not sniff unknown or rotting materials. Real smells can also be carried by air currents.
 
 ### Try it yourself
 
-Why can a smell spread across a room?
+Two gases have mixed evenly inside a closed container. Have their particles stopped moving? Explain what has changed and what has not.
 
-**Check:** Gas particles move and mix with the surrounding air.
+**Check:** No. Random motion continues. The gases are now evenly mixed, so there is no overall movement from a more concentrated region to a less concentrated one.
 
 ## 4. Changes of state
 
-### Think it through
+### Watch: Changes of State
 
-Heating or cooling can change particle motion and arrangement, producing changes of state. In an ordinary physical change such as ice melting, the substance remains water. Draw the same number of water particles before and after, then change their arrangement rather than turning them into a new kind of particle.
+FuseSchool
+
+[Open the video](https://www.youtube.com/watch?v=xYU7RSoOZ0U)
+
+### Understand it
+
+Follow melting, freezing, evaporation and condensation, then draw particles before and after one change. Heating or cooling changes particle motion and arrangement. During ice melting, water molecules remain water molecules: the attractions between molecules change, not the bonds holding each water molecule together. In a closed system that loses no matter, total mass stays the same. Water left in an open dish can leave as vapour, so the dish's mass can fall without matter being destroyed. Watch the demonstrations; do not handle dry ice or boiling water yourself.
 
 ### Try it yourself
 
-When ice melts, do water particles become a new chemical substance?
+Ice melts inside a sealed container. Which should change: the arrangement of the water particles, the kind of molecule, or the total mass of the container and contents?
 
-**Check:** No. The state changes from solid water to liquid water.
+**Check:** The arrangement changes. The molecules remain water, and the total mass stays the same because no matter enters or leaves.
 
 ## Your five-minute revision
 
