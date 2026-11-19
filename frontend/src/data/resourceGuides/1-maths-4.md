@@ -24,13 +24,15 @@ Three angles are 80°, 95° and 105°. Find the fourth.
 
 ### Think it through
 
-In a parallelogram, opposite sides are parallel and the diagonals bisect each other: each cuts the other into two equal parts. That does not mean the two diagonals have equal lengths. Draw a slanted parallelogram and label the halves of each diagonal separately.
+Let the diagonals AC and BD of parallelogram ABCD meet at O. Opposite sides AB and CD are equal, and parallel sides give equal alternate angles. So triangles AOB and COD are congruent by ASA. Corresponding sides give AO = OC and BO = OD: the diagonals bisect each other.
+
+If AC = 18 cm and BD = 12 cm, then AO = OC = 9 cm and BO = OD = 6 cm. Do not set AO equal to BO: bisecting each other does not make the two diagonals equal. For a converse check, draw two segments crossing at their midpoints and join their endpoints in order. Equal halves and vertically opposite angles give congruent triangles, helping explain why the result is a parallelogram.
 
 ### Try it yourself
 
-Must the diagonals of every parallelogram have equal length?
+In parallelogram PQRS, the diagonals meet at M. PM = 3x - 1 cm, MR = x + 7 cm, and QM = 5 cm. Find x, PR and QS. Must PR = QS?
 
-**Check:** No. They bisect each other, but need not have equal length.
+**Check:** PM = MR, so 3x - 1 = x + 7 and x = 4. Each half of PR is 11 cm, giving PR = 22 cm. QS = 10 cm. The unequal diagonals are allowed.
 
 ## 3. Rectangles, rhombuses and squares
 
@@ -54,13 +56,15 @@ Is every rectangle a square?
 
 ### Think it through
 
-Before drawing a kite or trapezium, mark the lengths, angles and parallel sides you are given. Trapezium definitions vary, so use the convention stated in your class. A neat-looking sketch does not prove parallelism: explain it using the given conditions or a valid angle argument.
+For a kite ABCD with AB = AD and CB = CD, points A and C are each equally distant from B and D. The line AC is the perpendicular bisector of BD. This does not mean BD also bisects AC. To construct such a kite, draw BD, then use two different compass radii from B and D to locate A and C on opposite sides. Keep each radius greater than half BD so the arcs meet off the line; using the same radius for A and C produces a rhombus instead of showing a general kite.
+
+Here, a trapezium has **at least one pair of parallel opposite sides**, so parallelograms are included. Draw AB, choose D away from it, and draw a line through D parallel to AB. Choose C on that line so ABCD is a simple quadrilateral. If AB is parallel to CD and angle A is 68°, angle D is 180° - 68° = 112°, using the angles on the same side of transversal AD.
 
 ### Try it yourself
 
-Why is a sketch alone not proof that two sides are parallel?
+A trapezium PQRS has PQ parallel to SR. Angle P is 74° and angle Q is 101°. Find angles S and R. Must the trapezium be isosceles?
 
-**Check:** A sketch can be distorted. Parallelism needs given information, a construction condition or a valid angle argument.
+**Check:** S = 106° and R = 79°. Each pair on a non-parallel side adds to 180°, and all four total 360°. It is not isosceles: the two angles on base PQ are unequal.
 
 ## Your five-minute revision
 
