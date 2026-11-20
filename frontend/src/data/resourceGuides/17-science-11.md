@@ -48,13 +48,15 @@ Why can a calendar based only on lunar months drift relative to the seasons?
 
 ### Think it through
 
-Calendar adjustments handle the mismatch between whole days and the length of a year. In the Gregorian calendar, years divisible by 4 are usually leap years, but century years must also be divisible by 400. Thus 2000 was a leap year and 2100 will not be. Name the calendar before applying its rule.
+A calendar has to use whole days, while the seasonal year is not exactly 365 days. Adding a leap day roughly every four years helps, but that alone adds too many days over long periods. The Gregorian rule corrects this with century exceptions.
+
+Use this decision chain for a Gregorian year: if it is not divisible by 4, it is not a leap year. If it is divisible by 4 but not by 100, it is a leap year. If it is divisible by 100, it is a leap year only if it is also divisible by 400. For example, 2028 passes the ordinary four-year rule; 1900 fails the century exception; 2000 passes the 400-year exception. A Gregorian leap year has 366 days, including 29 February. Other calendars need their own rules.
 
 ### Try it yourself
 
-In the Gregorian calendar, is 2100 a leap year?
+A student says 2100 and 2400 must both be Gregorian leap years because both divide by 4. Check that claim, then decide whether 2027 and 2032 are leap years. Explain which test settles each case.
 
-**Check:** No. Century years must be divisible by 400 to be leap years.
+**Check:** 2100 is not a leap year: divisible by 100 but not 400. 2400 is a leap year: divisible by 400. 2027 is not divisible by 4, so is not a leap year. 2032 is divisible by 4 but not 100, so is a leap year.
 
 ## Your five-minute revision
 
