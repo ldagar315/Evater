@@ -24,9 +24,15 @@ An incident ray makes 25° with a plane mirror's surface. Find its angle of inci
 
 ## 2. Concave and convex mirrors
 
-### Think it through
+### Watch: Concave and Convex Mirrors
 
-A concave mirror curves inward; a convex mirror curves outward. For an ordinary object in front of a concave mirror, bringing it sufficiently close can give an upright, enlarged image. Moving it farther away can give an inverted image, whose size also depends on the distance. That is why "concave always means magnified and upright" is not a valid rule.
+uclaphysicsvideo
+
+[Open the video](https://www.youtube.com/watch?v=jtTBOMVMSYM)
+
+### Understand it
+
+Watch the image demonstrations only. Do not try focusing sunlight or making a heating experiment with a mirror. A concave mirror curves inward; a convex mirror curves outward. For an ordinary object in front of a concave mirror, bringing it sufficiently close can give an upright, enlarged image. Moving it farther away can give an inverted image, whose size also depends on the distance. That is why "concave always means magnified and upright" is not a valid rule.
 
 A convex mirror gives an upright, diminished image of an ordinary object in front of it, and can show a wide field of view. A plane mirror gives an upright image of the same size as the object. Use more than one observation when identifying a mirror: an upright image alone could come from any of these three. This is a comparison of image observations, not a task to focus sunlight or test mirrors on a road.
 
