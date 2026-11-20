@@ -6,25 +6,29 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ### Think it through
 
-A mixture contains substances physically combined. Choose a separation method using a property that differs between them. A suitable filter can trap sand from water, but dissolved salt travels through with the water. Explain why the method fits this mixture rather than saying filtering removes everything.
+Imagine a mixture of sand, dissolved salt and water. A suitable filter traps the insoluble sand, but the salt stays dissolved in the water that passes through. The clear filtrate is still a mixture: looking clear does not prove that it is a pure substance.
+
+If the aim is to recover salt, water can be removed by evaporation, leaving the salt. That step does not collect the water; recovering water as well needs a method that collects its vapour and condenses it. Choose each step for a physical difference and name what it recovers. Treat this as a paper reasoning example, not an instruction to heat mixtures at home; any practical work needs the teacher's approved setup and supervision.
 
 ### Try it yourself
 
-Why can filtering remove sand from water but not ordinary dissolved salt?
+A student filters salty water containing sand and calls the clear liquid "pure water". Explain the mistake. If the only goal is to obtain the sand, is evaporating that liquid necessary?
 
-**Check:** Sand particles are trapped by a suitable filter; dissolved salt passes through with the water.
+**Check:** Dissolved salt passes through with the water, so the filtrate is not pure water. The filter has already separated the sand; evaporating the filtrate is not needed just to obtain sand.
 
 ## 2. Elements and compounds
 
 ### Think it through
 
-An element contains one kind of atom. A compound has elements chemically combined in a fixed composition. Water is a compound of hydrogen and oxygen, not an element. Compare what the substance is made of with whether its components are merely mixed or chemically combined.
+Count kinds of atoms, not just the number of atoms in a particle. Oxygen gas contains molecules made of two oxygen atoms, but only one kind of atom, so oxygen is an element. A water molecule contains hydrogen and oxygen atoms chemically combined in a fixed ratio, so water is a compound. Having two atoms does not by itself make something a compound.
+
+A mixture is different again: salt dissolved in water contains physically mixed substances. Evaporating the water can separate salt from that mixture, but it does not split the salt itself into its constituent elements. Likewise, boiling water changes its state; it does not turn it into hydrogen and oxygen. These distinctions concern composition, not whether a sample looks clean.
 
 ### Try it yourself
 
-Is water an element?
+Classify each description and give a reason: (a) a pure gas whose molecules each contain two nitrogen atoms; (b) a pure substance whose particles contain carbon and oxygen chemically combined in a fixed ratio; (c) water with dissolved sugar. Does boiling (c) to remove water split the sugar into its elements?
 
-**Check:** No. It is a compound of hydrogen and oxygen.
+**Check:** (a) Element: one kind of atom. (b) Compound: different elements chemically combined in a fixed ratio. (c) Mixture: sugar and water are physically mixed. Removing water is a physical separation, not decomposition of sugar into its elements.
 
 ## 3. Pure substances and mixtures
 

@@ -12,13 +12,15 @@ Cognito
 
 ### Understand it
 
-Pressure tells you how a perpendicular force is spread over an area: pressure = perpendicular force ÷ area. With the same perpendicular force, a smaller contact area means greater pressure. For 20 N over 0.5 m², the pressure is 40 N/m², or 40 Pa. Keep force and pressure separate in your explanation.
+Pressure = perpendicular force ÷ contact area. Compare a 60 N force spread over 0.30 m² with the same force over 0.10 m². The pressures are 60/0.30 = 200 Pa and 60/0.10 = 600 Pa. The force has not increased: reducing the area to one-third has made the pressure three times as large. A wider bag strap can reduce pressure without reducing the bag's weight.
+
+Do not compare areas alone when the forces also change. A 120 N force on 0.60 m² gives 200 Pa, the same pressure as 60 N on 0.30 m². Doubling both force and area leaves their ratio unchanged. Use force in newtons and area in square metres to obtain pascals.
 
 ### Try it yourself
 
-A perpendicular force of 20 N acts on 0.5 m². Find the pressure.
+Two pads support separate loads. Pad A has 90 N acting perpendicularly over 0.30 m²; pad B has 120 N over 0.60 m². Which pad has greater pressure? Does the greater force necessarily mean greater pressure?
 
-**Check:** 40 Pa.
+**Check:** A: 90/0.30 = 300 Pa. B: 120/0.60 = 200 Pa. A has the greater pressure despite the smaller force. Both force and area matter.
 
 ## 2. Air pressure and winds
 

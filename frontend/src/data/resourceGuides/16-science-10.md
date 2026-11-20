@@ -12,13 +12,15 @@ Cyberphysics
 
 ### Understand it
 
-A plane mirror reflects light: the angle of incidence equals the angle of reflection. Measure both angles from the normal, a line perpendicular to the mirror. If the incident ray makes 35° with the normal, the reflected ray does too. Draw the normal before measuring any angle.
+First draw the normal, a line perpendicular to the mirror at the point where the ray strikes. The angle of incidence and angle of reflection are both measured from this normal, not from the mirror surface. For a ray at 30° to the mirror surface, the angle of incidence is 90° - 30° = 60°. The reflected ray is also at 60° to the normal, or 30° to the surface.
+
+This does not mean the two rays travel in the same direction. The incident ray points towards the mirror and the reflected ray points away, on the other side of the normal in the usual diagram. At normal incidence, the incident ray is along the normal: both angles are 0°, and the reflected ray returns along the same line.
 
 ### Try it yourself
 
-If the angle of incidence is 35°, what is the angle of reflection?
+An incident ray makes 25° with a plane mirror's surface. Find its angle of incidence and its angle of reflection. A student answers 25° for both. What reference line did the student use incorrectly?
 
-**Check:** 35°, measured from the normal.
+**Check:** Both angles are 65°, since 90° - 25° = 65°. The student measured from the mirror surface instead of from the normal. The reflected ray makes 25° with the surface.
 
 ## 2. Concave and convex mirrors
 
@@ -30,13 +32,15 @@ uclaphysicsvideo
 
 ### Understand it
 
-Watch the image demonstrations only. Do not try focusing sunlight or making a heating experiment with a mirror. A concave mirror curves inward and a convex mirror curves outward. Their ray behaviour differs, and a concave mirror's image can change when you move the object. Do not memorise 'concave means magnified': sketch the mirror and label the object's position before discussing the image.
+Watch the image demonstrations only. Do not try focusing sunlight or making a heating experiment with a mirror. A concave mirror curves inward; a convex mirror curves outward. For an ordinary object in front of a concave mirror, bringing it sufficiently close can give an upright, enlarged image. Moving it farther away can give an inverted image, whose size also depends on the distance. That is why "concave always means magnified and upright" is not a valid rule.
+
+A convex mirror gives an upright, diminished image of an ordinary object in front of it, and can show a wide field of view. A plane mirror gives an upright image of the same size as the object. Use more than one observation when identifying a mirror: an upright image alone could come from any of these three. This is a comparison of image observations, not a task to focus sunlight or test mirrors on a road.
 
 ### Try it yourself
 
-Does a concave mirror always give a magnified upright image?
+Three mirrors show these observations: A gives an upright image of the same size; B gives an upright, smaller image and a wide view; C gives an upright enlarged image nearby, but an inverted image farther away. Match A, B and C to plane, convex and concave mirrors. Why would "upright image" alone be insufficient?
 
-**Check:** No. The image depends on object position.
+**Check:** A is plane, B is convex, and C is concave. All three can show an upright image in the stated situations, so orientation alone cannot identify the mirror. Size and change with object position supply the extra evidence.
 
 ## 3. Refraction and lenses
 
