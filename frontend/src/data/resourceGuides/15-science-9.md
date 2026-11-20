@@ -10,21 +10,27 @@ In salt water, salt is the solute, water is the solvent, and the mixture is a so
 
 ### Try it yourself
 
-In a simple salt-water solution, identify solute and solvent.
+A spoonful of salt dissolves completely in water. What are the solute, solvent and solution, and has the salt stopped existing?
 
-**Check:** Salt is the solute; water is the solvent.
+**Check:** Salt is the solute, water is the solvent, and salt water is the solution. The salt is still present, spread through the water.
 
 ## 2. Saturation and solubility
 
-### Think it through
+### Watch: solutions tutorial - unsaturated, saturated, supersaturated
 
-A saturated solution has reached its dissolving limit for a stated temperature and amount of solvent. Adding more solute after that can leave some undissolved. When comparing solutions, state those conditions so you do not confuse more dissolved material with more material simply sitting at the bottom.
+Ms. Heather Moser
+
+[Open the video](https://www.youtube.com/watch?v=JQRIlS9lNdg)
+
+### Understand it
+
+Focus on the first comparison of unsaturated and saturated solutions. The later supersaturation example is an extension, not needed for this check. A saturated solution has reached its dissolving limit for a stated temperature and amount of solvent. It can still look clear: undissolved material appears only if extra solute is present. More stirring does not make that extra solute dissolve once the limit is reached without changing the conditions.
 
 ### Try it yourself
 
-Can adding more solute always produce a more concentrated solution?
+Two clear sugar solutions look alike. Can you tell just by looking which is saturated? Explain how you could compare them without heating anything.
 
-**Check:** No. Once saturated under the stated conditions, extra solute can remain undissolved.
+**Check:** Not by appearance alone. Under the same conditions, add a little more sugar and allow time for stirring. A solution that can dissolve more is unsaturated; at the limit, extra sugar remains undissolved. Do not taste laboratory solutions.
 
 ## 3. Temperature and dissolved gases
 
@@ -34,9 +40,9 @@ Do not use one temperature rule for every substance. Dissolved gases commonly be
 
 ### Try it yourself
 
-Why should you be cautious about claiming all substances dissolve better in warmer water?
+A claim says warming water must let it hold more of every dissolved substance. Use dissolved gases to challenge the claim, and name one condition a fair comparison must keep the same.
 
-**Check:** Solubility depends on the substance; dissolved gases commonly become less soluble as water warms.
+**Check:** Dissolved gases commonly become less soluble as water warms, so the claim is too broad. Compare the same gas and amount of water at the same pressure; change only the temperature. Dissolving faster is also not the same as a larger final dissolving limit.
 
 ## 4. Density, floating and sinking
 

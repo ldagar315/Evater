@@ -1,6 +1,6 @@
 # Class 8 Maths: Number Play - Watch, Understand and Practise
 
-Pick one topic. Use the video where shown, read the short explanation, then try the question before checking your answer. These four topics are a starting point; use your textbook for the rest of the chapter.
+Pick one topic. Use the video where shown, read the short explanation, then try the question before checking your answer. These seven topics are a starting point; use your textbook for the rest of the chapter.
 
 ## 1. Multiples and algebraic descriptions
 
@@ -54,13 +54,49 @@ Is every number divisible by 4 and 6 also divisible by 24?
 
 ### Think it through
 
-Treat a hidden digit as an unknown with only ten possible values: 0 to 9. In 42x, divisibility by 3 means 4 + 2 + x is divisible by 3. Try the allowed digits, then check the complete number. A restriction on the digit sum narrows the choices without guessing blindly.
+In a letter-digit puzzle, the same letter keeps the same digit, different letters use different digits, and the first digit of a multi-digit number cannot be zero. For AB + BA = 99, write AB as 10A + B, not A multiplied by B. The sum is 11(A + B), so A + B = 9. More than one pair can work; the equation alone does not force a unique answer.
 
 ### Try it yourself
 
-Which digits can replace x in 42x if the number is divisible by 3?
+Give two different assignments for A and B that satisfy AB + BA = 99. Can A be zero?
 
-**Check:** 0, 3, 6 or 9, since 4 + 2 + x must be divisible by 3.
+**Check:** A = 2, B = 7 gives 27 + 72 = 99. A = 4, B = 5 gives 45 + 54 = 99. A cannot be zero because AB is a two-digit number. B cannot be zero either because BA is also two-digit.
+
+## 5. Consecutive numbers and parity
+
+### Think it through
+
+Four consecutive integers contain two odd and two even numbers. Their sum is even. Replacing a +n term with -n changes the result by -2n, an even number, so changing plus and minus signs does not change that parity. You can explain every sign choice without calculating each one. This is a proof about parity, not a claim that every sign choice gives the same value.
+
+### Try it yourself
+
+Without evaluating it first, decide whether 23 - 24 + 25 - 26 is odd or even. Then calculate to check.
+
+**Check:** It must be even. Its value is -2. Negative integers can be even too, because -2 is twice an integer.
+
+## 6. Remainders as algebra
+
+### Think it through
+
+A whole number that leaves remainder 5 when divided by 7 can be written 7a + 5, where a is a whole number. Another with remainder 4 is 7b + 4. Their sum is 7(a + b) + 9 = 7(a + b + 1) + 2. The remainder is 2, not 9: a remainder after division by 7 must be smaller than 7.
+
+### Try it yourself
+
+47 and 25 leave remainders 5 and 4 when divided by 7. Predict the remainder of their sum, then check by division.
+
+**Check:** The remainder is 2. The sum is 72 = 7 × 10 + 2. The extra group of 7 must be included before naming the remainder.
+
+## 7. Digital roots: a check, not a proof
+
+### Think it through
+
+For a positive whole number, repeatedly add its decimal digits until one digit remains. This is its digital root. A multiple of 9 has digital root 9, not 0. Digital roots can expose some arithmetic mistakes, but two different numbers can have the same digital root. Passing the check does not prove a calculation is right.
+
+### Try it yourself
+
+Someone gives 1,297 as the answer to 46 × 28. Check the digital roots, then multiply. Does the digital-root check catch this error?
+
+**Check:** 46 and 28 each have digital root 1, so their product should also have digital root 1. Both 1,297 and the correct answer, 1,288, have digital root 1. The check misses this error because the two answers differ by 9.
 
 ## Your five-minute revision
 
