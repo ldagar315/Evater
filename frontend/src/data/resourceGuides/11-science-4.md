@@ -4,9 +4,15 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Cells, circuits and current
 
-### Think it through
+### Watch: Simple Circuits
 
-A simple cell-powered circuit needs a complete conducting path for current. In a voltaic cell, chemical reactions involving two different electrodes and an electrolyte supply electrical energy. The cell is a source of energy, not a container that simply stores current. Trace a path from one cell terminal, through the components, and back to the other terminal. If a wire or switch breaks that path, the bulb will not light. Match a circuit diagram's symbols to the actual parts.
+FuseSchool - Global Education
+
+[Open the video](https://www.youtube.com/watch?v=Ij4dVhprZlw)
+
+### Understand it
+
+Focus on the cell, switch, lamp and complete loop in the video; its ammeter and voltmeter details are extra. A simple cell-powered circuit needs a complete conducting path for current. In a voltaic cell, chemical reactions involving two different electrodes and an electrolyte supply electrical energy. The cell is a source of energy, not a container that simply stores current. Trace a path from one cell terminal, through the components, and back to the other terminal. If a wire or switch breaks that path, the bulb will not light. Match a circuit diagram's symbols to the actual parts.
 
 ### Try it yourself
 
@@ -16,9 +22,15 @@ Will a bulb in a simple circuit light if the conducting path is broken?
 
 ## 2. Magnetic effect of electric current
 
-### Think it through
+### Watch: How does an Electromagnet Work?
 
-A current-carrying wire produces a magnetic field and can affect a nearby compass. Draw the wire and compass as separate objects, then describe what changes when the current is switched. Keep the direction of current separate from the names of a magnet's north and south poles.
+Science Buddies
+
+[Open the video](https://www.youtube.com/watch?v=cxELqN7wjS0)
+
+### Understand it
+
+Watch the compass demonstration, not an activity to copy: the paper electromagnet shown can overheat and catch fire. A current-carrying wire produces a magnetic field and can affect a nearby compass. Draw the wire and compass as separate objects, then describe what changes when the current is switched. Keep the direction of current separate from the names of a magnet's north and south poles.
 
 ### Try it yourself
 
@@ -28,9 +40,15 @@ Can a current-carrying wire affect a nearby compass?
 
 ## 3. Electromagnets and their uses
 
-### Think it through
+### Watch: How does an Electromagnet Work?
 
-A coil carrying current can make a temporary magnet, often strengthened with a suitable iron core. Switching the current can control the magnetic effect, which makes electromagnets useful in devices. Explain the chain from current to magnetic effect to the device's movement.
+Science Buddies
+
+[Open the video](https://www.youtube.com/watch?v=cxELqN7wjS0)
+
+### Understand it
+
+Focus on why the iron core strengthens the coil and why switching the current changes the effect. Watch only; do not copy the paper electromagnet, and disconnect school equipment as your teacher directs to prevent overheating. A coil carrying current can make a temporary magnet, often strengthened with a suitable iron core. Switching the current can control the magnetic effect, which makes electromagnets useful in devices. Explain the chain from current to magnetic effect to the device's movement.
 
 ### Try it yourself
 

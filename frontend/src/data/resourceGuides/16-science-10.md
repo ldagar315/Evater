@@ -22,9 +22,15 @@ If the angle of incidence is 35°, what is the angle of reflection?
 
 ## 2. Concave and convex mirrors
 
-### Think it through
+### Watch: Concave and Convex Mirrors
 
-A concave mirror curves inward and a convex mirror curves outward. Their ray behaviour differs, and a concave mirror's image can change when you move the object. Do not memorise 'concave means magnified': sketch the mirror and label the object's position before discussing the image.
+uclaphysicsvideo
+
+[Open the video](https://www.youtube.com/watch?v=jtTBOMVMSYM)
+
+### Understand it
+
+Watch the image demonstrations only. Do not try focusing sunlight or making a heating experiment with a mirror. A concave mirror curves inward and a convex mirror curves outward. Their ray behaviour differs, and a concave mirror's image can change when you move the object. Do not memorise 'concave means magnified': sketch the mirror and label the object's position before discussing the image.
 
 ### Try it yourself
 

@@ -4,9 +4,15 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Cells and the microscope
 
-### Think it through
+### Watch: Microscopes and How to Use a Light Microscope
 
-A microscope reveals structures too small to see clearly with the naked eye. A cell is the basic structural and functional unit of living organisms. A labelled cell diagram is a simplified model: real cells vary, and a diagram is not a photograph of every cell. 
+Amoeba Sisters
+
+[Open the video](https://www.youtube.com/watch?v=tVcEEw6qbBQ)
+
+### Understand it
+
+Focus on why magnification and resolution both matter; the video also introduces microscope types beyond this lesson. Watch its slide preparation as a demonstration, and use only teacher-prepared slides for your own work. A microscope reveals structures too small to see clearly with the naked eye. A cell is the basic structural and functional unit of living organisms. A labelled cell diagram is a simplified model: real cells vary, and a diagram is not a photograph of every cell.
 
 Typical plant cells have a cell wall outside the membrane; green plant cells also contain chloroplasts. Animal cells do not have a cell wall or chloroplasts. Typical plant and animal cells have a membrane, cytoplasm and a nucleus. Bacterial cells differ: they do not have a well-defined nucleus. 
 
@@ -20,9 +26,15 @@ A drawing shows a membrane, a cell wall and chloroplasts. Is it more consistent 
 
 ## 2. Levels of organisation
 
-### Think it through
+### Watch: Biological Levels in Biology: The World Tour
 
-Follow the levels from small to large: cells form tissues, tissues work together in organs, and organs work together in organ systems. The organism is the whole living individual. At each arrow, explain what is being grouped and how the parts work together, rather than only reciting the names.
+Amoeba Sisters
+
+[Open the video](https://www.youtube.com/watch?v=EtWknf1gzKo)
+
+### Understand it
+
+Focus on the video from cells to the whole organism; its later ecosystem levels are an extension. Follow the levels from small to large: cells form tissues, tissues work together in organs, and organs work together in organ systems. The organism is the whole living individual. At each arrow, explain what is being grouped and how the parts work together, rather than only reciting the names.
 
 ### Try it yourself
 
