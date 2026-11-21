@@ -12,13 +12,15 @@ Khan Academy
 
 ### Understand it
 
-A scale is a ratio between a drawing length and the corresponding real length. At 1 : 50,000, 1 cm represents 50,000 cm. For 3 cm, multiply to get 150,000 cm, then convert to 1.5 km. The video uses scale drawings; a map scale works the same way. Keep both units labelled and visible until the final conversion.
+A scale compares a drawing length with the corresponding real length in the same units. At 1 : 50,000, 3 cm represents 3 × 50,000 = 150,000 cm = 1.5 km. The scale is not 50,000 km per centimetre: convert units only after applying the ratio. Measuring a straight line between places gives their map-based geographical distance, not the length of a road route.
+
+You can reverse the calculation. A real distance of 2 km is 200,000 cm, so it measures 200,000 ÷ 50,000 = 4 cm on this map. If a map is enlarged, its printed numerical scale no longer applies unless it is adjusted too.
 
 ### Try it yourself
 
-At 1:50,000 scale, what real distance does 3 cm represent?
+At a scale of 1 : 80,000, two places are 4.5 cm apart on the map. Find their real straight-line distance in kilometres. Would a winding road between them necessarily have that length?
 
-**Check:** 150,000 cm = 1.5 km.
+**Check:** 4.5 × 80,000 = 360,000 cm = 3.6 km. This is the straight-line map distance, not a road-distance promise. A winding route can be longer.
 
 ## 2. Ratios with three or more terms
 
@@ -30,13 +32,15 @@ corbettmaths
 
 ### Understand it
 
-For three-part sharing, add every ratio term before finding one part. In 2 : 3 : 5 there are 10 parts, so sharing 120 gives 12 per part and shares of 24, 36 and 60. Multiply every term by the same scale factor and check that the shares add to the total.
+For three-part sharing, add all the ratio terms before finding one part. Sharing 120 in the ratio 2 : 3 : 5 gives 10 parts, so one part is 120 ÷ 10 = 12 and the shares are 24, 36 and 60. Check both the total and the ratio. Dividing by 3 just because there are three recipients would give equal shares, not the stated ratio.
+
+A different instruction needs a different starting point. If only the middle share in 2 : 3 : 5 is given as 18, then 3 parts = 18, one part = 6, and the shares are 12, 18 and 30. Here 18 is not the total.
 
 ### Try it yourself
 
-Share 120 in the ratio 2:3:5.
+Share 180 minutes among planning, making and checking in the ratio 2 : 3 : 4. Then consider a separate session with the same ratio where making takes 45 minutes. What is that session's total length?
 
-**Check:** 24, 36 and 60.
+**Check:** The first session has 9 parts of 20 minutes: 40, 60 and 80 minutes. In the separate session, 3 parts = 45, so one part = 15 and the total is 9 × 15 = 135 minutes. The shares are 30, 45 and 60 minutes.
 
 ## 3. Pie charts and proportional angles
 
@@ -48,13 +52,15 @@ Khan Academy
 
 ### Understand it
 
-A whole pie chart is 360°. A sector's share of the total is its angle divided by 360°. To draw a sector for 25%, calculate 25/100 × 360° = 90°. The video focuses on reading pie charts, so practise the drawing direction yourself: pick a percentage, turn it into an angle, then check that the angle divided by 360° returns your fraction.
+A pie chart divides a whole into non-overlapping categories. Every item must be counted once, and all categories together must cover the whole. A sector angle is its count divided by the total count, multiplied by 360°. Thus 25% gives 25/100 × 360° = 90°. For counts 12, 10, 8, 6 and 4, the total is 40, not 100; divide each count by 40.
+
+The reverse check matters too: angle ÷ 360° gives the fraction of the whole. A 72° sector is 1/5 of the total, not 72% of it. Before drawing, check that all sector angles add to 360°; before reading a count, find the total number of items.
 
 ### Try it yourself
 
-What sector angle represents 25% of a class?
+A class of 30 students each chooses one favourite activity. Twelve choose art, nine choose games and the rest choose music. Find all three sector angles. What count would a 72° sector represent in this class?
 
-**Check:** 90°.
+**Check:** Music has 30 - 12 - 9 = 9 students. The angles are 144°, 108° and 108°, which add to 360°. A 72° sector represents 72/360 × 30 = 6 students, not 72 students or 72%.
 
 ## 4. Direct and inverse proportion
 
@@ -66,13 +72,15 @@ BBC Bitesize - GCSE Revision Support
 
 ### Understand it
 
-In direct proportion, one quantity divided by the other stays constant. In inverse proportion, their product stays constant. For a fixed job, doubling equally productive workers can halve the time, but only if the work can be shared without new delays. List a small table of workers and days first, check that the product stays constant, and state that assumption before using the model.
+In direct proportion, the ratio between corresponding quantities stays constant. In inverse proportion, their product stays constant. For a fixed job, 4 equally productive workers taking 6 days gives 24 worker-days. Eight workers would need 24 ÷ 8 = 3 days, but only if the work can be shared without extra delays and each worker keeps the same daily productivity.
+
+One quantity increasing while the other decreases does not prove inverse proportion. Pairs (2, 10), (4, 8) and (6, 6) have a decreasing second quantity but products 20, 32 and 36, so they are not inversely proportional. Test the constant product instead of using the direction of change alone.
 
 ### Try it yourself
 
-If 4 equally productive workers need 6 days, how long would 8 need for the same work?
+Six identical pumps fill a fixed tank in 8 hours. Under an ideal model with constant independent flow and no leaks, how long would four pumps take? A student says 6 hours because two fewer pumps means two fewer hours. Explain why that cannot be right.
 
-**Check:** 3 days, assuming the same productivity and no other constraints.
+**Check:** The fixed tank needs 6 × 8 = 48 pump-hours, so four pumps need 48 ÷ 4 = 12 hours. Fewer pumps must take longer under these assumptions. Subtracting the same number from both quantities does not preserve their product.
 
 ## Your five-minute revision
 
