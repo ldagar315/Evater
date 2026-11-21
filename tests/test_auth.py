@@ -70,13 +70,13 @@ def test_ws_accepts_with_token(monkeypatch):
 def test_rest_routes_require_auth():
     client = TestClient(app)
 
-    resp = client.post("/api/gen_question", json={})
+    resp = client.post("/api/gen_question", json={}, headers={"X-Evater-Client": "web/2"})
     assert resp.status_code == 401
 
-    resp = client.post("/api/gen_answer", json={})
+    resp = client.post("/api/gen_answer", json={}, headers={"X-Evater-Client": "web/2"})
     assert resp.status_code == 401
 
-    resp = client.post("/api/gen_feedback_direct", json={})
+    resp = client.post("/api/gen_feedback_direct", json={}, headers={"X-Evater-Client": "web/2"})
     assert resp.status_code == 401
 
 
@@ -133,6 +133,24 @@ def test_gen_question_happy_path(monkeypatch):
     app.dependency_overrides[require_user] = _stub_require_user
     monkeypatch.setattr(supabase_client_module, "create_supabase_client", _stub_create_supabase_client)
     monkeypatch.setattr(services_module, "get_chapter_summary", _stub_get_chapter_summary)
+
+    # Key-store write at the response boundary (integrity fix).
+    from app.routers import test_router as test_router_module
+
+    class _StubKeysTable:
+        def insert(self, row):
+            assert row["user_id"] == "user_123"
+            return self
+
+        def execute(self):
+            return SimpleNamespace(data=[{"id": "12345678-1234-5678-1234-567812345678"}])
+
+    class _StubServiceClient:
+        def table(self, name):
+            assert name == "generated_test_keys"
+            return _StubKeysTable()
+
+    monkeypatch.setattr(test_router_module, "create_supabase_service_client", lambda: _StubServiceClient())
     monkeypatch.setattr(dspy_modules_module, "result_distribution", _stub_result_distribution)
     monkeypatch.setattr(dspy_modules_module, "result_distribution_mcq", _stub_result_distribution)
     monkeypatch.setattr(dspy_modules_module, "result_distribution_subjective", _stub_result_distribution)
@@ -149,11 +167,12 @@ def test_gen_question_happy_path(monkeypatch):
             "test_type": "mixed",
             "special_instructions": [],
         }
-        resp = client.post("/api/gen_question", json=payload)
+        resp = client.post("/api/gen_question", json=payload, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 200
         body = resp.json()
         assert "questions" in body
         assert body["questions"][0]["maximum_marks"] == 1
+        assert body["key_id"] == "12345678-1234-5678-1234-567812345678"
     finally:
         app.dependency_overrides.clear()
 
@@ -216,7 +235,7 @@ def test_gen_answer_happy_path(monkeypatch):
                 "questions": [
                     {
                         "question_text": "2+2?",
-                        "question_type": "mcq_single",
+                        "question_type": "short_answer",
                         "difficulty": "Easy",
                         "question_number": 1,
                         "options": None,
@@ -226,7 +245,7 @@ def test_gen_answer_happy_path(monkeypatch):
                 ]
             },
         }
-        resp = client.post("/api/gen_answer", json=payload)
+        resp = client.post("/api/gen_answer", json=payload, headers={"X-Evater-Client": "web/2"})
         assert resp.status_code == 200
         merged = resp.json()["merged"]
         assert merged[0]["question_number"] == 1

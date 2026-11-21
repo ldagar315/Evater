@@ -8,6 +8,7 @@ import { useAuthContext } from '../contexts/AuthContext'
 import { useAppState } from '../contexts/AppStateContext'
 import { supabase } from '../lib/supabase'
 import { apiFetch, externalApiUrl } from '../lib/api'
+import { CLIENT_VERSION, unwrapTestQuestions } from '../lib/testQuestions'
 import { QuestionsCreated, FeedbackResponse } from '../types'
 
 interface ApiFeedbackResponse {
@@ -156,7 +157,8 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
       image_url: imageUrls,  // List[str]
       questions: {           // Dict[str, Any]
         questions: questions // The actual questions array goes here
-      }
+      },
+      test_id: parseInt(testId!)  // server hydrates questions+keys when set
     }
 
     console.log('API Payload:', JSON.stringify(payload, null, 2))
@@ -167,6 +169,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Evater-Client': CLIENT_VERSION,
       },
       body: JSON.stringify(payload)
     })
@@ -228,7 +231,7 @@ const getSignedUrl = async (bucket: string, path: string): Promise<string> => {
       }
 
       // Prepare questions as an array (not dictionary)
-      const questionsArray = Array.isArray(test.test) ? test.test : []
+      const questionsArray = unwrapTestQuestions(test.test)
       
       // Ensure each question has the required fields for the backend Question model
       // IMPORTANT: Capitalize the difficulty field to match backend expectations
