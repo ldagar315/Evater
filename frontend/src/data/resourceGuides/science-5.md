@@ -26,13 +26,15 @@ The Physics Classroom
 
 ### Understand it
 
-Some forces need contact: a hand pushes a door, a table supports a book, and friction acts between touching surfaces. Gravity, magnetic forces and electrostatic forces can act without direct contact. The video uses extra names such as normal force and tension; focus first on what exerts each force and whether the objects touch.
+A contact force needs touching surfaces at the interaction being described: a hand pushes a door, a rope pulls a bucket, and a table supports a book. The person need not touch the bucket directly; the rope transmits the pull through contact. Gravity, magnetic forces and electrostatic forces can act without direct contact between the objects. The video's extra names, such as normal force and tension, are not needed to make this distinction.
+
+One object can experience several forces at once. A book resting on a table has Earth's downward gravitational pull and the table's upward contact force. Being at rest does not mean no forces act. Name the object receiving the force, what exerts it and the direction before classifying the interaction.
 
 ### Try it yourself
 
-Classify these: a stretched rope pulling a bucket, Earth pulling a falling leaf, and a magnet attracting a paper clip before they touch. Draw one force arrow for each.
+A steel paper clip hangs at rest from a thread. A nearby magnet pulls it sideways without touching it. Classify the pull from the thread, the pull from Earth and the pull from the magnet. A student says the thread's pull is non-contact because the person's hand does not touch the clip. What is wrong with that explanation?
 
-**Check:** The rope's pull is a contact force. Gravity and the magnetic force are non-contact forces. Point each arrow in the direction of the pull on the object you chose.
+**Check:** The thread's pull is a contact force where thread and clip touch. Earth's gravitational pull and the magnet's pull are non-contact forces. Classify the actual interacting pair, not whether a distant person's hand touches the clip. Several forces can act even while the clip is at rest.
 
 ## 3. Why friction matters
 
@@ -44,15 +46,15 @@ SciShow Kids / Complexly
 
 ### Understand it
 
-Friction acts between touching surfaces and resists their relative sliding or tendency to slide. It can slow a sliding book, but it also gives your shoes grip while you walk. The video introduces the idea through simple examples; now practise explaining the direction of friction.
+Friction acts between touching surfaces and resists their relative sliding or tendency to slide. A book sliding to the right on a stationary table experiences friction to the left. If it slides to the left on that table, friction on the book is to the right. Choose the object and the two surfaces before drawing the arrow. Friction is not always a fixed leftward force, and it can help provide grip as well as slow sliding.
 
-With an adult or teacher, gently slide a closed book across two dry, stable surfaces. Compare how quickly it slows. Keep the demonstration small: do not run or slide on wet floors or plastic sheets. Roughness is a useful first model, not a rule that every smoother surface always has less friction.
+With an adult or teacher, gently slide a closed book across two dry, stable surfaces. A fair comparison needs the same book and a similar starting speed, not a much stronger push on one surface. Compare several trials. Keep the demonstration small: do not run or slide on wet floors or plastic sheets. Roughness is a useful first model, not a rule that every smoother surface always has less friction.
 
 ### Try it yourself
 
-A book slides to the right across a table. Which way does friction act on the book? Why would a world with no friction make walking difficult?
+A block is already sliding left across a stationary tabletop. A hand starts pushing it right, but the block is still sliding left at the moment considered. Which way does the table's friction act on the block? If it later slides right, what changes? Would comparing one gentle push with one hard push fairly isolate the effect of surface type?
 
-**Check:** Friction acts to the left on the sliding book. Walking needs grip between your foot and the ground. Remember: friction can help us as well as slow things down.
+**Check:** While the block slides left relative to the table, friction on it acts right, in this case the same direction as the hand's push. If it later slides right, friction acts left. Friction opposes relative sliding, not automatically the applied push. Different starting pushes or speeds would add another changing factor, so that comparison would not isolate surface type.
 
 ## 4. Mass, weight and floating
 
