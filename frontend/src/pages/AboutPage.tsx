@@ -15,7 +15,7 @@ import { useAuthContext } from '../contexts/AuthContext'
 const faqs = [
   {
     question: 'Who is Evater for?',
-    answer: 'Evater is designed for students in Classes 6–10 who want a focused place to practise, understand mistakes, and build confidence across their subjects.',
+    answer: 'Chapter practice currently covers Class 8 Maths and Science. Evater is being built for students in Classes 6–10 who want a focused place to practise, understand mistakes, and build confidence across their subjects.',
   },
   {
     question: 'What makes Evater different from a question bank?',
@@ -27,7 +27,7 @@ const faqs = [
   },
 ]
 
-const aboutDescription = 'Learn how Evater helps students in Classes 6–10 practise with purpose, understand mistakes, and improve through better feedback.'
+const aboutDescription = 'Learn how Evater helps Class 8 students practise Maths and Science, understand mistakes, and improve through better feedback.'
 
 export function AboutPage() {
   const { user } = useAuthContext()
@@ -70,11 +70,11 @@ export function AboutPage() {
   return (
     <div className="min-h-screen bg-cream font-sans">
       <Seo
-        title="About Evater | Feedback-first learning for Classes 6–10"
+        title="About Evater | Feedback-first learning"
         description={aboutDescription}
         path="/about"
         jsonLd={aboutSchema}
-        keywords={['about Evater', 'feedback-first learning', 'Class 6-10 practice', 'student learning platform']}
+        keywords={['about Evater', 'feedback-first learning', 'Class 8 practice', 'student learning platform']}
       />
       <Header />
 
@@ -91,7 +91,7 @@ export function AboutPage() {
                 Practice should tell you what to do next.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-primary-50/75 sm:text-lg">
-                Evater is a feedback-first learning workspace for Classes 6–10. It helps students move from attempting questions to understanding mistakes and choosing a better next step.
+                Evater is a feedback-first learning workspace. Chapter practice currently covers Class 8 Maths and Science, helping students move from attempting questions to understanding mistakes and choosing a better next step.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link to={primaryPath} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">
