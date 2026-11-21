@@ -48,13 +48,15 @@ TED-Ed
 
 ### Understand it
 
-A positional base tells you how many smaller units make the next place. In base two, the places from right to left are 1, 2, 4 and 8. So 1011₂ means 1 × 8 + 0 × 4 + 1 × 2 + 1 × 1 = 11 in decimal. Each binary digit is 0 or 1.
+A positional base tells you how many units make the next place. In base two, the places from right to left are 1, 2, 4 and 8, and each digit is 0 or 1. Thus 1011₂ = 1 × 8 + 0 × 4 + 1 × 2 + 1 × 1 = 11 in decimal. The zero preserves the empty fours place; removing it changes the value.
+
+Regrouping works in twos, not tens. In 111₂ + 1₂, two ones become one two, two twos become one four, and two fours become one eight: the result is 1000₂. Check in decimal: 7 + 1 = 8. A digit 2 is not allowed in a binary numeral, even during your final answer.
 
 ### Try it yourself
 
-What is 1011 in base two worth in decimal?
+Convert 1101₂ to decimal. Then add 1₂ and write the answer in binary. A student writes 1102₂. Explain the mistake and check your answer in decimal.
 
-**Check:** 8 + 0 + 2 + 1 = 11.
+**Check:** 1101₂ = 8 + 4 + 0 + 1 = 13. Adding one gives 1110₂ = 14. The two ones must regroup as one two, so 1102₂ is not a valid binary numeral.
 
 ## 4. Comparing representations
 
@@ -66,13 +68,15 @@ Khan Academy
 
 ### Understand it
 
-Translate a number by adding its place values, then convert back to check. In base five, 23 means 2 × 5 + 3 = 13 in decimal. Each digit must be smaller than the base. The video shows a decimal-to-binary conversion; compare its grouping-by-two method with grouping by five.
+The same written digits can name different quantities when the base changes. In base five, 23₅ = 2 × 5 + 3 = 13 in decimal, but 23 in decimal is twenty-three. Label the base before comparing. Every digit must be smaller than its base: 24₅ is valid, whereas 25₅ is not a standard base-five numeral.
+
+To convert 17 from decimal to base five, group it into three fives and two ones: 32₅. Convert back to check: 3 × 5 + 2 = 17. The video uses grouping by two; grouping by five follows the same place-value idea, with places 1, 5, 25 and so on.
 
 ### Try it yourself
 
-What does 23 in base five mean in decimal?
+Are 31₅ and 10000₂ equal? Expand both into decimal to decide. Then explain why 31₂ is invalid rather than another way to write the same quantity.
 
-**Check:** 2 × 5 + 3 = 13. The digits must each be smaller than five.
+**Check:** 31₅ = 3 × 5 + 1 = 16, and 10000₂ = 1 × 16 = 16, so they are equal quantities. Binary allows only 0 and 1; the digit 3 makes 31₂ invalid.
 
 ## Your five-minute revision
 
