@@ -30,7 +30,7 @@ describe('six number representation force and solution transfers', () => {
   const laterVelocity = initialRightwardVelocity + (6 - 8) / mass * time
   expect(laterVelocity).toBeGreaterThan(0)
   expect(laterVelocity).toBeLessThan(initialRightwardVelocity)
-  for (const text of ['fictional cart constrained to a straight, level track', 'All horizontal forces are listed', 'first slows while still moving right', 'rather than instantly reversing', 'Do not perform a pushing experiment']) expect(block(forces, 1)).toContain(text)
+  for (const text of ['A nonzero net force changes motion', 'fictional cart constrained to a straight, level track', 'All horizontal forces are listed', 'first slows while still moving right', 'rather than instantly reversing', 'Do not perform a pushing experiment']) expect(block(forces, 1)).toContain(text)
  })
  it('balances a floating boat, retains upthrust on a sinking stone and separates mass from weight', () => {
   expect(12 - 12).toBe(0)
