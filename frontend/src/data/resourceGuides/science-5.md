@@ -4,7 +4,13 @@ Start with an everyday object. Ask what is pushing or pulling it, in which direc
 
 ## 1. What can a force do?
 
-### Think it through
+### Watch: Free-body diagrams and resultant forces
+
+Cognito
+
+[Open the video](https://www.youtube.com/watch?v=SYU1TKQru1c)
+
+### Understand it
 
 A push or pull can change an object's speed, direction or shape. But a force does not always make an object move: a book can stay still on a table because the downward pull of gravity is balanced by the table's upward support force.
 
