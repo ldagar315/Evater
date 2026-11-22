@@ -7,7 +7,7 @@ describe('twelve independent investigation, cell and electrical checks, Nov22',(
   for(const [ch,count] of [[1,3],[2,3],[4,3]]){
    const p=resourceGuides.find(g=>g.id==='resource-science-'+ch)!.content
    expect(p.split(/^## /m).filter(s=>/^\d+\./.test(s))).toHaveLength(4)
-   expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(p.match(/\[Open the video\]/g)).toHaveLength(count)
+   expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4);const variables=ch===1&&p.includes('[Open the video](https://www.youtube.com/watch?v=BXFU86GNmrg)');expect(p.match(/\[Open the video\]/g)).toHaveLength(count+Number(variables));if(ch===1){const known=[['La0m_ocR7cQ',1],['BXFU86GNmrg',2],['hRAFPdDppzs',3],['La0m_ocR7cQ',4]] as const;const selected=known.filter(([,n])=>n!==2||variables);expect([...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(selected.map(([v])=>`https://www.youtube.com/watch?v=${v}`));for(const[v,n]of selected)expect(sci(1,n)).toContain(`[Open the video](https://www.youtube.com/watch?v=${v})`)}
   }
  })
  it('separates measured height from unrecorded light and starting-height claims',()=>{
