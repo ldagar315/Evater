@@ -1,0 +1,12 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+const text=resourceGuides.find(p=>p.id==='resource-maths-5')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t))
+const dr=(n:number):number=>n<10?n:dr([...String(n)].reduce((s,d)=>s+Number(d),0))
+describe('digital-root missing-digit foundation video',()=>{
+ it('places one exact publisher video only in the seventh topic',()=>{const s=topics[6];expect(s).toContain('### Watch: Digital roots and a missing-digit trick');expect(s).toContain('Jefferson Lab');expect(s).toContain('[Open the video](https://www.youtube.com/watch?v=dTXMhOGI9Z8)');expect(s.match(/\[Open the video\]/g)).toHaveLength(1);expect(text.match(/dTXMhOGI9Z8/g)).toHaveLength(1);expect(s).toContain('### Understand it')})
+ it('retains the existing two videos, all seven checks and revision',()=>{expect([...text.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(['WC2puADmICM','znmPfDfsir8','dTXMhOGI9Z8'].map(id=>`https://www.youtube.com/watch?v=${id}`));expect(topics).toHaveLength(7);expect(text.match(/### Try it yourself/g)).toHaveLength(7);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(7);expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)')})
+ it('keeps the positive-difference and nonzero-missing-digit conditions plain',()=>{expect(topics[6]).toContain('two different rearrangements');expect(topics[6]).toContain('subtract the smaller number from the larger');expect(topics[6]).toContain('crossing out zero');for(let n=10001;n<10200;n++){const r=Number([...String(n)].reverse().join(''));if(r<10000||r===n)continue;const d=Math.abs(n-r);expect(d%9).toBe(0);expect(dr(d)).toBe(9);for(const c of String(d)){const digit=Number(c);if(digit===0)continue;const rest=String(d).replace(c,'');const missing=(9-dr(Number(rest)))%9||9;expect(missing).toBe(digit)}}})
+ it('distinguishes digital root9 from remainder0 and retains an arithmetic false positive',()=>{expect(dr(18)).toBe(9);expect(18%9).toBe(0);expect(dr(1297)).toBe(dr(1288));expect(46*28).toBe(1288);expect(1297).not.toBe(46*28);expect(topics[6]).toContain('Passing the check does not prove');expect(topics[6]).toContain('not proof that another calculation is correct')})
+ it('does not add research ledgers, transcripts or off-platform reading',()=>{expect(text).not.toMatch(/supporting evidence|transcript|playback verified|jlab\.org|lessonplanet\.com/i)})
+})
