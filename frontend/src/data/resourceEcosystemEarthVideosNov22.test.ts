@@ -52,8 +52,10 @@ describe('two source-fit ecosystem and Earth-system video placements', () => {
     const composition = content('resource-science-8').includes('[Open the video](https://www.youtube.com/watch?v=nUzOXy9V-K0)') ? 1 : 0
     const alloy = content('resource-science-8').includes('[Open the video](https://www.youtube.com/watch?v=KgUmNQD6m5Q)') ? 1 : 0
     const massWeight = content('resource-science-5').includes('[Open the video](https://www.youtube.com/watch?v=rFdbY_V7vIo)') ? 1 : 0
-    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation + area + binomial + force + composition + alloy + massWeight)
-    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation - area - binomial - force - composition - alloy - massWeight)
+    const pythagoras0 = content('resource-maths-9').includes("[Open the video](https://www.youtube.com/watch?v=UKaoHO4ClS4)") ? 1 : 0
+    const pythagoras1 = content('resource-maths-9').includes("[Open the video](https://www.youtube.com/watch?v=Eo04qjLRiSY)") ? 1 : 0
+    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation + area + binomial + force + composition + alloy + massWeight + pythagoras0 + pythagoras1)
+    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation - area - binomial - force - composition - alloy - massWeight - pythagoras0 - pythagoras1)
     for (const text of topics) expect((text.match(/\[Open the video\]/g) || []).length).toBeLessThanOrEqual(1)
   })
 })
