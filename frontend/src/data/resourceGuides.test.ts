@@ -6,7 +6,7 @@ import { youtubeVideoId } from '../components/blog/resourceVideo'
 
 type VideoSlot = readonly [videoId: string, topic: number, required: boolean]
 const knownVideoInventories: Record<string, readonly VideoSlot[]> = {
- 'resource-science-5': [["SYU1TKQru1c", 1, false], ["beo130kj9R4", 2, true], ["Ps90zArJEJY", 3, true]],
+ 'resource-science-5': [["SYU1TKQru1c", 1, false], ["beo130kj9R4", 2, true], ["Ps90zArJEJY", 3, true], ["rFdbY_V7vIo", 4, false]],
  'resource-maths-6': [["ZJA1qz4XovY", 1, true],["Xy8NKUoyy98", 2, false],["4GcNzvILqtM", 3, true]],
  'resource-maths-14': [['iNZZIb_-PA8',1,false],['hm17lVaor0Q',2,true],['loAA3TCNAvU',3,true],['loAA3TCNAvU',4,true]],
  'resource-science-12': [['P1X-WpfUvm4',1,true],['2lqhJNgn_Wg',2,false],['GK_vRtHJZu4',4,true]],
