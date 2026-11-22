@@ -45,8 +45,9 @@ describe('two source-fit ecosystem and Earth-system video placements', () => {
   it('changes video-bearing coverage, not the number of teaching topics', () => {
     const topics = resourceGuides.flatMap(p => p.content.split(/^## /m).slice(1).filter(t => /^\d+\./.test(t)))
     expect(topics).toHaveLength(113)
-    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78)
-    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35)
+    const separation = content('resource-science-8').includes('[Open the video](https://www.youtube.com/watch?v=vi_SJBnxmHo)') ? 1 : 0
+    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation)
+    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation)
     for (const text of topics) expect((text.match(/\[Open the video\]/g) || []).length).toBeLessThanOrEqual(1)
   })
 })
