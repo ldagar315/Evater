@@ -8,7 +8,7 @@ Start with an everyday object. Ask what is pushing or pulling it, in which direc
 
 A force is a push or pull arising from an interaction. It can change speed, direction or shape. A hand squeezing a sponge can change its shape; a sideways push on a moving ball can change its direction. Name both the object receiving the force and what exerts it.
 
-A force can act without changing motion. A book at rest has downward gravity from Earth and an upward support force from the table. These are balanced, not absent. In a straight-line cart model, zero net force means no change in velocity: a cart already moving can continue at the same speed and direction. A nonzero force changes motion; its direction is not automatically the direction the object is already moving.
+A force can act without changing motion. A book at rest has downward gravity from Earth and an upward support force from the table. These are balanced, not absent. In a straight-line cart model, zero net force means no change in velocity: a cart already moving can continue at the same speed and direction. A nonzero net force changes motion; its direction is not automatically the direction the object is already moving.
 
 ### Try it yourself
 
