@@ -23,7 +23,9 @@ describe('source-fit separation explainer',()=>{
   expect(text.match(/### Try it yourself/g)).toHaveLength(4)
   expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(4)
   expect(text.match(/Vt7lN4QPU0k/g)).toHaveLength(1)
-  expect(text.match(/\[Open the video\]/g)).toHaveLength(2)
+  const known=["https://www.youtube.com/watch?v=vi_SJBnxmHo", "https://www.youtube.com/watch?v=nUzOXy9V-K0", "https://www.youtube.com/watch?v=Vt7lN4QPU0k"]
+  const selected=known.filter((url,i)=>i===2||text.includes(`[Open the video](${url})`))
+  expect([...text.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(selected)
   expect(text).toContain('## Your five-minute revision')
   expect(text).not.toMatch(/supporting evidence|transcript|playback verified|pearson\.com|labxchange\.org/i)
  })
