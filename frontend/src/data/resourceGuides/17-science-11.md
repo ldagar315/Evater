@@ -4,7 +4,13 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Rotation, revolution and time
 
-### Think it through
+### Watch: Earth's rotation and revolution
+
+Crash Course Kids
+
+[Open the video](https://www.youtube.com/watch?v=l64YwNl1wr0)
+
+### Understand it
 
 Earth's rotation is its spin and gives the day-night cycle. Revolution is its motion around the Sun and is linked to the year. Draw separate arrows for those motions. A month is linked to the Moon's cycle; do not use one motion to explain all three time intervals.
 
