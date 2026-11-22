@@ -11,7 +11,7 @@ const knownVideoInventories: Record<string, readonly VideoSlot[]> = {
  'resource-maths-14': [['iNZZIb_-PA8',1,false],['hm17lVaor0Q',2,true],['loAA3TCNAvU',3,true],['loAA3TCNAvU',4,true]],
  'resource-science-12': [['P1X-WpfUvm4',1,true],['2lqhJNgn_Wg',2,false],['GK_vRtHJZu4',4,true]],
  'resource-science-13': [['Bsp5JYNMAQE',1,true],['o8K0RTYM6Mc',2,false]],
- 'resource-science-8': [["vi_SJBnxmHo", 1, false], ["nUzOXy9V-K0", 2, false], ["Vt7lN4QPU0k", 3, true]],
+ 'resource-science-8': [["vi_SJBnxmHo", 1, false], ["nUzOXy9V-K0", 2, false], ["Vt7lN4QPU0k", 3, true], ["KgUmNQD6m5Q", 4, false]],
 }
 const videoLink = (id: string) => `[Open the video](https://www.youtube.com/watch?v=${id})`
 const assertKnownVideoInventory = (id: string, text: string): number | null => {
