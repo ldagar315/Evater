@@ -4,7 +4,13 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Area, unit squares and rectangles
 
-### Think it through
+### Watch: Measuring area with tiled square units
+
+Khan Academy
+
+[Open the video](https://www.youtube.com/watch?v=iNZZIb_-PA8)
+
+### Understand it
 
 Area counts the equal square units that cover a region without gaps or overlaps. A 7 cm by 4 cm rectangle holds 7 × 4 = 28 one-centimetre squares. Write 28 cm², not 28 cm: the measurement describes a surface, not a length.
 
