@@ -1,3 +1,4 @@
+import { ResourceVideoEmbed } from '../components/blog/ResourceVideoEmbed'
 import { youtubeVideoId } from '../components/blog/resourceVideo'
 import { PowerGrowthVisual, AreaHeightVisual } from '../components/blog/MathsChapterVisuals'
 import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
@@ -171,17 +172,7 @@ export function BlogPostPage() {
     h3: ({ children }: { children?: React.ReactNode }) => <h3>{children}</h3>,
     a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
       const videoId = href && post.id.startsWith('resource-') && getTextContent(children) === 'Open the video' ? youtubeVideoId(href) : null
-      if (videoId) return <span className="not-prose my-5 block">
-        <iframe
-          className="aspect-video w-full rounded-xl border-0 bg-neutral-900"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-          title={`YouTube video ${videoId} for ${post.title}`}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      </span>
+      if (videoId && href) return <ResourceVideoEmbed videoUrl={href} title={post.title} />
       if (href === '/practice' && conceptPracticeReady && blogPracticeTargets[post.slug]) return <a href="#concept-practice">{children}</a>
       if (href?.startsWith('/')) return <Link to={href}>{children}</Link>
       return <a href={href} target="_blank" rel="noreferrer">{children}</a>
