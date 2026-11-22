@@ -22,7 +22,13 @@ Is distance from the Sun alone enough to explain all the conditions needed for l
 
 ## 2. Earth systems and their connections
 
-### Think it through
+### Watch: Real World: Earth Systems
+
+NASA eClips
+
+[Open the video](https://www.youtube.com/watch?v=o8K0RTYM6Mc)
+
+### Understand it
 
 Land, water, air and living organisms affect one another. For example, vegetation can help hold soil with roots, and dead organic matter can contribute to it. Draw a chain linking a living thing to two non-living parts of its environment and explain each arrow.
 
