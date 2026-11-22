@@ -88,7 +88,15 @@ A whole number that leaves remainder 5 when divided by 7 can be written 7a + 5, 
 
 ## 7. Digital roots: a check, not a proof
 
-### Think it through
+### Watch: Digital roots and a missing-digit trick
+
+Jefferson Lab
+
+[Open the video](https://www.youtube.com/watch?v=dTXMhOGI9Z8)
+
+Use two different rearrangements of the same digits and subtract the smaller number from the larger. Explain why the trick rules out crossing out zero. Then connect the repeated digit-summing to the arithmetic check below: a successful trick is not proof that another calculation is correct.
+
+### Understand it
 
 For a positive whole number, repeatedly add its decimal digits until one digit remains. This is its digital root. A multiple of 9 has digital root 9, not 0. Digital roots can expose some arithmetic mistakes, but two different numbers can have the same digital root. Passing the check does not prove a calculation is right.
 
