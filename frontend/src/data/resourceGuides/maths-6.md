@@ -22,7 +22,13 @@ Calculate 17 × 98 without long multiplication.
 
 ## 2. Products of sums and differences
 
-### Think it through
+### Watch: Multiplying binomials intro
+
+Khan Academy
+
+[Open the video](https://www.youtube.com/watch?v=Xy8NKUoyy98)
+
+### Understand it
 
 Every term in the first bracket must multiply every term in the second. For (x + 3)(x + 2), the four products are x², 2x, 3x and 6. Combine the like terms to get x² + 5x + 6. A four-part rectangle helps you check that no product is missing. Label one side x + 3 and the other x + 2; the four smaller areas are x², 2x, 3x and 6. Grouping the two x-terms does not change the area.
 
