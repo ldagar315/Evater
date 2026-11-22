@@ -34,7 +34,13 @@ Can one consumer belong to more than one food chain?
 
 ## 3. Decomposers and nutrient cycling
 
-### Think it through
+### Watch: How dirt works
+
+The Nature Conservancy
+
+[Open the video](https://www.youtube.com/watch?v=K7YpPgbmSew)
+
+### Understand it
 
 Decomposers break down dead material and return materials to the environment. Nutrients can cycle into new living things, while energy flows through an ecosystem and is dissipated. Decomposition can be slower in some conditions, so do not assume every dead organism decays at the same rate.
 
