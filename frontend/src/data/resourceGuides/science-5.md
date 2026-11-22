@@ -56,7 +56,13 @@ A book slides to the right across a table. Which way does friction act on the bo
 
 ## 4. Mass, weight and floating
 
-### Think it through
+### Watch: Mass and weight
+
+Sri Chaitanya Academy NEET
+
+[Open the video](https://www.youtube.com/watch?v=rFdbY_V7vIo)
+
+### Understand it
 
 Mass is measured in kilograms. Weight is the gravitational force on an object, measured in newtons. The same object can have the same mass but a different weight where gravity is different.
 
