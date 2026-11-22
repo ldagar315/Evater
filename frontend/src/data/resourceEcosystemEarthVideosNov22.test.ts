@@ -50,8 +50,9 @@ describe('two source-fit ecosystem and Earth-system video placements', () => {
     const binomial = content('resource-maths-6').includes("[Open the video](https://www.youtube.com/watch?v=Xy8NKUoyy98)") ? 1 : 0
     const force = content('resource-science-5').includes('[Open the video](https://www.youtube.com/watch?v=SYU1TKQru1c)') ? 1 : 0
     const composition = content('resource-science-8').includes('[Open the video](https://www.youtube.com/watch?v=nUzOXy9V-K0)') ? 1 : 0
-    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation + area + binomial + force + composition)
-    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation - area - binomial - force - composition)
+    const alloy = content('resource-science-8').includes('[Open the video](https://www.youtube.com/watch?v=KgUmNQD6m5Q)') ? 1 : 0
+    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation + area + binomial + force + composition + alloy)
+    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation - area - binomial - force - composition - alloy)
     for (const text of topics) expect((text.match(/\[Open the video\]/g) || []).length).toBeLessThanOrEqual(1)
   })
 })
