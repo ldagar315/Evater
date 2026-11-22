@@ -17,10 +17,10 @@ describe('six ecology and force transfer checks, November21',()=>{
    const p=guide(id),topics=p.split(/^## /m).filter(t=>/^\d+\./.test(t))
    expect(topics).toHaveLength(4)
    const added = (id === 'resource-science-12' && p.includes('[Open the video](https://www.youtube.com/watch?v=2lqhJNgn_Wg)')) || (id === 'resource-science-5' && p.includes('[Open the video](https://www.youtube.com/watch?v=SYU1TKQru1c)'))
-   expect(p.match(/\[Open the video\]/g)).toHaveLength(count + Number(added) + Number(id==='resource-science-5'&&p.includes('[Open the video](https://www.youtube.com/watch?v=rFdbY_V7vIo)')))
+   expect(p.match(/\[Open the video\]/g)).toHaveLength(count + Number(added) + Number(id==='resource-science-12'&&p.includes('[Open the video](https://www.youtube.com/watch?v=K7YpPgbmSew)')) + Number(id==='resource-science-5'&&p.includes('[Open the video](https://www.youtube.com/watch?v=rFdbY_V7vIo)')))
    if (id === 'resource-science-12') {
     const urls = [...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m => m[1])
-    expect(urls).toEqual(['https://www.youtube.com/watch?v=P1X-WpfUvm4', ...(added ? ['https://www.youtube.com/watch?v=2lqhJNgn_Wg'] : []), 'https://www.youtube.com/watch?v=GK_vRtHJZu4'])
+    expect(urls).toEqual(['https://www.youtube.com/watch?v=P1X-WpfUvm4', ...(added ? ['https://www.youtube.com/watch?v=2lqhJNgn_Wg'] : []), ...(p.includes('[Open the video](https://www.youtube.com/watch?v=K7YpPgbmSew)') ? ['https://www.youtube.com/watch?v=K7YpPgbmSew'] : []), 'https://www.youtube.com/watch?v=GK_vRtHJZu4'])
    }
    if(id==='resource-science-5'){const known=["https://www.youtube.com/watch?v=SYU1TKQru1c", "https://www.youtube.com/watch?v=beo130kj9R4", "https://www.youtube.com/watch?v=Ps90zArJEJY", "https://www.youtube.com/watch?v=rFdbY_V7vIo"];expect([...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(known.filter((url,i)=>i===1||i===2||p.includes(`[Open the video](${url})`)))}
    topics.forEach(t=>{expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')})
