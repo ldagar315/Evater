@@ -51,7 +51,7 @@ describe('six health and matter reasoning lessons', () => {
   })
   it('retains existing embeds and does not add reading redirects or unsafe experiments', () => {
     expect((health.match(/\[Open the video\]/g) || []).length).toBe(2)
-    const known=["https://www.youtube.com/watch?v=vi_SJBnxmHo", "https://www.youtube.com/watch?v=nUzOXy9V-K0", "https://www.youtube.com/watch?v=Vt7lN4QPU0k"]
+    const known=["https://www.youtube.com/watch?v=vi_SJBnxmHo", "https://www.youtube.com/watch?v=nUzOXy9V-K0", "https://www.youtube.com/watch?v=Vt7lN4QPU0k", "https://www.youtube.com/watch?v=KgUmNQD6m5Q"]
     const selected=known.filter((url,i)=>i===2||matter.includes(`[Open the video](${url})`))
     expect([...matter.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(selected)
     for (const text of [health, matter]) {
