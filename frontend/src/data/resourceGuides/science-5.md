@@ -6,15 +6,15 @@ Start with an everyday object. Ask what is pushing or pulling it, in which direc
 
 ### Think it through
 
-A push or pull can change an object's speed, direction or shape. But a force does not always make an object move: a book can stay still on a table because the downward pull of gravity is balanced by the table's upward support force.
+A force is a push or pull arising from an interaction. It can change speed, direction or shape. A hand squeezing a sponge can change its shape; a sideways push on a moving ball can change its direction. Name both the object receiving the force and what exerts it.
 
-Draw the book and two arrows. Label what exerts each force. When the forces balance, there is no change in the book's motion.
+A force can act without changing motion. A book at rest has downward gravity from Earth and an upward support force from the table. These are balanced, not absent. In a straight-line cart model, zero net force means no change in velocity: a cart already moving can continue at the same speed and direction. A nonzero force changes motion; its direction is not automatically the direction the object is already moving.
 
 ### Try it yourself
 
-Gently press a soft sponge on a stable table. What changes? Now think about a ball rolling straight ahead: what could change its direction?
+Consider a fictional cart constrained to a straight, level track, initially moving right. All horizontal forces are listed: 6 N right and 6 N left; the vertical forces balance. Find the net horizontal force. Must the cart stop? Next, the leftward force becomes 8 N while the rightward force stays 6 N. What happens initially? Do not perform a pushing experiment.
 
-**Check:** The sponge changes shape. A sideways push can change the ball's direction. Describe the objects interacting, not only the change you see.
+**Check:** Initially, 6 N right and 6 N left give zero net horizontal force. The cart need not stop; it continues right at constant speed under this model. After the change, 8 - 6 = 2 N acts left. Since the cart is initially moving right, it first slows while still moving right, rather than instantly reversing. Force describes the change in motion, not a command to move immediately in the force's direction. A particular new speed cannot be found from these force values alone.
 
 ## 2. Contact and non-contact forces
 
@@ -58,15 +58,15 @@ A book slides to the right across a table. Which way does friction act on the bo
 
 ### Think it through
 
-Mass is measured in kilograms. Weight is the gravitational force on an object, measured in newtons. The same object can have the same mass but a different weight where gravity is different.
+Mass, measured in kilograms, is different from weight, the gravitational force measured in newtons. Moving an unchanged object to a weaker gravitational field changes its weight, not its mass. An upward force from water does not remove the object's mass or switch off gravity.
 
-Water pushes upward on an immersed object. For an object floating at rest, this upward buoyant force balances its weight. A heavy object does not automatically sink: whether it floats also depends on its overall density and how much water it displaces. A hollow boat can displace enough water to support its weight.
+Water exerts an upward buoyant force on an immersed object. For a boat floating at rest with no other vertical support, buoyancy equals its downward weight. Even a sinking object can experience buoyancy, but it may be too small to balance the weight. Floating depends on overall density and the water displaced, not weight alone. A hollow boat can displace enough water to support a greater weight than a small stone.
 
 ### Try it yourself
 
-Explain why "heavy things sink and light things float" is not a reliable rule. Then draw the two vertical forces on a boat floating at rest.
+In a fictional model, a 12 N boat floats at rest with no other vertical support. A 3 N stone has 1 N buoyancy and is released from rest; ignore other forces at that instant. Find each net vertical force. Does the lighter stone have to float? If the unchanged boat moves to weaker gravity, which changes: mass, weight, or both?
 
-**Check:** Total weight alone is not enough to decide. The upward buoyant force and downward weight balance for a boat floating at rest. Use the force balance in your explanation, not just the word "light".
+**Check:** The boat has 12 N buoyancy upward balancing 12 N weight downward, so its net vertical force is zero. The stone has 3 - 1 = 2 N net force downward and initially starts sinking, despite weighing less than the boat. It still has a 1 N upward buoyant force; sinking does not mean buoyancy disappears. Moving the unchanged boat to weaker gravity lowers its weight but leaves its mass unchanged. Compare actual forces and displacement, not just which object is called heavy.
 
 ## Your five-minute revision
 
