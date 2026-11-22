@@ -7,7 +7,10 @@ describe('November19 topic teaching and source boundaries',()=>{
   const p=lesson('resource-maths-5')
   const topics=p.split(/^## /m).slice(1).filter(t=>/^\d+\./.test(t))
   expect(topics).toHaveLength(7)
-  expect((p.match(/\[Open the video\]/g)||[])).toHaveLength(2)
+  const known=[['WC2puADmICM',2,true],['znmPfDfsir8',3,true],['dTXMhOGI9Z8',7,false]] as const
+  const selected=known.filter(([id,,required])=>required||p.includes(`[Open the video](https://www.youtube.com/watch?v=${id})`))
+  expect([...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(selected.map(([id])=>`https://www.youtube.com/watch?v=${id}`))
+  for(const[id,topic]of selected)expect(topics[topic-1]).toContain(`[Open the video](https://www.youtube.com/watch?v=${id})`)
   topics.forEach(t=>{expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')})
   for(const text of ['same letter keeps the same digit','first digit of a multi-digit number cannot be zero','same digital root','Passing the check does not prove','negative','whole number']) expect(p.toLowerCase()).toContain(text.toLowerCase())
  })
