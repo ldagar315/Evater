@@ -50,7 +50,13 @@ Is air a pure substance?
 
 ## 4. Metals, non-metals, alloys and minerals
 
-### Think it through
+### Watch: Alloys and their properties
+
+FuseSchool - Global Education
+
+[Open the video](https://www.youtube.com/watch?v=KgUmNQD6m5Q)
+
+### Understand it
 
 An alloy is a mixture, often involving metals; brass is commonly made from copper and zinc. It is not an element. A mineral is not simply another word for a metal. Make a table of named examples and explain the reason for each category rather than grouping by shiny appearance alone.
 
