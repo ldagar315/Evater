@@ -6,7 +6,7 @@ describe('six worked Science topics, November20',()=>{
  it('keeps six independent activities and existing video inventory',()=>{
   for(const [id,n]of [[6,1],[8,1],[8,2],[10,1],[10,2],[11,4]]){const s=topic(id,n);expect(s).toContain('### Try it yourself');expect(s).toContain('**Check:**')}
   for(const [id,videos]of [[6,3],[10,4],[11,1]])expect((guide(id).match(/\[Open the video\]/g)||[]).length).toBe(videos)
-  const known=["https://www.youtube.com/watch?v=vi_SJBnxmHo", "https://www.youtube.com/watch?v=nUzOXy9V-K0", "https://www.youtube.com/watch?v=Vt7lN4QPU0k"]
+  const known=["https://www.youtube.com/watch?v=vi_SJBnxmHo", "https://www.youtube.com/watch?v=nUzOXy9V-K0", "https://www.youtube.com/watch?v=Vt7lN4QPU0k", "https://www.youtube.com/watch?v=KgUmNQD6m5Q"]
   const selected=known.filter((url,i)=>i===2||guide(8).includes(`[Open the video](${url})`))
   expect([...guide(8).matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(selected)
  })
