@@ -6,6 +6,7 @@ import { youtubeVideoId } from '../components/blog/resourceVideo'
 
 type VideoSlot = readonly [videoId: string, topic: number, required: boolean]
 const knownVideoInventories: Record<string, readonly VideoSlot[]> = {
+ 'resource-maths-9': [["JVrkLIcA2qw", 1, true], ["JVrkLIcA2qw", 2, true], ["UKaoHO4ClS4", 3, false], ["YompsDlEdtc", 4, true], ["Eo04qjLRiSY", 5, false]],
  'resource-science-5': [["SYU1TKQru1c", 1, false], ["beo130kj9R4", 2, true], ["Ps90zArJEJY", 3, true], ["rFdbY_V7vIo", 4, false]],
  'resource-maths-6': [["ZJA1qz4XovY", 1, true],["Xy8NKUoyy98", 2, false],["4GcNzvILqtM", 3, true]],
  'resource-maths-14': [['iNZZIb_-PA8',1,false],['hm17lVaor0Q',2,true],['loAA3TCNAvU',3,true],['loAA3TCNAvU',4,true]],
@@ -84,12 +85,13 @@ describe('student resource lessons', () => {
   expect(resourceGuides[2].content).toContain('not a rule that every smoother surface always has less friction')
  })
  it('keeps exact known inventories strict with or without the selected pending additions', () => {
-  const render=(rows: readonly VideoSlot[])=>Array.from({length:4},(_,i)=>`## ${i+1}. Topic\n`+rows.filter(([,t])=>t===i+1).map(([v])=>videoLink(v)).join('\n')).join('\n')
+  const render=(rows: readonly VideoSlot[],topicCount=4)=>Array.from({length:topicCount},(_,i)=>`## ${i+1}. Topic\n`+rows.filter(([,t])=>t===i+1).map(([v])=>videoLink(v)).join('\n')).join('\n')
   for(const [id,inventory] of Object.entries(knownVideoInventories)) {
+   const topicCount=id==='resource-maths-9'?6:4
    const required=inventory.filter(([, ,r])=>r)
    const optional=inventory.filter(([, ,r])=>!r)
-   for(let mask=0;mask<2**optional.length;mask++){const selected=inventory.filter(row=>row[2]||!!(mask&(1<<optional.indexOf(row))));expect(assertKnownVideoInventory(id,render(selected))).toBe(selected.length)}
-   const present=render(inventory),first=videoLink(required[0][0])
+   for(let mask=0;mask<2**optional.length;mask++){const selected=inventory.filter(row=>row[2]||!!(mask&(1<<optional.indexOf(row))));expect(assertKnownVideoInventory(id,render(selected,topicCount))).toBe(selected.length)}
+   const present=render(inventory,topicCount),first=videoLink(required[0][0])
    for(const bad of [present+'\n'+videoLink('aaaaaaaaaaa'),present.replace(first,''),present.replace(first,videoLink('bbbbbbbbbbb')),present+'\n'+first,present.replace(first,'')+'\n'+first,present.split(/(?=^## )/m).reverse().join('')])expect(()=>assertKnownVideoInventory(id,bad)).toThrow()
   }
  })
