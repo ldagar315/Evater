@@ -6,11 +6,12 @@ import { youtubeVideoId } from '../components/blog/resourceVideo'
 
 type VideoSlot = readonly [videoId: string, topic: number, required: boolean]
 const knownVideoInventories: Record<string, readonly VideoSlot[]> = {
+ 'resource-science-5': [["SYU1TKQru1c", 1, false], ["beo130kj9R4", 2, true], ["Ps90zArJEJY", 3, true]],
  'resource-maths-6': [["ZJA1qz4XovY", 1, true],["Xy8NKUoyy98", 2, false],["4GcNzvILqtM", 3, true]],
  'resource-maths-14': [['iNZZIb_-PA8',1,false],['hm17lVaor0Q',2,true],['loAA3TCNAvU',3,true],['loAA3TCNAvU',4,true]],
  'resource-science-12': [['P1X-WpfUvm4',1,true],['2lqhJNgn_Wg',2,false],['GK_vRtHJZu4',4,true]],
  'resource-science-13': [['Bsp5JYNMAQE',1,true],['o8K0RTYM6Mc',2,false]],
- 'resource-science-8': [['vi_SJBnxmHo',1,false],['Vt7lN4QPU0k',3,true]],
+ 'resource-science-8': [["vi_SJBnxmHo", 1, false], ["nUzOXy9V-K0", 2, false], ["Vt7lN4QPU0k", 3, true]],
 }
 const videoLink = (id: string) => `[Open the video](https://www.youtube.com/watch?v=${id})`
 const assertKnownVideoInventory = (id: string, text: string): number | null => {
@@ -86,8 +87,8 @@ describe('student resource lessons', () => {
   const render=(rows: readonly VideoSlot[])=>Array.from({length:4},(_,i)=>`## ${i+1}. Topic\n`+rows.filter(([,t])=>t===i+1).map(([v])=>videoLink(v)).join('\n')).join('\n')
   for(const [id,inventory] of Object.entries(knownVideoInventories)) {
    const required=inventory.filter(([, ,r])=>r)
-   expect(assertKnownVideoInventory(id,render(required))).toBe(required.length)
-   expect(assertKnownVideoInventory(id,render(inventory))).toBe(inventory.length)
+   const optional=inventory.filter(([, ,r])=>!r)
+   for(let mask=0;mask<2**optional.length;mask++){const selected=inventory.filter(row=>row[2]||!!(mask&(1<<optional.indexOf(row))));expect(assertKnownVideoInventory(id,render(selected))).toBe(selected.length)}
    const present=render(inventory),first=videoLink(required[0][0])
    for(const bad of [present+'\n'+videoLink('aaaaaaaaaaa'),present.replace(first,''),present.replace(first,videoLink('bbbbbbbbbbb')),present+'\n'+first,present.replace(first,'')+'\n'+first,present.split(/(?=^## )/m).reverse().join('')])expect(()=>assertKnownVideoInventory(id,bad)).toThrow()
   }
