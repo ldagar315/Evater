@@ -16,12 +16,13 @@ describe('six ecology and force transfer checks, November21',()=>{
   for(const [id,count] of [['resource-science-12',2],['resource-science-5',2]] as const){
    const p=guide(id),topics=p.split(/^## /m).filter(t=>/^\d+\./.test(t))
    expect(topics).toHaveLength(4)
-   const added = id === 'resource-science-12' && p.includes('[Open the video](https://www.youtube.com/watch?v=2lqhJNgn_Wg)')
+   const added = (id === 'resource-science-12' && p.includes('[Open the video](https://www.youtube.com/watch?v=2lqhJNgn_Wg)')) || (id === 'resource-science-5' && p.includes('[Open the video](https://www.youtube.com/watch?v=SYU1TKQru1c)'))
    expect(p.match(/\[Open the video\]/g)).toHaveLength(count + Number(added))
    if (id === 'resource-science-12') {
     const urls = [...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m => m[1])
     expect(urls).toEqual(['https://www.youtube.com/watch?v=P1X-WpfUvm4', ...(added ? ['https://www.youtube.com/watch?v=2lqhJNgn_Wg'] : []), 'https://www.youtube.com/watch?v=GK_vRtHJZu4'])
    }
+   if(id==='resource-science-5'){const known=["https://www.youtube.com/watch?v=SYU1TKQru1c", "https://www.youtube.com/watch?v=beo130kj9R4", "https://www.youtube.com/watch?v=Ps90zArJEJY"];expect([...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(known.filter((url,i)=>i>0||p.includes(`[Open the video](${url})`)))}
    topics.forEach(t=>{expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')})
   }
  })
