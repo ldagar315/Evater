@@ -46,7 +46,12 @@ describe('six Science reasoning and safety transfers', () => {
   })
   it('retains current video inventory, try/check structure and revision', () => {
     for (const [s, videos] of [[weather, 3], [light, 4], [earth, 1]] as const) {
-      expect((s.match(/\[Open the video\]/g) || []).length).toBe(videos)
+      const added = s === earth && s.includes('[Open the video](https://www.youtube.com/watch?v=o8K0RTYM6Mc)')
+      expect((s.match(/\[Open the video\]/g) || []).length).toBe(videos + Number(added))
+      if (s === earth) {
+        const urls = [...s.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m => m[1])
+        expect(urls).toEqual(['https://www.youtube.com/watch?v=Bsp5JYNMAQE', ...(added ? ['https://www.youtube.com/watch?v=o8K0RTYM6Mc'] : [])])
+      }
       expect((s.match(/### Try it yourself/g) || []).length).toBe(4)
       expect((s.match(/\*\*Check:\*\*/g) || []).length).toBe(4)
       expect(s).toContain('## Your five-minute revision')
