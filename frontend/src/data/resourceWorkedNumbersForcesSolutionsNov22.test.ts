@@ -64,9 +64,9 @@ describe('six number representation force and solution transfers', () => {
   for (const text of ['same fictional gas and 100 g of water', 'pressure of that gas', 'change both variables', 'not measurements of dissolving speed', 'do not heat or open sealed gas containers']) expect(block(solutions, 3)).toContain(text)
  })
  it('retains current videos, four try/check pairs, revision and adjacent topic structure', () => {
-  const known=["https://www.youtube.com/watch?v=SYU1TKQru1c", "https://www.youtube.com/watch?v=beo130kj9R4", "https://www.youtube.com/watch?v=Ps90zArJEJY"];expect([...forces.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(known.filter((url,i)=>i>0||forces.includes(`[Open the video](${url})`)))
+  const known=["https://www.youtube.com/watch?v=SYU1TKQru1c", "https://www.youtube.com/watch?v=beo130kj9R4", "https://www.youtube.com/watch?v=Ps90zArJEJY", "https://www.youtube.com/watch?v=rFdbY_V7vIo"];expect([...forces.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(known.filter((url,i)=>i===1||i===2||forces.includes(`[Open the video](${url})`)))
   for (const [text, videos] of [[numbers, 4], [forces, 2], [solutions, 2]] as const) {
-   expect((text.match(/\[Open the video\]/g) || []).length).toBe(videos+Number(text===forces&&forces.includes('[Open the video](https://www.youtube.com/watch?v=SYU1TKQru1c)')))
+   expect((text.match(/\[Open the video\]/g) || []).length).toBe(videos+Number(text===forces&&forces.includes('[Open the video](https://www.youtube.com/watch?v=SYU1TKQru1c)'))+Number(text===forces&&forces.includes('[Open the video](https://www.youtube.com/watch?v=rFdbY_V7vIo)')))
    expect((text.match(/### Try it yourself/g) || []).length).toBe(4)
    expect((text.match(/\*\*Check:\*\*/g) || []).length).toBe(4)
    expect(text).toContain('## Your five-minute revision')
