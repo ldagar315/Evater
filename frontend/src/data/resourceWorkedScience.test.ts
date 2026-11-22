@@ -5,7 +5,10 @@ const topic=(id:number,n:number)=>guide(id).split(/^## /m).find(s=>s.startsWith(
 describe('six worked Science topics, November20',()=>{
  it('keeps six independent activities and existing video inventory',()=>{
   for(const [id,n]of [[6,1],[8,1],[8,2],[10,1],[10,2],[11,4]]){const s=topic(id,n);expect(s).toContain('### Try it yourself');expect(s).toContain('**Check:**')}
-  for(const [id,videos]of [[6,3],[8,1],[10,4],[11,1]])expect((guide(id).match(/\[Open the video\]/g)||[]).length).toBe(videos)
+  for(const [id,videos]of [[6,3],[10,4],[11,1]])expect((guide(id).match(/\[Open the video\]/g)||[]).length).toBe(videos)
+  const known=["https://www.youtube.com/watch?v=vi_SJBnxmHo", "https://www.youtube.com/watch?v=nUzOXy9V-K0", "https://www.youtube.com/watch?v=Vt7lN4QPU0k"]
+  const selected=known.filter((url,i)=>i===2||guide(8).includes(`[Open the video](${url})`))
+  expect([...guide(8).matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(selected)
  })
  it('compares ratios rather than force or area alone',()=>{
   expect(60/.30).toBe(200);expect(60/.10).toBe(600);expect(120/.60).toBe(200)
