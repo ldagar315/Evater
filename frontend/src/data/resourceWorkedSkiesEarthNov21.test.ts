@@ -6,7 +6,12 @@ describe('six Skies and Earth independent checks, November21 evening',()=>{
  it('preserves inventory and previous leap-year work',()=>{
   for(const id of ['resource-science-11','resource-science-13']){
    const p=guide(id);expect(p.split(/^## /m).filter(s=>/^\d+\./.test(s))).toHaveLength(4)
-   expect(p.match(/\[Open the video\]/g)).toHaveLength(1);expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4)
+   const added = id === 'resource-science-13' && p.includes('[Open the video](https://www.youtube.com/watch?v=o8K0RTYM6Mc)')
+   expect(p.match(/\[Open the video\]/g)).toHaveLength(1 + Number(added));expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4)
+   if (id === 'resource-science-13') {
+    const urls = [...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m => m[1])
+    expect(urls).toEqual(['https://www.youtube.com/watch?v=Bsp5JYNMAQE', ...(added ? ['https://www.youtube.com/watch?v=o8K0RTYM6Mc'] : [])])
+   }
   }
   expect(topic('resource-science-11',4)).toContain('divisible by 100 but not 400')
  })
