@@ -15,7 +15,7 @@ describe('student resource lessons', () => {
   resourceGuides.forEach((p,i)=>{
    const topics=p.content.split(/^## /m).slice(1).filter(t=>/^\d+\./.test(t))
    expect(topics).toHaveLength(p.id === 'resource-maths-9' ? 6 : p.id === 'resource-maths-5' ? 7 : 4)
-   const expectedVideos = [4,4,2,4,3,2,4,2,3,2,2,3,4,4,4,2,3,3,2,3,3,4,1,2,4,1,1]
+   const expectedVideos = [4,4,2,4,3,3,4,2,3,2,2,3,4,4,4,2,3,3,2,3,3,4,1,2,4,1,2]
    expect(p.content.match(/\[Open the video\]/g)??[]).toHaveLength(expectedVideos[i])
    topics.forEach(t=>{expect(t.match(/\[Open the video\]/g)?.length??0).toBeLessThanOrEqual(1);expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')})
    const urls=[...p.content.matchAll(/\]\((https?:[^)]+)\)/g)].map(m=>m[1])
