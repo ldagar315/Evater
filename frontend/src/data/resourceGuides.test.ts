@@ -6,6 +6,7 @@ import { youtubeVideoId } from '../components/blog/resourceVideo'
 
 type VideoSlot = readonly [videoId: string, topic: number, required: boolean]
 const knownVideoInventories: Record<string, readonly VideoSlot[]> = {
+ 'resource-maths-5': [['WC2puADmICM',2,true],['znmPfDfsir8',3,true],['dTXMhOGI9Z8',7,false]],
  'resource-science-11': [["l64YwNl1wr0",1,false],["Jip3BbZBpsM",2,true]],
  'resource-maths-9': [["JVrkLIcA2qw", 1, true], ["JVrkLIcA2qw", 2, true], ["UKaoHO4ClS4", 3, false], ["YompsDlEdtc", 4, true], ["Eo04qjLRiSY", 5, false]],
  'resource-science-5': [["SYU1TKQru1c", 1, false], ["beo130kj9R4", 2, true], ["Ps90zArJEJY", 3, true], ["rFdbY_V7vIo", 4, false]],
@@ -88,7 +89,7 @@ describe('student resource lessons', () => {
  it('keeps exact known inventories strict with or without the selected pending additions', () => {
   const render=(rows: readonly VideoSlot[],topicCount=4)=>Array.from({length:topicCount},(_,i)=>`## ${i+1}. Topic\n`+rows.filter(([,t])=>t===i+1).map(([v])=>videoLink(v)).join('\n')).join('\n')
   for(const [id,inventory] of Object.entries(knownVideoInventories)) {
-   const topicCount=id==='resource-maths-9'?6:4
+   const topicCount=id==='resource-maths-9'?6:id==='resource-maths-5'?7:4
    const required=inventory.filter(([, ,r])=>r)
    const optional=inventory.filter(([, ,r])=>!r)
    for(let mask=0;mask<2**optional.length;mask++){const selected=inventory.filter(row=>row[2]||!!(mask&(1<<optional.indexOf(row))));expect(assertKnownVideoInventory(id,render(selected,topicCount))).toBe(selected.length)}
