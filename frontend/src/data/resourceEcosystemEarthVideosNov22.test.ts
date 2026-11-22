@@ -57,8 +57,10 @@ describe('two source-fit ecosystem and Earth-system video placements', () => {
     const rotation = content('resource-science-11').includes('[Open the video](https://www.youtube.com/watch?v=l64YwNl1wr0)') ? 1 : 0
     const soil = content('resource-science-12').includes('[Open the video](https://www.youtube.com/watch?v=K7YpPgbmSew)') ? 1 : 0
     const digitalRoot = content('resource-maths-5').includes('[Open the video](https://www.youtube.com/watch?v=dTXMhOGI9Z8)') ? 1 : 0
-    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation + area + binomial + force + composition + alloy + massWeight + pythagoras0 + pythagoras1 + rotation + soil + digitalRoot)
-    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation - area - binomial - force - composition - alloy - massWeight - pythagoras0 - pythagoras1 - rotation - soil - digitalRoot)
+    const variables = content('resource-science-1').includes('[Open the video](https://www.youtube.com/watch?v=BXFU86GNmrg)') ? 1 : 0
+    const leap = content('resource-science-11').includes('[Open the video](https://www.youtube.com/watch?v=yd1i3vkkh-0)') ? 1 : 0
+    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation + area + binomial + force + composition + alloy + massWeight + pythagoras0 + pythagoras1 + rotation + soil + digitalRoot + variables + leap)
+    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation - area - binomial - force - composition - alloy - massWeight - pythagoras0 - pythagoras1 - rotation - soil - digitalRoot - variables - leap)
     for (const text of topics) expect((text.match(/\[Open the video\]/g) || []).length).toBeLessThanOrEqual(1)
   })
 })
