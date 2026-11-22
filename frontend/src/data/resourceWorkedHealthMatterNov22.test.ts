@@ -51,7 +51,8 @@ describe('six health and matter reasoning lessons', () => {
   })
   it('retains existing embeds and does not add reading redirects or unsafe experiments', () => {
     expect((health.match(/\[Open the video\]/g) || []).length).toBe(2)
-    expect((matter.match(/\[Open the video\]/g) || []).length).toBe(1)
+    const original='https://www.youtube.com/watch?v=Vt7lN4QPU0k',addition='https://www.youtube.com/watch?v=vi_SJBnxmHo'
+    expect([...matter.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(matter.includes(`[Open the video](${addition})`)?[addition,original]:[original])
     for (const text of [health, matter]) {
       expect(text).not.toMatch(/https?:\/\/(?:www\.)?(?:who\.int|cdc\.gov|openstax\.org)/)
       expect(text).not.toContain('supporting evidence')
