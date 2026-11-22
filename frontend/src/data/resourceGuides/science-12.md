@@ -22,7 +22,13 @@ Are sunlight and soil part of an ecosystem discussion?
 
 ## 2. Food chains and food webs
 
-### Think it through
+### Watch: Food Chains & Food Webs
+
+FuseSchool - Global Education
+
+[Open the video](https://www.youtube.com/watch?v=2lqhJNgn_Wg)
+
+### Understand it
 
 A food chain shows one feeding route; a food web connects several routes. State what your arrows mean. When showing energy transfer, point from the food to the organism that eats it. One consumer can belong to several chains, so changing one population can affect more than one route.
 
