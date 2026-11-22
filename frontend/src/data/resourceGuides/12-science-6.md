@@ -32,13 +32,15 @@ Dan Quinn
 
 ### Understand it
 
-Air exerts pressure even when there is no noticeable wind. Pressure differences can drive air movement. In a simple warming diagram, show rising warm air and replacement flow, rather than saying the rising air leaves a vacuum. The video explores air's weight; connect it to the idea that air is matter.
+Air is matter and exerts pressure even when there is no noticeable wind. Wind is moving air, not the presence of pressure itself. In a simple pressure-difference model, air is pushed from the higher-pressure region towards the lower-pressure region. Warming can make air expand and rise; surrounding air can flow in to replace it. The rising air does not leave a vacuum.
+
+In a simple coastal model, land often warms faster than the sea during the day. Rising air over the warmer land is associated with lower pressure, and near-surface air flows in from the sea. At night the land can cool faster and the pattern can reverse. These are models, not a promise that every coast has the same wind each day: other weather systems and Earth's rotation also affect real winds.
 
 ### Try it yourself
 
-Does air exert pressure even when you cannot feel a strong wind?
+A fictional near-sea-level pressure map shows sea 1,014 hPa and land 1,008 hPa in the day, then land 1,011 hPa and sea 1,006 hPa at night. In the simple model, ignoring other weather and rotation, draw the near-surface flow for each case. If the pressures later become equal and this flow stops, has air pressure disappeared?
 
-**Check:** Yes. Air pressure exists without a noticeable wind.
+**Check:** Day: from sea to land, since 1,014 is higher than 1,008. Night: from land to sea, since 1,011 is higher than 1,006. Equal pressures remove the difference driving this modelled flow; they do not mean zero pressure. Air can still exert pressure when there is no noticeable wind.
 
 ## 3. Storms, thunder and lightning
 
@@ -50,25 +52,29 @@ TED-Ed
 
 ### Understand it
 
-Lightning is an electrical discharge; static electricity is a useful starting point for its explanation. A school model is not storm-safety advice. During a storm, follow a responsible adult and official guidance: seek substantial shelter, not an isolated tall tree. Do not try to observe lightning from an exposed place.
+Lightning is a sudden electrical discharge after electric charge has separated and built up. It can occur within clouds, between clouds or between cloud and ground. It rapidly heats the surrounding air; the rapid expansion produces thunder. For the same event, the flash usually reaches you before the sound because light travels much faster than sound. Thunder is not simply clouds knocking together.
+
+Hearing thunder means lightning is close enough to be dangerous, even if rain has not reached you. With a responsible adult, move to a substantial building or an enclosed, metal-topped vehicle with windows up. An isolated tree, open shed or covered porch is not safe shelter. Stay in safe shelter for at least 30 minutes after the last thunder, and follow official guidance if it requires longer. Do not go outside to watch, time or investigate lightning.
 
 ### Try it yourself
 
-Is sheltering under an isolated tall tree during lightning a safe choice?
+In a fictional school discussion, pupils are already indoors when thunder is heard at 14:06, 14:14 and 14:21. Someone suggests going out at 14:44 because 30 minutes have passed since 14:14 and the rain has stopped. Explain both mistakes. What is the earliest end of the 30-minute minimum if there is no further thunder?
 
-**Check:** No. Seek a substantial building or other officially recommended safe shelter.
+**Check:** The clock restarts after the most recent thunder, which was at 14:21, so the 30-minute minimum ends at 14:51, not 14:44. Rain stopping does not show that lightning danger is over. This is not an automatic all-clear: remain in safe shelter and follow the responsible adult and official advice, including any longer restriction.
 
 ## 4. Cyclones and reducing risk
 
 ### Think it through
 
-Connect warm moist air, pressure differences and circulation when describing cyclones. For real risk, forecasts and official warnings matter more than what you can see outside. Follow evacuation instructions from local authorities in time; do not wait until a cyclone is visible.
+A cyclone is an organised rotating storm system that can develop over warm ocean water. Warm moist air rises; as water vapour condenses, it releases heat that can support further rising air. Surrounding air moves towards lower pressure, and Earth's rotation helps turn the circulation. Warm water alone does not guarantee a cyclone: several conditions must work together.
+
+Danger includes destructive winds, heavy rain and flooding, including seawater driven onto coastal land. The relatively calm eye is surrounded by much more violent weather. A temporary lull can therefore occur before strong winds return. This explains why looking outside is not a substitute for official warnings. Follow evacuation instructions early with a responsible adult, and remain in shelter until the authorities responsible for it say it is safe to leave.
 
 ### Try it yourself
 
-Should you wait to see a cyclone before following an evacuation instruction?
+A fictional coastal family receives an official evacuation instruction while the weather still looks calm. Later, in their assigned shelter during the storm, the wind suddenly drops. One person says the first calm spell meant evacuation was unnecessary, and the second means they can go home. Explain why neither conclusion follows.
 
-**Check:** No. Follow official warnings and local authorities in time.
+**Check:** The warning concerns approaching and forecast hazards, so calm weather before arrival is not a reason to ignore evacuation. Calm during a cyclone may be the eye passing; dangerous winds can return, and flooding or other hazards may remain. Stay in the assigned safe shelter and wait for the official all-clear, rather than deciding from a quiet spell.
 
 ## Your five-minute revision
 
