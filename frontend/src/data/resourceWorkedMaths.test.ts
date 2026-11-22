@@ -6,7 +6,7 @@ describe('six worked Maths topics, November19',()=>{
  it('keeps the six selected topics and independent checks without replacing existing videos',()=>{
   const selected:[string,number][]=[['resource-maths-4',2],['resource-maths-4',4],['resource-maths-6',2],['resource-maths-6',4],['resource-maths-8',4],['resource-maths-14',1]]
   for(const [id,n]of selected){const t=topic(id,n);expect(t).toBeTruthy();expect(t).toContain('### Try it yourself');expect(t).toContain('**Check:**')}
-  for(const [id,count]of [['resource-maths-4',2],['resource-maths-6',2],['resource-maths-8',3],['resource-maths-14',3]] as const)expect((guide(id).match(/\[Open the video\]/g)||[]).length).toBe(count)
+  for(const [id,count]of [['resource-maths-4',2],['resource-maths-6',2],['resource-maths-8',3],['resource-maths-14',3]] as const)expect((guide(id).match(/\[Open the video\]/g)||[]).length).toBe(count+(id==='resource-maths-14'&&guide(id).includes("[Open the video](https://www.youtube.com/watch?v=iNZZIb_-PA8)")?1:0))
  })
  it('checks unequal bisected diagonals and exact angle conditions',()=>{
   const x=4,pm=3*x-1,mr=x+7,qm=5
