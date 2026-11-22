@@ -12,13 +12,15 @@ TED-Ed
 
 ### Understand it
 
-A repeated construction starts with a rule, then applies it again at each stage. Record one stage carefully before drawing the next. If the number of pieces triples each time, four stages from one piece give 3⁴ = 81 pieces. Your drawing has finitely many stages, even if the mathematical pattern can continue. The video introduces the idea; follow your textbook for the exact construction steps at each stage.
+A repeated construction starts with a rule and applies it again at each stage. For a Sierpinski-style triangle, split an equilateral triangle into four equal smaller triangles, remove the middle one, and repeat on each of the three remaining triangles. Start at stage 0 with one triangle: the counts after stages 1, 2 and 3 are 3, 9 and 27.
+
+The stage number counts how many times the rule has been applied, not how many pictures you have drawn. After n applications, the count is 3ⁿ. Each drawn stage is finite, even if the mathematical construction can continue. The video introduces repeated patterns; use this stated rule for the counts here.
 
 ### Try it yourself
 
-If each stage triples the number of small pieces, how many appear after four stages from one piece?
+A construction begins with one triangle at stage 0, and each retained triangle produces three at the next stage. How many remain at stage 5? By what factor has the count grown from stage 2 to stage 5? A learner counts the starting picture as stage 1 and uses 3⁴. Explain the indexing error.
 
-**Check:** 3⁴ = 81 pieces.
+**Check:** Stage 5 follows five applications, so there are 3⁵ = 243 triangles. Stage 2 has 9, giving a factor of 243/9 = 27 over the next three applications. The starting picture is stage 0 under the stated convention. Relabelling it stage 1 without changing the formula loses one application of the rule.
 
 ## 2. Koch and Sierpinski-style patterns
 
@@ -30,13 +32,15 @@ TED-Ed
 
 ### Understand it
 
-Track the number of pieces and the size of each piece in separate columns. A pattern can have more pieces while each becomes smaller. That is why a longer-looking boundary does not by itself tell you that the enclosed area has increased.
+Track count and size separately. In one Koch boundary step, each line segment is replaced by four segments, each one-third as long. Total boundary length is therefore multiplied by 4/3, not by 4. In a Sierpinski triangle step, three of four equal-area smaller triangles remain, so total retained area is multiplied by 3/4.
+
+A growing piece count need not mean growing total area. Specify whether you are counting pieces, measuring their lengths or measuring their areas, then combine the correct count and size factors. These two constructions use different rules; do not transfer one multiplier to the other.
 
 ### Try it yourself
 
-Why should you record both piece count and piece size?
+A Koch-style boundary starts with perimeter 18 cm. Find its perimeter after two applications of the stated four-thirds rule. Separately, a Sierpinski triangle starts with area 64 cm² and retains three-quarters at each step. Find its retained area after two steps. Why would multiplying either total only by its new piece count be wrong?
 
-**Check:** The total measure depends on both; one can grow while the other shrinks.
+**Check:** The perimeter is 18 × (4/3)² = 32 cm. The retained area is 64 × (3/4)² = 36 cm². Count alone ignores each piece becoming smaller. Length and area have different units and different construction rules, so one total grows here while the other shrinks.
 
 ## 3. Solids, views and nets
 
@@ -48,13 +52,15 @@ corbettmaths
 
 ### Understand it
 
-A net is a flat arrangement of faces that can fold into a solid. Picture which edges meet after folding; faces must not overlap. Compare the net with front, side and top views, remembering that one flat view may hide faces or edges.
+A net is a flat arrangement of faces that can fold into a solid without faces overlapping. A cube needs six square faces, but six joined squares are not automatically a valid cube net. Picture which edges will meet and which face positions will be occupied after folding. A strip of six squares in a single row cannot form all six different cube faces.
+
+A front, side or top view also loses information: some faces and edges may be hidden. A square outline from one direction need not identify a cube. Compare more than one view or the full dimensions instead of treating one flat picture as the whole solid.
 
 ### Try it yourself
 
-How many faces, edges and vertices does a cube have?
+A solid has a square front outline measuring 3 cm by 3 cm. Could both a 3 × 3 × 3 cm cube and a 3 × 3 × 7 cm cuboid fit that view? What extra measurement would distinguish them? A learner also joins six squares in one straight row and calls the strip a cube net merely because it has six faces. What check is missing?
 
-**Check:** 6 faces, 12 edges and 8 vertices.
+**Check:** Both solids fit the same stated front outline; their depths, 3 cm and 7 cm, distinguish them. Face count alone does not verify a net. The strip must fold into six different face positions without overlap, which the straight six-square strip cannot do. Check the folding relationships, not only the number of squares.
 
 ## 4. Polyhedra and counting structure
 
@@ -66,13 +72,15 @@ Khan Academy
 
 ### Understand it
 
-Count each face, edge and vertex once. A triangular prism has two triangular faces and three parallelogram faces, making five faces altogether. Count its six vertices and nine edges by grouping the two triangular ends and the three joining edges. A cylinder has a curved surface, so do not count it as a prism with polygonal faces. The video helps with faces and edges; add the vertices yourself.
+Count each face, edge and vertex once. A triangular prism has 5 faces, 9 edges and 6 vertices: two triangular ends, three joining faces, two sets of three end edges and three joining edges. For a prism with n-sided ends, the same grouping gives n + 2 faces, 3n edges and 2n vertices.
+
+A pyramid has a different structure: one polygonal base and one apex. For an n-sided base it has n + 1 faces, 2n edges and n + 1 vertices. A cylinder has a curved surface, so it is not a prism with polygonal faces. The video supports face/edge counting; include vertices in your own grouping.
 
 ### Try it yourself
 
-How many faces, edges and vertices does a triangular prism have?
+Compare a pentagonal prism with a pentagonal pyramid. Count faces, edges and vertices for each by grouping their parts, rather than memorising the triangular-prism totals. A learner gives both solids ten vertices because each name contains 'pentagonal'. Explain the error.
 
-**Check:** 5 faces, 9 edges and 6 vertices.
+**Check:** The prism has 2 pentagonal ends and 5 joining faces: 7 faces, 15 edges and 10 vertices. The pyramid has 1 pentagonal base and 5 triangular faces: 6 faces, 10 edges and 6 vertices. A prism has two sets of five end vertices; a pyramid has five base vertices and one apex. The common base shape does not make their structures identical.
 
 ## Your five-minute revision
 
