@@ -118,7 +118,9 @@ describe('ten Pythagoras, area and percentage transfer lessons', () => {
     expect(section(pythagoras, 6)).toContain('Andrew Wiles')
     for (const [text, count] of [[pythagoras, 3], [area, 3], [fractions, 3]] as const) {
       const knownAreaVideo = text === area && text.includes("[Open the video](https://www.youtube.com/watch?v=iNZZIb_-PA8)") ? 1 : 0
-      expect((text.match(/\[Open the video\]/g) || []).length).toBe(count + knownAreaVideo)
+      const knownPythagorasVideo0 = text === pythagoras && text.includes("[Open the video](https://www.youtube.com/watch?v=UKaoHO4ClS4)") ? 1 : 0
+      const knownPythagorasVideo1 = text === pythagoras && text.includes("[Open the video](https://www.youtube.com/watch?v=Eo04qjLRiSY)") ? 1 : 0
+      expect((text.match(/\[Open the video\]/g) || []).length).toBe(count + knownAreaVideo + knownPythagorasVideo0 + knownPythagorasVideo1)
     }
   })
 })
