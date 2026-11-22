@@ -18,7 +18,13 @@ A student filters salty water containing sand and calls the clear liquid "pure w
 
 ## 2. Elements and compounds
 
-### Think it through
+### Watch: Elements, compounds and mixtures
+
+Freesciencelessons
+
+[Open the video](https://www.youtube.com/watch?v=nUzOXy9V-K0)
+
+### Understand it
 
 Count kinds of atoms, not just the number of atoms in a particle. Oxygen gas contains molecules made of two oxygen atoms, but only one kind of atom, so oxygen is an element. A water molecule contains hydrogen and oxygen atoms chemically combined in a fixed ratio, so water is a compound. Having two atoms does not by itself make something a compound.
 
