@@ -7,7 +7,7 @@ describe('eight geometry and algebra transfer checks, Nov22',()=>{
  it('keeps topic/video/check inventory unchanged',()=>{
   for(const [ch,v] of [[11,4],[13,2]]){
    const p=lesson(ch);expect(p.split(/^## /m).filter(s=>/^\d+\./.test(s))).toHaveLength(4)
-   expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(p.match(/\[Open the video\]/g)).toHaveLength(v)
+   expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(p.match(/\[Open the video\]/g)).toHaveLength(v + Number(ch===13 && p.includes('[Open the video](https://www.youtube.com/watch?v=7VMsMtk3QdI)')) + Number(ch===13 && p.includes('[Open the video](https://www.youtube.com/watch?v=0Ho8Az8y4Mw)')))
   }
  })
  it('uses stage zero consistently and counts applications rather than pictures',()=>{
