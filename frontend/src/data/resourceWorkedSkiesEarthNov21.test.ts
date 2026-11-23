@@ -8,15 +8,15 @@ describe('six Skies and Earth independent checks, November21 evening',()=>{
    const p=guide(id);expect(p.split(/^## /m).filter(s=>/^\d+\./.test(s))).toHaveLength(4)
    const added = id === 'resource-science-11' ? p.includes('[Open the video](https://www.youtube.com/watch?v=l64YwNl1wr0)') : id === 'resource-science-13' && p.includes('[Open the video](https://www.youtube.com/watch?v=o8K0RTYM6Mc)')
    const leap = id === 'resource-science-11' && p.includes('[Open the video](https://www.youtube.com/watch?v=yd1i3vkkh-0)')
-   expect(p.match(/\[Open the video\]/g)).toHaveLength(1 + Number(added) + Number(leap));expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4)
+   expect(p.match(/\[Open the video\]/g)).toHaveLength(1 + Number(id === 'resource-science-11' && p.includes('[Open the video](https://www.youtube.com/watch?v=-T97d6dsfhE)')) + Number(id === 'resource-science-13' && p.includes('[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)')) + Number(added) + Number(leap) + Number(id === 'resource-science-13' && p.includes('[Open the video](https://www.youtube.com/watch?v=bs9e6ovISbs)')));expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4)
    if (id === 'resource-science-11') {
     const urls = [...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m => m[1])
-    expect(urls).toEqual([...(added ? ['https://www.youtube.com/watch?v=l64YwNl1wr0'] : []), 'https://www.youtube.com/watch?v=Jip3BbZBpsM', ...(leap ? ['https://www.youtube.com/watch?v=yd1i3vkkh-0'] : [])])
+    expect(urls).toEqual([...(added ? ['https://www.youtube.com/watch?v=l64YwNl1wr0'] : []), 'https://www.youtube.com/watch?v=Jip3BbZBpsM', ...(p.includes('[Open the video](https://www.youtube.com/watch?v=-T97d6dsfhE)') ? ['https://www.youtube.com/watch?v=-T97d6dsfhE'] : []), ...(leap ? ['https://www.youtube.com/watch?v=yd1i3vkkh-0'] : [])])
     if (added) expect(topic(id,1)).toContain('[Open the video](https://www.youtube.com/watch?v=l64YwNl1wr0)')
    }
    if (id === 'resource-science-13') {
     const urls = [...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m => m[1])
-    expect(urls).toEqual(['https://www.youtube.com/watch?v=Bsp5JYNMAQE', ...(added ? ['https://www.youtube.com/watch?v=o8K0RTYM6Mc'] : [])])
+    expect(urls).toEqual(['https://www.youtube.com/watch?v=Bsp5JYNMAQE', ...(added ? ['https://www.youtube.com/watch?v=o8K0RTYM6Mc'] : []), ...(p.includes('[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)') ? ['https://www.youtube.com/watch?v=p4652vo5Oic'] : []), ...(p.includes('[Open the video](https://www.youtube.com/watch?v=bs9e6ovISbs)') ? ['https://www.youtube.com/watch?v=bs9e6ovISbs'] : [])])
    }
   }
   expect(topic('resource-science-11',4)).toContain('divisible by 100 but not 400')
