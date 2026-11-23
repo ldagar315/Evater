@@ -34,7 +34,15 @@ Is a crescent Moon normally a partial lunar eclipse?
 
 ## 3. Lunar and solar calendars
 
-### Think it through
+### Watch: Distinguish lunar, solar and luni-solar calendars
+
+McMaster Alumni
+
+[Open the video](https://www.youtube.com/watch?v=-T97d6dsfhE)
+
+Use this brief overview to distinguish a calendar based on the Sun, one based on Moon phases, and a hybrid luni-solar calendar. Then use the rounded month and year lengths below to explain why twelve lunar months fall short of a solar year. The overview does not give the arithmetic or the adjustment rules for every calendar. A festival moving on the Gregorian calendar does not by itself tell you whether its calendar is purely lunar or luni-solar; do not use this model to predict a festival date.
+
+### Understand it
 
 A lunar month follows the Moon's phase cycle, while a solar year follows Earth's annual cycle around the Sun. Twelve lunar months are shorter than a solar year. Without adjustments, a calendar based only on those months shifts relative to the seasons. Ask what each calendar is trying to keep aligned.
 
