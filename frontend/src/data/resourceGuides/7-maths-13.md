@@ -58,7 +58,15 @@ Assume all four positions form a valid two-by-two block in a seven-column calend
 
 ## 4. Largest products and divisibility explanations
 
-### Think it through
+### Watch: Same perimeter, different areas
+
+MATH-N-ROLL
+
+[Open the video](https://www.youtube.com/watch?v=0Ho8Az8y4Mw)
+
+Use these rectangle examples as a visual warm-up. Keeping the perimeter fixed keeps the sum of two adjacent side lengths fixed, while their product gives the area. Compare the products as the sides become closer. This is a foundation for the algebra below, not its proof. Our problem uses exactly two positive integers, so an odd total requires the closest integer pair, not equal halves.
+
+### Understand it
 
 Keep a total fixed when comparing products. For two positive integers summing to 20, (10 - d)(10 + d) = 100 - d², so equal values give the largest product. For an odd total, equal integer values are unavailable; the closest pair is the candidate instead.
 
