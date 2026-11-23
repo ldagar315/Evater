@@ -1,0 +1,13 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const text=resourceGuides.find(p=>p.id==='resource-maths-8')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t));const target=topics[3]
+const url='https://www.youtube.com/watch?v=aB_aXOWI_FI'
+describe('profit and loss foundation with distinct percentage bases',()=>{
+ it('adds exact basic primer only to topic4',()=>{expect(topics).toHaveLength(4);expect(target).toContain('### Watch: Cost price, selling price, profit and loss');expect(target).toContain('Khan Academy India - English');expect(target.match(/\[Open the video\]/g)).toHaveLength(1);expect(text.match(/aB_aXOWI_FI/g)).toHaveLength(1);expect(youtubeVideoId(url)).toBe('aB_aXOWI_FI')})
+ it('retains three earlier placements in exact order',()=>{const ids=['wwg052FC_Zw','9QKc5bZPLv0','Q2gRAS08fE0','aB_aXOWI_FI'];expect([...text.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(ids.map(id=>`https://www.youtube.com/watch?v=${id}`));ids.forEach((id,i)=>expect(topics[i]).toContain(`watch?v=${id}`))})
+ it('states narrow coverage and names separate bases',()=>{const bridge=target.split('### Understand it')[0];for(const part of ['selling price with cost price','basic profit, loss and break-even primer','not a lesson on discount percentages or profit margins','marked price as the base for a discount','cost price as the base for profit on cost','other costs and taxes'])expect(bridge).toContain(part);expect(target).toContain('### Understand it');expect(target).toContain('### Try it yourself');expect(target).toContain('**Check:**')})
+ it('checks preserved examples and different denominators',()=>{expect(800*(1-0.15)).toBe(680);expect(1000*(1-0.1)).toBe(900);expect((900-720)/720*100).toBe(25);expect(1000*(1-0.2)).toBe(800);expect((800-640)/640*100).toBe(25);expect((800-640)/800*100).toBe(20);for(let cost=1;cost<=100;cost++)for(const gain of [1,2,5,10]){const sale=cost+gain;expect(sale-cost).toBe(gain);expect(gain/cost).toBeGreaterThan(gain/sale)}if(target.includes('lamp')){expect(target).toContain('Selling price ₹800');expect(target).toContain('profit ₹160');expect(target).toContain('25%')}else{expect(target).toContain('₹680');expect(target).toContain('₹120')}})
+ it('keeps all attempts, checks and revision without research detours',()=>{expect(text.match(/### Try it yourself/g)).toHaveLength(4);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)');expect(text).not.toMatch(/transcript|playback verified|supporting evidence|ncert\.nic|bitesize/i)})
+})
