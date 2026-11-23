@@ -60,7 +60,15 @@ Is sheltering under an isolated tall tree during lightning a safe choice?
 
 ## 4. Cyclones and reducing risk
 
-### Think it through
+### Watch: How a tropical cyclone grows
+
+SciShow Kids
+
+[Open the video](https://www.youtube.com/watch?v=xKubdY2mHXc)
+
+Follow the warm sea water, rising moist air and calm eye in this hurricane example. A hurricane is a regional name for a strong tropical cyclone. The video's North American season and hurricane wind threshold are not India's warning rules. Prepare with a responsible adult before dangerous conditions arrive. Never go outside during a cyclone or an eye lull; follow local official warnings and the shelter's all-clear.
+
+### Understand it
 
 Connect warm moist air, pressure differences and circulation when describing cyclones. For real risk, forecasts and official warnings matter more than what you can see outside. Follow evacuation instructions from local authorities in time; do not wait until a cyclone is visible.
 
