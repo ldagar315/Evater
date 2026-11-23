@@ -26,7 +26,10 @@ describe('seven Maths reasoning topics', () => {
     for (const text of ['A is a rectangle, not a rhombus or square', 'B is a rhombus, not a rectangle or square', 'C is a square and therefore also a rectangle and a rhombus', 'Turning C preserves lengths and angles']) expect(section(3)).toContain(text)
   })
   it('retains the two existing video placements and separate try/check panels', () => {
-    expect((quad.match(/\[Open the video\]/g) || []).length).toBe(2)
+    const quadKnown=['y9udtA3cPgU','PC9mbAwE3zk','5CeBlu260Rw','-IRXWg2oLY4']
+    const quadSelected=quadKnown.filter((id,i)=>![1,3].includes(i)||quad.includes(`[Open the video](https://www.youtube.com/watch?v=${id})`))
+    expect([...quad.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(quadSelected.map(id=>`https://www.youtube.com/watch?v=${id}`))
+    for(const id of quadSelected)expect(section([1,2,3,4][quadKnown.indexOf(id)])).toContain(`[Open the video](https://www.youtube.com/watch?v=${id})`)
     for (const n of [1, 3]) {
       expect(section(n)).toContain('### Try it yourself')
       expect(section(n)).toContain('**Check:**')
