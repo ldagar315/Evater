@@ -34,7 +34,15 @@ Is a measured high temperature a sign or a guess about the cause?
 
 ## 3. Infectious and non-infectious disease
 
-### Think it through
+### Watch: How pathogens spread
+
+Cognito
+
+[Open the video](https://www.youtube.com/watch?v=dbd5iydu3EY)
+
+Focus on the pathogen, the route it travels and the measure that interrupts that route. This video introduces infectious disease; use the comparison below for non-infectious conditions. These examples are for learning, not diagnosing a person.
+
+### Understand it
 
 Infectious diseases involve disease-causing agents that can spread by particular routes. Non-infectious diseases have other causes and do not all respond to the same prevention measures. Ask which route a measure interrupts: handwashing can reduce some infection risks, but it cannot prevent every disease.
 
