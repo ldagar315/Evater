@@ -34,7 +34,15 @@ Two clear sugar solutions look alike. Can you tell just by looking which is satu
 
 ## 3. Temperature and dissolved gases
 
-### Think it through
+### Watch: How temperature affects gas solubility
+
+Lab Hamster
+
+[Open the video](https://www.youtube.com/watch?v=wK4reyh86w0)
+
+Watch the cold, room-temperature and warm seltzer demonstration without copying it. Opening a bottle also lowers the gas pressure, so fizz alone is not a controlled measurement of the temperature effect. Use the fixed-pressure comparison below, and do not heat sealed bottles or repeat this demonstration.
+
+### Understand it
 
 Do not use one temperature rule for every substance. Dissolved gases commonly become less soluble as water warms; the behaviour of a solid solute can differ. Compare the same substance under stated conditions and describe the result, rather than claiming that all substances dissolve better in hot water.
 
