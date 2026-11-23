@@ -64,7 +64,15 @@ Give two different assignments for A and B that satisfy AB + BA = 99. Can A be z
 
 ## 5. Consecutive numbers and parity
 
-### Think it through
+### Watch: Use algebra to explain odd and even
+
+A Level Maths Tutor | John Armstrong
+
+[Open the video](https://www.youtube.com/watch?v=D0CkdFSWLOA)
+
+Use 2k for an even integer and 2k + 1 for an odd integer, with k an integer. The video uses these forms to explain the parity of squares. Then return to consecutive numbers below: a general expression explains every case, while checking a few examples does not prove the claim. When signs change, compare parity rather than assuming the totals stay equal.
+
+### Understand it
 
 Four consecutive integers contain two odd and two even numbers. Their sum is even. Replacing a +n term with -n changes the result by -2n, an even number, so changing plus and minus signs does not change that parity. You can explain every sign choice without calculating each one. This is a proof about parity, not a claim that every sign choice gives the same value.
 
