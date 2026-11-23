@@ -90,7 +90,15 @@ A square has side 5 cm. Give its diagonal length exactly, and the area of a squa
 
 ## 6. A history extension: what changes with cubes?
 
-### Think it through
+### Watch: From square-number triples to Fermat's question
+
+University of Oxford
+
+[Open the video](https://www.youtube.com/watch?v=1BSFyEIY2BY)
+
+Use this brief historical overview to see how changing the exponent leads from Pythagorean triples to a different question. The theorem here concerns positive integers x, y and z and an integer exponent n greater than 2. Zero and non-integer values are outside those conditions. This is an overview, not a proof of the theorem. Checking one triple, or many triples, cannot replace a general proof. Keep the square and cube calculations below separate.
+
+### Understand it
 
 The power 2 matters. Although 3² + 4² = 5², replacing every square with a cube does not keep the equality: 3³ + 4³ = 27 + 64 = 91, while 5³ = 125. Fermat's Last Theorem says that xⁿ + yⁿ = zⁿ has no solution in positive integers when n is an integer greater than 2. It was a long-standing open problem in history, but Andrew Wiles proved it in the 1990s. You are not expected to prove it here. One failed cube example shows why a familiar triple cannot be reused; it does not prove the general theorem.
 
