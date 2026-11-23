@@ -52,7 +52,15 @@ Why is (x + 4)² not x² + 16?
 
 ## 4. Finding and fixing expansion errors
 
-### Think it through
+### Watch: Keep signs when expanding brackets
+
+Khan Academy
+
+[Open the video](https://www.youtube.com/watch?v=3NHSwiv_pSE)
+
+Follow each signed multiplier before collecting like terms. A negative multiplier acts on every term inside its bracket. Then use the correction below to explain the error, not only to replace the answer. A numerical counterexample can disprove an identity; agreement at one value does not prove it.
+
+### Understand it
 
 A number check can expose a wrong expansion, but the algebra explains the fix. In 3(x - 5), the 3 multiplies x and -5, giving 3x - 15. Substituting x = 6 gives 3 on both sides. The incorrect 3x - 5 would give 13 instead. One counterexample is enough to disprove the proposed identity, but matching at one chosen value would not prove an identity for every x. The distributive step supplies the reason it works in general.
 
