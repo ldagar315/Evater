@@ -64,7 +64,15 @@ A hypothetical price of ₹500 rises by 20%, then the new price falls by 20%. Fi
 
 ## 4. Applying percentages in context
 
-### Think it through
+### Watch: Cost price, selling price, profit and loss
+
+Khan Academy India - English
+
+[Open the video](https://www.youtube.com/watch?v=aB_aXOWI_FI)
+
+Compare selling price with cost price in the video. It is a basic profit, loss and break-even primer, not a lesson on discount percentages or profit margins. For the original question below, use marked price as the base for a discount and cost price as the base for profit on cost. Name the whole before calculating, and account for other costs and taxes only when the question includes them.
+
+### Understand it
 
 A discount is taken from the marked price. Fifteen percent of ₹800 is ₹120, so the sale price is ₹680 before other charges. Profit or loss percentage usually uses cost price instead. Underline the quantity that counts as the whole before calculating any percentage.
 
