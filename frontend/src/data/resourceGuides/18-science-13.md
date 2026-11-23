@@ -46,7 +46,15 @@ Why does reproduction matter even though an individual can live without reproduc
 
 ## 4. Threats and protection
 
-### Think it through
+### Watch: Maintaining biodiversity
+
+Cognito
+
+[Open the video](https://www.youtube.com/watch?v=bs9e6ovISbs)
+
+Use the video to connect protecting species with protecting their habitats. It introduces conservation choices, not a wetland restoration procedure or a guarantee that one action removes every threat. Specific laws and farming choices depend on place and conditions. When considering a wetland, match each action to its pressure and check what remains unresolved. Do not catch, feed or disturb wildlife to test an idea.
+
+### Understand it
 
 Protecting life means protecting habitats and relationships, not only one familiar animal. Habitat change and pollution can affect many connected species. Choose one local example, trace the possible effects, and distinguish a helpful individual action from the wider changes needed to protect the system.
 
