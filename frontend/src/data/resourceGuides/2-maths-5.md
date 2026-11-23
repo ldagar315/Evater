@@ -52,7 +52,15 @@ Is every number divisible by 4 and 6 also divisible by 24?
 
 ## 4. Digits in disguise
 
-### Think it through
+### Watch: Use place value before solving a letter-digit puzzle
+
+Khan Academy India - English
+
+[Open the video](https://www.youtube.com/watch?v=_dT97MUYuzs)
+
+Start with the expanded-form examples: 832 = 800 + 30 + 2, and 704 has zero tens. Then use the same place-value idea for letters: AB means 10A + B, not A multiplied by B. The video is a place-value primer, not a solution to the puzzles below. Keep each puzzle's stated digit rules and test every condition; finding one assignment does not prove it is the only one.
+
+### Understand it
 
 In a letter-digit puzzle, the same letter keeps the same digit, different letters use different digits, and the first digit of a multi-digit number cannot be zero. For AB + BA = 99, write AB as 10A + B, not A multiplied by B. The sum is 11(A + B), so A + B = 9. More than one pair can work; the equation alone does not force a unique answer.
 
