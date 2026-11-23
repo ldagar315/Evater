@@ -59,8 +59,29 @@ describe('two source-fit ecosystem and Earth-system video placements', () => {
     const digitalRoot = content('resource-maths-5').includes('[Open the video](https://www.youtube.com/watch?v=dTXMhOGI9Z8)') ? 1 : 0
     const variables = content('resource-science-1').includes('[Open the video](https://www.youtube.com/watch?v=BXFU86GNmrg)') ? 1 : 0
     const leap = content('resource-science-11').includes('[Open the video](https://www.youtube.com/watch?v=yd1i3vkkh-0)') ? 1 : 0
-    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation + area + binomial + force + composition + alloy + massWeight + pythagoras0 + pythagoras1 + rotation + soil + digitalRoot + variables + leap)
-    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation - area - binomial - force - composition - alloy - massWeight - pythagoras0 - pythagoras1 - rotation - soil - digitalRoot - variables - leap)
+    const cyclone = content('resource-science-6').includes('[Open the video](https://www.youtube.com/watch?v=xKubdY2mHXc)') ? 1 : 0
+    const disease = content('resource-science-3').includes('[Open the video](https://www.youtube.com/watch?v=dbd5iydu3EY)') ? 1 : 0
+    const kite = content('resource-maths-4').includes('[Open the video](https://www.youtube.com/watch?v=-IRXWg2oLY4)') ? 1 : 0
+    const gas = content('resource-science-9').includes('[Open the video](https://www.youtube.com/watch?v=wK4reyh86w0)') ? 1 : 0
+    const microbe = content('resource-science-2').includes('[Open the video](https://www.youtube.com/watch?v=4HdDlpAB2hU)') ? 1 : 0
+    const expansion = content('resource-maths-6').includes('[Open the video](https://www.youtube.com/watch?v=3NHSwiv_pSE)') ? 1 : 0
+    const parity = content('resource-maths-5').includes('[Open the video](https://www.youtube.com/watch?v=D0CkdFSWLOA)') ? 1 : 0
+    const remainders = content('resource-maths-5').includes('[Open the video](https://www.youtube.com/watch?v=P1qyjdh_sIw)') ? 1 : 0
+    const solution = content('resource-science-9').includes('[Open the video](https://www.youtube.com/watch?v=kYgGI9Ox3gU)') ? 1 : 0
+    const diagonals = content('resource-maths-4').includes('[Open the video](https://www.youtube.com/watch?v=PC9mbAwE3zk)') ? 1 : 0
+    const profit = content('resource-maths-8').includes('[Open the video](https://www.youtube.com/watch?v=aB_aXOWI_FI)') ? 1 : 0
+    const habitat = content('resource-science-13').includes('[Open the video](https://www.youtube.com/watch?v=bs9e6ovISbs)') ? 1 : 0
+    const multiples = content('resource-maths-5').includes('[Open the video](https://www.youtube.com/watch?v=nCq3rxCG2MA)') ? 1 : 0
+    const calendarGrid = content('resource-maths-13').includes('[Open the video](https://www.youtube.com/watch?v=7VMsMtk3QdI)') ? 1 : 0
+    const digits = content('resource-maths-5').includes('[Open the video](https://www.youtube.com/watch?v=_dT97MUYuzs)') ? 1 : 0
+    const lunar = content('resource-science-11').includes('[Open the video](https://www.youtube.com/watch?v=-T97d6dsfhE)') ? 1 : 0
+    const reproduction = content('resource-science-13').includes('[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)') ? 1 : 0
+    const cubes = content('resource-maths-9').includes('[Open the video](https://www.youtube.com/watch?v=1BSFyEIY2BY)') ? 1 : 0
+    const products = content('resource-maths-13').includes('[Open the video](https://www.youtube.com/watch?v=0Ho8Az8y4Mw)') ? 1 : 0
+    const signs = content('resource-science-3').includes('[Open the video](https://www.youtube.com/watch?v=LhrbUNp2gi0)') ? 1 : 0
+    const heating = content('resource-science-4').includes('[Open the video](https://www.youtube.com/watch?v=zzmHjg0PORY)') ? 1 : 0
+    expect(topics.filter(t => t.includes('[Open the video]'))).toHaveLength(78 + separation + area + binomial + force + composition + alloy + massWeight + pythagoras0 + pythagoras1 + rotation + soil + digitalRoot + variables + leap + cyclone + disease + kite + gas + microbe + expansion + parity + remainders + solution + diagonals + profit + habitat + multiples + calendarGrid + heating + digits + lunar + reproduction + cubes + products + signs)
+    expect(topics.filter(t => !t.includes('[Open the video]'))).toHaveLength(35 - separation - area - binomial - force - composition - alloy - massWeight - pythagoras0 - pythagoras1 - rotation - soil - digitalRoot - variables - leap - cyclone - disease - kite - gas - microbe - expansion - parity - remainders - solution - diagonals - profit - habitat - multiples - calendarGrid - heating - digits - lunar - reproduction - cubes - products - signs)
     for (const text of topics) expect((text.match(/\[Open the video\]/g) || []).length).toBeLessThanOrEqual(1)
   })
 })
