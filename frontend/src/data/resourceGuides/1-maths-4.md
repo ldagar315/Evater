@@ -22,7 +22,15 @@ Three angles are 80°, 95° and 105°. Find the fourth.
 
 ## 2. Parallelograms and diagonals
 
-### Think it through
+### Watch: Why parallelogram diagonals bisect each other
+
+Kevinmathscience
+
+[Open the video](https://www.youtube.com/watch?v=PC9mbAwE3zk)
+
+Follow the two opposite triangles in the proof. The video uses two angles and a corresponding non-included side, often called AAS or SAA. It proves that each diagonal is cut into two equal halves, not that the two whole diagonals are equal or perpendicular. It does not prove the converse. Then return to the original explanation and question below.
+
+### Understand it
 
 In a parallelogram, opposite sides are parallel and the diagonals bisect each other: each cuts the other into two equal parts. That does not mean the two diagonals have equal lengths. Draw a slanted parallelogram and label the halves of each diagonal separately.
 
