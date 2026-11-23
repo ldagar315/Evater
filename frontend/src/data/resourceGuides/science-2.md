@@ -44,7 +44,15 @@ How are a tissue and an organ different?
 
 ## 3. Kinds of microorganisms
 
-### Think it through
+### Watch: Meet fungi, protists and bacteria
+
+EarthPen
+
+[Open the video](https://www.youtube.com/watch?v=4HdDlpAB2hU)
+
+Follow the examples of fungi, protists and bacteria. The protist examples include protozoa and some algae. Yeast is a single-celled fungus. These broad groups do not mean every member is microscopic. Viruses are acellular and multiply only inside living host cells. Do not culture, sniff or taste unknown microbes.
+
+### Understand it
 
 Microorganisms include bacteria, many fungi, protozoa and microscopic algae. They are not all harmful: many help make food or recycle materials. Treat viruses separately when studying how they depend on host cells. Compare a specific example and role instead of calling every microbe a germ.
 
