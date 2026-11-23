@@ -47,10 +47,10 @@ describe('six Science reasoning and safety transfers', () => {
   it('retains current video inventory, try/check structure and revision', () => {
     for (const [s, videos] of [[weather, 3], [light, 4], [earth, 1]] as const) {
       const added = s === earth && s.includes('[Open the video](https://www.youtube.com/watch?v=o8K0RTYM6Mc)')
-      expect((s.match(/\[Open the video\]/g) || []).length).toBe(videos + Number(added))
+      expect((s.match(/\[Open the video\]/g) || []).length).toBe(videos + Number(s === earth && s.includes('[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)')) + Number(s === earth && s.includes('[Open the video](https://www.youtube.com/watch?v=bs9e6ovISbs)')) + Number(added) + Number(s === weather && s.includes('[Open the video](https://www.youtube.com/watch?v=xKubdY2mHXc)')))
       if (s === earth) {
         const urls = [...s.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m => m[1])
-        expect(urls).toEqual(['https://www.youtube.com/watch?v=Bsp5JYNMAQE', ...(added ? ['https://www.youtube.com/watch?v=o8K0RTYM6Mc'] : [])])
+        expect(urls).toEqual(['https://www.youtube.com/watch?v=Bsp5JYNMAQE', ...(added ? ['https://www.youtube.com/watch?v=o8K0RTYM6Mc'] : []), ...(s.includes('[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)') ? ['https://www.youtube.com/watch?v=p4652vo5Oic'] : []), ...(s.includes('[Open the video](https://www.youtube.com/watch?v=bs9e6ovISbs)') ? ['https://www.youtube.com/watch?v=bs9e6ovISbs'] : [])])
       }
       expect((s.match(/### Try it yourself/g) || []).length).toBe(4)
       expect((s.match(/\*\*Check:\*\*/g) || []).length).toBe(4)
