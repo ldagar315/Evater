@@ -34,7 +34,15 @@ How can vegetation affect soil?
 
 ## 3. Continuity of life and reproduction
 
-### Think it through
+### Watch: A new plant from part of a parent plant
+
+Khan Academy India - English
+
+[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)
+
+Use vegetative propagation as one example of reproduction: a suitable part of a parent plant can develop into a separate new plant. This differs from an existing plant simply growing more leaves or a longer branch. Not every plant part can form a complete new plant; suitable parts and conditions depend on the species. The video focuses on plants, not every form of reproduction. Then separate an individual staying alive from a population continuing across generations. Producing new individuals does not guarantee that a population increases; compare new individuals with deaths in the model below.
+
+### Understand it
 
 An individual can survive without reproducing, but reproduction enables populations or species to continue across generations. Keep those two questions separate: what helps this organism stay alive, and what allows new individuals to replace earlier generations? Use a familiar plant or animal to explain the difference.
 
