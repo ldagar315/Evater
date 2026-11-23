@@ -1,0 +1,11 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const text=resourceGuides.find(p=>p.id==='resource-science-3')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t)),target=topics[1]
+describe('Signs and symptoms vocabulary without diagnosis or treatment inference',()=>{
+ it('places one exact primer in topic2 only',()=>{expect(topics).toHaveLength(4);expect(target).toContain('[Open the video](https://www.youtube.com/watch?v=LhrbUNp2gi0)');expect(youtubeVideoId('https://www.youtube.com/watch?v=LhrbUNp2gi0')).toBe('LhrbUNp2gi0');expect(target).toContain('Dr Matt & Dr Mike');expect(target.match(/\[Open the video\]/g)).toHaveLength(1)})
+ it('keeps reported experience useful and limits reverse diagnosis inference',()=>{for(const w of ['Subjective does not mean imaginary','reported symptom is useful evidence','examples name conditions first','one finding proves a diagnosis','cases below fictional','Do not examine yourself or another person','qualified clinicians interpret the full evidence','not for diagnosing yourself or another person'])expect(target).toContain(w);expect(target).toContain('### Understand it');expect(target).toContain('### Try it yourself');expect(target).toContain('**Check:**')})
+ it('preserves the existing temperature question or strengthened causal-reasoning challenge',()=>{if(target.includes('38.5°C')){for(const w of ['Feeling dizzy is a reported symptom','measured high temperature is a sign','cause claim that those observations do not establish','proves that an antibiotic is needed'])expect(target).toContain(w)}else{expect(target).toContain('Is a measured high temperature a sign or a guess about the cause?');expect(target).toContain('does not by itself identify the cause')}})
+ it('preserves all four questions,checks,revision and earlier foundations',()=>{expect(text.match(/### Try it yourself/g)).toHaveLength(4);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(topics[0]).toContain('ISZLTJH5lYg');expect(topics[3]).toContain('rb7TVW77ZCs');expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)');expect(text).not.toMatch(/transcript|playback verified|supporting evidence|clevelandclinic/i)})
+})
