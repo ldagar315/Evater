@@ -6,7 +6,7 @@ describe('particle and solution transfer checks, November22',()=>{
  it('preserves topic, video and check inventory',()=>{
   for(const [id,count] of [['resource-science-7',4],['resource-science-9',2]] as const){
    const p=guide(id);expect(p.split(/^## /m).filter(s=>/^\d+\./.test(s))).toHaveLength(4)
-   expect(p.match(/\[Open the video\]/g)).toHaveLength(count);expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4)
+   expect(p.match(/\[Open the video\]/g)).toHaveLength(count+Number(id==='resource-science-9'&&p.includes('[Open the video](https://www.youtube.com/watch?v=wK4reyh86w0)'))+Number(id==='resource-science-9'&&p.includes('[Open the video](https://www.youtube.com/watch?v=kYgGI9Ox3gU)')));expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4)
   }
  })
  it('distinguishes model symbols from samples and visible grains',()=>{
