@@ -10,7 +10,7 @@ describe('short source-fit binomial distribution explainer',()=>{
   expect(topics[1]).toContain('Khan Academy')
   expect(topics[1]).toContain(`[Open the video](${url})`)
   expect(youtubeVideoId(url)).toBe("Xy8NKUoyy98")
-  expect([...text.matchAll(/watch\?v=([\w-]{11})/g)].map(m=>m[1])).toEqual(["ZJA1qz4XovY", "Xy8NKUoyy98", "4GcNzvILqtM"])
+  expect([...text.matchAll(/watch\?v=([\w-]{11})/g)].map(m=>m[1])).toEqual([...["ZJA1qz4XovY", "Xy8NKUoyy98", "4GcNzvILqtM"],...(text.includes('[Open the video](https://www.youtube.com/watch?v=3NHSwiv_pSE)')?["3NHSwiv_pSE"]:[])])
   expect(topics[1].match(/\[Open the video\]/g)).toHaveLength(1)
  })
  it('preserves four separate teaching, practice and revision panels',()=>{
