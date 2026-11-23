@@ -52,7 +52,15 @@ Is every rectangle a square?
 
 ## 4. Kites, trapeziums and constructions
 
-### Think it through
+### Watch: Construct a kite with a compass and straightedge
+
+JoAnn's School
+
+[Open the video](https://www.youtube.com/watch?v=-IRXWg2oLY4)
+
+Use the perpendicular bisector to locate vertices equally far from the two endpoints. This video covers the kite construction, not trapezium angles.
+
+### Understand it
 
 Before drawing a kite or trapezium, mark the lengths, angles and parallel sides you are given. Trapezium definitions vary, so use the convention stated in your class. A neat-looking sketch does not prove parallelism: explain it using the given conditions or a valid angle argument.
 
