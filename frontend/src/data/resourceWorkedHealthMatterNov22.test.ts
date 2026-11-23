@@ -50,7 +50,10 @@ describe('six health and matter reasoning lessons', () => {
     expect(block).toContain('Do not classify a material from shininess alone')
   })
   it('retains existing embeds and does not add reading redirects or unsafe experiments', () => {
-    expect((health.match(/\[Open the video\]/g) || []).length).toBe(2)
+    const healthKnown=['ISZLTJH5lYg','LhrbUNp2gi0','dbd5iydu3EY','rb7TVW77ZCs']
+    const healthSelected=healthKnown.filter((id,i)=>(i!==1&&i!==2)||health.includes(`[Open the video](https://www.youtube.com/watch?v=${id})`))
+    expect([...health.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(healthSelected.map(id=>`https://www.youtube.com/watch?v=${id}`))
+    for(const id of healthSelected)expect(section(health,[1,2,3,4][healthKnown.indexOf(id)])).toContain(`[Open the video](https://www.youtube.com/watch?v=${id})`)
     const known=["https://www.youtube.com/watch?v=vi_SJBnxmHo", "https://www.youtube.com/watch?v=nUzOXy9V-K0", "https://www.youtube.com/watch?v=Vt7lN4QPU0k", "https://www.youtube.com/watch?v=KgUmNQD6m5Q"]
     const selected=known.filter((url,i)=>i===2||matter.includes(`[Open the video](${url})`))
     expect([...matter.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(selected)
