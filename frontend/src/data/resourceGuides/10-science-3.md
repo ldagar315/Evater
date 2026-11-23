@@ -22,7 +22,15 @@ Does the absence of a diagnosed illness describe every part of health?
 
 ## 2. Symptoms, signs and disease causes
 
-### Think it through
+### Watch: Signs and symptoms: observed versus experienced
+
+Dr Matt & Dr Mike
+
+[Open the video](https://www.youtube.com/watch?v=LhrbUNp2gi0)
+
+Use this brief vocabulary primer to compare what can be observed or measured with what a person feels and reports. Subjective does not mean imaginary: a reported symptom is useful evidence. The examples name conditions first; they do not show that one finding proves a diagnosis or its cause. Keep the cases below fictional. Do not examine yourself or another person, identify an illness, or choose a treatment from this video; qualified clinicians interpret the full evidence.
+
+### Understand it
 
 A symptom is something a person experiences, such as feeling unwell. A sign is something that can be observed or measured, such as a high temperature. A sign does not tell you the cause by itself. Use this distinction for learning, not for diagnosing yourself or another person.
 
