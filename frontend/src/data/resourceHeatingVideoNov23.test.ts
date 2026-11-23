@@ -1,0 +1,11 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const text=resourceGuides.find(p=>p.id==='resource-science-4')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t)),target=topics[3]
+describe('heating foundation with unchanged electrical safety reasoning',()=>{
+ it('places exact conceptual foundation in topic4 and preserves earlier video slots',()=>{expect(topics).toHaveLength(4);expect([...text.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(['Ij4dVhprZlw','cxELqN7wjS0','cxELqN7wjS0','zzmHjg0PORY'].map(v=>`https://www.youtube.com/watch?v=${v}`));expect(youtubeVideoId('https://www.youtube.com/watch?v=zzmHjg0PORY')).toBe('zzmHjg0PORY');expect(target).toContain('Elearnin')})
+ it('keeps energy transfer, changing conditions and advanced-equation scope distinct',()=>{for(const w of ['fan can warm up','intended job is moving air','heater uses the heating effect deliberately','later equations are an extension','keep the other conditions fixed','current also changes'])expect(target).toContain(w);for(let i=1;i<=5;i++){expect(i*i*3*10).toBe(30*i*i)}expect(12*12/3).toBe(48);expect(12*12/6).toBe(24)})
+ it('retains original no-touch/open/mains conditions and rejects glowing as safety proof',()=>{for(const w of ['Watch the diagrams only','not as instructions to build a heater','touch-test a wire','open an appliance','wall socket'])expect(target).toContain(w);expect(target.toLowerCase()).toContain('do not open appliances');if(target.includes('Not glowing')){expect(target).toContain('Not glowing does not establish');expect(target).toContain('keep clear and alert a responsible adult')}expect(target).toContain('### Understand it');expect(target).toContain('### Try it yourself')})
+ it('keeps all questions/checks/revision and prior watch-only electromagnet warning',()=>{expect(text.match(/### Try it yourself/g)).toHaveLength(4);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(text).toContain('can overheat and catch fire');expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)');expect(text).not.toMatch(/transcript|playback verified|supporting evidence|ncert\.nic/i)})
+})
