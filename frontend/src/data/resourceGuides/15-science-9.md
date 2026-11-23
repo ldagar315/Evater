@@ -4,7 +4,15 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Solute, solvent and solution
 
-### Think it through
+### Watch: Identify the solute, solvent and solution
+
+Khan Academy India - English
+
+[Open the video](https://www.youtube.com/watch?v=kYgGI9Ox3gU)
+
+Use the sugar-water example to name what dissolves, what does the dissolving, and the whole uniform mixture. Dissolving does not mean the solute has stopped existing. The syrup example shows why the solute is not always the smaller amount. Water can dissolve many substances, but not everything. If no matter enters or leaves, total mass is conserved; that does not require the separate volumes to add exactly. Then use the original explanation and question below. Do not taste laboratory solutions.
+
+### Understand it
 
 In salt water, salt is the solute, water is the solvent, and the mixture is a solution. Dissolving spreads the solute through the solvent; it does not make the matter vanish. Explain where the salt has gone using a particle picture rather than saying it has disappeared.
 
