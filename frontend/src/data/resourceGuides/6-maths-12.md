@@ -20,6 +20,16 @@ Find the mean of 4, 6, 8 and 10.
 
 **Check:** 7, because their sum 28 is shared among four values.
 
+### Work through an example
+
+Four groups collect 3, 5, 8 and 8 tokens. Their total is 24, so fair sharing gives a mean of 24 ÷ 4 = 6. Picture moving tokens from the two groups above 6 to the groups below 6: the surplus 2 + 2 equals the shortage 3 + 1. This balances the data even though no group originally had 6. A new group with 6 tokens would leave the mean unchanged.
+
+### Try a different case
+
+A data set has 4, 6 and 11. A learner says its mean is halfway between 4 and 11, so it is 7.5. Find the mean. What happens if a fourth value of 7 is included?
+
+**Reasoning:** The mean is (4 + 6 + 11) ÷ 3 = 21 ÷ 3 = 7, not the midpoint of the extremes. Adding 7 makes the total 28 across four values, so the mean stays 7. Include every entry when calculating the mean, including repeated values.
+
 ## 2. Reading graphs and axes
 
 ### Watch: Misleading line graphs
@@ -37,6 +47,16 @@ Read a graph's title, axis labels, units and scale before comparing heights. If 
 A graph axis advances by 5 each grid step. What does three steps represent?
 
 **Check:** 15 units, not 3.
+
+### Work through an example
+
+A vertical axis is labelled 40, 45, 50, 55 at equally spaced ticks. A point two steps above 40 has value 50, not 10. The change from 45 to 55 is 10 units. If a graph starts at 40 rather than zero, a small change can look large; read the labels and units before describing it. An axis need not begin at zero for every graph, but its starting value must not be hidden.
+
+### Try a different case
+
+A bar chart has a vertical axis beginning at 90, with 2 units per grid step. Bars reach three and five steps above 90. Are the values 6 and 10, and is the second value almost twice the first?
+
+**Reasoning:** The values are 90 + 3 × 2 = 96 and 90 + 5 × 2 = 100. Their difference is 4 units. The visible bar lengths above 90 are not the full values; 100 is not almost twice 96. Check where the axis begins before comparing bar lengths.
 
 ## 3. Line graphs and change over time
 
@@ -56,6 +76,16 @@ Does a flat distance-time line mean the object has returned to its starting poin
 
 **Check:** No. It means its distance reading is not changing during that interval.
 
+### Work through an example
+
+A graph of distance from the starting point gives 2 km at 10:00, 5 km at 11:00 and 5 km at 12:00. The reading rises by 3 km in the first hour, then stays at 5 km for the next hour. The flat segment does not show a return to zero. The line connects recorded points; without more measurements, do not claim the journey followed that exact pattern at every instant.
+
+### Try a different case
+
+A tank-volume graph reads 18 litres at 09:00, 12 litres at 09:30 and 12 litres at 10:00. Find the first change and explain the last two equal readings. Do the equal readings prove no water entered or left?
+
+**Reasoning:** The first recorded change is 12 - 18 = -6 litres, a decrease of 6 litres in 30 minutes. The last two readings are equal, not zero. Equal readings alone do not prove that no water entered or left between them: inflow and outflow could balance, or changes could occur between observations.
+
 ## 4. Choosing and interpreting a display
 
 ### Watch: Misleading line graphs
@@ -73,6 +103,16 @@ Choose a display to match the question: a line graph can show change over time, 
 Can a graph showing two quantities rising together prove one causes the other?
 
 **Check:** No. Other explanations may exist.
+
+### Work through an example
+
+A class has two questions. To compare how many pupils prefer football, chess or music, use a bar chart with labelled categories. To show the library visitor count recorded each day, a line graph can make the time pattern easier to see. Do not join unrelated activity categories as though they formed a time sequence. If library visits and book borrowing rise together, the graph alone does not prove one caused the other.
+
+### Try a different case
+
+You have daily temperature readings and each pupil's favourite fruit. Which could use a line graph and which a bar chart? If cold-drink sales and temperature rise together, must cold drinks cause hotter weather?
+
+**Reasoning:** Use a line graph for temperature over time and a bar chart for counts in the fruit categories. The two displays answer different questions. Higher sales alongside higher temperature show an association, not proof that buying drinks changes the weather. Weather could affect demand, and other factors could also matter.
 
 ## Your five-minute revision
 
