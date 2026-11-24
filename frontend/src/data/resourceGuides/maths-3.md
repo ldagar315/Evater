@@ -56,6 +56,16 @@ What is 1011 in base two worth in decimal?
 
 **Check:** 8 + 0 + 2 + 1 = 11.
 
+### Work through an example
+
+In base two, two units of one place regroup as one unit of the next place. Add one to 111₂: the ones place gives two ones, so carry one into the twos place; that also gives two twos, then two fours. The result is 1000₂. Check in decimal: 111₂ = 4 + 2 + 1 = 7, and 1000₂ = 8. The extra written digit records regrouping, not eight new objects.
+
+### Try a different case
+
+Write decimal 13 in base two and add one in that base. A learner writes 1102₂. Explain the error and check the correct answer in decimal.
+
+**Reasoning:** 13 = 8 + 4 + 1, so it is 1101₂. Adding one makes two ones: regroup them as one two to get 1110₂ = 8 + 4 + 2 = 14. The digit 2 is not allowed in a standard binary numeral; it signals a carry that has not been completed.
+
 ## 4. Comparing representations
 
 ### Watch: Converting from decimal to binary
@@ -73,6 +83,16 @@ Translate a number by adding its place values, then convert back to check. In ba
 What does 23 in base five mean in decimal?
 
 **Check:** 2 × 5 + 3 = 13. The digits must each be smaller than five.
+
+### Work through an example
+
+In positional base five, the places from right to left are 1, 5 and 25. Thus 104₅ = 1 × 25 + 0 × 5 + 4 = 29 in decimal. The zero keeps the 1 in the twenty-fives place; deleting it gives 14₅ = 9, a different number. Adding one to 104₅ gives 110₅: five ones regroup as one five. Decode the result as 25 + 5 = 30 to check.
+
+### Try a different case
+
+Compare 31₅ and 31₁₀. Then write decimal 19 in base five and explain why 34₅ + 1₅ becomes 40₅ rather than 35₅.
+
+**Reasoning:** 31₅ means 3 × 5 + 1 = 16 in decimal, whereas 31₁₀ means thirty-one. Decimal 19 is 3 × 5 + 4 = 34₅. Adding one regroups five ones into one five, giving 40₅ = 20 in decimal. A standard base-five numeral uses only digits 0 through 4. The base label changes the place weights, not the amount being represented.
 
 ## Your five-minute revision
 
