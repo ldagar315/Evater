@@ -11,7 +11,8 @@ const mappings = [
 ]
 describe('reuse existing models on matching resource lessons',()=>{
   for(const [original,resource,component] of mappings) it(`keeps ${original} and adds ${resource}`,()=>{
-    expect(source).toContain(`['${original}', '${resource}'].includes(post.slug) && <${component} />`)
+    expect(source).toContain(`post.slug === '${original}' && <${component} />`)
+    expect(source).toContain(`post.slug === '${resource}' && <${component} />`)
     expect(resourceGuides.filter(g=>g.slug===resource)).toHaveLength(1)
     const guide=resourceGuides.find(g=>g.slug===resource)!
     expect(guide.content).toContain('Try it yourself')
