@@ -791,9 +791,9 @@ export function QuestionBankPracticePage() {
                   {target && chapterError && <p className="mt-2 text-sm text-red-700">{chapterError}</p>}
                   <button type="button" onClick={() => navigate('/practice')} className="mt-3 min-h-11 text-sm font-bold text-teal-800 underline">Choose different practice instead</button>
                 </section>}
-                {chapterTarget && <section aria-label="Paper chapter practice" className="rounded-2xl border border-teal-200 bg-teal-50 p-5">
+                {chapterTarget && <section aria-label="Chapter practice target" className="rounded-2xl border border-teal-200 bg-teal-50 p-5">
                   <h2 className="text-lg font-bold text-dark">{resolvedChapter?.title || 'Chapter practice'}</h2>
-                  <p className="mt-2 text-sm leading-6 text-neutral-700" role="status">{chaptersLoading ? 'Checking this chapter in the published subject catalogue...' : targetReady ? 'This chapter is selected. Choose a mode and start when you are ready. These online questions are separate from the PDF.' : 'This chapter could not be verified. We will not substitute another chapter.'}</p>
+                  <p className="mt-2 text-sm leading-6 text-neutral-700" role="status">{chaptersLoading ? 'Checking this chapter in the published subject catalogue...' : targetReady ? 'This chapter is selected. Choose a mode and start when you are ready. This is chapter-wide practice, not an exact concept or PDF question match.' : 'This chapter could not be verified. We will not substitute another chapter.'}</p>
                   <button type="button" onClick={() => navigate('/practice')} className="mt-3 min-h-11 text-sm font-bold text-teal-800 underline">Choose different practice instead</button>
                 </section>}
                 <fieldset>
