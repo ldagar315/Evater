@@ -245,11 +245,11 @@ export function BlogPostPage() {
             <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-dark prose-h2:scroll-mt-28 prose-p:leading-8 prose-p:text-neutral-600 prose-a:font-bold prose-a:text-primary-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-dark prose-li:text-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:text-neutral-700 prose-img:rounded-2xl">
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
             </div>
-            {['ncert-class-8-maths-power-play-study-guide', 'class-8-maths-power-play-study-resources'].includes(post.slug) && <PowerGrowthVisual />}
-            {['ncert-class-8-maths-area-study-guide', 'class-8-maths-area-study-resources'].includes(post.slug) && <AreaHeightVisual />}
-            {['ncert-class-8-maths-square-and-cube-study-guide', 'class-8-maths-a-square-and-a-cube-study-resources'].includes(post.slug) && <CubeVolumeSimulation />}
-            {['ncert-class-8-maths-baudhayana-pythagoras-theorem', 'class-8-maths-the-baudhayana-pythagoras-theorem-study-resources'].includes(post.slug) && <PythagorasSimulation />}
-            {['ncert-class-8-science-exploring-forces-study-guide', 'class-8-science-exploring-forces-study-resources'].includes(post.slug) && <ForceSimulation />}
+            {post.slug === 'ncert-class-8-maths-power-play-study-guide' && <PowerGrowthVisual />}
+            {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
+            {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
+            {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
+            {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
 
             {conceptPracticeReady && blogPracticeTargets[post.slug] && <section id="concept-practice" aria-label="Practise concepts from this article" className="my-10 rounded-2xl border border-teal-200 bg-teal-50 p-5 sm:p-7">
               <h2 className="text-2xl font-extrabold text-dark">Put this concept to the test</h2>
@@ -271,6 +271,12 @@ export function BlogPostPage() {
                 </div>
               </section>
             )}
+
+            {post.slug === 'class-8-maths-power-play-study-resources' && <PowerGrowthVisual />}
+            {post.slug === 'class-8-maths-area-study-resources' && <AreaHeightVisual />}
+            {post.slug === 'class-8-maths-a-square-and-a-cube-study-resources' && <CubeVolumeSimulation />}
+            {post.slug === 'class-8-maths-the-baudhayana-pythagoras-theorem-study-resources' && <PythagorasSimulation />}
+            {post.slug === 'class-8-science-exploring-forces-study-resources' && <ForceSimulation />}
 
             {post.tags.length > 0 && (
               <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-neutral-200 pt-8">
