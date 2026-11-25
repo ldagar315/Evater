@@ -1,10 +1,10 @@
-import { resourcePracticeHref } from '../data/resourcePracticeTargets'
 import { youtubeVideoId } from '../components/blog/resourceVideo'
 import { PowerGrowthVisual, AreaHeightVisual } from '../components/blog/MathsChapterVisuals'
 import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { supportsConceptPractice } from '../lib/api'
 import { blogPracticeTargets } from '../data/blogPracticeTargets'
 import { practiceHref } from '../lib/practiceTarget'
+import { resourcePracticeHref } from '../data/resourcePracticeTargets'
 import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Calendar, Check, ChevronRight, Clock, Home, Share2, Tag } from 'lucide-react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -184,8 +184,8 @@ export function BlogPostPage() {
           allowFullScreen
         />
       </span>
-      if (href === '/practice' && resourceSetupHref) return <Link to={resourceSetupHref}>{children}</Link>
       if (href === '/practice' && conceptPracticeReady && blogPracticeTargets[post.slug]) return <a href="#concept-practice">{children}</a>
+      if (href === '/practice' && resourceSetupHref) return <Link to={resourceSetupHref}>{children}</Link>
       if (href?.startsWith('/')) return <Link to={href}>{children}</Link>
       return <a href={href} target="_blank" rel="noreferrer">{children}</a>
     },
