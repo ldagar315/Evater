@@ -1,3 +1,4 @@
+import { DensitySimulation } from '../components/blog/DensitySimulation'
 import { ResourceVideoEmbed } from '../components/blog/ResourceVideoEmbed'
 import { youtubeVideoId } from '../components/blog/resourceVideo'
 import { PowerGrowthVisual, AreaHeightVisual } from '../components/blog/MathsChapterVisuals'
@@ -250,6 +251,7 @@ export function BlogPostPage() {
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
             {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
+            {post.slug === 'class-8-science-the-amazing-world-of-solutes-solvents-and-solutions-study-resources' && <DensitySimulation />}
 
             {conceptPracticeReady && blogPracticeTargets[post.slug] && <section id="concept-practice" aria-label="Practise concepts from this article" className="my-10 rounded-2xl border border-teal-200 bg-teal-50 p-5 sm:p-7">
               <h2 className="text-2xl font-extrabold text-dark">Put this concept to the test</h2>
