@@ -1,3 +1,5 @@
+import { resourcePracticeHref } from '../data/resourcePracticeTargets'
+import { ResourceVideoEmbed } from '../components/blog/ResourceVideoEmbed'
 import { youtubeVideoId } from '../components/blog/resourceVideo'
 import { PowerGrowthVisual, AreaHeightVisual } from '../components/blog/MathsChapterVisuals'
 import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
@@ -67,6 +69,7 @@ export function BlogPostPage() {
   }, [slug])
 
   const articleContent = useMemo(() => post ? stripLeadingMarkdownTitle(post.content) : '', [post])
+  const resourceSetupHref = post ? resourcePracticeHref(post.slug) : null
   const headings = useMemo(() => getHeadings(articleContent), [articleContent])
 
   const handleShare = async () => {
@@ -171,17 +174,8 @@ export function BlogPostPage() {
     h3: ({ children }: { children?: React.ReactNode }) => <h3>{children}</h3>,
     a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
       const videoId = href && post.id.startsWith('resource-') && getTextContent(children) === 'Open the video' ? youtubeVideoId(href) : null
-      if (videoId) return <span className="not-prose my-5 block">
-        <iframe
-          className="aspect-video w-full rounded-xl border-0 bg-neutral-900"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-          title={`YouTube video ${videoId} for ${post.title}`}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      </span>
+      if (videoId && href) return <ResourceVideoEmbed videoUrl={href} title={post.title} />
+      if (href === '/practice' && resourceSetupHref) return <Link to={resourceSetupHref}>{children}</Link>
       if (href === '/practice' && conceptPracticeReady && blogPracticeTargets[post.slug]) return <a href="#concept-practice">{children}</a>
       if (href?.startsWith('/')) return <Link to={href}>{children}</Link>
       return <a href={href} target="_blank" rel="noreferrer">{children}</a>
@@ -329,7 +323,7 @@ export function BlogPostPage() {
               <p className="mt-3 max-w-2xl leading-7 text-primary-50/70">Evater helps you move from “I read it” to “I can use it.”</p>
             </div>
             <div className="flex shrink-0 flex-wrap gap-3">
-              <Link to={conceptPracticeReady && blogPracticeTargets[post.slug] ? practiceHref(blogPracticeTargets[post.slug][0]) : '/practice'} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{conceptPracticeReady && blogPracticeTargets[post.slug] ? 'Practise this concept' : 'Choose chapter practice'}</Link>
+              <Link to={resourceSetupHref || (conceptPracticeReady && blogPracticeTargets[post.slug] ? practiceHref(blogPracticeTargets[post.slug][0]) : '/practice')} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{resourceSetupHref ? 'Set up this chapter’s practice' : conceptPracticeReady && blogPracticeTargets[post.slug] ? 'Practise this concept' : 'Choose chapter practice'}</Link>
               <Link to="/blog/" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">Read more articles <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" /></Link>
             </div>
           </div>
