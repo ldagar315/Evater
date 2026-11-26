@@ -18,6 +18,7 @@ import { Button } from '../components/ui/Button'
 import { Card, CardContent } from '../components/ui/Card'
 import { useAuthContext } from '../contexts/AuthContext'
 import { getPostBySlug, getRelatedPosts } from '../data/blogPosts'
+import { RatioScaling } from '../components/blog/RatioScaling'
 import { BlogPost } from '../types/blog'
 import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
@@ -247,6 +248,7 @@ export function BlogPostPage() {
             </div>
             {post.slug === 'ncert-class-8-maths-power-play-study-guide' && <PowerGrowthVisual />}
             {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
+            {post.slug === 'class-8-maths-proportional-reasoning-1-study-resources' && <RatioScaling />}
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
             {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
