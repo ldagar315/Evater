@@ -13,6 +13,7 @@ import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
 import { BlogCard } from '../components/blog/BlogCard'
 import { Seo } from '../components/seo/Seo'
+import { ContactPressure } from '../components/blog/ContactPressure'
 import { SITE_URL } from '../components/seo/seoConfig'
 import { Button } from '../components/ui/Button'
 import { Card, CardContent } from '../components/ui/Card'
@@ -257,6 +258,7 @@ export function BlogPostPage() {
               <div className="mt-4 flex flex-wrap gap-3">{blogPracticeTargets[post.slug].map(target => <Link key={target.concept} to={practiceHref(target)} className="inline-flex min-h-12 items-center rounded-xl bg-teal-800 px-4 py-3 text-sm font-bold text-white hover:bg-teal-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-800">{target.label}<ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Link>)}</div>
               <p className="mt-3 text-xs leading-5 text-neutral-500">The set length depends on current availability. Opening a link does not create a test.</p>
             </section>}
+            {post.slug === 'class-8-science-pressure-winds-storms-and-cyclones-study-resources' && <ContactPressure />}
             {post.faqs && post.faqs.length > 0 && (
               <section aria-labelledby="faq-heading" className="mt-12 border-t border-neutral-200 pt-10">
                 <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Quick answers</p>
