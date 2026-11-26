@@ -21,6 +21,7 @@ import { getPostBySlug, getRelatedPosts } from '../data/blogPosts'
 import { BlogPost } from '../types/blog'
 import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
+import { DistributiveArea } from '../components/blog/DistributiveArea'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -249,6 +250,7 @@ export function BlogPostPage() {
             {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
             {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
+            {post.slug === 'class-8-maths-we-distribute-yet-things-multiply-study-resources' && <DistributiveArea />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
 
             {conceptPracticeReady && blogPracticeTargets[post.slug] && <section id="concept-practice" aria-label="Practise concepts from this article" className="my-10 rounded-2xl border border-teal-200 bg-teal-50 p-5 sm:p-7">
