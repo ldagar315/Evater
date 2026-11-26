@@ -9,6 +9,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Calendar, Check, ChevronRight, Clock, Home, Share2, Tag } from 'lucide-react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
+import { InverseWork } from '../components/blog/InverseWork'
 import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
 import { BlogCard } from '../components/blog/BlogCard'
@@ -292,6 +293,7 @@ export function BlogPostPage() {
                 <span className="sr-only" aria-live="polite">{shareStatus === 'copied' ? 'Article link copied.' : ''}</span>
               </div>
             </div>
+            {post.slug === 'class-8-maths-proportional-reasoning-2-study-resources' && <InverseWork />}
           </article>
         </section>
 
