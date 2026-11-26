@@ -5,6 +5,7 @@ import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { supportsConceptPractice } from '../lib/api'
 import { blogPracticeTargets } from '../data/blogPracticeTargets'
 import { practiceHref } from '../lib/practiceTarget'
+import { FractionExplorations } from '../components/blog/FractionExplorations'
 import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Calendar, Check, ChevronRight, Clock, Home, Share2, Tag } from 'lucide-react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -271,6 +272,8 @@ export function BlogPostPage() {
                 </div>
               </section>
             )}
+
+            {post.slug === 'class-8-maths-fractions-in-disguise-study-resources' && <FractionExplorations />}
 
             {post.tags.length > 0 && (
               <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-neutral-200 pt-8">
