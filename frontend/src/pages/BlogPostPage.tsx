@@ -5,7 +5,6 @@ import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { supportsConceptPractice } from '../lib/api'
 import { blogPracticeTargets } from '../data/blogPracticeTargets'
 import { practiceHref } from '../lib/practiceTarget'
-import { FractionExplorations } from '../components/blog/FractionExplorations'
 import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Calendar, Check, ChevronRight, Clock, Home, Share2, Tag } from 'lucide-react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -20,6 +19,7 @@ import { Card, CardContent } from '../components/ui/Card'
 import { useAuthContext } from '../contexts/AuthContext'
 import { getPostBySlug, getRelatedPosts } from '../data/blogPosts'
 import { BlogPost } from '../types/blog'
+import { FractionExplorations } from '../components/blog/FractionExplorations'
 import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
 
@@ -249,6 +249,7 @@ export function BlogPostPage() {
             {post.slug === 'ncert-class-8-maths-power-play-study-guide' && <PowerGrowthVisual />}
             {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
+            {post.slug === 'class-8-maths-fractions-in-disguise-study-resources' && <FractionExplorations />}
             {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
 
@@ -272,8 +273,6 @@ export function BlogPostPage() {
                 </div>
               </section>
             )}
-
-            {post.slug === 'class-8-maths-fractions-in-disguise-study-resources' && <FractionExplorations />}
 
             {post.tags.length > 0 && (
               <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-neutral-200 pt-8">
