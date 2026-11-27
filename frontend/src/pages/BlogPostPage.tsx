@@ -38,6 +38,8 @@ const getTextContent = (children: React.ReactNode): string => React.Children.toA
   return ''
 }).join('')
 
+import { GasCompression } from '../components/blog/GasCompression'
+
 const getHeadings = (content: string) => Array.from(content.matchAll(/^##\s+(.+)$/gm)).map((match, index) => ({
   title: match[1].trim(),
   id: `${slugify(match[1])}-${index}`,
@@ -294,6 +296,8 @@ export function BlogPostPage() {
             </div>
           </article>
         </section>
+
+        {post.slug === 'class-8-science-particulate-nature-of-matter-study-resources' && <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8"><GasCompression /></div>}
 
         {relatedPosts.length > 0 && (
           <section aria-labelledby="related-heading" className="border-t border-neutral-200 bg-white py-16 sm:py-20">
