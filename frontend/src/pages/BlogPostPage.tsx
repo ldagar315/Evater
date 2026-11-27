@@ -12,6 +12,7 @@ import Markdown from 'react-markdown'
 import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
 import { BlogCard } from '../components/blog/BlogCard'
+import { MeanBalance } from '../components/blog/MeanBalance'
 import { Seo } from '../components/seo/Seo'
 import { SITE_URL } from '../components/seo/seoConfig'
 import { Button } from '../components/ui/Button'
@@ -245,6 +246,7 @@ export function BlogPostPage() {
             <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-dark prose-h2:scroll-mt-28 prose-p:leading-8 prose-p:text-neutral-600 prose-a:font-bold prose-a:text-primary-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-dark prose-li:text-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:text-neutral-700 prose-img:rounded-2xl">
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
             </div>
+            {post.slug === 'class-8-maths-tales-by-dots-and-lines-study-resources' && <MeanBalance />}
             {post.slug === 'ncert-class-8-maths-power-play-study-guide' && <PowerGrowthVisual />}
             {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
