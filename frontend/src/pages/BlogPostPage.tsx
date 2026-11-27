@@ -30,6 +30,8 @@ const formatDate = (dateString: string) => new Date(dateString).toLocaleDateStri
 
 const stripLeadingMarkdownTitle = (content: string) => content.replace(/^#\s+.+(?:\r?\n){1,2}/, '')
 
+import { CircuitContinuity } from '../components/blog/CircuitContinuity'
+
 const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 
 const getTextContent = (children: React.ReactNode): string => React.Children.toArray(children).map((child) => {
@@ -279,6 +281,7 @@ export function BlogPostPage() {
               </div>
             )}
 
+            {post.slug === 'class-8-science-electricity-magnetic-and-heating-effects-study-resources' && <CircuitContinuity />}
             <div className="mt-10 flex flex-col gap-6 border-t border-neutral-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm font-semibold text-neutral-500">Written by</p>
