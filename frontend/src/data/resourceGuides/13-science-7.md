@@ -20,6 +20,15 @@ Do gaps between particles mean matter contains visible holes?
 
 **Check:** No. Particle spacing is a microscopic model feature.
 
+### Work through an example
+
+Two drawings represent the same sealed sample of gas, using 20 circles each. In drawing B, the circles are printed twice as wide so they are easier to see. That change in the drawing does not show that the real particles expanded or that the sample gained matter. A model needs a key explaining its symbols, scale and what is being compared. Do not measure the printed circles as though they were actual particle sizes.
+
+### Try a different case
+
+A learner colours the gas particles blue in one diagram and red in another, with no key saying a different substance is present. Must the real gas have changed colour or become a new substance? What would make the comparison useful?
+
+**Reasoning:** No. Diagram colours can be labels, not the visible colours of real particles. Ask what each colour means and whether the drawings use a consistent key, sample and scale. A changed symbol alone is not evidence of a changed substance. Use the diagram to explain a specified observation, not to invent one.
 ### Extend your reasoning
 
 Matter can be modelled as extremely small constituent particles with spaces between them. A drawn circle stands for a particle; it is not a photograph of a tiny solid ball. The white space between circles represents separation in the model, not visible holes or little pockets that must be filled with air. A grain of powder itself contains very many constituent particles.
@@ -50,6 +59,15 @@ Why is a gas generally easier to compress than a liquid?
 
 **Check:** Gas particles are much farther apart, leaving more space to reduce.
 
+### Work through an example
+
+A supplied diagram shows a sealed gas sample occupying 100 mL, then 50 mL after compression, with no gas escaping and no change of state. Draw the same number of particles, each the same size, closer together overall. The container volume changes mainly by reducing the spaces, not by shrinking the particles. Under ordinary conditions a liquid is much harder to compress because its particles are already close together. This is a paper model, not an instruction to pressurise a container.
+
+### Try a different case
+
+A learner redraws the compressed sample with half as many particles, or with each particle half its original diameter. Which change follows from the stated model? What would a useful corrected diagram keep and change?
+
+**Reasoning:** Neither follows. No gas escaped, so the sample should keep the same particle count; compression does not mean each particle shrinks. Keep the particle symbols the same size and number, but show less space between them in the smaller volume. State the model conditions, and do not try to compress sealed containers yourself.
 ### Extend your reasoning
 
 Compare arrangement, motion and spacing, not only whether a material flows. In a solid, constituent particles vibrate about positions rather than being completely motionless. In a liquid they remain close but can move past one another. Gas particles are much farther apart and move through the available space, so reducing those spaces usually makes a gas much easier to compress than a liquid. Compression does not require the particles themselves to shrink.
@@ -80,6 +98,15 @@ Two gases have mixed evenly inside a closed container. Have their particles stop
 
 **Check:** No. Random motion continues. The gases are now evenly mixed, so there is no overall movement from a more concentrated region to a less concentrated one.
 
+### Work through an example
+
+A teacher supplies a sequence of diagrams of two gases in a closed container with no bulk flow. At first, one gas is concentrated near one end; later, both are spread throughout. Random particle motion can produce this overall mixing without particles deciding where to go. Even after uniform mixing, particles continue moving both ways across an imaginary dividing line. Uniform concentration means no overall concentration-driven transfer, not no movement.
+
+### Try a different case
+
+A scent reaches the other side of a room while a fan is running. Does that observation alone measure diffusion? If a closed, evenly mixed gas sample has no overall concentration difference, have its particles stopped?
+
+**Reasoning:** No. The fan can carry scented air by bulk motion, so arrival alone does not isolate diffusion. In the evenly mixed sample, random particle motion and crossings in both directions continue, although there is no overall concentration-driven transfer. Do not sniff unknown materials or run a smell test; interpret the supplied scenario only.
 ### Extend your reasoning
 
 Gas particles move in random directions and collide. If more particles of a gas are concentrated in one region than another, their random motion can produce a net spread toward the less concentrated region. That overall pattern is diffusion; individual particles do not choose a destination or all move in the same direction.
@@ -110,6 +137,15 @@ Ice melts inside a sealed container. Which should change: the arrangement of the
 
 **Check:** The arrangement changes. The molecules remain water, and the total mass stays the same because no matter enters or leaves.
 
+### Work through an example
+
+A fictional record gives a sealed container and its ice a total mass of 150 g. After the ice melts without leakage, the total remains 150 g: water molecules have changed arrangement, not become a new substance. In a separate open-dish record, a 50 g dish plus 20 g of water initially totals 70 g. If 5 g of water leaves as vapour, the dish and remaining water total 65 g. The vapour is outside what that second weighing includes; it has not ceased to exist.
+
+### Try a different case
+
+A supplied record shows a 40 g open dish containing 30 g of water. Later only 24 g of liquid remains. Find each dish-plus-liquid total. Does the 6 g decrease prove matter was destroyed? Would the same conclusion about the measured mass apply to the whole sealed system?
+
+**Reasoning:** The initial total is 40 + 30 = 70 g and the later total is 40 + 24 = 64 g. The 6 g can have left the open dish as vapour; the dish-plus-liquid measurement excludes it. For the whole sealed system with no matter entering or leaving, total mass stays the same even if some liquid becomes vapour. These are supplied records, not a heating experiment.
 ### Extend your reasoning
 
 Melting, freezing, evaporation and condensation change the arrangement and motion of particles. When ice melts, water molecules remain water molecules; the attractions between molecules change, not the bonds holding each water molecule together. Attractions between molecules and their arrangement change. Do not use the same spacing rule for every solid-liquid pair: ice occupies more volume than the same mass of liquid water.
