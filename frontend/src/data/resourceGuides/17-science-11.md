@@ -4,7 +4,13 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Rotation, revolution and time
 
-### Think it through
+### Watch: Earth's rotation and revolution
+
+Crash Course Kids
+
+[Open the video](https://www.youtube.com/watch?v=l64YwNl1wr0)
+
+### Understand it
 
 Rotation is an object's spin about its own axis; revolution is its motion around another body. Earth's rotation is the main cause of the daily apparent motion of the Sun and the day-night cycle. Earth's revolution around the Sun is linked to the year. Do not use one orbit to explain every time interval.
 
