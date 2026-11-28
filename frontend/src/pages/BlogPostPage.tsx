@@ -25,6 +25,7 @@ import { BlogPost } from '../types/blog'
 import { FractionExplorations } from '../components/blog/FractionExplorations'
 import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
+import { DistributiveArea } from '../components/blog/DistributiveArea'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -257,6 +258,7 @@ export function BlogPostPage() {
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
             {post.slug === 'class-8-maths-fractions-in-disguise-study-resources' && <FractionExplorations />}
             {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
+            {post.slug === 'class-8-maths-we-distribute-yet-things-multiply-study-resources' && <DistributiveArea />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
             {post.slug === 'class-8-science-the-amazing-world-of-solutes-solvents-and-solutions-study-resources' && <DensitySimulation />}
 
