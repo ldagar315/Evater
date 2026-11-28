@@ -24,7 +24,15 @@ The interior angles of a convex quadrilateral are 2x°, 3x°, 4x° and 6x°. Fin
 
 ## 2. Parallelograms and diagonals
 
-### Think it through
+### Watch: Why parallelogram diagonals bisect each other
+
+Kevinmathscience
+
+[Open the video](https://www.youtube.com/watch?v=PC9mbAwE3zk)
+
+Follow the two opposite triangles in the proof. The video uses two angles and a corresponding non-included side, often called AAS or SAA. It proves that each diagonal is cut into two equal halves, not that the two whole diagonals are equal or perpendicular. It does not prove the converse. Then return to the original explanation and question below.
+
+### Understand it
 
 Let the diagonals AC and BD of parallelogram ABCD meet at O. Opposite sides AB and CD are equal, and parallel sides give equal alternate angles. So triangles AOB and COD are congruent by ASA. Corresponding sides give AO = OC and BO = OD: the diagonals bisect each other.
 
