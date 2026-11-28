@@ -58,7 +58,15 @@ Use the rounded model of a 29.5-day lunar month and a 365-day solar year. How lo
 
 ## 4. Leap years and calendar adjustment
 
-### Think it through
+### Watch: Why Gregorian leap years have exceptions
+
+National Geographic
+
+[Open the video](https://www.youtube.com/watch?v=yd1i3vkkh-0)
+
+Follow why adding a day every four years slightly overcorrects, then apply the century tests below. Keep the rule tied to the Gregorian calendar rather than applying it to every calendar.
+
+### Understand it
 
 A calendar has to use whole days, while the seasonal year is not exactly 365 days. Adding a leap day roughly every four years helps, but that alone adds too many days over long periods. The Gregorian rule corrects this with century exceptions.
 

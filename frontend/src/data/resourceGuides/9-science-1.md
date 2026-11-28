@@ -24,7 +24,15 @@ Two plants of the same species are measured after a week: A is 14 cm tall and B 
 
 ## 2. Fair comparisons and variables
 
-### Think it through
+### Watch: Isolating variables in a fair comparison
+
+Crash Course Kids
+
+[Open the video](https://www.youtube.com/watch?v=BXFU86GNmrg)
+
+Watch how changing ball mass or launch speed can spoil a comparison of angles. Then transfer that idea to the dissolving comparison below. The same ball and a ramp help keep relevant conditions comparable. This is one useful comparison method, not a rule for every investigation. Use a written plan or teacher-prepared observations, not hot water to handle yourself.
+
+### Understand it
 
 A fair comparison changes one relevant factor while keeping other relevant conditions comparable. For a dissolving-time comparison, define the finish point, such as no visible grains remaining under the same observation method. Write the factor changed, the outcome measured and the conditions kept constant before interpreting the results.
 
