@@ -1,3 +1,4 @@
+import { chapterPracticeHref } from '../lib/chapterPracticeTarget'
 import { samplePapers, type SamplePaper } from './samplePapers'
 
 export interface PaperSection {
@@ -122,6 +123,7 @@ export const paperDetails: PaperDetail[] = [
     sections: CHAPTER_SECTIONS,
     answersNote: CHAPTER_ANSWERS,
     sourceNote: 'Concept reference: NCERT Class 8 Mathematics, Ganita Prakash, Chapter 4: Quadrilaterals. Questions and model answers are original Evater practice material, not an official NCERT paper or marking scheme.',
+    studyGuide: { label: 'Read the Quadrilaterals study guide', href: '/blog/class-8-maths-quadrilaterals-study-resources/' },
   }),
   detail('maths-ch05', 'class-8-maths-number-play-sample-paper', {
     heading: 'Class 8 Maths sample paper: Number Play',
@@ -138,6 +140,7 @@ export const paperDetails: PaperDetail[] = [
     sections: CHAPTER_SECTIONS,
     answersNote: CHAPTER_ANSWERS,
     sourceNote: 'Concept reference: NCERT Class 8 Mathematics, Ganita Prakash, Chapter 5: Number Play. Questions and model answers are original Evater practice material, not an official NCERT paper or marking scheme.',
+    studyGuide: { label: 'Read the Number Play study guide', href: '/blog/class-8-maths-number-play-study-resources/' },
   }),
   detail('maths-ch06', 'class-8-maths-we-distribute-yet-things-multiply-sample-paper', {
     heading: 'Class 8 Maths sample paper: We Distribute, Yet Things Multiply',
@@ -222,6 +225,7 @@ export const paperDetails: PaperDetail[] = [
     sections: CHAPTER_SECTIONS,
     answersNote: CHAPTER_ANSWERS,
     sourceNote: 'Concept reference: NCERT Class 8 Mathematics, Ganita Prakash, Chapter 10: Proportional Reasoning-2. Questions and model answers are original Evater practice material, not an official NCERT paper or marking scheme.',
+    studyGuide: { label: 'Read the Proportional Reasoning-2 study guide', href: '/blog/class-8-maths-proportional-reasoning-2-study-resources/' },
   }),
   detail('maths-ch11', 'class-8-maths-exploring-some-geometric-themes-sample-paper', {
     heading: 'Class 8 Maths sample paper: Exploring Some Geometric Themes',
@@ -238,6 +242,7 @@ export const paperDetails: PaperDetail[] = [
     sections: CHAPTER_SECTIONS,
     answersNote: CHAPTER_ANSWERS,
     sourceNote: 'Concept reference: NCERT Class 8 Mathematics, Ganita Prakash, Chapter 11: Exploring Some Geometric Themes. Questions and model answers are original Evater practice material, not an official NCERT paper or marking scheme.',
+    studyGuide: { label: 'Read the Geometric Themes study guide', href: '/blog/class-8-maths-exploring-some-geometric-themes-study-resources/' },
   }),
   detail('maths-ch12', 'class-8-maths-tales-by-dots-and-lines-sample-paper', {
     heading: 'Class 8 Maths sample paper: Tales by Dots and Lines',
@@ -254,6 +259,7 @@ export const paperDetails: PaperDetail[] = [
     sections: CHAPTER_SECTIONS,
     answersNote: CHAPTER_ANSWERS,
     sourceNote: 'Concept reference: NCERT Class 8 Mathematics, Ganita Prakash, Chapter 12: Tales by Dots and Lines. Questions and model answers are original Evater practice material, not an official NCERT paper or marking scheme.',
+    studyGuide: { label: 'Read the Tales by Dots and Lines study guide', href: '/blog/class-8-maths-tales-by-dots-and-lines-study-resources/' },
   }),
   detail('maths-ch13', 'class-8-maths-algebra-play-sample-paper', {
     heading: 'Class 8 Maths sample paper: Algebra Play',
@@ -270,6 +276,7 @@ export const paperDetails: PaperDetail[] = [
     sections: CHAPTER_SECTIONS,
     answersNote: CHAPTER_ANSWERS,
     sourceNote: 'Concept reference: NCERT Class 8 Mathematics, Ganita Prakash, Chapter 13: Algebra Play. Questions and model answers are original Evater practice material, not an official NCERT paper or marking scheme.',
+    studyGuide: { label: 'Read the Algebra Play study guide', href: '/blog/class-8-maths-algebra-play-study-resources/' },
   }),
   detail('maths-ch14', 'class-8-maths-area-sample-paper', {
     heading: 'Class 8 Maths sample paper: Area',
@@ -593,4 +600,16 @@ export function paperForDetail(detailPage: PaperDetail): SamplePaper {
   const paper = samplePapers.find(p => p.id === detailPage.paperId)
   if (!paper) throw new Error(`No sample paper matches detail page ${detailPage.slug}`)
   return paper
+}
+
+/** Only chapter papers select a chapter. Mixed papers keep the general chooser. */
+export function paperPracticeHref(paperId: string): string | undefined {
+  const paper = samplePapers.find(p => p.id === paperId)
+  if (!paper) return undefined
+  if (paper.format === 'mixed') return '/practice'
+  const legacy: Record<string, number> = { light: 10, electricity: 4, pythagoras: 9 }
+  const match = paper.id.match(/^(maths|science)-ch(\d{2})$/)
+  const chapterNumber = match ? Number(match[2]) : legacy[paper.id]
+  if (!chapterNumber) return undefined
+  return chapterPracticeHref({ subject: paper.subject === 'Mathematics' ? 'mathematics' : 'science', chapterNumber })
 }

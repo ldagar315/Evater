@@ -5,6 +5,7 @@ import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { supportsConceptPractice } from '../lib/api'
 import { blogPracticeTargets } from '../data/blogPracticeTargets'
 import { practiceHref } from '../lib/practiceTarget'
+import { resourcePracticeHref } from '../data/resourcePracticeTargets'
 import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Calendar, Check, ChevronRight, Clock, Home, Share2, Tag } from 'lucide-react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -68,6 +69,7 @@ export function BlogPostPage() {
   }, [slug])
 
   const articleContent = useMemo(() => post ? stripLeadingMarkdownTitle(post.content) : '', [post])
+  const resourceSetupHref = post ? resourcePracticeHref(post.slug) : null
   const headings = useMemo(() => getHeadings(articleContent), [articleContent])
 
   const handleShare = async () => {
@@ -174,6 +176,7 @@ export function BlogPostPage() {
       const videoId = href && post.id.startsWith('resource-') && getTextContent(children) === 'Open the video' ? youtubeVideoId(href) : null
       if (videoId && href) return <ResourceVideoEmbed videoUrl={href} title={post.title} />
       if (href === '/practice' && conceptPracticeReady && blogPracticeTargets[post.slug]) return <a href="#concept-practice">{children}</a>
+      if (href === '/practice' && resourceSetupHref) return <Link to={resourceSetupHref}>{children}</Link>
       if (href?.startsWith('/')) return <Link to={href}>{children}</Link>
       return <a href={href} target="_blank" rel="noreferrer">{children}</a>
     },
@@ -320,7 +323,7 @@ export function BlogPostPage() {
               <p className="mt-3 max-w-2xl leading-7 text-primary-50/70">Evater helps you move from “I read it” to “I can use it.”</p>
             </div>
             <div className="flex shrink-0 flex-wrap gap-3">
-              <Link to={conceptPracticeReady && blogPracticeTargets[post.slug] ? practiceHref(blogPracticeTargets[post.slug][0]) : '/practice'} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{conceptPracticeReady && blogPracticeTargets[post.slug] ? 'Practise this concept' : 'Choose chapter practice'}</Link>
+              <Link to={resourceSetupHref || (conceptPracticeReady && blogPracticeTargets[post.slug] ? practiceHref(blogPracticeTargets[post.slug][0]) : '/practice')} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{resourceSetupHref ? 'Set up this chapter’s practice' : conceptPracticeReady && blogPracticeTargets[post.slug] ? 'Practise this concept' : 'Choose chapter practice'}</Link>
               <Link to="/blog/" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">Read more articles <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" /></Link>
             </div>
           </div>
