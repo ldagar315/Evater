@@ -13,6 +13,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { InverseWork } from '../components/blog/InverseWork'
 import { Header } from '../components/layout/Header'
+import { QuadrilateralAngles } from '../components/blog/QuadrilateralAngles'
 import { Footer } from '../components/layout/Footer'
 import { BlogCard } from '../components/blog/BlogCard'
 import { Seo } from '../components/seo/Seo'
@@ -253,6 +254,7 @@ export function BlogPostPage() {
           <article className="min-w-0 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-10 lg:p-14">
             <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-dark prose-h2:scroll-mt-28 prose-p:leading-8 prose-p:text-neutral-600 prose-a:font-bold prose-a:text-primary-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-dark prose-li:text-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:text-neutral-700 prose-img:rounded-2xl">
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
+            {post.slug === 'class-8-maths-quadrilaterals-study-resources' && <QuadrilateralAngles />}
             </div>
             {post.slug === 'ncert-class-8-maths-power-play-study-guide' && <PowerGrowthVisual />}
             {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
