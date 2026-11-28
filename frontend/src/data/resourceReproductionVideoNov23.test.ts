@@ -1,0 +1,11 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const text=resourceGuides.find(p=>p.id==='resource-science-13')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t)),target=topics[2]
+describe('plant reproduction example preserves individual and population reasoning',()=>{
+ it('places the exact plant example only in topic3',()=>{expect(topics).toHaveLength(4);expect(target).toContain('[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)');expect(youtubeVideoId('https://www.youtube.com/watch?v=p4652vo5Oic')).toBe('p4652vo5Oic');expect(target).toContain('Khan Academy India - English');expect(target.match(/\[Open the video\]/g)).toHaveLength(1)})
+ it('does not confuse any growing part with a new individual or universal cutting success',()=>{for(const w of ['separate new plant','simply growing more leaves','Not every plant part','depend on the species','not every form of reproduction','does not guarantee that a population increases'])expect(target).toContain(w);expect(target).toContain('### Understand it');expect(target).toContain('### Try it yourself');expect(target).toContain('**Check:**')})
+ it('independently checks closed population totals and separates growth from births',()=>{const population=(start:number,births:number,deaths:number)=>start+births-deaths;expect(population(24,7,9)).toBe(22);expect(population(24,0,0)).toBe(24);expect(population(24,7,7)).toBe(24);for(let start=0;start<30;start++)for(let births=0;births<8;births++)expect(population(start,births,start)).toBe(births);if(target.includes('24 plants')){for(const w of ['not two new plants','deaths exceeded new plants','no plants entering or leaving'])expect(target).toContain(w)}})
+ it('retains questions/checks/revision and original Earth video',()=>{expect(text.match(/### Try it yourself/g)).toHaveLength(4);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(topics[0]).toContain('Bsp5JYNMAQE');expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)');expect(text).not.toMatch(/transcript|playback verified|supporting evidence|extension\.illinois/i)})
+})

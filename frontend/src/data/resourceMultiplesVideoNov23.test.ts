@@ -1,0 +1,13 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const text=resourceGuides.find(p=>p.id==='resource-maths-5')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t));const target=topics[0]
+const url='https://www.youtube.com/watch?v=nCq3rxCG2MA'
+describe('integer multiples foundation with preserved non-converse reasoning',()=>{
+ it('places exact short proof foundation only in topic1',()=>{expect(topics).toHaveLength(7);expect(target).toContain('### Watch: Use algebra to describe multiples');expect(target).toContain('Marcus Smith');expect(target.match(/\[Open the video\]/g)).toHaveLength(1);expect(text.match(/nCq3rxCG2MA/g)).toHaveLength(1);expect(youtubeVideoId(url)).toBe('nCq3rxCG2MA')})
+ it('preserves strict known video order and optional siblings',()=>{const slots=[['nCq3rxCG2MA',1,true],['WC2puADmICM',2,true],['znmPfDfsir8',3,true],['_dT97MUYuzs',4,false],['D0CkdFSWLOA',5,false],['P1qyjdh_sIw',6,false],['dTXMhOGI9Z8',7,false]] as const;const picked=slots.filter(([v,,required])=>required||text.includes(`watch?v=${v}`));expect([...text.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(picked.map(([v])=>`https://www.youtube.com/watch?v=${v}`));for(const[v,n]of picked)expect(topics[n-1]).toContain(`watch?v=${v}`)})
+ it('checks five consecutive integer factorisation and exact divisibility condition',()=>{for(let x=-80;x<=80;x++){const total=(x-2)+(x-1)+x+(x+1)+(x+2);expect(total).toBe(5*x);expect(total%15===0).toBe(x%3===0)}for(const part of ['middle integer','sum is 5x','exactly when x is divisible by 3','a and b are integers','not this two-multiples example'])expect(target).toContain(part)})
+ it('checks sum of multiples and rejects its converse',()=>{for(let a=-20;a<=20;a++)for(let b=-20;b<=20;b++){expect(7*a+7*b).toBe(7*(a+b));expect((7*a+3)+(7*b+4)).toBe(7*(a+b+1))}expect((2+5)%7).toBe(0);expect(2%7).not.toBe(0);expect(5%7).not.toBe(0);expect(target).toContain('does not force each addend');expect(target).toContain('### Understand it');expect(target).toContain('### Try it yourself');expect(target).toContain('**Check:**')})
+ it('retains seven attempts/checks/revision without research detours',()=>{expect(text.match(/### Try it yourself/g)).toHaveLength(7);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(7);expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)');expect(text).not.toMatch(/transcript|playback verified|supporting evidence|ncert\.nic|stackexchange/i)})
+})

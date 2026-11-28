@@ -1,0 +1,26 @@
+import { useId,useState } from 'react'
+import { distributiveArea } from './distributiveModel'
+const button='min-h-11 rounded-xl border border-teal-700 bg-white px-4 py-2 text-sm font-bold text-teal-900 hover:bg-teal-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700'
+export function DistributiveArea(){
+ const id=useId(),[x,setX]=useState(5),[a,setA]=useState(3),[b,setB]=useState(2),[answer,setAnswer]=useState(false)
+ const m=distributiveArea(x,a,b),unit=17,left=35,top=30
+ const regions=[{name:'x²',w:x,h:x,dx:0,dy:0,color:'#dbeafe'},{name:'ax',w:a,h:x,dx:x,dy:0,color:'#ccfbf1'},{name:'bx',w:x,h:b,dx:0,dy:x,color:'#ede9fe'},{name:'ab',w:a,h:b,dx:x,dy:x,color:'#fef3c7'}]
+ return <section data-distributive-area="true" aria-labelledby={`${id}-title`} className="my-10 rounded-2xl border border-teal-200 bg-teal-50/50 p-4 sm:p-6">
+ <p className="text-xs font-extrabold uppercase tracking-widest text-teal-700">Explore the four products</p><h2 id={`${id}-title`} className="mt-2 text-2xl font-extrabold text-dark">Where do the middle terms come from?</h2>
+ <p className="mt-3 text-sm leading-6">Split a rectangle of width x + a and height x + b. Every width part multiplies every height part. Here x, a and b are positive lengths in units; areas are in square units. This picture does not represent negative lengths.</p>
+ <div className="mt-5 grid gap-5 md:grid-cols-2 md:items-center"><figure className="rounded-xl border border-teal-100 bg-white p-3">
+ <svg viewBox={`0 0 ${70+m.width*unit} ${65+m.height*unit}`} role="img" aria-label={`Rectangle ${m.width} by ${m.height}, split into areas ${m.parts.join(', ')} square units. Total ${m.total}.`} className="mx-auto w-full max-w-96">
+ <text x={left+x*unit/2} y="19" textAnchor="middle" fontSize="10">x</text><text x={left+(x+a/2)*unit} y="19" textAnchor="middle" fontSize="10">a</text>
+ <text x="8" y={top+x*unit/2} fontSize="9" transform={`rotate(-90 8 ${top+x*unit/2})`} textAnchor="middle">x</text><text x="8" y={top+(x+b/2)*unit} fontSize="9" transform={`rotate(-90 8 ${top+(x+b/2)*unit})`} textAnchor="middle">b</text>
+ {regions.map((r,i)=><g key={r.name}><rect data-area-region={i} x={left+r.dx*unit} y={top+r.dy*unit} width={r.w*unit} height={r.h*unit} fill={r.color} stroke="#334155" strokeWidth="1"/><text x={left+(r.dx+r.w/2)*unit} y={top+(r.dy+r.h/2)*unit+3} textAnchor="middle" fontSize="10" fill="#0f172a">{r.name}</text></g>)}
+ </svg><figcaption className="mt-2 text-sm leading-6">The drawing fits the panel when you change a length. Within one view, every region uses the same scale. Region labels match the four products; exact areas are listed below.</figcaption></figure>
+ <div className="space-y-4">{[{label:'x',value:x,min:2,max:10,set:setX},{label:'a',value:a,min:1,max:6,set:setA},{label:'b',value:b,min:1,max:6,set:setB}].map(c=><label key={c.label} htmlFor={`${id}-${c.label}`} className="block text-sm font-bold">{c.label} = {c.value} {c.value===1?'unit':'units'}<input id={`${id}-${c.label}`} type="range" min={c.min} max={c.max} step="1" value={c.value} onChange={e=>c.set(Number(e.target.value))} className="mt-2 min-h-11 w-full accent-teal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700"/></label>)}
+ <button type="button" className={button} onClick={()=>{setX(5);setA(3);setB(2)}}>Reset: x = 5, a = 3, b = 2</button><button type="button" className={`${button} ml-0`} onClick={()=>setB(a)}>Make b equal a</button></div></div>
+ <div data-area-result="true" aria-live="polite" aria-atomic="true" className="mt-5 space-y-2 rounded-xl bg-white p-4 text-sm leading-7">
+ <p><strong>(x + a)(x + b) = x² + ax + bx + ab</strong></p><ul className="list-disc pl-5"><li>x² = {x} × {x} = {m.parts[0]} square units</li><li>ax = {a} × {x} = {m.parts[1]} square units</li><li>bx = {b} × {x} = {m.parts[2]} square units</li><li>ab = {a} × {b} = {m.parts[3]} square units</li></ul>
+ <p>Whole area: ({x} + {a}) × ({x} + {b}) = {m.width} × {m.height} = <strong>{m.total} square units</strong>.</p><p>Parts: {m.parts.join(' + ')} = {m.total}. Combining the two x-terms gives x² + {m.middle}x + {a*b}.</p>
+ <p>Keeping only x² + ab would miss ax + bx = <strong>{m.missing} square units</strong> in this state.</p>{m.square&&<p>Now a = b, so the two cross-products are equal. Their sum is 2ax, giving (x + a)² = x² + 2ax + a².</p>}
+ </div>
+ <div className="mt-5 border-t border-teal-200 pt-5"><p className="text-sm leading-6">Before checking: expand (t + 4)(t + 1). Someone keeps only t² + 4. Which products are missing? Use t = 3 to check the difference, then explain why the four-product rule works for every allowed t.</p><button type="button" className={`${button} mt-3`} aria-expanded={answer} aria-controls={`${id}-answer`} onClick={()=>setAnswer(!answer)}>{answer?'Hide explanation':'Check explanation'}</button>{answer&&<p id={`${id}-answer`} className="mt-3 text-sm leading-7">The missing products are 4t and t. The expansion is t² + 5t + 4. At t = 3 the whole is 7 × 4 = 28; t² + 4 gives 13, missing 15. The rectangle splits without gaps or overlaps, so its four areas add to the whole for positive lengths. Matching one number alone would not prove an identity; distributing both terms supplies the algebraic reason.</p>}</div>
+ </section>
+}

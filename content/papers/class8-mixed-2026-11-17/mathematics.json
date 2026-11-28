@@ -1,0 +1,775 @@
+{
+  "title": "Class 8 Mathematics mixed-chapter practice paper",
+  "status": "original_draft_not_published",
+  "marks": 60,
+  "suggested_minutes": 150,
+  "official_pattern": false,
+  "coverage_note": "One or more questions mapped to every current repository catalog chapter. Selective concept sampling, not exhaustive syllabus coverage or official CBSE certification.",
+  "instructions": [
+    "Attempt all 24 questions. There is no internal choice.",
+    "Section A: 12 objective questions, 1 mark each. Section B: 6 short answers, 3 marks each. Section C: 4 extended answers, 5 marks each. Section D: 2 case questions, 5 marks each.",
+    "Use a separate sheet for working. Suggested time is an Evater practice choice, not an official board rule.",
+    "Model answers and marking guidance follow. Accept equivalent correct reasoning."
+  ],
+  "questions": [
+    {
+      "type": "mcq",
+      "chapter": 1,
+      "topic": "square-patterns",
+      "marks": 1,
+      "stem": "A pixel picture is a filled 12 by 12 square. A designer adds one complete outer border, making a 14 by 14 square. How many pixels were added?",
+      "options": [
+        {
+          "id": "A",
+          "text": "24"
+        },
+        {
+          "id": "B",
+          "text": "28"
+        },
+        {
+          "id": "C",
+          "text": "52"
+        },
+        {
+          "id": "D",
+          "text": "196"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The added border contains 14\u00b2 - 12\u00b2 = 196 - 144 = 52 pixels. It includes both extra rows and columns without counting corners twice.",
+      "reused_original_draft_id": "c8-reasoning-20261117-01",
+      "number": 1,
+      "chapter_title": "A Square and A Cube",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp101.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 1,
+      "topic": "perfect-cubes",
+      "marks": 1,
+      "stem": "A solid display cube contains 216 identical small cubes. One layer, one small cube thick, is removed from the top. How many small cubes remain?",
+      "options": [
+        {
+          "id": "A",
+          "text": "210"
+        },
+        {
+          "id": "B",
+          "text": "180"
+        },
+        {
+          "id": "C",
+          "text": "144"
+        },
+        {
+          "id": "D",
+          "text": "36"
+        }
+      ],
+      "answer": "B",
+      "explanation": "There are 6 small cubes along each edge because 6\u00b3 = 216. The removed layer has 6 \u00d7 6 = 36 cubes, leaving 216 - 36 = 180.",
+      "reused_original_draft_id": "c8-reasoning-20261117-03",
+      "number": 2,
+      "chapter_title": "A Square and A Cube",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp101.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 2,
+      "topic": "scientific-notation",
+      "marks": 1,
+      "stem": "A sensor stores a distance as 0.000072 metre. A report writes this as 7.2 \u00d7 10^-5 metre. Which check supports the report?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The exponent is negative, so the distance must be below zero."
+        },
+        {
+          "id": "B",
+          "text": "Multiplying 7.2 by 100000 gives the original distance."
+        },
+        {
+          "id": "C",
+          "text": "Moving the decimal five places right makes 0.000072 smaller."
+        },
+        {
+          "id": "D",
+          "text": "Dividing 7.2 by 100000 gives 0.000072."
+        }
+      ],
+      "answer": "D",
+      "explanation": "10^-5 = 1/100000. Thus 7.2 \u00d7 10^-5 = 7.2/100000 = 0.000072. A negative exponent does not make a positive number negative.",
+      "reused_original_draft_id": "c8-reasoning-20261117-04",
+      "number": 3,
+      "chapter_title": "Power Play",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp102.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 2,
+      "topic": "comparing-powers",
+      "marks": 1,
+      "stem": "Two file backups contain 2^15 bytes and 8^5 bytes. What can be concluded without expanding either number?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The first is larger because 15 is larger than 5."
+        },
+        {
+          "id": "B",
+          "text": "The second is larger because 8 is larger than 2."
+        },
+        {
+          "id": "C",
+          "text": "They are equal because 8^5 = (2^3)^5 = 2^15."
+        },
+        {
+          "id": "D",
+          "text": "Their sum must be 10^20 bytes."
+        }
+      ],
+      "answer": "C",
+      "explanation": "Use a common base: 8 = 2\u00b3, so 8^5 = 2^15. Comparing exponents alone is not valid when bases differ.",
+      "reused_original_draft_id": "c8-reasoning-20261117-06",
+      "number": 4,
+      "chapter_title": "Power Play",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp102.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 4,
+      "topic": "angle-sum",
+      "marks": 1,
+      "stem": "A four-sided garden has interior angles 82\u00b0, 98\u00b0 and 112\u00b0 marked at three corners. What must the fourth interior angle be?",
+      "options": [
+        {
+          "id": "A",
+          "text": "78\u00b0"
+        },
+        {
+          "id": "B",
+          "text": "68\u00b0"
+        },
+        {
+          "id": "C",
+          "text": "112\u00b0"
+        },
+        {
+          "id": "D",
+          "text": "158\u00b0"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The interior angles of a quadrilateral total 360\u00b0. The missing angle is 360 - (82 + 98 + 112) = 68\u00b0.",
+      "reused_original_draft_id": "c8-reasoning-20261117-07",
+      "number": 5,
+      "chapter_title": "Quadrilaterals",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp104.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 4,
+      "topic": "diagonals",
+      "marks": 1,
+      "stem": "A maker joins two straight rods at their midpoints. Each rod is 14 cm long, and they cross at an angle of 70\u00b0. Joining the four rod ends in order makes a quadrilateral. Which is the most specific description?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A square, because the rods have equal lengths."
+        },
+        {
+          "id": "B",
+          "text": "A rhombus that cannot be a rectangle."
+        },
+        {
+          "id": "C",
+          "text": "A trapezium with exactly one parallel pair."
+        },
+        {
+          "id": "D",
+          "text": "A rectangle that is not a square."
+        }
+      ],
+      "answer": "D",
+      "explanation": "The rods are equal diagonals that bisect each other, so the quadrilateral is a rectangle. Its diagonals are not perpendicular here, so it is not a square.",
+      "reused_original_draft_id": "c8-reasoning-20261117-08",
+      "number": 6,
+      "chapter_title": "Quadrilaterals",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp104.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 6,
+      "topic": "distributive-property",
+      "marks": 1,
+      "stem": "A shop packs 27 art kits, each with 18 pencils. Which calculation counts every pencil exactly once?",
+      "options": [
+        {
+          "id": "A",
+          "text": "27 \u00d7 10 + 8"
+        },
+        {
+          "id": "B",
+          "text": "(20 + 7) \u00d7 (10 + 8) = 20 \u00d7 10 + 7 \u00d7 8"
+        },
+        {
+          "id": "C",
+          "text": "27 \u00d7 20 - 27 \u00d7 2"
+        },
+        {
+          "id": "D",
+          "text": "27 \u00d7 20 - 2"
+        }
+      ],
+      "answer": "C",
+      "explanation": "18 = 20 - 2, so 27 \u00d7 18 = 27 \u00d7 20 - 27 \u00d7 2 = 486. Both terms must include the factor 27.",
+      "reused_original_draft_id": "c8-reasoning-20261117-10",
+      "number": 7,
+      "chapter_title": "We Distribute, Yet Things Multiply",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp106.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 6,
+      "topic": "identities",
+      "marks": 1,
+      "stem": "A student writes (x + 4)^2 = x^2 + 16. A classmate tests x = 3 and gets 49 on the left but 25 on the right. Which term repairs the identity for every x?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4 x"
+        },
+        {
+          "id": "B",
+          "text": "8 x"
+        },
+        {
+          "id": "C",
+          "text": "x^2"
+        },
+        {
+          "id": "D",
+          "text": "16 x"
+        }
+      ],
+      "answer": "B",
+      "explanation": "(x + 4)\u00b2 = x\u00b2 + 2 \u00d7 x \u00d7 4 + 16 = x\u00b2 + 8 x + 16. The test exposes the missing middle term; expansion shows the general repair.",
+      "reused_original_draft_id": "c8-reasoning-20261117-11",
+      "number": 8,
+      "chapter_title": "We Distribute, Yet Things Multiply",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp106.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 6,
+      "topic": "area-models",
+      "marks": 1,
+      "stem": "A rectangular poster has sides (y + 5) cm and (y - 2) cm, where y > 2. Which expression gives its area in square centimetres?",
+      "options": [
+        {
+          "id": "A",
+          "text": "y^2 + 7 y - 10"
+        },
+        {
+          "id": "B",
+          "text": "y^2 - 10"
+        },
+        {
+          "id": "C",
+          "text": "y^2 - 3 y - 10"
+        },
+        {
+          "id": "D",
+          "text": "y^2 + 3 y - 10"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Distribute both terms: (y+5)(y-2) = y\u00b2 - 2 y + 5 y - 10 = y\u00b2 + 3 y - 10. The condition y > 2 keeps both lengths positive.",
+      "reused_original_draft_id": "c8-reasoning-20261117-12",
+      "number": 9,
+      "chapter_title": "We Distribute, Yet Things Multiply",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp106.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 7,
+      "topic": "scale-maps",
+      "marks": 1,
+      "stem": "A map uses 1 cm for 250 m. Two routes measure 7.2 cm and 6.4 cm. A learner says the shorter route saves 0.8 km. What is the correct saving?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.2 km"
+        },
+        {
+          "id": "B",
+          "text": "2 km"
+        },
+        {
+          "id": "C",
+          "text": "0.8 km"
+        },
+        {
+          "id": "D",
+          "text": "20 km"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The difference is 0.8 cm on the map, which represents 0.8 \u00d7 250 = 200 m = 0.2 km. The learner treated a map-centimetre difference as kilometres.",
+      "reused_original_draft_id": "c8-reasoning-20261117-13",
+      "number": 10,
+      "chapter_title": "Proportional Reasoning-1",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp107.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 7,
+      "topic": "ratio-division",
+      "marks": 1,
+      "stem": "Two clubs share 960 craft tokens in the ratio 5 : 3. Each club then gives 40 tokens to a joint display. What is the ratio of the tokens they have left?",
+      "options": [
+        {
+          "id": "A",
+          "text": "5 : 3"
+        },
+        {
+          "id": "B",
+          "text": "7 : 4"
+        },
+        {
+          "id": "C",
+          "text": "3 : 2"
+        },
+        {
+          "id": "D",
+          "text": "14 : 9"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Initially they get 600 and 360. After giving 40 each, they have 560 and 320, whose ratio simplifies to 7: 4. Subtracting equal amounts does not preserve a ratio.",
+      "reused_original_draft_id": "c8-reasoning-20261117-14",
+      "number": 11,
+      "chapter_title": "Proportional Reasoning-1",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp107.pdf"
+    },
+    {
+      "type": "mcq",
+      "chapter": 7,
+      "topic": "comparing-ratios",
+      "marks": 1,
+      "stem": "Printer P makes 84 labels in 6 minutes and printer Q makes 110 labels in 10 minutes. Both run at constant rates. Which comparison is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Q is faster because 110 is greater than 84."
+        },
+        {
+          "id": "B",
+          "text": "The rates are equal because both print labels."
+        },
+        {
+          "id": "C",
+          "text": "P is faster by 3 labels per minute."
+        },
+        {
+          "id": "D",
+          "text": "P is faster by 26 labels per minute."
+        }
+      ],
+      "answer": "C",
+      "explanation": "P prints 84/6 = 14 labels per minute; Q prints 110/10 = 11. Compare unit rates: P is faster by 3 labels per minute.",
+      "reused_original_draft_id": "c8-reasoning-20261117-15",
+      "number": 12,
+      "chapter_title": "Proportional Reasoning-1",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp107.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 3,
+      "topic": "number-bases",
+      "marks": 3,
+      "stem": "A museum label gives the quantity (234) in base five. A second label gives XLVII in Roman numerals. Convert both quantities to decimal, then find how much the first exceeds the second.",
+      "answer": "(234) base five = 2\u00d725 + 3\u00d75 + 4 = 69. XLVII = 40 + 7 = 47. Difference = 22.",
+      "marking": [
+        {
+          "point": "Base-five conversion to 69 with place values",
+          "marks": 1
+        },
+        {
+          "point": "Roman numeral 47",
+          "marks": 1
+        },
+        {
+          "point": "Difference 22",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "2*25+3*5+4-47",
+        22
+      ],
+      "number": 13,
+      "chapter_title": "A Story of Numbers",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp103.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 5,
+      "topic": "divisibility",
+      "marks": 3,
+      "stem": "A three-digit locker code is 4a6, where a is a digit. It is divisible by 9. Find a and the complete code. Is the code also divisible by 6? Explain.",
+      "answer": "4+a+6 = 10+a must be a multiple of 9. The only possible digit is a=8, giving 486. It is even and divisible by 3, so it is divisible by 6.",
+      "marking": [
+        {
+          "point": "Use digit sum 10+a as a multiple of 9",
+          "marks": 1
+        },
+        {
+          "point": "a=8 and code 486",
+          "marks": 1
+        },
+        {
+          "point": "Yes; both even and divisible by 3",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "486%6",
+        0
+      ],
+      "number": 14,
+      "chapter_title": "Number Play",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp105.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 8,
+      "topic": "successive-percentages",
+      "marks": 3,
+      "stem": "A school bag costs Rs 1500. A shop first reduces its price by 20%, then takes 10% off the reduced price. Find the price after each reduction and the overall percentage discount.",
+      "answer": "First price 1200. Second price 1080. Total discount 420, which is 28% of 1500, not 30%.",
+      "marking": [
+        {
+          "point": "After first reductionRs 1200",
+          "marks": 1
+        },
+        {
+          "point": "Final priceRs 1080",
+          "marks": 1
+        },
+        {
+          "point": "Overall discount 28%",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "1500*0.8*0.9",
+        1080
+      ],
+      "number": 15,
+      "chapter_title": "Fractions in Disguise",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp201.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 9,
+      "topic": "right-triangle",
+      "marks": 3,
+      "stem": "A triangular frame has two perpendicular sides of 9 cm and 12 cm. Find its third side and perimeter. Show the relationship used.",
+      "answer": "The third side is the hypotenuse: sqrt(9\u00b2+12\u00b2)=sqrt 225=15 cm. Perimeter 9+12+15=36 cm.",
+      "marking": [
+        {
+          "point": "Apply c\u00b2=9\u00b2+12\u00b2",
+          "marks": 1
+        },
+        {
+          "point": "Third side 15 cm",
+          "marks": 1
+        },
+        {
+          "point": "Perimeter 36 cm",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "9**2+12**2",
+        225
+      ],
+      "number": 16,
+      "chapter_title": "The Baudhayana-Pythagoras Theorem",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp202.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 10,
+      "topic": "inverse-proportion",
+      "marks": 3,
+      "stem": "Six workers make a fixed batch of identical decorations in 15 days. At the same constant rate per worker, how many workers are needed to finish the batch in 10 days? State one assumption behind the calculation.",
+      "answer": "The task needs 6\u00d715=90 worker-days. In 10 days, 90/10=9 workers. Assume equal constant productivity and no loss of efficiency when workers are added.",
+      "marking": [
+        {
+          "point": "Find 90 worker-days",
+          "marks": 1
+        },
+        {
+          "point": "9 workers",
+          "marks": 1
+        },
+        {
+          "point": "Relevant constant-productivity/work assumption",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "6*15/10",
+        9
+      ],
+      "number": 17,
+      "chapter_title": "Proportional Reasoning-2",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp203.pdf"
+    },
+    {
+      "type": "written",
+      "chapter": 11,
+      "topic": "polyhedra",
+      "marks": 3,
+      "stem": "A rectangular cuboid-shaped box has 8 vertices and 12 edges. How many faces does it have? A learner says those counts alone prove it is a cube. Explain why that is not enough, and state an additional face or edge property a cube must have.",
+      "answer": "The cuboid has 6 faces. A rectangular cuboid with unequal edge lengths still has 8 vertices and 12 edges, so the counts do not prove it is a cube. A cube has six equal square faces, or all its edges have equal length.",
+      "marking": [
+        {
+          "point": "6 faces",
+          "marks": 1
+        },
+        {
+          "point": "Explain a non-cubic cuboid has the same counts",
+          "marks": 1
+        },
+        {
+          "point": "Equal square faces or equal edge lengths",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 18,
+      "chapter_title": "Exploring Some Geometric Themes",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp204.pdf"
+    },
+    {
+      "type": "extended",
+      "chapter": 12,
+      "topic": "interpreting-data",
+      "marks": 5,
+      "stem": "Five teams finish a puzzle in 4, 6, 7, 10 and 13 minutes. Find the mean, median and range. A sixth team takes 8 minutes. Does the mean increase, decrease or stay the same? Justify without recalculating every step.",
+      "answer": "Sum 40; mean 8 minutes; median 7 minutes; range 13-4=9 minutes. The sixth value equals the old mean, so the mean stays 8 minutes (48/6).",
+      "marking": [
+        {
+          "point": "Sum 40",
+          "marks": 1
+        },
+        {
+          "point": "Mean 8 minutes",
+          "marks": 1
+        },
+        {
+          "point": "Median 7 minutes",
+          "marks": 1
+        },
+        {
+          "point": "Range 9 minutes",
+          "marks": 1
+        },
+        {
+          "point": "New mean unchanged, with valid reason",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "(4+6+7+10+13)/5",
+        8
+      ],
+      "number": 19,
+      "chapter_title": "Tales by Dots and Lines",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp205.pdf"
+    },
+    {
+      "type": "extended",
+      "chapter": 13,
+      "topic": "algebraic-number-trick",
+      "marks": 5,
+      "stem": "A number machine takes a number n, adds 4, multiplies the result by 3, and subtracts the original number. Write and simplify its output. If the output is 30, find n and verify it in the original steps.",
+      "answer": "Output 3(n+4)-n=2 n+12. Set 2 n+12=30, so 2 n=18 andn=9. Check: 9+4=13; 13\u00d73=39; 39-9=30.",
+      "marking": [
+        {
+          "point": "Expression 3(n+4)-n",
+          "marks": 1
+        },
+        {
+          "point": "Simplification 2 n+12",
+          "marks": 1
+        },
+        {
+          "point": "Equation 2 n+12=30",
+          "marks": 1
+        },
+        {
+          "point": "n=9",
+          "marks": 1
+        },
+        {
+          "point": "Verification in original steps",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "3*(9+4)-9",
+        30
+      ],
+      "number": 20,
+      "chapter_title": "Algebra Play",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp206.pdf"
+    },
+    {
+      "type": "extended",
+      "chapter": 14,
+      "topic": "composite-area-perimeter",
+      "marks": 5,
+      "stem": "A rectangular sheet is 18 cm by 12 cm. A 4 cm by 3 cm rectangle is cut from one corner, leaving an L-shaped sheet. Find the remaining area and boundary length. Explain why the boundary calculation differs from simply subtracting the cut-out perimeter.",
+      "answer": "Original area 216 cm\u00b2; cut-out area 12 cm\u00b2; remaining 204 cm\u00b2. Original perimeter 60 cm. Two outside lengths 4 and 3 are replaced by equal-length inner edges, so the new boundary is still 60 cm.",
+      "marking": [
+        {
+          "point": "Original area 216 cm\u00b2",
+          "marks": 1
+        },
+        {
+          "point": "Cut-out area 12 cm\u00b2",
+          "marks": 1
+        },
+        {
+          "point": "Remaining area 204 cm\u00b2",
+          "marks": 1
+        },
+        {
+          "point": "Boundary 60 cm",
+          "marks": 1
+        },
+        {
+          "point": "Explain equal removed/replacement edge lengths",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "18*12-4*3",
+        204
+      ],
+      "number": 21,
+      "chapter_title": "Area",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp207.pdf"
+    },
+    {
+      "type": "extended",
+      "chapter": 1,
+      "topic": "consecutive-square-model",
+      "marks": 5,
+      "stem": "A square mosaic has n tiles along each side. Adding one row and one column to make the next larger square requires 37 extra tiles in total. Find n, the old tile count and the new tile count. Explain why the added count is 2 n+1, not 2 n+2.",
+      "answer": "The added row and column together contain 2 n+1 tiles: n+n+1, counting their shared corner once.2 n+1=37 givesn=18. Old count 324; new count 361.",
+      "marking": [
+        {
+          "point": "Reason for 2 n+1 and shared corner counted once",
+          "marks": 1
+        },
+        {
+          "point": "Equation 2 n+1=37",
+          "marks": 1
+        },
+        {
+          "point": "n=18",
+          "marks": 1
+        },
+        {
+          "point": "Old count 324",
+          "marks": 1
+        },
+        {
+          "point": "New count 361",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": [
+        "19**2-18**2",
+        37
+      ],
+      "number": 22,
+      "chapter_title": "A Square and A Cube",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp101.pdf"
+    },
+    {
+      "type": "case",
+      "chapter": 7,
+      "topic": "ticket-desk-ratios",
+      "marks": 5,
+      "stem": "At a school show, 18 adult tickets cost Rs 75 each and 12 child tickets cost Rs 50 each. (a) Give the adult: child ticket-number ratio in simplest form. [1] (b) Find the total ticket income. [2] (c) If every ticket receives a 10%discount, find the new income. [2]",
+      "answer": "(a)3: 2. (b)18\u00d775+12\u00d750=1350+600=Rs 1950. (c)Rs 195 discount; new incomeRs 1755.",
+      "marking": [
+        {
+          "point": "Ratio 3: 2",
+          "marks": 1
+        },
+        {
+          "point": "Correct two income products",
+          "marks": 1
+        },
+        {
+          "point": "TotalRs 1950",
+          "marks": 1
+        },
+        {
+          "point": "Use 90%of original total or correct discount",
+          "marks": 1
+        },
+        {
+          "point": "New incomeRs 1755",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 23,
+      "chapter_title": "Proportional Reasoning-1",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp107.pdf"
+    },
+    {
+      "type": "case",
+      "chapter": 9,
+      "topic": "ramp-scale-area",
+      "marks": 5,
+      "stem": "A right-triangular ramp side profile has horizontal base 4 m and vertical height 3 m. (a) Find its sloping length. [1] (b) A second similar profile has base 8 m. Find its height and sloping length. [2] (c) Find the area of the second triangular profile. [2]",
+      "answer": "(a)5 m. (b)Scale factor 2, so height 6 m and slope 10 m. (c)Area=1/2\u00d78\u00d76=24 m\u00b2.",
+      "marking": [
+        {
+          "point": "First slope 5 m",
+          "marks": 1
+        },
+        {
+          "point": "Second height 6 m",
+          "marks": 1
+        },
+        {
+          "point": "Second slope 10 m",
+          "marks": 1
+        },
+        {
+          "point": "Correct triangle area formula",
+          "marks": 1
+        },
+        {
+          "point": "Area 24 m\u00b2",
+          "marks": 1
+        }
+      ],
+      "arithmetic_check": null,
+      "number": 24,
+      "chapter_title": "The Baudhayana-Pythagoras Theorem",
+      "concept_background_source": "https://ncert.nic.in/textbook/pdf/hegp202.pdf"
+    }
+  ]
+}
