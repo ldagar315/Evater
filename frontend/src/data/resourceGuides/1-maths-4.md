@@ -58,7 +58,15 @@ Classify each shape as rectangle, rhombus and/or square: A has four right angles
 
 ## 4. Kites, trapeziums and constructions
 
-### Think it through
+### Watch: Construct a kite with a compass and straightedge
+
+JoAnn's School
+
+[Open the video](https://www.youtube.com/watch?v=-IRXWg2oLY4)
+
+Use the perpendicular bisector to locate vertices equally far from the two endpoints. This video covers the kite construction, not trapezium angles.
+
+### Understand it
 
 For a kite ABCD with AB = AD and CB = CD, points A and C are each equally distant from B and D. The line AC is the perpendicular bisector of BD. This does not mean BD also bisects AC. To construct such a kite, draw BD, then use two different compass radii from B and D to locate A and C on opposite sides. Keep each radius greater than half BD so the arcs meet off the line; using the same radius for A and C produces a rhombus instead of showing a general kite.
 
