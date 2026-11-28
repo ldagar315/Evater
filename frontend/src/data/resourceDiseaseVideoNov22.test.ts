@@ -1,0 +1,12 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const p=resourceGuides.find(p=>p.id==='resource-science-3')!.content
+const topics=p.split(/^## /m).slice(1).filter(t=>/^\d+\./.test(t))
+const video='https://www.youtube.com/watch?v=dbd5iydu3EY'
+describe('short pathogen-transmission foundation video',()=>{
+ it('adds one supported embed only to the third health topic',()=>{expect(topics).toHaveLength(4);expect(topics[2]).toContain('### Watch: How pathogens spread');expect(topics[2]).toContain('Cognito');expect(topics[2]).toContain(`[Open the video](${video})`);expect(topics[2].match(/\[Open the video\]/g)).toHaveLength(1);expect(p.match(/dbd5iydu3EY/g)).toHaveLength(1);expect(youtubeVideoId(video)).toBe('dbd5iydu3EY');expect(topics[2]).toContain('### Understand it')})
+ it('preserves the two earlier videos in their original topics and order',()=>{const ids=['ISZLTJH5lYg',...(p.includes('[Open the video](https://www.youtube.com/watch?v=LhrbUNp2gi0)')?['LhrbUNp2gi0']:[]),'dbd5iydu3EY','rb7TVW77ZCs'];expect([...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(ids.map(id=>`https://www.youtube.com/watch?v=${id}`));for(let i=0;i<ids.length;i++)expect(topics[ids[i]==='ISZLTJH5lYg'?0:ids[i]==='LhrbUNp2gi0'?1:ids[i]==='dbd5iydu3EY'?2:3]).toContain(`https://www.youtube.com/watch?v=${ids[i]}`);if(topics[1].includes('[Open the video]'))expect(topics[1]).toContain('[Open the video](https://www.youtube.com/watch?v=LhrbUNp2gi0)')})
+ it('bounds the video to infectious disease and keeps diagnosis separate',()=>{for(const words of ['the pathogen, the route it travels','measure that interrupts that route','introduces infectious disease','comparison below for non-infectious conditions','not diagnosing a person'])expect(topics[2]).toContain(words);expect(topics[2]).not.toMatch(/every disease spreads|all infections.*ordinary contact|diagnose.*yourself/)})
+ it('preserves all four attempts, checks, revision and the direct practice path',()=>{expect(p.match(/### Try it yourself/g)).toHaveLength(4);expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(p).toContain('## Your five-minute revision');expect(p).toContain('[Try an Evater sample paper](/papers/)');expect(p).not.toMatch(/supporting evidence|transcript|playback verified|medlineplus|bbc\.co|tes\.com|cognitoedu\.org/i)})
+})

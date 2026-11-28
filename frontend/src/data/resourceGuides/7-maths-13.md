@@ -12,13 +12,15 @@ Numberphile / Dr James Grime
 
 ### Understand it
 
-Choose a starting number and call it x. Write each instruction as algebra before simplifying. Doubling gives 2x; adding 8 gives 2x + 8; halving gives x + 4. Subtracting the original number leaves 4, whatever x you chose. Algebra explains why a number trick works. The video explains a different four-digit trick; use the same method there: give the starting number a letter and follow each step.
+Call the starting number x and translate instructions in their given order. Doubling, adding 8, halving and subtracting x gives (2x + 8)/2 - x = 4. The division applies to the whole current result. Algebra explains the constant answer because the x terms cancel. The video uses a different four-digit trick; the same habit of tracking each operation helps explain it.
+
+Changing the order can change the constant. Tripling x and then adding k gives 3x + k, while adding k first and then tripling gives 3x + 3k. Brackets record this difference instead of leaving it to guesswork.
 
 ### Try it yourself
 
-Start with x, double it, add 8, halve, then subtract x. What remains?
+A new trick says: start with x, triple it, add 15, divide the result by 3, then subtract x. Find the answer and the number that should replace 15 to make the answer always 7. If someone adds 15 before tripling instead, do they still get the original constant? Explain algebraically.
 
-**Check:** 4, since (2x + 8)/2 - x = 4.
+**Check:** The original result is (3x + 15)/3 - x = 5. Replace 15 with 21 to obtain 7. Adding 15 before tripling instead gives 3(x + 15)/3 - x = 15, not 5. Keep the instruction order and brackets, even when trying a few starting values appears convincing.
 
 ## 2. Number pyramids
 
@@ -30,37 +32,59 @@ Creouts
 
 ### Understand it
 
-In an addition pyramid, each brick is the sum of the two below it. Start with a, b, c: the next row is a + b and b + c. Adding those gives a + 2b + c. The middle bottom number is counted twice, so changing it affects the top twice as much. The video uses plain numbers; letters work the same way for every pyramid.
+In an addition pyramid, each brick is the sum of the two directly below. With bottom entries a, b, c, the top is a + 2b + c because b contributes along two routes. A four-entry bottom row gives top a + 3b + 3c + d after repeated adjacent additions. Derive the coefficients by adding the rows, not by assuming every entry contributes once.
+
+The position of a value can matter as much as its size. Adding 1 to an end of the four-entry row adds 1 to the top; adding 1 to either middle position adds 3. The video's numerical rule works with letters too.
 
 ### Try it yourself
 
-If adjacent cells are added, what is the top above bottom cells a, b, c?
+An addition pyramid has bottom row 2, 5, 9, 4. Find the top. Now swap only the first two entries, giving 5, 2, 9, 4. The total of the bottom row is unchanged; must the top also stay unchanged? Show the calculation or build the rows.
 
-**Check:** a + 2b + c.
+**Check:** The first top is 2 + 3 × 5 + 3 × 9 + 4 = 48. The second is 5 + 3 × 2 + 3 × 9 + 4 = 42. The bottom total is the same, but the coefficients are not equal. Moving a value from a middle position to an end changes how often it contributes to the top.
 
 ## 3. Grids and calendar relationships
 
-### Think it through
+### Watch: Calendar patterns and opposite pairs
 
-In an ordinary seven-column calendar, the date directly below n is n + 7 when both dates are shown. A two-by-two block starting with n contains n, n + 1, n + 7 and n + 8. Writing these offsets makes a grid pattern something you can explain, not only spot.
+How to... Solve Puzzles
+
+[Open the video](https://www.youtube.com/watch?v=7VMsMtk3QdI)
+
+The video uses a complete three-by-three calendar block. Four opposite pairs each total twice the middle date, so the nine dates total nine times that middle date. The two-by-two problem below has no middle date cell: write its four entries from the top-left date instead. Both arguments use the same calendar steps: one to the right adds 1 and one row down adds 7. Use only a complete block inside the displayed month, without wrapping across a week boundary.
+
+### Understand it
+
+In an ordinary seven-column calendar, the date directly below n is n + 7 when both dates are shown. A valid two-by-two block starting at n contains n, n + 1, n + 7 and n + 8. Their sum is 4n + 16. This gives a way to work backwards from a sum as well as predict one.
+
+Check the display boundaries: the top-left date cannot be in the last column, and all four dates must actually appear. A formula for a complete block does not supply missing dates outside the shown month. Also, since n is an integer, the block sum must be a multiple of 4.
 
 ### Try it yourself
 
-In a calendar grid with seven columns, what is directly below a date n?
+Assume all four positions form a valid two-by-two block in a seven-column calendar. A learner reports a sum of 68; find the four dates. Another learner reports 70. Can the same complete-block rule produce 70 with integer dates? State one layout condition to check before applying the formula to a real calendar page.
 
-**Check:** n + 7, provided the next row remains within the displayed calendar.
+**Check:** For 68, solve 4n + 16 = 68 to get n = 13, so the dates are 13, 14, 20 and 21. A sum of 70 gives n = 13.5, not an integer date, so it is impossible under the complete-block rule. Check that the left date is not in the final column and that all four positions lie within the displayed month.
 
 ## 4. Largest products and divisibility explanations
 
-### Think it through
+### Watch: Same perimeter, different areas
 
-Keep the total fixed and compare products. With positive integers adding to 20, the pair 10 and 10 gives 100. Moving equally away from 10 gives (10 - d)(10 + d) = 100 - d². Any nonzero d subtracts something, so moving the numbers apart lowers the product.
+MATH-N-ROLL
+
+[Open the video](https://www.youtube.com/watch?v=0Ho8Az8y4Mw)
+
+Use these rectangle examples as a visual warm-up. Keeping the perimeter fixed keeps the sum of two adjacent side lengths fixed, while their product gives the area. Compare the products as the sides become closer. This is a foundation for the algebra below, not its proof. Our problem uses exactly two positive integers, so an odd total requires the closest integer pair, not equal halves.
+
+### Understand it
+
+Keep a total fixed when comparing products. For two positive integers summing to 20, (10 - d)(10 + d) = 100 - d², so equal values give the largest product. For an odd total, equal integer values are unavailable; the closest pair is the candidate instead.
+
+You can justify moving a separated pair closer. If a < b - 1, then replacing a and b by a + 1 and b - 1 preserves their sum and changes the product by b - a - 1, which is positive. Continue until the integers are equal or differ by 1. The fixed-total and integer conditions matter.
 
 ### Try it yourself
 
-Two positive integers sum to 20. Which pair gives the largest product?
+Two positive integers sum to 27. Which pair has the largest product? Compare it with 12 and 15, and explain why there cannot be a better pair farther apart. A learner chooses 13.5 and 13.5. Why does that answer not satisfy this problem?
 
-**Check:** 10 and 10, with product 100. Moving the pair apart lowers the product.
+**Check:** The closest integers are 13 and 14, giving 182; 12 × 15 = 180. Moving a farther-apart pair one step closer increases its product by b - a - 1 until the closest pair is reached. The equal pair 13.5, 13.5 has the right sum but is not an integer pair, so it is outside the stated choices.
 
 ## Your five-minute revision
 
