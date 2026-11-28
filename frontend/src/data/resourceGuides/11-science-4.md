@@ -64,7 +64,15 @@ A model lifting device uses a current-carrying coil with a suitable iron core to
 
 ## 4. Heating effect and electrical safety
 
-### Think it through
+### Watch: How electric current produces heating
+
+Elearnin
+
+[Open the video](https://www.youtube.com/watch?v=zzmHjg0PORY)
+
+Use the animation to distinguish energy transferred by heating from a device's intended useful output. A fan can warm up even though its intended job is moving air; a heater uses the heating effect deliberately. The later equations are an extension, not needed for the question below. When comparing heating, keep the other conditions fixed: increasing resistance does not always increase heating if the current also changes. Watch the diagrams only, not as instructions to build a heater, touch-test a wire or open an appliance.
+
+### Understand it
 
 Current through a resistive element can transfer electrical energy into heating. In an electric heater this is intended; in a connection or lead, excessive heating can be unwanted and dangerous. The heating effect is not limited to components that visibly glow. Material, dimensions, current and duration can all matter, so 'more heat' is not a universal rule based on only one feature.
 
