@@ -64,7 +64,13 @@ A block is already sliding left across a stationary tabletop. A hand starts push
 
 ## 4. Mass, weight and floating
 
-### Think it through
+### Watch: Mass and weight
+
+Sri Chaitanya Academy NEET
+
+[Open the video](https://www.youtube.com/watch?v=rFdbY_V7vIo)
+
+### Understand it
 
 Mass, measured in kilograms, is different from weight, the gravitational force measured in newtons. Moving an unchanged object to a weaker gravitational field changes its weight, not its mass. An upward force from water does not remove the object's mass or switch off gravity.
 
