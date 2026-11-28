@@ -29,6 +29,7 @@ import { RatioScaling } from '../components/blog/RatioScaling'
 import { BlogPost } from '../types/blog'
 import { FractionExplorations } from '../components/blog/FractionExplorations'
 import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
+import { ReflectionSimulation } from '../components/blog/ReflectionSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
 import { DistributiveArea } from '../components/blog/DistributiveArea'
 
@@ -284,6 +285,7 @@ export function BlogPostPage() {
             {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
             {post.slug === 'class-8-maths-we-distribute-yet-things-multiply-study-resources' && <DistributiveArea />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
+            {post.slug === 'ncert-class-8-science-light-mirrors-lenses-study-guide' && <ReflectionSimulation />}
             {post.slug === 'class-8-science-the-amazing-world-of-solutes-solvents-and-solutions-study-resources' && <DensitySimulation />}
 
             {conceptPracticeReady && blogPracticeTargets[post.slug] && <section id="concept-practice" aria-label="Practise concepts from this article" className="my-10 rounded-2xl border border-teal-200 bg-teal-50 p-5 sm:p-7">
