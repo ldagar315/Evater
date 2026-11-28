@@ -337,9 +337,11 @@ def _create_question_bank_test(
     concept_id: Optional[str] = None,
 ) -> QuestionBankTestResponse:
     """Create a deterministic/adaptive test from the published question bank."""
+    request_started = perf_counter()
     user_id = _user_id(auth)
     # Every student-owned query below is still scoped with user_id.
     client = create_supabase_service_client()
+    client_finished = perf_counter()
 
     try:
         chapter_response = (
@@ -352,10 +354,12 @@ def _create_question_bank_test(
         if not _one(chapter_response.data):
             raise HTTPException(status_code=404, detail="Published chapter not found.")
 
+        chapter_finished = perf_counter()
         if concept_id:
             _published_concept(client, str(request.chapter_id), concept_id)
         questions = (_concept_questions(client, str(request.chapter_id), concept_id) if concept_id
                      else _load_published_questions(client, str(request.chapter_id)))
+        questions_finished = perf_counter()
         if len(questions) < request.question_count:
             raise HTTPException(
                 status_code=409,
@@ -363,6 +367,7 @@ def _create_question_bank_test(
             )
 
         mastery_rows = _load_mastery(client, user_id, str(request.chapter_id))
+        mastery_finished = perf_counter()
         previous_questions = (
             client.table("question_attempts")
             .select("question_id")
@@ -372,6 +377,7 @@ def _create_question_bank_test(
             .limit(20)
             .execute()
         ).data or []
+        history_finished = perf_counter()
         seen_ids = [str(row["question_id"]) for row in previous_questions]
         seed = secrets.randbelow(2**62 - 1) + 1
         first_block_size = min(request.block_size, request.question_count)
@@ -385,6 +391,7 @@ def _create_question_bank_test(
             block_number=1,
         )
 
+        selection_finished = perf_counter()
         test_insert = (
             client.table("test_attempts")
             .insert(
@@ -410,6 +417,7 @@ def _create_question_bank_test(
         if not test_row:
             raise RuntimeError("Supabase did not return the created test attempt.")
 
+        attempt_finished = perf_counter()
         test_id = str(test_row["id"])
         client.table("test_questions").insert(
             [
@@ -424,13 +432,14 @@ def _create_question_bank_test(
             ]
         ).execute()
 
+        questions_insert_finished = perf_counter()
         routing = {
             "difficulty": selection["difficulty"],
             "focus_concept_ids": selection["focus_concept_ids"],
             "status": "on_track",
             **({"selected_concept_id": concept_id} if concept_id else {}),
         }
-        return _question_response(
+        response = _question_response(
             test_id=test_id,
             block_number=1,
             block_size=request.block_size,
@@ -438,6 +447,28 @@ def _create_question_bank_test(
             questions=selection["questions"],
             routing=routing,
         )
+        response_finished = perf_counter()
+        # Success-only phase measurements. Never log request bodies, IDs, seeds,
+        # answers, tokens, query results or exception text here. No public timing
+        # header or response field: the student-facing contract is unchanged.
+        logger.info(
+            "practice_start_timing auth_ms=%s client_ms=%.1f chapter_ms=%.1f "
+            "questions_ms=%.1f mastery_ms=%.1f history_ms=%.1f selection_ms=%.1f "
+            "attempt_insert_ms=%.1f questions_insert_ms=%.1f response_ms=%.1f total_ms=%.1f scope=%s",
+            "unknown" if getattr(auth, "validation_ms", None) is None else f"{auth.validation_ms:.1f}",
+            (client_finished - request_started) * 1000,
+            (chapter_finished - client_finished) * 1000,
+            (questions_finished - chapter_finished) * 1000,
+            (mastery_finished - questions_finished) * 1000,
+            (history_finished - mastery_finished) * 1000,
+            (selection_finished - history_finished) * 1000,
+            (attempt_finished - selection_finished) * 1000,
+            (questions_insert_finished - attempt_finished) * 1000,
+            (response_finished - questions_insert_finished) * 1000,
+            (response_finished - request_started) * 1000,
+            "concept" if concept_id else "chapter",
+        )
+        return response
     except HTTPException:
         raise
     except QuestionBankError as exc:
