@@ -44,7 +44,13 @@ Use only these feeding facts: snails eat lettuce, thrushes eat snails, and thrus
 
 ## 3. Decomposers and nutrient cycling
 
-### Think it through
+### Watch: How dirt works
+
+The Nature Conservancy
+
+[Open the video](https://www.youtube.com/watch?v=K7YpPgbmSew)
+
+### Understand it
 
 Decomposers such as many fungi and bacteria break down dead organic material into simpler substances. Nutrients can return to soil or water and later be taken up by plants. Decomposition does not turn every kind of waste into plant nutrients at the same speed; plastic litter is not equivalent to a fallen leaf.
 
