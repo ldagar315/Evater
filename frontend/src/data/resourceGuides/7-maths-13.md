@@ -44,7 +44,15 @@ An addition pyramid has bottom row 2, 5, 9, 4. Find the top. Now swap only the f
 
 ## 3. Grids and calendar relationships
 
-### Think it through
+### Watch: Calendar patterns and opposite pairs
+
+How to... Solve Puzzles
+
+[Open the video](https://www.youtube.com/watch?v=7VMsMtk3QdI)
+
+The video uses a complete three-by-three calendar block. Four opposite pairs each total twice the middle date, so the nine dates total nine times that middle date. The two-by-two problem below has no middle date cell: write its four entries from the top-left date instead. Both arguments use the same calendar steps: one to the right adds 1 and one row down adds 7. Use only a complete block inside the displayed month, without wrapping across a week boundary.
+
+### Understand it
 
 In an ordinary seven-column calendar, the date directly below n is n + 7 when both dates are shown. A valid two-by-two block starting at n contains n, n + 1, n + 7 and n + 8. Their sum is 4n + 16. This gives a way to work backwards from a sum as well as predict one.
 
