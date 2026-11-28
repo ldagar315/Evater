@@ -15,9 +15,9 @@ export function PythagorasSimulation() {
         <svg viewBox="0 0 480 400" role="img" aria-labelledby={`${id}-title ${id}-desc`} className="block h-auto w-full">
           <title id={`${id}-title`}>Three squares on a right-angled triangle</title>
           <desc id={`${id}-desc`}>Perpendicular sides a = {a} cm and b = {b} cm have square areas {a * a} and {b * b} square cm. The square on the hypotenuse has area {m.cSquared} square cm. The small corner mark shows a right angle.</desc>
-          <defs><pattern id={`${id}-b`} width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10 L10 0" stroke="#9a3412" strokeWidth="1" /></pattern><pattern id={`${id}-c`} width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="1.5" fill="#4338ca" /></pattern></defs>
+          <defs><pattern id={`${id}-pattern-b`} width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10 L10 0" stroke="#9a3412" strokeWidth="1" /></pattern><pattern id={`${id}-pattern-c`} width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="1.5" fill="#4338ca" /></pattern></defs>
           {m.squares.map((square, i) => <polygon key={i} data-square={i} points={m.points(square)} fill={['#ccfbf1', '#ffedd5', '#e0e7ff'][i]} stroke={['#0f766e', '#9a3412', '#4338ca'][i]} strokeWidth="2" />)}
-          {m.squares.slice(1).map((square, i) => <polygon key={i} points={m.points(square)} fill={`url(#${id}-${i === 0 ? 'b' : 'c'})`} />)}
+          {m.squares.slice(1).map((square, i) => <polygon key={i} points={m.points(square)} fill={`url(#${id}-pattern-${i === 0 ? 'b' : 'c'})`} />)}
           <polygon points={m.points(m.triangle)} fill="#fff" stroke="#334155" strokeWidth="2" />
           <polyline points={m.points(m.rightAngle)} fill="none" stroke="#334155" strokeWidth="2" />
         </svg>

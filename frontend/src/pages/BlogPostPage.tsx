@@ -277,6 +277,12 @@ export function BlogPostPage() {
               </section>
             )}
 
+            {post.slug === 'class-8-maths-power-play-study-resources' && <PowerGrowthVisual />}
+            {post.slug === 'class-8-maths-area-study-resources' && <AreaHeightVisual />}
+            {post.slug === 'class-8-maths-a-square-and-a-cube-study-resources' && <CubeVolumeSimulation />}
+            {post.slug === 'class-8-maths-the-baudhayana-pythagoras-theorem-study-resources' && <PythagorasSimulation />}
+            {post.slug === 'class-8-science-exploring-forces-study-resources' && <ForceSimulation />}
+
             {post.tags.length > 0 && (
               <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-neutral-200 pt-8">
                 <Tag className="mr-1 h-4 w-4 text-neutral-400" aria-hidden="true" />
