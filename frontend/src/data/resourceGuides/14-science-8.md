@@ -4,7 +4,13 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Mixtures and separation
 
-### Think it through
+### Watch: Filtration, Evaporation & Crystallisation
+
+Cognito
+
+[Open the video](https://www.youtube.com/watch?v=vi_SJBnxmHo)
+
+### Understand it
 
 Imagine a mixture of sand, dissolved salt and water. A suitable filter traps the insoluble sand, but the salt stays dissolved in the water that passes through. The clear filtrate is still a mixture: looking clear does not prove that it is a pure substance.
 
