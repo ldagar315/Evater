@@ -1,0 +1,12 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const p=resourceGuides.find(p=>p.id==='resource-science-9')!.content
+const topics=p.split(/^## /m).slice(1).filter(t=>/^\d+\./.test(t))
+const video='https://www.youtube.com/watch?v=wK4reyh86w0'
+describe('short gas solubility demonstration',()=>{
+ it('adds one supported video only to the temperature and dissolved gas topic',()=>{expect(topics).toHaveLength(4);expect(topics[2]).toContain('### Watch: How temperature affects gas solubility');expect(topics[2]).toContain('Lab Hamster');expect(topics[2]).toContain(`[Open the video](${video})`);expect(topics[2].match(/\[Open the video\]/g)).toHaveLength(1);expect(p.match(/wK4reyh86w0/g)).toHaveLength(1);expect(youtubeVideoId(video)).toBe('wK4reyh86w0')})
+ it('retains the earlier saturation and density videos in their original topics',()=>{const primer=p.includes('[Open the video](https://www.youtube.com/watch?v=kYgGI9Ox3gU)');const ids=[...(primer?['kYgGI9Ox3gU']:[]),'JQRIlS9lNdg','wK4reyh86w0','UukRgqzk-KE'];expect([...p.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(ids.map(id=>`https://www.youtube.com/watch?v=${id}`));for(let i=0;i<ids.length;i++)expect(topics[i+(primer?0:1)]).toContain(`https://www.youtube.com/watch?v=${ids[i]}`);if(!primer)expect(topics[0]).not.toContain('[Open the video]')})
+ it('keeps the demonstration watch-only and separates pressure, temperature and rate',()=>{for(const words of ['without copying it','Opening a bottle also lowers the gas pressure','fizz alone is not a controlled measurement','fixed-pressure comparison below','do not heat sealed bottles or repeat','same pressure','Dissolving faster'])expect(topics[2]).toContain(words);expect(topics[2].split('### Understand it')[0]).not.toMatch(/warming always increases|all gases always|try this experiment at home/);expect(topics[2]).toContain('### Understand it')})
+ it('preserves all attempts, checks, revision, direct practice and concise teaching',()=>{expect(p.match(/### Try it yourself/g)).toHaveLength(4);expect(p.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(p).toContain('## Your five-minute revision');expect(p).toContain('[Try an Evater sample paper](/papers/)');expect(p).not.toMatch(/supporting evidence|transcript|playback verified|scied\.ucar|usgs\.gov|epa\.gov/i)})
+})

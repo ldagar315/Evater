@@ -36,7 +36,15 @@ Use fictional data, not a real chemical recipe: at 25°C, 50 g of water can diss
 
 ## 3. Temperature and dissolved gases
 
-### Think it through
+### Watch: How temperature affects gas solubility
+
+Lab Hamster
+
+[Open the video](https://www.youtube.com/watch?v=wK4reyh86w0)
+
+Watch the cold, room-temperature and warm seltzer demonstration without copying it. Opening a bottle also lowers the gas pressure, so fizz alone is not a controlled measurement of the temperature effect. Use the fixed-pressure comparison below, and do not heat sealed bottles or repeat this demonstration.
+
+### Understand it
 
 Do not use one temperature rule for every substance. Many gases become less soluble in water as temperature rises, when the pressure of that gas above the water stays the same. The behaviour of a solid solute can differ. Dissolving faster is not the same as increasing the maximum amount dissolved after enough time.
 
