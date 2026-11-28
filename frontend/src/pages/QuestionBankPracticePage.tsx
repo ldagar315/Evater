@@ -1,3 +1,4 @@
+import { parseChapterPracticeTarget, resolveChapterPracticeTarget } from '../lib/chapterPracticeTarget'
 import { ChapterConceptLinks } from '../components/practice/ChapterConceptLinks'
 import { parsePracticeTarget } from '../lib/practiceTarget'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
@@ -217,6 +218,7 @@ export function QuestionBankPracticePage() {
   const navigate = useNavigate()
   const location = useLocation()
   const intent = useMemo(() => parsePracticeTarget(location.search), [location.search])
+  const chapterTarget = useMemo(() => parseChapterPracticeTarget(location.search), [location.search])
   const target = intent.target
   const [targetAvailability, setTargetAvailability] = useState<PracticeTargetAvailability | null>(null)
   const [targetError, setTargetError] = useState('')
@@ -235,7 +237,7 @@ export function QuestionBankPracticePage() {
   const [chapterError, setChapterError] = useState('')
   const [chapterReload, setChapterReload] = useState(0)
   const [chapters, setChapters] = useState<QuestionBankChapter[]>([])
-  const [selectedSubjectId, setSelectedSubjectId] = useState(target?.subject || 'science')
+  const [selectedSubjectId, setSelectedSubjectId] = useState(target?.subject || chapterTarget?.subject || 'science')
   const [selectedChapterId, setSelectedChapterId] = useState(target?.chapter || CLASS8_SCIENCE_CHAPTER1_ID)
   const [selectedMode, setSelectedMode] = useState<QuestionBankMode>('practice')
   const [isReviewTest, setIsReviewTest] = useState(false)
@@ -278,13 +280,17 @@ export function QuestionBankPracticePage() {
     }
   }
 
-  const targetReady = !intent.provided || Boolean(target && targetAvailability && targetAvailability.concept_id === target.concept && targetAvailability.chapter_id === target.chapter && !targetError && !targetLoading && selectedChapter && selectedChapterId === target.chapter && selectedSubjectId === target.subject && targetAvailability.published_question_count > 0)
+  const resolvedChapter = chapterTarget ? resolveChapterPracticeTarget(chapterTarget, selectedSubjectId, chapters) : null
+  const targetReady = chapterTarget ? Boolean(resolvedChapter && resolvedChapter.id === selectedChapterId && !chaptersLoading && !chapterError) : !intent.provided || Boolean(target && targetAvailability && targetAvailability.concept_id === target.concept && targetAvailability.chapter_id === target.chapter && !targetError && !targetLoading && selectedChapter && selectedChapterId === target.chapter && selectedSubjectId === target.subject && targetAvailability.published_question_count > 0)
   const sessionCount = target ? Math.min(QUESTION_COUNT, targetAvailability?.published_question_count || 0) : QUESTION_COUNT
 
   useEffect(() => {
     setTargetAvailability(null)
     setTargetError('')
-    if (!target) return
+    if (!target) {
+      if (chapterTarget) { setSelectedSubjectId(chapterTarget.subject); setSelectedChapterId('') }
+      return
+    }
     setSelectedSubjectId(target.subject)
     setSelectedChapterId(target.chapter)
     let active = true
@@ -296,7 +302,7 @@ export function QuestionBankPracticePage() {
     }).catch(caught => { if (active) setTargetError(caught instanceof Error ? caught.message : 'Could not verify this concept.') })
       .finally(() => { if (active) setTargetLoading(false) })
     return () => { active = false }
-  }, [target])
+  }, [target, chapterTarget])
 
   const start = async () => {
     if (!selectedChapterId || !targetReady || !sessionCount) return
@@ -326,7 +332,7 @@ export function QuestionBankPracticePage() {
     setChaptersLoading(true)
     setChapterError('')
     setChapters([])
-    if (intent.provided && !target) {
+    if (intent.provided && !target && !chapterTarget) {
       setSelectedChapterId('')
       setChaptersLoading(false)
       return () => { active = false }
@@ -338,6 +344,10 @@ export function QuestionBankPracticePage() {
         if (target) {
           setSelectedChapterId(target.chapter)
           if (!availableChapters.some(chapter => chapter.id === target.chapter)) setChapterError('This concept chapter is not available for the selected subject.')
+        } else if (chapterTarget) {
+          const match = resolveChapterPracticeTarget(chapterTarget, selectedSubjectId, availableChapters)
+          setSelectedChapterId(match?.id || '')
+          if (!match) setChapterError('This chapter could not be uniquely verified for the selected subject. No other chapter has been selected.')
         } else if (availableChapters.length > 0) {
           setSelectedChapterId((current) => availableChapters.some((chapter) => chapter.id === current) ? current : availableChapters[0].id)
         }
@@ -352,7 +362,7 @@ export function QuestionBankPracticePage() {
     return () => {
       active = false
     }
-  }, [selectedSubjectId, chapterReload, target, intent.provided])
+  }, [selectedSubjectId, chapterReload, target, chapterTarget, intent.provided])
 
   const submit = useCallback(async (wasTimedOut = false) => {
     if (!test || loading) return
@@ -775,10 +785,15 @@ export function QuestionBankPracticePage() {
               </div>
 
               <div className="space-y-8 p-6 sm:p-10">
-                {intent.provided && <section aria-label="Article practice target" className="rounded-2xl border border-teal-200 bg-teal-50 p-5">
+                {intent.provided && !chapterTarget && <section aria-label="Article practice target" className="rounded-2xl border border-teal-200 bg-teal-50 p-5">
                   <h2 className="text-lg font-bold text-dark">{targetAvailability?.title || 'Concept practice'}</h2>
                   <p className="mt-2 text-sm leading-6 text-neutral-700" role="status">{!target ? 'This concept link is incomplete or invalid. No other chapter has been selected.' : targetLoading ? 'Checking published questions for this concept...' : targetError ? targetError : targetAvailability?.published_question_count === 0 ? 'No published questions for this concept yet. We will not substitute another topic.' : targetAvailability ? `${sessionCount} questions from this concept only. Start when you are ready.` : 'This concept could not be verified.'}</p>
                   {target && chapterError && <p className="mt-2 text-sm text-red-700">{chapterError}</p>}
+                  <button type="button" onClick={() => navigate('/practice')} className="mt-3 min-h-11 text-sm font-bold text-teal-800 underline">Choose different practice instead</button>
+                </section>}
+                {chapterTarget && <section aria-label="Chapter practice target" className="rounded-2xl border border-teal-200 bg-teal-50 p-5">
+                  <h2 className="text-lg font-bold text-dark">{resolvedChapter?.title || 'Chapter practice'}</h2>
+                  <p className="mt-2 text-sm leading-6 text-neutral-700" role="status">{chaptersLoading ? 'Checking this chapter in the published subject catalogue...' : targetReady ? 'This chapter is selected. Choose a mode and start when you are ready. This is chapter-wide practice, not an exact concept or PDF question match.' : 'This chapter could not be verified. We will not substitute another chapter.'}</p>
                   <button type="button" onClick={() => navigate('/practice')} className="mt-3 min-h-11 text-sm font-bold text-teal-800 underline">Choose different practice instead</button>
                 </section>}
                 <fieldset>
@@ -816,7 +831,7 @@ export function QuestionBankPracticePage() {
                     disabled={chaptersLoading || loading || chapters.length === 0 || intent.provided}
                     className="mt-3 min-h-12 w-full rounded-xl border border-neutral-200 bg-white px-3 text-sm font-semibold text-dark outline-none transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
                   >
-                    {(chaptersLoading || chapters.length === 0) && <option value="">{chaptersLoading ? 'Loading chapters...' : chapterError ? 'Could not load chapters' : 'No chapters available'}</option>}
+                    {(chaptersLoading || chapters.length === 0 || !selectedChapterId) && <option value="">{chaptersLoading ? 'Loading chapters...' : chapterTarget && !selectedChapterId ? 'Requested chapter unavailable' : chapterError ? 'Could not load chapters' : 'No chapters available'}</option>}
                     {chapters.map((chapter) => (
                       <option key={chapter.id} value={chapter.id}>
                         Chapter {chapter.sequence_number} · {chapter.title}
@@ -825,7 +840,7 @@ export function QuestionBankPracticePage() {
                   </select>
                   {chaptersLoading && <p role="status" className="mt-2 text-sm text-neutral-500">Loading chapters. The first visit can take a moment.</p>}
                   {chapterError && <div role="alert" className="mt-2 text-sm text-red-700">{chapterError} <button type="button" onClick={() => setChapterReload((value) => value + 1)} className="min-h-11 font-semibold underline">Retry chapters</button></div>}
-                  {!chaptersLoading && !chapterError && <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-500">{selectedChapter?.description || 'No published chapters are available for this subject yet.'}</p>}
+                  {!chaptersLoading && !chapterError && <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-500">{selectedChapter ? selectedChapter.description || 'Practise questions from this chapter.' : 'No published chapters are available for this subject yet.'}</p>}
                 </div>
 
                 {!intent.provided && !chaptersLoading && !chapterError && selectedChapter && <ChapterConceptLinks subject={selectedSubjectId} chapter={selectedChapterId} />}

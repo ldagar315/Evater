@@ -5,7 +5,9 @@ import re
 root = Path(__file__).resolve().parent
 routes = set(re.findall(r'<Route path="([^":*]+)"', (root/'src/App.tsx').read_text()))
 # Public/prerendered destinations resolve via existing files or explicit rules.
-routes -= {'/', '/blog'}
+prerender_config = (root/'vite.config.ts').read_text().split('const PRERENDER_ROUTES = [', 1)[1].split('];', 1)[0]
+prerendered_routes = set(re.findall(r"'(/[^']*)'", prerender_config))
+routes -= prerendered_routes
 config = (root/'netlify.toml').read_text()
 backup = (root/'public/_redirects').read_text()
 for route in sorted(routes):

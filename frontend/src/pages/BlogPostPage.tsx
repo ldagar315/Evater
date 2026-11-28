@@ -1,23 +1,39 @@
+import { getStudyGuidePaper } from '../data/studyGuidePapers'
+import { DensitySimulation } from '../components/blog/DensitySimulation'
+import { ResourceVideoEmbed } from '../components/blog/ResourceVideoEmbed'
+import { youtubeVideoId } from '../components/blog/resourceVideo'
+import { PowerGrowthVisual, AreaHeightVisual } from '../components/blog/MathsChapterVisuals'
+import { PythagorasSimulation } from '../components/blog/PythagorasSimulation'
 import { supportsConceptPractice } from '../lib/api'
 import { blogPracticeTargets } from '../data/blogPracticeTargets'
 import { practiceHref } from '../lib/practiceTarget'
+import { resourcePracticeHref } from '../data/resourcePracticeTargets'
 import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Calendar, Check, ChevronRight, Clock, Home, Share2, Tag } from 'lucide-react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
+import { InverseWork } from '../components/blog/InverseWork'
 import { Header } from '../components/layout/Header'
+import { QuadrilateralAngles } from '../components/blog/QuadrilateralAngles'
 import { Footer } from '../components/layout/Footer'
 import { BlogCard } from '../components/blog/BlogCard'
+import { MeanBalance } from '../components/blog/MeanBalance'
 import { Seo } from '../components/seo/Seo'
+import { ContactPressure } from '../components/blog/ContactPressure'
 import { SITE_URL } from '../components/seo/seoConfig'
 import { Button } from '../components/ui/Button'
 import { Card, CardContent } from '../components/ui/Card'
 import { useAuthContext } from '../contexts/AuthContext'
 import { getPostBySlug, getRelatedPosts } from '../data/blogPosts'
+import { RatioScaling } from '../components/blog/RatioScaling'
 import { BlogPost } from '../types/blog'
+import { FractionExplorations } from '../components/blog/FractionExplorations'
 import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 import { ReflectionSimulation } from '../components/blog/ReflectionSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
+import { DistributiveArea } from '../components/blog/DistributiveArea'
+
+import { SaturationExplorer } from '../components/blog/SaturationExplorer'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -25,7 +41,11 @@ const formatDate = (dateString: string) => new Date(dateString).toLocaleDateStri
   day: 'numeric',
 })
 
+import { SierpinskiExplorer } from '../components/blog/SierpinskiExplorer'
+
 const stripLeadingMarkdownTitle = (content: string) => content.replace(/^#\s+.+(?:\r?\n){1,2}/, '')
+
+import { CircuitContinuity } from '../components/blog/CircuitContinuity'
 
 const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 
@@ -34,6 +54,8 @@ const getTextContent = (children: React.ReactNode): string => React.Children.toA
   if (React.isValidElement(child)) return getTextContent(child.props.children)
   return ''
 }).join('')
+
+import { GasCompression } from '../components/blog/GasCompression'
 
 const getHeadings = (content: string) => Array.from(content.matchAll(/^##\s+(.+)$/gm)).map((match, index) => ({
   title: match[1].trim(),
@@ -65,6 +87,7 @@ export function BlogPostPage() {
   }, [slug])
 
   const articleContent = useMemo(() => post ? stripLeadingMarkdownTitle(post.content) : '', [post])
+  const resourceSetupHref = post ? resourcePracticeHref(post.slug) : null
   const headings = useMemo(() => getHeadings(articleContent), [articleContent])
 
   const handleShare = async () => {
@@ -124,6 +147,7 @@ export function BlogPostPage() {
     )
   }
 
+  const chapterPaper = getStudyGuidePaper(post.slug)
   const path = `/blog/${post.slug}/`
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -168,7 +192,10 @@ export function BlogPostPage() {
     },
     h3: ({ children }: { children?: React.ReactNode }) => <h3>{children}</h3>,
     a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
+      const videoId = href && post.id.startsWith('resource-') && getTextContent(children) === 'Open the video' ? youtubeVideoId(href) : null
+      if (videoId && href) return <ResourceVideoEmbed videoUrl={href} title={post.title} />
       if (href === '/practice' && conceptPracticeReady && blogPracticeTargets[post.slug]) return <a href="#concept-practice">{children}</a>
+      if (href === '/practice' && resourceSetupHref) return <Link to={resourceSetupHref}>{children}</Link>
       if (href?.startsWith('/')) return <Link to={href}>{children}</Link>
       return <a href={href} target="_blank" rel="noreferrer">{children}</a>
     },
@@ -219,6 +246,7 @@ export function BlogPostPage() {
             </div>
           </div>
         </header>
+        {post.slug === 'class-8-science-the-amazing-world-of-solutes-solvents-and-solutions-study-resources' && <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8"><SaturationExplorer /></div>}
 
         <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[15rem_minmax(0,1fr)] lg:px-8 lg:py-20">
           {headings.length > 0 && (
@@ -237,12 +265,28 @@ export function BlogPostPage() {
           )}
 
           <article className="min-w-0 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-10 lg:p-14">
+            {post.slug === 'class-8-maths-exploring-some-geometric-themes-study-resources' && <SierpinskiExplorer />}
+            {chapterPaper && <section aria-label="Chapter sample paper" className="mb-8 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:p-6">
+              <h2 className="text-xl font-extrabold text-dark">Try this chapter on paper</h2>
+              <p className="mt-2 text-sm leading-6 text-neutral-600">Use the original practice PDF after studying. Answers and marking guidance are included. No sign-in needed.</p>
+              <Link to={chapterPaper.path} className="mt-4 inline-flex min-h-12 max-w-full items-center rounded-xl bg-primary-800 px-4 py-3 text-sm font-bold text-white hover:bg-primary-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-800">{chapterPaper.heading}<ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" /></Link>
+            </section>}
             <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-dark prose-h2:scroll-mt-28 prose-p:leading-8 prose-p:text-neutral-600 prose-a:font-bold prose-a:text-primary-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-dark prose-li:text-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:text-neutral-700 prose-img:rounded-2xl">
+            {post.slug === 'class-8-maths-algebra-play-study-resources' && <NumberPyramid />}
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
+            {post.slug === 'class-8-maths-quadrilaterals-study-resources' && <QuadrilateralAngles />}
             </div>
+            {post.slug === 'class-8-maths-tales-by-dots-and-lines-study-resources' && <MeanBalance />}
+            {post.slug === 'ncert-class-8-maths-power-play-study-guide' && <PowerGrowthVisual />}
+            {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
+            {post.slug === 'class-8-maths-proportional-reasoning-1-study-resources' && <RatioScaling />}
             {post.slug === 'ncert-class-8-maths-square-and-cube-study-guide' && <CubeVolumeSimulation />}
+            {post.slug === 'class-8-maths-fractions-in-disguise-study-resources' && <FractionExplorations />}
+            {post.slug === 'ncert-class-8-maths-baudhayana-pythagoras-theorem' && <PythagorasSimulation />}
+            {post.slug === 'class-8-maths-we-distribute-yet-things-multiply-study-resources' && <DistributiveArea />}
             {post.slug === 'ncert-class-8-science-exploring-forces-study-guide' && <ForceSimulation />}
             {post.slug === 'ncert-class-8-science-light-mirrors-lenses-study-guide' && <ReflectionSimulation />}
+            {post.slug === 'class-8-science-the-amazing-world-of-solutes-solvents-and-solutions-study-resources' && <DensitySimulation />}
 
             {conceptPracticeReady && blogPracticeTargets[post.slug] && <section id="concept-practice" aria-label="Practise concepts from this article" className="my-10 rounded-2xl border border-teal-200 bg-teal-50 p-5 sm:p-7">
               <h2 className="text-2xl font-extrabold text-dark">Put this concept to the test</h2>
@@ -250,6 +294,7 @@ export function BlogPostPage() {
               <div className="mt-4 flex flex-wrap gap-3">{blogPracticeTargets[post.slug].map(target => <Link key={target.concept} to={practiceHref(target)} className="inline-flex min-h-12 items-center rounded-xl bg-teal-800 px-4 py-3 text-sm font-bold text-white hover:bg-teal-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-800">{target.label}<ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Link>)}</div>
               <p className="mt-3 text-xs leading-5 text-neutral-500">The set length depends on current availability. Opening a link does not create a test.</p>
             </section>}
+            {post.slug === 'class-8-science-pressure-winds-storms-and-cyclones-study-resources' && <ContactPressure />}
             {post.faqs && post.faqs.length > 0 && (
               <section aria-labelledby="faq-heading" className="mt-12 border-t border-neutral-200 pt-10">
                 <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700">Quick answers</p>
@@ -265,6 +310,12 @@ export function BlogPostPage() {
               </section>
             )}
 
+            {post.slug === 'class-8-maths-power-play-study-resources' && <PowerGrowthVisual />}
+            {post.slug === 'class-8-maths-area-study-resources' && <AreaHeightVisual />}
+            {post.slug === 'class-8-maths-a-square-and-a-cube-study-resources' && <CubeVolumeSimulation />}
+            {post.slug === 'class-8-maths-the-baudhayana-pythagoras-theorem-study-resources' && <PythagorasSimulation />}
+            {post.slug === 'class-8-science-exploring-forces-study-resources' && <ForceSimulation />}
+
             {post.tags.length > 0 && (
               <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-neutral-200 pt-8">
                 <Tag className="mr-1 h-4 w-4 text-neutral-400" aria-hidden="true" />
@@ -272,6 +323,7 @@ export function BlogPostPage() {
               </div>
             )}
 
+            {post.slug === 'class-8-science-electricity-magnetic-and-heating-effects-study-resources' && <CircuitContinuity />}
             <div className="mt-10 flex flex-col gap-6 border-t border-neutral-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm font-semibold text-neutral-500">Written by</p>
@@ -285,8 +337,11 @@ export function BlogPostPage() {
                 <span className="sr-only" aria-live="polite">{shareStatus === 'copied' ? 'Article link copied.' : ''}</span>
               </div>
             </div>
+            {post.slug === 'class-8-maths-proportional-reasoning-2-study-resources' && <InverseWork />}
           </article>
         </section>
+
+        {post.slug === 'class-8-science-particulate-nature-of-matter-study-resources' && <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8"><GasCompression /></div>}
 
         {relatedPosts.length > 0 && (
           <section aria-labelledby="related-heading" className="border-t border-neutral-200 bg-white py-16 sm:py-20">
@@ -313,7 +368,7 @@ export function BlogPostPage() {
               <p className="mt-3 max-w-2xl leading-7 text-primary-50/70">Evater helps you move from “I read it” to “I can use it.”</p>
             </div>
             <div className="flex shrink-0 flex-wrap gap-3">
-              <Link to={conceptPracticeReady && blogPracticeTargets[post.slug] ? practiceHref(blogPracticeTargets[post.slug][0]) : '/practice'} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{conceptPracticeReady && blogPracticeTargets[post.slug] ? 'Practise this concept' : 'Choose chapter practice'}</Link>
+              <Link to={resourceSetupHref || (conceptPracticeReady && blogPracticeTargets[post.slug] ? practiceHref(blogPracticeTargets[post.slug][0]) : '/practice')} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-secondary-300 px-5 text-sm font-extrabold text-dark transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-200 focus:ring-offset-2 focus:ring-offset-[#173b38]">{resourceSetupHref ? 'Set up this chapter’s practice' : conceptPracticeReady && blogPracticeTargets[post.slug] ? 'Practise this concept' : 'Choose chapter practice'}</Link>
               <Link to="/blog/" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white">Read more articles <ArrowLeft className="ml-2 h-4 w-4 rotate-180" aria-hidden="true" /></Link>
             </div>
           </div>
@@ -324,3 +379,5 @@ export function BlogPostPage() {
     </div>
   )
 }
+
+import { NumberPyramid } from '../components/blog/NumberPyramid'

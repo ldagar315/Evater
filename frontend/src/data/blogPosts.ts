@@ -1,4 +1,8 @@
+import { resourceGuides } from './resourceGuides'
+import { mathsChapterGuides } from './mathsChapterGuides'
+import { scienceFurtherGuides } from './scienceFurtherGuides'
 import { BlogPost, BlogCategory } from '../types/blog'
+import { scienceChapterGuides } from './scienceChapterGuides'
 
 const teamAuthor = {
   name: 'Evater Team',
@@ -7,6 +11,10 @@ const teamAuthor = {
 }
 
 export const blogPosts: BlogPost[] = [
+  ...resourceGuides,
+  ...mathsChapterGuides,
+  ...scienceFurtherGuides,
+  ...scienceChapterGuides,
   {
     id: '9',
     title: 'NCERT Class 8 Maths Chapter 1: A Square and A Cube - Study Guide',

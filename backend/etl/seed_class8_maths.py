@@ -23,6 +23,7 @@ from dotenv import load_dotenv
 
 from .class8_maths_catalog import CHAPTERS, CURRICULUM_VERSION_ID, ChapterSpec
 from .class8_maths_topics import TOPICS
+from .author_class8_maths import PYTHAGORAS_FAMILY_TOPICS, SOURCE_URL as AUTHORED_SOURCE_URL
 from .models import QuestionCandidate, QuestionItemCandidate
 from .publish import publish_candidates
 from .validate import (
@@ -137,6 +138,28 @@ def build_seed_rows(
     }
 
 
+def validate_authored_pythagoras_pack(spec: ChapterSpec, candidates: list[QuestionCandidate]) -> None:
+    """Reject old exponent packs before any remote client or mutation exists.
+
+    This guards authored-family identity, not arbitrary scraped question semantics.
+    It does not repair existing rows or grant permission to publish a pack.
+    """
+    if spec.sequence_number != 9:
+        return
+    for candidate in candidates:
+        if candidate.chapter_id != spec.id:
+            raise QuestionPackError("Pythagoras pack contains a mismatched chapter_id")
+        generated = candidate.generation_spec
+        is_authored = (candidate.source_url == AUTHORED_SOURCE_URL
+                       or generated.get("ingestion_method") == "evater_authored_generator")
+        if not is_authored:
+            continue
+        family = generated.get("generator_family")
+        topic = PYTHAGORAS_FAMILY_TOPICS.get(family)
+        if topic is None or candidate.concept_id != uuid5(spec.id, f"concept:{topic}"):
+            raise QuestionPackError(f"Invalid authored Pythagoras family/concept: {family}")
+
+
 def seed_remote(
     chapter_packs: list[tuple[ChapterSpec, list[QuestionCandidate]]],
     *,
@@ -144,6 +167,9 @@ def seed_remote(
     source_metadata_by_chapter: Optional[dict[int, dict[str, Any]]] = None,
     replace_existing: bool = False,
 ) -> list[dict[str, Any]]:
+    # Preflight every pack before creating a service client or retiring any row.
+    for spec, candidates in chapter_packs:
+        validate_authored_pythagoras_pack(spec, candidates)
     from app.supabase_client import create_supabase_service_client
 
     client = create_supabase_service_client()
@@ -260,6 +286,7 @@ def main() -> int:
         for spec in specs:
             path = _pack_path(args.source_packs_dir, spec)
             candidates = load_candidates(path)
+            validate_authored_pythagoras_pack(spec, candidates)
             if any(candidate.chapter_id != spec.id for candidate in candidates):
                 raise QuestionPackError(f"Pack for Chapter {spec.sequence_number} contains a mismatched chapter_id.")
             # MCQ candidates are model-validated at load. The science 10-MCQ

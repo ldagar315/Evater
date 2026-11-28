@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { publicPagePath } from './seoConfig'
 describe('public page URL convention', () => {
   it('matches directory-index public pages and stays idempotent', () => {
-    for (const path of ['/about', '/blog', '/blog/example']) {
+    for (const path of ['/papers', '/about', '/blog', '/blog/example']) {
       expect(publicPagePath(path)).toBe(path + '/')
       expect(publicPagePath(path + '/')).toBe(path + '/')
     }

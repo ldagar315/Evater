@@ -1,0 +1,13 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const text=resourceGuides.find(p=>p.id==='resource-maths-4')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t));const target=topics[1]
+const url='https://www.youtube.com/watch?v=PC9mbAwE3zk'
+describe('parallelogram diagonals foundation without equal-diagonal confusion',()=>{
+ it('adds one exact forward-proof foundation only to topic2',()=>{expect(topics).toHaveLength(4);expect(target).toContain('### Watch: Why parallelogram diagonals bisect each other');expect(target).toContain('Kevinmathscience');expect(target.match(/\[Open the video\]/g)).toHaveLength(1);expect(text.match(/PC9mbAwE3zk/g)).toHaveLength(1);expect(youtubeVideoId(url)).toBe('PC9mbAwE3zk')})
+ it('keeps exact original video order with optional kite',()=>{const ids=['y9udtA3cPgU','PC9mbAwE3zk','5CeBlu260Rw',...(text.includes('watch?v=-IRXWg2oLY4')?['-IRXWg2oLY4']:[])];expect([...text.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(ids.map(id=>`https://www.youtube.com/watch?v=${id}`));ids.forEach((id,i)=>expect(topics[i]).toContain(`watch?v=${id}`))})
+ it('distinguishes AAS proof, converse, halves and whole diagonals',()=>{const bridge=target.split('### Understand it')[0];for(const part of ['AAS or SAA','two equal halves','not that the two whole diagonals are equal or perpendicular','does not prove the converse','original explanation and question'])expect(bridge).toContain(part);expect(target).toContain('### Understand it');expect(target).toContain('### Try it yourself');expect(target).toContain('**Check:**')})
+ it('checks bisection algebra and unequal diagonals without a drawing assumption',()=>{const x=4,pm=3*x-1,mr=x+7,qm=5;expect(pm).toBe(mr);expect(pm+mr).toBe(22);expect(2*qm).toBe(10);expect(pm+mr).not.toBe(2*qm);for(let a=1;a<=20;a++)for(let b=1;b<=20;b++){expect(a+a).toBe(2*a);expect(b+b).toBe(2*b);if(a!==b)expect(2*a).not.toBe(2*b)};expect(target).toMatch(/equal length|equal lengths|Must PR = QS/);if(target.includes('PM = 3x - 1')){expect(target).toContain('x = 4');expect(target).toContain('PR = 22 cm');expect(target).toContain('QS = 10 cm')}})
+ it('preserves four attempts and revision with no evidence detours',()=>{expect(text.match(/### Try it yourself/g)).toHaveLength(4);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)');expect(text).not.toMatch(/transcript|playback verified|supporting evidence|ncert\.nic|kendallhunt/i)})
+})

@@ -1,0 +1,57 @@
+import { describe, it, expect } from 'vitest'
+import { areaShape, powerGrowth } from './mathsChapterModel'
+import { mathsChapterGuides } from '../../data/mathsChapterGuides'
+import { blogPosts } from '../../data/blogPosts'
+describe('Power Play and Area', () => {
+ it('keeps addition and multiplication distinct, including zero steps', () => {
+  expect(powerGrowth(2,0)).toMatchObject({added:1,multiplied:1})
+  expect(powerGrowth(2,4)).toMatchObject({added:9,multiplied:16})
+  expect(powerGrowth(5,6).multiplied).toBe(15625)
+  expect(powerGrowth(NaN,Infinity)).toMatchObject({base:2,steps:0})
+  expect(powerGrowth(10,-3)).toMatchObject({base:5,steps:0})
+ })
+ it('keeps area invariant under sideways shift and uses perpendicular height', () => {
+  for(let s=-3;s<=3;s++) expect(areaShape(8,3,s)).toMatchObject({area:24,triangleArea:12})
+  expect(areaShape(8,3,0).slopingSide).toBe(3)
+  expect(areaShape(8,3,3).slopingSide).toBeCloseTo(Math.sqrt(18))
+  expect(areaShape(NaN,Infinity,NaN)).toMatchObject({base:8,height:3,shift:0})
+ })
+ it('checks the worked examples independently', () => {
+  expect(3**4).toBe(81)
+  expect(2**3 + 2**4).toBe(24)
+  expect(2**3 * 2**4).toBe(128)
+  expect((2**3)**4).toBe(4096)
+  expect((3**2)**3).toBe(729)
+  expect(3**2 * 3**3).toBe(243)
+  expect(4**-2).toBe(1/16)
+  expect(7.2*10**4).toBe(72*10**3)
+  expect(6.3*10**-4).toBeCloseTo(.00063,10)
+  expect(2*(2+8)).toBe(2*(4+6))
+  expect(2*8).not.toBe(4*6)
+  expect(9*3).toBe(27)
+  expect(9*7-3*2).toBe(57)
+  expect(12*16/2).toBe(96)
+  expect((5+9)*4/2).toBe(28)
+  expect(12*5/2).toBe(30)
+  expect(14*3/2).toBe(21)
+  expect(10*8-2*3).toBe(74)
+  expect(10*18/2).toBe(90)
+  expect((6+10)*5/2*100).toBe(4000)
+ })
+ it('has original full guides, qualified source and no direct unverified concept targets', () => {
+  expect(mathsChapterGuides).toHaveLength(2)
+  expect(new Set(blogPosts.map(p=>p.id)).size).toBe(blogPosts.length)
+  expect(new Set(blogPosts.map(p=>p.slug)).size).toBe(blogPosts.length)
+  mathsChapterGuides.forEach(p=>{
+   expect(p.content.split(/\s+/).length).toBeGreaterThan(700)
+   expect(p.content).toContain('Answer check:')
+   expect(p.content).toContain('](/practice)')
+   expect(p.content).not.toContain('/practice?')
+  })
+  expect(mathsChapterGuides[0].content).toContain('does not define 0⁰')
+  expect(mathsChapterGuides[0].content).toContain('nonzero')
+  expect(mathsChapterGuides[1].content).toContain('official PDF bytes')
+  expect(mathsChapterGuides[1].content).toContain('unreachable')
+  expect(mathsChapterGuides[1].content).toContain('Equal area alone does not prove')
+ })
+})
