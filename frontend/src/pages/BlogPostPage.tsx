@@ -1,3 +1,4 @@
+import { getStudyGuidePaper } from '../data/studyGuidePapers'
 import { DensitySimulation } from '../components/blog/DensitySimulation'
 import { ResourceVideoEmbed } from '../components/blog/ResourceVideoEmbed'
 import { youtubeVideoId } from '../components/blog/resourceVideo'
@@ -145,6 +146,7 @@ export function BlogPostPage() {
     )
   }
 
+  const chapterPaper = getStudyGuidePaper(post.slug)
   const path = `/blog/${post.slug}/`
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -263,6 +265,11 @@ export function BlogPostPage() {
 
           <article className="min-w-0 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-10 lg:p-14">
             {post.slug === 'class-8-maths-exploring-some-geometric-themes-study-resources' && <SierpinskiExplorer />}
+            {chapterPaper && <section aria-label="Chapter sample paper" className="mb-8 rounded-2xl border border-primary-200 bg-primary-50 p-5 sm:p-6">
+              <h2 className="text-xl font-extrabold text-dark">Try this chapter on paper</h2>
+              <p className="mt-2 text-sm leading-6 text-neutral-600">Use the original practice PDF after studying. Answers and marking guidance are included. No sign-in needed.</p>
+              <Link to={chapterPaper.path} className="mt-4 inline-flex min-h-12 max-w-full items-center rounded-xl bg-primary-800 px-4 py-3 text-sm font-bold text-white hover:bg-primary-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-800">{chapterPaper.heading}<ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" /></Link>
+            </section>}
             <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-dark prose-h2:scroll-mt-28 prose-p:leading-8 prose-p:text-neutral-600 prose-a:font-bold prose-a:text-primary-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-dark prose-li:text-neutral-600 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:text-neutral-700 prose-img:rounded-2xl">
             {post.slug === 'class-8-maths-algebra-play-study-resources' && <NumberPyramid />}
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
