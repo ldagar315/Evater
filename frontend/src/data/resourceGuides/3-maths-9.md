@@ -44,7 +44,13 @@ A right triangle has hypotenuse 37 cm and a leg of 12 cm. Find the other leg and
 
 ## 3. Converse and Pythagorean triples
 
-### Think it through
+### Watch: Checking whether a triangle is right-angled
+
+corbettmaths
+
+[Open the video](https://www.youtube.com/watch?v=UKaoHO4ClS4)
+
+### Understand it
 
 The converse lets us decide whether three lengths form a right triangle. For positive lengths, first check that the two smaller lengths add to more than the largest. Then compare the largest square with the sum of the other two squares. For 9, 12 and 15, we have 9 + 12 > 15 and 81 + 144 = 225, so these lengths form a right triangle. For 9, 12 and 16, a triangle is possible but 81 + 144 ≠ 256, so it is not right-angled.
 
@@ -78,7 +84,13 @@ Use this rearrangement for legs 5 cm and 12 cm. Find the outer square's area, th
 
 ## 5. The diagonal of a square and an isosceles right triangle
 
-### Think it through
+### Watch: The diagonal of a square
+
+Math Mammoth
+
+[Open the video](https://www.youtube.com/watch?v=Eo04qjLRiSY)
+
+### Understand it
 
 Draw a square of side 12 cm and join the midpoints of neighbouring sides. The tilted square inside leaves four equal corner triangles, each with perpendicular legs 6 cm and 6 cm. Each triangle has area ½ × 6 × 6 = 18 cm², so the tilted square has area 144 - 4 × 18 = 72 cm². Its side c is also the diagonal of a 6 cm square. Since c² = 72 and a length is positive, c = √72 = 6√2 cm, not 12 cm. The square built on this diagonal has twice the original 6 cm square's area: 72 cm² rather than 36 cm². This area picture builds the result before using the general theorem.
 
