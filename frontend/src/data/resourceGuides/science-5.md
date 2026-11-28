@@ -4,7 +4,13 @@ Start with an everyday object. Ask what is pushing or pulling it, in which direc
 
 ## 1. What can a force do?
 
-### Think it through
+### Watch: Free-body diagrams and resultant forces
+
+Cognito
+
+[Open the video](https://www.youtube.com/watch?v=SYU1TKQru1c)
+
+### Understand it
 
 A force is a push or pull arising from an interaction. It can change speed, direction or shape. A hand squeezing a sponge can change its shape; a sideways push on a moving ball can change its direction. Name both the object receiving the force and what exerts it.
 
