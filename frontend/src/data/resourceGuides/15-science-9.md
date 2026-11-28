@@ -116,16 +116,6 @@ Object A has mass 54 g and volume 60 cm³; object B has mass 40 g and volume 20 
 
 **Reasoning:** A has density 54/60 = 0.9 g/cm³, while B has 40/20 = 2.0 g/cm³. A is less dense than the water and can float; B is more dense and tends to sink under this model. A has the greater mass, but also a much larger volume. Density, not mass alone, is the relevant comparison.
 
-### Work through an example
-
-Use supplied values for a fictional object: mass 0.24 kg and outer volume 300 cm³. Convert mass first: 0.24 kg = 240 g. Its average density is 240 ÷ 300 = 0.8 g/cm³, not 0.0008 g/cm³. A separate 30 g solid sample occupying 10 cm³ has density 3 g/cm³. The heavier object has the lower average density because its volume is much larger. For a hollow object, use its total mass and whole outer volume, not only the density of its wall material.
-
-### Try a different case
-
-In a simplified paper model, sealed rigid object A has mass 90 g and outer volume 150 cm³; solid object B has mass 20 g and volume 10 cm³. Water has density 1 g/cm³. Ignore surface tension and other support; assume neither object absorbs water, dissolves or changes shape. Calculate their average densities and predict which can float. Does the smaller mass decide?
-
-**Reasoning:** A has average density 90 ÷ 150 = 0.6 g/cm³, below the stated water density, so it can float partly submerged in this model. B has density 20 ÷ 10 = 2 g/cm³ and sinks despite being lighter. Compare mass per volume, not mass alone. A floating at rest has buoyancy balancing its weight, not zero gravity. Keep the stated assumptions; this is not an instruction to test unknown materials in water.
-
 ## Your five-minute revision
 
 Choose one idea you can now explain and one you still find tricky. Draw a diagram or work an example from memory. Compare with the lesson and fix the step you missed, then retry it tomorrow.
