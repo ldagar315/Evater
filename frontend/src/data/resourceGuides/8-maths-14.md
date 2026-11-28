@@ -6,13 +6,15 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ### Think it through
 
-Area counts the equal square units that cover a region without gaps or overlaps. A 7 cm by 4 cm rectangle holds 7 × 4 = 28 one-centimetre squares. Write 28 cm², not 28 cm: the measurement describes a surface, not a length.
+A 6 cm by 4 cm rectangle can be covered by six tiles, each 2 cm by 2 cm: three tiles across and two down. Each tile covers 4 cm², so the total area is 6 × 4 = 24 cm². Six tiles does not mean 6 cm² unless each tile is a one-centimetre square. Drawing each large tile as four unit squares shows the same 24 square units.
+
+Area and perimeter measure different things. The rectangle's perimeter is 2 × (6 + 4) = 20 cm. A 7 cm by 3 cm rectangle has the same perimeter but area 21 cm², so equal perimeter does not force equal area. Keep lengths in the same unit before multiplying, and use square units for the result.
 
 ### Try it yourself
 
-Find the area of a 7 cm by 4 cm rectangle.
+A 9 cm by 6 cm rectangle is covered exactly by 3 cm square tiles. How many tiles are needed? What is its area in cm²? Compare its perimeter and area with a 12 cm by 3 cm rectangle.
 
-**Check:** 28 cm², not 28 cm.
+**Check:** 3 × 2 = 6 tiles, each covering 9 cm², give area 54 cm². Both rectangles have perimeter 30 cm, but the second has area 36 cm². Same perimeter, different area.
 
 ## 2. Parallelograms and perpendicular height
 
