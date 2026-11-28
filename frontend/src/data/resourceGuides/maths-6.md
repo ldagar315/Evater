@@ -65,7 +65,15 @@ Why is (x + 4)² not x² + 16?
 
 ## 4. Finding and fixing expansion errors
 
-### Think it through
+### Watch: Keep signs when expanding brackets
+
+Khan Academy
+
+[Open the video](https://www.youtube.com/watch?v=3NHSwiv_pSE)
+
+Follow each signed multiplier before collecting like terms. A negative multiplier acts on every term inside its bracket. Then use the correction below to explain the error, not only to replace the answer. A numerical counterexample can disprove an identity; agreement at one value does not prove it.
+
+### Understand it
 
 Consider 4(2t - 3) - 2(t + 5). A proposed answer 6t - 2 has lost the negative multiplier on 5. Distribute first, keeping each sign: 8t - 12 - 2t - 10 = 6t - 22. At t = 0, the original gives -12 - 10 = -22, so the proposed answer -2 is already disproved. A counterexample exposes an error; the correct distributive steps explain the repair.
 
