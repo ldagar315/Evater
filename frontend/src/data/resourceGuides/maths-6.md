@@ -22,7 +22,13 @@ Calculate 17 × 98 without long multiplication.
 
 ## 2. Products of sums and differences
 
-### Think it through
+### Watch: Multiplying binomials intro
+
+Khan Academy
+
+[Open the video](https://www.youtube.com/watch?v=Xy8NKUoyy98)
+
+### Understand it
 
 Expand (2x + 3)(x - 4) by multiplying every term in one bracket by every term in the other. Keep all four contributions visible:
 
