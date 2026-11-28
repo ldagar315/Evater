@@ -72,7 +72,15 @@ Use the same digit rules for AB + BA = 121. This time A is even and A < B. Find 
 
 ## 5. Consecutive numbers and parity
 
-### Think it through
+### Watch: Use algebra to explain odd and even
+
+A Level Maths Tutor | John Armstrong
+
+[Open the video](https://www.youtube.com/watch?v=D0CkdFSWLOA)
+
+Use 2k for an even integer and 2k + 1 for an odd integer, with k an integer. The video uses these forms to explain the parity of squares. Then return to consecutive numbers below: a general expression explains every case, while checking a few examples does not prove the claim. When signs change, compare parity rather than assuming the totals stay equal.
+
+### Understand it
 
 Four consecutive integers contain two odd and two even numbers. Their sum is even. Algebra makes the scope clear: n + (n + 1) + (n + 2) + (n + 3) = 4n + 6, which is twice 2n + 3. Replacing a +n term with -n changes the result by -2n, an even number, so changing plus and minus signs does not change that parity. You can explain every sign choice without calculating each one.
 
