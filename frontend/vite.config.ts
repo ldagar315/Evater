@@ -5,6 +5,7 @@ import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
 
 // Public, crawlable routes that get static HTML at build time. App routes stay client-rendered.
 const PRERENDER_ROUTES = [
+  '/blog/ncert-class-8-maths-story-of-numbers-study-guide',
   '/blog/class-8-maths-quadrilaterals-study-resources',
   '/blog/class-8-maths-number-play-study-resources',
   '/blog/class-8-maths-the-baudhayana-pythagoras-theorem-study-resources',

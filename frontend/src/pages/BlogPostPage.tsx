@@ -1,3 +1,4 @@
+import { NumberStoryVisual } from '../components/blog/NumberStoryVisual'
 import { getStudyGuidePaper } from '../data/studyGuidePapers'
 import { DensitySimulation } from '../components/blog/DensitySimulation'
 import { ResourceVideoEmbed } from '../components/blog/ResourceVideoEmbed'
@@ -36,6 +37,7 @@ import { DistributiveArea } from '../components/blog/DistributiveArea'
 import { SaturationExplorer } from '../components/blog/SaturationExplorer'
 
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
+  timeZone: 'UTC',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -276,6 +278,8 @@ export function BlogPostPage() {
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
             {post.slug === 'class-8-maths-quadrilaterals-study-resources' && <QuadrilateralAngles />}
             </div>
+              {post.slug === 'ncert-class-8-maths-story-of-numbers-study-guide' && <NumberStoryVisual />}
+
             {post.slug === 'class-8-maths-tales-by-dots-and-lines-study-resources' && <MeanBalance />}
             {post.slug === 'ncert-class-8-maths-power-play-study-guide' && <PowerGrowthVisual />}
             {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
