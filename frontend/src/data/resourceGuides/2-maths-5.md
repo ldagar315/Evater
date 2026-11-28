@@ -4,7 +4,15 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Multiples and algebraic descriptions
 
-### Think it through
+### Watch: Use algebra to describe multiples
+
+Marcus Smith
+
+[Open the video](https://www.youtube.com/watch?v=nCq3rxCG2MA)
+
+In the video, x is the middle integer of five consecutive integers, whose sum is 5x. This sum is divisible by 15 exactly when x is divisible by 3. Use the same integer-times-divisor idea below: 7a and 7b are multiples of 7 when a and b are integers, and 7a + 7b = 7(a + b). The video uses five consecutive integers, not this two-multiples example. A multiple sum does not force each addend to be a multiple.
+
+### Understand it
 
 A multiple of 7 can be written as 7a, where a is an integer. For any two integers a and b, 7a + 7b = 7(a + b). The bracket is still an integer, so the sum is a multiple of 7. For example, 14 + 35 = 49 follows this rule, but the letters explain why it works for every pair, including negative multiples.
 
