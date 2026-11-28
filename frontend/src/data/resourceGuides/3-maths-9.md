@@ -44,7 +44,13 @@ A right triangle has hypotenuse 37 cm and a leg of 12 cm. Find the other leg and
 
 ## 3. Converse and Pythagorean triples
 
-### Think it through
+### Watch: Checking whether a triangle is right-angled
+
+corbettmaths
+
+[Open the video](https://www.youtube.com/watch?v=UKaoHO4ClS4)
+
+### Understand it
 
 The converse lets us decide whether three lengths form a right triangle. For positive lengths, first check that the two smaller lengths add to more than the largest. Then compare the largest square with the sum of the other two squares. For 9, 12 and 15, we have 9 + 12 > 15 and 81 + 144 = 225, so these lengths form a right triangle. For 9, 12 and 16, a triangle is possible but 81 + 144 ≠ 256, so it is not right-angled.
 
@@ -78,27 +84,45 @@ Use this rearrangement for legs 5 cm and 12 cm. Find the outer square's area, th
 
 ## 5. The diagonal of a square and an isosceles right triangle
 
-### Think it through
+### Watch: The diagonal of a square
+
+Math Mammoth
+
+[Open the video](https://www.youtube.com/watch?v=Eo04qjLRiSY)
+
+### Understand it
 
 Draw a square of side 12 cm and join the midpoints of neighbouring sides. The tilted square inside leaves four equal corner triangles, each with perpendicular legs 6 cm and 6 cm. Each triangle has area ½ × 6 × 6 = 18 cm², so the tilted square has area 144 - 4 × 18 = 72 cm². Its side c is also the diagonal of a 6 cm square. Since c² = 72 and a length is positive, c = √72 = 6√2 cm, not 12 cm. The square built on this diagonal has twice the original 6 cm square's area: 72 cm² rather than 36 cm². This area picture builds the result before using the general theorem.
 
+For any square of side s, the diagonal d satisfies d² = s² + s² = 2s². The factor of two relies on the two perpendicular sides being equal. For a rectangle with unequal sides a and b, the diagonal instead gives d² = a² + b². Do not replace that sum with twice the rectangle's area, 2ab, unless the sides really are equal.
+
 ### Try it yourself
 
-A square has side 5 cm. Give its diagonal length exactly, and the area of a square built on that diagonal.
+A learner applies the square rule to a 9 cm by 12 cm rectangle and says that a square built on its diagonal must have area 2 × 9 × 12 = 216 cm². Check the claim by finding the rectangle's diagonal and the area of the square built on it. Which condition of the square argument was lost?
 
-**Check:** The diagonal is 5√2 cm. Its square has area (5√2)² = 50 cm², twice 25 cm².
+**Check:** The rectangle's diagonal is the hypotenuse of a right triangle: d² = 9² + 12² = 81 + 144 = 225, so d = 15 cm. A square built on it has area 225 cm², not 216 cm². The rectangle itself has area 108 cm². Its unequal perpendicular sides do not supply two equal squares; the doubling rule belonged to an original square, not to every rectangle.
 
 ## 6. A history extension: what changes with cubes?
 
-### Think it through
+### Watch: From square-number triples to Fermat's question
 
-The power 2 matters. Although 3² + 4² = 5², replacing every square with a cube does not keep the equality: 3³ + 4³ = 27 + 64 = 91, while 5³ = 125. Fermat's Last Theorem says that xⁿ + yⁿ = zⁿ has no solution in positive integers when n is an integer greater than 2. It was a long-standing open problem in history, but Andrew Wiles proved it in the 1990s. You are not expected to prove it here. One failed cube example shows why a familiar triple cannot be reused; it does not prove the general theorem.
+University of Oxford
+
+[Open the video](https://www.youtube.com/watch?v=1BSFyEIY2BY)
+
+Use this brief historical overview to see how changing the exponent leads from Pythagorean triples to a different question. The theorem here concerns positive integers x, y and z and an integer exponent n greater than 2. Zero and non-integer values are outside those conditions. This is an overview, not a proof of the theorem. Checking one triple, or many triples, cannot replace a general proof. Keep the square and cube calculations below separate.
+
+### Understand it
+
+The power 2 matters. Although 3² + 4² = 5², replacing every square with a cube does not keep the equality: 3³ + 4³ = 27 + 64 = 91, while 5³ = 125. One familiar right-triangle triple cannot simply be reused for a different power.
+
+Fermat's Last Theorem says that xⁿ + yⁿ = zⁿ has no solution in positive integers x, y and z when n is an integer greater than 2. It was a long-standing open problem in history, but Andrew Wiles proved it in the 1990s. You are not expected to prove it here. The conditions matter: a positive integer is a whole number greater than zero, and n = 2 is not covered. One failed cube example does not prove a claim about all triples.
 
 ### Try it yourself
 
-Does checking that 3³ + 4³ is not 5³ prove that no positive-integer cube solutions exist?
+Two learners propose counterexamples for n = 3. One sets x = 0, y = 4 and z = 4. The other sets x = 1, y = 2 and z equal to the positive cube root of 9. Check whether each equation balances, then decide whether either disproves the stated theorem. Check the allowed numbers, not just the arithmetic.
 
-**Check:** No. It rules out just that triple. A claim about every possible triple needs a general proof.
+**Check:** The first equation balances: 0³ + 4³ = 4³. But zero is not positive, so that triple is outside the theorem's conditions. The second also balances because 1³ + 2³ = 9 and z³ = 9. However, 2³ < 9 < 3³, so this z lies between 2 and 3 and is not an integer. Neither is a counterexample to the positive-integer claim. Verifying the arithmetic is necessary, but a proposed counterexample must also satisfy every condition.
 
 ## Your five-minute revision
 

@@ -4,7 +4,7 @@ import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
 import { Seo } from '../components/seo/Seo'
 import { useAuthContext } from '../contexts/AuthContext'
-import { getPaperDetailBySlug, paperForDetail } from '../data/paperDetails'
+import { getPaperDetailBySlug, paperForDetail, paperPracticeHref } from '../data/paperDetails'
 import { paperCollections } from '../data/paperCollections'
 import { paperDetails } from '../data/paperDetails'
 import { NotFoundPage } from './NotFoundPage'
@@ -29,6 +29,7 @@ export function PaperDetailPage() {
     .sort((a, b) => Number(b.p.format === 'mixed') - Number(a.p.format === 'mixed'))
     .slice(0, 3)
 
+  const practicePath = paperPracticeHref(paper.id)
   const objective = paper.objectiveQuestions ?? 10
   const written = paper.writtenQuestions ?? 5
   const jsonLd = [
@@ -145,6 +146,14 @@ export function PaperDetailPage() {
             </ol>
             {detail.studyGuide && <p className="mt-4 text-sm leading-7 text-neutral-600">Want an explanation first? <Link to={detail.studyGuide.href} className="font-bold text-primary-700 underline underline-offset-4">{detail.studyGuide.label}</Link> for a worked refresher on this chapter.</p>}
           </section>
+
+          {practicePath && <section aria-labelledby="online-practice" className="mt-10 rounded-2xl border border-primary-100 bg-primary-50 p-6">
+            <h2 id="online-practice" className="text-xl font-bold">Try online practice</h2>
+            <p className="mt-3 text-sm leading-7 text-neutral-600">{paper.format === 'mixed' ? 'Choose a Class 8 subject and chapter for a separate online session.' : `Open practice setup for ${paper.title}. Check the chapter, choose a mode, then start when you are ready.`} Sign in to practise. Online questions are separate from this PDF; your PDF answers are not uploaded or graded here.</p>
+            <Link to={practicePath} className={`mt-4 inline-flex min-h-12 items-center gap-2 rounded-xl bg-primary-700 px-5 py-3 text-sm font-bold text-white hover:bg-primary-800 ${buttonFocus}`}>
+              {paper.format === 'mixed' ? 'Choose online practice' : 'Set up chapter practice'} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </section>}
 
           <section aria-labelledby="source-note" className="mt-12 max-w-3xl">
             <h2 id="source-note" className="text-sm font-bold uppercase tracking-wide text-neutral-500">Source and originality</h2>

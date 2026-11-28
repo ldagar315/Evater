@@ -64,15 +64,25 @@ A hypothetical price of ₹500 rises by 20%, then the new price falls by 20%. Fi
 
 ## 4. Applying percentages in context
 
-### Think it through
+### Watch: Cost price, selling price, profit and loss
 
-A discount is taken from the marked price. Fifteen percent of ₹800 is ₹120, so the sale price is ₹680 before other charges. Profit or loss percentage usually uses cost price instead. Underline the quantity that counts as the whole before calculating any percentage.
+Khan Academy India - English
+
+[Open the video](https://www.youtube.com/watch?v=aB_aXOWI_FI)
+
+Compare selling price with cost price in the video. It is a basic profit, loss and break-even primer, not a lesson on discount percentages or profit margins. For the original question below, use marked price as the base for a discount and cost price as the base for profit on cost. Name the whole before calculating, and account for other costs and taxes only when the question includes them.
+
+### Understand it
+
+A shop buys a bag for ₹720, marks it ₹1,000 and gives a 10% discount on the marked price. The discount is ₹100, so the selling price is ₹900. The profit is ₹900 - ₹720 = ₹180. For profit as a percentage of cost, use ₹720 as the whole: 180/720 × 100% = 25%. A discount can therefore coexist with a profit: the two percentages use different bases.
+
+Write the base beside each calculation. Discount uses marked price; profit on cost uses cost price. Profit margin on sales is a different measure, so do not silently swap the denominator. These examples ignore other costs and taxes. If extra charges are stated, include them as directed rather than assuming this is a final checkout total.
 
 ### Try it yourself
 
-A ₹800 item has a 15% discount. What is the sale price before any other charge?
+A shop buys a lamp for ₹640 and marks it ₹1,000. It offers a 20% discount. Find the selling price, profit and profit percentage on cost. Explain why a 20% discount is not a 20% loss.
 
-**Check:** ₹680. The discount is ₹120.
+**Check:** Selling price ₹800; profit ₹160; profit on cost 160/640 × 100% = 25%. The discount is measured from ₹1,000, while profit or loss on cost is measured from ₹640.
 
 ## Your five-minute revision
 

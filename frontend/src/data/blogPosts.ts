@@ -1,3 +1,4 @@
+import { numberStoryGuide } from './numberStoryGuide'
 import { resourceGuides } from './resourceGuides'
 import { mathsChapterGuides } from './mathsChapterGuides'
 import { scienceFurtherGuides } from './scienceFurtherGuides'
@@ -11,6 +12,7 @@ const teamAuthor = {
 }
 
 export const blogPosts: BlogPost[] = [
+  numberStoryGuide,
   ...resourceGuides,
   ...mathsChapterGuides,
   ...scienceFurtherGuides,

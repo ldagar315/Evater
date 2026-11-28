@@ -1,0 +1,13 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const text=resourceGuides.find(p=>p.id==='resource-science-13')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t));const target=topics[3]
+const url='https://www.youtube.com/watch?v=bs9e6ovISbs'
+describe('habitat protection foundation without replacing wetland reasoning',()=>{
+ it('places exact conservation foundation only in topic4',()=>{expect(topics).toHaveLength(4);expect(target).toContain('### Watch: Maintaining biodiversity');expect(target).toContain('Cognito');expect(target.match(/\[Open the video\]/g)).toHaveLength(1);expect(text.match(/bs9e6ovISbs/g)).toHaveLength(1);expect(youtubeVideoId(url)).toBe('bs9e6ovISbs')})
+ it('preserves earlier video order and optional Earth systems placement',()=>{const ids=['Bsp5JYNMAQE',...(text.includes('o8K0RTYM6Mc')?['o8K0RTYM6Mc']:[]),...(text.includes('p4652vo5Oic')?['p4652vo5Oic']:[]),'bs9e6ovISbs'];expect([...text.matchAll(/\[Open the video\]\(([^)]+)\)/g)].map(m=>m[1])).toEqual(ids.map(id=>`https://www.youtube.com/watch?v=${id}`));expect(topics[0]).toContain('Bsp5JYNMAQE');if(text.includes('p4652vo5Oic'))expect(topics[2]).toContain('[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)');else expect(topics[2]).not.toContain('[Open the video]')})
+ it('limits policy generalisations and habitat-protection coverage',()=>{const bridge=target.split('### Understand it')[0];for(const part of ['protecting species with protecting their habitats','not a wetland restoration procedure','one action removes every threat','depend on place and conditions','match each action to its pressure','Do not catch, feed or disturb wildlife'])expect(bridge).toContain(part)})
+ it('keeps question and check rather than treating a clean-up as a complete fix',()=>{expect(target).toContain('### Understand it');expect(target).toContain('### Try it yourself');expect(target).toContain('**Check:**');expect(target).toContain('wetland');if(target.includes('dirty water')){for(const part of ['dirty water continues','feeding habitat is shrinking','polluted-water inflow','habitat loss','One clean-up is useful'])expect(target).toContain(part)}expect(target).not.toMatch(/burning|herbicide|catch animals/i)})
+ it('retains four checks and revision without private research detours',()=>{expect(text.match(/### Try it yourself/g)).toHaveLength(4);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)');expect(text).not.toMatch(/transcript|playback verified|supporting evidence|ncert\.nic|noaa\.gov/i)})
+})

@@ -12,13 +12,15 @@ TED-Ed
 
 ### Understand it
 
-Numerals are written ways to represent quantities. Different systems can use different symbols and grouping rules for the same amount. Compare how each system writes one group, several groups and an empty place; do not assume that a symbol's position always works like our decimal system.
+A number is an amount; a numeral is a way to write it. Thirteen counters can be recorded as decimal 13 or Roman XIII without changing the collection. To read an unfamiliar system, first ask what each symbol means, how groups combine and whether position changes a symbol's contribution. Different historical systems need their own rules, not an assumed decimal rule.
+
+For an invented additive system, let T mean ten and | mean one, with symbol values simply added in any order. Then T||| means 10 + 1 + 1 + 1 = 13, and ||T| means the same amount. This order rule belongs to our invented system; it is not a claim that order never matters in Roman or other historical notation.
 
 ### Try it yourself
 
-Why can numeral systems use different symbols for the same quantity?
+Use only the invented rule above. Compare TT|||| with |T||T| by finding their amounts. A learner then says decimal 24 and 42 must also be equal because they contain the same digits. Explain why changing the representation rule changes that conclusion.
 
-**Check:** The quantity is independent of its written representation; each system has its own rules. For example, XIII and 13 can both name thirteen, although one uses Roman symbols and the other uses decimal place value. Try converting each representation into a count of objects before comparing the written symbols.
+**Check:** Both invented strings have two Ts and four bars, so both represent 2 × 10 + 4 = 24. Decimal 24 means 2 tens and 4 ones, whereas 42 means 4 tens and 2 ones: 40 + 2 = 42. Their positions carry different weights. Rearranging symbols preserves the amount in our stated additive system but not generally in decimal place value. Decode by the rules of the system, not by the shape or count of written symbols alone.
 
 ## 2. Place value and zero
 
@@ -30,13 +32,15 @@ Khan Academy
 
 ### Understand it
 
-In decimal place value, moving one place left multiplies the value of a digit by 10. In 204, the 2 means 200 and the zero holds the empty tens place. Removing it gives 24, where the 2 means 20. The video practises expanded form with decimals; use the same place-value thinking for whole numbers.
+In decimal place value, each place to the left is worth ten times as much. In 204, the 2 contributes 200, the 0 contributes no tens and the 4 contributes 4: 204 = 2 × 100 + 0 × 10 + 4. Deleting the middle zero gives 24, which has only 2 tens. Zero contributes no amount in its own place but can preserve the weights of other digits.
+
+A leading zero is different: 0204 still represents 204 because the extra thousands contribution is zero. The video extends place value to decimals; first make sure you can label hundreds, tens and ones. Do not replace this reasoning with either "zeros never matter" or "every extra zero changes the value".
 
 ### Try it yourself
 
-Why are 204 and 24 different numbers?
+Use the digits 0, 4 and 7 exactly once each. Find the largest and smallest three-digit decimal whole numbers you can make, and find their difference. Explain why 047 cannot be the smallest three-digit answer. Expand both valid answers into place values.
 
-**Check:** The 2 represents 200 in 204 but 20 in 24; zero preserves the empty tens place.
+**Check:** The largest is 740 = 7 × 100 + 4 × 10 + 0; the smallest is 407 = 4 × 100 + 0 × 10 + 7. Their difference is 740 - 407 = 333. A three-digit whole number cannot start with zero: 047 has the value 47 and only two digits when written without a leading zero. The middle zero in 407, unlike that leading zero, keeps the 4 in the hundreds place. Valid candidates are 407, 470, 704 and 740.
 
 ## 3. Bases and regrouping
 
@@ -48,13 +52,25 @@ TED-Ed
 
 ### Understand it
 
-A positional base tells you how many smaller units make the next place. In base two, the places from right to left are 1, 2, 4 and 8. So 1011₂ means 1 × 8 + 0 × 4 + 1 × 2 + 1 × 1 = 11 in decimal. Each binary digit is 0 or 1.
+A positional base tells you how many units make the next place. In base two, the places from right to left are 1, 2, 4 and 8, and each digit is 0 or 1. Thus 1011₂ = 1 × 8 + 0 × 4 + 1 × 2 + 1 × 1 = 11 in decimal. The zero preserves the empty fours place; removing it changes the value.
+
+Regrouping works in twos, not tens. In 111₂ + 1₂, two ones become one two, two twos become one four, and two fours become one eight: the result is 1000₂. Check in decimal: 7 + 1 = 8. A digit 2 is not allowed in a binary numeral, even during your final answer.
 
 ### Try it yourself
 
-What is 1011 in base two worth in decimal?
+Convert 1101₂ to decimal. Then add 1₂ and write the answer in binary. A student writes 1102₂. Explain the mistake and check your answer in decimal.
 
-**Check:** 8 + 0 + 2 + 1 = 11.
+**Check:** 1101₂ = 8 + 4 + 0 + 1 = 13. Adding one gives 1110₂ = 14. The two ones must regroup as one two, so 1102₂ is not a valid binary numeral.
+
+### Work through an example
+
+In base two, two units of one place regroup as one unit of the next place. Add one to 111₂: the ones place gives two ones, so carry one into the twos place; that also gives two twos, then two fours. The result is 1000₂. Check in decimal: 111₂ = 4 + 2 + 1 = 7, and 1000₂ = 8. The extra written digit records regrouping, not eight new objects.
+
+### Try a different case
+
+Write decimal 13 in base two and add one in that base. A learner writes 1102₂. Explain the error and check the correct answer in decimal.
+
+**Reasoning:** 13 = 8 + 4 + 1, so it is 1101₂. Adding one makes two ones: regroup them as one two to get 1110₂ = 8 + 4 + 2 = 14. The digit 2 is not allowed in a standard binary numeral; it signals a carry that has not been completed.
 
 ## 4. Comparing representations
 
@@ -66,13 +82,25 @@ Khan Academy
 
 ### Understand it
 
-Translate a number by adding its place values, then convert back to check. In base five, 23 means 2 × 5 + 3 = 13 in decimal. Each digit must be smaller than the base. The video shows a decimal-to-binary conversion; compare its grouping-by-two method with grouping by five.
+The same written digits can name different quantities when the base changes. In base five, 23₅ = 2 × 5 + 3 = 13 in decimal, but 23 in decimal is twenty-three. Label the base before comparing. Every digit must be smaller than its base: 24₅ is valid, whereas 25₅ is not a standard base-five numeral.
+
+To convert 17 from decimal to base five, group it into three fives and two ones: 32₅. Convert back to check: 3 × 5 + 2 = 17. The video uses grouping by two; grouping by five follows the same place-value idea, with places 1, 5, 25 and so on.
 
 ### Try it yourself
 
-What does 23 in base five mean in decimal?
+Are 31₅ and 10000₂ equal? Expand both into decimal to decide. Then explain why 31₂ is invalid rather than another way to write the same quantity.
 
-**Check:** 2 × 5 + 3 = 13. The digits must each be smaller than five.
+**Check:** 31₅ = 3 × 5 + 1 = 16, and 10000₂ = 1 × 16 = 16, so they are equal quantities. Binary allows only 0 and 1; the digit 3 makes 31₂ invalid.
+
+### Work through an example
+
+In positional base five, the places from right to left are 1, 5 and 25. Thus 104₅ = 1 × 25 + 0 × 5 + 4 = 29 in decimal. The zero keeps the 1 in the twenty-fives place; deleting it gives 14₅ = 9, a different number. Adding one to 104₅ gives 110₅: five ones regroup as one five. Decode the result as 25 + 5 = 30 to check.
+
+### Try a different case
+
+Compare 31₅ and 31₁₀. Then write decimal 19 in base five and explain why 34₅ + 1₅ becomes 40₅ rather than 35₅.
+
+**Reasoning:** 31₅ means 3 × 5 + 1 = 16 in decimal, whereas 31₁₀ means thirty-one. Decimal 19 is 3 × 5 + 4 = 34₅. Adding one regroups five ones into one five, giving 40₅ = 20 in decimal. A standard base-five numeral uses only digits 0 through 4. The base label changes the place weights, not the amount being represented.
 
 ## Your five-minute revision
 

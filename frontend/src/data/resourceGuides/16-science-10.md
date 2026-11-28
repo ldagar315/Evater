@@ -52,13 +52,15 @@ Andrew Bastawrous and Clare Gilbert
 
 ### Understand it
 
-Refraction changes the direction of light at an interface in the usual angled-ray cases. A lens primarily forms images by refraction, unlike a mirror. The video uses vision and glasses to show why directing light matters; keep that application separate from saying a lens works by reflection.
+Light can change speed when it passes between transparent materials such as air and glass. When it enters at an angle to the normal, it usually changes direction too; this is the bending associated with refraction. Draw the normal perpendicular to the surface and measure angles from that line. A ray entering ordinary glass from air bends towards the normal. A transmitted ray returning from glass to air bends away from it.
+
+Do not turn this into "every ray must bend". A ray entering straight along the normal can change speed without changing direction. A lens primarily forms images by refraction at its surfaces, whereas a mirror forms images by reflection. The vision video is an application of directing light, not a reason to say lenses work only by reflection. Never use a lens to look at the Sun or to focus sunlight.
 
 ### Try it yourself
 
-Does a lens form images only by reflecting light?
+Compare three transmitted rays: A enters glass from air at an angle to the normal; B enters along the normal; C leaves glass for air at a small nonzero angle. Which way does each bend? A pupil says B proves light has not changed speed because it did not bend. What is wrong with that conclusion?
 
-**Check:** No. A lens primarily forms images by refraction.
+**Check:** A bends towards the normal. B continues along the normal without bending, but its speed changes on entering glass. C bends away from the normal when transmitted into air. A direction change and a speed change are not the same test. Lens image formation primarily uses refraction, not just reflection.
 
 ## 4. Image formation and safe observation
 
@@ -70,13 +72,15 @@ Cyberphysics
 
 ### Understand it
 
-The video shows how a plane-mirror image is constructed with rays; use the same careful-ray habit for any diagram here. Use a few well-chosen rays and label the object, optical surface and image. A clear diagram is more useful than many unlabeled lines. Never look at the Sun through a lens or magnifying glass, and never use one to focus sunlight as an unsupervised activity: it can cause severe eye injury or start a fire.
+For a plane mirror, draw light rays from an object point to the mirror, then reflect them towards the observer using equal angles to the normal. Extend the reflected rays backwards with dashed lines. Their extensions meet behind the mirror at the apparent image point; actual reflected rays do not travel behind an ordinary opaque mirror.
+
+The image is upright, the same size as the object and as far behind the mirror as the object is in front. It is virtual: you can see it, but cannot collect that image on a screen behind the mirror. For an object 12 cm in front, the image is 12 cm behind, so object-to-image separation is 24 cm. Use labelled ray diagrams or ordinary indoor observations only. Never look at the Sun through a lens or magnifying glass, or use lenses or mirrors to focus sunlight: severe eye injury or fire can result.
 
 ### Try it yourself
 
-Is looking at the Sun through a magnifying glass safe?
+A small object starts 18 cm in front of a fixed plane mirror, then moves 5 cm towards it. Find the new image distance behind the mirror and the new object-to-image separation. By how much did the separation change? Could a screen placed behind the mirror catch the image?
 
-**Check:** No. It can cause severe eye injury.
+**Check:** The object is now 18 - 5 = 13 cm in front, so the image is 13 cm behind. The separation is 13 + 13 = 26 cm, down from 36 cm: it decreased by 10 cm, twice the object's movement. A screen behind the mirror cannot catch this virtual image; the backward dashed lines are extensions, not actual light travelling there.
 
 ## Your five-minute revision
 
