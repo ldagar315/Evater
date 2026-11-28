@@ -94,7 +94,15 @@ Take five consecutive whole numbers n, n + 1, n + 2, n + 3 and n + 4. Put either
 
 ## 6. Remainders as algebra
 
-### Think it through
+### Watch: See complete groups and remainders
+
+Khan Academy
+
+[Open the video](https://www.youtube.com/watch?v=P1qyjdh_sIw)
+
+Start with complete equal groups and the amount left over. In 8 ÷ 3, two complete groups of 3 leave 2, so 8 = 3 × 2 + 2. With a positive whole-number divisor, the remainder must be at least zero and smaller than the divisor. Then use the letters below for unknown complete groups, and reduce any leftover amount again if it can form another full group. The video is a grouping primer; use the algebra below to reason about unknown numbers.
+
+### Understand it
 
 A whole number that leaves remainder 5 when divided by 7 can be written 7a + 5, where a is a whole number. Another with remainder 4 is 7b + 4. Their sum is 7(a + b) + 9 = 7(a + b + 1) + 2. The remainder is 2, not 9: a remainder after division by 7 must be smaller than 7. For example, 47 + 25 = 72 = 7 × 10 + 2.
 
