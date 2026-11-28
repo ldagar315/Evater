@@ -4,7 +4,13 @@ Pick one topic. Use the video where shown, read the short explanation, then try 
 
 ## 1. Area, unit squares and rectangles
 
-### Think it through
+### Watch: Measuring area with tiled square units
+
+Khan Academy
+
+[Open the video](https://www.youtube.com/watch?v=iNZZIb_-PA8)
+
+### Understand it
 
 A 6 cm by 4 cm rectangle can be covered by six tiles, each 2 cm by 2 cm: three tiles across and two down. Each tile covers 4 cm², so the total area is 6 × 4 = 24 cm². Six tiles does not mean 6 cm² unless each tile is a one-centimetre square. Drawing each large tile as four unit squares shows the same 24 square units.
 
