@@ -1,0 +1,11 @@
+import {describe,expect,it} from 'vitest'
+import {resourceGuides} from './resourceGuides'
+import {youtubeVideoId} from '../components/blog/resourceVideo'
+const text=resourceGuides.find(p=>p.id==='resource-maths-13')!.content
+const topics=text.split(/^## /m).filter(t=>/^\d+\./.test(t)),target=topics[3]
+describe('Fixed sum integer products with rectangle foundation',()=>{
+ it('places one exact visual primer only in topic4',()=>{expect(topics).toHaveLength(4);expect(target).toContain('[Open the video](https://www.youtube.com/watch?v=0Ho8Az8y4Mw)');expect(youtubeVideoId('https://www.youtube.com/watch?v=0Ho8Az8y4Mw')).toBe('0Ho8Az8y4Mw');expect(target).toContain('MATH-N-ROLL');expect(target.match(/\[Open the video\]/g)).toHaveLength(1)})
+ it('keeps foundation distinct from integer proof and fixed constraint',()=>{for(const w of ['sum of two adjacent side lengths fixed','product gives the area','not its proof','exactly two positive integers','odd total requires the closest integer pair','100 - d²','b - a - 1','13.5'])expect(target).toContain(w);expect(target).toContain('### Understand it');expect(target).toContain('### Try it yourself');expect(target).toContain('**Check:**')})
+ it('independently proves balancing gain and checks even and odd exhaustive small cases',()=>{for(let sum=2;sum<=101;sum++){const max=Math.max(...Array.from({length:sum-1},(_,i)=>(i+1)*(sum-i-1)));expect(max).toBe(Math.floor(sum/2)*Math.ceil(sum/2));for(let a=1;a<sum-a-1;a++){const other=sum-a;expect((a+1)*(other-1)-a*other).toBe(other-a-1);expect(other-a-1).toBeGreaterThan(0)}}expect(13*14).toBe(182);expect(12*15).toBe(180);expect(Number.isInteger(13.5)).toBe(false);for(let d=0;d<=9;d++)expect((10-d)*(10+d)).toBe(100-d*d)})
+ it('preserves all checks and revision and existing earlier videos',()=>{expect(text.match(/### Try it yourself/g)).toHaveLength(4);expect(text.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(topics[0]).toContain('nd_Z_jZdzP4');expect(topics[1]).toContain('xkJ_Xkz_jqA');expect(text).toContain('## Your five-minute revision');expect(text).toContain('[Try an Evater sample paper](/papers/)');expect(text).not.toMatch(/transcript|playback verified|supporting evidence|nrich\.maths/i)})
+})
