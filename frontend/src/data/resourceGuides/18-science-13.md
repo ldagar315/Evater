@@ -24,7 +24,13 @@ In a fictional research exercise, World A orbits a Sun-like star at the same dis
 
 ## 2. Earth systems and their connections
 
-### Think it through
+### Watch: Real World: Earth Systems
+
+NASA eClips
+
+[Open the video](https://www.youtube.com/watch?v=o8K0RTYM6Mc)
+
+### Understand it
 
 Earth's land, water, air and living organisms form connected systems. The geosphere includes rocks and soil; the hydrosphere includes water; the atmosphere is the surrounding air; the biosphere includes living organisms. These labels help organise a model, but they are not sealed boxes. Water can move from soil through a plant and into the air.
 

@@ -24,7 +24,13 @@ In a school garden, a seedling grows in moist soil beside a stone. Identify two 
 
 ## 2. Food chains and food webs
 
-### Think it through
+### Watch: Food Chains & Food Webs
+
+FuseSchool - Global Education
+
+[Open the video](https://www.youtube.com/watch?v=2lqhJNgn_Wg)
+
+### Understand it
 
 A food chain shows one feeding route; a food web connects several routes. For arrows showing the transfer of food and its energy, point from the organism eaten to the organism eating it. Grass → grasshopper → frog means the grasshopper eats grass and the frog eats the grasshopper. It does not mean that grass eats a grasshopper.
 
