@@ -1,0 +1,11 @@
+import { describe, expect, it } from 'vitest'
+import { resourceGuides } from './resourceGuides'
+const lesson=resourceGuides.find(p=>p.id==='resource-science-8')!.content
+const topics=lesson.split(/^## /m).filter(t=>/^\d+\./.test(t))
+describe('one short alloys foundation video',()=>{
+ it('places the exact selected publisher link only in the alloys topic',()=>{expect(topics[3]).toContain("[Open the video](https://www.youtube.com/watch?v=KgUmNQD6m5Q)");expect(topics[3]).toContain("### Watch: Alloys and their properties");expect(topics[3]).toContain("FuseSchool - Global Education");expect(topics[3].match(/\[Open the video\]/g)).toHaveLength(1);expect(topics.slice(0,3).join('')).not.toContain("https://www.youtube.com/watch?v=KgUmNQD6m5Q")})
+ it('keeps on-page teaching, four separate checks, mineral distinctions and revision',()=>{expect(topics).toHaveLength(4);expect(lesson.match(/\*\*Check:\*\*/g)).toHaveLength(4);expect(topics[3]).toContain('### Understand it');expect(topics[3]).toContain('### Try it yourself');expect(topics[3]).toMatch(/mineral/i);expect(lesson).toContain('## Your five-minute revision');expect(lesson).not.toMatch(/supporting evidence|transcript|playback verified|psu\.edu|mineralogist/i)})
+ it('preserves the existing mixture video in its original topic',()=>{expect(topics[2]).toContain('[Open the video](https://www.youtube.com/watch?v=Vt7lN4QPU0k)')})
+ it('checks constituent kinds without requiring two different metals',()=>{const metals=new Set(['Cu','Zn','Fe','Au','Ag']);const brass=['Cu','Zn'],steel=['Fe','C'];expect(new Set(brass).size).toBe(2);expect(brass.filter(e=>metals.has(e))).toHaveLength(2);expect(new Set(steel).size).toBe(2);expect(steel.filter(e=>metals.has(e))).toHaveLength(1);expect(steel.filter(e=>!metals.has(e))).toEqual(['C']);expect(new Set(['Cu','Cu']).size).toBe(1)})
+ it('keeps composition and geological occurrence as separate classification axes',()=>{const examples=[{name:'native copper',composition:'element',mineral:true},{name:'quartz',composition:'compound',mineral:true},{name:'brass',composition:'mixture',mineral:false}];expect(examples.filter(x=>x.mineral).map(x=>x.composition)).toEqual(['element','compound']);expect(examples.find(x=>x.name==='brass')?.composition).toBe('mixture')})
+})

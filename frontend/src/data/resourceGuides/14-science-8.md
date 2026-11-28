@@ -64,7 +64,13 @@ Classify a sample containing only silver, a sample containing only carbon dioxid
 
 ## 4. Metals, non-metals, alloys and minerals
 
-### Think it through
+### Watch: Alloys and their properties
+
+FuseSchool - Global Education
+
+[Open the video](https://www.youtube.com/watch?v=KgUmNQD6m5Q)
+
+### Understand it
 
 Keep different classification questions separate. Aluminium is a metallic element and sulfur is a non-metallic element. An alloy is a mixture involving at least one metal: bronze commonly combines copper and tin. Mixing metals does not turn the result into a new element, and uniform appearance does not give an alloy a fixed compound formula. Do not classify a material from shininess alone.
 
