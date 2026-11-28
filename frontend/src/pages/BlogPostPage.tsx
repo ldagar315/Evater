@@ -16,6 +16,7 @@ import { Header } from '../components/layout/Header'
 import { QuadrilateralAngles } from '../components/blog/QuadrilateralAngles'
 import { Footer } from '../components/layout/Footer'
 import { BlogCard } from '../components/blog/BlogCard'
+import { MeanBalance } from '../components/blog/MeanBalance'
 import { Seo } from '../components/seo/Seo'
 import { ContactPressure } from '../components/blog/ContactPressure'
 import { SITE_URL } from '../components/seo/seoConfig'
@@ -256,6 +257,7 @@ export function BlogPostPage() {
               <Markdown components={markdownComponents}>{articleContent}</Markdown>
             {post.slug === 'class-8-maths-quadrilaterals-study-resources' && <QuadrilateralAngles />}
             </div>
+            {post.slug === 'class-8-maths-tales-by-dots-and-lines-study-resources' && <MeanBalance />}
             {post.slug === 'ncert-class-8-maths-power-play-study-guide' && <PowerGrowthVisual />}
             {post.slug === 'ncert-class-8-maths-area-study-guide' && <AreaHeightVisual />}
             {post.slug === 'class-8-maths-proportional-reasoning-1-study-resources' && <RatioScaling />}
