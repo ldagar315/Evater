@@ -12,13 +12,15 @@ Louisa Preston
 
 ### Understand it
 
-Life depends on interacting conditions, including liquid water, a suitable environment and energy. Distance from the Sun alone does not explain everything. The video explores organisms in extreme environments; use those examples to question simple assumptions, not as proof that life has been found on another planet.
+Life as we know it depends on interacting conditions, including liquid water, usable energy and suitable chemical materials. Earth's atmosphere and temperature help maintain environments where these conditions occur. Orbital distance matters, but the same distance from a star does not guarantee the same surface conditions: the star, atmosphere and other features also matter.
+
+Organisms called extremophiles can live in conditions that would harm many familiar organisms. They still depend on resources and particular environmental limits; their existence does not show that any organism can live anywhere. Keep "could support life" separate from "life has been detected". Finding promising conditions is a reason to investigate, not proof of an inhabited world. The video discusses possibilities for a search, not a confirmed discovery of life beyond Earth.
 
 ### Try it yourself
 
-Is distance from the Sun alone enough to explain all the conditions needed for life?
+In a fictional research exercise, World A orbits a Sun-like star at the same distance as Earth, but its atmosphere and water are unknown. World B has evidence of liquid water and an energy source, but no biological evidence. A pupil says both are definitely inhabited. What can the evidence actually support, and what should be checked next?
 
-**Check:** No. Water, atmosphere and other interacting conditions also matter.
+**Check:** Neither world is proven inhabited by these facts. A's orbital distance alone does not establish its temperature, atmosphere or water conditions. B has promising ingredients, not a detection of life. Investigate further environmental conditions and seek independent biological evidence while checking non-living explanations. Possibility and confirmed evidence are different claims.
 
 ## 2. Earth systems and their connections
 
