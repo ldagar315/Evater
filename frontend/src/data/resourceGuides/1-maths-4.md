@@ -12,13 +12,15 @@ corbettmaths
 
 ### Understand it
 
-A diagonal splits a quadrilateral into two triangles. Each triangle has an angle sum of 180°, so the quadrilateral's interior angles total 360°. Add the known angles and subtract from 360° to find the missing one. Do not decide from how wide an angle looks in the drawing.
+The interior angles of a simple quadrilateral total 360°. For a convex quadrilateral, either diagonal divides the region into two triangles. Adding their angle sums gives 180° + 180° = 360°; the two pieces of each split corner add back to the original corner angle. This is a reason, not an estimate from a drawing.
+
+If three angles are 65°, 85° and 110°, their sum is 260°, leaving 100°. If angles are described by expressions, add those expressions first and set the total equal to 360°. Keep the distinction between an angle, such as 2x degrees, and the value of x. Do not apply this argument to a self-crossing bow-tie drawing as though it enclosed the same simple region.
 
 ### Try it yourself
 
-Three angles are 80°, 95° and 105°. Find the fourth.
+The interior angles of a convex quadrilateral are 2x°, 3x°, 4x° and 6x°. Find x and all four angles, then check their total. Why is reporting just x not a complete answer? Would rotating the drawing change the calculation?
 
-**Check:** 80°, because 360 - 80 - 95 - 105 = 80.
+**Check:** The sum is 15x = 360, so x = 24. The four angles are 48°, 72°, 96° and 144°, which total 360°. The value of x is a shared parameter, not the list of actual angles. Rotation changes neither angle measures nor the diagonal argument.
 
 ## 2. Parallelograms and diagonals
 
@@ -44,13 +46,15 @@ Khan Academy
 
 ### Understand it
 
-A rectangle has four right angles; a rhombus has four equal sides. A square has both sets of properties, so it belongs to both groups. A rectangle need not have four equal sides, and a rhombus need not have four right angles. Test a classification by its properties, not its orientation.
+A rectangle has four right angles; a rhombus has four equal sides. A square meets both conditions, so it is both a rectangle and a rhombus. A rectangle with adjacent sides 10 cm and 16 cm is not a square: having right angles does not force all sides to match. A rhombus with one angle 70° is not a rectangle: equal sides do not force right angles.
+
+Classify from the stated properties, not whether a shape looks upright or tilted. These categories overlap, so a request to name every applicable category may have more than one correct label. Calling a square a rectangle is correct but does not list all its properties.
 
 ### Try it yourself
 
-Is every rectangle a square?
+Classify each shape as rectangle, rhombus and/or square: A has four right angles and adjacent sides 6 cm and 10 cm; B has four equal sides of 9 cm and one angle of 60°; C has four equal sides of 7 cm and four right angles. Give every applicable label. Does turning C on the page remove any label?
 
-**Check:** No. A rectangle needs four right angles, but its four sides need not be equal.
+**Check:** A is a rectangle, not a rhombus or square, because its adjacent side lengths differ. B is a rhombus, not a rectangle or square, because a 60° angle is not a right angle. C is a square and therefore also a rectangle and a rhombus. Turning C preserves lengths and angles, so all three labels remain correct.
 
 ## 4. Kites, trapeziums and constructions
 

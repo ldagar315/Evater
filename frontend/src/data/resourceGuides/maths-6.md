@@ -12,13 +12,15 @@ corbettmaths
 
 ### Understand it
 
-To multiply a whole group, multiply every part: a(b + c) = ab + ac. For 17 × 98, use 98 = 100 - 2. Then 17 × 98 = 1,700 - 34 = 1,666. A split rectangle can show the same calculation as two areas.
+To multiply a whole group, multiply every part: a(b + c) = ab + ac. The same idea works with subtraction: a(b - c) = ab - ac. For 28 × 97, split 97 as 100 - 3 to get 2,800 - 84 = 2,716. A rectangle of width 100 split into widths 97 and 3 shows why the smaller area is subtracted, not added.
+
+Choose a split that makes the arithmetic easier, then keep the sign attached to each part. You can also compare two products without calculating both from scratch: ab - ac = a(b - c). This is the distributive property used in reverse, taking out the common factor.
 
 ### Try it yourself
 
-Calculate 17 × 98 without long multiplication.
+Calculate 46 × 99 and 46 × 101 using 100. Find the difference between the larger and smaller products in two ways. Why is the difference not just 2?
 
-**Check:** 17 × (100 - 2) = 1700 - 34 = 1666.
+**Check:** 46 × 99 = 4,600 - 46 = 4,554, while 46 × 101 = 4,600 + 46 = 4,646. Subtraction gives 4,646 - 4,554 = 92. Taking out the common factor gives 46 × (101 - 99) = 46 × 2 = 92. The multipliers differ by 2, but each extra group contains 46, so the products differ by 92.
 
 ## 2. Products of sums and differences
 
@@ -55,13 +57,15 @@ Khan Academy
 
 ### Understand it
 
-Squaring a sum means multiplying the whole bracket by itself. (a + b)² gives a² + ab + ab + b² = a² + 2ab + b². The two cross-products explain the middle term. For a difference of squares, (a + b)(a - b) = a² - b² because the cross-products cancel.
+Squaring a sum means multiplying the whole bracket by itself. (a + b)² = a² + ab + ba + b² = a² + 2ab + b². The middle term comes from two cross-products; it does not disappear. For example, (y + 5)² = y² + 10y + 25. Substitute y = 1: the square is 36, not 26.
+
+In contrast, (a - b)(a + b) = a² + ab - ab - b² = a² - b². Here the cross-products have opposite signs and cancel. These identities hold for real values, including zero and negative values. Read the two brackets carefully: a squared sum and a product of a sum with a difference are different operations.
 
 ### Try it yourself
 
-Why is (x + 4)² not x² + 16?
+Expand (2x + 3)² and (2x - 3)(2x + 3). Identify the cross-products in each. Check both expansions at x = 0 and x = -2. Is the first expression always larger than the second for real x?
 
-**Check:** It also includes 8x: the two cross-products are 4x and 4x.
+**Check:** The square is 4x² + 12x + 9 because its two cross-products are 6x and 6x. The other product is 4x² - 9 because its cross-products are 6x and -6x. At x = 0, the values are 9 and -9; at x = -2, they are 1 and 7. These checks match the expansions and disprove the claim that the first expression is always larger.
 
 ## 4. Finding and fixing expansion errors
 
