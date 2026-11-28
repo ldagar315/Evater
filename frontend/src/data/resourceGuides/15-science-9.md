@@ -22,6 +22,18 @@ A spoonful of salt dissolves completely in water. What are the solute, solvent a
 
 **Check:** Salt is the solute, water is the solvent, and salt water is the solution. The salt is still present, spread through the water.
 
+### Extend your reasoning
+
+In sugar water, sugar is the solute, water is the solvent, and their uniform mixture is the solution. Dissolving spreads the solute through the solvent; it does not destroy its matter. The solute can be present even when separate grains are no longer visible. A solution is the whole mixture, not another name for the solvent alone.
+
+Keep mass and volume claims separate. If nothing spills or escapes, 5 g of sugar mixed with 95 g of water gives 100 g of solution. That does not mean their separate volumes must add exactly. Use mass conservation and a particle picture rather than saying the sugar has disappeared. Do not taste laboratory solutions or use tasting as a test.
+
+### Try an additional case
+
+A sealed vessel contains 72 g of water and 8 g of a soluble solid. The solid dissolves fully, with no material entering or leaving. Name the solute, solvent and solution, then find the mass of the contents. A learner predicts only 72 g because the grains are no longer visible. Explain the error. Must the final volume equal the sum of the separate starting volumes?
+
+**Reasoning:** The solid is the solute, water the solvent, and the uniform mixture the solution. The contents have mass 72 + 8 = 80 g; invisible grains do not mean missing matter. Mass conservation does not require the final volume to be exactly the sum of the separate volumes. The vessel's own mass would be added only if the question asked for vessel plus contents.
+
 ## 2. Saturation and solubility
 
 ### Watch: solutions tutorial - unsaturated, saturated, supersaturated
@@ -91,6 +103,18 @@ Use supplied values for a fictional object: mass 0.24 kg and outer volume 300 cm
 In a simplified paper model, sealed rigid object A has mass 90 g and outer volume 150 cm³; solid object B has mass 20 g and volume 10 cm³. Water has density 1 g/cm³. Ignore surface tension and other support; assume neither object absorbs water, dissolves or changes shape. Calculate their average densities and predict which can float. Does the smaller mass decide?
 
 **Reasoning:** A has average density 90 ÷ 150 = 0.6 g/cm³, below the stated water density, so it can float partly submerged in this model. B has density 20 ÷ 10 = 2 g/cm³ and sinks despite being lighter. Compare mass per volume, not mass alone. A floating at rest has buoyancy balancing its weight, not zero gravity. Keep the stated assumptions; this is not an instruction to test unknown materials in water.
+
+### Extend your reasoning
+
+Density is mass divided by volume, with matching units. A 60 g sample occupying 20 cm³ has density 3 g/cm³. Doubling both mass and volume gives 120 g ÷ 40 cm³ = 3 g/cm³, so a larger mass does not automatically mean a larger density. Compare equal volumes, or calculate the ratio.
+
+For a simple object free of supports and trapped surface effects, compare its overall average density with the surrounding liquid: an object less dense than the liquid can float, while one more dense tends to sink. A hollow object's average density includes its enclosed space. The video explains ice floating in water; it does not imply that every solid floats in its own liquid.
+
+### Try an additional case
+
+Object A has mass 54 g and volume 60 cm³; object B has mass 40 g and volume 20 cm³. Calculate both densities. In water of density 1.0 g/cm³, use the simple average-density model to predict which can float. Which object has greater mass, and why does that not settle floating?
+
+**Reasoning:** A has density 54/60 = 0.9 g/cm³, while B has 40/20 = 2.0 g/cm³. A is less dense than the water and can float; B is more dense and tends to sink under this model. A has the greater mass, but also a much larger volume. Density, not mass alone, is the relevant comparison.
 
 ## Your five-minute revision
 
