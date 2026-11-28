@@ -46,7 +46,15 @@ Classify these fictional notes: "I feel dizzy"; "the thermometer reads 38.5°C";
 
 ## 3. Infectious and non-infectious disease
 
-### Think it through
+### Watch: How pathogens spread
+
+Cognito
+
+[Open the video](https://www.youtube.com/watch?v=dbd5iydu3EY)
+
+Focus on the pathogen, the route it travels and the measure that interrupts that route. This video introduces infectious disease; use the comparison below for non-infectious conditions. These examples are for learning, not diagnosing a person.
+
+### Understand it
 
 Infectious diseases are caused by pathogens, but the route of exposure matters. Some infections spread through respiratory particles, some through contaminated food or water, and some through vectors such as mosquitoes. A mosquito-borne infection is not automatically caught by sitting beside someone. Non-infectious conditions do not all have the same causes or prevention measures either; illness is not evidence that someone has behaved badly.
 
