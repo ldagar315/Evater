@@ -613,3 +613,20 @@ export function paperPracticeHref(paperId: string): string | undefined {
   if (!chapterNumber) return undefined
   return chapterPracticeHref({ subject: paper.subject === 'Mathematics' ? 'mathematics' : 'science', chapterNumber })
 }
+
+/** Direct, crawlable chapter-paper links. No matching by fuzzy titles. */
+export function paperForStudyGuide(slug: string): PaperDetail | undefined {
+  const href = `/blog/${slug}/`
+  const exact = paperDetails.find(paper => paper.studyGuide?.href === href)
+  if (exact) return exact
+  const aliases: Record<string, string> = {
+    'ncert-class-8-maths-square-and-cube-study-guide': 'maths-ch01',
+    'ncert-class-8-maths-power-play-study-guide': 'maths-ch02',
+    'ncert-class-8-science-invisible-living-world-study-guide': 'science-ch02',
+    'ncert-class-8-science-exploring-forces-study-guide': 'science-ch05',
+    'ncert-class-8-maths-baudhayana-pythagoras-theorem': 'pythagoras',
+    'ncert-class-8-science-light-mirrors-lenses-study-guide': 'light',
+    'ncert-class-8-science-nature-ecosystems-harmony-study-guide': 'science-ch12',
+  }
+  return aliases[slug] ? byPaperId.get(aliases[slug]) : undefined
+}
