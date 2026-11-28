@@ -31,6 +31,8 @@ import { CubeVolumeSimulation } from '../components/blog/CubeVolumeSimulation'
 import { ForceSimulation } from '../components/blog/ForceSimulation'
 import { DistributiveArea } from '../components/blog/DistributiveArea'
 
+import { SaturationExplorer } from '../components/blog/SaturationExplorer'
+
 const formatDate = (dateString: string) => new Date(dateString).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -241,6 +243,7 @@ export function BlogPostPage() {
             </div>
           </div>
         </header>
+        {post.slug === 'class-8-science-the-amazing-world-of-solutes-solvents-and-solutions-study-resources' && <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8"><SaturationExplorer /></div>}
 
         <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[15rem_minmax(0,1fr)] lg:px-8 lg:py-20">
           {headings.length > 0 && (
