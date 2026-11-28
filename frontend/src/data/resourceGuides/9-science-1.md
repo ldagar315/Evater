@@ -22,6 +22,16 @@ Two plants of the same species are measured after a week: A is 14 cm tall and B 
 
 **Check:** The measured observation is the 14 cm versus 11 cm height, a 3 cm difference. More light causing the difference is an explanation, not a recorded fact about exposure. Check starting heights, for example; a plant that began taller could still finish taller without growing more. Water supply or other conditions could also differ. State what is known separately from what needs testing.
 
+### Work through an example
+
+A teacher-provided record says that a seedling grew 2 cm in three days. That is a measured observation. Saying that extra water caused the growth is an explanation to test: light, starting size and other conditions might also matter. A useful question identifies a change and an outcome, rather than assuming the cause.
+
+### Try a different case
+
+A log says, "The shaded plant has fewer leaves than the sunny plant, so shade must be the only cause." Separate the observation from the cause claim. What extra information would help?
+
+**Reasoning:** Fewer leaves is the observation; shade being the only cause is not established. Compare starting leaf counts, plant type, water and other relevant conditions, then look for repeated evidence. Two different plants alone do not isolate the effect of shade.
+
 ## 2. Fair comparisons and variables
 
 ### Watch: Isolating variables in a fair comparison
@@ -44,6 +54,16 @@ A record compares 5 g of fine sugar stirred in 100 mL of warmer water with 10 g 
 
 **Check:** No: mass, particle size, stirring and water volume also differ. Change only water temperature and measure time to the same defined dissolving endpoint. Use the same solute, solute mass, particle size, water volume and stirring method, with comparable containers and repeated trials. The original result does not identify temperature alone as the reason for the faster dissolving.
 
+### Work through an example
+
+In a written dissolving comparison, cup A has powdered sugar and stirring, while cup B has sugar cubes and no stirring. If A dissolves sooner, two factors changed together, so the result cannot isolate stirring. To investigate stirring, specify comparable sugar mass and particle size, water volume and temperature, then measure time using the same endpoint. Plan on paper; do not handle heated water.
+
+### Try a different case
+
+A class compares paper helicopters: one has longer blades and is released from higher up. Can a longer fall time be attributed to blade length alone? Propose a fairer written comparison.
+
+**Reasoning:** No. Both blade length and release height changed. Compare blade lengths while keeping release height, paper, body design and release method comparable; measure fall time with the same method and repeat the comparison. The result can then inform the blade-length question under those conditions, not prove every design behaves alike.
+
 ## 3. Measuring, recording and patterns
 
 ### Watch: What's the difference between accuracy and precision? - Matt Anticole
@@ -64,6 +84,16 @@ A reference object has an accepted mass of 100 g. One balance reports 104 g, 104
 
 **Check:** The readings agree exactly, so they are precise in this record, but each is 4 g above the accepted value. A possible systematic offset could remain even after more repeats. Recheck the instrument and method against the reference rather than assuming averaging fixes the bias. Consistency and accuracy answer different questions.
 
+### Work through an example
+
+A teacher supplies three readings of a reference length known to be 10.0 cm: 11.0, 11.0 and 11.0 cm. The readings agree closely, so they are precise, but not accurate against that reference. Repeating the same faulty method will not remove its fixed bias. Record units and compare with a suitable reference rather than trusting agreement alone.
+
+### Try a different case
+
+A reference mass is 100 g. Scale A reads 105, 105 and 105 g; scale B reads 99, 100 and 101 g. Which is more repeatable, which is closer to the reference overall, and does repetition alone repair A?
+
+**Reasoning:** A is more repeatable, but its readings are consistently 5 g high. B varies, yet its readings lie closer to 100 g overall. Repeating A alone does not remove its systematic offset; a suitable reference check and a corrected instrument or method are needed. Keep the units with every reading.
+
 ## 4. Evidence, conclusions and revising ideas
 
 ### Watch: Look Who's Talking: Crash Course Kids #27.2
@@ -83,6 +113,16 @@ Give the limits as well as the pattern: how many trials, which conditions and wh
 A teacher-provided record lists four trials under each of two conditions. A takes 28, 29, 30 and 31 seconds; B takes 24, 25, 26 and 52 seconds. A learner deletes 52 only because it spoils the expected pattern and claims B is always faster. What should stay in the record, and what conclusion or follow-up is justified?
 
 **Check:** Keep all readings, including 52, unless a separately documented measurement or recording error justifies a correction. B is faster in three trials but slower in one; the record does not support 'always faster'. Check the unusual trial's method and repeat comparable trials. Report the mixed result and its limits instead of choosing only the readings that fit.
+
+### Work through an example
+
+A supplied record shows that three paper designs fall in different times, but one release was accidentally pushed. Keep that result and the method note; do not hide it to make a neat pattern. Compare repeated releases under comparable conditions, then state what the evidence supports and what remains uncertain. An unexpected observation can suggest a better test, not automatic proof that the idea is wrong.
+
+### Try a different case
+
+A report claims "Design A always falls slowest" from two releases. A third release is faster than design B. Should the class delete it? Write a more careful conclusion and next step.
+
+**Reasoning:** Keep the third result and check its conditions. The results do not establish always: the design may vary or the release method may have differed. Report the observed pattern and exception, then repeat comparable releases with the same timing method. Revise the explanation if the fuller evidence does not support it.
 
 ## Your five-minute revision
 
