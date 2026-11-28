@@ -58,7 +58,15 @@ A closed model population starts with 24 plants. During one interval, 7 new plan
 
 ## 4. Threats and protection
 
-### Think it through
+### Watch: Maintaining biodiversity
+
+Cognito
+
+[Open the video](https://www.youtube.com/watch?v=bs9e6ovISbs)
+
+Use the video to connect protecting species with protecting their habitats. It introduces conservation choices, not a wetland restoration procedure or a guarantee that one action removes every threat. Specific laws and farming choices depend on place and conditions. When considering a wetland, match each action to its pressure and check what remains unresolved. Do not catch, feed or disturb wildlife to test an idea.
+
+### Understand it
 
 Protecting life means protecting the conditions and relationships that species need, not only a named animal. A wetland bird needs suitable feeding areas, water conditions and places to rest or breed. Protecting the bird while allowing its wetland to be polluted or drained can leave those needs unmet. Habitat loss, pollution and climate change can interact.
 
