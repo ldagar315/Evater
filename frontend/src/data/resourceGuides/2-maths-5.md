@@ -100,7 +100,15 @@ A whole number N leaves remainder 6 when divided by 7. Without knowing N, decide
 
 ## 7. Digital roots: a check, not a proof
 
-### Think it through
+### Watch: Digital roots and a missing-digit trick
+
+Jefferson Lab
+
+[Open the video](https://www.youtube.com/watch?v=dTXMhOGI9Z8)
+
+Use two different rearrangements of the same digits and subtract the smaller number from the larger. Explain why the trick rules out crossing out zero. Then connect the repeated digit-summing to the arithmetic check below: a successful trick is not proof that another calculation is correct.
+
+### Understand it
 
 For a positive whole number, repeatedly add its decimal digits until one digit remains. This is its digital root. A multiple of 9 has digital root 9, not 0. To check a product, multiply the two factors' digital roots and reduce that result to one digit too. Compare it with the proposed answer's digital root.
 
