@@ -64,7 +64,15 @@ A fictional card set names a muscle cell, muscle tissue, the heart and the circu
 
 ## 3. Kinds of microorganisms
 
-### Think it through
+### Watch: Meet fungi, protists and bacteria
+
+EarthPen
+
+[Open the video](https://www.youtube.com/watch?v=4HdDlpAB2hU)
+
+Follow the examples of fungi, protists and bacteria. The protist examples include protozoa and some algae. Yeast is a single-celled fungus. These broad groups do not mean every member is microscopic. Viruses are acellular and multiply only inside living host cells. Do not culture, sniff or taste unknown microbes.
+
+### Understand it
 
 Microorganisms include bacteria, many fungi, protozoa and microscopic algae. Some are unicellular, and some have many cells. Size alone does not put them all in the same group. Yeast is a unicellular fungus, whereas a bacterium belongs to a different group even though it is also one cell. Treat viruses separately when considering their dependence on host cells.
 
