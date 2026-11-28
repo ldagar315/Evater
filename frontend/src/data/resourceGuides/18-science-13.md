@@ -44,7 +44,15 @@ A hillside loses much of its vegetation. After heavy rain, a nearby stream becom
 
 ## 3. Continuity of life and reproduction
 
-### Think it through
+### Watch: A new plant from part of a parent plant
+
+Khan Academy India - English
+
+[Open the video](https://www.youtube.com/watch?v=p4652vo5Oic)
+
+Use vegetative propagation as one example of reproduction: a suitable part of a parent plant can develop into a separate new plant. This differs from an existing plant simply growing more leaves or a longer branch. Not every plant part can form a complete new plant; suitable parts and conditions depend on the species. The video focuses on plants, not every form of reproduction. Then separate an individual staying alive from a population continuing across generations. Producing new individuals does not guarantee that a population increases; compare new individuals with deaths in the model below.
+
+### Understand it
 
 Individual survival and the continuation of a population are different questions. A plant can stay alive through growth, respiration and obtaining resources without producing a new plant in that period. Reproduction produces new individuals, allowing a population to continue as older individuals die. Growth of one individual is not itself reproduction.
 
