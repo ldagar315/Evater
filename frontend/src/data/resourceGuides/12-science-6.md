@@ -64,7 +64,15 @@ In a fictional school discussion, pupils are already indoors when thunder is hea
 
 ## 4. Cyclones and reducing risk
 
-### Think it through
+### Watch: How a tropical cyclone grows
+
+SciShow Kids
+
+[Open the video](https://www.youtube.com/watch?v=xKubdY2mHXc)
+
+Follow the warm sea water, rising moist air and calm eye in this hurricane example. A hurricane is a regional name for a strong tropical cyclone. The video's North American season and hurricane wind threshold are not India's warning rules. Prepare with a responsible adult before dangerous conditions arrive. Never go outside during a cyclone or an eye lull; follow local official warnings and the shelter's all-clear.
+
+### Understand it
 
 A cyclone is an organised rotating storm system that can develop over warm ocean water. Warm moist air rises; as water vapour condenses, it releases heat that can support further rising air. Surrounding air moves towards lower pressure, and Earth's rotation helps turn the circulation. Warm water alone does not guarantee a cyclone: several conditions must work together.
 
