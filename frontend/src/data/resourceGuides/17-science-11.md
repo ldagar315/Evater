@@ -44,7 +44,15 @@ A student draws a half-lit Moon and says, 'Earth must be covering the other half
 
 ## 3. Lunar and solar calendars
 
-### Think it through
+### Watch: Distinguish lunar, solar and luni-solar calendars
+
+McMaster Alumni
+
+[Open the video](https://www.youtube.com/watch?v=-T97d6dsfhE)
+
+Use this brief overview to distinguish a calendar based on the Sun, one based on Moon phases, and a hybrid luni-solar calendar. Then use the rounded month and year lengths below to explain why twelve lunar months fall short of a solar year. The overview does not give the arithmetic or the adjustment rules for every calendar. A festival moving on the Gregorian calendar does not by itself tell you whether its calendar is purely lunar or luni-solar; do not use this model to predict a festival date.
+
+### Understand it
 
 A lunar month follows the Moon's phase cycle; a solar year follows the annual seasonal cycle. Using rounded values, 12 × 29.5 = 354 days, about 11 days shorter than a 365-day solar year. A calendar made only from 12 lunar months therefore begins its next year earlier relative to the seasons. This difference accumulates if there is no adjustment.
 
