@@ -40,25 +40,29 @@ Josh Kurz
 
 ### Understand it
 
-In science, 'pure substance' refers to composition, not simply cleanliness or usefulness. Air is a mixture of gases even when it is clean enough to breathe. The video explores mixtures through food; use it to practise distinguishing physically combined ingredients from a single substance.
+In chemistry, a pure substance has a definite composition and is one chemical substance. It can be an element, such as copper, or a compound, such as pure water. Water contains hydrogen and oxygen chemically combined; having two elements does not make it a mixture. A mixture contains more than one substance and can have varying proportions.
+
+Uniform appearance is not enough to prove purity. Clear salt solution is a mixture because salt and water remain different substances, even when no salt grains are visible. Separating dissolved salt from water is a physical separation of a mixture; separating water into its constituent elements needs chemical change. These are classification examples, not instructions to heat or electrolyse substances at home.
 
 ### Try it yourself
 
-Is air a pure substance?
+Classify a sample containing only silver, a sample containing only carbon dioxide, and a well-mixed sample of air as element, compound or mixture. A learner says air must be pure because it looks uniform. Explain the error and identify which two samples can be pure substances.
 
-**Check:** No. It is a mixture of gases.
+**Check:** Silver is an element. Pure carbon dioxide is a compound because carbon and oxygen are chemically combined. Air is a mixture of gases, even when uniform. The silver and carbon dioxide samples can each be a pure substance; uniform appearance alone cannot distinguish a pure substance from a homogeneous mixture.
 
 ## 4. Metals, non-metals, alloys and minerals
 
 ### Think it through
 
-An alloy is a mixture, often involving metals; brass is commonly made from copper and zinc. It is not an element. A mineral is not simply another word for a metal. Make a table of named examples and explain the reason for each category rather than grouping by shiny appearance alone.
+Keep different classification questions separate. Aluminium is a metallic element and sulfur is a non-metallic element. An alloy is a mixture involving at least one metal: bronze commonly combines copper and tin. Mixing metals does not turn the result into a new element, and uniform appearance does not give an alloy a fixed compound formula. Do not classify a material from shininess alone.
+
+A mineral is a naturally occurring solid, not simply another word for metal. Many minerals are compounds, such as quartz, while native copper is an elemental mineral. Rocks can contain several minerals. Thus "element or mixture?" and "mineral or manufactured material?" ask different questions; one label cannot replace the other.
 
 ### Try it yourself
 
-Is brass an element?
+Consider a manufactured uniform copper-zinc alloy, a sample of pure aluminium, a natural quartz crystal, and a rock explicitly containing several minerals. Classify their chemical makeup. Would calling the quartz a mineral mean it must be a metal, or would calling the alloy uniform mean it must be an element?
 
-**Check:** No. Brass is an alloy, commonly of copper and zinc.
+**Check:** The copper-zinc alloy is brass, a mixture. Pure aluminium is an element. Quartz is a compound mineral. The stated multi-mineral rock is a mixture. A mineral need not be a metal, and an alloy remains a mixture even when it looks uniform. Native elemental minerals also show why not every mineral must be a compound.
 
 ## Your five-minute revision
 
