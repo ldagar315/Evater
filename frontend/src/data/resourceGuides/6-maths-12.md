@@ -22,6 +22,16 @@ Five reading sessions have a mean length of 12 minutes. Four lengths are 8, 10, 
 
 **Check:** The five-session total is 5 × 12 = 60 minutes. The four listed lengths total 50, so the missing length is 10 minutes. The new total is 60 + 18 = 78 across six sessions, giving 78/6 = 13 minutes. Averaging 12 and 18 gives the old five-session group and the single new session equal weight, which is not equal weight per session.
 
+### Work through an example
+
+Four groups collect 3, 5, 8 and 8 tokens. Their total is 24, so fair sharing gives a mean of 24 ÷ 4 = 6. Picture moving tokens from the two groups above 6 to the groups below 6: the surplus 2 + 2 equals the shortage 3 + 1. This balances the data even though no group originally had 6. A new group with 6 tokens would leave the mean unchanged.
+
+### Try a different case
+
+A data set has 4, 6 and 11. A learner says its mean is halfway between 4 and 11, so it is 7.5. Find the mean. What happens if a fourth value of 7 is included?
+
+**Reasoning:** The mean is (4 + 6 + 11) ÷ 3 = 21 ÷ 3 = 7, not the midpoint of the extremes. Adding 7 makes the total 28 across four values, so the mean stays 7. Include every entry when calculating the mean, including repeated values.
+
 ## 2. Reading graphs and axes
 
 ### Watch: Misleading line graphs
@@ -41,6 +51,16 @@ Two charts can show the same numerical change with different-looking heights bec
 Chart A's vertical scale starts at 80 units and increases by 2 per grid step. Two marked readings are 5 and 8 steps above that start. Chart B starts at zero and increases by 10 units per step; its corresponding readings are 9 and 9.6 steps above zero. Find both pairs of readings and their changes. Which chart shows the larger numerical increase?
 
 **Check:** A shows 80 + 5 × 2 = 90 and 80 + 8 × 2 = 96, an increase of 6 units. B shows 9 × 10 = 90 and 9.6 × 10 = 96, also an increase of 6 units. Neither increase is larger. The same data can occupy different numbers of grid steps, so compare labelled values rather than apparent height alone.
+
+### Work through an example
+
+A vertical axis is labelled 40, 45, 50, 55 at equally spaced ticks. A point two steps above 40 has value 50, not 10. The change from 45 to 55 is 10 units. If a graph starts at 40 rather than zero, a small change can look large; read the labels and units before describing it. An axis need not begin at zero for every graph, but its starting value must not be hidden.
+
+### Try a different case
+
+A bar chart has a vertical axis beginning at 90, with 2 units per grid step. Bars reach three and five steps above 90. Are the values 6 and 10, and is the second value almost twice the first?
+
+**Reasoning:** The values are 90 + 3 × 2 = 96 and 90 + 5 × 2 = 100. Their difference is 4 units. The visible bar lengths above 90 are not the full values; 100 is not almost twice 96. Check where the axis begins before comparing bar lengths.
 
 ## 3. Line graphs and change over time
 
@@ -62,6 +82,16 @@ A tank's recorded volumes are 20 L at 0 minutes, 50 L at 5 minutes, 50 L at 8 mi
 
 **Check:** From 0 to 5 minutes the rate is (50 - 20)/5 = 6 L/min. From 8 to 10 minutes it is (80 - 50)/2 = 15 L/min, so the later interval is faster despite the same 30 L rise. The plotted flat segment represents 50 L, not an empty tank. The two equal readings do not rule out unrecorded changes between them. Even a truly constant volume would not prove no flows: equal inflow and outflow could balance.
 
+### Work through an example
+
+A graph of distance from the starting point gives 2 km at 10:00, 5 km at 11:00 and 5 km at 12:00. The reading rises by 3 km in the first hour, then stays at 5 km for the next hour. The flat segment does not show a return to zero. The line connects recorded points; without more measurements, do not claim the journey followed that exact pattern at every instant.
+
+### Try a different case
+
+A tank-volume graph reads 18 litres at 09:00, 12 litres at 09:30 and 12 litres at 10:00. Find the first change and explain the last two equal readings. Do the equal readings prove no water entered or left?
+
+**Reasoning:** The first recorded change is 12 - 18 = -6 litres, a decrease of 6 litres in 30 minutes. The last two readings are equal, not zero. Equal readings alone do not prove that no water entered or left between them: inflow and outflow could balance, or changes could occur between observations.
+
 ## 4. Choosing and interpreting a display
 
 ### Watch: Misleading line graphs
@@ -81,6 +111,16 @@ If two quantities rise together, the graph shows an association, not proof that 
 In a made-up dataset, a park records more ice-cream sales and more sunhat wearers on hotter days. A learner claims selling ice cream makes people wear hats. What association is recorded, and what other factor could help explain both? Would drawing the same observations with bars instead of lines establish the claimed cause?
 
 **Check:** The recorded association is that sales and hat counts are both higher on hotter days. Hotter weather is a plausible common factor, so these observations alone do not show that ice-cream sales cause hat wearing. Redrawing the same data changes its display, not the evidence for a cause. Ask what other variables or comparisons would test the explanation.
+
+### Work through an example
+
+A class has two questions. To compare how many pupils prefer football, chess or music, use a bar chart with labelled categories. To show the library visitor count recorded each day, a line graph can make the time pattern easier to see. Do not join unrelated activity categories as though they formed a time sequence. If library visits and book borrowing rise together, the graph alone does not prove one caused the other.
+
+### Try a different case
+
+You have daily temperature readings and each pupil's favourite fruit. Which could use a line graph and which a bar chart? If cold-drink sales and temperature rise together, must cold drinks cause hotter weather?
+
+**Reasoning:** Use a line graph for temperature over time and a bar chart for counts in the fruit categories. The two displays answer different questions. Higher sales alongside higher temperature show an association, not proof that buying drinks changes the weather. Weather could affect demand, and other factors could also matter.
 
 ## Your five-minute revision
 
