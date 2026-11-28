@@ -12,13 +12,15 @@ TED-Ed
 
 ### Understand it
 
-Numerals are written ways to represent quantities. Different systems can use different symbols and grouping rules for the same amount. Compare how each system writes one group, several groups and an empty place; do not assume that a symbol's position always works like our decimal system.
+A number is an amount; a numeral is a way to write it. Thirteen counters can be recorded as decimal 13 or Roman XIII without changing the collection. To read an unfamiliar system, first ask what each symbol means, how groups combine and whether position changes a symbol's contribution. Different historical systems need their own rules, not an assumed decimal rule.
+
+For an invented additive system, let T mean ten and | mean one, with symbol values simply added in any order. Then T||| means 10 + 1 + 1 + 1 = 13, and ||T| means the same amount. This order rule belongs to our invented system; it is not a claim that order never matters in Roman or other historical notation.
 
 ### Try it yourself
 
-Why can numeral systems use different symbols for the same quantity?
+Use only the invented rule above. Compare TT|||| with |T||T| by finding their amounts. A learner then says decimal 24 and 42 must also be equal because they contain the same digits. Explain why changing the representation rule changes that conclusion.
 
-**Check:** The quantity is independent of its written representation; each system has its own rules. For example, XIII and 13 can both name thirteen, although one uses Roman symbols and the other uses decimal place value. Try converting each representation into a count of objects before comparing the written symbols.
+**Check:** Both invented strings have two Ts and four bars, so both represent 2 × 10 + 4 = 24. Decimal 24 means 2 tens and 4 ones, whereas 42 means 4 tens and 2 ones: 40 + 2 = 42. Their positions carry different weights. Rearranging symbols preserves the amount in our stated additive system but not generally in decimal place value. Decode by the rules of the system, not by the shape or count of written symbols alone.
 
 ## 2. Place value and zero
 
@@ -30,13 +32,15 @@ Khan Academy
 
 ### Understand it
 
-In decimal place value, moving one place left multiplies the value of a digit by 10. In 204, the 2 means 200 and the zero holds the empty tens place. Removing it gives 24, where the 2 means 20. The video practises expanded form with decimals; use the same place-value thinking for whole numbers.
+In decimal place value, each place to the left is worth ten times as much. In 204, the 2 contributes 200, the 0 contributes no tens and the 4 contributes 4: 204 = 2 × 100 + 0 × 10 + 4. Deleting the middle zero gives 24, which has only 2 tens. Zero contributes no amount in its own place but can preserve the weights of other digits.
+
+A leading zero is different: 0204 still represents 204 because the extra thousands contribution is zero. The video extends place value to decimals; first make sure you can label hundreds, tens and ones. Do not replace this reasoning with either "zeros never matter" or "every extra zero changes the value".
 
 ### Try it yourself
 
-Why are 204 and 24 different numbers?
+Use the digits 0, 4 and 7 exactly once each. Find the largest and smallest three-digit decimal whole numbers you can make, and find their difference. Explain why 047 cannot be the smallest three-digit answer. Expand both valid answers into place values.
 
-**Check:** The 2 represents 200 in 204 but 20 in 24; zero preserves the empty tens place.
+**Check:** The largest is 740 = 7 × 100 + 4 × 10 + 0; the smallest is 407 = 4 × 100 + 0 × 10 + 7. Their difference is 740 - 407 = 333. A three-digit whole number cannot start with zero: 047 has the value 47 and only two digits when written without a leading zero. The middle zero in 407, unlike that leading zero, keeps the 4 in the hundreds place. Valid candidates are 407, 470, 704 and 740.
 
 ## 3. Bases and regrouping
 

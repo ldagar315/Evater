@@ -24,25 +24,29 @@ Ms. Heather Moser
 
 ### Understand it
 
-Focus on the first comparison of unsaturated and saturated solutions. The later supersaturation example is an extension, not needed for this check. A saturated solution has reached its dissolving limit for a stated temperature and amount of solvent. It can still look clear: undissolved material appears only if extra solute is present. More stirring does not make that extra solute dissolve once the limit is reached without changing the conditions.
+A saturated solution has reached its dissolving limit for a stated temperature and amount of solvent. It can still look clear: solid need not remain if exactly the limiting amount has dissolved. Undissolved extra solid shows that more was added than could dissolve under those conditions. The video's later supersaturation example is an extension, not needed here.
+
+For an invented solute, suppose 40 g of water can dissolve at most 8 g at 20°C. Adding 10 g and allowing enough time leaves 8 g dissolved and 2 g undissolved. More stirring can help reach the limit, but cannot raise it at unchanged conditions. Adding solvent is different: more water provides more dissolving capacity at the same temperature. Do not taste laboratory solutions.
 
 ### Try it yourself
 
-Two clear sugar solutions look alike. Can you tell just by looking which is saturated? Explain how you could compare them without heating anything.
+Use fictional data, not a real chemical recipe: at 25°C, 50 g of water can dissolve at most 12 g of solid X. You add 16 g and allow the system to settle at that temperature. How much dissolves and remains? Then add another 50 g of water, keep 25°C and allow enough mixing time. Is the resulting solution saturated, and how much more X could dissolve?
 
-**Check:** Not by appearance alone. Under the same conditions, add a little more sugar and allow time for stirring. A solution that can dissolve more is unsaturated; at the limit, extra sugar remains undissolved. Do not taste laboratory solutions.
+**Check:** With the first 50 g of water, 12 g dissolves and 16 - 12 = 4 g remains undissolved. Doubling the water to 100 g doubles the stated capacity to 24 g. All 16 g can now dissolve, leaving capacity for 24 - 16 = 8 g more, so the final solution is unsaturated. Extra water changed the capacity; stirring alone at the original conditions would not. Clear appearance by itself cannot tell you whether the solution is exactly at its limit.
 
 ## 3. Temperature and dissolved gases
 
 ### Think it through
 
-Do not use one temperature rule for every substance. Dissolved gases commonly become less soluble as water warms; the behaviour of a solid solute can differ. Compare the same substance under stated conditions and describe the result, rather than claiming that all substances dissolve better in hot water.
+Do not use one temperature rule for every substance. Many gases become less soluble in water as temperature rises, when the pressure of that gas above the water stays the same. The behaviour of a solid solute can differ. Dissolving faster is not the same as increasing the maximum amount dissolved after enough time.
+
+Pressure is another variable for dissolved gases. To test a temperature effect, compare the same gas, the same amount of water and the same pressure of that gas, after each reaches equilibrium. If both temperature and pressure change, a different dissolved amount cannot be attributed to temperature alone. Use the fictional data below on paper; do not heat or open sealed gas containers to try this.
 
 ### Try it yourself
 
-A claim says warming water must let it hold more of every dissolved substance. Use dissolved gases to challenge the claim, and name one condition a fair comparison must keep the same.
+For the same fictional gas and 100 g of water, equilibrium limits are A: 10°C, 100 kPa gas pressure, 8 mg dissolved; B: 30°C, 100 kPa, 5 mg; C: 30°C, 200 kPa, 10 mg. Which pair isolates temperature and what does it show? Which pair isolates pressure? A learner compares A with C and concludes warming always increases gas solubility. Why is that not justified?
 
-**Check:** Dissolved gases commonly become less soluble as water warms, so the claim is too broad. Compare the same gas and amount of water at the same pressure; change only the temperature. Dissolving faster is also not the same as a larger final dissolving limit.
+**Check:** A and B keep gas pressure and water amount fixed while temperature rises; the limit falls from 8 mg to 5 mg. B and C keep temperature fixed while gas pressure rises; the limit rises from 5 mg to 10 mg in these data. A and C change both variables, so their difference cannot establish a temperature-only effect. One fictional data set also cannot prove an "always" rule for every substance. All three are equilibrium limits, not measurements of dissolving speed.
 
 ## 4. Density, floating and sinking
 
