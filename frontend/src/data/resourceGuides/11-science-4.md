@@ -22,6 +22,16 @@ Diagram A shows one wire from a cell terminal to a lamp, but no return path to t
 
 **Check:** A lacks a complete return path; B has a break at the open switch. Neither gives current a complete path around the ideal circuit. After closing B, a weak cell, poor contact or faulty lamp could still prevent lighting. A complete path is necessary, not a promise that all components work. Use teacher-approved low-voltage equipment only under guidance, never a wall socket.
 
+### Work through an example
+
+In a supplied diagram, a working cell, intact lamp and wires form a loop, but the switch is open. The gap interrupts the conducting path, so the lamp cannot light. Closing that gap can complete the loop; drawing a wire near a terminal without contact does not. A lamp staying dark does not by itself prove the cell is exhausted: the lamp or a connection might be faulty. Reason from the diagram only.
+
+### Try a different case
+
+Two diagrams use a working cell and lamp. A connects both lamp contacts to the same cell terminal. B connects one lamp contact to each different terminal through a closed switch. Which has the required loop, assuming no other connection? Does a dark real lamp prove a dead cell?
+
+**Reasoning:** B has the complete path through the lamp between the two cell terminals. A does not provide that path across the cell. A dark real lamp alone does not identify the fault; a broken filament, open switch or poor connection can also interrupt the circuit. Do not test by shorting terminals or opening a cell.
+
 ## 2. Magnetic effect of electric current
 
 ### Watch: How does an Electromagnet Work?
@@ -42,6 +52,16 @@ A teacher's diagram shows a compass near a fixed wire. With the switch open, the
 
 **Check:** The change is consistent with a magnetic field produced by the current affecting the compass. Switching off removes that current-produced contribution, not Earth's field or every other possible field. The compass can still point in an original direction. Watch only: do not copy the paper electromagnet because of overheating and fire risk.
 
+### Work through an example
+
+In a teacher-provided record, a nearby compass changes direction when current is switched on and returns when it is switched off. The current produces a magnetic field that acts on the compass, itself a small magnet. The wire need not be iron for this effect. This is not evidence that every nearby metal object becomes a permanent magnet. Interpret the record only; do not copy the paper-coil activity.
+
+### Try a different case
+
+A diagram shows current in a copper wire beside a compass. A learner says copper is not iron, so the wire cannot affect the needle. Correct the claim. If the needle does not visibly move, is that alone proof of zero current?
+
+**Reasoning:** The magnetic effect comes from electric current, not from the wire being iron. A current-carrying copper wire can affect a nearby compass. No visible movement alone does not prove zero current: distance, orientation or a weak effect can matter. The compass result must be interpreted with the setup, not used as an infallible current detector.
+
 ## 3. Electromagnets and their uses
 
 ### Watch: How does an Electromagnet Work?
@@ -61,6 +81,16 @@ The field of the powered coil depends on its current. Real iron cores may retain
 A model lifting device uses a current-carrying coil with a suitable iron core to pick up iron pieces. Predict the intended effect of switching the current off and explain why a permanent magnet would not offer the same direct current control. Does this reasoning prove that every metal object will be lifted, or that a real core can never retain any magnetism?
 
 **Check:** Switching off removes the powered coil's magnetic field so the device is intended to release the load. A permanent magnet is not switched off just by breaking a separate electric circuit. The argument concerns suitable magnetic materials, not every metal. A real core can retain some magnetism, so release behaviour needs checking rather than an absolute guarantee. This is a diagram exercise, not a build instruction.
+
+### Work through an example
+
+A lifting electromagnet uses current in a coil to provide a controllable magnetic effect. A suitable iron core strengthens that effect; the current-carrying coil still produces a field without it. In a simplified scrapyard diagram, switching off the current removes the coil field so the load can be released. The useful chain is current, magnetic attraction, lifting, then controlled release. This paper model is not a construction plan.
+
+### Try a different case
+
+Two otherwise comparable diagrams have the same coil and current, one with a suitable iron core and one without. Does removing the core mean no magnetic field at all? Why use an electromagnet rather than a permanent magnet for controlled release?
+
+**Reasoning:** Removing the iron core weakens the effect in this comparison; it does not erase the field produced by current in the coil. Switching current lets an electromagnet control attraction and release in the simplified lifting model. A permanent magnet cannot be switched off merely by opening an electrical circuit. Do not build or operate a lifting device from this example.
 
 ## 4. Heating effect and electrical safety
 
@@ -83,6 +113,16 @@ Study mains-powered devices through diagrams only. Do not open appliances, touch
 Two diagram captions read: 'A heater's element warming during normal use' and 'An appliance lead becoming unusually hot'. A learner labels both safe because they show the same heating effect. Explain the flaw. Would a lead that is not visibly glowing automatically be safe to touch or keep using?
 
 **Check:** The same physical effect can be useful in an intended heating element but hazardous in an overheating lead. Not glowing does not establish a safe temperature or safe operation. Do not touch-test, open or repair the appliance; keep clear and alert a responsible adult. A shared explanation of heating is not permission to use an unsafe device.
+
+### Work through an example
+
+Both an electric heater and a fan can warm up. Heating is the intended useful output of the heater, while the fan is intended to move air; warming is not proof that every device is a heater. A warm or damaged plug is not an invitation to investigate by touch or repair. Tell a responsible adult and stay away from damaged electrical equipment. Use the supplied diagrams only.
+
+### Try a different case
+
+A pupil says, "If a fan gets warm, heating must be its main purpose. We should touch the plug to find where the energy goes." Correct both claims. Is warmth alone enough to decide whether a device is safe?
+
+**Reasoning:** The fan is intended to move air; some electrical energy is also transferred as heating. That does not make heating its main purpose. Do not touch-test plugs, wires or appliances, or open them to investigate. Warmth alone cannot establish safety; tell a responsible adult about damaged equipment or unusual heating. Use diagrams, not a mains experiment.
 
 ## Your five-minute revision
 
